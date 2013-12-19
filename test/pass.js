@@ -9,33 +9,31 @@ var validator = require("../lib/node-validator").makeSpecberus()
 ;
 
 function Sink () {
-    this.ok = false;
+    this.ok = 0;
     this.done = 0;
 }
 util.inherits(Sink, events.EventEmitter);
 
 profiles.forEach(function (profileName) {
     var profile = require("../lib/profiles/" + profileName);
-    describe("Gives a pass to all the files in profile: " + profileName, function (allDone) {
-        console.log("in describe");
+    describe("Gives a pass to all the files in profile: " + profileName, function () {
         var testDir = pth.join(__dirname, "pass", profileName)
-        ,   total = 0
+        ,   total = profile.rules.length
         ;
         fs.readdirSync(testDir).forEach(function (file) {
-            total++;
             it("should pass for file: " + file, function (done) {
-                console.log("in it for " + file);
                 var sink = new Sink;
-                sink.on("ok", function (data) {
-                    sink.ok = true;
-                    console.log("ok", data);
+                sink.on("ok", function () {
+                    sink.ok++;
                 });
-                sink.on("done", function (data) {
-                    expect(sink.ok).to.be.ok();
+                sink.on("done", function () {
                     sink.done++;
-                    console.log("done", sink.done, data);
+                });
+                sink.on("end-all", function (name) {
+                    expect(name).to.eql(profile.name);
+                    expect(sink.ok).to.eql(total);
+                    expect(sink.done).to.eql(total);
                     done();
-                    if (sink.done === total) allDone();
                 });
                 validator.validate({
                     file:       pth.join(testDir, file)
