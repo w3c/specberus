@@ -1,0 +1,10 @@
+{
+    "name":     "specberus"
+,   "version":  "0.0.1"
+,   "license": "MIT"
+,   "dependencies": {
+    }
+,   "devDependencies": {
+        "mocha":    "1.15.1"
+    }
+}
