@@ -1,0 +1,7 @@
+
+{
+    "h1.html": ["dummy.has-h1"]
+,   "h2-foo.html": ["dummy.has-h2-foo"]
+,   "dahut.html": ["dummy.dahut"]
+,   "all.html": ["dummy.has-h1", "dummy.has-h2-foo", "dummy.dahut"]
+}
