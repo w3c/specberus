@@ -17,19 +17,25 @@ util.inherits(Sink, events.EventEmitter);
 profiles.forEach(function (profileName) {
     var profile = require("../lib/profiles/" + profileName);
     describe("Gives a pass to all the files in profile: " + profileName, function (allDone) {
+        console.log("in describe");
         var testDir = pth.join(__dirname, "pass", profileName)
         ,   total = 0
         ;
         fs.readdirSync(testDir).forEach(function (file) {
             total++;
             it("should pass for file: " + file, function (done) {
+                console.log("in it for " + file);
                 var sink = new Sink;
-                sink.on("ok", function () { this.ok = true; });
-                sink.on("done", function () {
-                    expect(this.ok).to.be.ok();
-                    this.done++;
+                sink.on("ok", function (data) {
+                    sink.ok = true;
+                    console.log("ok", data);
+                });
+                sink.on("done", function (data) {
+                    expect(sink.ok).to.be.ok();
+                    sink.done++;
+                    console.log("done", sink.done, data);
                     done();
-                    if (this.done === total) allDone();
+                    if (sink.done === total) allDone();
                 });
                 validator.validate({
                     file:       pth.join(testDir, file)
