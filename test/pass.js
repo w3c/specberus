@@ -11,7 +11,7 @@ var validator = require("../lib/node-validator").makeSpecberus()
 profiles.forEach(function (profileName) {
     var profile = require("../lib/profiles/" + profileName);
     describe("Gives a pass to all the files in profile: " + profileName, function (allDone) {
-        var testDir = pth.join("pass", profileName)
+        var testDir = pth.join(__dirname, "pass", profileName)
         ,   total = 0
         ;
         fs.readdirSync(testDir).forEach(function (file) {

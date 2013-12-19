@@ -3,7 +3,7 @@
 ,   "version":  "0.0.1"
 ,   "license": "MIT"
 ,   "dependencies": {
-        "gumbo-parser": "0.1.7"
+        "whacko":       "0.12.9"
     ,   "superagent":   "0.15.7"
     }
 ,   "devDependencies": {
