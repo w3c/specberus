@@ -28,10 +28,11 @@ profiles.forEach(function (profileName) {
                 var sink = new Sink
                 ,   fileErrors = errors[file]
                 ;
-                sink.on("ok", function () {
+                sink.on("ok", function (name) {
+                    console.log("ok", name);
                     sink.ok++;
                 });
-                sink.on("error", function (type) {
+                sink.on("err", function (type) {
                     sink.errors.push(type);
                 });
                 sink.on("done", function () {
@@ -39,6 +40,7 @@ profiles.forEach(function (profileName) {
                 });
                 sink.on("end-all", function (name) {
                     expect(name).to.eql(profile.name);
+                    console.log(total, sink.ok, fileErrors.length, fileErrors);
                     expect(sink.ok).to.eql(total - fileErrors.length);
                     expect(sink.errors.length).to.eql(fileErrors.length);
                     for (var i = 0, n = fileErrors.length; i < n; i++) {

@@ -1,4 +1,5 @@
 
 {
     "invalid.html": ["validation.html"]
+,   "bad-css.html": ["validation.css"]
 }
