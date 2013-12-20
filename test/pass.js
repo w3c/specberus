@@ -5,7 +5,7 @@ var validator = require("../lib/node-validator").makeSpecberus()
 ,   fs = require("fs")
 ,   events = require("events")
 ,   util = require("util")
-,   profiles = "dummy".split(" ")
+,   profiles = "dummy base".split(" ")
 ;
 
 function Sink () {
