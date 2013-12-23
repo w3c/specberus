@@ -11,6 +11,7 @@ var validator = require("../lib/node-validator").makeSpecberus()
 function Sink () {
     this.ok = 0;
     this.done = 0;
+    this.error = 0;
 }
 util.inherits(Sink, events.EventEmitter);
 
@@ -23,6 +24,9 @@ profiles.forEach(function (profileName) {
         fs.readdirSync(testDir).forEach(function (file) {
             it("should pass for file: " + file, function (done) {
                 var sink = new Sink;
+                sink.on("error", function () {
+                    sink.error++;
+                });
                 sink.on("ok", function () {
                     sink.ok++;
                 });
