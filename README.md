@@ -89,6 +89,7 @@ they're done.
 
 The Specberus object exposes the following API that's useful for validation:
 
+* `$`. A jQuery-like interface to the document being checked.
 * `loader`. The loader object that loaded the content, which exposes the content's `url` and 
   `source` if they are known.
 * `sink`. The event target on which to fire validation events.

@@ -42,6 +42,11 @@ var tests = {
             { doc: "headers/simple.html" }
         ,   { doc: "headers/fails.html", errors: ["headers.title"] }
         ]
+    ,   logo:  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "headers/logo.html" }
+        ,   { doc: "headers/fails.html", errors: ["headers.logo"] }
+        ]
     }
 ,   validation:   {
         css:  [
