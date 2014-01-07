@@ -38,9 +38,9 @@ var tests = {
     }
 ,   validation:   {
         css:  [
-            { doc: "validation/simple.html" }
-        ,   { doc: "validation/css.html" }
-        ,   { doc: "validation/bad-css.html", errors: ["validation.css"] }
+            { doc: "validation/simple.html", ignoreWarnings: true }
+        ,   { doc: "validation/css.html", ignoreWarnings: true }
+        ,   { doc: "validation/bad-css.html", errors: ["validation.css"], ignoreWarnings: true }
         ]
     ,   html:  [
             { doc: "validation/simple.html" }
@@ -64,7 +64,7 @@ Object.keys(tests).forEach(function (category) {
         Object.keys(tests[category]).forEach(function (rule) {
             describe("Rule " + rule, function () {
                 tests[category][rule].forEach(function (test) {
-                    var passTest = test.errors ? true : false;
+                    var passTest = test.errors ? false : true;
                     it("should " + (passTest ? "pass" : "fail") + " for " + test.doc, function (done) {
                         var r = require("../lib/rules/" + category + "/" + rule)
                         ,   sink = new Sink
