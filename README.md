@@ -97,4 +97,6 @@ The Specberus object exposes the following API that's useful for validation:
 * `checkSelector(selector, rule-name, cb)`. Some rules need to do nothing other than to check that a
   selector returns some content. For this case, the rule can just call this method with the selector
   and its callback, and Specberus will conveniently take care of all the rest.
-
+* `norm(text)`. Returns a whitespace-normalised version of the text.
+* `getDocumentDate()`. Returns a Date object that matches the document's date as specified in the
+  headers' h2.
