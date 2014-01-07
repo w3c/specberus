@@ -93,7 +93,7 @@ The Specberus object exposes the following API that's useful for validation:
   `source` if they are known.
 * `sink`. The event target on which to fire validation events.
 * `version`. The Specberus version.
-* `checkSelector(selector, cb)`. Some rules need to do nothing other than to check that a selector
-  returns some content. For this case, the rule can just call this method with the selector and its
-  callback, and Specberus will conveniently take care of all the rest.
+* `checkSelector(selector, rule-name, cb)`. Some rules need to do nothing other than to check that a
+  selector returns some content. For this case, the rule can just call this method with the selector
+  and its callback, and Specberus will conveniently take care of all the rest.
 

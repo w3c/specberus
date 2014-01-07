@@ -30,10 +30,17 @@ var tests = {
     }
 ,   headers:   {
         "div.head":  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "headers/fails.html", errors: ["headers.div-head"] }
         ]
     ,   hr:  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "headers/hr.html" }
+        ,   { doc: "headers/fails.html", errors: ["headers.hr"] }
         ]
     ,   title:  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "headers/fails.html", errors: ["headers.title"] }
         ]
     }
 ,   validation:   {
@@ -119,17 +126,3 @@ Object.keys(tests).forEach(function (category) {
         });
     });
 });
-
-
-// for each category, describe()
-// for each rule, describe()
-// for each test, it()
-//  run with doc and accrue ok, error, warnings
-//  must be ok for a pass test, not for a fail test
-//  warnings must match in either case
-//  option to ignore some|all warnings
-//  options to skip network tests (through ENV)
-
-// replace the current profile tests completely
-// they will be reintroduced in a more comprehensive way
-
