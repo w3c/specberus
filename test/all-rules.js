@@ -73,6 +73,13 @@ var tests = {
         ,   { doc: "headers/fails.html", errors: ["headers.copyright"] }
         ]
     }
+,   style:   {
+        sheet:  [
+            { doc: "headers/simple.html", config: { styleSheet: "W3C-WD"} }
+        ,   { doc: "headers/fails.html", config: { styleSheet: "W3C-WD"}, errors: ["style.sheet"] }
+        ,   { doc: "style/style-not-last.html", config: { styleSheet: "W3C-WD"}, errors: ["style.sheet"] }
+        ]
+    }
 ,   validation:   {
         css:  [
             { doc: "validation/simple.html", ignoreWarnings: true }
