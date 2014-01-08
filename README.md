@@ -100,3 +100,5 @@ The Specberus object exposes the following API that's useful for validation:
 * `norm(text)`. Returns a whitespace-normalised version of the text.
 * `getDocumentDate()`. Returns a Date object that matches the document's date as specified in the
   headers' h2.
+* `getDocumentDateElement()`. Returns the element that contains the document's date.
+

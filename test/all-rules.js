@@ -52,6 +52,16 @@ var tests = {
         ,   { doc: "headers/fails.html", errors: ["headers.h1-title"] }
         ,   { doc: "headers/h1-title.html", errors: ["headers.h1-title"] }
         ]
+    ,   dl:  [
+            { doc: "headers/simple.html", config: { previousVersion: true } }
+        ,   { doc: "headers/fails.html", errors: ["headers.dl", "headers.dl", "headers.dl"] }
+        ,   { doc: "headers/fails.html"
+            , config: { previousVersion: true }
+            , errors: ["headers.dl", "headers.dl", "headers.dl", "headers.dl"] }
+        ,   { doc: "headers/dl-order.html", errors: ["headers.dl", "headers.dl"] }
+        ,   { doc: "headers/dl-mismatch.html"
+            , errors: ["headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl"] }
+        ]
     }
 ,   validation:   {
         css:  [
@@ -122,12 +132,14 @@ Object.keys(tests).forEach(function (category) {
                             }
                             done();
                         });
+                        var profile = {
+                            name:   "Synthetic " + category + "/" + rule
+                        ,   rules:  [r]
+                        };
+                        profile.config = test.config;
                         validator.validate({
                             file:       pth.join(__dirname, "docs", test.doc)
-                        ,   profile:    {
-                                name:   "Synthetic " + category + "/" + rule
-                            ,   rules:  [r]
-                            }
+                        ,   profile:    profile
                         ,   events:     sink
                         });
                     });
