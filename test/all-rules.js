@@ -5,6 +5,7 @@ var validator = require("../lib/node-validator").makeSpecberus()
 ,   events = require("events")
 ,   util = require("util")
 ,   networkCats = "validation".split(" ")
+,   DEBUG = false
 ;
 
 var tests = {
@@ -53,7 +54,7 @@ var tests = {
         ,   { doc: "headers/h1-title.html", errors: ["headers.h1-title"] }
         ]
     ,   dl:  [
-            { doc: "headers/simple.html", config: { previousVersion: true } }
+            { doc: "headers/simple.html", config: { previousVersion: true, status: "WD" } }
         ,   { doc: "headers/fails.html", errors: ["headers.dl", "headers.dl", "headers.dl"] }
         ,   { doc: "headers/fails.html"
             , config: { previousVersion: true }
@@ -61,6 +62,15 @@ var tests = {
         ,   { doc: "headers/dl-order.html", errors: ["headers.dl", "headers.dl"] }
         ,   { doc: "headers/dl-mismatch.html"
             , errors: ["headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl"] }
+        ]
+    ,   "h2-status":  [
+            { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
+        ,   { doc: "headers/simple.html", config: { longStatus: "Recommendation" }, errors: ["headers.h2-status"] }
+        ]
+    ,   copyright:  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "headers/copyright-freedom.html", warnings: ["headers.copyright"] }
+        ,   { doc: "headers/fails.html", errors: ["headers.copyright"] }
         ]
     }
 ,   validation:   {
@@ -99,10 +109,12 @@ Object.keys(tests).forEach(function (category) {
                         sink.on("ok", function () {
                             sink.ok++;
                         });
-                        sink.on("err", function (type) {
+                        sink.on("err", function (type, data) {
+                            if (DEBUG) console.log(data);
                             sink.errors.push(type);
                         });
-                        sink.on("warning", function (type) {
+                        sink.on("warning", function (type, data) {
+                            if (DEBUG) console.log("[W]", data);
                             sink.warnings.push(type);
                         });
                         sink.on("done", function () {
