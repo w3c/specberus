@@ -86,6 +86,14 @@ var tests = {
         ,   { doc: "links/internal-fails.html", errors: ["links.internal", "links.internal"] }
         ]
     }
+,   structure:   {
+        h2:  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "structure/h2-abstract.html", errors: ["structure.h2"] }
+        ,   { doc: "structure/h2-sotd.html", errors: ["structure.h2", "structure.h2"] }
+        ,   { doc: "structure/h2-toc.html", errors: ["structure.h2", "structure.h2", "structure.h2"] }
+        ]
+    }
 ,   validation:   {
         css:  [
             { doc: "validation/simple.html", ignoreWarnings: true }
@@ -120,6 +128,7 @@ Object.keys(tests).forEach(function (category) {
                         ,   sink = new Sink
                         ;
                         sink.on("ok", function () {
+                            if (DEBUG) console.log("OK");
                             sink.ok++;
                         });
                         sink.on("err", function (type, data) {
@@ -131,12 +140,13 @@ Object.keys(tests).forEach(function (category) {
                             sink.warnings.push(type);
                         });
                         sink.on("done", function () {
+                            if (DEBUG) console.log("---done---");
                             sink.done++;
                         });
                         sink.on("end-all", function () {
                             if (passTest) {
                                 expect(sink.errors).to.be.empty();
-                                expect(sink.ok).to.eql(sink.done); // this may not hold
+                                expect(sink.ok).to.eql(sink.done);
                             }
                             else {
                                 expect(sink.errors.length).to.eql(test.errors.length);
