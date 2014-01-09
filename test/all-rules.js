@@ -80,6 +80,12 @@ var tests = {
         ,   { doc: "style/style-not-last.html", config: { styleSheet: "W3C-WD"}, errors: ["style.sheet"] }
         ]
     }
+,   links:   {
+        internal:  [
+            { doc: "links/internal-good.html" }
+        ,   { doc: "links/internal-fails.html", errors: ["links.internal", "links.internal"] }
+        ]
+    }
 ,   validation:   {
         css:  [
             { doc: "validation/simple.html", ignoreWarnings: true }
