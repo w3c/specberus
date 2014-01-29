@@ -110,6 +110,10 @@ var tests = {
             { doc: "headers/simple.html" }
         ,   { doc: "sotd/ml-bad.html", errors: ["sotd.mailing-list", "sotd.mailing-list", "sotd.mailing-list"] }
         ]
+    ,   "pp":  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "sotd/pp-bad.html", errors: ["sotd.pp", "sotd.pp", "sotd.pp", "sotd.pp"] }
+        ]
     }
 ,   validation:   {
         css:  [
