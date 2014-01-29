@@ -106,6 +106,10 @@ var tests = {
             { doc: "headers/simple.html" }
         ,   { doc: "sotd/supersedable.html", errors: ["sotd.supersedable", "sotd.supersedable"] }
         ]
+    ,   "mailing-list":  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "sotd/ml-bad.html", errors: ["sotd.mailing-list", "sotd.mailing-list", "sotd.mailing-list"] }
+        ]
     }
 ,   validation:   {
         css:  [
