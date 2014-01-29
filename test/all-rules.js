@@ -110,9 +110,19 @@ var tests = {
             { doc: "headers/simple.html" }
         ,   { doc: "sotd/ml-bad.html", errors: ["sotd.mailing-list", "sotd.mailing-list", "sotd.mailing-list"] }
         ]
-    ,   "pp":  [
+    ,   pp:  [
             { doc: "headers/simple.html" }
         ,   { doc: "sotd/pp-bad.html", errors: ["sotd.pp", "sotd.pp", "sotd.pp", "sotd.pp"] }
+        ]
+    ,   stability:  [
+            { doc: "headers/simple.html", config: { longStatus: "Working Draft", stabilityWarning: true } }
+        ,   { doc: "headers/simple.html"
+            , config: { longStatus: "Rock And Roll", stabilityWarning: true }
+            , errors: ["sotd.stability"]
+            }
+        ,   { doc: "sotd/supersedable.html"
+            , config: { longStatus: "Rock And Roll", stabilityWarning: false }
+            }
         ]
     }
 ,   validation:   {
