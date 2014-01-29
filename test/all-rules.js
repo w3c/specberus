@@ -101,6 +101,12 @@ var tests = {
                       ,"structure.section-ids"]  }
         ]
     }
+,   sotd:   {
+        supersedable:  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "sotd/supersedable.html", errors: ["sotd.supersedable", "sotd.supersedable"] }
+        ]
+    }
 ,   validation:   {
         css:  [
             { doc: "validation/simple.html", ignoreWarnings: true }
