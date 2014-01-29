@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <title>Testing Section IDs</title>
+  </head>
+  <body>
+    
+    <!-- has an id -->
+    <h1 id='x1'></h1>
+
+    <!-- has no element previous sibling, has parent div or section, and that has an id -->
+    <div id='x2'>
+      <h2></h2>
+    </div>
+    <section id='x3'>
+      blah
+      <h3></h3>
+    </section>
+
+    <!-- has a descendant that has an id -->
+    <h4><span><strong></strong><em><code id='x4'></code></em></span></h4>
+
+    <!-- has an a[name] descendant -->
+    <h5><code><a name='x5'></a></code></h5>
+    
+    <!-- has a[name] as previous element sibling -->
+    <a name='x6'></a>
+    foo
+    <h6></h6>
+  </body>
+</html>

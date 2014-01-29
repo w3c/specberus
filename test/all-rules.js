@@ -93,6 +93,13 @@ var tests = {
         ,   { doc: "structure/h2-sotd.html", errors: ["structure.h2", "structure.h2"] }
         ,   { doc: "structure/h2-toc.html", errors: ["structure.h2", "structure.h2", "structure.h2"] }
         ]
+    ,   "section-ids":  [
+            { doc: "structure/sid-ok.html" }
+        ,   { doc: "structure/sid-all-wrong.html"
+            , errors: ["structure.section-ids", "structure.section-ids", "structure.section-ids"
+                      ,"structure.section-ids", "structure.section-ids", "structure.section-ids"
+                      ,"structure.section-ids"]  }
+        ]
     }
 ,   validation:   {
         css:  [
