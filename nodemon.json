@@ -2,4 +2,5 @@
     "env":  {
         "PORT": 8001
     }
+,   "ignore":   ["public/*"]
 }

@@ -38,6 +38,7 @@ io.sockets.on("connection", function (socket) {
     socket.emit("handshake", { version: version });
     socket.on("validate", function (data) {
         if (!data.url) return socket.emit("exception", {}); // XXX
+        if (!data.protocol) return socket.emit("exception", {}); // XXX
         // load up node-validator
         // configure it with the right profile, run
         // pipe the events back to the client
