@@ -10,7 +10,7 @@ var express = require("express")
 ;
 "base WD".split(" ")
          .forEach(function (p) {
-             profiles[p] = require("./profiles/" + p);
+             profiles[p] = require("./lib/profiles/" + p);
          })
 ;
 
@@ -34,7 +34,6 @@ server.listen(process.env.PORT || 80);
 //      warning, { name: "test name", code: "FOO" }
 //      error, { name: "test name", code: "FOO" }
 //      done, {}
-
 io.sockets.on("connection", function (socket) {
     socket.emit("handshake", { version: version });
     socket.on("validate", function (data) {

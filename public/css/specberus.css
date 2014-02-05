@@ -1,0 +1,15 @@
+body {
+    padding-top:    70px;
+}
+
+.container {
+    max-width:  800px;
+}
+
+.navbar-inverse .navbar-brand {
+    color:  #fff;
+}
+
+.horizontal-form .form-group {
+    padding-bottom: 30px;
+}

@@ -3,8 +3,77 @@
   <head>
     <meta charset='utf-8'>
     <title>Pubrules Checker</title>
+    <link rel='stylesheet' href='css/bootstrap.min.css'>
+    <link rel='stylesheet' href='css/bootstrap-theme.min.css'>
+    <link rel='stylesheet' href='css/specberus.css'>
   </head>
   <body>
-    
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Pubrules Checker</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+      <div class="alert alert-danger alert-dismissable hide" id='alert'>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span></span>
+      </div>
+      
+      <!-- the form -->
+      <div class="panel panel-default">
+        <div class='panel-heading'>
+          <h2 class='panel-title'>Checker options</h2>
+        </div>
+        <div class="panel-body">
+          <form id='options' class='horizontal-form'>
+            <div class="form-group">
+              <label for="url" class="col-sm-2 control-label">URL</label>
+              <div class="col-sm-10">
+                <input type="url" class="form-control" id="url" placeholder="URL" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="profile" class="col-sm-2 control-label">Profile</label>
+              <div class="col-sm-10">
+                <select class='form-control' id='profile' required>
+                  <option value='WD'>WD — Working Draft</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary pull-right">Run</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <!-- the results -->
+      <div class="panel panel-default hide" id='results'>
+        <div class='panel-heading'>
+          <h2 class='panel-title'>Results</h2>
+        </div>
+        <div class="panel-body">
+        </div>
+        <div class="panel-footer">
+          <div class="progress progress-striped active">
+            <div class="progress-bar" role="progressbar" 
+                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0">
+              <span class="sr-only">x/y done</span>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <script src='js/jquery.min.js'></script>
+    <script src='js/bootstrap.min.js'></script>
+    <script src='js/socket.io.min.js'></script>
+    <script src='js/specberus.js'></script>
   </body>
 </html>
