@@ -12,7 +12,7 @@
     ,   $profile = $("#profile")
     ,   $alert = $("#alert")
     ,   $results = $("#results")
-    ,   $resultsBody = $results.find(".panel-body")
+    ,   $resultsBody = $results.find("table")
     ,   $progress = $results.find(".progress-bar")
     ,   $progressLabel = $progress.find(".sr-only")
     ,   socket = io.connect(location.protocol + "//" + location.host)
@@ -51,7 +51,7 @@
 
     // validate
     function validate (url, profile) {
-        $resultsBody.empty();
+        $resultsBody.find("tr:not(.h)").remove();
         socket.emit("validate", {
             url:        url
         ,   profile:    profile
@@ -63,9 +63,32 @@
         $progress.hide();
     }
     
+    // handle results
+    function row (id) {
+        var $row = $("#" + id);
+        if ($row.length) return $row;
+        return $("<tr><td class='status'></td><td class='test'></td><td class='results'></td></tr>")
+                    .find(".test")
+                        .text(id)
+                    .end()
+            ;
+    }
+    var type2class = {
+        warning:    "text-warning"
+    ,   error:      "text-danger"
+    };
+    function addMessage ($row, type, msg) {
+        var $ul = $row.find("ul." + type);
+        if (!$ul.length) $ul = $("<ul></ul>").addClass(type);
+        $("<li></li>")
+            .addClass(type2class[type])
+            .text(msg)
+            .appendTo($ul);
+    }
+    
     // protocol
     socket.on("exception", function (data) {
-        showError("Exception:"); // XXX
+        showError("Exception: " + data.message);
         endValidation();
     });
     socket.on("start", function () {
@@ -73,21 +96,26 @@
         $progress.show();
     });
     socket.on("ok", function (data) {
-        // XXX
-        //  add row if not exist
-        //  set it to ok (class, text)
+        row(data.name)
+            .find(".status")
+                .append("<span class='text-success'>\u2714 <span class='sr-only'>ok</span></span>")
+            .end()
+            .find(".results")
+                .prepend("Ok")
+            .end();
     });
     socket.on("warning", function (data) {
-        // XXX
-        //  add row if not exist
-        //  add a warning (class, text)
+        addMessage(row(data.name), "warning", data.message);
     });
     socket.on("error", function (data) {
-        // XXX
-        //  add row if not exist
-        //  set it to error (class, text)
+        var $row = row(data.name);
+        addMessage(row(data.name), "error", data.message);
+        $row
+            .find(".status")
+                .append("<span class='text-danger'>\u2718 <span class='sr-only'>fail</span></span>")
+            .end();
     });
-    socket.on("done", function (data) {
+    socket.on("done", function () {
         endValidation();
     });
 

@@ -5,6 +5,10 @@ var express = require("express")
 ,   app = express()
 ,   server = require("http").createServer(app)
 ,   io = require("socket.io").listen(server)
+,   nv = require("./lib/node-validator")
+,   l10n = require("./lib/l10n")
+,   util = require("util")
+,   events = require("events")
 ,   version = require("./package.json").version
 ,   profiles = {}
 ;
@@ -34,13 +38,39 @@ server.listen(process.env.PORT || 80);
 //      warning, { name: "test name", code: "FOO" }
 //      error, { name: "test name", code: "FOO" }
 //      done, {}
+function Sink () {}
+util.inherits(Sink, events.EventEmitter);
+
 io.sockets.on("connection", function (socket) {
     socket.emit("handshake", { version: version });
     socket.on("validate", function (data) {
-        if (!data.url) return socket.emit("exception", {}); // XXX
-        if (!data.protocol) return socket.emit("exception", {}); // XXX
-        // load up node-validator
-        // configure it with the right profile, run
-        // pipe the events back to the client
+        if (!data.url) return socket.emit("exception", { message: "URL not provided." });
+        if (!data.profile) return socket.emit("exception", { message: "Profile not provided." });
+        socket.emit("start", {});
+        var validator = nv.makeSpecberus()
+        ,   sink = new Sink
+        ;
+        sink.on("ok", function (type) {
+            socket.emit("ok", { name: type });
+        });
+        sink.on("err", function (type, data) {
+            data.name = type;
+            data.message = l10n.message("en", type, data.key, data.extra);
+            socket.emit("error", data);
+        });
+        sink.on("warning", function (type, data) {
+            data.name = type;
+            data.message = l10n.message("en", type, data.key, data.extra);
+            socket.emit("warning", data);
+        });
+        // sink.on("done", function () {});
+        sink.on("end-all", function () {
+            socket.emit("done");
+        });
+        validator.validate({
+            url:        data.url
+        ,   profile:    profiles[data.profile]
+        ,   events:     sink
+        });
     });
 });

@@ -13,3 +13,7 @@ body {
 .horizontal-form .form-group {
     padding-bottom: 30px;
 }
+
+header.navbar-inverse {
+    background: linear-gradient(to bottom, rgb(7, 62, 128) 0px, rgb(0, 45, 80) 100%)
+}
