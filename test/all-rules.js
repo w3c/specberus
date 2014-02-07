@@ -129,7 +129,7 @@ var tests = {
         css:  [
             { doc: "validation/simple.html", ignoreWarnings: true }
         ,   { doc: "validation/css.html", ignoreWarnings: true }
-        ,   { doc: "validation/bad-css.html", errors: ["validation.css"], ignoreWarnings: true }
+        ,   { doc: "validation/bad-css.html", errors: ["validation.css", "validation.css"], ignoreWarnings: true }
         ]
     ,   html:  [
             { doc: "validation/simple.html" }
