@@ -16,6 +16,7 @@
     ,   $progress = $results.find(".progress-bar")
     ,   $progressLabel = $progress.find(".sr-only")
     ,   socket = io.connect(location.protocol + "//" + location.host)
+    ,   rows = {}
     ;
     
     // handshake
@@ -65,13 +66,14 @@
     
     // handle results
     function row (id) {
-        var $row = $("#" + id);
-        if ($row.length) return $row;
-        return $("<tr><td class='status'></td><td class='test'></td><td class='results'></td></tr>")
-                    .find(".test")
-                        .text(id)
-                    .end()
-            ;
+        if (rows[id]) return rows[id];
+        rows[id] =  $("<tr><td class='status'></td><td class='test'></td><td class='results'></td></tr>")
+                        .find(".test")
+                            .text(id)
+                        .end()
+                        .appendTo($resultsBody)
+        ;
+        return rows[id];
     }
     var type2class = {
         warning:    "text-warning"
@@ -79,7 +81,7 @@
     };
     function addMessage ($row, type, msg) {
         var $ul = $row.find("ul." + type);
-        if (!$ul.length) $ul = $("<ul></ul>").addClass(type);
+        if (!$ul.length) $ul = $("<ul></ul>").addClass(type).appendTo($row.find(".results"));
         $("<li></li>")
             .addClass(type2class[type])
             .text(msg)
@@ -88,14 +90,19 @@
     
     // protocol
     socket.on("exception", function (data) {
+        console.log("exception", data);
         showError("Exception: " + data.message);
         endValidation();
     });
     socket.on("start", function () {
+        console.log("start");
+        rows = {};
+        $results.removeClass("hide").show();
         progress(0, 0);
         $progress.show();
     });
     socket.on("ok", function (data) {
+        console.log("ok", data);
         row(data.name)
             .find(".status")
                 .append("<span class='text-success'>\u2714 <span class='sr-only'>ok</span></span>")
@@ -105,17 +112,22 @@
             .end();
     });
     socket.on("warning", function (data) {
+        console.log("warning", data);
         addMessage(row(data.name), "warning", data.message);
     });
     socket.on("error", function (data) {
+        console.log("error", data);
         var $row = row(data.name);
         addMessage(row(data.name), "error", data.message);
-        $row
-            .find(".status")
-                .append("<span class='text-danger'>\u2718 <span class='sr-only'>fail</span></span>")
-            .end();
+        if (!$row.find(".status .text-danger").length) {
+            $row
+                .find(".status")
+                    .append("<span class='text-danger'>\u2718 <span class='sr-only'>fail</span></span>")
+                .end();
+        }
     });
     socket.on("done", function () {
+        console.log("done");
         endValidation();
     });
 
