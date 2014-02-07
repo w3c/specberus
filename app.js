@@ -33,11 +33,12 @@ server.listen(process.env.PORT || 80);
 //  Server:
 //      handshake, { version: "x.y.z"}
 //      exception, { message: "blah", code: "FOO"} (for system errors)
-//      start, {}
+//      start
 //      ok, { name: "test name" }
 //      warning, { name: "test name", code: "FOO" }
 //      error, { name: "test name", code: "FOO" }
-//      done, {}
+//      done, { name: "test name" }
+//      finished
 function Sink () {}
 util.inherits(Sink, events.EventEmitter);
 
@@ -63,9 +64,11 @@ io.sockets.on("connection", function (socket) {
             data.message = l10n.message("en", type, data.key, data.extra);
             socket.emit("warning", data);
         });
-        // sink.on("done", function () {});
+        sink.on("done", function (name) {
+            socket.emit("done", { name: name });
+        });
         sink.on("end-all", function () {
-            socket.emit("done");
+            socket.emit("finished");
         });
         validator.validate({
             url:        data.url

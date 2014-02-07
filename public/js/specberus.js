@@ -13,10 +13,15 @@
     ,   $alert = $("#alert")
     ,   $results = $("#results")
     ,   $resultsBody = $results.find("table")
+    ,   $progressContainer = $results.find(".panel-body")
     ,   $progress = $results.find(".progress-bar")
+    ,   $progressStyler = $progress.parent()
     ,   $progressLabel = $progress.find(".sr-only")
     ,   socket = io.connect(location.protocol + "//" + location.host)
     ,   rows = {}
+    ,   seen = {}
+    ,   done = 0
+    ,   total = 0
     ;
     
     // handshake
@@ -41,11 +46,11 @@
     }
 
     // show progress
-    function progress (done, total) {
+    function progress () {
         $progress.attr({
             "aria-valuenow":    done
         ,   "aria-valuemax":    total
-        ,   "style":            "width: " + ((done/total)*100) + "%"
+        ,   "style":            "width: " + (total ? (done/total)*100 : 0) + "%"
         });
         $progressLabel.text(done + "/" + total + " done.");
     }
@@ -61,7 +66,7 @@
     
     // terminate validation
     function endValidation () {
-        $progress.hide();
+        $progressContainer.hide();
     }
     
     // handle results
@@ -87,6 +92,13 @@
             .text(msg)
             .appendTo($ul);
     }
+    function upTotal (name) {
+        if (!seen[name]) {
+            total++;
+            progress();
+            seen[name] = true;
+        }
+    }
     
     // protocol
     socket.on("exception", function (data) {
@@ -97,26 +109,33 @@
     socket.on("start", function () {
         console.log("start");
         rows = {};
+        seen = {};
+        done = 0;
+        total = 0;
+        $progressStyler.addClass("active progress-striped");
         $results.removeClass("hide").show();
-        progress(0, 0);
-        $progress.show();
+        progress();
+        $progressContainer.show();
     });
     socket.on("ok", function (data) {
         console.log("ok", data);
+        upTotal(data.name);
         row(data.name)
             .find(".status")
                 .append("<span class='text-success'>\u2714 <span class='sr-only'>ok</span></span>")
             .end()
             .find(".results")
-                .prepend("Ok")
+                .prepend("<span class='text-success'>Ok</span>")
             .end();
     });
     socket.on("warning", function (data) {
         console.log("warning", data);
+        upTotal(data.name);
         addMessage(row(data.name), "warning", data.message);
     });
     socket.on("error", function (data) {
         console.log("error", data);
+        upTotal(data.name);
         var $row = row(data.name);
         addMessage(row(data.name), "error", data.message);
         if (!$row.find(".status .text-danger").length) {
@@ -126,9 +145,15 @@
                 .end();
         }
     });
-    socket.on("done", function () {
-        console.log("done");
-        endValidation();
+    socket.on("done", function (data) {
+        console.log("done", data);
+        done++;
+        progress();
+    });
+    socket.on("finished", function () {
+        console.log("END");
+        $progressStyler.removeClass("active progress-striped");
+        // endValidation();
     });
 
     // handle the form
