@@ -12,7 +12,7 @@ var express = require("express")
 ,   version = require("./package.json").version
 ,   profiles = {}
 ;
-"base WD".split(" ")
+"base WD FPWD".split(" ")
          .forEach(function (p) {
              profiles[p] = require("./lib/profiles/" + p);
          })
