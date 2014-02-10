@@ -33,7 +33,7 @@ server.listen(process.env.PORT || 80);
 //  Server:
 //      handshake, { version: "x.y.z"}
 //      exception, { message: "blah", code: "FOO"} (for system errors)
-//      start
+//      start { rules: [rule names]}
 //      ok, { name: "test name" }
 //      warning, { name: "test name", code: "FOO" }
 //      error, { name: "test name", code: "FOO" }
@@ -47,10 +47,13 @@ io.sockets.on("connection", function (socket) {
     socket.on("validate", function (data) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
         if (!data.profile) return socket.emit("exception", { message: "Profile not provided." });
-        socket.emit("start", {});
         var validator = nv.makeSpecberus()
         ,   sink = new Sink
+        ,   profile = profiles[data.profile]
         ;
+        socket.emit("start", {
+            rules:  profile.rules.map(function (rule) { return rule.name; })
+        });
         sink.on("ok", function (type) {
             socket.emit("ok", { name: type });
         });
@@ -69,10 +72,6 @@ io.sockets.on("connection", function (socket) {
         });
         sink.on("end-all", function () {
             socket.emit("finished");
-        });
-        var profile = profiles[data.profile];
-        socket.emit("test-plan", {
-            rules:  profile.rules.map(function (rule) { return rule.name; })
         });
         try {
             validator.validate({

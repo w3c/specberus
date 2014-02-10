@@ -19,7 +19,6 @@
     ,   $progressLabel = $progress.find(".sr-only")
     ,   socket = io.connect(location.protocol + "//" + location.host)
     ,   rows = {}
-    ,   seen = {}
     ,   done = 0
     ,   total = 0
     ;
@@ -92,13 +91,6 @@
             .text(msg)
             .appendTo($ul);
     }
-    function upTotal (name) {
-        if (!seen[name]) {
-            total++;
-            progress();
-            seen[name] = true;
-        }
-    }
     
     // protocol
     socket.on("exception", function (data) {
@@ -106,12 +98,12 @@
         showError("Exception: " + data.message);
         endValidation();
     });
-    socket.on("start", function () {
-        console.log("start");
+    socket.on("start", function (data) {
+        console.log("start", data);
         rows = {};
-        seen = {};
+        for (var i = 0, n = data.rules.length; i < n; i++) row(data.rules[i]);
         done = 0;
-        total = 0;
+        total = data.rules.length;
         $progressStyler.addClass("active progress-striped");
         $results.removeClass("hide").show();
         progress();
@@ -119,7 +111,6 @@
     });
     socket.on("ok", function (data) {
         console.log("ok", data);
-        upTotal(data.name);
         row(data.name)
             .find(".status")
                 .append("<span class='text-success'>\u2714 <span class='sr-only'>ok</span></span>")
@@ -130,12 +121,10 @@
     });
     socket.on("warning", function (data) {
         console.log("warning", data);
-        upTotal(data.name);
         addMessage(row(data.name), "warning", data.message);
     });
     socket.on("error", function (data) {
         console.log("error", data);
-        upTotal(data.name);
         var $row = row(data.name);
         addMessage(row(data.name), "error", data.message);
         if (!$row.find(".status .text-danger").length) {
