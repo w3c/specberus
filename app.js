@@ -70,10 +70,20 @@ io.sockets.on("connection", function (socket) {
         sink.on("end-all", function () {
             socket.emit("finished");
         });
-        validator.validate({
-            url:        data.url
-        ,   profile:    profiles[data.profile]
-        ,   events:     sink
+        var profile = profiles[data.profile];
+        socket.emit("test-plan", {
+            rules:  profile.rules.map(function (rule) { return rule.name; })
         });
+        try {
+            validator.validate({
+                url:        data.url
+            ,   profile:    profile
+            ,   events:     sink
+            });
+        }
+        catch (e) {
+            socket.emit("exception", { message: "Validation blew up: " + e });
+            socket.emit("finished");
+        }
     });
 });
