@@ -10,6 +10,7 @@
 (function ($) {
     var $url = $("#url")
     ,   $profile = $("#profile")
+    ,   $skipValidation = $("#skipValidation")
     ,   $alert = $("#alert")
     ,   $results = $("#results")
     ,   $resultsBody = $results.find("table")
@@ -55,11 +56,12 @@
     }
 
     // validate
-    function validate (url, profile) {
+    function validate (url, profile, skipValidation) {
         $resultsBody.find("tr:not(.h)").remove();
         socket.emit("validate", {
-            url:        url
-        ,   profile:    profile
+            url:            url
+        ,   profile:        profile
+        ,   skipValidation: skipValidation
         });
     }
     
@@ -149,10 +151,11 @@
     $("#options").submit(function () {
         var url = $url.val()
         ,   profile = $profile.val()
+        ,   skipValidation = $skipValidation.is(":checked") || false
         ;
         if (!url) showError("Missing URL parameter.");
         if (!profile) showError("Missing profile parameter.");
-        validate(url, profile);
+        validate(url, profile, skipValidation);
         return false;
     });
     

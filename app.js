@@ -29,7 +29,7 @@ server.listen(process.env.PORT || 80);
 
 // VALIDATION PROTOCOL
 //  Client:
-//      validate, { url: "document", profile: "WD" }
+//      validate, { url: "document", profile: "WD", skipValidation: skipValidation }
 //  Server:
 //      handshake, { version: "x.y.z"}
 //      exception, { message: "blah", code: "FOO"} (for system errors)
@@ -75,9 +75,10 @@ io.sockets.on("connection", function (socket) {
         });
         try {
             validator.validate({
-                url:        data.url
-            ,   profile:    profile
-            ,   events:     sink
+                url:            data.url
+            ,   profile:        profile
+            ,   events:         sink
+            ,   skipValidation: data.skipValidation
             });
         }
         catch (e) {
