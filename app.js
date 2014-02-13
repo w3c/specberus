@@ -75,10 +75,12 @@ io.sockets.on("connection", function (socket) {
         });
         try {
             validator.validate({
-                url:            data.url
-            ,   profile:        profile
-            ,   events:         sink
-            ,   skipValidation: data.skipValidation
+                url:                data.url
+            ,   profile:            profile
+            ,   events:             sink
+            ,   skipValidation:     data.skipValidation
+            ,   noRecTrack:         data.noRecTrack
+            ,   informativeOnly:    data.informativeOnly
             });
         }
         catch (e) {
