@@ -5,7 +5,7 @@ var validator = require("../lib/node-validator").makeSpecberus()
 ,   events = require("events")
 ,   util = require("util")
 ,   networkCats = "validation".split(" ")
-,   DEBUG = true
+,   DEBUG = false
 ;
 
 var tests = {
@@ -100,7 +100,7 @@ var tests = {
         ,   { doc: "structure/sid-all-wrong.html"
             , errors: ["structure.section-ids", "structure.section-ids", "structure.section-ids"
                       ,"structure.section-ids", "structure.section-ids", "structure.section-ids"
-                      ,"structure.section-ids"]  }
+                      ]  }
         ]
     }
 ,   sotd:   {
@@ -110,11 +110,17 @@ var tests = {
         ]
     ,   "mailing-list":  [
             { doc: "headers/simple.html" }
-        ,   { doc: "sotd/ml-bad.html", errors: ["sotd.mailing-list", "sotd.mailing-list", "sotd.mailing-list"] }
+        ,   { doc: "sotd/ml-bad.html"
+            , errors: ["sotd.mailing-list", "sotd.mailing-list"]
+            , warnings: ["sotd.mailing-list"]
+            }
         ]
     ,   pp:  [
-            { doc: "headers/simple.html" }
-        ,   { doc: "sotd/pp-bad.html", errors: ["sotd.pp", "sotd.pp", "sotd.pp", "sotd.pp"] }
+            { doc: "headers/simple.html", config: { recTrackStatus: true } }
+        ,   { doc: "sotd/pp-bad.html"
+            , errors: ["sotd.pp", "sotd.pp", "sotd.pp", "sotd.pp"]
+            , config: { recTrackStatus: true }
+            }
         ]
     ,   stability:  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft", stabilityWarning: true } }
