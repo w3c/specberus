@@ -5,7 +5,7 @@ var validator = require("../lib/node-validator").makeSpecberus()
 ,   events = require("events")
 ,   util = require("util")
 ,   networkCats = "validation".split(" ")
-,   DEBUG = false
+,   DEBUG = true
 ;
 
 var tests = {
@@ -59,9 +59,11 @@ var tests = {
         ,   { doc: "headers/fails.html"
             , config: { previousVersion: true }
             , errors: ["headers.dl", "headers.dl", "headers.dl", "headers.dl"] }
-        ,   { doc: "headers/dl-order.html", errors: ["headers.dl", "headers.dl"] }
+        ,   { doc: "headers/dl-order.html", errors: ["headers.dl", "headers.dl"], warnings: ["headers.dl"] }
         ,   { doc: "headers/dl-mismatch.html"
-            , errors: ["headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl"] }
+            , errors: ["headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl"]
+            , warnings: ["headers.dl"]
+            }
         ]
     ,   "h2-status":  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
