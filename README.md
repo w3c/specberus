@@ -1,7 +1,6 @@
 # Specberus
 
-Specberus is a reload of W3C's PubRules checker. It is currently in development and not directly
-usable, but hacking is welcome.
+Specberus is a checker for W3C's Publication Rules (PubRules).
 
 ## Installation
 
