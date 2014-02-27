@@ -1,16 +1,23 @@
 {
-    "name":     "pubrules"
-,   "version":  "0.2.0"
-,   "license": "MIT"
-,   "main": "lib/node-validator"
-,   "dependencies": {
-        "whacko":       "0.12.9"
-    ,   "superagent":   "0.15.7"
-    ,   "express":      "3.4.7"
-    ,   "socket.io":    "0.9.16"
-    }
-,   "devDependencies": {
-        "mocha":        "1.15.1"
-    ,   "expect.js":    "0.2.0"
+    "name": "pubrules",
+    "version": "0.2.0-1",
+    "license": "MIT",
+    "main": "lib/node-validator",
+    "dependencies": {
+        "whacko": "0.12.9",
+        "superagent": "0.15.7",
+        "express": "3.4.7",
+        "socket.io": "0.9.16"
+    },
+    "devDependencies": {
+        "mocha": "1.15.1",
+        "expect.js": "0.2.0"
+    },
+    "subdomain": "pubrules",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "engines": {
+        "node": "0.10.x"
     }
 }
