@@ -1,4 +1,9 @@
 
+// XXX
+//  This script is obsolete.
+//  I keep it here in case the RDF source becomes reliable and turns out to be better than the
+//  alternative we have. But for now, don't use this.
+
 // This script is used to update the database of groups used in recognising that a draft is
 // really published by the right group as per the information provided.
 //
