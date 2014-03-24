@@ -1,5 +1,6 @@
 
-var validator = new require("../lib/validator").Specberus()
+var Specberus = require("../lib/validator").Specberus
+,   validator = new Specberus()
 ,   expect = require("expect.js")
 ,   pth = require("path")
 ,   events = require("events")
@@ -181,6 +182,9 @@ Object.keys(tests).forEach(function (category) {
                         sink.on("done", function () {
                             if (DEBUG) console.log("---done---");
                             sink.done++;
+                        });
+                        sink.on("exception", function (data) {
+                            console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
                         });
                         sink.on("end-all", function () {
                             if (passTest) {
