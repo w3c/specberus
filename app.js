@@ -5,7 +5,7 @@ var express = require("express")
 ,   app = express()
 ,   server = require("http").createServer(app)
 ,   io = require("socket.io").listen(server)
-,   nv = require("./lib/node-validator")
+,   Specberus = new require("../lib/validator").Specberus
 ,   l10n = require("./lib/l10n")
 ,   util = require("util")
 ,   events = require("events")
@@ -49,7 +49,7 @@ io.sockets.on("connection", function (socket) {
     socket.on("validate", function (data) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
         if (!data.profile) return socket.emit("exception", { message: "Profile not provided." });
-        var validator = nv.makeSpecberus()
+        var validator = new Specberus()
         ,   sink = new Sink
         ,   profile = profiles[data.profile]
         ;

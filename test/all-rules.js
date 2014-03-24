@@ -1,5 +1,5 @@
 
-var validator = require("../lib/node-validator").makeSpecberus()
+var validator = new require("../lib/validator").Specberus()
 ,   expect = require("expect.js")
 ,   pth = require("path")
 ,   events = require("events")
