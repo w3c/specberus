@@ -75,6 +75,9 @@ io.sockets.on("connection", function (socket) {
         sink.on("end-all", function () {
             socket.emit("finished");
         });
+        sink.on("exception", function (data) {
+            socket.emit("exception", data);
+        });
         try {
             validator.validate({
                 url:                data.url
