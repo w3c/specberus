@@ -49,12 +49,13 @@ io.sockets.on("connection", function (socket) {
     socket.on("validate", function (data) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
         if (!data.profile) return socket.emit("exception", { message: "Profile not provided." });
+        if (!profiles[data.profile]) return socket.emit("exception", { message: "Profile does not exist." });
         var validator = new Specberus()
         ,   sink = new Sink
         ,   profile = profiles[data.profile]
         ;
         socket.emit("start", {
-            rules:  profile.rules.map(function (rule) { return rule.name; })
+            rules:  (profile.rules || []).map(function (rule) { return rule.name; })
         });
         sink.on("ok", function (type) {
             socket.emit("ok", { name: type });
