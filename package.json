@@ -4,7 +4,7 @@
     "license": "MIT",
     "main": "lib/node-validator",
     "dependencies": {
-        "whacko": "0.12.9",
+        "whacko": "0.13.2",
         "superagent": "0.15.7",
         "express": "3.4.7",
         "socket.io": "0.9.16"
