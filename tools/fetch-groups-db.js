@@ -2,6 +2,8 @@
 // This script updates our local database of groups
 //  Usage: node fetch-groups-db.js your-w3c-user your-w3c-password
 
+// XXX also look at https://cvs.w3.org/Team/WWW/2000/04/mem-news/groups.rdf
+
 var fs = require("fs")
 ,   pth = require("path")
 ,   ua = require("superagent")
