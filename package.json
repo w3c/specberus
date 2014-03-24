@@ -5,13 +5,13 @@
     "main": "lib/node-validator",
     "dependencies": {
         "whacko": "0.13.2",
-        "superagent": "0.15.7",
-        "express": "3.4.7",
+        "superagent": "0.17.0",
+        "express": "3.5.0",
         "socket.io": "0.9.16"
     },
     "devDependencies": {
-        "mocha": "1.15.1",
-        "expect.js": "0.2.0"
+        "mocha": "1.18.2",
+        "expect.js": "0.3.1"
     },
     "subdomain": "pubrules",
     "scripts": {
