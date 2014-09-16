@@ -13,6 +13,7 @@
     ,   $skipValidation = $("#skipValidation")
     ,   $noRecTrack = $("#noRecTrack")
     ,   $informativeOnly = $("#informativeOnly")
+    ,   $processDocument = $("input[name='processDocument']")
     ,   $alert = $("#alert")
     ,   $results = $("#results")
     ,   $resultsBody = $results.find("table")
@@ -58,7 +59,7 @@
     }
 
     // validate
-    function validate (url, profile, skipValidation, noRecTrack, informativeOnly) {
+    function validate (url, profile, skipValidation, noRecTrack, informativeOnly, processDocument) {
         $resultsBody.find("tr:not(.h)").remove();
         socket.emit("validate", {
             url:                url
@@ -66,6 +67,7 @@
         ,   skipValidation:     skipValidation
         ,   noRecTrack:         noRecTrack
         ,   informativeOnly:    informativeOnly
+        ,   processDocument:    processDocument
         });
     }
     
@@ -158,10 +160,11 @@
         ,   skipValidation = $skipValidation.is(":checked") || false
         ,   noRecTrack = $noRecTrack.is(":checked") || false
         ,   informativeOnly = $informativeOnly.is(":checked") || false
+        ,   processDocument = $("input[name='processDocument']:checked").val()
         ;
         if (!url) showError("Missing URL parameter.");
         if (!profile) showError("Missing profile parameter.");
-        validate(url, profile, skipValidation, noRecTrack, informativeOnly);
+        validate(url, profile, skipValidation, noRecTrack, informativeOnly, processDocument);
         return false;
     });
     
