@@ -89,17 +89,14 @@
                 </label>
               </div>
             </div>
+
             <div class="form-group">
               <label for="processDocument" class="col-sm-2 control-label">Process Document</label>
-              <div class="col-sm-10 radio">
-                <label class='control-label'>
-                  <input type='radio' id='procrev-2005' value="20051014" name='processDocument'>
-                  14 October 2005 Process
-                </label><br/>
-                <label class='control-label'>
-                  <input type='radio' id='procrev-2014' value="20140801" name='processDocument' checked>
-                  1 August 2014 Process
-                </label>
+              <div class="col-sm-10">
+                <select class='form-control' id='processDocument' required>
+                  <option value="20051014">14 October 2005 Process</option>
+                  <option value="20140801" selected>1 August 2014 Process</option>
+                </select>
               </div>
             </div>
             <div class="form-group">

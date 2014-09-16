@@ -160,7 +160,7 @@
         ,   skipValidation = $skipValidation.is(":checked") || false
         ,   noRecTrack = $noRecTrack.is(":checked") || false
         ,   informativeOnly = $informativeOnly.is(":checked") || false
-        ,   processDocument = $("input[name='processDocument']:checked").val()
+        ,   processDocument = $("select[id='processDocument'] > option:selected").val()
         ;
         if (!url) showError("Missing URL parameter.");
         if (!profile) showError("Missing profile parameter.");
