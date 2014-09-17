@@ -21,3 +21,10 @@ header.navbar-inverse {
 ul.error, ul.warning {
     padding:    0;
 }
+
+span.bg-warning, span.bg-danger {
+    font-variant: small-caps;
+    padding: 0 0.25em;
+    margin: 0 0.5em 0 0;
+}
+
