@@ -13,7 +13,7 @@
     ,   $skipValidation = $("#skipValidation")
     ,   $noRecTrack = $("#noRecTrack")
     ,   $informativeOnly = $("#informativeOnly")
-    ,   $processDocument = $("input[name='processDocument']")
+    ,   $processDocument = $("#processDocument")
     ,   $alert = $("#alert")
     ,   $results = $("#results")
     ,   $resultsBody = $results.find("table")
@@ -160,7 +160,7 @@
         ,   skipValidation = $skipValidation.is(":checked") || false
         ,   noRecTrack = $noRecTrack.is(":checked") || false
         ,   informativeOnly = $informativeOnly.is(":checked") || false
-        ,   processDocument = $("select[id='processDocument'] > option:selected").val()
+        ,   processDocument = $processDocument.val()
         ;
         if (!url) showError("Missing URL parameter.");
         if (!profile) showError("Missing profile parameter.");
