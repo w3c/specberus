@@ -86,17 +86,19 @@
         return rows[id];
     }
     var type2class = {
-        warning:    "text-warning"
-    ,   error:      "text-danger"
+        error:      "text-danger"
+    ,   warning:    "text-warning"
+    ,   info:       "text-info"
     };
     var type2bgclass = {
-        warning:    "bg-warning"
-    ,   error:      "bg-danger"
+        error:      "bg-danger"
+    ,   warning:    "bg-warning"
+    ,   info:       "bg-info"
     };
     function addMessage ($row, type, msg) {
         var $ul = $row.find("ul." + type);
         if (!$ul.length) $ul = $("<ul></ul>").addClass(type).appendTo($row.find(".results"));
-        $('<span class="' + type2bgclass[type] + '">' + type + '</span> ').prependTo($("<li></li>")
+	$('<span class="' + type2bgclass[type] + '">' + type + '</span> ').prependTo($("<li></li>")
             .addClass(type2class[type])
             .text(' ' + msg)
             .appendTo($ul));
@@ -132,6 +134,10 @@
     socket.on("warning", function (data) {
         console.log("warning", data);
         addMessage(row(data.name), "warning", data.message);
+    });
+    socket.on('info', function (data) {
+        console.log('info', data);
+        addMessage(row(data.name), 'info', data.message);
     });
     socket.on("error", function (data) {
         console.log("error", data);
