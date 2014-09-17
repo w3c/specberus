@@ -98,7 +98,7 @@
     function addMessage ($row, type, msg) {
         var $ul = $row.find("ul." + type);
         if (!$ul.length) $ul = $("<ul></ul>").addClass(type).appendTo($row.find(".results"));
-	$('<span class="' + type2bgclass[type] + '">' + type + '</span> ').prependTo($("<li></li>")
+        $('<span class="' + type2bgclass[type] + '">' + type + '</span> ').prependTo($("<li></li>")
             .addClass(type2class[type])
             .text(' ' + msg)
             .appendTo($ul));
