@@ -92,6 +92,7 @@ io.sockets.on("connection", function (socket) {
             ,   skipValidation:     data.skipValidation
             ,   noRecTrack:         data.noRecTrack
             ,   informativeOnly:    data.informativeOnly
+            ,   processDocument:    data.processDocument
             });
         }
         catch (e) {
