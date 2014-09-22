@@ -9,6 +9,7 @@ var express = require("express")
 ,   l10n = require("./lib/l10n")
 ,   util = require("util")
 ,   events = require("events")
+,   urlSafety = require("safe-url-input-checker")
 ,   version = require("./package.json").version
 ,   profiles = {}
 ;
@@ -79,20 +80,28 @@ io.sockets.on("connection", function (socket) {
         sink.on("exception", function (data) {
             socket.emit("exception", data);
         });
-        try {
-            validator.validate({
-                url:                data.url
-            ,   profile:            profile
-            ,   events:             sink
-            ,   skipValidation:     data.skipValidation
-            ,   noRecTrack:         data.noRecTrack
-            ,   informativeOnly:    data.informativeOnly
-            ,   processDocument:    data.processDocument
-            });
-        }
-        catch (e) {
-            socket.emit("exception", { message: "Validation blew up: " + e });
-            socket.emit("finished");
-        }
+        urlSafety.checkUrlSafety(data.url, function(err, res) {
+            if(!res) {
+                socket.emit("exception", {message: "error while resolving " + data.url + " Check the spelling of the host, the protocol (http, https) and ensure that the page is accessible from the public Internet."});
+            }
+            else {
+                try {
+                    validator.validate({
+                        url:                res
+                    ,   profile:            profile
+                    ,   events:             sink
+                    ,   skipValidation:     data.skipValidation
+                    ,   noRecTrack:         data.noRecTrack
+                    ,   informativeOnly:    data.informativeOnly
+                    ,   processDocument:    data.processDocument
+                    });
+                }
+                catch (e) {
+                    socket.emit("exception", { message: "Validation blew up: " + e });
+                    socket.emit("finished");
+                }
+            }
+        });
+        
     });
 });
