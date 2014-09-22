@@ -70,6 +70,11 @@ io.sockets.on("connection", function (socket) {
             data.message = l10n.message("en", type, data.key, data.extra);
             socket.emit("warning", data);
         });
+        sink.on('info', function (type, data) {
+            data.name = type;
+            data.message = l10n.message('en', type, data.key, data.extra);
+            socket.emit('info', data);
+        });
         sink.on("done", function (name) {
             socket.emit("done", { name: name });
         });
