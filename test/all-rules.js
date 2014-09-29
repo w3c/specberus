@@ -133,6 +133,11 @@ var tests = {
             , config: { longStatus: "Rock And Roll", stabilityWarning: false }
             }
         ]
+    ,   implementation:  [
+            { doc: "sotd/supersedable.html"}
+        ,   { doc: "sotd/pp-bad.html"}
+        ,   { doc: "sotd/ml-bad.html", errors: ['sotd.implementation'] }
+        ]
     }
 ,   validation:   {
         css:  [
