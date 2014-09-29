@@ -68,21 +68,21 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
   * `TR`
     * `WG-NOTE` (identical)
       * `FPWG-NOTE` (identical)
-    * `IG-NOTE`
-      * `FPIG-NOTE` (identical)
     * `WD` (identical)
     * `PER`
-    * `LC`
-    * `FPLC`
-    * `REC`
-    * `RSWD` (identical)
+    * `RSCND` (identical)
     * `PR`
-    * `CG-NOTE`
     * `CR`
     * `FPWD` (identical)
+  * `IG-NOTE`
+    * `FPIG-NOTE` (identical)
   * `SUBM`
-    * `TEAM-SUBM`
-    * `MEM-SUBM`
+  * `MEM-SUBM`
+  * `TEAM-SUBM`
+  * `CG-NOTE`
+  * `FPLC`
+  * `REC`
+  * `LC`
 * `dummy`
 
 ## Validation events
