@@ -61,6 +61,30 @@ Profiles are simple objects that support the following API:
 A profile is basically a configuration of what to check. You can load a specific profile from under
 `lib/profiles` or create your own.
 
+Here follows the current hierarchy of profiles. Each profile inherits all rules from its parent profile.
+Profiles that are identical to its parent profile, ie that do not add any new rules, are marked too.
+
+* `base`
+  * `TR`
+    * `WG-NOTE` (identical)
+      * `FPWG-NOTE` (identical)
+    * `IG-NOTE`
+      * `FPIG-NOTE` (identical)
+    * `WD` (identical)
+    * `PER`
+    * `LC`
+    * `FPLC`
+    * `REC`
+    * `RSWD` (identical)
+    * `PR`
+    * `CG-NOTE`
+    * `CR`
+    * `FPWD` (identical)
+  * `SUBM`
+    * `TEAM-SUBM`
+    * `MEM-SUBM`
+* `dummy`
+
 ## Validation events
 
 For a given checking run, the event sink you specify will be receiving a bunch of events as 
