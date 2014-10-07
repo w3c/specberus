@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html lang='en'>
+
+<html lang="en-GB">
+
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8" />
+    <meta name="application-name" content="Pubrules Checker" />
+    <meta name="description" content="Pubrules checker — reloaded" />
+    <meta name="keywords" content="pubrules,checker,specberus,w3c,publict" />
+    <meta name="author" content="W3C" />
     <title>Pubrules Checker</title>
-    <link rel='stylesheet' href='css/bootstrap.min.css'>
-    <link rel='stylesheet' href='css/bootstrap-theme.min.css'>
-    <link rel='stylesheet' href='css/specberus.css'>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <!-- link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" / -->
+    <link rel="stylesheet" type="text/css" href="css/specberus.css" />
   </head>
+
   <body>
+
     <header class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="/">
-            <img src='img/logo.svg' width='40' height='40' alt='Logo for the Pubrules Checker'>
+            <img src="img/logo.svg" width="40" height="40" alt="Logo for the Pubrules Checker">
             Pubrules Checker
           </a>
         </div>
@@ -21,18 +29,18 @@
 
     <div class="container">
       
-      <div class="alert alert-danger alert-dismissable hide" id='alert'>
+      <div class="alert alert-danger alert-dismissable hide" id="alert">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <span></span>
       </div>
       
       <!-- the form -->
       <div class="panel panel-default">
-        <div class='panel-heading'>
-          <h2 class='panel-title'>Checker options</h2>
+        <div class="panel-heading">
+          <h2 class="panel-title">Checker options</h2>
         </div>
         <div class="panel-body">
-          <form id='options' class='horizontal-form'>
+          <form id="options" class="horizontal-form">
             <div class="form-group">
               <label for="url" class="col-sm-2 control-label">URL</label>
               <div class="col-sm-10">
@@ -42,49 +50,53 @@
             <div class="form-group">
               <label for="profile" class="col-sm-2 control-label">Profile</label>
               <div class="col-sm-10">
-                <select class='form-control' id='profile' required>
-                  <optgroup label='Recommendation Track'>
-                    <option value='WD'>WD — Working Draft</option>
-                    <option value='FPWD'>FPWD — First Public Working Draft</option>
-                    <option value='FPLC'>FPLC — First Public and Last Call Working Draft</option>
-                    <option value='LC'>LC — Last Call Working Draft</option>
-                    <option value='CR'>CR — Candidate Recommendation</option>
-                    <option value='PR'>PR — Proposed Recommendation</option>
-                    <option value='PER'>PER — Proposed Edited Recommendation</option>
-                    <option value='REC'>REC — Recommendation</option>
-                    <option value='RSCND'>RSCND — Rescinded Recommendation</option>
-                  <optgroup label='Notes'>
-                    <option value='FPWG-NOTE'>FPWG-NOTE — First Public Working Group Note</option>
-                    <option value='WG-NOTE'>WG-NOTE — Working Group Note</option>
-                    <option value='FPIG-NOTE'>FPIG-NOTE — First Public Interest Group Note</option>
-                    <option value='IG-NOTE'>IG-NOTE — Interest Group Note</option>
-                    <option value='FPWG-NOTE'>CG-NOTE — Coordination Group Note</option>
-                  <optgroup label='Submissions'>
-                    <option value='MEM-SUBM'>MEM-SUBM — Member Submission</option>
-                    <option value='TEAM-SUBM'>TEAM-SUBM — Team Submission</option>
+                <select class="form-control" id="profile" required>
+                  <option value="">Select an option</option>
+                  <optgroup label="Recommendation Track">
+                    <option value="WD">WD — Working Draft</option>
+                    <option value="FPWD">FPWD — First Public Working Draft</option>
+                    <option value="FPLC">FPLC — First Public and Last Call Working Draft</option>
+                    <option value="LC">LC — Last Call Working Draft</option>
+                    <option value="CR">CR — Candidate Recommendation</option>
+                    <option value="PR">PR — Proposed Recommendation</option>
+                    <option value="PER">PER — Proposed Edited Recommendation</option>
+                    <option value="REC">REC — Recommendation</option>
+                    <option value="RSCND">RSCND — Rescinded Recommendation</option>
+		  </optgroup>
+                  <optgroup label="Notes">
+                    <option value="FPWG-NOTE">FPWG-NOTE — First Public Working Group Note</option>
+                    <option value="WG-NOTE">WG-NOTE — Working Group Note</option>
+                    <option value="FPIG-NOTE">FPIG-NOTE — First Public Interest Group Note</option>
+                    <option value="IG-NOTE">IG-NOTE — Interest Group Note</option>
+                    <option value="FPWG-NOTE">CG-NOTE — Coordination Group Note</option>
+		  </optgroup>
+                  <optgroup label="Submissions">
+		    <option value="MEM-SUBM">MEM-SUBM — Member Submission</option>
+		    <option value="TEAM-SUBM">TEAM-SUBM — Team Submission</option>
+		  </optgroup>
                 </select>
               </div>
             </div>
             <div class="form-group checkbox">
               <div class="col-sm-offset-2 col-sm-10">
-                <label class='control-label'>
-                  <input type='checkbox' id='skipValidation' name='skipValidation'>
+                <label class="control-label">
+                  <input type="checkbox" id="skipValidation" name="skipValidation">
                   No validation
                 </label>
               </div>
             </div>
             <div class="form-group checkbox">
               <div class="col-sm-offset-2 col-sm-10">
-                <label class='control-label'>
-                  <input type='checkbox' id='noRecTrack' name='noRecTrack'>
+                <label class="control-label">
+                  <input type="checkbox" id="noRecTrack" name="noRecTrack">
                   Rec-track status, but document is not really on Rec-track.
                 </label>
               </div>
             </div>
             <div class="form-group checkbox">
               <div class="col-sm-offset-2 col-sm-10">
-                <label class='control-label'>
-                  <input type='checkbox' id='informativeOnly' name='informativeOnly'>
+                <label class="control-label">
+                  <input type="checkbox" id="informativeOnly" name="informativeOnly">
                   Document is informative-only.
                 </label>
               </div>
@@ -93,7 +105,8 @@
             <div class="form-group">
               <label for="processDocument" class="col-sm-2 control-label">Process Document</label>
               <div class="col-sm-10">
-                <select class='form-control' id='processDocument' required>
+                <select class="form-control" id="processDocument" required>
+                  <option value="">Select an option</option>
                   <option value="20051014">14 October 2005 Process</option>
                   <option value="20140801" selected>1 August 2014 Process</option>
                 </select>
@@ -109,9 +122,9 @@
       </div>
       
       <!-- the results -->
-      <div class="panel panel-default hide" id='results'>
-        <div class='panel-heading'>
-          <h2 class='panel-title'>Results</h2>
+      <div class="panel panel-default hide" id="results">
+        <div class="panel-heading">
+          <h2 class="panel-title">Results</h2>
         </div>
         <div class="panel-body">
           <div class="progress progress-striped active">
@@ -121,8 +134,8 @@
             </div>
           </div>
         </div>
-        <table class='table'>
-          <tr class='h'>
+        <table class="table">
+          <tr class="h">
             <th>•</th>
             <th>Test</th>
             <th>Result</th>
@@ -130,9 +143,15 @@
         </table>
       </div>
     </div>
-    <script src='js/jquery.min.js'></script>
-    <script src='js/bootstrap.min.js'></script>
-    <script src='js/socket.io.min.js'></script>
-    <script src='js/specberus.js'></script>
+
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/socket.io.min.js"></script>
+    <script type="text/javascript" src="js/specberus.js"></script>
+
   </body>
+
 </html>
+
+<!-- EOF -->
+
