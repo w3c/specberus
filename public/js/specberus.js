@@ -102,7 +102,7 @@
         if (!$ul.length) $ul = $("<ul></ul>").addClass(type).appendTo($row.find(".results"));
         $('<span class="' + type2bgclass[type] + '">' + type + '</span> ').prependTo($("<li></li>")
             .addClass(type2class[type])
-            .text(' ' + msg)
+            .html(' ' + msg)
             .appendTo($ul));
     }
     
