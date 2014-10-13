@@ -4,7 +4,6 @@
 //  include socket.io
 //  grab on submit and cancel, get values
 //  client-side protocol
-//  history API and reacting to the QS on load (and filling out form)
 //  show errors
 
 (function ($) {
@@ -26,7 +25,7 @@
     ,   done = 0
     ,   total = 0
     ;
-    
+
     // handshake
     socket.on("handshake", function (data) {
         console.log("Using version", data.version);
@@ -175,7 +174,41 @@
         if (!url) showError("Missing URL parameter.");
         if (!profile) showError("Missing profile parameter.");
         validate(url, profile, skipValidation, noRecTrack, informativeOnly, processDocument);
+        var newurl = document.URL.split('?')[0] +
+                    "?url=" + url +
+                    "&profile=" + profile +
+                    "&skipValidation=" + skipValidation +
+                    "&noRecTrack=" + noRecTrack +
+                    "&informativeOnly=" + informativeOnly +
+                    "&processDocument=" + processDocument;
+        history.pushState({"url" : url, "profile" : profile, "skipValidation" : skipValidation, "noRecTrack" : noRecTrack, "informativeOnly" : informativeOnly, "processDocument" : processDocument }, url + " - " + profile, newurl);
         return false;
     });
-    
+
+    var parseQueryString = function() {
+        var params = {}, queries, temp, i, l;
+        queries = window.location.search.substring(1).split("&");
+        for ( i = 0, l = queries.length; i < l; i++ ) {
+            temp = queries[i].split('=');
+            params[temp[0]] = temp[1];
+        }
+        return params;
+    }
+    ,   qs = parseQueryString();
+
+    $url.val(qs["url"]);
+    $profile.val(qs["profile"]);
+    if (qs["skipValidation"] === "true") $skipValidation.prop('checked', true);
+    if (qs["noRecTrack"] === "true") $noRecTrack.prop('checked', true);
+    if (qs["informativeOnly"] === "true") $informativeOnly.prop('checked', true);
+    $processDocument.val(qs["processDocument"]);
+    if (qs["url"] && qs["profile"])
+        validate(qs["url"], qs["profile"], qs["skipValidation"], qs["noRecTrack"], qs["informativeOnly"], qs["processDocument"]);
+
+    window.addEventListener('popstate', function(event) {
+        var data = event.state;
+        if (data == null) 
+            return;
+        validate(data["url"], data["profile"], data["skipValidation"], data["noRecTrack"], data["informativeOnly"], data["processDocument"]);
+    })
 }(jQuery));
