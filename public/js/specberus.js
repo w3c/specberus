@@ -6,6 +6,12 @@
 //  client-side protocol
 //  show errors
 
+jQuery.extend({
+    getQueryParameters : function(str) {
+        return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
+    }
+});
+
 (function ($) {
     var $url = $("#url")
     ,   $profile = $("#profile")
@@ -58,23 +64,23 @@
     }
 
     // validate
-    function validate (url, profile, skipValidation, noRecTrack, informativeOnly, processDocument) {
+    function validate (options) {
         $resultsBody.find("tr:not(.h)").remove();
         socket.emit("validate", {
-            url:                url
-        ,   profile:            profile
-        ,   skipValidation:     skipValidation
-        ,   noRecTrack:         noRecTrack
-        ,   informativeOnly:    informativeOnly
-        ,   processDocument:    processDocument
+            url:                decodeURIComponent(options.url)
+        ,   profile:            options.profile
+        ,   skipValidation:     options.skipValidation
+        ,   noRecTrack:         options.noRecTrack
+        ,   informativeOnly:    options.informativeOnly
+        ,   processDocument:    options.processDocument
         });
     }
-    
+
     // terminate validation
     function endValidation () {
         $progressContainer.hide();
     }
-    
+
     // handle results
     function row (id) {
         if (rows[id]) return rows[id];
@@ -104,7 +110,7 @@
             .text(' ' + msg)
             .appendTo($ul));
     }
-    
+
     // protocol
     socket.on("exception", function (data) {
         console.log("exception", data);
@@ -173,42 +179,32 @@
         ;
         if (!url) showError("Missing URL parameter.");
         if (!profile) showError("Missing profile parameter.");
-        validate(url, profile, skipValidation, noRecTrack, informativeOnly, processDocument);
-        var newurl = document.URL.split('?')[0] +
-                    "?url=" + url +
-                    "&profile=" + profile +
-                    "&skipValidation=" + skipValidation +
-                    "&noRecTrack=" + noRecTrack +
-                    "&informativeOnly=" + informativeOnly +
-                    "&processDocument=" + processDocument;
-        history.pushState({"url" : url, "profile" : profile, "skipValidation" : skipValidation, "noRecTrack" : noRecTrack, "informativeOnly" : informativeOnly, "processDocument" : processDocument }, url + " - " + profile, newurl);
+        var options = {
+                          "url"             : url
+                        , "profile"         : profile
+                        , "skipValidation"  : skipValidation
+                        , "noRecTrack"      : noRecTrack
+                        , "informativeOnly" : informativeOnly
+                        , "processDocument" : processDocument
+                      };
+        validate(options);
+        var newurl = document.URL.split('?')[0] + "?" + $.param(options)
+        history.pushState(options, url + " - " + profile, newurl);
         return false;
     });
 
-    var parseQueryString = function() {
-        var params = {}, queries, temp, i, l;
-        queries = window.location.search.substring(1).split("&");
-        for ( i = 0, l = queries.length; i < l; i++ ) {
-            temp = queries[i].split('=');
-            params[temp[0]] = temp[1];
-        }
-        return params;
-    }
-    ,   qs = parseQueryString();
-
-    $url.val(qs["url"]);
-    $profile.val(qs["profile"]);
-    if (qs["skipValidation"] === "true") $skipValidation.prop('checked', true);
-    if (qs["noRecTrack"] === "true") $noRecTrack.prop('checked', true);
-    if (qs["informativeOnly"] === "true") $informativeOnly.prop('checked', true);
-    $processDocument.val(qs["processDocument"]);
-    if (qs["url"] && qs["profile"])
-        validate(qs["url"], qs["profile"], qs["skipValidation"], qs["noRecTrack"], qs["informativeOnly"], qs["processDocument"]);
+    var qs = $.getQueryParameters();
+    if (qs.url) $url.val(decodeURIComponent(qs.url));
+    if (qs.profile) $profile.val(qs.profile);
+    if (qs.skipValidation === "true") $skipValidation.prop('checked', true);
+    if (qs.noRecTrack === "true") $noRecTrack.prop('checked', true);
+    if (qs.informativeOnly === "true") $informativeOnly.prop('checked', true);
+    if (qs.processDocument) $processDocument.val(qs.processDocument);
+    if (qs.url && qs.profile) validate(qs);
 
     window.addEventListener('popstate', function(event) {
-        var data = event.state;
-        if (data == null) 
-            return;
-        validate(data["url"], data["profile"], data["skipValidation"], data["noRecTrack"], data["informativeOnly"], data["processDocument"]);
+        var options = event.state;
+        if (options == null) return;
+        validate(options);
     })
 }(jQuery));
