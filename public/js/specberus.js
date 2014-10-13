@@ -193,18 +193,23 @@ jQuery.extend({
         return false;
     });
 
-    var qs = $.getQueryParameters();
-    if (qs.url) $url.val(decodeURIComponent(qs.url));
-    if (qs.profile) $profile.val(qs.profile);
-    if (qs.skipValidation === "true") $skipValidation.prop('checked', true);
-    if (qs.noRecTrack === "true") $noRecTrack.prop('checked', true);
-    if (qs.informativeOnly === "true") $informativeOnly.prop('checked', true);
-    if (qs.processDocument) $processDocument.val(qs.processDocument);
-    if (qs.url && qs.profile) validate(qs);
+    function setFormParams(options) {
+        if (options.url) $url.val(decodeURIComponent(options.url));
+        if (options.profile) $profile.val(options.profile);
+        if (options.skipValidation === "true") $skipValidation.prop('checked', true);
+        if (options.noRecTrack === "true") $noRecTrack.prop('checked', true);
+        if (options.informativeOnly === "true") $informativeOnly.prop('checked', true);
+        if (options.processDocument) $processDocument.val(options.processDocument);
+    }
+
+    var options = $.getQueryParameters();
+    setFormParams(options);
+    if (options.url && qs.profile) validate(options);
 
     window.addEventListener('popstate', function(event) {
         var options = event.state;
         if (options == null) return;
+        setFormParams(options);
         validate(options);
     })
 }(jQuery));
