@@ -4,8 +4,13 @@
 //  include socket.io
 //  grab on submit and cancel, get values
 //  client-side protocol
-//  history API and reacting to the QS on load (and filling out form)
 //  show errors
+
+jQuery.extend({
+    getQueryParameters : function(str) {
+        return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
+    }
+});
 
 (function ($) {
     var $url = $("#url")
@@ -26,7 +31,7 @@
     ,   done = 0
     ,   total = 0
     ;
-    
+
     // handshake
     socket.on("handshake", function (data) {
         console.log("Using version", data.version);
@@ -59,23 +64,23 @@
     }
 
     // validate
-    function validate (url, profile, skipValidation, noRecTrack, informativeOnly, processDocument) {
+    function validate (options) {
         $resultsBody.find("tr:not(.h)").remove();
         socket.emit("validate", {
-            url:                url
-        ,   profile:            profile
-        ,   skipValidation:     skipValidation
-        ,   noRecTrack:         noRecTrack
-        ,   informativeOnly:    informativeOnly
-        ,   processDocument:    processDocument
+            url:                decodeURIComponent(options.url)
+        ,   profile:            options.profile
+        ,   skipValidation:     options.skipValidation
+        ,   noRecTrack:         options.noRecTrack
+        ,   informativeOnly:    options.informativeOnly
+        ,   processDocument:    options.processDocument
         });
     }
-    
+
     // terminate validation
     function endValidation () {
         $progressContainer.hide();
     }
-    
+
     // handle results
     function row (id) {
         if (rows[id]) return rows[id];
@@ -105,7 +110,7 @@
             .html(' ' + msg)
             .appendTo($ul));
     }
-    
+
     // protocol
     socket.on("exception", function (data) {
         console.log("exception", data);
@@ -174,8 +179,37 @@
         ;
         if (!url) showError("Missing URL parameter.");
         if (!profile) showError("Missing profile parameter.");
-        validate(url, profile, skipValidation, noRecTrack, informativeOnly, processDocument);
+        var options = {
+                          "url"             : url
+                        , "profile"         : profile
+                        , "skipValidation"  : skipValidation
+                        , "noRecTrack"      : noRecTrack
+                        , "informativeOnly" : informativeOnly
+                        , "processDocument" : processDocument
+                      };
+        validate(options);
+        var newurl = document.URL.split('?')[0] + "?" + $.param(options)
+        history.pushState(options, url + " - " + profile, newurl);
         return false;
     });
-    
+
+    function setFormParams(options) {
+        if (options.url) $url.val(decodeURIComponent(options.url));
+        if (options.profile) $profile.val(options.profile);
+        if (options.skipValidation === "true") $skipValidation.prop('checked', true);
+        if (options.noRecTrack === "true") $noRecTrack.prop('checked', true);
+        if (options.informativeOnly === "true") $informativeOnly.prop('checked', true);
+        if (options.processDocument) $processDocument.val(options.processDocument);
+    }
+
+    var options = $.getQueryParameters();
+    setFormParams(options);
+    if (options.url && qs.profile) validate(options);
+
+    window.addEventListener('popstate', function(event) {
+        var options = event.state;
+        if (options == null) return;
+        setFormParams(options);
+        validate(options);
+    })
 }(jQuery));
