@@ -28,3 +28,7 @@ span.bg-warning, span.bg-danger, span.bg-info {
     margin: 0 0.5em 0 0;
 }
 
+td.results a {
+    text-decoration: underline;
+}
+
