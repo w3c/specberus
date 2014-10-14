@@ -39,6 +39,7 @@ var tests = {
             { doc: "headers/simple.html" }
         ,   { doc: "headers/hr.html" }
         ,   { doc: "headers/fails.html", errors: ["headers.hr"] }
+        ,   { doc: "headers/fails-too.html", errors: ["headers.hr"] }
         ]
     ,   title:  [
             { doc: "headers/simple.html" }
