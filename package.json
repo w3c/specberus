@@ -7,7 +7,8 @@
         "whacko": "0.13.2",
         "superagent": "0.17.0",
         "express": "3.5.0",
-        "socket.io": "0.9.16"
+        "socket.io": "0.9.16",
+        "safe-url-input-checker": "0.0.2"
     },
     "devDependencies": {
         "mocha": "1.18.2",
