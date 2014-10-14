@@ -39,6 +39,7 @@ var tests = {
             { doc: "headers/simple.html" }
         ,   { doc: "headers/hr.html" }
         ,   { doc: "headers/fails.html", errors: ["headers.hr"] }
+        ,   { doc: "headers/fails-too.html", errors: ["headers.hr"] }
         ]
     ,   title:  [
             { doc: "headers/simple.html" }
@@ -137,6 +138,10 @@ var tests = {
             { doc: "sotd/supersedable.html"}
         ,   { doc: "sotd/pp-bad.html"}
         ,   { doc: "sotd/ml-bad.html", errors: ['sotd.implementation'] }
+        ]
+    ,   'ac-review':  [
+            { doc: "sotd/supersedable.html"}
+        ,   { doc: "sotd/pp-bad.html", errors: ['sotd.ac-review'] }
         ]
     }
 ,   validation:   {
