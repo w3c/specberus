@@ -139,6 +139,10 @@ var tests = {
         ,   { doc: "sotd/pp-bad.html"}
         ,   { doc: "sotd/ml-bad.html", errors: ['sotd.implementation'] }
         ]
+    ,   'ac-review':  [
+            { doc: "sotd/supersedable.html"}
+        ,   { doc: "sotd/pp-bad.html", errors: ['sotd.ac-review'] }
+        ]
     }
 ,   validation:   {
         css:  [
