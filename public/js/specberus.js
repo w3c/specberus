@@ -53,6 +53,12 @@ jQuery.extend({
               .insertAfter($alert);
     }
 
+    // clear errors
+    function clearError () {
+        $('.alert').filter(":not('.hide')")
+                   .remove();
+    }
+
     // show progress
     function progress () {
         $progress.attr({
@@ -170,6 +176,7 @@ jQuery.extend({
 
     // handle the form
     $("#options").submit(function () {
+        clearError();
         var url = $url.val()
         ,   profile = $profile.val()
         ,   skipValidation = $skipValidation.is(":checked") || false
