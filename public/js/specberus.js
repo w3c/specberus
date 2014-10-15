@@ -211,7 +211,7 @@ jQuery.extend({
 
     var options = $.getQueryParameters();
     setFormParams(options);
-    if (options.url && qs.profile) validate(options);
+    if (options.url && options.profile) validate(options);
 
     window.addEventListener('popstate', function(event) {
         var options = event.state;
