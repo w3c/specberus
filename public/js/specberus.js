@@ -25,7 +25,6 @@ jQuery.extend({
     ,   $progressContainer = $results.find(".panel-body")
     ,   $progress = $results.find(".progress-bar")
     ,   $progressStyler = $progress.parent()
-    ,   $progressLabel = $progress.find(".sr-only")
     ,   socket = io.connect(location.protocol + "//" + location.host)
     ,   rows = {}
     ,   done = 0
@@ -66,7 +65,7 @@ jQuery.extend({
         ,   "aria-valuemax":    total
         ,   "style":            "width: " + (total ? (done/total)*100 : 0) + "%"
         });
-        $progressLabel.text(done + "/" + total + " done.");
+	$progress.text(done + "/" + total + " done.");
     }
 
     // validate

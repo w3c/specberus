@@ -6,8 +6,30 @@ body {
     max-width:  800px;
 }
 
-.navbar-inverse .navbar-brand {
+.navbar img {
+    height: 40px;
+}
+
+.navbar img:not(logo) {
+    margin-right: 5px;
+}
+
+.navbar img.logo {
+    margin: 0 20px 0 15px;
+}
+
+.navbar img.logo:focus, .navbar img.logo:hover {
+    -moz-box-shadow:    0 0 20px #ffffff;
+    -webkit-box-shadow: 0 0 20px #ffffff;
+    box-shadow:         0px 0px 20px #ffffff;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-brand a, .contribute {
     color:  #fff;
+}
+
+.contribute {
+    padding: 25px 0 0 0;
 }
 
 .horizontal-form .form-group {
