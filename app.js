@@ -32,7 +32,7 @@ server.listen(process.env.PORT || 80);
 
 // VALIDATION PROTOCOL
 //  Client:
-//      validate, { url: "document", profile: "WD", skipValidation: skipValidation }
+//      validate, { url: "document", profile: "WD", validation: "simple-validation" }
 //  Server:
 //      handshake, { version: "x.y.z"}
 //      exception, { message: "blah", code: "FOO"} (for system errors)
@@ -95,7 +95,7 @@ io.sockets.on("connection", function (socket) {
                         url:                res
                     ,   profile:            profile
                     ,   events:             sink
-                    ,   skipValidation:     data.skipValidation
+                    ,   validation:         data.validation
                     ,   noRecTrack:         data.noRecTrack
                     ,   informativeOnly:    data.informativeOnly
                     ,   processDocument:    data.processDocument

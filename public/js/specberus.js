@@ -15,7 +15,7 @@ jQuery.extend({
 (function ($) {
     var $url = $("#url")
     ,   $profile = $("#profile")
-    ,   $skipValidation = $("#skipValidation")
+    ,   $validation = $("#validation")
     ,   $noRecTrack = $("#noRecTrack")
     ,   $informativeOnly = $("#informativeOnly")
     ,   $processDocument = $("#processDocument")
@@ -75,7 +75,7 @@ jQuery.extend({
         socket.emit("validate", {
             url:                decodeURIComponent(options.url)
         ,   profile:            options.profile
-        ,   skipValidation:     options.skipValidation
+        ,   validation:         options.validation
         ,   noRecTrack:         options.noRecTrack
         ,   informativeOnly:    options.informativeOnly
         ,   processDocument:    options.processDocument
@@ -179,7 +179,7 @@ jQuery.extend({
         clearError();
         var url = $url.val()
         ,   profile = $profile.val()
-        ,   skipValidation = $skipValidation.is(":checked") || false
+        ,   validation = $validation.val()
         ,   noRecTrack = $noRecTrack.is(":checked") || false
         ,   informativeOnly = $informativeOnly.is(":checked") || false
         ,   processDocument = $processDocument.val()
@@ -189,7 +189,7 @@ jQuery.extend({
         var options = {
                           "url"             : url
                         , "profile"         : profile
-                        , "skipValidation"  : skipValidation
+                        , "validation"      : validation
                         , "noRecTrack"      : noRecTrack
                         , "informativeOnly" : informativeOnly
                         , "processDocument" : processDocument
@@ -203,7 +203,7 @@ jQuery.extend({
     function setFormParams(options) {
         if (options.url) $url.val(decodeURIComponent(options.url));
         if (options.profile) $profile.val(options.profile);
-        if (options.skipValidation === "true") $skipValidation.prop('checked', true);
+        if (options.validation) $validation.val(options.validation);
         if (options.noRecTrack === "true") $noRecTrack.prop('checked', true);
         if (options.informativeOnly === "true") $informativeOnly.prop('checked', true);
         if (options.processDocument) $processDocument.val(options.processDocument);
