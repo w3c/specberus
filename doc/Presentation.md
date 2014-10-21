@@ -63,15 +63,23 @@ Architecture
 Dependencies
 ------------
 
-* *Node.js*.
-* *npm*.
-* *Mocha*.
-* *Whacko*.
-* *Superagent*.
-* *Express*.
-* *Socket.io*.
-* *Safe-url-input-checker*.
-* *Expect.js*.
+`# apt-get install`:
+* [`nodejs`](http://nodejs.org/)
+* [`npm`](http://github.com/isaacs/npm)
+
+`$ npm install` (but you can do `npm install -d` instead to install all at once):
+* [`express`](https://www.npmjs.org/package/express)
+* [`safe-url-input-checker`](https://www.npmjs.org/package/safe-url-input-checker)
+* [`socket.io`](https://www.npmjs.org/package/socket.io)
+* [`superagent`](https://www.npmjs.org/package/superagent)
+* [`whacko`](https://www.npmjs.org/package/whacko)
+
+Necessary for development, testing and debugging:
+* [`expect.js`](https://www.npmjs.org/package/expect.js)
+* [`mocha`](https://www.npmjs.org/package/mocha)
+
+Nice to have for debugging:
+* [`node-debug`](https://www.npmjs.org/package/debug)
 
 When
 ====
