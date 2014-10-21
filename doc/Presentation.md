@@ -20,6 +20,46 @@ How
 
 In JavaScript, on *Node.js*.
 
+Architecture
+------------
+
+    Specberus
+    ├── design
+    ├── lib
+    │   ├── profiles
+    │   └── rules
+    │       ├── dummy
+    │       ├── headers
+    │       ├── heuristic
+    │       ├── links
+    │       ├── sotd
+    │       ├── structure
+    │       ├── style
+    │       └── validation
+    ├── node_modules
+    │   ├── expect.js
+    │   ├── express
+    │   ├── mocha
+    │   ├── safe-url-input-checker
+    │   ├── socket.io
+    │   ├── superagent
+    │   └── whacko
+    ├── public
+    │   ├── css
+    │   ├── fonts
+    │   ├── img
+    │   └── js
+    ├── test
+    │   └── docs
+    │       ├── dummy
+    │       ├── headers
+    │       ├── links
+    │       ├── sotd
+    │       ├── structure
+    │       ├── style
+    │       └── validation
+    └── tools
+
 Dependencies
 ------------
 
