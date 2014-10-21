@@ -130,7 +130,6 @@ jQuery.extend({
         done = 0;
         total = data.rules.length;
         $progressStyler.addClass("active progress-striped");
-        $results.removeClass("hide").show();
         progress();
         $progressContainer.show();
         $summary.show();
@@ -172,6 +171,8 @@ jQuery.extend({
     socket.on("finished", function () {
         console.log("END");
         $progressStyler.removeClass("active progress-striped");
+        $progressContainer.hide();
+        $results.removeClass("hide").fadeIn();
         $progress.text('Done!');
         // endValidation();
     });
@@ -184,7 +185,7 @@ jQuery.extend({
         ,   skipValidation = $skipValidation.is(":checked") || false
         ,   noRecTrack = $noRecTrack.is(":checked") || false
         ,   informativeOnly = $informativeOnly.is(":checked") || false
-        ,   processDocument = $processDocument.val()
+        ,   processDocument = $processDocument.find('label.active').attr('id')
         ;
         if (!url) showError("Missing URL parameter.");
         if (!profile) showError("Missing profile parameter.");
@@ -208,7 +209,10 @@ jQuery.extend({
         if (options.skipValidation === "true") $skipValidation.prop('checked', true);
         if (options.noRecTrack === "true") $noRecTrack.prop('checked', true);
         if (options.informativeOnly === "true") $informativeOnly.prop('checked', true);
-        if (options.processDocument) $processDocument.val(options.processDocument);
+        if (options.processDocument) {
+          $processDocument.find('label').removeClass('active');
+          $processDocument.find('label#' + options.processDocument).addClass('active');
+        }
     }
 
     var options = $.getQueryParameters();

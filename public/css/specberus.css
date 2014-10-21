@@ -11,6 +11,11 @@ body {
     height: 40px;
 }
 
+.navbar .contribute a {
+    color: #ffffff;
+    opacity: 0.5;
+}
+
 .navbar img:not(logo) {
     margin-right: 5px;
 }
@@ -57,5 +62,15 @@ span.bg-warning, span.bg-danger, span.bg-info {
 
 td.results a {
     text-decoration: underline;
+}
+
+#processDocument .btn-primary {
+    background-color: #ffffff;
+    color: #808080;
+}
+
+#processDocument .btn-primary.active {
+    background-color: #f5f5f5;
+    color: #000000;
 }
 

@@ -44,7 +44,7 @@
                 <div class="form-group input-sm">
                   <label for="url" class="col-sm-2 control-label">URL</label>
                   <div class="col-sm-10">
-                    <input type="url" class="form-control input-sm" id="url" placeholder="URL" required>
+                    <input type="url" class="form-control input-sm" id="url" placeholder="URL" required autofocus="autofocus">
                   </div>
                 </div>
 
@@ -82,9 +82,19 @@
                 <div class="form-group input-sm">
                   <label class="col-sm-2 control-label">Process</label>
                   <div class="col-sm-10">
-                    <div id="processDocument" class="btn-group">
+                    <!-- div id="processDocument" class="btn-group">
                       <button type="button" class="btn btn-default input-sm">14 October 2005</button>
-                      <button type="button" class="btn btn-default input-sm">1 August 2014</button>
+                      <button type="button" checked class="btn btn-default input-sm">1 August 2014</button>
+                    </div -->
+                    <div id="processDocument" class="btn-group" data-toggle="buttons">
+                      <label id="2014" class="btn btn-primary input-sm active">
+                        <input type="radio" name="processDocument" class="input-sm" />
+                        1 August 2014
+                      </label>
+                      <label id="2005" class="btn btn-primary input-sm">
+                        <input type="radio" name="processDocument" class="input-sm" />
+                        14 October 2005
+                      </label>
                     </div>
                   </div>
                 </div>
