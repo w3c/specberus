@@ -22,10 +22,11 @@ jQuery.extend({
     ,   $alert = $("#alert")
     ,   $results = $("#results")
     ,   $resultsBody = $results.find("table")
-    ,   $progressContainer = $results.find(".panel-body")
-    ,   $progress = $results.find(".progress-bar")
+    ,   $progressContainer = $("#progressBar")
+    ,   $progress = $progressContainer.find(".progress-bar")
     ,   $progressStyler = $progress.parent()
     ,   socket = io.connect(location.protocol + "//" + location.host)
+    ,   $summary = $("#summary")
     ,   rows = {}
     ,   done = 0
     ,   total = 0
@@ -65,7 +66,7 @@ jQuery.extend({
         ,   "aria-valuemax":    total
         ,   "style":            "width: " + (total ? (done/total)*100 : 0) + "%"
         });
-	$progress.text(done + "/" + total + " done.");
+        $progress.text(done + '/' + total);
     }
 
     // validate
@@ -132,6 +133,7 @@ jQuery.extend({
         $results.removeClass("hide").show();
         progress();
         $progressContainer.show();
+        $summary.show();
     });
     socket.on("ok", function (data) {
         console.log("ok", data);
@@ -170,6 +172,7 @@ jQuery.extend({
     socket.on("finished", function () {
         console.log("END");
         $progressStyler.removeClass("active progress-striped");
+        $progress.text('Done!');
         // endValidation();
     });
 
