@@ -30,6 +30,17 @@ jQuery.extend({
     ,   rows = {}
     ,   done = 0
     ,   total = 0
+    ,   summary = {}
+    ,   friendlyNames = {headers: 'Headers'
+        , style: 'Style'
+        , sotd: 'Status of this document'
+        , structure: 'Structure'
+        , links: 'Links'
+        , heuristic: 'Heuristics'
+        , validation: 'Validation'
+        }
+    ,   levels = {done: 0, info: 1, warning: 2, error: 3}
+    ,   icons = {done: '\u2714', info: '\u2714', warning: '\u2714', error: '\u2718'}
     ;
 
     // handshake
@@ -90,7 +101,7 @@ jQuery.extend({
     // handle results
     function row (id) {
         if (rows[id]) return rows[id];
-        rows[id] =  $("<tr><td class='status'></td><td class='test'></td><td class='results'></td></tr>")
+        rows[id] =  $("<tr><td id=\"section-" + id.split('.')[0] + "\" class='status'></td><td class='test'></td><td class='results'></td></tr>")
                         .find(".test")
                             .text(id)
                         .end()
@@ -145,15 +156,15 @@ jQuery.extend({
             .end();
     });
     socket.on("warning", function (data) {
-        console.log("warning", data);
+        updateSummary(data, 'warning');
         addMessage(row(data.name), "warning", data.message);
     });
     socket.on('info', function (data) {
-        console.log('info', data);
+        updateSummary(data, 'info');
         addMessage(row(data.name), 'info', data.message);
     });
     socket.on("error", function (data) {
-        console.log("error", data);
+        updateSummary(data, 'error');
         var $row = row(data.name);
         addMessage(row(data.name), "error", data.message);
         if (!$row.find(".status .text-danger").length) {
@@ -164,7 +175,7 @@ jQuery.extend({
         }
     });
     socket.on("done", function (data) {
-        console.log("done", data);
+        updateSummary(data, 'done');
         done++;
         progress();
     });
@@ -174,6 +185,7 @@ jQuery.extend({
         $progressContainer.hide();
         $results.removeClass("hide").fadeIn();
         $progress.text('Done!');
+        attachCustomScroll();
         // endValidation();
     });
 
@@ -202,6 +214,51 @@ jQuery.extend({
         history.pushState(options, url + " - " + profile, newurl);
         return false;
     });
+
+    function updateSummary(data, level) {
+
+      var id
+      ,   status;
+
+      if(data && data.name) {
+        id = data.name.split('.')[0];
+
+        if(summary.hasOwnProperty(id)) {
+          status = summary[id];
+        }
+        else {
+          status = {current: -1, count: 0};
+          summary[id] = status;
+          $('<p id="link-' + id + '"><span class="icon"></span> <a href="#section-'
+            + id + '">' + friendlyNames[id] + ' <span class="badge"></span></a></p>')
+            .appendTo($summary.find('.panel-body'));
+        }
+
+        if(levels[level] > status['current']) {
+          summary[id]['current'] = levels[level];
+          $summary.find('p#link-' + id).find('> span.icon').text(icons[level]);
+        }
+
+        if(levels[level] > 2) {
+          summary[id]['count'] = summary[id]['count'] + 1;
+          $summary.find('p#link-' + id + ' > a > span.badge').text(status['count'] + '');
+        }
+
+      }
+
+    }
+
+    function attachCustomScroll() {
+
+      $summary.find('a').click(function() {
+        var location = $(this).attr("href");
+        var offset = $(location).offset().top;
+        console.log(offset);
+        $("body").scrollTop(offset-50);
+        return false;
+      });
+
+    }
 
     function setFormParams(options) {
         if (options.url) $url.val(decodeURIComponent(options.url));
