@@ -10,7 +10,6 @@
     <meta name="author" content="W3C" />
     <title>Pubrules Checker</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <!-- link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" / -->
     <link rel="stylesheet" type="text/css" href="css/specberus.css" />
   </head>
 
@@ -18,122 +17,161 @@
 
     <header class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">
-            <img src="img/logo.svg" width="40" height="40" alt="Logo for the Pubrules Checker">
-            Pubrules Checker
-          </a>
+        <div class="row">
+          <div class="col-md-8 navbar-brand">
+            <a href="http://www.w3.org/"><img class="logo" src="img/logo-w3c.svg" alt="W3C logo" /></a>
+            <a href="/"><img src="img/logo.svg" alt="Logo for the Pubrules Checker" />Pubrules Checker</a>
+          </div>
+          <div class="contribute col-md-4 text-right">
+            <a href="https://github.com/w3c/specberus">Psst &mdash; contribute on GitHub!</a>
+          </div>
         </div>
       </div>
     </header>
 
     <div class="container">
 
+      <div class="row">
+
+        <div class="col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Options</h3>
+            </div>
+            <div class="panel-body">
+              <form id="options" class="form-horizontal">
+
+                <div class="form-group input-sm">
+                  <label for="url" class="col-sm-2 control-label">URL</label>
+                  <div class="col-sm-10">
+                    <input type="url" class="form-control input-sm" id="url" placeholder="URL" required autofocus="autofocus">
+                  </div>
+                </div>
+
+                <div class="form-group input-sm">
+                  <label for="profile" class="col-sm-2 control-label">Profile</label>
+                  <div class="col-sm-10">
+                    <select class="form-control input-sm" id="profile" required>
+                      <option value="">Select an option</option>
+                      <optgroup label="Recommendation Track">
+                        <option value="WD">WD — Working Draft</option>
+                        <option value="FPWD">FPWD — First Public Working Draft</option>
+                        <option value="FPLC">FPLC — First Public and Last Call Working Draft</option>
+                        <option value="LC">LC — Last Call Working Draft</option>
+                        <option value="CR">CR — Candidate Recommendation</option>
+                        <option value="PR">PR — Proposed Recommendation</option>
+                        <option value="PER">PER — Proposed Edited Recommendation</option>
+                        <option value="REC">REC — Recommendation</option>
+                        <option value="RSCND">RSCND — Rescinded Recommendation</option>
+                      </optgroup>
+                      <optgroup label="Notes">
+                        <option value="FPWG-NOTE">FPWG-NOTE — First Public Working Group Note</option>
+                        <option value="WG-NOTE">WG-NOTE — Working Group Note</option>
+                        <option value="FPIG-NOTE">FPIG-NOTE — First Public Interest Group Note</option>
+                        <option value="IG-NOTE">IG-NOTE — Interest Group Note</option>
+                        <option value="FPWG-NOTE">CG-NOTE — Coordination Group Note</option>
+                      </optgroup>
+                      <optgroup label="Submissions">
+                        <option value="MEM-SUBM">MEM-SUBM — Member Submission</option>
+                        <option value="TEAM-SUBM">TEAM-SUBM — Team Submission</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group input-sm">
+                  <label class="col-sm-2 control-label">Process</label>
+                  <div class="col-sm-10">
+                    <!-- div id="processDocument" class="btn-group">
+                      <button type="button" class="btn btn-default input-sm">14 October 2005</button>
+                      <button type="button" checked class="btn btn-default input-sm">1 August 2014</button>
+                    </div -->
+                    <div id="processDocument" class="btn-group" data-toggle="buttons">
+                      <label id="2014" class="btn btn-primary input-sm active">
+                        <input type="radio" name="processDocument" class="input-sm" />
+                        1 August 2014
+                      </label>
+                      <label id="2005" class="btn btn-primary input-sm">
+                        <input type="radio" name="processDocument" class="input-sm" />
+                        14 October 2005
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group checkbox input-sm">
+                  <div class="col-sm-12">
+                    <label class="control-label">
+                      <input type="checkbox" id="skipValidation" name="skipValidation" />
+                      No validation.
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group checkbox input-sm">
+                  <div class="col-sm-12">
+                    <label class="control-label">
+                      <input type="checkbox" id="noRecTrack" name="noRecTrack" />
+                      Rec-track status, but document is not really on Rec-track.
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group checkbox input-sm">
+                  <div class="col-sm-12">
+                    <label class="control-label">
+                      <input type="checkbox" id="informativeOnly" name="informativeOnly" />
+                      Document is informative-only.
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary pull-right">Run</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div id="summary" class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Summary of results</h3>
+            </div>
+            <div class="panel-body">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div id="progressBar" class="container">
+      <div class="progress progress-striped active">
+        <div class="progress-bar" role="progressbar"
+             aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0">
+          <span class="">x/y done</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+
       <div class="alert alert-danger alert-dismissable hide" id="alert">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <span></span>
       </div>
 
-      <!-- the form -->
-      <div class="panel panel-default">
+      <div class="panel panel-default" id="results">
         <div class="panel-heading">
-          <h2 class="panel-title">Checker options</h2>
-        </div>
-        <div class="panel-body">
-          <form id="options" class="horizontal-form">
-            <div class="form-group">
-              <label for="url" class="col-sm-2 control-label">URL</label>
-              <div class="col-sm-10">
-                <input type="url" class="form-control" id="url" placeholder="URL" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="profile" class="col-sm-2 control-label">Profile</label>
-              <div class="col-sm-10">
-                <select class="form-control" id="profile" required>
-                  <option value="">Select an option</option>
-                  <optgroup label="Recommendation Track">
-                    <option value="WD">WD — Working Draft</option>
-                    <option value="FPWD">FPWD — First Public Working Draft</option>
-                    <option value="FPLC">FPLC — First Public and Last Call Working Draft</option>
-                    <option value="LC">LC — Last Call Working Draft</option>
-                    <option value="CR">CR — Candidate Recommendation</option>
-                    <option value="PR">PR — Proposed Recommendation</option>
-                    <option value="PER">PER — Proposed Edited Recommendation</option>
-                    <option value="REC">REC — Recommendation</option>
-                    <option value="RSCND">RSCND — Rescinded Recommendation</option>
-                  </optgroup>
-                  <optgroup label="Notes">
-                    <option value="FPWG-NOTE">FPWG-NOTE — First Public Working Group Note</option>
-                    <option value="WG-NOTE">WG-NOTE — Working Group Note</option>
-                    <option value="FPIG-NOTE">FPIG-NOTE — First Public Interest Group Note</option>
-                    <option value="IG-NOTE">IG-NOTE — Interest Group Note</option>
-                    <option value="FPWG-NOTE">CG-NOTE — Coordination Group Note</option>
-                  </optgroup>
-                  <optgroup label="Submissions">
-                    <option value="MEM-SUBM">MEM-SUBM — Member Submission</option>
-                    <option value="TEAM-SUBM">TEAM-SUBM — Team Submission</option>
-                </optgroup>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="validation" class="col-sm-2 control-label">Validation</label>
-              <div class="col-sm-10">
-                <select class="form-control" id="validation" required>
-                  <option value="no-validation">No validation</option>
-                  <option value="simple-validation" selected>Simple Validation</option>
-                  <option value="recursive">Recursively validate multipart documents</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group checkbox">
-              <div class="col-sm-offset-2 col-sm-10">
-                <label class="control-label">
-                  <input type="checkbox" id="noRecTrack" name="noRecTrack">
-                  Rec-track status, but document is not really on Rec-track.
-                </label>
-              </div>
-            </div>
-            <div class="form-group checkbox">
-              <div class="col-sm-offset-2 col-sm-10">
-                <label class="control-label">
-                  <input type="checkbox" id="informativeOnly" name="informativeOnly">
-                  Document is informative-only.
-                </label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="processDocument" class="col-sm-2 control-label">Process Document</label>
-              <div class="col-sm-10">
-                <select class="form-control" id="processDocument" required>
-                  <option value="">Select an option</option>
-                  <option value="20051014">14 October 2005 Process</option>
-                  <option value="20140801" selected>1 August 2014 Process</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary pull-right">Run</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <!-- the results -->
-      <div class="panel panel-default hide" id="results">
-        <div class="panel-heading">
-          <h2 class="panel-title">Results</h2>
-        </div>
-        <div class="panel-body">
-          <div class="progress progress-striped active">
-            <div class="progress-bar" role="progressbar" 
-                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0">
-              <span class="sr-only">x/y done</span>
-            </div>
-          </div>
+          <h2 class="panel-title">Detailed results</h2>
         </div>
         <table class="table">
           <tr class="h">
@@ -143,6 +181,8 @@
           </tr>
         </table>
       </div>
+    </div>
+
     </div>
 
     <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>

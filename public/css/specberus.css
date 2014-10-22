@@ -1,3 +1,4 @@
+
 body {
     padding-top:    70px;
 }
@@ -6,8 +7,43 @@ body {
     max-width:  800px;
 }
 
-.navbar-inverse .navbar-brand {
+.navbar img {
+    height: 40px;
+}
+
+.navbar .contribute a {
+    color: #ffffff;
+    opacity: 0.5;
+}
+
+.navbar img:not(logo) {
+    margin-right: 5px;
+}
+
+.navbar img.logo {
+    margin: 0 20px 0 15px;
+}
+
+.navbar img.logo:focus, .navbar img.logo:hover {
+    -moz-box-shadow:    0 0 20px #ffffff;
+    -webkit-box-shadow: 0 0 20px #ffffff;
+    box-shadow:         0px 0px 20px #ffffff;
+}
+
+#progressBar, #summary, #results {
+    display: none;
+}
+
+#summary .badge {
+    background-color: #ff8080;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-brand a, .contribute {
     color:  #fff;
+}
+
+.contribute {
+    padding: 25px 0 0 0;
 }
 
 .horizontal-form .form-group {
@@ -30,5 +66,15 @@ span.bg-warning, span.bg-danger, span.bg-info {
 
 td.results a {
     text-decoration: underline;
+}
+
+#processDocument .btn-primary {
+    background-color: #ffffff;
+    color: #808080;
+}
+
+#processDocument .btn-primary.active {
+    background-color: #f5f5f5;
+    color: #000000;
 }
 
