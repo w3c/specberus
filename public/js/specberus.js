@@ -142,7 +142,8 @@ jQuery.extend({
         total = data.rules.length;
         $progressStyler.addClass("active progress-striped");
         progress();
-        $progressContainer.show();
+        $progressContainer.fadeIn();
+        $results.fadeIn();
         $summary.show();
     });
     socket.on("ok", function (data) {
@@ -183,7 +184,6 @@ jQuery.extend({
         console.log("END");
         $progressStyler.removeClass("active progress-striped");
         $progressContainer.hide();
-        $results.removeClass("hide").fadeIn();
         $progress.text('Done!');
         attachCustomScroll();
         // endValidation();
