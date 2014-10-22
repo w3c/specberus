@@ -251,9 +251,8 @@ jQuery.extend({
     function attachCustomScroll() {
 
       $summary.find('a').click(function() {
-        var location = $(this).attr("href");
-        var offset = $(location).offset().top;
-        console.log(offset);
+        var location = $(this).attr("href")
+        ,   offset = $(location).offset().top;
         $("body").scrollTop(offset-50);
         return false;
       });
