@@ -29,9 +29,34 @@ Specberus (ˈspɛk bər əs) *n. new* pubrules *automatic checker and documentat
 
 # How
 
-In JavaScript, on *Node.js*.
+In JavaScript, on *Node.js*, with Bootstrap and jQuery.
 
-## Architecture
+---
+
+# How
+
+## General architecture
+
+    Specberus
+    ├── design
+    ├── lib
+    │   ├── profiles
+    │   └── rules
+    ├── node_modules
+    ├── public
+    │   ├── css
+    │   ├── fonts
+    │   ├── img
+    │   └── js
+    ├── test
+    │   └── docs
+    └── tools
+
+---
+
+# How
+
+## Architecture: the rules
 
     Specberus
     ├── design
@@ -47,13 +72,54 @@ In JavaScript, on *Node.js*.
     │       ├── style
     │       └── validation
     ├── node_modules
-    │   ├── expect.js
-    │   ├── express
-    │   ├── mocha
-    │   ├── safe-url-input-checker
-    │   ├── socket.io
-    │   ├── superagent
-    │   └── whacko
+    ├── public
+    │   ├── css
+    │   ├── fonts
+    │   ├── img
+    │   └── js
+    ├── test
+    │   └── docs
+    └── tools
+
+---
+
+# How
+
+## Architecture: the profiles
+
+* `base`
+  * `TR`
+    * `WG-NOTE` (identical)
+      * `FPWG-NOTE` (identical)
+    * `WD` (identical)
+    * `PER`
+    * `RSCND` (identical)
+    * `PR`
+    * `CR`
+    * `FPWD` (identical)
+  * `IG-NOTE`
+    * `FPIG-NOTE` (identical)
+  * `SUBM`
+  * `MEM-SUBM`
+  * `TEAM-SUBM`
+  * `CG-NOTE`
+  * `FPLC`
+  * `REC`
+  * `LC`
+* `dummy`
+
+---
+
+# How
+
+## Architecture: the tests
+
+    Specberus
+    ├── design
+    ├── lib
+    │   ├── profiles
+    │   └── rules
+    ├── node_modules
     ├── public
     │   ├── css
     │   ├── fonts
@@ -69,6 +135,10 @@ In JavaScript, on *Node.js*.
     │       ├── style
     │       └── validation
     └── tools
+
+---
+
+# How
 
 ## Dependencies
 
