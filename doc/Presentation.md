@@ -1,11 +1,11 @@
 
 name:front
-
 class: center, middle
+background-image: url(https://raw.githubusercontent.com/w3c/specberus/master/doc/logo.png)
+
+---
 
 # Specberus
-
-background-image: url(https://raw.githubusercontent.com/w3c/specberus/master/doc/logo.png)
 
 Denis & Antonio, 23 oct 2014
 
@@ -27,7 +27,7 @@ Specberus (ˈspɛk bər əs) *n. new* pubrules *automatic checker and documentat
 
 * Complex maintenance.
 * XSLT is not flexible enough.
-* There is no clear separation beetween the documentation (human-readable publication rules) and the automatic checker (the software).
+* There is no clear separation beetween the documentation (*human-readable publication rules*) and the automatic checker (*the software*).
 
 ---
 
@@ -85,24 +85,8 @@ In JavaScript, on [Node.js](http://nodejs.org/), with [Bootstrap](http://getboot
 
 # How: *profiles*
 
-* foo
-** bar
-* err
-** foo
-** bar
-
+* `dummy`
 * `base`
-  * `TR`
-    * `WG-NOTE` (identical)
-      * `FPWG-NOTE` (identical)
-    * `WD` (identical)
-    * `PER`
-    * `RSCND` (identical)
-    * `PR`
-    * `CR`
-    * `FPWD` (identical)
-  * `IG-NOTE`
-    * `FPIG-NOTE` (identical)
   * `SUBM`
   * `MEM-SUBM`
   * `TEAM-SUBM`
@@ -110,7 +94,17 @@ In JavaScript, on [Node.js](http://nodejs.org/), with [Bootstrap](http://getboot
   * `FPLC`
   * `REC`
   * `LC`
-* `dummy`
+  * `IG-NOTE`
+    * `FPIG-NOTE` (identical)
+  * `TR`
+    * `WD` (identical)
+    * `PER`
+    * `RSCND` (identical)
+    * `PR`
+    * `CR`
+    * `FPWD` (identical)
+    * `WG-NOTE` (identical)
+      * `FPWG-NOTE` (identical)
 
 ---
 
@@ -148,7 +142,8 @@ In JavaScript, on [Node.js](http://nodejs.org/), with [Bootstrap](http://getboot
 
 --
 
-`$ npm install` (but you can do `npm install -d` instead to install all at once):
+`$ npm install`  
+(but you can do `npm install -d` instead to install all at once):
 * [`express`](https://www.npmjs.org/package/express)
 * [`safe-url-input-checker`](https://www.npmjs.org/package/safe-url-input-checker)
 * [`socket.io`](https://www.npmjs.org/package/socket.io)
@@ -182,7 +177,7 @@ Switchover from the old publication workflow to the new one (including *Specberu
 
 [On GitHub](https://github.com/w3c/).
 
-There are currently 24 [open issues](https://github.com/w3c/specberus/issues).
+There are currently 22 [open issues](https://github.com/w3c/specberus/issues).
 
 --
 
@@ -191,7 +186,7 @@ There are currently 24 [open issues](https://github.com/w3c/specberus/issues).
 * Up to `v0.3.3-1`: [`http://pubrules.jit.su/`](http://pubrules.jit.su/).
 * From: `V0.4.0` onwards: [`http://cerberus.w3.org/`](http://cerberus.w3.org/).
 
-[Information maintenance of our machine for Node.js apps](https://www.w3.org/Systems/nodejs/)
+[Administering our machine for Node.js apps](https://www.w3.org/Systems/nodejs/)
 
 ---
 
