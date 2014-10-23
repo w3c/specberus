@@ -5,7 +5,7 @@ class: center, middle
 
 # Specberus
 
-[https://raw.githubusercontent.com/w3c/specberus/master/public/img/logo.svg]
+[https://github.com/w3c/specberus/blob/master/doc/logo.png]
 
 ---
 
@@ -21,21 +21,22 @@ Specberus (ˈspɛk bər əs) *n. new* pubrules *automatic checker and documentat
 
 [`http://www.w3.org/2005/07/pubrules`](http://www.w3.org/2005/07/pubrules) has been around for nine years. While it has served us well, there is room for improvement:
 
-* Complex maintenance.
+--
+*Complex maintenance.
+--
 * XSLT is not flexible enough.
+--
 * There is no clear separation beetween the documentation (human-readable publication rules) and the automatic checker (the software).
 
 ---
 
 # How
 
-In JavaScript, on *Node.js*, with Bootstrap and jQuery.
+In JavaScript, on [Node.js](http://nodejs.org/), with [Bootstrap](http://getbootstrap.com/), [jQuery](http://jquery.com/) and [Mocha](http://mochajs.org/).
 
 ---
 
-# How
-
-## General architecture
+# How: general architecture
 
     Specberus
     ├── design
@@ -54,9 +55,7 @@ In JavaScript, on *Node.js*, with Bootstrap and jQuery.
 
 ---
 
-# How
-
-## Architecture: the rules
+# How: *rules*
 
     Specberus
     ├── design
@@ -83,9 +82,13 @@ In JavaScript, on *Node.js*, with Bootstrap and jQuery.
 
 ---
 
-# How
+# How: *profiles*
 
-## Architecture: the profiles
+* foo
+** bar
+* err
+** foo
+** bar
 
 * `base`
   * `TR`
@@ -110,9 +113,7 @@ In JavaScript, on *Node.js*, with Bootstrap and jQuery.
 
 ---
 
-# How
-
-## Architecture: the tests
+# How: unit-testing
 
     Specberus
     ├── design
@@ -138,9 +139,7 @@ In JavaScript, on *Node.js*, with Bootstrap and jQuery.
 
 ---
 
-# How
-
-## Dependencies
+# How: dependencies
 
 `# apt-get install`:
 * [`nodejs`](http://nodejs.org/)
@@ -155,7 +154,9 @@ In JavaScript, on *Node.js*, with Bootstrap and jQuery.
 * [`superagent`](https://www.npmjs.org/package/superagent)
 * [`whacko`](https://www.npmjs.org/package/whacko)
 
---
+---
+
+# How: dependencies for debugging
 
 Necessary for development, testing and debugging:
 * [`expect.js`](https://www.npmjs.org/package/expect.js)
@@ -188,6 +189,8 @@ There are currently 24 [open issues](https://github.com/w3c/specberus/issues).
 
 * Up to `v0.3.3-1`: [`http://pubrules.jit.su/`](http://pubrules.jit.su/).
 * From: `V0.4.0` onwards: [`http://cerberus.w3.org/`](http://cerberus.w3.org/).
+
+[Information maintenance of our machine for Node.js apps](https://www.w3.org/Systems/nodejs/)
 
 ---
 
