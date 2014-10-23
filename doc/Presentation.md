@@ -5,7 +5,9 @@ class: center, middle
 
 # Specberus
 
-[https://github.com/w3c/specberus/blob/master/doc/logo.png]
+background-image: url(https://raw.githubusercontent.com/w3c/specberus/master/doc/logo.png)
+
+Denis & Antonio, 23 oct 2014
 
 ---
 
@@ -22,10 +24,9 @@ Specberus (ˈspɛk bər əs) *n. new* pubrules *automatic checker and documentat
 [`http://www.w3.org/2005/07/pubrules`](http://www.w3.org/2005/07/pubrules) has been around for nine years. While it has served us well, there is room for improvement:
 
 --
-*Complex maintenance.
---
+
+* Complex maintenance.
 * XSLT is not flexible enough.
---
 * There is no clear separation beetween the documentation (human-readable publication rules) and the automatic checker (the software).
 
 ---
