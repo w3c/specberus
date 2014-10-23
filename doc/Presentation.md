@@ -130,6 +130,8 @@ In JavaScript, on [Node.js](http://nodejs.org/), with [Bootstrap](http://getboot
     │       └── validation
     └── tools
 
+The tests are all writtent in `test/all-rules.js` and fixtures are available in `test/docs`.
+
 ---
 
 # How: dependencies
