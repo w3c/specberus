@@ -146,6 +146,8 @@ In JavaScript, on *Node.js*, with Bootstrap and jQuery.
 * [`nodejs`](http://nodejs.org/)
 * [`npm`](http://github.com/isaacs/npm)
 
+--
+
 `$ npm install` (but you can do `npm install -d` instead to install all at once):
 * [`express`](https://www.npmjs.org/package/express)
 * [`safe-url-input-checker`](https://www.npmjs.org/package/safe-url-input-checker)
@@ -153,9 +155,13 @@ In JavaScript, on *Node.js*, with Bootstrap and jQuery.
 * [`superagent`](https://www.npmjs.org/package/superagent)
 * [`whacko`](https://www.npmjs.org/package/whacko)
 
+--
+
 Necessary for development, testing and debugging:
 * [`expect.js`](https://www.npmjs.org/package/expect.js)
 * [`mocha`](https://www.npmjs.org/package/mocha)
+
+--
 
 Nice to have for debugging:
 * [`node-debug`](https://www.npmjs.org/package/debug)
@@ -175,6 +181,8 @@ Switchover from the old publication workflow to the new one (including *Specberu
 [On GitHub](https://github.com/w3c/).
 
 There are currently 24 [open issues](https://github.com/w3c/specberus/issues).
+
+--
 
 ## Deployments for testing
 
