@@ -3,8 +3,6 @@ name:front
 class: center, middle
 background-image: url(https://raw.githubusercontent.com/w3c/specberus/master/doc/logo.png)
 
----
-
 # Specberus
 
 Denis & Antonio, 23 oct 2014
@@ -85,26 +83,26 @@ In JavaScript, on [Node.js](http://nodejs.org/), with [Bootstrap](http://getboot
 
 # How: *profiles*
 
-* `dummy`
-* `base`
-  * `SUBM`
-  * `MEM-SUBM`
-  * `TEAM-SUBM`
-  * `CG-NOTE`
-  * `FPLC`
-  * `REC`
-  * `LC`
-  * `IG-NOTE`
-    * `FPIG-NOTE` (identical)
-  * `TR`
-    * `WD` (identical)
-    * `PER`
-    * `RSCND` (identical)
-    * `PR`
-    * `CR`
-    * `FPWD` (identical)
-    * `WG-NOTE` (identical)
-      * `FPWG-NOTE` (identical)
+    "base"
+      "TR"
+        "WG-NOTE" (identical)
+          "FPWG-NOTE" (identical)
+        "WD" (identical)
+        "PER"
+        "RSCND" (identical)
+        "PR"
+        "CR"
+        "FPWD" (identical)
+      "IG-NOTE"
+        "FPIG-NOTE" (identical)
+      "SUBM"
+      "MEM-SUBM"
+      "TEAM-SUBM"
+      "CG-NOTE"
+      "FPLC"
+      "REC"
+      "LC"
+    "dummy"
 
 ---
 
@@ -162,6 +160,32 @@ Necessary for development, testing and debugging:
 
 Nice to have for debugging:
 * [`node-debug`](https://www.npmjs.org/package/debug)
+
+---
+
+# How Specberus has improved recently
+
+* Recursive validation of compound documents.
+* Better heuristics to detect and check dates, WG's, etc.
+* Better output, more detailed feedback to the user:
+  * Colour-coding error/warning messages.
+  * Informative messages can be displayed, too
+  * Ability to include markup in the output, eg hyperlinks.
+* Added a *summary of results*, with internal links.
+* Implemented a few new rules.
+* Some enhancements related to usability and design.
+* Bug-fixing.
+
+---
+
+# When: pending tasks
+
+# *[Offer help descriptions for all rules and all errors](https://github.com/w3c/specberus/issues/22)* and *[Reproduce documentation from pubrules](https://github.com/w3c/specberus/issues/25)* (related).
+# *[Write command-line client](https://github.com/w3c/specberus/issues/5)*
+# *[The hierarchy of available profiles is hard-coded in the UI](https://github.com/w3c/specberus/issues/51)*
+# *[Track whacko for better support for next/nextAll/prev/prevAll so that we can remove lots of nasty hacks](https://github.com/w3c/specberus/issues/3)*
+# *[Make rule checking more parallelised, notably for network IO](https://github.com/w3c/specberus/issues/1)*
+# *[Expose as HTTP API](https://github.com/w3c/specberus/issues/4)*
 
 ---
 
