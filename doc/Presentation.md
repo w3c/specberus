@@ -3,8 +3,6 @@ class: center, middle
 
 # Specberus
 
-Denis & Antonio, 23 oct 2014
-
 .center[![Logo](https://raw.githubusercontent.com/w3c/specberus/master/doc/logo-small.png)]
 
 ---
@@ -31,7 +29,7 @@ Specberus (ˈspɛk bər əs) *n. new* pubrules *automatic checker and documentat
 
 # How
 
-In JavaScript, on [Node.js](http://nodejs.org/), with [Bootstrap](http://getbootstrap.com/), [jQuery](http://jquery.com/) and [Mocha](http://mochajs.org/).
+In JavaScript, on [Node.js](http://nodejs.org/); with [Bootstrap](http://getbootstrap.com/), [jQuery](http://jquery.com/) and [Mocha](http://mochajs.org/).
 
 ---
 
@@ -165,7 +163,9 @@ Nice to have for debugging:
 
 ---
 
-# How Specberus has improved recently (`0.4.0`)
+# How Specberus has improved recently
+
+`0.3.3` → `0.4.0`
 
 * Recursive validation of compound documents.
 * Better heuristics to detect and check dates, WG's, etc.
@@ -176,11 +176,16 @@ Nice to have for debugging:
 * Added a *summary of results*, with internal links.
 * Implemented a few new rules.
 * Some enhancements related to usability and design.
+* Extended the suite of unit tests.
 * Bug-fixing.
+* Deployed in a dedicated *Node.js* server.
 
 ---
 
-# When: pending tasks (`0.5.0`? `1.0.0`?)
+# When: pending tasks
+
+`0.5.0`?  
+`1.0.0`?
 
 1. *[Offer help descriptions for all rules and all errors](https://github.com/w3c/specberus/issues/22)* and *[Reproduce documentation from pubrules](https://github.com/w3c/specberus/issues/25)* (related).
 2. *[Write command-line client](https://github.com/w3c/specberus/issues/5)*
