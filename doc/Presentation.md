@@ -5,7 +5,7 @@ class: center, middle
 
 Denis & Antonio, 23 oct 2014
 
-.right[![Logo](https://raw.githubusercontent.com/w3c/specberus/master/doc/logo-small.png)]
+.center[![Logo](https://raw.githubusercontent.com/w3c/specberus/master/doc/logo-small.png)]
 
 ---
 
@@ -165,7 +165,7 @@ Nice to have for debugging:
 
 ---
 
-# How Specberus has improved recently
+# How Specberus has improved recently (`0.4.0`)
 
 * Recursive validation of compound documents.
 * Better heuristics to detect and check dates, WG's, etc.
@@ -180,14 +180,16 @@ Nice to have for debugging:
 
 ---
 
-# When: pending tasks
+# When: pending tasks (`0.5.0`? `1.0.0`?)
 
 1. *[Offer help descriptions for all rules and all errors](https://github.com/w3c/specberus/issues/22)* and *[Reproduce documentation from pubrules](https://github.com/w3c/specberus/issues/25)* (related).
 2. *[Write command-line client](https://github.com/w3c/specberus/issues/5)*
-3. *[The hierarchy of available profiles is hard-coded in the UI](https://github.com/w3c/specberus/issues/51)*
-4. *[Track whacko for better support for next/nextAll/prev/prevAll so that we can remove lots of nasty hacks](https://github.com/w3c/specberus/issues/3)*
-5. *[Make rule checking more parallelised, notably for network IO](https://github.com/w3c/specberus/issues/1)*
-6. *[Expose as HTTP API](https://github.com/w3c/specberus/issues/4)*
+3. *[Expose as HTTP API](https://github.com/w3c/specberus/issues/4)*
+4. *[The hierarchy of available profiles is hard-coded in the UI](https://github.com/w3c/specberus/issues/51)*
+5. *[Track whacko for better support for next/nextAll/prev/prevAll so that we can remove lots of nasty hacks](https://github.com/w3c/specberus/issues/3)*
+6. *[Make rule checking more parallelised, notably for network IO](https://github.com/w3c/specberus/issues/1)*
+7. Improve performance.
+8. Polish design and test on more platforms.
 
 ---
 
@@ -211,8 +213,6 @@ There are currently 22 [open issues](https://github.com/w3c/specberus/issues).
 
 * Up to `v0.3.3-1`: [`http://pubrules.jit.su/`](http://pubrules.jit.su/).
 * From: `V0.4.0` onwards: [`http://cerberus.w3.org/`](http://cerberus.w3.org/).
-
-[Administering our machine for Node.js apps](https://www.w3.org/Systems/nodejs/)
 
 ---
 
