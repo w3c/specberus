@@ -219,7 +219,7 @@ The `#pubrules` channel on [irc.w3.org](http://irc.w3.org/) is a good place if y
 ## Deployments for testing
 
 * Up to `v0.3.3-1`: [`http://pubrules.jit.su/`](http://pubrules.jit.su/).
-* From: `V0.4.0` onwards: [`http://cerberus.w3.org/`](http://cerberus.w3.org/).
+* From: `V0.4.0` onwards: [`http://www.w3.org/2014/10/pubrules/`](http://www.w3.org/2014/10/pubrules).
 
 ---
 
