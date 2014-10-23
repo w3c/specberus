@@ -128,7 +128,7 @@ In JavaScript, on [Node.js](http://nodejs.org/); with [Bootstrap](http://getboot
     │       └── validation
     └── tools
 
-The tests are all writtent in `test/all-rules.js` and fixtures are available in `test/docs`.
+The tests are all written in `test/all-rules.js` and fixtures are available in `test/docs`.
 
 ---
 
@@ -178,7 +178,7 @@ Nice to have for debugging:
 * Some enhancements related to usability and design.
 * Extended the suite of unit tests.
 * Bug-fixing.
-* Deployed in a dedicated *Node.js* server.
+* Deployed on a dedicated *Node.js* server.
 
 ---
 
