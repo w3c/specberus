@@ -142,19 +142,19 @@ The tests are all writtent in `test/all-rules.js` and fixtures are available in 
 
 `$ npm install`  
 (but you can do `npm install -d` instead to install all at once):
-* [`express`](https://www.npmjs.org/package/express)
-* [`safe-url-input-checker`](https://www.npmjs.org/package/safe-url-input-checker)
-* [`socket.io`](https://www.npmjs.org/package/socket.io)
-* [`superagent`](https://www.npmjs.org/package/superagent)
-* [`whacko`](https://www.npmjs.org/package/whacko)
+* [`express`](https://www.npmjs.org/package/express) (Web framework)
+* [`socket.io`](https://www.npmjs.org/package/socket.io) (Realtime application server)
+* [`safe-url-input-checker`](https://www.npmjs.org/package/safe-url-input-checker) (URL checker)
+* [`superagent`](https://www.npmjs.org/package/superagent) (HTTP request library)
+* [`whacko`](https://www.npmjs.org/package/whacko) (HTML parser)
 
 ---
 
 # How: dependencies for debugging
 
 Necessary for development, testing and debugging:
-* [`expect.js`](https://www.npmjs.org/package/expect.js)
-* [`mocha`](https://www.npmjs.org/package/mocha)
+* [`mocha`](https://www.npmjs.org/package/mocha) (JavaScript test framework)
+* [`expect.js`](https://www.npmjs.org/package/expect.js) (Assertion library)
 
 --
 
