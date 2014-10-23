@@ -207,6 +207,8 @@ Switchover from the old publication workflow to the new one (including *Specberu
 
 There are currently 22 [open issues](https://github.com/w3c/specberus/issues).
 
+The `#pubrules` channel on [irc.w3.org](http://irc.w3.org/) is a good place if you have any questions regarding the project.
+
 --
 
 ## Deployments for testing
