@@ -1,11 +1,11 @@
 
-name:front
 class: center, middle
-background-image: url(https://raw.githubusercontent.com/w3c/specberus/master/doc/logo.png)
 
 # Specberus
 
 Denis & Antonio, 23 oct 2014
+
+.right[![Logo](https://raw.githubusercontent.com/w3c/specberus/master/doc/logo-small.png)]
 
 ---
 
@@ -84,24 +84,24 @@ In JavaScript, on [Node.js](http://nodejs.org/), with [Bootstrap](http://getboot
 # How: *profiles*
 
     "base"
-      "TR"
-        "WG-NOTE" (identical)
-          "FPWG-NOTE" (identical)
-        "WD" (identical)
-        "PER"
-        "RSCND" (identical)
-        "PR"
-        "CR"
-        "FPWD" (identical)
-      "IG-NOTE"
-        "FPIG-NOTE" (identical)
-      "SUBM"
-      "MEM-SUBM"
-      "TEAM-SUBM"
-      "CG-NOTE"
-      "FPLC"
-      "REC"
-      "LC"
+        "TR"
+            "WG-NOTE" (identical)
+                "FPWG-NOTE" (identical)
+            "WD" (identical)
+            "PER"
+            "RSCND" (identical)
+            "PR"
+            "CR"
+            "FPWD" (identical)
+        "IG-NOTE"
+            "FPIG-NOTE" (identical)
+        "SUBM"
+        "MEM-SUBM"
+        "TEAM-SUBM"
+        "CG-NOTE"
+        "FPLC"
+        "REC"
+        "LC"
     "dummy"
 
 ---
@@ -169,7 +169,7 @@ Nice to have for debugging:
 * Better heuristics to detect and check dates, WG's, etc.
 * Better output, more detailed feedback to the user:
   * Colour-coding error/warning messages.
-  * Informative messages can be displayed, too
+  * Informative messages can be displayed, too.
   * Ability to include markup in the output, eg hyperlinks.
 * Added a *summary of results*, with internal links.
 * Implemented a few new rules.
@@ -180,12 +180,12 @@ Nice to have for debugging:
 
 # When: pending tasks
 
-# *[Offer help descriptions for all rules and all errors](https://github.com/w3c/specberus/issues/22)* and *[Reproduce documentation from pubrules](https://github.com/w3c/specberus/issues/25)* (related).
-# *[Write command-line client](https://github.com/w3c/specberus/issues/5)*
-# *[The hierarchy of available profiles is hard-coded in the UI](https://github.com/w3c/specberus/issues/51)*
-# *[Track whacko for better support for next/nextAll/prev/prevAll so that we can remove lots of nasty hacks](https://github.com/w3c/specberus/issues/3)*
-# *[Make rule checking more parallelised, notably for network IO](https://github.com/w3c/specberus/issues/1)*
-# *[Expose as HTTP API](https://github.com/w3c/specberus/issues/4)*
+1. *[Offer help descriptions for all rules and all errors](https://github.com/w3c/specberus/issues/22)* and *[Reproduce documentation from pubrules](https://github.com/w3c/specberus/issues/25)* (related).
+2. *[Write command-line client](https://github.com/w3c/specberus/issues/5)*
+3. *[The hierarchy of available profiles is hard-coded in the UI](https://github.com/w3c/specberus/issues/51)*
+4. *[Track whacko for better support for next/nextAll/prev/prevAll so that we can remove lots of nasty hacks](https://github.com/w3c/specberus/issues/3)*
+5. *[Make rule checking more parallelised, notably for network IO](https://github.com/w3c/specberus/issues/1)*
+6. *[Expose as HTTP API](https://github.com/w3c/specberus/issues/4)*
 
 ---
 
