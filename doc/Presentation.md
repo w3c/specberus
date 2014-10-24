@@ -104,7 +104,7 @@ In JavaScript, on [Node.js](http://nodejs.org/); with [Bootstrap](http://getboot
 
 ---
 
-# How: unit-testing
+# How: testing
 
     Specberus
     ├── design
@@ -129,6 +129,14 @@ In JavaScript, on [Node.js](http://nodejs.org/); with [Bootstrap](http://getboot
     └── tools
 
 The tests are all written in `test/all-rules.js` and fixtures are available in `test/docs`.
+
+---
+
+# How: automated builds
+
+Using [Jenkins](http://jenkins-ci.org/).
+
+    $ mocha
 
 ---
 
@@ -176,7 +184,7 @@ Nice to have for debugging:
 * Added a *summary of results*, with internal links.
 * Implemented a few new rules.
 * Some enhancements related to usability and design.
-* Extended the suite of unit tests.
+* Extended the suite of tests (there are 63 individual tests now).
 * Bug-fixing.
 * Deployed on a dedicated *Node.js* server.
 
