@@ -206,9 +206,12 @@ Nice to have for debugging:
 
 ---
 
-# When
+# When: feedback about beta version
 
-Switchover from the old publication workflow to the new one (including *Specberus*) is expected [during the first half of 2015?].
+You are encouraged to try this new checker, and especially to submit bug reports and suggestions.
+
+* General feedback about the publication workflow: [`public-pubrules-comments@w3.org`](public-pubrules-comments@w3.org)
+* Specific bugs or ideas about the pubrules checker: [`https://github.com/w3c/specberus/issues`](https://github.com/w3c/specberus/issues)
 
 ---
 
