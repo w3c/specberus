@@ -23,13 +23,24 @@
             <a href="/"><img src="img/logo.svg" alt="Logo for the Pubrules Checker" />Pubrules Checker</a>
           </div>
           <div class="contribute col-md-4 text-right">
-            <a href="https://github.com/w3c/specberus">Psst &mdash; contribute on GitHub!</a>
+            <a id="infoLink" href="#" onclick="$('#about').show(); $('#infoLink').hide();">Important information about this tool</a>
           </div>
         </div>
       </div>
     </header>
 
     <div class="container">
+
+      <div id="about" class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" onclick="$('#infoLink').show(); $('#about').hide();"><span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        This alternative pubules checker is <strong>experimental</strong>, and provided only for early testing. <br />
+        Please continue using the <a href="http://www.w3.org/2005/07/pubrules">official pubrules checker</a> for publishing; <br />
+        the webmaster will consider the official checker authoritative. <br />
+        Contribute to the project and submit issues <a href="https://github.com/w3c/specberus">on GitHub</a>; send comments to
+          <a href="mailto:public-pubrules-comments@w3.org"><code>public-pubrules-comments@w3.org</code></a>.
+      </div>
 
       <div class="row">
 
