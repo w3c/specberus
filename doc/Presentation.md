@@ -24,6 +24,7 @@ Specberus (ˈspɛk bər əs) *n. new* pubrules *automatic checker and documentat
 * Complex maintenance.
 * XSLT is not flexible enough.
 * There is no clear separation beetween the documentation (*human-readable publication rules*) and the automatic checker (*the software*).
+* Difficult to integrate within the broader publication workflow.
 
 ---
 
