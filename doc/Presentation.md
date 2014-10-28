@@ -150,8 +150,9 @@ Using [Jenkins](http://jenkins-ci.org/).
 
 `$ npm install`  
 (but you can do `npm install -d` instead to install all at once):
-* [`express`](https://www.npmjs.org/package/express) (Web framework)
-* [`socket.io`](https://www.npmjs.org/package/socket.io) (Realtime application server)
+* [`express`](https://www.npmjs.org/package/express) (web framework)
+* [`express-rest`](https://www.npmjs.org/package/express-rest) (REST server framework)
+* [`socket.io`](https://www.npmjs.org/package/socket.io) (realtime application server and client)
 * [`safe-url-input-checker`](https://www.npmjs.org/package/safe-url-input-checker) (URL checker)
 * [`superagent`](https://www.npmjs.org/package/superagent) (HTTP request library)
 * [`whacko`](https://www.npmjs.org/package/whacko) (HTML parser)
@@ -162,7 +163,7 @@ Using [Jenkins](http://jenkins-ci.org/).
 
 Necessary for development, testing and debugging:
 * [`mocha`](https://www.npmjs.org/package/mocha) (JavaScript test framework)
-* [`expect.js`](https://www.npmjs.org/package/expect.js) (Assertion library)
+* [`expect.js`](https://www.npmjs.org/package/expect.js) (assertion library)
 
 --
 
@@ -187,6 +188,7 @@ Nice to have for debugging:
 * Extended the suite of tests (there are 63 individual tests now).
 * Bug-fixing.
 * Deployed on a dedicated *Node.js* server.
+* Exposing a REST API to enable integration within the broader publication workflow [WIP].
 
 ---
 
