@@ -66,7 +66,7 @@ jQuery.extend({
 
     // clear errors
     function clearError () {
-        $('.alert').filter(":not('.hide')")
+        $('.alert:not(\'#about\')').filter(":not('.hide')")
                    .remove();
     }
 
