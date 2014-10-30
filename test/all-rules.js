@@ -73,6 +73,7 @@ var tests = {
         ]
     ,   copyright:  [
             { doc: "headers/simple.html" }
+        ,   { doc: "headers/simple-oxford.html" }
         ,   { doc: "headers/copyright-freedom.html", warnings: ["headers.copyright"] }
         ,   { doc: "headers/fails.html", errors: ["headers.copyright"] }
         ]
