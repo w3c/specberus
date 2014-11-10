@@ -77,6 +77,11 @@ var tests = {
         ,   { doc: "headers/copyright-freedom.html", warnings: ["headers.copyright"] }
         ,   { doc: "headers/fails.html", errors: ["headers.copyright"] }
         ]
+    ,   translations:  [
+            { doc: "headers/translations.html" }
+        ,   { doc: "headers/simple.html", errors: ["headers.translations"] }
+        ,   { doc: "headers/translations-warning.html", warnings: ["headers.translations"] }
+        ]
     }
 ,   style:   {
         sheet:  [
