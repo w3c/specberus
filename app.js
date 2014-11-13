@@ -98,6 +98,7 @@ io.sockets.on("connection", function (socket) {
                     ,   validation:         data.validation
                     ,   noRecTrack:         data.noRecTrack
                     ,   informativeOnly:    data.informativeOnly
+                    ,   patentPolicy:       data.patentPolicy
                     ,   processDocument:    data.processDocument
                     });
                 }

@@ -18,6 +18,7 @@ jQuery.extend({
     ,   $validation = $("#validation")
     ,   $noRecTrack = $("#noRecTrack")
     ,   $informativeOnly = $("#informativeOnly")
+    ,   $patentPolicy = $("#patentPolicy")
     ,   $processDocument = $("#processDocument")
     ,   $alert = $("#alert")
     ,   $results = $("#results")
@@ -89,6 +90,7 @@ jQuery.extend({
         ,   validation:         options.validation
         ,   noRecTrack:         options.noRecTrack
         ,   informativeOnly:    options.informativeOnly
+        ,   patentPolicy:       options.patentPolicy
         ,   processDocument:    options.processDocument
         });
     }
@@ -197,6 +199,7 @@ jQuery.extend({
         ,   validation = $validation.val()
         ,   noRecTrack = $noRecTrack.is(":checked") || false
         ,   informativeOnly = $informativeOnly.is(":checked") || false
+        ,   patentPolicy = $patentPolicy.find('label.active').attr('id')
         ,   processDocument = $processDocument.find('label.active').attr('id')
         ;
         if (!url) showError("Missing URL parameter.");
@@ -207,6 +210,7 @@ jQuery.extend({
                         , "validation"      : validation
                         , "noRecTrack"      : noRecTrack
                         , "informativeOnly" : informativeOnly
+                        , "patentPolicy"    : patentPolicy
                         , "processDocument" : processDocument
                       };
         validate(options);
@@ -269,6 +273,10 @@ jQuery.extend({
           $processDocument.find('label').removeClass('active');
           $processDocument.find('label#' + options.processDocument).addClass('active');
         }
+        if (options.patentPolicy) {
+          $patentPolicy.find('label').removeClass('active');
+          $patentPolicy.find('label#' + options.patentPolicy).addClass('active');
+        }
     }
 
     var options = $.getQueryParameters();
@@ -280,5 +288,12 @@ jQuery.extend({
         if (options == null) return;
         setFormParams(options);
         validate(options);
-    })
+    });
+
+    $patentPolicy.find("label").on("click", function() {
+        var isPP2002 = ($(this).attr("id") === "pp2002");
+        $noRecTrack.prop("disabled", isPP2002);
+        $informativeOnly.prop("disabled", isPP2002);
+    });
+
 }(jQuery));
