@@ -129,6 +129,7 @@ var tests = {
             , errors: ["sotd.pp", "sotd.pp", "sotd.pp", "sotd.pp"]
             , config: { recTrackStatus: true }
             }
+        ,   { doc: "sotd/pp-cpp2002.html", options: { patentPolicy: "pp2002" } }
         ]
     ,   stability:  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft", stabilityWarning: true } }
@@ -160,7 +161,6 @@ var tests = {
             { doc: "validation/simple.html" }
         ,   { doc: "validation/invalid.html", errors: ["validation.html"] }
         ]
-    
     }
 };
 
@@ -231,11 +231,14 @@ Object.keys(tests).forEach(function (category) {
                         ,   rules:  [r]
                         };
                         profile.config = test.config;
-                        validator.validate({
+                        var options = {
                             file:       pth.join(__dirname, "docs", test.doc)
                         ,   profile:    profile
                         ,   events:     sink
-                        });
+                        };
+                        for (var o in test.options)
+                            options[o] = test.options[o];
+                        validator.validate(options);
                     });
                 });
             });
