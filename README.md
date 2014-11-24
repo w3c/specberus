@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/w3c/specberus.svg?branch=master)](https://travis-ci.org/w3c/specberus)
+
 # Specberus
 
 Specberus is a checker for W3C's Publication Rules (PubRules).
