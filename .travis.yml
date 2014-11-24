@@ -6,3 +6,8 @@ install:
   - npm install
 script:
   - mocha
+notifications:
+  email:
+    - denis@w3.org
+    - antonio@w3.org
+  irc: "irc.w3.org#pubrules"
