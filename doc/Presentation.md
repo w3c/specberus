@@ -149,7 +149,7 @@ Using [Jenkins](http://jenkins-ci.org/).
 
 --
 
-`$ npm install`  
+`$ npm install`
 (but you can do `npm install -d` instead to install all at once):
 * [`express`](https://www.npmjs.org/package/express) (web framework)
 * [`express-rest`](https://www.npmjs.org/package/express-rest) (REST server framework)
