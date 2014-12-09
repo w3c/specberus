@@ -81,6 +81,7 @@ io.sockets.on("connection", function (socket) {
         });
         sink.on("end-all", function () {
             socket.emit("finished");
+            console.dir(validator.data);
         });
         sink.on("exception", function (data) {
             socket.emit("exception", data);
