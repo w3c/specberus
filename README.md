@@ -34,10 +34,10 @@ unavailable. To work around this, you can set SKIP_NETWORK:
 
 ## API
 
-The interface you get when you `require("specberus")` is that from `lib/node-validator`. It exposes
-a single `makeSpecberus()` method that takes no argument and returns a `Specberus` instance from
-`lib/validator` that is properly configured for operation in the Node environment (there is nominal
-support for running Specberus under other environments, but it isn't usable at this time).
+The interface you get when you `require("specberus")` is that from `lib/validator`. It returns a
+`Specberus` instance from `lib/validator` that is properly configured for operation in the Node
+environment (there is nominal support for running Specberus under other environments, but it
+isn't usable at this time).
 
 The validator interface supports a `validate(options)` methods, which takes an object with the
 following fields:
