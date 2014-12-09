@@ -51,6 +51,9 @@ following fields:
 * `profile`: A profile object which defines the validation. Required. See below.
 * `events`: An event sink which supports the same interface as Node's `EventEmitter`. Required. See
   below for the events that get generated.
+* `data`: An object containing useful metadata, namely
+  * `docDate`: The date associated to the document.
+  * `group`: The group(s) reponsible for the document (*deliverers*).
 
 ## Profiles
 
