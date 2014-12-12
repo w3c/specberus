@@ -89,11 +89,11 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
 
 ## Validation events
 
-For a given checking run, the event sink you specify will be receiving a bunch of events as 
+For a given checking run, the event sink you specify will be receiving a bunch of events as
 indicated below. Events are shown as having parameters since those are passed to the event handler.
 
 * `start-all(profile-name)`: Fired first to indicate that the profile's checking has started.
-* `end-all(profile-name)`: Fired last to indicate that the profile's checking has completed. When 
+* `end-all(profile-name)`: Fired last to indicate that the profile's checking has completed. When
   you receive this you are promised that all testing operations, including asynchronous ones, have
   terminated.
 * `done(rule-name)`: Fired when a specific rule has finished processing, including its asynchronous
@@ -109,13 +109,13 @@ indicated below. Events are shown as having parameters since those are passed to
 ## Writing rules
 
 Rules are simple modules that just expose a `check(sr, cb)` method. They receive a Specberus object
-and a callback, use the Specberus object to fire validation events and call the callback when 
+and a callback, use the Specberus object to fire validation events and call the callback when
 they're done.
 
 The Specberus object exposes the following API that's useful for validation:
 
 * `$`. A jQuery-like interface to the document being checked.
-* `loader`. The loader object that loaded the content, which exposes the content's `url` and 
+* `loader`. The loader object that loaded the content, which exposes the content's `url` and
   `source` if they are known.
 * `sink`. The event target on which to fire validation events.
 * `version`. The Specberus version.
