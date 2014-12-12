@@ -104,6 +104,7 @@ indicated below. Events are shown as having parameters since those are passed to
   a given rule. There cannot also be `ok` events but there can be `warning`s.
 * `warning(warnings-name, data)`: Fired for non-fatal problems with the document that may
   nevertheless require investigation. There may be several for a rule.
+* `info(info-name, data)`: Fired for additional information items detected by the validator.
 * `exception(message)`: Fired when there is a system error, such as a *File not found* error. `message`
   contains details about this error. If the validator was not given any sink, this will be outputed
   in the error console. However, note that if no handlers are listening to this event, this will result
