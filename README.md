@@ -52,18 +52,20 @@ following fields:
 * `events`: An event sink which supports the same interface as Node's `EventEmitter`. Required. See
   below for the events that get generated.
 
-Once the validator has emitted the event `end-all` (if it does emit it),
-this additional property is expected to be found in the same `options` object:
+### Returning metadata about the document
 
-* `data`: An object containing useful metadata about the document; namely some, or all, of these properties:
-  # `docDate`: The date associated to the document.
-  # `title`: The (possible) title of the document.
-  # `process`: The process rules, **as they appear on the text of the document**, eg `'14 October 2005'`.
-  # `group`: The group(s) reponsible for the document (*deliverers*).
-  # `thisVersion`: URL for this version of the document.
-  # `previousVersion`: URL for the immediately previous version of the document.
-  # `latestVersion`: URL for the latest version of the document.
-  # `editorIDs`: ID(s) of the editor(s) responsible for the document.
+Once the validator has emitted the event `end-all` (if it does emit it),
+the **additional property `data`** is expected to be found in the same `options` object.
+`data` is in turn an object containing useful metadata about the document&nbsp;&mdash;&nbsp;namely some, or all, of these properties:
+
+* `docDate`: The date associated to the document.
+* `title`: The (possible) title of the document.
+* `process`: The process rules, **as they appear on the text of the document**, eg `'14 October 2005'`.
+* `group`: The group(s) reponsible for the document (*deliverers*).
+* `thisVersion`: URL for this version of the document.
+* `previousVersion`: URL for the immediately previous version of the document.
+* `latestVersion`: URL for the latest version of the document.
+* `editorIDs`: ID(s) of the editor(s) responsible for the document.
 
 These pieces of metadata are now found and returned by *Specberus*:
 
