@@ -36,10 +36,9 @@ unavailable. To work around this, you can set SKIP_NETWORK:
 
 ## API
 
-The interface you get when you `require("specberus")` is that from `lib/node-validator`. It exposes
-a single `makeSpecberus()` method that takes no argument and returns a `Specberus` instance from
-`lib/validator` that is properly configured for operation in the Node environment (there is nominal
-support for running Specberus under other environments, but it isn't usable at this time).
+The interface you get when you `require("specberus")` is that from `lib/validator`. `new Specberus()`
+then gives you a validator instance that is properly configured for operation in the Node environment
+(there is nominal support for running Specberus under other environments, but it isn't usable at this time).
 
 The validator interface supports a `validate(options)` methods, which takes an object with the
 following fields:
@@ -89,11 +88,11 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
 
 ## Validation events
 
-For a given checking run, the event sink you specify will be receiving a bunch of events as 
+For a given checking run, the event sink you specify will be receiving a bunch of events as
 indicated below. Events are shown as having parameters since those are passed to the event handler.
 
 * `start-all(profile-name)`: Fired first to indicate that the profile's checking has started.
-* `end-all(profile-name)`: Fired last to indicate that the profile's checking has completed. When 
+* `end-all(profile-name)`: Fired last to indicate that the profile's checking has completed. When
   you receive this you are promised that all testing operations, including asynchronous ones, have
   terminated.
 * `done(rule-name)`: Fired when a specific rule has finished processing, including its asynchronous
@@ -105,17 +104,22 @@ indicated below. Events are shown as having parameters since those are passed to
   a given rule. There cannot also be `ok` events but there can be `warning`s.
 * `warning(warnings-name, data)`: Fired for non-fatal problems with the document that may
   nevertheless require investigation. There may be several for a rule.
+* `info(info-name, data)`: Fired for additional information items detected by the validator.
+* `exception(message)`: Fired when there is a system error, such as a *File not found* error. `message`
+  contains details about this error. If the validator was not given any sink, this will be outputed
+  in the error console. However, note that if no handlers are listening to this event, this will result
+  in a silent error.
 
 ## Writing rules
 
 Rules are simple modules that just expose a `check(sr, cb)` method. They receive a Specberus object
-and a callback, use the Specberus object to fire validation events and call the callback when 
+and a callback, use the Specberus object to fire validation events and call the callback when
 they're done.
 
 The Specberus object exposes the following API that's useful for validation:
 
 * `$`. A jQuery-like interface to the document being checked.
-* `loader`. The loader object that loaded the content, which exposes the content's `url` and 
+* `loader`. The loader object that loaded the content, which exposes the content's `url` and
   `source` if they are known.
 * `sink`. The event target on which to fire validation events.
 * `version`. The Specberus version.
