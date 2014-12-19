@@ -106,7 +106,7 @@ indicated below. Events are shown as having parameters since those are passed to
   nevertheless require investigation. There may be several for a rule.
 * `info(info-name, data)`: Fired for additional information items detected by the validator.
 * `exception(message)`: Fired when there is a system error, such as a *File not found* error. `message`
-  contains details about this error. All exceptions are outputed to the error console in addition to*
+  contains details about this error. All exceptions are displayed on the error console in addition to
   this event being fired.
 
 ## Writing rules
