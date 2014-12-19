@@ -15,21 +15,9 @@
         "name": "Semantic Web Interest Group",
         "href": "http://www.w3.org/2001/sw/interest/"
     },
-    "public-rdf-wg@w3.org": {
-        "name": "RDF Working Group",
-        "href": "http://www.w3.org/2011/rdf-wg/"
-    },
     "public-ldp-wg@w3.org": {
         "name": "Linked Data Platform (LDP) Working Group",
         "href": "http://www.w3.org/2012/ldp/"
-    },
-    "public-gld-wg@w3.org": {
-        "name": "Government Linked Data Working Group",
-        "href": "http://www.w3.org/2011/gld/"
-    },
-    "member-gld-wg@w3.org": {
-        "name": "Government Linked Data Working Group",
-        "href": "http://www.w3.org/2011/gld/"
     },
     "public-dwbp-wg@w3.org": {
         "name": "Data on the Web Best Practices Working Group",
@@ -43,9 +31,17 @@
         "name": "CSV on the Web Working Group",
         "href": "http://www.w3.org/2013/csvw/"
     },
+    "public-data-shapes-wg@w3.org": {
+        "name": "RDF Data Shapes Working Group",
+        "href": "http://www.w3.org/2014/data-shapes/"
+    },
     "public-digipub-ig@w3.org": {
         "name": "Digital Publishing Interest Group",
         "href": "http://www.w3.org/dpub/IG/"
+    },
+    "public-annotation@w3.org": {
+        "name": "Web Annotation Working Group",
+        "href": "http://www.w3.org/annotation/"
     },
     "public-exi@w3.org": {
         "name": "Efficient XML Interchange Working Group",
@@ -105,11 +101,11 @@
     },
     "www-international@w3.org": {
         "name": "Internationalization (I18n) Interest Group",
-        "href": "http://www.w3.org/2006/10/i18n-recharter/ig-charter"
+        "href": "http://www.w3.org/International/ig/"
     },
     "w3c-i18n-ig@w3.org": {
         "name": "Internationalization (I18n) Interest Group",
-        "href": "http://www.w3.org/2006/10/i18n-recharter/ig-charter"
+        "href": "http://www.w3.org/International/ig/"
     },
     "public-i18n-its-ig@w3.org": {
         "name": "Internationalization Tag Set (ITS) Interest Group",
@@ -154,10 +150,6 @@
     "www-style@w3.org": {
         "name": "Cascading Style Sheets (CSS) Working Group",
         "href": "http://www.w3.org/Style/CSS/members"
-    },
-    "public-media-annotation@w3.org": {
-        "name": "Media Annotations Working Group",
-        "href": "http://www.w3.org/2008/WebVideo/Annotations/"
     },
     "public-tt@w3.org": {
         "name": "Timed Text Working Group",
@@ -219,6 +211,18 @@
         "name": "Web Security Interest Group",
         "href": "http://www.w3.org/Security/IG/"
     },
+    "public-socialweb@w3.org": {
+        "name": "Social Web Working Group",
+        "href": "http://www.w3.org/Social/WG"
+    },
+    "public-social-interest@w3.org": {
+        "name": "Social Interest Group",
+        "href": "http://www.w3.org/Social/IG"
+    },
+    "public-webpayments-ig@w3.org": {
+        "name": "Web Payments Interest Group",
+        "href": "http://www.w3.org/Payments/IG"
+    },
     "public-web-mobile@w3.org": {
         "name": "Web and Mobile Interest Group",
         "href": "http://www.w3.org/Mobile/IG/"
@@ -255,10 +259,6 @@
         "name": "Web Real-Time Communications Working Group",
         "href": "http://www.w3.org/2011/04/webrtc/"
     },
-    "public-mbui@w3.org": {
-        "name": "Model-Based User Interfaces Working Group",
-        "href": "http://www.w3.org/2011/mbui/"
-    },
     "public-sysapps@w3.org": {
         "name": "System Applications Working Group",
         "href": "http://www.w3.org/2012/sysapps/"
@@ -274,6 +274,10 @@
     "member-nfc@w3.org": {
         "name": "Near Field Communications Working Group",
         "href": "http://www.w3.org/2012/nfc/"
+    },
+    "public-secondscreen@w3.org": {
+        "name": "Second Screen Presentation Working Group",
+        "href": "http://www.w3.org/2014/secondscreen/"
     },
     "w3c-voice-wg@w3.org": {
         "name": "Voice Browser Working Group",
