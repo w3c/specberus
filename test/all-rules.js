@@ -162,6 +162,11 @@ var tests = {
         ,   { doc: "validation/invalid.html", errors: ["validation.html"] }
         ]
     }
+,   heuristic:   {
+        'date-format':  [
+            { doc: "heuristic/dates.html", errors: ['heuristic.date-format', 'heuristic.date-format', 'heuristic.date-format']}
+        ]
+    }
 };
 
 function Sink () {
