@@ -19,6 +19,27 @@ recent version of Node installed.
 Currently there is no shell to run Specberus. Later we will add both Web and CLI interfaces based
 on the same core library.
 
+### Syntax and command-line parameters
+
+```
+$ nodejs app.js [PORT]
+```
+
+Meaning of positional parameters:
+
+1. `PORT`: where Specberus will be listening for HTTP connections.  
+(Default `80`.)
+
+Examples:
+
+```bash
+$ nodejs app.js 3001
+```
+
+```bash
+$ nodejs app.js
+```
+
 ## Testing
 
 Testing is done using mocha. Simply run:
