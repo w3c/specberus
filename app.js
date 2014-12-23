@@ -1,5 +1,8 @@
 /*jshint es5: true*/
 
+// Pseudo-constants:
+var DEFAULT_PORT = 80;
+
 // The Express and Socket.io server interface
 var express = require("express")
 ,   app = express()
@@ -28,7 +31,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // listen up
-server.listen(process.env.PORT || 80);
+server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
 
 // VALIDATION PROTOCOL
 //  Client:
