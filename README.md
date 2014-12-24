@@ -52,11 +52,13 @@ following fields:
 * `events`: An event sink which supports the same interface as Node's `EventEmitter`. Required. See
   below for the events that get generated.
 
-### Returning metadata about the document
+### Emitting metadata about the document
 
-Once the validator has emitted the event `end-all` (if it does emit it),
-the **additional property `data`** is expected to be found in the same `options` object.
-`data` is in turn an object containing useful metadata about the document&nbsp;&mdash;&nbsp;namely some, or all, of these properties:
+Every time the validator finds/deduces a piece of metadata about the document, it emits a `metadata` event.
+`metadata` messages contain two arguments: *key* and *value*.
+Keys are unique ID's, while the types of values are different according to the specific kind of metadata.
+
+These properties are now returned when found:
 
 * `docDate`: The date associated to the document.
 * `title`: The (possible) title of the document.
@@ -67,28 +69,18 @@ the **additional property `data`** is expected to be found in the same `options`
 * `latestVersion`: URL for the latest version of the document.
 * `editorIDs`: ID(s) of the editor(s) responsible for the document.
 
-These pieces of metadata are now found and returned by *Specberus*:
-
-1. Date.
-2. Title.
-3. Group(s).
-4. Process rules.
-5. ID(s) of the editor(s).
-6. URL of this version.
-7. URL of the previous version.
-8. URL of the latest version.
-
-As an example, validating [`http://www.w3.org/TR/2014/REC-exi-profile-20140909/`](http://www.w3.org/TR/2014/REC-exi-profile-20140909/) (REC) returns this object:
+As an example, validating [`http://www.w3.org/TR/2014/REC-exi-profile-20140909/`](http://www.w3.org/TR/2014/REC-exi-profile-20140909/) (REC)
+emits these pairs of metadata:
 
 ```javascript
-{ docDate: Tue Sep 09 2014 00:00:00 GMT+0900 (JST),
-  title: 'Efficient XML Interchange (EXI) Profile for limiting usage of dynamic memory',
-  thisVersion: 'http://www.w3.org/TR/2014/REC-exi-profile-20140909/',
-  latestVersion: 'http://www.w3.org/TR/exi-profile/',
-  previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/',
-  editorIDs: [],
-  process: '14 October 2005',
-  group: { 'http://www.w3.org/XML/EXI/': 'Efficient XML Interchange Working Group' } }
+{ docDate: Tue Sep 09 2014 00:00:00 GMT+0900 (JST) }
+{ title: 'Efficient XML Interchange (EXI) Profile for limiting usage of dynamic memory' }
+{ thisVersion: 'http://www.w3.org/TR/2014/REC-exi-profile-20140909/' }
+{ latestVersion: 'http://www.w3.org/TR/exi-profile/' }
+{ previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/' }
+{ editorIDs: [] }
+{ process: '14 October 2005' }
+{ group: { 'http://www.w3.org/XML/EXI/': 'Efficient XML Interchange Working Group' } }
 ```
 
 If you download that very spec, edit it to include the following metadata&hellip;
@@ -99,29 +91,30 @@ If you download that very spec, edit it to include the following metadata&hellip
 <dd data-editor-id="foo bar baz">Daniel Peintner, Siemens AG</dd>
 ```
 
-&hellip;and serve it locally from your machine, *Specberus* will return also editor IDs:
+&hellip;and serve it locally from your machine, *Specberus* will spit also editor IDs:
 
 ```javascript
-{ docDate: Tue Sep 09 2014 00:00:00 GMT+0900 (JST),
-  title: 'Efficient XML Interchange (EXI) Profile for limiting usage of dynamic memory',
-  latestVersion: 'http://www.w3.org/TR/exi-profile/',
-  previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/',
-  editorIDs: [ '329883', 'foo bar baz' ],
-  process: '14 October 2005',
-  group: { 'http://www.w3.org/XML/EXI/': 'Efficient XML Interchange Working Group' } }
+{ docDate: Tue Sep 09 2014 00:00:00 GMT+0900 (JST) }
+{ title: 'Efficient XML Interchange (EXI) Profile for limiting usage of dynamic memory' }
+{ latestVersion: 'http://www.w3.org/TR/exi-profile/' }
+{ previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/' }
+{ editorIDs: [ '329883', 'foo bar baz' ] }
+{ process: '14 October 2005' }
+{ group: { 'http://www.w3.org/XML/EXI/': 'Efficient XML Interchange Working Group' } }
 ```
 
-Another example: when applied to [`http://www.w3.org/TR/wai-aria-1.1/`](http://www.w3.org/TR/wai-aria-1.1/) (WD), it returns this object:
+Another example: when applied to [`http://www.w3.org/TR/wai-aria-1.1/`](http://www.w3.org/TR/wai-aria-1.1/) (WD),
+the following metadata will be found:
 
 ```javascript
-{ docDate: Thu Dec 11 2014 00:00:00 GMT+0900 (JST),
-  title: 'Accessible Rich Internet Applications (WAI-ARIA) 1.1',
-  thisVersion: 'http://www.w3.org/TR/2014/WD-wai-aria-1.1-20141211/',
-  latestVersion: 'http://www.w3.org/TR/wai-aria-1.1/',
-  previousVersion: 'http://www.w3.org/TR/2014/WD-wai-aria-1.1-20140612/',
-  editorIDs: [],
-  process: '1 August 2014',
-  group:
+{ docDate: Thu Dec 11 2014 00:00:00 GMT+0900 (JST) }
+{ title: 'Accessible Rich Internet Applications (WAI-ARIA) 1.1' }
+{ thisVersion: 'http://www.w3.org/TR/2014/WD-wai-aria-1.1-20141211/' }
+{ latestVersion: 'http://www.w3.org/TR/wai-aria-1.1/' }
+{ previousVersion: 'http://www.w3.org/TR/2014/WD-wai-aria-1.1-20140612/' }
+{ editorIDs: [] }
+{ process: '1 August 2014' }
+{ group:
    { 'http://www.w3.org/WAI/PF/': 'Protocols & Formats Working Group',
      'http://www.w3.org/html/wg/': 'HTML Working Group' } }
 ```
@@ -179,6 +172,7 @@ indicated below. Events are shown as having parameters since those are passed to
 * `warning(warnings-name, data)`: Fired for non-fatal problems with the document that may
   nevertheless require investigation. There may be several for a rule.
 * `info(info-name, data)`: Fired for additional information items detected by the validator.
+* `metadata(key, value)`: Fired for every piece of document metadata found by the validator.
 * `exception(message)`: Fired when there is a system error, such as a *File not found* error. `message`
   contains details about this error. If the validator was not given any sink, this will be outputed
   in the error console. However, note that if no handlers are listening to this event, this will result
