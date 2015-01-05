@@ -27,7 +27,7 @@ $ nodejs app.js [PORT]
 
 Meaning of positional parameters:
 
-1. `PORT`: where Specberus will be listening for HTTP connections.  
+1. `PORT`: where Specberus will be listening for HTTP connections.
 (Default `80`.)
 
 Examples:
@@ -77,7 +77,7 @@ following fields:
 
 Every time the validator finds/deduces a piece of metadata about the document, it emits a `metadata` event.
 `metadata` messages contain two arguments: *key* and *value*.
-Keys are unique ID's, while the types of values are different according to the specific kind of metadata.
+Keys are unique IDs, while the types of values are different according to the specific kind of metadata.
 
 These properties are now returned when found:
 
@@ -85,9 +85,9 @@ These properties are now returned when found:
 * `title`: The (possible) title of the document.
 * `process`: The process rules, **as they appear on the text of the document**, eg `'14 October 2005'`.
 * `group`: The group(s) reponsible for the document (*deliverers*).
-* `thisVersion`: URL for this version of the document.
-* `previousVersion`: URL for the immediately previous version of the document.
-* `latestVersion`: URL for the latest version of the document.
+* `thisVersion`: URL of this version of the document.
+* `previousVersion`: URL of the immediately previous version of the document.
+* `latestVersion`: URL of the latest version of the document.
 * `editorIDs`: ID(s) of the editor(s) responsible for the document.
 
 As an example, validating [`http://www.w3.org/TR/2014/REC-exi-profile-20140909/`](http://www.w3.org/TR/2014/REC-exi-profile-20140909/) (REC)
