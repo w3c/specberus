@@ -139,6 +139,7 @@ the following metadata will be found:
 { group:
    { 'http://www.w3.org/WAI/PF/': 'Protocols & Formats Working Group',
      'http://www.w3.org/html/wg/': 'HTML Working Group' } }
+{ editorsDraft: 'http://w3c.github.io/aria/aria/aria.html' }
 ```
 
 ## Profiles
