@@ -66,7 +66,7 @@ following fields:
 
 * `url`: URL of the content to check. One of `url`, `source`, `file`, or `document` must be
   specified and if several are they will be used in this order.
-* `source`: A string with the content to check.
+* `source`: A `String` with the content to check.
 * `file`: A file system path to the content to check.
 * `document`: A DOM `Document` object to be checked.
 * `profile`: A profile object which defines the validation. Required. See below.
@@ -85,13 +85,13 @@ These properties are now returned when found:
 * `title`: The (possible) title of the document.
 * `process`: The process rules, **as they appear on the text of the document**, eg `'14 October 2005'`.
 * `deliverers`: The deliverer(s) responsible for the document (WGs, TFs, etc); an `Array` of `Object`s, each one with these properties:
-  * `homepage`: URL of the grop's home page.
+  * `homepage`: URL of the group's home page.
   * `name`: name of the group, exactly as it is found in the hyperlink on the document.
+* `delivererIDs` ID(s) of the deliverer(s); an `Array` of `Number`s.
 * `thisVersion`: URL of this version of the document.
 * `previousVersion`: URL of the previous version of the document (the last one, if multiple are shown).
 * `latestVersion`: URL of the latest version of the document.
-* `editorIDs`: ID(s) of the editor(s) responsible for the document (an `Array` of `String`s, necessarily matching the pattern `/\d+/`).
-* `delivererID` ID of the group, (a `String`, necessarily matching the pattern `/\d+/`).
+* `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
 
 As an example, validating [`http://www.w3.org/TR/2014/REC-exi-profile-20140909/`](http://www.w3.org/TR/2014/REC-exi-profile-20140909/) (REC)
 emits these pairs of metadata:
@@ -156,8 +156,8 @@ the following metadata will be found:
 
 Profiles are simple objects that support the following API:
 
-* name: A string being the name of this profile.
-* rules: An array of rule objects which are checked in this profile.
+* name: A `String` being the name of this profile.
+* rules: An `Array` of rule objects which are checked in this profile.
 
 A profile is basically a configuration of what to check. You can load a specific profile from under
 `lib/profiles` or create your own.
@@ -169,21 +169,21 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
   * `TR`
     * `WG-NOTE` (identical)
       * `FPWG-NOTE` (identical)
+    * `IG-NOTE`
+      * `FPIG-NOTE` (identical)
     * `WD` (identical)
     * `PER`
     * `RSCND` (identical)
     * `PR`
     * `CR`
     * `FPWD` (identical)
-  * `IG-NOTE`
-    * `FPIG-NOTE` (identical)
-  * `SUBM`
-  * `MEM-SUBM`
-  * `TEAM-SUBM`
-  * `CG-NOTE`
-  * `FPLC`
-  * `REC`
-  * `LC`
+    * `SUBM`
+    * `MEM-SUBM`
+    * `TEAM-SUBM`
+    * `CG-NOTE`
+    * `FPLC`
+    * `REC`
+    * `LC`
 * `dummy`
 
 ## Validation events
