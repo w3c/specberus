@@ -1,6 +1,8 @@
 
 var Specberus = require("../lib/validator").Specberus
 ,   validator = new Specberus()
+,   selectors = require("../lib/l10n-selectors").selectors
+,   wording = require("../lib/rules")
 ,   expect = require("expect.js")
 ,   pth = require("path")
 ,   events = require("events")
@@ -260,3 +262,27 @@ Object.keys(tests).forEach(function (category) {
         });
     });
 });
+
+describe('l10n', function() {
+
+    describe('UI messages module', function() {
+        it('should be a valid object', function() {
+            expect(wording).to.be.an('object');
+        });
+    });
+
+    describe('Selectors module', function() {
+        it('should be a valid object', function() {
+            expect(selectors).to.be.an('object');
+        });
+        it('should contain only selectors that resolve correctly', function() {
+            var message;
+            Object.keys(selectors).forEach(function (key) {
+                message = eval('wording.' + [selectors[key]]);
+                expect(message).to.be.a('string');
+            });
+        });
+    });
+
+});
+

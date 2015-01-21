@@ -1,6 +1,6 @@
 {
-    "profiles": [
-        {
+    "profiles": {
+        "CR": {
             "profile": "Candidate Rec",
             "section": {
                 "format": {
@@ -84,7 +84,7 @@
                 }
             }
         },
-        {
+        "FPIG-NOTE": {
             "profile": "First Public IG Note",
             "section": {
                 "format": {
@@ -165,7 +165,7 @@
                 }
             }
         },
-        {
+        "FPLC": {
             "profile": "First Public and Last Call WD",
             "section": {
                 "format": {
@@ -247,7 +247,7 @@
                 }
             }
         },
-        {
+        "FPWD": {
             "profile": "First Public Working Draft",
             "section": {
                 "format": {
@@ -327,7 +327,7 @@
                 }
             }
         },
-        {
+        "FPWG-NOTE": {
             "profile": "First Public WG Note",
             "section": {
                 "format": {
@@ -408,7 +408,7 @@
                 }
             }
         },
-        {
+        "IG-NOTE": {
             "profile": "Interest Group Note",
             "section": {
                 "format": {
@@ -490,7 +490,7 @@
                 }
             }
         },
-        {
+        "LC": {
             "profile": "Last Call Working Draft",
             "section": {
                 "format": {
@@ -572,7 +572,7 @@
                 }
             }
         },
-        {
+        "PER": {
             "profile": "Proposed Edited Rec",
             "section": {
                 "format": {
@@ -656,7 +656,7 @@
                 }
             }
         },
-        {
+        "PR": {
             "profile": "Proposed Rec",
             "section": {
                 "format": {
@@ -740,7 +740,7 @@
                 }
             }
         },
-        {
+        "REC": {
             "profile": "Recommendation",
             "section": {
                 "format": {
@@ -823,7 +823,7 @@
                 }
             }
         },
-        {
+        "WD": {
             "profile": "Ordinary Working Draft",
             "section": {
                 "format": {
@@ -903,7 +903,7 @@
                 }
             }
         },
-        {
+        "WG-NOTE": {
             "profile": "Working Group Note",
             "section": {
                 "format": {
@@ -985,5 +985,5 @@
                 }
             }
         }
-    ]
+    }
 }
