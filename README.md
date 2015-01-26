@@ -115,7 +115,7 @@ If you download that very spec, edit it to include the following metadata&hellip
 ```html
 <dt>Editors:</dt>
 <dd data-editor-id="329883">Youenn Fablet, Canon Research Centre France</dd>
-<dd data-editor-id="foo bar baz">Daniel Peintner, Siemens AG</dd>
+<dd data-editor-id="387297">Daniel Peintner, Siemens AG</dd>
 ```
 
 &hellip;and serve it locally from your machine, *Specberus* will spit also editor IDs:
