@@ -296,4 +296,18 @@ jQuery.extend({
         $informativeOnly.prop("disabled", isPP2002);
     });
 
+    $(document).ready(function() {
+        $.getJSON('data/profiles.json', function(data) {
+            var optgroup;
+            $.each(data.tracks, function(foo, track) {
+                optgroup = $('<optgroup label="' + track.name + '"></optgroup>');
+                $.each(track.profiles, function(bar, profile) {
+                    var option = $('<option value="' + profile.id + '">' + profile.id + '&nbsp;&mdash;&nbsp;' + profile.name + '</option>');
+                    optgroup.append(option);
+                });
+                $('select#profile').append(optgroup);
+            });
+        });
+    });
+
 }(jQuery));

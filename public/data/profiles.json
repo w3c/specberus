@@ -1,0 +1,27 @@
+{"tracks": [
+    {"name": "Recommendations",
+     "profiles": [
+         {"id": "WD", "name": "Working draft"},
+         {"id": "FPWD", "name": "First public working draft"},
+         {"id": "FPLC", "name": "First public and last call working draft"},
+         {"id": "LC", "name": "Last call working draft"},
+         {"id": "CR", "name": "Candidate recommendation"},
+         {"id": "PR", "name": "Proposed recommendation"},
+         {"id": "PER", "name": "Proposed edited recommendation"},
+         {"id": "REC", "name": "Recommendation"},
+         {"id": "RSCND", "name": "Rescinded recommendation"}
+     ]},
+    {"name": "Notes",
+     "profiles": [
+         {"id": "FPWG-NOTE", "name": "First public working group note"},
+         {"id": "WG-NOTE", "name": "Working group note"},
+         {"id": "FPIG-NOTE", "name": "First public interest group note"},
+         {"id": "IG-NOTE", "name": "Intrest group note"},
+         {"id": "CG-NOTE", "name": "Coordination group note"}
+     ]},
+    {"name": "Submissions",
+     "profiles": [
+         {"id": "MEM-SUBM", "name": "Member submission"},
+         {"id": "TEAM-SUBM", "name": "Team submission"}
+     ]}
+]}
