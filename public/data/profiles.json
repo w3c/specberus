@@ -1,27 +1,27 @@
 {"tracks": [
     {"name": "Recommendations",
      "profiles": [
-         {"id": "WD", "name": "Working draft"},
-         {"id": "FPWD", "name": "First public working draft"},
-         {"id": "FPLC", "name": "First public and last call working draft"},
-         {"id": "LC", "name": "Last call working draft"},
-         {"id": "CR", "name": "Candidate recommendation"},
-         {"id": "PR", "name": "Proposed recommendation"},
-         {"id": "PER", "name": "Proposed edited recommendation"},
+         {"id": "WD", "name": "Working Draft"},
+         {"id": "FPWD", "name": "First Public Working Draft"},
+         {"id": "FPLC", "name": "First Public and Last Call Working Draft"},
+         {"id": "LC", "name": "Last Call Working Draft"},
+         {"id": "CR", "name": "Candidate Recommendation"},
+         {"id": "PR", "name": "Proposed Recommendation"},
+         {"id": "PER", "name": "Proposed Edited Recommendation"},
          {"id": "REC", "name": "Recommendation"},
-         {"id": "RSCND", "name": "Rescinded recommendation"}
+         {"id": "RSCND", "name": "Rescinded Recommendation"}
      ]},
     {"name": "Notes",
      "profiles": [
-         {"id": "FPWG-NOTE", "name": "First public working group note"},
-         {"id": "WG-NOTE", "name": "Working group note"},
-         {"id": "FPIG-NOTE", "name": "First public interest group note"},
-         {"id": "IG-NOTE", "name": "Intrest group note"},
-         {"id": "CG-NOTE", "name": "Coordination group note"}
+         {"id": "FPWG-NOTE", "name": "First Public Working Group Note"},
+         {"id": "WG-NOTE", "name": "Working Group Note"},
+         {"id": "FPIG-NOTE", "name": "First Public Interest Group Note"},
+         {"id": "IG-NOTE", "name": "Interest Group Note"},
+         {"id": "CG-NOTE", "name": "Coordination Group Note"}
      ]},
     {"name": "Submissions",
      "profiles": [
-         {"id": "MEM-SUBM", "name": "Member submission"},
-         {"id": "TEAM-SUBM", "name": "Team submission"}
+         {"id": "MEM-SUBM", "name": "Member Submission"},
+         {"id": "TEAM-SUBM", "name": "Team Submission"}
      ]}
 ]}
