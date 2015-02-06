@@ -127,7 +127,7 @@ If you download that very spec, edit it to include the following metadata&hellip
 { title: 'Efficient XML Interchange (EXI) Profile for limiting usage of dynamic memory' }
 { latestVersion: 'http://www.w3.org/TR/exi-profile/' }
 { previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/' }
-{ editorIDs: [ '329883', 'foo bar baz' ] }
+{ editorIDs: [ '329883', '387297' ] }
 { status: 'REC' }
 { process: '14 October 2005' }
 { deliverers: [
