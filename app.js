@@ -5,6 +5,9 @@ var DEFAULT_PORT = 80;
 
 // The Express and Socket.io server interface
 var express = require("express")
+,   bodyParser = require('body-parser')
+,   compression = require('compression')
+,   morgan = require('morgan')
 ,   app = express()
 ,   server = require("http").createServer(app)
 ,   io = require("socket.io").listen(server)
@@ -25,9 +28,9 @@ var express = require("express")
 ;
 
 // middleware
-app.use(express.logger());
-app.use(express.compress());
-app.use(express.json());
+app.use(morgan('combined'));
+app.use(compression());
+app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // listen up
@@ -111,6 +114,5 @@ io.sockets.on("connection", function (socket) {
                 }
             }
         });
-        
     });
 });
