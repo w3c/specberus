@@ -24,7 +24,7 @@ on the same core library.
 ### Syntax and command-line parameters
 
 ```
-$ nodejs app.js [PORT]
+$ npm start [PORT]
 ```
 
 Meaning of positional parameters:
@@ -35,11 +35,8 @@ Meaning of positional parameters:
 Examples:
 
 ```bash
-$ nodejs app.js 3001
-```
-
-```bash
-$ nodejs app.js
+$ npm start
+$ npm start 3001
 ```
 
 ## Testing
