@@ -91,6 +91,7 @@ These properties are now returned when found:
 * `previousVersion`: URL of the previous version of the document (the last one, if multiple are shown).
 * `latestVersion`: URL of the latest version of the document.
 * `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
+* `editorsDraft`: URL of the latest editor's draft.
 * `status`: ID (acronym) of the profile detected in the document; a `String`. See file `public/data/profiles.json`.
 
 As an example, validating [`http://www.w3.org/TR/2014/REC-exi-profile-20140909/`](http://www.w3.org/TR/2014/REC-exi-profile-20140909/) (REC)
@@ -147,6 +148,7 @@ the following metadata will be found:
 { editorIDs: [] }
 { status: 'WD' }
 { process: '1 August 2014' }
+{ editorsDraft: 'http://w3c.github.io/aria/aria/aria.html' }
 { deliverers: [
    { homepage: 'http://www.w3.org/WAI/PF/',
      name: 'Protocols & Formats Working Group' },
