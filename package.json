@@ -8,15 +8,18 @@
         "url": "https://github.com/w3c/specberus.git"
     },
     "dependencies": {
-        "whacko": "0.13.2",
-        "superagent": "0.17.0",
-        "express": "3.5.0",
-        "socket.io": "0.9.16",
-        "safe-url-input-checker": "0.0.2"
+        "body-parser": "1.x.x",
+        "compression": "1.x.x",
+        "express": "4.x.x",
+        "morgan": "1.x.x",
+        "safe-url-input-checker": "0.0.x",
+        "socket.io": "0.9.x",
+        "superagent": "0.17.x",
+        "whacko": "0.13.x"
     },
     "devDependencies": {
-        "mocha": "1.18.2",
-        "expect.js": "0.3.1"
+        "expect.js": "0.3.x",
+        "mocha": "2.x.x"
     },
     "scripts": {
         "start": "node app.js",
