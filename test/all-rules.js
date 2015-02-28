@@ -35,6 +35,9 @@ var tests = {
             { doc: "echidna/automated-wg.html" }
         ,   { doc: "echidna/fails-missing-editorsid.html", errors: ["echidna.editor-ids"] }
         ]
+    ,   "todays-date":  [
+            { doc: "echidna/fails-future-date.html", errors: ["echidna.todays-date"] }
+        ]
     }
 ,   headers:   {
         "div.head":  [
