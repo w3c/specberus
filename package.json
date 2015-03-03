@@ -15,7 +15,7 @@
         "safe-url-input-checker": "0.0.x",
         "socket.io": "0.9.x",
         "superagent": "0.17.x",
-        "whacko": "0.13.x"
+        "whacko": "0.17.x"
     },
     "devDependencies": {
         "expect.js": "0.3.x",
