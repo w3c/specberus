@@ -21,6 +21,7 @@ var express = require("express")
 ;
 ("FPWD FPLC WD LC CR PR PER REC RSCND " +
 "CG-NOTE FPIG-NOTE IG-NOTE FPWG-NOTE WG-NOTE " +
+"WD-Echidna " +
 "MEM-SUBM TEAM-SUBM").split(" ")
          .forEach(function (p) {
              profiles[p] = require("./lib/profiles/" + p);
