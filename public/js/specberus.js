@@ -15,6 +15,7 @@ jQuery.extend({
 (function ($) {
     var $url = $("#url")
     ,   $profile = $("#profile")
+    ,   $profileOptions = $('#profile option')
     ,   $validation = $("#validation")
     ,   $noRecTrack = $("#noRecTrack")
     ,   $informativeOnly = $("#informativeOnly")
@@ -269,13 +270,13 @@ jQuery.extend({
 
     function disableProfilesIfNeeded(checkbox) {
         if (checkbox.prop('checked')) {
-            $('select#profile option').each(function (_, el) {
+            $profileOptions.each(function (_, el) {
         console.log(el);
                 if ($(el).val() !== 'WD') $(el).prop('disabled', true);
             });
-            if ($('select#profile').val() !== 'WD') $('select#profile').val('');
+            if ($profile.val() !== 'WD') $profile.val('');
         }
-        else $('select#profile option').each(function (_, el) {
+        else $profileOptions.each(function (_, el) {
             if ($(el).val() !== '') $(el).prop('disabled', false);
         });
     }
@@ -327,7 +328,7 @@ jQuery.extend({
                     var option = $('<option value="' + profile.id + '">' + profile.id + '&nbsp;&mdash;&nbsp;' + profile.name + '</option>');
                     optgroup.append(option);
                 });
-                $('select#profile').append(optgroup);
+                $profile.append(optgroup);
             });
         });
     });
