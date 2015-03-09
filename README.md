@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/w3c/specberus.svg?branch=master)](https://travis-ci.org/w3c/specberus)
+[![Coverage Status](https://coveralls.io/repos/w3c/specberus/badge.svg)](https://coveralls.io/r/w3c/specberus)
 [![Dependency Status](https://david-dm.org/w3c/specberus.svg)](https://david-dm.org/w3c/specberus)
 [![devDependency Status](https://david-dm.org/w3c/specberus/dev-status.svg)](https://david-dm.org/w3c/specberus#info=devDependencies)
 

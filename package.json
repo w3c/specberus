@@ -18,12 +18,14 @@
         "whacko": "0.17.x"
     },
     "devDependencies": {
+        "coveralls": "2.x.x",
         "expect.js": "0.3.x",
         "istanbul": "0.3.x",
         "mocha": "2.x.x"
     },
     "scripts": {
         "coverage": "istanbul cover _mocha",
+        "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
         "start": "node app.js",
         "test": "mocha"
     },
