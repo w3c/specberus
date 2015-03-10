@@ -3,6 +3,8 @@ node_js:
   - "0.12"
   - "0.11"
   - "0.10"
+after_script:
+  - npm run coveralls
 notifications:
   email:
     - denis@w3.org
@@ -11,3 +13,11 @@ notifications:
     channels:
       - "irc.w3.org#pubrules"
     skip_join: true
+deploy:
+  provider: npm
+  email: web-human@w3.org
+  api_key:
+    secure: AyNgkrx7wfcH5ao3sfLBcB6puq5IW/kgiZput5Cj7CLp6rkR26XNmVH7MG0AgX1kGil/wAthzPJctvG8A5oc/bNsHMMttXjO6pP13VFU6Bv3IKSJF4mKUNXix0pt5ana93KEOXtN4F+66tHbmROsrLTdwnH3ehFd0zSa7Vs2Kwg=
+  on:
+    tags: true
+    repo: w3c/specberus
