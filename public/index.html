@@ -3,14 +3,14 @@
 <html lang="en-GB">
 
   <head>
-    <meta charset="utf-8" />
-    <meta name="application-name" content="Pubrules Checker" />
-    <meta name="description" content="Pubrules checker — reloaded" />
-    <meta name="keywords" content="pubrules,checker,specberus,w3c,publict" />
-    <meta name="author" content="W3C" />
+    <meta charset="utf-8">
+    <meta name="application-name" content="Pubrules Checker">
+    <meta name="description" content="Pubrules checker — reloaded">
+    <meta name="keywords" content="pubrules,checker,specberus,w3c,publict">
+    <meta name="author" content="W3C">
     <title>Pubrules Checker</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/specberus.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/specberus.css">
   </head>
 
   <body>
@@ -19,8 +19,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 navbar-brand">
-            <a href="http://www.w3.org/"><img class="logo" src="img/logo-w3c.svg" alt="W3C logo" /></a>
-            <a href="/"><img src="img/logo.svg" alt="Logo for the Pubrules Checker" />Pubrules Checker</a>
+            <a href="http://www.w3.org/"><img class="logo" src="img/logo-w3c.svg" alt="W3C logo"></a>
+            <a href="/"><img src="img/logo.svg" alt="Logo for the Pubrules Checker">Pubrules Checker</a>
           </div>
           <div class="contribute col-md-4 text-right">
             <a id="infoLink" href="#" onclick="$('#about').show(); $('#infoLink').hide();">Important information about this tool</a>
@@ -35,9 +35,9 @@
         <button type="button" class="close" onclick="$('#infoLink').show(); $('#about').hide();"><span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
         </button>
-        This alternative pubrules checker is <strong>experimental</strong>, and provided only for early testing. <br />
+        This alternative pubrules checker is <strong>experimental</strong>, and provided only for early testing. <br>
         Continue using the <a href="http://www.w3.org/2005/07/pubrules">official pubrules checker</a> for publishing;
-        only that one is considered authoritative. <br />
+        only that one is considered authoritative.<br>
         Contribute and submit issues <a href="https://github.com/w3c/specberus">on GitHub</a>; send comments to
           <a href="mailto:public-pubrules-comments@w3.org"><code>public-pubrules-comments@w3.org</code></a>.
       </div>
@@ -73,11 +73,11 @@
                   <div class="col-sm-10">
                     <div id="patentPolicy" class="btn-group" data-toggle="buttons">
                       <label id="pp2004" class="btn btn-primary input-sm active">
-                        <input type="radio" name="patentPolicy" class="input-sm" />
+                        <input type="radio" name="patentPolicy" class="input-sm">
                         5 February 2004
                       </label>
                       <label id="pp2002" class="btn btn-primary input-sm">
-                        <input type="radio" name="patentPolicy" class="input-sm" />
+                        <input type="radio" name="patentPolicy" class="input-sm">
                         24 January 2002
                       </label>
                     </div>
@@ -88,11 +88,11 @@
                   <div class="col-sm-10">
                     <div id="processDocument" class="btn-group" data-toggle="buttons">
                       <label id="2014" class="btn btn-primary input-sm active">
-                        <input type="radio" name="processDocument" class="input-sm" />
+                        <input type="radio" name="processDocument" class="input-sm">
                         1 August 2014
                       </label>
                       <label id="2005" class="btn btn-primary input-sm">
-                        <input type="radio" name="processDocument" class="input-sm" />
+                        <input type="radio" name="processDocument" class="input-sm">
                         14 October 2005
                       </label>
                     </div>
@@ -111,7 +111,7 @@
                 <div class="form-group checkbox input-sm">
                   <div class="col-sm-12">
                     <label class="control-label">
-                      <input type="checkbox" id="noRecTrack" name="noRecTrack" />
+                      <input type="checkbox" id="noRecTrack" name="noRecTrack">
                       Rec-track status, but document is not really on Rec-track.
                     </label>
                   </div>
@@ -120,8 +120,17 @@
                 <div class="form-group checkbox input-sm">
                   <div class="col-sm-12">
                     <label class="control-label">
-                      <input type="checkbox" id="informativeOnly" name="informativeOnly" />
+                      <input type="checkbox" id="informativeOnly" name="informativeOnly">
                       Document is informative-only.
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group checkbox input-sm">
+                  <div class="col-sm-12">
+                    <label class="control-label">
+                      <input type="checkbox" id="echidnaReady" name="echidnaReady">
+                      Check that the document is valid for <a href="https://github.com/w3c/echidna/wiki">automatic publication with Echidna</a>
                     </label>
                   </div>
                 </div>

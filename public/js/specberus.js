@@ -15,9 +15,11 @@ jQuery.extend({
 (function ($) {
     var $url = $("#url")
     ,   $profile = $("#profile")
+    ,   $profileOptions = $('#profile option')
     ,   $validation = $("#validation")
     ,   $noRecTrack = $("#noRecTrack")
     ,   $informativeOnly = $("#informativeOnly")
+    ,   $echidnaReady = $("#echidnaReady")
     ,   $patentPolicy = $("#patentPolicy")
     ,   $processDocument = $("#processDocument")
     ,   $alert = $("#alert")
@@ -199,17 +201,20 @@ jQuery.extend({
         ,   validation = $validation.val()
         ,   noRecTrack = $noRecTrack.is(":checked") || false
         ,   informativeOnly = $informativeOnly.is(":checked") || false
+        ,   echidnaReady = $echidnaReady.is(":checked") || false
         ,   patentPolicy = $patentPolicy.find('label.active').attr('id')
         ,   processDocument = $processDocument.find('label.active').attr('id')
         ;
         if (!url) showError("Missing URL parameter.");
         if (!profile) showError("Missing profile parameter.");
+        if (echidnaReady) profile += '-Echidna';
         var options = {
                           "url"             : url
                         , "profile"         : profile
                         , "validation"      : validation
                         , "noRecTrack"      : noRecTrack
                         , "informativeOnly" : informativeOnly
+                        , "echidnaReady"    : echidnaReady
                         , "patentPolicy"    : patentPolicy
                         , "processDocument" : processDocument
                       };
@@ -263,12 +268,26 @@ jQuery.extend({
 
     }
 
+    function disableProfilesIfNeeded(checkbox) {
+        if (checkbox.prop('checked')) {
+            $profileOptions.each(function (_, el) {
+        console.log(el);
+                if ($(el).val() !== 'WD') $(el).prop('disabled', true);
+            });
+            if ($profile.val() !== 'WD') $profile.val('');
+        }
+        else $profileOptions.each(function (_, el) {
+            if ($(el).val() !== '') $(el).prop('disabled', false);
+        });
+    }
+
     function setFormParams(options) {
         if (options.url) $url.val(decodeURIComponent(options.url));
         if (options.profile) $profile.val(options.profile);
         if (options.validation) $validation.val(options.validation);
         if (options.noRecTrack === "true") $noRecTrack.prop('checked', true);
         if (options.informativeOnly === "true") $informativeOnly.prop('checked', true);
+        if (options.echidnaReady === "true") $echidnaReady.prop('checked', true);
         if (options.processDocument) {
           $processDocument.find('label').removeClass('active');
           $processDocument.find('label#' + options.processDocument).addClass('active');
@@ -296,6 +315,10 @@ jQuery.extend({
         $informativeOnly.prop("disabled", isPP2002);
     });
 
+    $echidnaReady.change(function () {
+        disableProfilesIfNeeded($echidnaReady);
+    });
+
     $(document).ready(function() {
         $.getJSON('data/profiles.json', function(data) {
             var optgroup;
@@ -305,7 +328,7 @@ jQuery.extend({
                     var option = $('<option value="' + profile.id + '">' + profile.id + '&nbsp;&mdash;&nbsp;' + profile.name + '</option>');
                     optgroup.append(option);
                 });
-                $('select#profile').append(optgroup);
+                $profile.append(optgroup);
             });
         });
     });

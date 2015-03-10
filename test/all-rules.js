@@ -30,6 +30,15 @@ var tests = {
         ,   { doc: "dummy/all.html", errors: ["dummy.h2-foo"] }
         ]
     }
+,   echidna:  {
+        "editor-ids":  [
+            { doc: "echidna/automated-wg.html" }
+        ,   { doc: "echidna/fails-missing-editorsid.html", errors: ["echidna.editor-ids"] }
+        ]
+    ,   "todays-date":  [
+            { doc: "echidna/fails-future-date.html", errors: ["echidna.todays-date"] }
+        ]
+    }
 ,   headers:   {
         "div.head":  [
             { doc: "headers/simple.html" }
@@ -57,10 +66,10 @@ var tests = {
         ]
     ,   dl:  [
             { doc: "headers/simple.html", config: { previousVersion: true, status: "WD" } }
-        ,   { doc: "headers/fails.html", errors: ["headers.dl", "headers.dl", "headers.dl"] }
+        ,   { doc: "headers/fails.html", errors: ["headers.dl", "headers.dl"] }
         ,   { doc: "headers/fails.html"
             , config: { previousVersion: true }
-            , errors: ["headers.dl", "headers.dl", "headers.dl", "headers.dl"] }
+            , errors: ["headers.dl", "headers.dl", "headers.dl"] }
         ,   { doc: "headers/dl-order.html", errors: ["headers.dl", "headers.dl"], warnings: ["headers.dl"] }
         ,   { doc: "headers/dl-mismatch.html"
             , errors: ["headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl"]
