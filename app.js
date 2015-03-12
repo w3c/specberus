@@ -115,9 +115,6 @@ io.sockets.on("connection", function (socket) {
                 }
             }
         });
-<<<<<<< HEAD
-=======
 
->>>>>>> architectural changes about pubrules rules diplay
     });
 });
