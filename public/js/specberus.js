@@ -37,6 +37,7 @@ jQuery.extend({
     ,   friendlyNames = {headers: 'Headers'
         , style: 'Style'
         , sotd: 'Status of this document'
+        , echidna: 'Echidna'
         , structure: 'Structure'
         , links: 'Links'
         , heuristic: 'Heuristics'
@@ -103,11 +104,11 @@ jQuery.extend({
     }
 
     // handle results
-    function row (id) {
+    function row (id, wording) {
         if (rows[id]) return rows[id];
         rows[id] =  $("<tr><td id=\"section-" + id.split('.')[0] + "\" class='status'></td><td class='test'></td><td class='results'></td></tr>")
                         .find(".test")
-                            .text(id)
+                          .text(id)
                         .end()
                         .appendTo($resultsBody)
         ;
@@ -123,8 +124,8 @@ jQuery.extend({
     ,   warning:    "bg-warning"
     ,   info:       "bg-info"
     };
-    function addMessage ($row, type, msg) {
-        var $ul = $row.find("ul." + type);
+    function addMessage ($row, type, msg, wording) {
+        var $ul = $row.find("ul." + type, wording);
         if (!$ul.length) $ul = $("<ul></ul>").addClass(type).appendTo($row.find(".results"));
         $('<span class="' + type2bgclass[type] + '">' + type + '</span> ').prependTo($("<li></li>")
             .addClass(type2class[type])
@@ -162,16 +163,16 @@ jQuery.extend({
     });
     socket.on("warning", function (data) {
         updateSummary(data, 'warning');
-        addMessage(row(data.name), "warning", data.message);
+        addMessage(row(data.name), "warning", data.message, data.wording);
     });
     socket.on('info', function (data) {
         updateSummary(data, 'info');
-        addMessage(row(data.name), 'info', data.message);
+        addMessage(row(data.name), 'info', data.message, data.wording);
     });
     socket.on("error", function (data) {
         updateSummary(data, 'error');
         var $row = row(data.name);
-        addMessage(row(data.name), "error", data.message);
+        addMessage(row(data.name), "error", data.message, data.wording);
         if (!$row.find(".status .text-danger").length) {
             $row
                 .find(".status")
@@ -334,3 +335,4 @@ jQuery.extend({
     });
 
 }(jQuery));
+
