@@ -37,6 +37,7 @@ jQuery.extend({
     ,   friendlyNames = {headers: 'Headers'
         , style: 'Style'
         , sotd: 'Status of this document'
+        , echidna: 'Echidna'
         , structure: 'Structure'
         , links: 'Links'
         , heuristic: 'Heuristics'
