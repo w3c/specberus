@@ -108,14 +108,10 @@ jQuery.extend({
         if (rows[id]) return rows[id];
         rows[id] =  $("<tr><td id=\"section-" + id.split('.')[0] + "\" class='status'></td><td class='test'></td><td class='results'></td></tr>")
                         .find(".test")
-                          .text(id) // +
-                          // '<a href="#" tabindex="0" class="btn btn-lg btn-danger" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here\'s some amazing content. It\'s very engaging. Right?">Dismissible popover</a>')
+                          .text(id)
                         .end()
                         .appendTo($resultsBody)
         ;
-        // $('a.foo:last').popover({'placement': 'right', 'trigger': 'focus', 'content': wording, 'html': 'true'});
-        // $('a.foo:last').popover({content: wording});
-        // $('a.btn').popover({content: wording});
         return rows[id];
     }
     var type2class = {
