@@ -51,11 +51,8 @@ jQuery.extend({
     socket.on("handshake", function (data) {
         console.log("Using version", data.version);
         $(".navbar-brand small").remove();
-        $("<small></small>")
-            .css({ fontSize: "0.5em", opacity: "0.5" })
-            .text(" (" + data.version + ")")
-            .appendTo($(".navbar-brand"))
-            ;
+        $('head title').text($('head title').text() + ' ' + data.version);
+        $('.navbar-brand').append(' ' + data.version);
     });
 
     // show errors
