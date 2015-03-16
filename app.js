@@ -96,7 +96,7 @@ io.sockets.on("connection", function (socket) {
             url: data.url,
             statusCodesAccepted: ["301"]
         }).then(function(res){
-            if(res.status == true) {
+            if(res.status) {
                 try {
                     validator.validate({
                         url:                res.url
