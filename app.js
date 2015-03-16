@@ -15,7 +15,7 @@ var express = require("express")
 ,   l10n = require("./lib/l10n")
 ,   util = require("util")
 ,   events = require("events")
-,   urlSafety = require("safe-url-input-checker")
+,   insafe = require("insafe")
 ,   version = require("./package.json").version
 ,   profiles = {}
 ;
@@ -92,14 +92,14 @@ io.sockets.on("connection", function (socket) {
         sink.on("exception", function (data) {
             socket.emit("exception", data);
         });
-        urlSafety.checkUrlSafety(data.url, function(err, res) {
-            if(!res) {
-                socket.emit("exception", {message: "error while resolving " + data.url + " Check the spelling of the host, the protocol (http, https) and ensure that the page is accessible from the public Internet."});
-            }
-            else {
+        insafe.check({
+            url: data.url,
+            statusCodesAccepted: ["301"]
+        }).then(function(res){
+            if(res.status == true) {
                 try {
                     validator.validate({
-                        url:                res
+                        url:                res.url
                     ,   profile:            profile
                     ,   events:             sink
                     ,   validation:         data.validation
@@ -113,8 +113,12 @@ io.sockets.on("connection", function (socket) {
                     socket.emit("exception", { message: "Validation blew up: " + e });
                     socket.emit("finished");
                 }
+            } else {
+                socket.emit("exception", {message: "error while resolving " + data.url + " Check the spelling of the host, the protocol (http, https) and ensure that the page is accessible from the public Internet."});
             }
+        }).catch(function(e){
+            socket.emit("exception", { message: "Insafe check blew up: " + e });
+            socket.emit("finished");
         });
-
     });
 });
