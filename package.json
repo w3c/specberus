@@ -11,8 +11,10 @@
     "body-parser": "1.x.x",
     "compression": "1.x.x",
     "express": "4.x.x",
-    "morgan": "1.x.x",
     "insafe": "0.3.x",
+    "morgan": "1.x.x",
+    "promise": "6.x.x",
+    "request": "2.x.x",
     "socket.io": "0.9.x",
     "superagent": "0.17.x",
     "whacko": "0.17.x"
