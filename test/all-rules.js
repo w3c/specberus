@@ -92,6 +92,7 @@ var tests = {
             { doc: "headers/translations.html" }
         ,   { doc: "headers/simple.html", errors: ["headers.translations"] }
         ,   { doc: "headers/translations-warning.html", warnings: ["headers.translations"] }
+        ,   { doc: "headers/translations-alternative.html" }
         ]
     }
 ,   style:   {
