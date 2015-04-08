@@ -269,7 +269,6 @@ jQuery.extend({
     function disableProfilesIfNeeded(checkbox) {
         if (checkbox.prop('checked')) {
             $profileOptions.each(function (_, el) {
-        console.log(el);
                 if ($(el).val() !== 'WD') $(el).prop('disabled', true);
             });
             if ($profile.val() !== 'WD') $profile.val('');
@@ -328,6 +327,7 @@ jQuery.extend({
                 });
                 $profile.append(optgroup);
             });
+            $profileOptions = $('#profile option');
         });
     });
 
