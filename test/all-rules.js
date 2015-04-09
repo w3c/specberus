@@ -67,16 +67,14 @@ var tests = {
         ,   { doc: "headers/h1-title.html", errors: ["headers.h1-title"] }
         ]
     ,   dl:  [
-            { doc: "headers/simple.html", config: { previousVersion: true, status: "WD" } }
+            { doc: "headers/simple.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl"] }
         ,   { doc: "headers/fails.html", errors: ["headers.dl", "headers.dl"] }
-        ,   { doc: "headers/fails.html"
-            , config: { previousVersion: true }
-            , errors: ["headers.dl", "headers.dl", "headers.dl"] }
-        ,   { doc: "headers/dl-order.html", errors: ["headers.dl", "headers.dl"], warnings: ["headers.dl"] }
+        ,   { doc: "headers/fails.html", config: { previousVersion: true }, errors: ["headers.dl", "headers.dl", "headers.dl"] }
+        ,   { doc: "headers/dl-order.html", errors: ["headers.dl", "headers.dl", "headers.dl"], warnings: ["headers.dl"] }
         ,   { doc: "headers/dl-mismatch.html"
             , errors: ["headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl"]
-            , warnings: ["headers.dl"]
-            }
+            , warnings: ["headers.dl"] }
+        ,   { doc: "headers/wrong-urls.html", errors: ["headers.dl", "headers.dl"], config: { previousVersion: true, status: "WD" } }
         ]
     ,   "h2-status":  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
