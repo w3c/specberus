@@ -11,10 +11,6 @@ body {
     height: 40px;
 }
 
-.navbar-brand > img {
-    display: inline;
-}
-
 .navbar .contribute a {
     color: #ffffff;
     opacity: 0.5;
