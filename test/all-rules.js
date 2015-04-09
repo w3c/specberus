@@ -161,7 +161,19 @@ var tests = {
         ,   { doc: "sotd/pp-bad.html", errors: ['sotd.ac-review'] }
         ]
     }
-,   validation:   {
+,   heuristic:   {
+        'date-format':  [
+            { doc: "heuristic/dates.html" }
+        ,   { doc: "heuristic/bad-dates.html", errors: ['heuristic.date-format', 'heuristic.date-format', 'heuristic.date-format'] }
+        ]
+    }
+};
+
+// HTML and CSS validations often time out, and Travis CI thinks the build is broken when it happens.
+// Therefore, we only add these test cases when testing locally.
+// See https://github.com/w3c/specberus/issues/164 and http://docs.travis-ci.com/user/ci-environment/#Environment-variables
+if (process.env.TRAVIS !== 'true') {
+    tests.validation = {
         css:  [
             { doc: "validation/simple.html", ignoreWarnings: true }
         ,   { doc: "validation/css.html", ignoreWarnings: true }
@@ -171,14 +183,8 @@ var tests = {
             { doc: "validation/simple.html" }
         ,   { doc: "validation/invalid.html", errors: ["validation.html"] }
         ]
-    }
-,   heuristic:   {
-        'date-format':  [
-            { doc: "heuristic/dates.html" }
-        ,   { doc: "heuristic/bad-dates.html", errors: ['heuristic.date-format', 'heuristic.date-format', 'heuristic.date-format'] }
-        ]
-    }
-};
+    };
+}
 
 function Sink () {
     this.ok = 0;
