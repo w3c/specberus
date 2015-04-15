@@ -164,7 +164,8 @@ var tests = {
 ,   heuristic:   {
         'date-format':  [
             { doc: "heuristic/dates.html" }
-        ,   { doc: "heuristic/bad-dates.html", errors: ['heuristic.date-format', 'heuristic.date-format', 'heuristic.date-format'] }
+        ,   { doc: "heuristic/bad-dates.html", errors: ['heuristic.date-format', 'heuristic.date-format', 'heuristic.date-format'] },
+            { doc: "heuristic/dated-url.html" }
         ]
     }
 };
