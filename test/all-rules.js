@@ -78,6 +78,7 @@ var tests = {
         ]
     ,   "h2-status":  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
+        ,   { doc: "headers/h2-comma.html", config: { longStatus: "Working Draft" } }
         ,   { doc: "headers/simple.html", config: { longStatus: "Recommendation" }, errors: ["headers.h2-status"] }
         ]
     ,   copyright:  [
