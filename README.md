@@ -1,11 +1,11 @@
+# Specberus
+
 [![npm version](https://img.shields.io/npm/v/specberus.svg)](https://npmjs.org/package/specberus)
 [![License](https://img.shields.io/npm/l/specberus.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/w3c/specberus.svg?branch=master)](https://travis-ci.org/w3c/specberus)
 [![Coverage Status](https://coveralls.io/repos/w3c/specberus/badge.svg)](https://coveralls.io/r/w3c/specberus)
 [![Dependency Status](https://david-dm.org/w3c/specberus.svg)](https://david-dm.org/w3c/specberus)
 [![devDependency Status](https://david-dm.org/w3c/specberus/dev-status.svg)](https://david-dm.org/w3c/specberus#info=devDependencies)
-
-# Specberus
 
 Specberus is a checker for W3C's Publication Rules (PubRules).
 
