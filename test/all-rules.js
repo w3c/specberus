@@ -142,14 +142,24 @@ var tests = {
             }
         ,   { doc: "sotd/pp-cpp2002.html", options: { patentPolicy: "pp2002" } }
         ]
+    ,   "charter-disclosure":  [
+            { doc: "headers/ig-note.html" }
+        ]
     ,   stability:  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft", stabilityWarning: true } }
         ,   { doc: "headers/simple.html"
-            , config: { longStatus: "Rock And Roll", stabilityWarning: true }
-            , errors: ["sotd.stability"]
+              , config: { longStatus: "Rock And Roll", stabilityWarning: true }
+              , errors: ["sotd.stability"]
             }
         ,   { doc: "sotd/supersedable.html"
-            , config: { longStatus: "Rock And Roll", stabilityWarning: false }
+              , config: { longStatus: "Rock And Roll", stabilityWarning: false }
+            }
+        ,   { doc: "headers/ig-note.html"
+              , config: { longStatus: "Interest Group Note" , stabilityWarning: true }
+            }
+        ,   { doc: "headers/ig-note.html"
+              , config: { longStatus: "Working Draft" , stabilityWarning: true }
+              , errors: ["sotd.stability"]
             }
         ]
     ,   implementation:  [
