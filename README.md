@@ -7,7 +7,7 @@
 
 # Specberus
 
-Specberus is a checker for W3C's Publication Rules (PubRules).
+Specberus is a checker used at [W3C](http://www.w3.org/) to validate the compliance of [Technical Reports](http://www.w3.org/TR/) with publication rules.
 
 ## Installation
 
