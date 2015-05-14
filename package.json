@@ -13,7 +13,7 @@
     "express": "^4.12.3",
     "insafe": "^0.3.0",
     "morgan": "^1.5.3",
-    "promise": "^6.1.0",
+    "promise": "^7.0.1",
     "request": "^2.55.0",
     "socket.io": "^0.9.17",
     "superagent": "^0.17.0",
