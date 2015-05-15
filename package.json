@@ -18,7 +18,7 @@
     "request": "^2.55.0",
     "socket.io": "^0.9.17",
     "superagent": "^0.17.0",
-    "whacko": "^0.17.3"
+    "whacko": "^0.18.1"
   },
   "devDependencies": {
     "coveralls": "^2.11.2",
