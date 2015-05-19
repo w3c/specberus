@@ -71,7 +71,7 @@ io.sockets.on("connection", function (socket) {
         sink.on("err", function (type, data) {
             data.name = type;
             data.message = l10n.message(validator.config.lang, type, data.key, data.extra);
-            socket.emit("error", data);
+            socket.emit("err", data);
         });
         sink.on("warning", function (type, data) {
             data.name = type;

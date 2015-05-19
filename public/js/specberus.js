@@ -166,7 +166,7 @@ jQuery.extend({
         updateSummary(data, 'info');
         addMessage(row(data.name), 'info', data.message, data.wording);
     });
-    socket.on("error", function (data) {
+    socket.on("err", function (data) {
         updateSummary(data, 'error');
         var $row = row(data.name);
         addMessage(row(data.name), "error", data.message, data.wording);
