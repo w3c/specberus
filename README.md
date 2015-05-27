@@ -11,7 +11,7 @@ Specberus is a checker used at [W3C](http://www.w3.org/) to validate the complia
 
 ## Installation
 
-Specberus is a Node.js application, distributed through npm.
+Specberus is a Node.js application, [distributed through npm](https://www.npmjs.com/package/specberus).
 Alternatively, you can clone [the repository](https://github.com/w3c/specberus) and run:
 
     npm install -d
