@@ -5,6 +5,7 @@ node_js:
   - "0.10"
 after_script:
   - npm run coveralls
+  - npm run nsp
 notifications:
   email:
     - denis@w3.org
