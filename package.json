@@ -24,12 +24,14 @@
     "coveralls": "^2.11.2",
     "expect.js": "^0.3.1",
     "istanbul": "^0.3.17",
+    "jsdoc": "^3.3.2",
     "mocha": "^2.2.5",
     "nsp": "^1.0.3"
   },
   "scripts": {
     "coverage": "istanbul cover _mocha",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
+    "jsdoc": "jsdoc -a all -d doc/api/ -e utf8 -r app.js lib/ test/ tools/",
     "nsp": "nsp package",
     "start": "node app.js",
     "test": "mocha"
