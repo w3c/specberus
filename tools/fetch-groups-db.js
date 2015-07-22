@@ -24,7 +24,7 @@ function norm (str) {
               .replace(/\s+/g, " ");
 }
 
-function munge (res) {
+function munge (err, res) {
     var $ = w.load(res.text);
     $("tr.WG, tr.IG, tr.CG").each(function () {
         // console.log("### tr", $(this).attr("class"));
@@ -53,4 +53,4 @@ ua
     .buffer(true)
     .end(munge);
 
-// munge({ text: fs.readFileSync(pth.join(__dirname, "groups.html"), "utf8") });
+// munge(err, { text: fs.readFileSync(pth.join(__dirname, "groups.html"), "utf8") });
