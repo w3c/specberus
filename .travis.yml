@@ -21,5 +21,6 @@ deploy:
   api_key:
     secure: AyNgkrx7wfcH5ao3sfLBcB6puq5IW/kgiZput5Cj7CLp6rkR26XNmVH7MG0AgX1kGil/wAthzPJctvG8A5oc/bNsHMMttXjO6pP13VFU6Bv3IKSJF4mKUNXix0pt5ana93KEOXtN4F+66tHbmROsrLTdwnH3ehFd0zSa7Vs2Kwg=
   on:
+    node: '0.12'
     tags: true
     repo: w3c/specberus
