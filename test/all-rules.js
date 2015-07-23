@@ -176,6 +176,11 @@ var tests = {
             { doc: "sotd/supersedable.html"}
         ,   { doc: "sotd/pp-bad.html", errors: ['sotd.ac-review'] }
         ]
+    ,   'process':  [
+            { doc: "sotd/process2015.html", options: {processDocument: '2015'}}
+    ,       { doc: "sotd/deprecated.html", errors: ['sotd.processDocument']}
+    ,       { doc: "sotd/wrongprocess.html", errors: ['sotd.processDocument']}
+        ]
     }
 ,   heuristic:   {
         'date-format':  [
