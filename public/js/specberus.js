@@ -28,7 +28,7 @@ jQuery.extend({
     ,   $progressContainer = $("#progressBar")
     ,   $progress = $progressContainer.find(".progress-bar")
     ,   $progressStyler = $progress.parent()
-    ,   socket = io.connect(location.protocol + "//" + location.host, {resource: location.pathname.substring(1) + 'socket.io'})
+    ,   socket = io(location.protocol + "//" + location.host, {path: '/' + location.pathname.substring(1) + 'socket.io'})
     ,   $summary = $("#summary")
     ,   rows = {}
     ,   done = 0
