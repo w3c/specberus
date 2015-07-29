@@ -85,7 +85,7 @@ These properties are now returned when found:
 
 * `docDate`: The date associated to the document.
 * `title`: The (possible) title of the document.
-* `process`: The process rules, **as they appear on the text of the document**, eg `28 April 2015'`.
+* `process`: The process rules, **as they appear on the text of the document**, eg `'1 September 2015'`.
 * `deliverers`: The deliverer(s) responsible for the document (WGs, TFs, etc); an `Array` of `Object`s, each one with these properties:
   * `homepage`: URL of the group's home page.
   * `name`: name of the group, exactly as it is found in the hyperlink on the document.
@@ -108,7 +108,7 @@ emits these pairs of metadata:
 { previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/' }
 { editorIDs: [] }
 { status: 'REC' }
-{ process: '28 April 2015' }
+{ process: '1 September 2015' }
 { deliverers: [
    { homepage: 'http://www.w3.org/XML/EXI/',
      name: 'Efficient XML Interchange Working Group' }
@@ -132,7 +132,7 @@ If you download that very spec, edit it to include the following metadata&hellip
 { previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/' }
 { editorIDs: [ '329883', '387297' ] }
 { status: 'REC' }
-{ process: '28 April 2015' }
+{ process: '1 September 2015' }
 { deliverers: [
    { homepage: 'http://www.w3.org/XML/EXI/',
      name: 'Efficient XML Interchange Working Group' }
@@ -150,7 +150,7 @@ the following metadata will be found:
 { previousVersion: 'http://www.w3.org/TR/2014/WD-wai-aria-1.1-20140612/' }
 { editorIDs: [] }
 { status: 'WD' }
-{ process: '28 April 2015' }
+{ process: '1 September 2015' }
 { editorsDraft: 'http://w3c.github.io/aria/aria/aria.html' }
 { deliverers: [
    { homepage: 'http://www.w3.org/WAI/PF/',
