@@ -20,3 +20,6 @@ NOTES.txt
 
 pubruleschecker
 scratch
+
+# JSDoc output
+doc/api/
