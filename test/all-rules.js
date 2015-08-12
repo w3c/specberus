@@ -141,6 +141,10 @@ var tests = {
             , config: { recTrackStatus: true }
             }
         ,   { doc: "sotd/pp-cpp2002.html", options: { patentPolicy: "pp2002" } }
+        ,   { doc: "headers/joint-publication.html", config: { recTrackStatus: true }, warnings: ["sotd.pp"] }
+        ,   { doc: "headers/joint-publication-fail.html", config: { recTrackStatus: true }
+              , errors: ["sotd.pp"]
+            }
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
