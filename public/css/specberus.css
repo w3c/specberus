@@ -82,3 +82,7 @@ td.results a {
     color: #000000;
 }
 
+blockquote {
+  font-size: small;
+  background-color: #ddd;
+}
