@@ -280,7 +280,7 @@ jQuery.extend({
 
     function setFormParams(options) {
         if (options.url) $url.val(decodeURIComponent(options.url));
-        if (options.profile) $profile.val(options.profile);
+        if (options.profile) $profile.find('option[value=' + options.profile+ ']').prop('selected', true);
         if (options.validation) $validation.val(options.validation);
         if (options.noRecTrack === "true") $noRecTrack.prop('checked', true);
         if (options.informativeOnly === "true") $informativeOnly.prop('checked', true);
@@ -294,10 +294,6 @@ jQuery.extend({
           $patentPolicy.find('label#' + options.patentPolicy).addClass('active');
         }
     }
-
-    var options = $.getQueryParameters();
-    setFormParams(options);
-    if (options.url && options.profile) validate(options);
 
     window.addEventListener('popstate', function(event) {
         var options = event.state;
@@ -328,6 +324,9 @@ jQuery.extend({
                 $profile.append(optgroup);
             });
             $profileOptions = $('#profile option');
+            var options = $.getQueryParameters();
+            setFormParams(options);
+            if (options.url && options.profile) validate(options);
         });
     });
 
