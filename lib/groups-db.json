@@ -1,346 +1,162 @@
 {
-    "member-dacg@w3.org": {
-        "name": "Data Activity Coordination Group",
-        "href": "http://www.w3.org/2013/data/CG/"
-    },
-    "public-rdfa@w3.org": {
-        "name": "RDFa Working Group",
-        "href": "http://www.w3.org/2010/02/rdfa/"
-    },
-    "public-semweb-lifesci@w3.org": {
-        "name": "Semantic Web Health Care and Life Sciences Interest Group",
-        "href": "http://www.w3.org/2001/sw/hcls/"
-    },
-    "semantic-web@w3.org": {
-        "name": "Semantic Web Interest Group",
-        "href": "http://www.w3.org/2001/sw/interest/"
-    },
-    "public-ldp-wg@w3.org": {
-        "name": "Linked Data Platform (LDP) Working Group",
-        "href": "http://www.w3.org/2012/ldp/"
-    },
-    "public-dwbp-wg@w3.org": {
-        "name": "Data on the Web Best Practices Working Group",
-        "href": "http://www.w3.org/2013/dwbp/"
-    },
-    "member-dwbp-wg@w3.org": {
-        "name": "Data on the Web Best Practices Working Group",
-        "href": "http://www.w3.org/2013/dwbp/"
-    },
-    "public-csv-wg@w3.org": {
-        "name": "CSV on the Web Working Group",
-        "href": "http://www.w3.org/2013/csvw/"
-    },
-    "public-data-shapes-wg@w3.org": {
-        "name": "RDF Data Shapes Working Group",
-        "href": "http://www.w3.org/2014/data-shapes/"
-    },
-    "public-digipub-ig@w3.org": {
-        "name": "Digital Publishing Interest Group",
-        "href": "http://www.w3.org/dpub/IG/"
-    },
-    "public-annotation@w3.org": {
-        "name": "Web Annotation Working Group",
-        "href": "http://www.w3.org/annotation/"
-    },
-    "public-exi@w3.org": {
-        "name": "Efficient XML Interchange Working Group",
-        "href": "http://www.w3.org/XML/EXI/"
-    },
-    "member-exi-wg@w3.org": {
-        "name": "Efficient XML Interchange Working Group",
-        "href": "http://www.w3.org/XML/EXI/"
-    },
-    "w3c-xml-cg@w3.org": {
-        "name": "XML Coordination Group",
-        "href": "http://www.w3.org/XML/Group/"
-    },
-    "public-xml-core-wg@w3.org": {
-        "name": "XML Core Working Group",
-        "href": "http://www.w3.org/XML/Core/"
-    },
-    "public-xml-processing-model-wg@w3.org": {
-        "name": "XML Processing Model Working Group",
-        "href": "http://www.w3.org/XML/Processing/"
-    },
-    "w3c-xml-query-wg@w3.org": {
-        "name": "XML Query Working Group",
-        "href": "http://www.w3.org/XML/Query/"
-    },
-    "w3c-xsl-wg@w3.org": {
-        "name": "XSLT Working Group",
-        "href": "http://www.w3.org/Style/XSL/"
-    },
-    "public-svg-wg@w3.org": {
-        "name": "SVG Working Group",
-        "href": "http://www.w3.org/Graphics/SVG/WG/"
-    },
-    "public-html@w3.org": {
-        "name": "HTML Working Group",
-        "href": "http://www.w3.org/html/wg/"
-    },
-    "public-html-ig-jp@w3.org": {
-        "name": "HTML5 Japanese Interest Group",
-        "href": "http://www.w3.org/html/ig/jp/"
-    },
-    "public-html-ig-ko@w3.org": {
-        "name": "HTML5 Korean Interest Group",
-        "href": "http://www.w3.org/html/ig/ko/"
-    },
-    "public-html-ig-zh@w3.org": {
-        "name": "HTML5 Chinese Interest Group",
-        "href": "http://www.w3.org/html/ig/zh/"
-    },
-    "member-i18n-core@w3.org": {
-        "name": "Internationalization Working Group",
-        "href": "http://www.w3.org/International/core/"
-    },
-    "public-i18n-core@w3.org": {
-        "name": "Internationalization Working Group",
-        "href": "http://www.w3.org/International/core/"
-    },
-    "www-international@w3.org": {
-        "name": "Internationalization (I18n) Interest Group",
-        "href": "http://www.w3.org/International/ig/"
-    },
-    "w3c-i18n-ig@w3.org": {
-        "name": "Internationalization (I18n) Interest Group",
-        "href": "http://www.w3.org/International/ig/"
-    },
-    "public-i18n-its-ig@w3.org": {
-        "name": "Internationalization Tag Set (ITS) Interest Group",
-        "href": "http://www.w3.org/International/its/ig/"
-    },
-    "member-math@w3.org": {
-        "name": "Math Working Group",
-        "href": "http://www.w3.org/Math/"
-    },
-    "www-math@w3.org": {
-        "name": "Math Working Group",
-        "href": "http://www.w3.org/Math/"
-    },
-    "public-webapps@w3.org": {
-        "name": "Web Applications Working Group",
-        "href": "http://www.w3.org/2008/webapps/"
-    },
-    "member-webapps@w3.org": {
-        "name": "Web Applications Working Group",
-        "href": "http://www.w3.org/2008/webapps/"
-    },
-    "public-web-perf@w3.org": {
-        "name": "Web Performance Working Group",
-        "href": "http://www.w3.org/2010/webperf/"
-    },
-    "public-web-notification@w3.org": {
-        "name": "Web Notification Working Group",
-        "href": "http://www.w3.org/2010/web-notifications/"
-    },
     "public-audio@w3.org": {
-        "name": "Audio Working Group",
-        "href": "http://www.w3.org/2011/audio/"
-    },
-    "public-pointer-events@w3.org": {
-        "name": "Pointer Events Working Group",
-        "href": "http://www.w3.org/2012/pointerevents/"
-    },
-    "w3c-css-wg@w3.org": {
-        "name": "Cascading Style Sheets (CSS) Working Group",
-        "href": "http://www.w3.org/Style/CSS/members"
-    },
-    "www-style@w3.org": {
-        "name": "Cascading Style Sheets (CSS) Working Group",
-        "href": "http://www.w3.org/Style/CSS/members"
-    },
-    "public-tt@w3.org": {
-        "name": "Timed Text Working Group",
-        "href": "http://www.w3.org/AudioVideo/TT/"
-    },
-    "member-tt@w3.org": {
-        "name": "Timed Text Working Group",
-        "href": "http://www.w3.org/AudioVideo/TT/"
-    },
-    "public-forms@w3.org": {
-        "name": "Forms Working Group",
-        "href": "http://www.w3.org/MarkUp/Forms/"
-    },
-    "www-forms@w3.org": {
-        "name": "Forms Working Group",
-        "href": "http://www.w3.org/MarkUp/Forms/"
-    },
-    "public-webfonts-wg@w3.org": {
-        "name": "WebFonts Working Group",
-        "href": "http://www.w3.org/Fonts/WG/"
-    },
-    "www-font@w3.org": {
-        "name": "WebFonts Working Group",
-        "href": "http://www.w3.org/Fonts/WG/"
-    },
-    "public-browser-tools-testing@w3.org": {
-        "name": "Browser Testing and Tools Working Group",
-        "href": "http://www.w3.org/testing/browser/"
-    },
-    "member-psig@w3.org": {
-        "name": "Patents and Standards Interest Group",
-        "href": "http://www.w3.org/2004/pp/psig/"
-    },
-    "public-tracking@w3.org": {
-        "name": "Tracking Protection Working Group",
-        "href": "http://www.w3.org/2011/tracking-protection/"
-    },
-    "public-privacy@w3.org": {
-        "name": "Privacy Interest Group",
-        "href": "http://www.w3.org/Privacy/"
-    },
-    "public-xmlsec@w3.org": {
-        "name": "XML Security Working Group",
-        "href": "http://www.w3.org/2008/xmlsec/"
-    },
-    "member-xmlsec@w3.org": {
-        "name": "XML Security Working Group",
-        "href": "http://www.w3.org/2008/xmlsec/"
-    },
-    "public-webappsec@w3.org": {
-        "name": "Web Application Security Working Group",
-        "href": "http://www.w3.org/2011/webappsec/"
-    },
-    "public-webcrypto@w3.org": {
-        "name": "Web Cryptography Working Group",
-        "href": "http://www.w3.org/2012/webcrypto/"
-    },
-    "public-web-security@w3.org": {
-        "name": "Web Security Interest Group",
-        "href": "http://www.w3.org/Security/IG/"
-    },
-    "public-socialweb@w3.org": {
-        "name": "Social Web Working Group",
-        "href": "http://www.w3.org/Social/WG"
-    },
-    "public-social-interest@w3.org": {
-        "name": "Social Interest Group",
-        "href": "http://www.w3.org/Social/IG"
-    },
-    "public-webpayments-ig@w3.org": {
-        "name": "Web Payments Interest Group",
-        "href": "http://www.w3.org/Payments/IG"
-    },
-    "public-web-mobile@w3.org": {
-        "name": "Web and Mobile Interest Group",
-        "href": "http://www.w3.org/Mobile/IG/"
-    },
-    "www-multimodal@w3.org": {
-        "name": "Multimodal Interaction Working Group",
-        "href": "http://www.w3.org/2002/mmi/"
-    },
-    "w3c-mmi-wg@w3.org": {
-        "name": "Multimodal Interaction Working Group",
-        "href": "http://www.w3.org/2002/mmi/"
-    },
-    "public-device-apis@w3.org": {
-        "name": "Device APIs Working Group",
-        "href": "http://www.w3.org/2009/dap/"
-    },
-    "member-device-apis@w3.org": {
-        "name": "Device APIs Working Group",
-        "href": "http://www.w3.org/2009/dap/"
-    },
-    "public-geolocation@w3.org": {
-        "name": "Geolocation Working Group",
-        "href": "http://www.w3.org/2008/geolocation/"
-    },
-    "member-geolocation@w3.org": {
-        "name": "Geolocation Working Group",
-        "href": "http://www.w3.org/2008/geolocation/"
-    },
-    "public-webrtc@w3.org": {
-        "name": "Web Real-Time Communications Working Group",
-        "href": "http://www.w3.org/2011/04/webrtc/"
-    },
-    "member-webrtc@w3.org": {
-        "name": "Web Real-Time Communications Working Group",
-        "href": "http://www.w3.org/2011/04/webrtc/"
-    },
-    "public-sysapps@w3.org": {
-        "name": "System Applications Working Group",
-        "href": "http://www.w3.org/2012/sysapps/"
-    },
-    "member-sysapps@w3.org": {
-        "name": "System Applications Working Group",
-        "href": "http://www.w3.org/2012/sysapps/"
-    },
-    "public-nfc@w3.org": {
-        "name": "Near Field Communications Working Group",
-        "href": "http://www.w3.org/2012/nfc/"
-    },
-    "member-nfc@w3.org": {
-        "name": "Near Field Communications Working Group",
-        "href": "http://www.w3.org/2012/nfc/"
-    },
-    "public-secondscreen@w3.org": {
-        "name": "Second Screen Presentation Working Group",
-        "href": "http://www.w3.org/2014/secondscreen/"
-    },
-    "w3c-voice-wg@w3.org": {
-        "name": "Voice Browser Working Group",
-        "href": "http://www.w3.org/Voice/"
-    },
-    "public-web-and-tv@w3.org": {
-        "name": "Web and TV Interest Group",
-        "href": "http://www.w3.org/2011/webtv/"
-    },
-    "member-web-and-tv@w3.org": {
-        "name": "Web and TV Interest Group",
-        "href": "http://www.w3.org/2011/webtv/"
-    },
-    "w3c-wai-eo@w3.org": {
-        "name": "Education and Outreach Working Group",
-        "href": "http://www.w3.org/WAI/EO/"
-    },
-    "public-wai-rd@w3.org": {
-        "name": "Research and Development Working Group",
-        "href": "http://www.w3.org/WAI/RD/"
-    },
-    "w3c-wai-cg@w3.org": {
-        "name": "WAI Coordination Group",
-        "href": "http://www.w3.org/WAI/CG/Group/"
-    },
-    "w3c-wai-ig@w3.org": {
-        "name": "WAI Interest Group",
-        "href": "http://www.w3.org/WAI/IG/"
+        "url": "http://www.w3.org/2011/audio/",
+        "name": "Audio Working Group"
     },
     "w3c-wai-au@w3.org": {
-        "name": "Authoring Tool Accessibility Guidelines Working Group",
-        "href": "http://www.w3.org/WAI/AU/"
+        "url": "http://www.w3.org/WAI/AU/",
+        "name": "Authoring Tool Accessibility Guidelines Working Group"
+    },
+    "public-browser-tools-testing@w3.org": {
+        "url": "http://www.w3.org/testing/browser/",
+        "name": "Browser Testing and Tools Working Group"
+    },
+    "public-csv-wg@w3.org": {
+        "url": "http://www.w3.org/2013/csvw/",
+        "name": "CSV on the Web Working Group"
+    },
+    "public-dwbp-wg@w3.org": {
+        "url": "http://www.w3.org/2013/dwbp/",
+        "name": "Data on the Web Best Practices Working Group"
+    },
+    "public-device-apis@w3.org": {
+        "url": "http://www.w3.org/2009/dap/",
+        "name": "Device APIs Working Group"
+    },
+    "w3c-wai-eo@w3.org": {
+        "url": "http://www.w3.org/WAI/EO/",
+        "name": "Education and Outreach Working Group"
+    },
+    "public-exi@w3.org": {
+        "url": "http://www.w3.org/XML/EXI/",
+        "name": "Efficient XML Interchange Working Group"
     },
     "public-wai-ert@w3.org": {
-        "name": "Evaluation and Repair Tools Working Group",
-        "href": "http://www.w3.org/WAI/ER/"
+        "url": "http://www.w3.org/WAI/ER/",
+        "name": "Evaluation and Repair Tools Working Group"
     },
-    "w3c-wai-pf@w3.org": {
-        "name": "Protocols and Formats Working Group",
-        "href": "http://www.w3.org/WAI/PF/"
+    "public-forms@w3.org": {
+        "url": "http://www.w3.org/MarkUp/Forms/",
+        "name": "Forms Working Group"
     },
-    "w3c-wai-ua@w3.org": {
-        "name": "User Agent Accessibility Guidelines Working Group",
-        "href": "http://www.w3.org/WAI/UA/"
+    "public-geolocation@w3.org": {
+        "url": "http://www.w3.org/2008/geolocation/",
+        "name": "Geolocation Working Group"
     },
-    "w3c-wai-gl@w3.org": {
-        "name": "Web Content Accessibility Guidelines Working Group",
-        "href": "http://www.w3.org/WAI/GL/"
+    "public-gld-wg@w3.org": {
+        "url": "http://www.w3.org/2011/gld/",
+        "name": "Government Linked Data Working Group"
+    },
+    "public-html@w3.org": {
+        "url": "http://www.w3.org/html/wg/",
+        "name": "HTML Working Group"
     },
     "public-indie-ui@w3.org": {
-        "name": "Independent User Interface (Indie UI) Working Group",
-        "href": "http://www.w3.org/WAI/IndieUI/"
+        "url": "http://www.w3.org/WAI/IndieUI/",
+        "name": "Independent User Interface (Indie UI) Working Group"
+    },
+    "public-ldp-wg@w3.org": {
+        "url": "http://www.w3.org/2012/ldp/",
+        "name": "Linked Data Platform (LDP) Working Group"
+    },
+    "public-media-annotation@w3.org": {
+        "url": "http://www.w3.org/2008/WebVideo/Annotations/",
+        "name": "Media Annotations Working Group"
+    },
+    "public-mbui@w3.org": {
+        "url": "http://www.w3.org/2011/mbui/",
+        "name": "Model-Based User Interfaces Working Group"
+    },
+    "www-multimodal@w3.org": {
+        "url": "http://www.w3.org/2002/mmi/",
+        "name": "Multimodal Interaction Working Group"
+    },
+    "public-nfc@w3.org": {
+        "url": "http://www.w3.org/2012/nfc/",
+        "name": "Near Field Communications Working Group"
+    },
+    "public-pointer-events@w3.org": {
+        "url": "http://www.w3.org/2012/pointerevents/",
+        "name": "Pointer Events Working Group"
+    },
+    "public-rdf-wg@w3.org": {
+        "url": "http://www.w3.org/2011/rdf-wg/",
+        "name": "RDF Working Group"
+    },
+    "public-rdfa@w3.org": {
+        "url": "http://www.w3.org/2010/02/rdfa/",
+        "name": "RDFa Working Group"
+    },
+    "public-wai-rd@w3.org": {
+        "url": "http://www.w3.org/WAI/RD/",
+        "name": "Research and Development Working Group"
+    },
+    "public-svg-wg@w3.org": {
+        "url": "http://www.w3.org/Graphics/SVG/WG/",
+        "name": "SVG Working Group"
+    },
+    "public-sysapps@w3.org": {
+        "url": "http://www.w3.org/2012/sysapps/",
+        "name": "System Applications Working Group"
     },
     "www-tag@w3.org": {
-        "name": "Technical Architecture Group",
-        "href": "http://www.w3.org/2001/tag/"
+        "url": "http://www.w3.org/2001/tag/",
+        "name": "Technical Architecture Group"
     },
-    "tag@w3.org": {
-        "name": "Technical Architecture Group",
-        "href": "http://www.w3.org/2001/tag/"
+    "public-tt@w3.org": {
+        "url": "http://www.w3.org/AudioVideo/TT/",
+        "name": "Timed Text Working Group"
     },
-    "ab@w3.org": {
-        "name": "Advisory Board",
-        "href": "http://www.w3.org/Member/Board/"
+    "public-tracking@w3.org": {
+        "url": "http://www.w3.org/2011/tracking-protection/",
+        "name": "Tracking Protection Working Group"
+    },
+    "w3c-wai-ua@w3.org": {
+        "url": "http://www.w3.org/WAI/UA/",
+        "name": "User Agent Accessibility Guidelines Working Group"
+    },
+    "public-webappsec@w3.org": {
+        "url": "http://www.w3.org/2011/webappsec/",
+        "name": "Web Application Security Working Group"
+    },
+    "public-webapps@w3.org": {
+        "url": "http://www.w3.org/2008/webapps/",
+        "name": "Web Applications Working Group"
+    },
+    "w3c-wai-gl@w3.org": {
+        "url": "http://www.w3.org/WAI/GL/",
+        "name": "Web Content Accessibility Guidelines Working Group"
+    },
+    "public-webcrypto@w3.org": {
+        "url": "http://www.w3.org/2012/webcrypto/",
+        "name": "Web Cryptography Working Group"
+    },
+    "public-web-notification@w3.org": {
+        "url": "http://www.w3.org/2010/web-notifications/",
+        "name": "Web Notification Working Group"
+    },
+    "public-web-perf@w3.org": {
+        "url": "http://www.w3.org/2010/webperf/",
+        "name": "Web Performance Working Group"
+    },
+    "public-webrtc@w3.org": {
+        "url": "http://www.w3.org/2011/04/webrtc/",
+        "name": "Web Real-Time Communications Working Group"
+    },
+    "public-webfonts-wg@w3.org": {
+        "url": "http://www.w3.org/Fonts/WG/",
+        "name": "WebFonts Working Group"
+    },
+    "public-xml-core-wg@w3.org": {
+        "url": "http://www.w3.org/XML/Core/",
+        "name": "XML Core Working Group"
+    },
+    "public-xml-processing-model-wg@w3.org": {
+        "url": "http://www.w3.org/XML/Processing/",
+        "name": "XML Processing Model Working Group"
+    },
+    "public-xmlsec@w3.org": {
+        "url": "http://www.w3.org/2008/xmlsec/",
+        "name": "XML Security Working Group"
     }
 }
