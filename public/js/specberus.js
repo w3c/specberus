@@ -286,8 +286,8 @@ jQuery.extend({
         // "profile" might be eg "WD-Echidna". Normalise.
         if (options.profile) {
           var newProfile = options.profile;
-          if (newProfile.indexOf('-') > -1) {
-            newProfile = newProfile.substring(0, newProfile.indexOf('-'));
+          if (newProfile.indexOf('-Echidna') > -1) {
+            newProfile = newProfile.substring(0, newProfile.indexOf('-Echidna'));
           }
           $profile.find('option[value=' + newProfile + ']').prop('selected', true);
         }
