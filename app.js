@@ -105,6 +105,7 @@ io.sockets.on("connection", function (socket) {
                     ,   validation:         data.validation
                     ,   noRecTrack:         data.noRecTrack
                     ,   informativeOnly:    data.informativeOnly
+                    ,   echidnaReady:       data.echidnaReady
                     ,   patentPolicy:       data.patentPolicy
                     ,   processDocument:    data.processDocument
                     });

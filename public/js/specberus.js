@@ -88,8 +88,9 @@ jQuery.extend({
             url:                decodeURIComponent(options.url)
         ,   profile:            options.profile
         ,   validation:         options.validation
-        ,   noRecTrack:         options.noRecTrack
-        ,   informativeOnly:    options.informativeOnly
+        ,   noRecTrack:         ('true' === options.noRecTrack)
+        ,   informativeOnly:    ('true' === options.informativeOnly)
+        ,   echidnaReady:       ('true' === options.echidnaReady)
         ,   patentPolicy:       options.patentPolicy
         ,   processDocument:    options.processDocument
         });
@@ -279,12 +280,20 @@ jQuery.extend({
     }
 
     function setFormParams(options) {
+        // Option "echidnaReady" processed first, as it may restrict the list of enabled profiles.
+        if (options.echidnaReady === "true") $echidnaReady.prop('checked', true);
         if (options.url) $url.val(decodeURIComponent(options.url));
-        if (options.profile) $profile.find('option[value=' + options.profile+ ']').prop('selected', true);
+        // "profile" might be eg "WD-Echidna". Normalise.
+        if (options.profile) {
+          var newProfile = options.profile;
+          if (newProfile.indexOf('-Echidna') > -1) {
+            newProfile = newProfile.substring(0, newProfile.indexOf('-Echidna'));
+          }
+          $profile.find('option[value=' + newProfile + ']').prop('selected', true);
+        }
         if (options.validation) $validation.val(options.validation);
         if (options.noRecTrack === "true") $noRecTrack.prop('checked', true);
         if (options.informativeOnly === "true") $informativeOnly.prop('checked', true);
-        if (options.echidnaReady === "true") $echidnaReady.prop('checked', true);
         if (options.processDocument) {
           $processDocument.find('label').removeClass('active');
           $processDocument.find('label#' + options.processDocument).addClass('active');
