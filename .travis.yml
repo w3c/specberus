@@ -11,7 +11,6 @@ after_script:
 notifications:
   email:
     - denis@w3.org
-    - antonio@w3.org
   irc:
     channels:
       - "irc.w3.org#pubrules"
@@ -20,7 +19,7 @@ deploy:
   provider: npm
   email: web-human@w3.org
   api_key:
-    secure: AyNgkrx7wfcH5ao3sfLBcB6puq5IW/kgiZput5Cj7CLp6rkR26XNmVH7MG0AgX1kGil/wAthzPJctvG8A5oc/bNsHMMttXjO6pP13VFU6Bv3IKSJF4mKUNXix0pt5ana93KEOXtN4F+66tHbmROsrLTdwnH3ehFd0zSa7Vs2Kwg=
+    secure: qPx+fMzf0AOVP1aIKGUrTTHcpoTkyYpsUq20rnDiqQbrNeMo44esOs4szPKtkwQYdM3iVY8AXMDBxej60g5dl4ZN2dy2FiuJnu9zy8ldsXJjEVTbMZT+nhQirJ17zczvP/AmBBY2s/MY5KUK69apgSuIa5nZNkfPjf1sBjfbnus=
   on:
     node: '0.12'
     tags: true
