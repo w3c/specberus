@@ -147,6 +147,7 @@ jQuery.extend({
         progress();
         $progressContainer.fadeIn();
         $results.fadeIn();
+        resetSummary();
         $summary.show();
     });
     socket.on("ok", function (data) {
@@ -222,6 +223,11 @@ jQuery.extend({
         history.pushState(options, url + " - " + profile, newurl);
         return false;
     });
+
+    function resetSummary() {
+        $summary.find('.panel-body').empty();
+        summary = {};
+    }
 
     function updateSummary(data, level) {
 
