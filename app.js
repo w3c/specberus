@@ -12,12 +12,14 @@ var express = require("express")
 ,   server = require("http").createServer(app)
 ,   io = require("socket.io").listen(server)
 ,   Specberus = new require("./lib/validator").Specberus
+,   Exceptions = require("./lib/exceptions").Exceptions
 ,   l10n = require("./lib/l10n")
 ,   util = require("util")
 ,   events = require("events")
 ,   insafe = require("insafe")
 ,   version = require("./package.json").version
 ,   profiles = {}
+,   shortnameRegex = /http:\/\/www.w3.org\/TR\/([-A-Za-z0-9_]+)\//g;
 ;
 ("FPWD FPLC WD LC CR PR PER REC RSCND " +
 "CG-NOTE FPIG-NOTE IG-NOTE FPWG-NOTE WG-NOTE " +
@@ -61,6 +63,8 @@ io.sockets.on("connection", function (socket) {
         var validator = new Specberus()
         ,   sink = new Sink
         ,   profile = profiles[data.profile]
+        ,   shortname = undefined
+        ,   exceptions = new Exceptions()
         ;
         socket.emit("start", {
             rules:  (profile.rules || []).map(function (rule) { return rule.name; })
@@ -71,12 +75,22 @@ io.sockets.on("connection", function (socket) {
         sink.on("err", function (type, data) {
             data.name = type;
             data.message = l10n.message(validator.config.lang, type, data.key, data.extra);
-            socket.emit("err", data);
+            if ((shortname !== undefined)
+                && exceptions.has(shortname, data)) {
+                socket.emit("warning", data);
+            } else {
+              socket.emit("err", data);
+            }
         });
         sink.on("warning", function (type, data) {
             data.name = type;
             data.message = l10n.message(validator.config.lang, type, data.key, data.extra);
             socket.emit("warning", data);
+        });
+        sink.on('metadata', function (key, value) {
+            if (key === "latestVersion") {
+              shortname = value.replace(shortnameRegex, "$1");
+            }
         });
         sink.on('info', function (type, data) {
             data.name = type;
