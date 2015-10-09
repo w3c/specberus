@@ -11,13 +11,13 @@ Specberus is a checker used at [W3C](http://www.w3.org/) to validate the complia
 
 ## Installation
 
-Specberus is a Node.js application, [distributed through npm](https://www.npmjs.com/package/specberus).
+Specberus is a [Node.js](https://nodejs.org/en/) application, [distributed through npm](https://www.npmjs.com/package/specberus).
 Alternatively, you can clone [the repository](https://github.com/w3c/specberus) and run:
 
     npm install -d
 
 In order to get all the dependencies installed. Naturally, this requires that you have a reasonably
-recent version of Node installed.
+recent version of Node.js installed.
 
 ## Running
 
@@ -60,7 +60,7 @@ unavailable. To work around this, you can set SKIP_NETWORK:
 ## API
 
 The interface you get when you `require("specberus")` is that from `lib/validator`. It returns a
-`Specberus` instance that is properly configured for operation in the Node environment
+`Specberus` instance that is properly configured for operation in the Node.js environment
 (there is nominal support for running Specberus under other environments, but it isn't usable at this time).
 
 The validator interface supports a `validate(options)` methods, which takes an object with the
@@ -72,7 +72,7 @@ following fields:
 * `file`: A file system path to the content to check.
 * `document`: A DOM `Document` object to be checked.
 * `profile`: A profile object which defines the validation. Required. See below.
-* `events`: An event sink which supports the same interface as Node's `EventEmitter`. Required. See
+* `events`: An event sink which supports the same interface as Node.js's `EventEmitter`. Required. See
   below for the events that get generated.
 
 ### Emitting metadata about the document
