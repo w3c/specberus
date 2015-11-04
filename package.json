@@ -16,7 +16,7 @@
     "morgan": "^1.6.1",
     "promise": "^7.0.3",
     "request": "^2.58.0",
-    "socket.io": "^1.3.5",
+    "socket.io": "^1.3.7",
     "superagent": "^1.2.0",
     "whacko": "^0.18.1"
   },
@@ -26,13 +26,13 @@
     "istanbul": "^0.3.17",
     "jsdoc": "^3.3.2",
     "mocha": "^2.2.5",
-    "nsp": "^1.0.3"
+    "nsp": "^2.0.1"
   },
   "scripts": {
     "coverage": "istanbul cover _mocha",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
     "jsdoc": "jsdoc -a all -d doc/api/ -e utf8 -r app.js lib/ test/ tools/",
-    "nsp": "nsp package",
+    "nsp": "nsp check",
     "start": "node app.js",
     "test": "mocha"
   },
