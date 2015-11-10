@@ -95,6 +95,7 @@ These properties are now returned when found:
 * `latestVersion`: URL of the latest version of the document.
 * `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
 * `editorsDraft`: URL of the latest editor's draft.
+* `shortname`: shortname extracted from latestVersion in the document; a `String`.
 * `status`: ID (acronym) of the profile detected in the document; a `String`. See file `public/data/profiles.json`.
 
 As an example, validating [`http://www.w3.org/TR/2014/REC-exi-profile-20140909/`](http://www.w3.org/TR/2014/REC-exi-profile-20140909/) (REC)
@@ -108,6 +109,7 @@ emits these pairs of metadata:
 { previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/' }
 { editorIDs: [] }
 { status: 'REC' }
+{ shortname: 'exi-profile'}
 { process: '1 September 2015' }
 { deliverers: [
    { homepage: 'http://www.w3.org/XML/EXI/',
@@ -132,6 +134,7 @@ If you download that very spec, edit it to include the following metadata&hellip
 { previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/' }
 { editorIDs: [ '329883', '387297' ] }
 { status: 'REC' }
+{ shortname: 'exi-profile'}
 { process: '1 September 2015' }
 { deliverers: [
    { homepage: 'http://www.w3.org/XML/EXI/',
@@ -150,6 +153,7 @@ the following metadata will be found:
 { previousVersion: 'http://www.w3.org/TR/2014/WD-wai-aria-1.1-20140612/' }
 { editorIDs: [] }
 { status: 'WD' }
+{ shortname: 'wai-aria-1.1' }
 { process: '1 September 2015' }
 { editorsDraft: 'http://w3c.github.io/aria/aria/aria.html' }
 { deliverers: [
