@@ -94,7 +94,7 @@ io.sockets.on("connection", function (socket) {
         });
         insafe.check({
             url: data.url,
-            statusCodesAccepted: ["301"]
+            statusCodesAccepted: ["301", "406"]
         }).then(function(res){
             if(res.status) {
                 try {
