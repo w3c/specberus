@@ -19,7 +19,7 @@ var express = require("express")
 ,   version = require("./package.json").version
 ,   profiles = {}
 ;
-("FPWD FPLC FPCR WD LC CR PR PER REC RSCND " +
+("FPWD FPLC WD LC CR PR PER REC RSCND " +
 "CG-NOTE FPIG-NOTE IG-NOTE FPWG-NOTE WG-NOTE " +
 "WD-Echidna " +
 "MEM-SUBM TEAM-SUBM").split(" ")

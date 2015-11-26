@@ -285,16 +285,6 @@ jQuery.extend({
         });
     }
 
-    function disableProcessIfNeeded(profile) {
-        var isFPCR = (profile.val() === "FPCR");
-        if (isFPCR) {
-            $processDocument.find("label#2005").toggleClass("active", !isFPCR);
-            $processDocument.find("label#2015").toggleClass("active", isFPCR);
-        }
-        $processDocument.find("label#2005").toggleClass("disabled", isFPCR);
-
-    }
-
     function setFormParams(options) {
         // Option "echidnaReady" processed first, as it may restrict the list of enabled profiles.
         if (options.echidnaReady === "true") $echidnaReady.prop('checked', true);
@@ -306,7 +296,6 @@ jQuery.extend({
             newProfile = newProfile.substring(0, newProfile.indexOf('-Echidna'));
           }
           $profile.find('option[value=' + newProfile + ']').prop('selected', true);
-          disableProcessIfNeeded($profile);
         }
         if (options.validation) $validation.val(options.validation);
         if (options.noRecTrack === "true") $noRecTrack.prop('checked', true);
@@ -332,10 +321,6 @@ jQuery.extend({
         var isPP2002 = ($(this).attr("id") === "pp2002");
         $noRecTrack.prop("disabled", isPP2002);
         $informativeOnly.prop("disabled", isPP2002);
-    });
-
-    $profile.change(function() {
-        disableProcessIfNeeded($(this));
     });
 
     $echidnaReady.change(function () {
