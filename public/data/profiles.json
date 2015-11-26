@@ -4,7 +4,6 @@
          {"id": "WD", "name": "Working Draft"},
          {"id": "FPWD", "name": "First Public Working Draft"},
          {"id": "FPLC", "name": "First Public and Last Call Working Draft"},
-         {"id": "FPCR", "name": "First Public Candidate Recommendation"},
          {"id": "LC", "name": "Last Call Working Draft"},
          {"id": "CR", "name": "Candidate Recommendation"},
          {"id": "PR", "name": "Proposed Recommendation"},

@@ -189,7 +189,6 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
     * `PR`
     * `CR`
     * `FPWD` (identical)
-    * `FPCR`
     * `SUBM`
     * `MEM-SUBM`
     * `TEAM-SUBM`
