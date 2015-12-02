@@ -1,2 +1,12 @@
 {
+ "webrtc": [
+    {
+      "rule": "headers.copyright.no-match"
+    }
+  ],
+ "mediacapture-streams": [
+    {
+      "rule": "headers.copyright.no-match"
+    }
+  ]
 }
