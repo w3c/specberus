@@ -1,12 +1,18 @@
 {
- "webrtc": [
+  "webrtc": [
     {
       "rule": "headers.copyright"
     }
   ],
- "mediacapture-streams": [
+  "mediacapture-streams": [
     {
       "rule": "headers.copyright"
+    }
+  ],
+  "css-ui-3": [
+    {
+      "rule": "validation.css",
+      "type": "at-rule"
     }
   ]
 }
