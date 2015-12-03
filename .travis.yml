@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - "4.1"
+  - node
 script:
   - npm test
   - npm run nsp
@@ -20,6 +20,5 @@ deploy:
   api_key:
     secure: qPx+fMzf0AOVP1aIKGUrTTHcpoTkyYpsUq20rnDiqQbrNeMo44esOs4szPKtkwQYdM3iVY8AXMDBxej60g5dl4ZN2dy2FiuJnu9zy8ldsXJjEVTbMZT+nhQirJ17zczvP/AmBBY2s/MY5KUK69apgSuIa5nZNkfPjf1sBjfbnus=
   on:
-    node: '0.12'
     tags: true
     repo: w3c/specberus
