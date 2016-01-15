@@ -102,6 +102,11 @@ var tests = {
         ,   { doc: "headers/fails.html", config: { styleSheet: "W3C-WD"}, errors: ["style.sheet"] }
         ,   { doc: "style/style-not-last.html", config: { styleSheet: "W3C-WD"}, errors: ["style.sheet"] }
         ]
+    ,   meta:  [
+            { doc: "dummy/simple.html", errors: ["style.meta"] }
+        ,   { doc: "style/simple.html" }
+        ,   { doc: "style/wrong-meta.html", errors: ["style.meta"] }
+        ]
     }
 ,   links:   {
         internal:  [
