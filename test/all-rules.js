@@ -111,6 +111,10 @@ var tests = {
         ,   { doc: "style/simple.html" }
         ,   { doc: "style/wrong-meta.html", errors: ["style.meta"] }
         ]
+    ,   script:  [
+            { doc: "headers/simple.html", errors: ["style.script"] }
+        ,   { doc: "headers/fixup.html" }
+        ]
     }
 ,   links:   {
         internal:  [
