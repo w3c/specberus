@@ -9,24 +9,24 @@
     "url": "https://github.com/w3c/specberus.git"
   },
   "dependencies": {
-    "body-parser": "^1.13.2",
-    "compression": "^1.5.1",
-    "express": "^4.13.1",
-    "insafe": "^0.3.0",
-    "morgan": "^1.6.1",
-    "promise": "^7.0.3",
-    "request": "^2.58.0",
-    "socket.io": "^1.4.3",
-    "superagent": "^1.2.0",
-    "whacko": "^0.19.1"
+    "body-parser": "1.13",
+    "compression": "1.5",
+    "express": "4.13",
+    "insafe": "0.3",
+    "morgan": "1.6",
+    "promise": "7.0",
+    "request": "2.58",
+    "socket.io": "1.4",
+    "superagent": "1.2",
+    "whacko": "0.19"
   },
   "devDependencies": {
-    "coveralls": "^2.11.2",
-    "expect.js": "^0.3.1",
-    "istanbul": "^0.4.1",
-    "jsdoc": "^3.3.2",
-    "mocha": "^2.2.5",
-    "nsp": "^2.0.1"
+    "coveralls": "2.11",
+    "expect.js": "0.3",
+    "istanbul": "0.4",
+    "jsdoc": "3.3",
+    "mocha": "2.2",
+    "nsp": "2.0"
   },
   "scripts": {
     "coverage": "istanbul cover _mocha",
