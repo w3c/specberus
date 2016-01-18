@@ -86,6 +86,10 @@ var tests = {
             { doc: "headers/simple.html" }
         ,   { doc: "headers/fails.html", errors: ["headers.h2-toc"] }
         ]
+    ,   "ol-toc":  [
+	    { doc: "headers/proper-toc.html" }
+	,   { doc: "headers/fails.html", warnings: ["headers.ol-toc"] }
+	]
     ,   copyright:  [
             { doc: "headers/simple.html" }
         ,   { doc: "headers/simple-oxford.html" }
