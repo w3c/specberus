@@ -83,9 +83,8 @@ var tests = {
         ,   { doc: "headers/simple.html", config: { longStatus: "Recommendation" }, errors: ["headers.h2-status"] }
         ]
     ,   "h2-toc":  [
-            { doc: "headers/simple.html", errors: ["headers.h2-toc"] }
-        ,   { doc: "headers/html4.html", warnings: ["headers.h2-toc"] }
-        ,   { doc: "headers/right-nav.html" }
+            { doc: "headers/simple.html" }
+        ,   { doc: "headers/fails.html", errors: ["headers.h2-toc"] }
         ]
     ,   copyright:  [
             { doc: "headers/simple.html" }
