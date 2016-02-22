@@ -36,7 +36,7 @@
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
     "jsdoc": "jsdoc -a all -d doc/api/ -e utf8 -r app.js lib/ test/ tools/",
     "nsp": "nsp check",
-    "start": "node app.js",
+    "start": "node --use_strict app",
     "test": "mocha -c -G"
   },
   "engines": {
