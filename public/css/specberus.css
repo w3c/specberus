@@ -17,6 +17,7 @@ body {
 }
 
 .navbar img:not(logo) {
+    display: inline;
     margin-right: 5px;
 }
 

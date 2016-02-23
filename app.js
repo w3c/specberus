@@ -12,6 +12,7 @@ const http = require('http');
 const bodyParser = require('body-parser')
 ,   compression = require('compression')
 ,   express = require('express')
+,   handlebars = require('express-handlebars')
 ,   insafe = require('insafe')
 ,   morgan = require('morgan')
 ,   socket = require('socket.io')
@@ -33,6 +34,22 @@ const app = express()
 ,   Sink = sink.Sink
 ,   version = package.version
 ;
+
+var hb = handlebars.create({defaultLayout:"main"});
+app.engine('handlebars', hb.engine);
+app.set('view engine', 'handlebars');
+
+app.get('/', function(req, res) {
+    res.render('index', {version: version});
+});
+
+app.get('/doc/', function(req, res) {
+    res.render('doc/index', {version: version, title: 'documentation'});
+});
+
+app.get('/check/', function(req, res) {
+    res.render('check/index', {version: version, title: 'checker', interactive: true});
+});
 
 // middleware
 app.use(morgan('combined'));

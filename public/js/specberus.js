@@ -50,9 +50,6 @@ jQuery.extend({
     // handshake
     socket.on("handshake", function (data) {
         console.log("Using version", data.version);
-        $(".navbar-brand small").remove();
-        $('head title').text($('head title').text() + ' ' + data.version);
-        $('.navbar-brand').append(' ' + data.version);
     });
 
     // show errors
@@ -380,7 +377,7 @@ jQuery.extend({
     });
 
     $(document).ready(function() {
-        $.getJSON('data/profiles.json', function(data) {
+        $.getJSON('/data/profiles.json', function(data) {
             $profile.append($('<option value="auto" selected="selected">Auto-detect</option>'));
             $.each(data.tracks, function(foo, track) {
                 optgroup = $('<optgroup label="' + track.name + '"></optgroup>');

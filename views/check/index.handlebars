@@ -1,0 +1,164 @@
+    <div class="container">
+
+      <div id="about" class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" onclick="$('#infoLink').show(); $('#about').hide();"><span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        This alternative pubrules checker is <strong>experimental</strong>, and provided only for early testing. <br>
+        Continue using the <a href="http://www.w3.org/2005/07/pubrules">official pubrules checker</a> for publishing;
+        only that one is considered authoritative.<br>
+        Contribute and submit issues <a href="https://github.com/w3c/specberus">on GitHub</a>; send comments to
+          <a href="mailto:public-pubrules-comments@w3.org"><code>public-pubrules-comments@w3.org</code></a>.
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Options</h3>
+            </div>
+            <div class="panel-body">
+              <form id="options" class="form-horizontal">
+
+                <div class="form-group input-sm">
+                  <label for="url" class="col-sm-2 control-label">URL</label>
+                  <div class="col-sm-10">
+                    <input type="url" class="form-control input-sm" id="url" placeholder="URL" required autofocus="autofocus">
+                  </div>
+                </div>
+
+                <div class="form-group input-sm">
+                  <label for="profile" class="col-sm-2 control-label">Profile</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" id="profile" required>
+                      <option value disabled="disabled">Select an option</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group input-sm">
+                  <label class="col-sm-2 control-label">Patent Policy</label>
+                  <div class="col-sm-10">
+                    <div id="patentPolicy" class="btn-group" data-toggle="buttons">
+                      <label id="pp2004" class="btn btn-primary input-sm active">
+                        <input type="radio" name="patentPolicy" class="input-sm">
+                        5 February 2004
+                      </label>
+                      <label id="pp2002" class="btn btn-primary input-sm">
+                        <input type="radio" name="patentPolicy" class="input-sm">
+                        24 January 2002
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group input-sm">
+                  <label class="col-sm-2 control-label">Process</label>
+                  <div class="col-sm-10">
+                    <div id="processDocument" class="btn-group" data-toggle="buttons">
+                      <label id="2015" class="btn btn-primary input-sm active">
+                        <input type="radio" name="processDocument" class="input-sm">
+                        1 September 2015
+                      </label>
+                      <label id="2005" class="btn btn-primary input-sm">
+                        <input type="radio" name="processDocument" class="input-sm">
+                        14 October 2005
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group input-sm">
+                    <label for="validation" class="col-sm-2 control-label">Validation</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="validation" required>
+                            <option value="no-validation">No validation</option>
+                            <option value="simple-validation" selected>Simple Validation</option>
+                            <option value="recursive">Recursively validate multipart documents</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group checkbox input-sm">
+                  <div class="col-sm-12">
+                    <label class="control-label">
+                      <input type="checkbox" id="noRecTrack" name="noRecTrack">
+                      Rec-track status, but document is not really on Rec-track.
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group checkbox input-sm">
+                  <div class="col-sm-12">
+                    <label class="control-label">
+                      <input type="checkbox" id="informativeOnly" name="informativeOnly">
+                      Document is informative-only.
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group checkbox input-sm">
+                  <div class="col-sm-12">
+                    <label class="control-label">
+                      <input type="checkbox" id="echidnaReady" name="echidnaReady">
+                      Check that the document is valid for <a href="https://github.com/w3c/echidna/wiki">automatic publication with Echidna</a>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary pull-right">Run</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div id="summary" class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Summary of results</h3>
+            </div>
+            <div class="panel-body">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div id="progressBar" class="container">
+      <div class="progress progress-striped active">
+        <div class="progress-bar" role="progressbar"
+             aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0">
+          <span class="">x/y done</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+
+      <div class="alert alert-danger alert-dismissable hide" id="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span></span>
+      </div>
+
+      <div class="panel panel-default" id="results">
+        <div class="panel-heading">
+          <h2 class="panel-title">Detailed results</h2>
+        </div>
+        <table class="table">
+          <tr class="h">
+            <th>•</th>
+            <th>Test</th>
+            <th>Result</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    </div>
