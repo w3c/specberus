@@ -37,7 +37,7 @@
     "jsdoc": "jsdoc -a all -d doc/api/ -e utf8 -r app.js lib/ test/ tools/",
     "nsp": "nsp check",
     "start": "node --use_strict app",
-    "test": "mocha -c -G"
+    "test": "mocha"
   },
   "engines": {
     "node": "4 || 5 || 6",
