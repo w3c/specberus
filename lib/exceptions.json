@@ -3,11 +3,6 @@
     {
       "rule": "validation.css",
       "type": "generator.unrecognize",
-      "source": "https://www.w3.org/2016/01/base.css"
-    },
-    {
-      "rule": "validation.css",
-      "type": "generator.unrecognize",
       "source": "https://www.w3.org/StyleSheets/TR/2016/base.css"
     }
   ],
