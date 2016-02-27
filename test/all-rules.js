@@ -90,6 +90,10 @@ var tests = {
 	    { doc: "headers/proper-toc.html" }
 	,   { doc: "headers/fails.html", warnings: ["headers.ol-toc"] }
 	]
+    ,   "secno":  [
+            { doc: "headers/proper-secno.html" }
+        ,   { doc: "headers/fails.html", warnings: [ "headers.secno" ] }
+        ]
     ,   copyright:  [
             { doc: "headers/simple.html" }
         ,   { doc: "headers/simple-oxford.html" }
