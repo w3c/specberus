@@ -123,6 +123,10 @@ var tests = {
             { doc: "headers/simple.html", errors: ["style.script"] }
         ,   { doc: "headers/fixup.html" }
         ]
+    ,   'back-to-top':  [
+            { doc: "headers/simple.html", warnings: ["style.back-to-top"] }
+        ,   { doc: "headers/back-to-top.html" }
+        ]
     }
 ,   links:   {
         internal:  [
