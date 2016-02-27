@@ -1,15 +1,22 @@
 {
-  "webrtc": [
+  ".*": [
+    {
+      "rule": "validation.css",
+      "type": "generator.unrecognize",
+      "source": "https://www.w3.org/StyleSheets/TR/2016/base.css"
+    }
+  ],
+  "^webrtc$": [
     {
       "rule": "headers.copyright"
     }
   ],
-  "mediacapture-streams": [
+  "^mediacapture-streams$": [
     {
       "rule": "headers.copyright"
     }
   ],
-  "css-ui-3": [
+  "^css-ui-3$": [
     {
       "rule": "validation.css",
       "type": "at-rule"
