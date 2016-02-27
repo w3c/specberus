@@ -82,6 +82,10 @@ var tests = {
         ,   { doc: "headers/h2-comma.html", config: { longStatus: "Working Draft" } }
         ,   { doc: "headers/simple.html", config: { longStatus: "Recommendation" }, errors: ["headers.h2-status"] }
         ]
+    ,   "h2-toc":  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "headers/fails.html", errors: ["headers.h2-toc"] }
+        ]
     ,   copyright:  [
             { doc: "headers/simple.html" }
         ,   { doc: "headers/simple-oxford.html" }
