@@ -1,14 +1,20 @@
+/**
+ * Test the rules.
+ */
 
-var Specberus = require("../lib/validator").Specberus
-,   validator = new Specberus()
-,   selectors = require("../lib/l10n-selectors").selectors
-,   wording = require("../lib/rules")
-,   expect = require("expect.js")
-,   pth = require("path")
-,   events = require("events")
-,   util = require("util")
-,   networkCats = "validation".split(" ")
-,   DEBUG = false
+// Settings:
+const DEBUG = false;
+
+// Native packages:
+const pth = require('path');
+
+// External packages:
+const expect = require('expect.js');
+
+// Internal packages:
+const validation = require('./validation')
+,   validator = require('../lib/validator')
+,   sink = require('../lib/sink')
 ;
 
 var tests = {
@@ -215,35 +221,10 @@ var tests = {
         ,   { doc: "heuristic/dated-url.html" }
         ]
     }
+,   validation: validation
 };
 
-// HTML and CSS validations often time out, and Travis CI thinks the build is broken when it happens.
-// Therefore, we only add these test cases when testing locally.
-// See https://github.com/w3c/specberus/issues/164 and http://docs.travis-ci.com/user/ci-environment/#Environment-variables
-if (process.env.TRAVIS !== 'true') {
-    tests.validation = {
-        css:  [
-            { doc: "validation/simple.html", ignoreWarnings: true }
-        ,   { doc: "validation/css.html", ignoreWarnings: true }
-        ,   { doc: "validation/bad-css.html", errors: ["validation.css", "validation.css"], ignoreWarnings: true }
-        ]
-    ,   html:  [
-            { doc: "validation/simple.html" }
-        ,   { doc: "validation/invalid.html", errors: ["validation.html"] }
-        ]
-    };
-}
-
-function Sink () {
-    this.ok = 0;
-    this.errors = [];
-    this.warnings = [];
-    this.done = 0;
-}
-util.inherits(Sink, events.EventEmitter);
-
 Object.keys(tests).forEach(function (category) {
-    if (process.env.SKIP_NETWORK && networkCats.indexOf(category) > -1) return;
     describe("Category " + category, function () {
         Object.keys(tests[category]).forEach(function (rule) {
             describe("Rule " + rule, function () {
@@ -251,47 +232,47 @@ Object.keys(tests).forEach(function (category) {
                     var passTest = test.errors ? false : true;
                     it("should " + (passTest ? "pass" : "fail") + " for " + test.doc, function (done) {
                         var r = require("../lib/rules/" + category + "/" + rule)
-                        ,   sink = new Sink
+                        ,   handler = new sink.Sink
                         ;
-                        sink.on("ok", function () {
+                        handler.on("ok", function () {
                             if (DEBUG) console.log("OK");
-                            sink.ok++;
+                            handler.ok++;
                         });
-                        sink.on("err", function (type, data) {
+                        handler.on("err", function (type, data) {
                             if (DEBUG) console.log(data);
-                            sink.errors.push(type);
+                            handler.errors.push(type);
                         });
-                        sink.on("warning", function (type, data) {
+                        handler.on("warning", function (type, data) {
                             if (DEBUG) console.log("[W]", data);
-                            sink.warnings.push(type);
+                            handler.warnings.push(type);
                         });
-                        sink.on("done", function () {
+                        handler.on("done", function () {
                             if (DEBUG) console.log("---done---");
-                            sink.done++;
+                            handler.done++;
                         });
-                        sink.on("exception", function (data) {
+                        handler.on("exception", function (data) {
                             console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
                         });
-                        sink.on("end-all", function () {
+                        handler.on("end-all", function () {
                             if (passTest) {
-                                expect(sink.errors).to.be.empty();
-                                expect(sink.ok).to.eql(sink.done);
+                                expect(handler.errors).to.be.empty();
+                                expect(handler.ok).to.eql(handler.done);
                             }
                             else {
-                                expect(sink.errors.length).to.eql(test.errors.length);
+                                expect(handler.errors.length).to.eql(test.errors.length);
                                 for (var i = 0, n = test.errors.length; i < n; i++) {
-                                    expect(sink.errors).to.contain(test.errors[i]);
+                                    expect(handler.errors).to.contain(test.errors[i]);
                                 }
                             }
                             if (!test.ignoreWarnings) {
                                 if (test.warnings) {
-                                    expect(sink.warnings.length).to.eql(test.warnings.length);
+                                    expect(handler.warnings.length).to.eql(test.warnings.length);
                                     for (var i = 0, n = test.warnings.length; i < n; i++) {
-                                        expect(sink.warnings).to.contain(test.warnings[i]);
+                                        expect(handler.warnings).to.contain(test.warnings[i]);
                                     }
                                 }
                                 else {
-                                    expect(sink.warnings).to.be.empty();
+                                    expect(handler.warnings).to.be.empty();
                                 }
                             }
                             done();
@@ -304,38 +285,14 @@ Object.keys(tests).forEach(function (category) {
                         var options = {
                             file:       pth.join(__dirname, "docs", test.doc)
                         ,   profile:    profile
-                        ,   events:     sink
+                        ,   events:     handler
                         };
                         for (var o in test.options)
                             options[o] = test.options[o];
-                        validator.validate(options);
+                        new validator.Specberus().validate(options);
                     });
                 });
             });
         });
     });
 });
-
-describe('l10n', function() {
-
-    describe('UI messages module', function() {
-        it('should be a valid object', function() {
-            expect(wording).to.be.an('object');
-        });
-    });
-
-    describe('Selectors module', function() {
-        it('should be a valid object', function() {
-            expect(selectors).to.be.an('object');
-        });
-        it('should contain only selectors that resolve correctly', function() {
-            var message;
-            Object.keys(selectors).forEach(function (key) {
-                message = eval('wording.' + [selectors[key]]);
-                expect(message).to.be.a('string');
-            });
-        });
-    });
-
-});
-
