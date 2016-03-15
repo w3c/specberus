@@ -1,24 +1,38 @@
-/*jshint es5: true*/
+/**
+ * Main runnable file of Specberus.
+ */
 
-// Pseudo-constants:
-var DEFAULT_PORT = 80;
+// Settings:
+const DEFAULT_PORT = 80;
 
-// The Express and Socket.io server interface
-var express = require("express")
-,   bodyParser = require('body-parser')
+// Native packages:
+const http = require('http');
+
+// External packages:
+const bodyParser = require('body-parser')
 ,   compression = require('compression')
+,   express = require('express')
+,   insafe = require('insafe')
 ,   morgan = require('morgan')
-,   app = express()
-,   server = require("http").createServer(app)
-,   io = require("socket.io").listen(server)
-,   Specberus = new require("./lib/validator").Specberus
-,   l10n = require("./lib/l10n")
-,   util = require("util")
-,   events = require("events")
-,   insafe = require("insafe")
-,   version = require("./package.json").version
-,   profiles = {}
+,   socket = require('socket.io')
 ;
+
+// Internal packages:
+const package = require('./package.json')
+,   l10n = require('./lib/l10n')
+,   sink = require('./lib/sink')
+,   Specberus = new require('./lib/validator').Specberus
+,   profileMetadata = require('./lib/profiles/metadata')
+;
+
+const app = express()
+,   server = http.createServer(app)
+,   io = socket.listen(server)
+,   profiles = {}
+,   Sink = sink.Sink
+,   version = package.version
+;
+
 ("FPWD FPLC FPCR WD LC CR PR PER REC RSCND " +
 "CG-NOTE FPIG-NOTE IG-NOTE FPWG-NOTE WG-NOTE " +
 "WD-Echidna " +
@@ -33,6 +47,71 @@ app.use(morgan('combined'));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(express.static("public"));
+
+app.post('/api/*', function(req, res) {
+    var v
+    ,   file
+    ,   profile
+    ,   handler
+    ,   options
+    ;
+    if ('/api/validate' === req.path) {
+        v = new Specberus();
+        file = req.query.file;
+        profile = profiles[req.query.profile];
+        handler = new Sink;
+        options = {file: file, events: handler, profile: profile};
+        handler.on("ok", function () {
+            console.log("OK");
+        });
+        handler.on("err", function (type, data) {
+            console.log(data);
+        });
+        handler.on("warning", function (type, data) {
+            console.log("[W]", data);
+        });
+        handler.on("done", function () {
+            console.log("---done---");
+        });
+        handler.on("exception", function (data) {
+            console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
+        });
+        handler.on("end-all", function () {
+            console.log('All done');
+        });
+        v.validate(options);
+    }
+    else if ('/api/metadata' === req.path) {
+        v = new Specberus();
+        file = req.query.file;
+        handler = new Sink;
+        options = {file: file, events: handler, profile: profileMetadata};
+        handler.on("ok", function () {
+            console.log("OK");
+        });
+        handler.on("err", function (type, data) {
+            console.log(data);
+        });
+        handler.on("warning", function (type, data) {
+            console.log("[W]", data);
+        });
+        handler.on("done", function () {
+            console.log("---done---");
+        });
+        handler.on("exception", function (data) {
+            console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
+        });
+        handler.on("end-all", function () {
+            console.log('All done');
+            console.log(v.detectedProfile);
+        });
+        v.validate(options);
+    }
+    else {
+        res.status(404).send('Don\'t recognise "' + req.path + '"!');
+    }
+    res.end();
+});
 
 // listen up
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
@@ -49,8 +128,6 @@ server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
 //      error, { name: "test name", code: "FOO" }
 //      done, { name: "test name" }
 //      finished
-function Sink () {}
-util.inherits(Sink, events.EventEmitter);
 
 io.sockets.on("connection", function (socket) {
     socket.emit("handshake", { version: version });
@@ -58,38 +135,38 @@ io.sockets.on("connection", function (socket) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
         if (!data.profile) return socket.emit("exception", { message: "Profile not provided." });
         if (!profiles[data.profile]) return socket.emit("exception", { message: "Profile does not exist." });
-        var validator = new Specberus()
-        ,   sink = new Sink
+        var v = new Specberus()
+        ,   handler = new Sink
         ,   profile = profiles[data.profile]
         ;
         socket.emit("start", {
             rules:  (profile.rules || []).map(function (rule) { return rule.name; })
         });
-        sink.on("ok", function (type) {
+        handler.on("ok", function (type) {
             socket.emit("ok", { name: type });
         });
-        sink.on("err", function (type, data) {
+        handler.on("err", function (type, data) {
             data.name = type;
-            data.message = l10n.message(validator.config.lang, type, data.key, data.extra);
+            data.message = l10n.message(v.config.lang, type, data.key, data.extra);
             socket.emit("err", data);
         });
-        sink.on("warning", function (type, data) {
+        handler.on("warning", function (type, data) {
             data.name = type;
-            data.message = l10n.message(validator.config.lang, type, data.key, data.extra);
+            data.message = l10n.message(v.config.lang, type, data.key, data.extra);
             socket.emit("warning", data);
         });
-        sink.on('info', function (type, data) {
+        handler.on('info', function (type, data) {
             data.name = type;
-            data.message = l10n.message(validator.config.lang, type, data.key, data.extra);
+            data.message = l10n.message(v.config.lang, type, data.key, data.extra);
             socket.emit('info', data);
         });
-        sink.on("done", function (name) {
+        handler.on("done", function (name) {
             socket.emit("done", { name: name });
         });
-        sink.on("end-all", function () {
+        handler.on("end-all", function () {
             socket.emit("finished");
         });
-        sink.on("exception", function (data) {
+        handler.on("exception", function (data) {
             socket.emit("exception", data);
         });
         insafe.check({
@@ -98,10 +175,10 @@ io.sockets.on("connection", function (socket) {
         }).then(function(res){
             if(res.status) {
                 try {
-                    validator.validate({
+                    v.validate({
                         url:                res.url
                     ,   profile:            profile
-                    ,   events:             sink
+                    ,   events:             handler
                     ,   validation:         data.validation
                     ,   noRecTrack:         data.noRecTrack
                     ,   informativeOnly:    data.informativeOnly
