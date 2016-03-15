@@ -46,8 +46,7 @@ const detect = function(url, profile) {
     });
 };
 
-// We only add these test cases when testing locally; see comment in "validation.js".
-if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
+if (!process || !process.env || !process.env.SKIP_NETWORK) {
 
     describe('API', function() {
 
