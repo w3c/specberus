@@ -21,7 +21,7 @@ const bodyParser = require('body-parser')
 const package = require('./package.json')
 ,   l10n = require('./lib/l10n')
 ,   sink = require('./lib/sink')
-,   Specberus = new require('./lib/validator').Specberus
+,   validator = require('./lib/validator')
 ,   profileMetadata = require('./lib/profiles/metadata')
 ;
 
@@ -56,7 +56,7 @@ app.post('/api/*', function(req, res) {
     ,   options
     ;
     if ('/api/validate' === req.path) {
-        v = new Specberus();
+        v = new validator.Specberus;
         file = req.query.file;
         profile = profiles[req.query.profile];
         handler = new Sink;
@@ -82,7 +82,7 @@ app.post('/api/*', function(req, res) {
         v.validate(options);
     }
     else if ('/api/metadata' === req.path) {
-        v = new Specberus();
+        v = new validator.Specberus;
         file = req.query.file;
         handler = new Sink;
         options = {file: file, events: handler, profile: profileMetadata};
@@ -135,7 +135,7 @@ io.sockets.on("connection", function (socket) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
         if (!data.profile) return socket.emit("exception", { message: "Profile not provided." });
         if (!profiles[data.profile]) return socket.emit("exception", { message: "Profile does not exist." });
-        var v = new Specberus()
+        var v = new validator.Specberus
         ,   handler = new Sink
         ,   profile = profiles[data.profile]
         ;
