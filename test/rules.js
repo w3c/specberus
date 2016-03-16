@@ -4,15 +4,17 @@
 
 // Settings:
 const DEBUG = false
-,   METADATA_PROFILE = 'profile'
-,   METADATA_DELIVERERS = 'deliverers'
+,   META_PROFILE = 'profile'
+,   META_DELIVERERS = 'deliverers'
 ;
 
 // Native packages:
 const pth = require('path');
 
 // External packages:
-const expect = require('expect.js');
+const expect = require('expect.js')
+,   chai = require('chai').expect
+;
 
 // Internal packages:
 const validation = require('./validation')
@@ -22,51 +24,73 @@ const validation = require('./validation')
 ;
 
 /**
- * Assert that the profile detected in a spec is equal to the known profile.
+ * Compare two arrays of "deliverers" and check that they're equivalent.
  *
- * @param {String} url - public URL of a spec.
- * @param {String} profile - profile that should be detected.
- * @param {Array} deliverers - set of deliverers that should be detected.
+ * @param {Array} a1 - One array.
+ * @param {Array} a2 - The other array.
+ * @returns {Boolean} whether the two structures are really the same.
  */
 
-const compareMetadata = function(url, type, expectedValue) { // profile, deliverers) {
+const equivalentDeliverers = function(a1, a2) {
+    if (a1 && a2 && a1.length === a2.length) {
+        var j
+        ,   found = 0;
+        for(var i = 0; i < a1.length; i ++) {
+            j = 0;
+            while (i === found && j < a2.length) {
+                if (a1[i].name === a2[j].name && a1[i].homepage === a2[j].homepage) {
+                    found++;
+                }
+                else {
+                    j++;
+                }
+            }
+        }
+        return (found === a1.length);
+    } else {
+        return false;
+    }
+};
 
-    const specberus = new validator.Specberus
-    ,   handler = new sink.Sink(console.log) // , console.log)
+/**
+ * Assert that some metadata detected in a spec is equal to the expected value.
+ *
+ * @param {String} url - public URL of a spec.
+ * @param {String} file - name of local file containing a spec (without path and withouth ".html" suffix).
+ * @param {String} type - metadata to check: {"META_PROFILE", "META_DELIVERERS"}.
+ * @param {Object} expectedValue - value that is expected to be found.
+ */
+
+const compareMetadata = function(url, file, type, expectedValue) {
+
+    const specberus = new validator.Specberus()
+    ,   handler = new sink.Sink(function(data) { throw new Error(data); })
+    ,   thisFile = file ? 'test/docs/metadata/' + file + '.html' : null
     ;
-    // handler.on('exception', function () {});
-    // handler.on('done', function () {});
-    const opts = {events: handler, url: url};
+    const opts = {events: handler, url: url, file: thisFile};
 
-    if (METADATA_PROFILE === type) {
-        it('Should detect a ' + expectedValue, function () {
+    if (META_PROFILE === type) {
+        it('Should detect a ' + expectedValue, function (done) {
             handler.on('end-all', function () {
-                // console.dir(specberus.metadata);
-                // expect(specberus.metadata).to.not.be(undefined);
-                // expect(specberus.metadata.detectedProfile).to.not.be(undefined);
-                expect(specberus.metadata.detectedProfile).to.equal(expectedValue);
+                chai(specberus).to.have.property('meta').to.have.property('detectedProfile').equal(expectedValue);
+                done();
             });
             specberus.extractMetadata(opts);
         });
     }
-    else if (METADATA_DELIVERERS === type) {
-        it('Should find deliverers of sample spec', function () {
+    else if (META_DELIVERERS === type) {
+        it('Should find deliverers of ' + (url ? url : file), function (done) {
             handler.on('end-all', function () {
-                // console.dir(specberus.metadata);
-                // expect(specberus.metadata).to.not.be(undefined);
-                // expect(specberus.metadata.detectedDeliverers).to.not.be(undefined);
-                // expect(specberus.metadata.detectedDeliverers).to.be.an('array');
-                expect(specberus.metadata.detectedDeliverers.length).to.equal(expectedValue.length);
-                // for(var i = 0; i < specberus.metadata.detectedDeliverers.length; i ++) {
-                //     @TODO: compare all deliverers, one by one.
-                // }
-                // done();
+                chai(specberus).to.have.property('meta').to.have.property('detectedDeliverers');
+                chai(specberus.meta.detectedDeliverers).to.satisfy(function(found) {
+                    return equivalentDeliverers(found, expectedValue);
+                });
+                done();
             });
             specberus.extractMetadata(opts);
         });
-
-
     }
+
 
 };
 
@@ -76,29 +100,38 @@ describe('Basics', function() {
 
     describe('Method "extractMetadata"', function() {
 
-        // it('Should exist and be a function'), function() {
-        //     expect(specberus.extractMetadata).to.be.a('function');
-        // };
+        it('Should exist and be a function', function(done) {
+            chai(specberus).to.have.property('extractMetadata').that.is.a('function');
+            done();
+        });
 
-        if (!process || !process.env || !process.env.SKIP_NETWORK) {
+        if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
             for(var i in samples) {
-                compareMetadata(samples[i].url, METADATA_PROFILE, samples[i].profile);
+                compareMetadata(samples[i].url, null, META_PROFILE, samples[i].profile);
+            }
+            for(var i in samples) {
+                compareMetadata(samples[i].url, null, META_DELIVERERS, samples[i].deliverers);
             }
         }
-
-        if (!process || !process.env || !process.env.SKIP_NETWORK) {
+        else {
             for(var i in samples) {
-                compareMetadata(samples[i].url, METADATA_DELIVERERS, samples[i].deliverers);
+                compareMetadata(null, samples[i].file, META_PROFILE, samples[i].profile);
+            }
+            for(var i in samples) {
+                compareMetadata(null, samples[i].file, META_DELIVERERS, samples[i].deliverers);
             }
         }
 
     });
 
-    // describe('Method "validate"', function() {
-    //     it('Should exist and be a function'), function() {
-    //         expect(specberus.validate).to.be.a('function');
-    //     };
-    // });
+    describe('Method "validate"', function() {
+
+        it('Should exist and be a function', function(done) {
+            chai(specberus).to.have.property('validate').that.is.a('function');
+            done();
+        });
+
+    });
 
 });
 

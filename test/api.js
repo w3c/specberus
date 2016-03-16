@@ -31,7 +31,7 @@ if (!process || !process.env || !process.env.SKIP_NETWORK) {
 
     describe('API', function() {
 
-        it('The endpoint should exist', function() {
+/*        it('The endpoint should exist', function() {
             // @TODO
         });
 
@@ -58,7 +58,7 @@ if (!process || !process.env || !process.env.SKIP_NETWORK) {
                 // @TODO
             };
             // @TODO; submit a few sample specs for validation; check results.
-        });
+        }); */
 
     });
 
