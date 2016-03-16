@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" typeof="bibo:Document w3p:LastCall" prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
+<head><meta property="dc:language" content="en" lang="">
+  <title>Tracking Compliance and Scope</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  
+  
+  <style>
+table.simple {
+    width: 40%;
+    margin: 0 auto;
+  }
+  </style>
+<style>/*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+
+/* --- INLINES --- */
+em.rfc2119 { 
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  1px solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  1px dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+cite .bibref {
+    font-style: normal;
+}
+
+code {
+    color:  #C83500;
+}
+
+/* --- TOC --- */
+.toc a, .tof a {
+    text-decoration:    none;
+}
+
+a .secno, a .figno {
+    color:  #000;
+}
+
+ul.tof, ol.tof {
+    list-style: none outside none;
+}
+
+.caption {
+    margin-top: 0.5em;
+    font-style:   italic;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple th[scope="row"] {
+    background: inherit;
+    color:  inherit;
+    border-top: 1px solid #ddd;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+.section dl.attrs dd, .section dl.eldef dd {
+    margin-bottom:  0;
+}
+
+@media print {
+    .removeOnSave {
+        display: none;
+    }
+}
+</style><style>/* --- EXAMPLES --- */
+div.example-title {
+    min-width: 7.5em;
+    color: #b9ab2d;
+}
+div.example-title span {
+    text-transform: uppercase;
+}
+aside.example, div.example, div.illegal-example {
+    padding: 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+}
+div.illegal-example { color: red }
+div.illegal-example p { color: black }
+aside.example, div.example {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+    border-color: #e0cb52;
+    background: #fcfaee;
+}
+
+aside.example div.example {
+    border-left-width: .1em;
+    border-color: #999;
+    background: #fff;
+}
+aside.example div.example div.example-title {
+    color: #999;
+}
+</style><style>/* --- ISSUES/NOTES --- */
+div.issue-title, div.note-title , div.ednote-title, div.warning-title {
+    padding-right:  1em;
+    min-width: 7.5em;
+    color: #b9ab2d;
+}
+div.issue-title { color: #e05252; }
+div.note-title, div.ednote-title { color: #2b2; }
+div.warning-title { color: #f22; }
+div.issue-title span, div.note-title span, div.ednote-title span, div.warning-title span {
+    text-transform: uppercase;
+}
+div.note, div.issue, div.ednote, div.warning {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.note > p:first-child, .ednote > p:first-child, .issue > p:first-child, .warning > p:first-child { margin-top: 0 }
+.issue, .note, .ednote, .warning {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+}
+div.issue, div.note , div.ednote,  div.warning {
+    padding: 1em 1.2em 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+}
+span.note, span.ednote, span.issue, span.warning { padding: .1em .5em .15em; }
+
+.issue {
+    border-color: #e05252;
+    background: #fbe9e9;
+}
+.note, .ednote {
+    border-color: #52e052;
+    background: #e9fbe9;
+}
+
+.warning {
+    border-color: #f11;
+    border-right-width: .2em;
+    border-top-width: .2em;
+    border-bottom-width: .2em;
+    border-style: solid;
+    background: #fbe9e9;
+}
+
+.warning-title:before{
+    content: "⚠"; /*U+26A0 WARNING SIGN*/
+    font-size: 3em;
+    float: left;
+    height: 100%;
+    padding-right: .3em;
+    vertical-align: top;
+    margin-top: -0.5em;
+}
+
+li.task-list-item {
+    list-style: none;
+}
+
+input.task-list-item-checkbox {
+    margin: 0 0.35em 0.25em -1.6em;
+    vertical-align: middle;
+}
+</style><link href="https://www.w3.org/StyleSheets/TR/W3C-WD" rel="stylesheet"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
+
+<body id="respecDocument" role="document" class="h-entry"><div id="respecHeader" role="contentinfo" class="head">
+  <p>
+      
+        
+            <a href="http://www.w3.org/"><img src="https://www.w3.org/Icons/w3c_home" alt="W3C" height="48" width="72"></a>
+        
+      
+  </p>
+  <h1 class="title p-name" id="title" property="dcterms:title">Tracking Compliance and Scope</h1>
+  
+  <h2 id="w3c-last-call-working-draft-14-july-2015"><abbr title="World Wide Web Consortium">W3C</abbr> Last Call Working Draft <time property="dcterms:issued" class="dt-published" datetime="2015-07-14">14 July 2015</time></h2>
+  <dl>
+    
+      <dt>This version:</dt>
+      <dd><a class="u-url" href="http://www.w3.org/TR/2015/WD-tracking-compliance-20150714/">http://www.w3.org/TR/2015/WD-tracking-compliance-20150714/</a></dd>
+      <dt>Latest published version:</dt>
+      <dd><a href="http://www.w3.org/TR/tracking-compliance/">http://www.w3.org/TR/tracking-compliance/</a></dd>
+    
+    
+      <dt>Latest editor's draft:</dt>
+      <dd><a href="http://www.w3.org/2011/tracking-protection/drafts/tracking-compliance.html">http://www.w3.org/2011/tracking-protection/drafts/tracking-compliance.html</a></dd>
+    
+    
+    
+    
+    
+    
+      <dt>Previous version:</dt>
+      <dd><a rel="dcterms:replaces" href="http://www.w3.org/TR/2015/WD-tracking-compliance-20150331/">http://www.w3.org/TR/2015/WD-tracking-compliance-20150331/</a></dd>
+    
+    
+    <dt>Editors:</dt>
+    <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0"><span property="rdf:first" typeof="foaf:Person"><meta property="foaf:name" content="Nick Doty"><a class="u-url url p-name fn" property="foaf:homepage" href="https://npdoty.name">Nick Doty</a>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://w3.org"><abbr title="World Wide Web Consortium">W3C</abbr></a></span>
+<span property="rdf:rest" resource="_:editor1"></span>
+</dd>
+<dd class="p-author h-card vcard" resource="_:editor1"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Heather West</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://google.com/">Google</a> (until 2014)</span>
+<span property="rdf:rest" resource="_:editor2"></span>
+</dd>
+<dd class="p-author h-card vcard" resource="_:editor2"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Justin Brookman</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://cdt.org/"><abbr title="Center for Democracy &amp; Technology">CDT</abbr></a> (until September 2013)</span>
+<span property="rdf:rest" resource="_:editor3"></span>
+</dd>
+<dd class="p-author h-card vcard" resource="_:editor3"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Sean Harvey</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://google.com/">Google</a> (until June 2012)</span>
+<span property="rdf:rest" resource="_:editor4"></span>
+</dd>
+<dd class="p-author h-card vcard" resource="_:editor4"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Erica Newland</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://cdt.org/"><abbr title="Center for Democracy &amp; Technology">CDT</abbr></a> (until May 2012)</span>
+<span property="rdf:rest" resource="rdf:nil"></span>
+</dd>
+
+    
+    
+  </dl>
+  
+  
+  
+  
+    
+      <p class="copyright">
+        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
+        2015
+        
+        <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
+        (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+        <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+        <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). 
+        
+        <abbr title="World Wide Web Consortium">W3C</abbr> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+        
+          <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+        
+        rules apply.
+      </p>
+    
+  
+  <hr>
+</div>
+  <section property="dc:abstract" class="introductory" id="abstract"><h2 resource="#h-abstract" id="h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2>
+    <p>This specification defines a set of practices for compliance with a
+    user's Do Not Track (DNT) tracking preference to which a server may claim
+    adherence.</p>
+  </section><section id="sotd" class="introductory"><h2 resource="#h-sotd" id="h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
+  
+    
+      
+        <p>
+          <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at http://www.w3.org/TR/.</em>
+        </p>
+        
+        
+    
+  
+        
+        <p>
+          This document was published by the <a href="http://www.w3.org/2011/tracking-protection/">Tracking Protection Working Group</a> as a Last Call Working Draft on 14 July 2015.
+          
+            This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
+          
+          
+            If you wish to make comments regarding this document, please send them to 
+            <a href="mailto:public-tracking-comments@w3.org">public-tracking-comments@w3.org</a> 
+            (<a href="mailto:public-tracking-comments-request@w3.org?subject=subscribe">subscribe</a>,
+            <a href="http://lists.w3.org/Archives/Public/public-tracking-comments/">archives</a>). All comments are publicly archived; if you have not used <abbr title="World Wide Web Consortium">W3C</abbr> mailing
+    lists in the past, you will need to approve archiving (instructions are
+    sent via email auto-reply) before your comments will be distributed.
+          
+          The Last Call period ends 07 October 2015.
+          
+          
+          
+            
+            All comments are welcome.
+            
+          
+        </p>
+        
+        <p>The Tracking Protection Working Group invites broad community review,
+        especially of technical requirements and dependencies. Reviewers are
+        encouraged to comment on the extent to which technical requirements of the
+        group's charter have been met and how significant dependencies with groups
+        inside and outside <abbr title="World Wide Web Consortium">W3C</abbr> have been satisfied. The Working Group will evaluate
+        all comments received and determine whether or how the specification needs
+        to be modified in light of the comments. Comments will be most useful in
+        identifying particular problems with the specification that might inhibit
+        adoption, or where this specification fails to further goals of user
+        privacy and user control, and whether this specification creates or does
+        not otherwise resolve dependencies with other technical standards,
+        practices, or processes. The Chairs of the Working Group will issue written
+        responses to all comments received.</p>
+    
+        <p>The Working Group previously published a Last Call Working Draft of the
+        companion Tracking Preference Expression [<cite><a href="#bib-TPE" class="bibref">TPE</a></cite>] specification, which
+        defines mechanisms for expressing a user's preference regarding tracking
+        and for communicating whether and how received preferences are honored.
+        That specification is expected to transition to Candidate Recommendation
+        shortly.</p>
+    
+        <p>Revisions from the previous Working Draft include editorial changes,
+        removal of separate "tracking data" terminology, and updates to compliance 
+        with expressed tracking preferences and indications of such compliance. 
+        Readers may review <a href="http://services.w3.org/htmldiff?doc1=http%3A%2F%2Fwww.w3.org%2FTR%2F2015%2FWD-tracking-compliance-20150331%2F&amp;doc2=http%3A%2F%2Fwww.w3.org%2FTR%2F2015%2FWD-tracking-compliance-20150714%2F">
+        changes from the previous Working Draft</a>.</p>
+        
+        
+          <p>
+            Publication as a Last Call Working Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
+            Membership. This is a draft document and may be updated, replaced or obsoleted by other
+            documents at any time. It is inappropriate to cite this document as other than work in
+            progress.
+          </p>
+        
+        
+        
+          <p>
+            This is a Last Call Working Draft and thus the Working Group has determined that this
+            document has satisfied the relevant technical requirements and is sufficiently stable to
+            advance through the Technical Recommendation process.
+          </p>
+        
+        <p>
+          
+            This document was produced by a group operating under the 
+            <a id="sotd_patent" property="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
+            Policy</a>.
+          
+          
+          
+            
+              <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/49311/status" rel="disclosure">public list of any patent
+              disclosures</a> 
+            
+            made in connection with the deliverables of the group; that page also includes
+            instructions for disclosing a patent. An individual who has actual knowledge of a patent
+            which the individual believes contains
+            <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+            Claim(s)</a> must disclose the information in accordance with
+            <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+            6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+          
+          
+        </p>
+        
+          <p>
+            This document is governed by the  <a id="w3c_process_revision" href="http://www.w3.org/2005/10/Process-20051014/">14 October 2005 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+          </p>
+        
+        
+      
+    
+  
+</section><section id="toc"><h2 resource="#h-toc" id="h-toc" class="introductory"><span property="xhv:role" resource="xhv:heading">Table of Contents</span></h2><ul id="respecContents" role="directory" class="toc"><li class="tocline"><a class="tocxref" href="#scope-and-goals"><span class="secno">1. </span>Scope</a></li><li class="tocline"><a class="tocxref" href="#definitions"><span class="secno">2. </span>Definitions</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#user"><span class="secno">2.1 </span>User</a></li><li class="tocline"><a class="tocxref" href="#user-agent"><span class="secno">2.2 </span>User Agent</a></li><li class="tocline"><a class="tocxref" href="#network-interaction"><span class="secno">2.3 </span>Network Interaction</a></li><li class="tocline"><a class="tocxref" href="#user-action"><span class="secno">2.4 </span>User Action</a></li><li class="tocline"><a class="tocxref" href="#party"><span class="secno">2.5 </span>Party</a></li><li class="tocline"><a class="tocxref" href="#service-provider"><span class="secno">2.6 </span>Service Provider</a></li><li class="tocline"><a class="tocxref" href="#first-party"><span class="secno">2.7 </span>First Party</a></li><li class="tocline"><a class="tocxref" href="#third-party"><span class="secno">2.8 </span>Third Party</a></li><li class="tocline"><a class="tocxref" href="#deidentified"><span class="secno">2.9 </span>De-identification</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#deidentified-considerations"><span class="secno">2.9.1 </span>De-identification Considerations</a></li></ul></li><li class="tocline"><a class="tocxref" href="#tracking"><span class="secno">2.10 </span>Tracking</a></li><li class="tocline"><a class="tocxref" href="#collection"><span class="secno">2.11 </span>Collect, Use, Share</a></li></ul></li><li class="tocline"><a class="tocxref" href="#server-compliance"><span class="secno">3. </span>Server Compliance</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#indicating-compliance"><span class="secno">3.1 </span>Indicating Compliance and Non-Compliance</a></li><li class="tocline"><a class="tocxref" href="#first-party-compliance"><span class="secno">3.2 </span>First Party Compliance</a></li><li class="tocline"><a class="tocxref" href="#third-party-compliance"><span class="secno">3.3 </span>Third Party Compliance</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#permitted-use-requirements"><span class="secno">3.3.1 </span>General Requirements for Permitted Uses</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#no-secondary-uses"><span class="secno">3.3.1.1 </span>No Secondary Uses</a></li><li class="tocline"><a class="tocxref" href="#data-minimization-and-transparency"><span class="secno">3.3.1.2 </span>Data Minimization, Retention and Transparency</a></li><li class="tocline"><a class="tocxref" href="#no-personalization"><span class="secno">3.3.1.3 </span>No Personalization</a></li><li class="tocline"><a class="tocxref" href="#reasonable-security"><span class="secno">3.3.1.4 </span>Reasonable Security</a></li></ul></li><li class="tocline"><a class="tocxref" href="#permitted-uses"><span class="secno">3.3.2 </span>Permitted Uses</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#frequency-capping"><span class="secno">3.3.2.1 </span>Frequency Capping</a></li><li class="tocline"><a class="tocxref" href="#financial-logging"><span class="secno">3.3.2.2 </span>Financial Logging</a></li><li class="tocline"><a class="tocxref" href="#security"><span class="secno">3.3.2.3 </span>Security</a></li><li class="tocline"><a class="tocxref" href="#debugging"><span class="secno">3.3.2.4 </span>Debugging</a></li></ul></li><li class="tocline"><a class="tocxref" href="#qualifiers"><span class="secno">3.3.3 </span>Qualifiers for Permitted Uses</a></li></ul></li></ul></li><li class="tocline"><a class="tocxref" href="#user-granted-exceptions"><span class="secno">4. </span>Consent</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#transitive-exceptions"><span class="secno">4.1 </span>Transfer of consent to another party</a></li></ul></li><li class="tocline"><a class="tocxref" href="#interactions"><span class="secno">5. </span>Interaction with Existing User Privacy Controls</a></li><li class="tocline"><a class="tocxref" href="#unknowing-collection"><span class="secno">6. </span>Unknowing Collection</a></li><li class="tocline"><a class="tocxref" href="#legal-compliance"><span class="secno">7. </span>Legal Compliance</a></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><span class="secno">A. </span>Acknowledgements</a></li><li class="tocline"><a class="tocxref" href="#references"><span class="secno">B. </span>References</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><span class="secno">B.1 </span>Normative references</a></li></ul></li></ul></section>
+
+  
+
+  <section property="bibo:hasPart" resource="#scope-and-goals" typeof="bibo:Chapter" id="scope-and-goals">
+    <!--OddPage--><h2 resource="#h-scope-and-goals" id="h-scope-and-goals"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>Scope</span></h2>
+
+    <p>Do Not Track is designed to provide users with a simple mechanism to
+    express a preference to allow or limit online <a class="internalDFN" href="#dfn-tracking">tracking</a>. Complying
+    with the user's preference as described in this document includes limits on
+    the collection, retention and use of data collected as a <a class="internalDFN" href="#dfn-third-party">third party</a>
+    to <a class="internalDFN" href="#dfn-user-action" title="user action">user actions</a> and the sharing of data not
+    <a class="internalDFN" href="#dfn-permanently-de-identified">permanently de-identified</a>.</p>
+
+    <p>This specification is intended for compliance with expressed user
+    preferences via <a class="internalDFN" href="#dfn-user-agent" title="user agent">user agents</a> that (1) can access
+    the general browsable Web; (2) have a user interface that satisfies the
+    requirements in <a href="http://www.w3.org/TR/2014/WD-tracking-dnt-20140424/#determining">Determining
+    User Preference</a> in the [<cite><a href="#bib-TPE" class="bibref">TPE</a></cite>] specification; and, (3) can implement
+    all of the [<cite><a href="#bib-TPE" class="bibref">TPE</a></cite>] specification, including the mechanisms for
+    communicating a tracking status, and the user-granted exception
+    mechanism.</p>
+
+    <p>It is outside the scope of this specification to control short-term,
+    transient collection and use of data, so long as the data is not shared
+    with a third party and is not used to build a profile about a user or
+    otherwise alter an individual user’s experience outside the current network
+    interaction. For example, the contextual customization of ads shown as part
+    of the same network interaction is not restricted by a <code>DNT:1</code>
+    signal.</p>
+  </section>
+
+  <section property="bibo:hasPart" resource="#definitions" typeof="bibo:Chapter" id="definitions">
+    <!--OddPage--><h2 resource="#h-definitions" id="h-definitions"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>Definitions</span></h2>
+
+    <section property="bibo:hasPart" resource="#user" typeof="bibo:Chapter" id="user">
+      <h3 resource="#h-user" id="h-user"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.1 </span>User</span></h3>
+
+      <p>A <dfn id="dfn-user">user</dfn> is a natural person who is making, or has made, use
+      of the Web.</p>
+    </section>
+
+    <section property="bibo:hasPart" resource="#user-agent" typeof="bibo:Chapter" id="user-agent">
+      <h3 resource="#h-user-agent" id="h-user-agent"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.2 </span>User Agent</span></h3>
+
+      <p>The term <dfn id="dfn-user-agent">user agent</dfn> refers to any of the various client
+      programs capable of initiating HTTP requests, including but not limited
+      to browsers, spiders (web-based robots), command-line tools, native
+      applications, and mobile apps [<cite><a href="#bib-RFC7230" class="bibref">RFC7230</a></cite>].</p>
+    </section>
+
+    <section property="bibo:hasPart" resource="#network-interaction" typeof="bibo:Chapter" id="network-interaction">
+      <h3 resource="#h-network-interaction" id="h-network-interaction"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.3 </span>Network Interaction</span></h3>
+
+      <p>A <dfn id="dfn-network-interaction">network interaction</dfn> is a single HTTP request and its
+      corresponding response(s): zero or more interim (1xx) responses and a
+      single final (2xx-5xx) response.</p>
+    </section>
+
+    <section property="bibo:hasPart" resource="#user-action" typeof="bibo:Chapter" id="user-action">
+      <h3 resource="#h-user-action" id="h-user-action"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.4 </span>User Action</span></h3>
+
+      <p>A <dfn id="dfn-user-action">user action</dfn> is a deliberate action by the user, via
+      configuration, invocation, or selection, to initiate a network
+      interaction. Selection of a link, submission of a form, and reloading a
+      page are examples of user actions.</p>
+    </section>
+
+    <section property="bibo:hasPart" resource="#party" typeof="bibo:Chapter" id="party">
+      <h3 resource="#h-party" id="h-party"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.5 </span>Party</span></h3>
+
+      <p>A <dfn id="dfn-party">party</dfn> is a natural person, a legal entity, or a set of
+      legal entities that share common owner(s), common controller(s), and a
+      group identity that is easily discoverable by a user. Common branding or
+      providing a list of affiliates that is available via a link from a
+      resource where a party describes DNT practices are examples of ways to
+      provide this discoverability.</p>
+    </section>
+
+    <section property="bibo:hasPart" resource="#service-provider" typeof="bibo:Chapter" id="service-provider">
+      <h3 resource="#h-service-provider" id="h-service-provider"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.6 </span>Service Provider</span></h3>
+
+      <p>Access to Web resources often involves multiple parties that might
+      process the data received in a network interaction. For example, domain
+      name services, network access points, content distribution networks, load
+      balancing services, security filters, cloud platforms, and
+      software-as-a-service providers might be a party to a given network
+      interaction because they are contracted by either the user or the
+      resource owner to provide the mechanisms for communication. Likewise,
+      additional parties might be engaged after a network interaction, such as
+      when services or contractors are used to perform specialized data
+      analysis or records retention.</p>
+
+      <p>For the data received in a given network interaction, a <dfn id="dfn-service-provider">service
+      provider</dfn> is considered to be the same party as its
+      <dfn id="dfn-contractee">contractee</dfn> if the service provider:</p>
+
+      <ol>
+        <li>processes the data on behalf of the contractee;</li>
+
+        <li>ensures that the data is only retained, accessed, and used as
+        directed by the contractee;</li>
+
+        <li>has no independent right to use the data other than in a
+        <a class="internalDFN" href="#dfn-permanently-de-identified">permanently de-identified</a> form (e.g., for monitoring service
+        integrity, load balancing, capacity planning, or billing); and,
+        </li>
+
+        <li>has a contract in place with the contractee which is consistent
+        with the above limitations.</li>
+      </ol>
+    </section>
+
+    <section property="bibo:hasPart" resource="#first-party" typeof="bibo:Chapter" id="first-party">
+      <h3 resource="#h-first-party" id="h-first-party"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.7 </span>First Party</span></h3>
+
+      <p>With respect to a given user action, a <dfn id="dfn-first-party">first party</dfn> is a
+      party with which the user intends to interact, via one or more network
+      interactions, as a result of making that action. Merely hovering over,
+      muting, pausing, or closing a given piece of content does not constitute
+      a user's intent to interact with another party.</p>
+
+      <p>In some cases, a resource on the Web will be jointly controlled by two
+      or more distinct parties. Each of those parties is considered a first
+      party to a given user action if a user would reasonably expect to
+      communicate with all of them when accessing that resource. For example,
+      prominent co-branding on the resource might lead a user to expect that
+      multiple parties are responsible for the content or functionality.</p>
+
+      <p>Network interactions related to a given user action may not constitute
+      intentional interaction when, for example, the user is unaware or only
+      transiently informed of redirection or framed content.</p>
+    </section>
+
+    <section property="bibo:hasPart" resource="#third-party" typeof="bibo:Chapter" id="third-party">
+      <h3 resource="#h-third-party" id="h-third-party"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.8 </span>Third Party</span></h3>
+
+      <p>For any data collected as a result of one or more network interactions
+      resulting from a user's action, a <dfn id="dfn-third-party">third party</dfn> is any party
+      other than that user, a first party for that user action, or a service
+      provider acting on behalf of either that user or that first party.</p>
+    </section>
+
+    <section property="bibo:hasPart" resource="#deidentified" typeof="bibo:Chapter" id="deidentified">
+      <h3 resource="#h-deidentified" id="h-deidentified"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.9 </span>De-identification</span></h3>
+
+      <p>Data is <dfn id="dfn-permanently-de-identified">permanently de-identified</dfn> when there exists a high
+      level of confidence that no human subject of the data can be identified,
+      directly or indirectly (e.g., via association with an identifier, user
+      agent, or device), by that data alone or in combination with other
+      retained or available information.</p>
+
+      <section property="bibo:hasPart" resource="#deidentified-considerations" typeof="bibo:Chapter" id="deidentified-considerations" class="informative">
+        <h4 resource="#h-deidentified-considerations" id="h-deidentified-considerations"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.9.1 </span>De-identification Considerations</span></h4><p><em>This section is non-normative.</em></p>
+
+        <p>In this specification the term <a class="internalDFN" href="#dfn-permanently-de-identified">permanently de-identified</a> is
+        used for data that has passed out of the scope of this specification
+        and can not, and will never, come back into scope. The organization
+        that performs the de-identification needs to be confident that the data
+        can never again identify the human subjects whose activity contributed
+        to the data. That confidence may result from ensuring or demonstrating
+        that it is no longer possible to:</p>
+
+        <ul>
+          <li>isolate some or all records which correspond to a device or
+          user;</li>
+
+          <li>link two or more records (either from the same database or
+          different databases), concerning the same device or user;</li>
+
+          <li>deduce, with significant probability, information about a device
+          or user.</li>
+        </ul>
+
+        <p>Regardless of the de-identification approach, unique keys can be
+        used to correlate records within the de-identified dataset, provided
+        the keys do not exist and cannot be derived outside the de-identified
+        dataset and have no meaning outside the de-identified dataset (i.e. no
+        mapping table can exist that links the original identifiers to the keys
+        in the de-identified dataset).</p>
+
+        <p>In the case of records in such data that relate to a single user or
+        a small number of users, usage and/or distribution restrictions are
+        advisable; experience has shown that such records can, in fact,
+        sometimes be used to identify the user or users despite technical
+        measures taken to prevent re-identification. It is also a good practice
+        to disclose (e.g. in the privacy policy) the process by which
+        de-identification of these records is done, as this can both raise the
+        level of confidence in the process, and allow for for feedback on the
+        process. The restrictions might include, for example:</p>
+
+        <ul>
+          <li>technical safeguards that prohibit re-identification of
+          de-identified data;</li>
+
+          <li>business processes that specifically prohibit re-identification
+          of de-identified data;</li>
+
+          <li>business processes that prevent inadvertent release of
+          de-identified data;</li>
+
+          <li>administrative controls that limit access to de-identified
+          data.</li>
+        </ul>
+
+        <p>Geolocation data (of a certain precision or over a period of time)
+        may itself identify otherwise de-identified data.</p>
+      </section>
+    </section>
+
+    <section property="bibo:hasPart" resource="#tracking" typeof="bibo:Chapter" id="tracking">
+      <h3 resource="#h-tracking" id="h-tracking"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.10 </span>Tracking</span></h3>
+
+      <p><dfn id="dfn-tracking">Tracking</dfn> is the collection of data regarding a particular
+      user's activity across multiple distinct contexts and the retention, use,
+      or sharing of data derived from that activity outside the context in
+      which it occurred. A <dfn id="dfn-context">context</dfn> is a set of resources that are
+      controlled by the same party or jointly controlled by a set of
+      parties.</p>
+    </section>
+
+    <section property="bibo:hasPart" resource="#collection" typeof="bibo:Chapter" id="collection">
+      <h3 resource="#h-collection" id="h-collection"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.11 </span>Collect, Use, Share</span></h3>
+
+      <p>A party <dfn id="dfn-collects">collects</dfn> data received in a network interaction if
+      that data remains within the party’s control after the network
+      interaction is complete.</p>
+
+      <p>A party <dfn id="dfn-uses">uses</dfn> data if the party processes the data for any
+      purpose other than storage or merely forwarding it to another party.</p>
+
+      <p>A party <dfn id="dfn-shares">shares</dfn> data if it transfers or provides a copy of
+      data to any other party.</p>
+    </section>
+  </section><!-- end definitions -->
+
+  <section property="bibo:hasPart" resource="#server-compliance" typeof="bibo:Chapter" id="server-compliance">
+    <!--OddPage--><h2 resource="#h-server-compliance" id="h-server-compliance"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>Server Compliance</span></h2>
+
+    <section property="bibo:hasPart" resource="#indicating-compliance" typeof="bibo:Chapter" id="indicating-compliance">
+      <h3 resource="#h-indicating-compliance" id="h-indicating-compliance"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1 </span>Indicating Compliance and Non-Compliance</span></h3>
+
+      <p>In order to indicate a party's compliance with a user's expressed
+      tracking preference as described in this specification for a given
+      resource, an origin server:</p>
+
+      <ol start="1">
+        <li><em title="MUST" class="rfc2119">MUST</em> conform to the origin server requirements of [<cite><a href="#bib-TPE" class="bibref">TPE</a></cite>];</li>
+
+        <li><em title="MUST" class="rfc2119">MUST</em> send a tracking status value other than <code>!</code> (under
+        construction) or <code>D</code> (disregarding) for that resource;
+        and</li>
+
+        <li><em title="MUST" class="rfc2119">MUST</em> send, in a tracking status representation applicable to that
+        resource, a compliance property that contains a reference to the
+        following URI:
+
+          <blockquote>
+            <code>http://www.w3.org/TR/2015/WD-tracking-compliance-20150714/</code>
+          </blockquote>
+        </li>
+      </ol>
+
+      <p>When a user sends a <code>DNT:0</code> signal, the user is expressing
+      a preference to allow tracking. This specification places no restrictions
+      on collection or use of data from network interactions with
+      <code>DNT:0</code> signals. Note, however, that a party might be limited
+      by its own statements to the user regarding the <code>DNT:0</code>
+      setting. For more information, see Section <a class="sec-ref" href="#user-granted-exceptions"><span class="secno">4.</span> <span class="sec-title">Consent</span></a>.</p>
+
+      <p>A party to a given user action which receives a <code>DNT:1</code>
+      signal and is <a class="internalDFN" href="#dfn-tracking">tracking</a> that action <em title="MUST" class="rfc2119">MUST</em> indicate so to the user
+      agent. A party that is tracking a user with that user's consent to
+      override an expressed <code>DNT:1</code> preference <em title="MUST" class="rfc2119">MUST</em> indicate so with
+      the corresponding <code>C</code> or <code>P</code> <a class="externalDFN" href="http://www.w3.org/TR/2014/WD-tracking-dnt-20140424/#tracking-status-value">
+      tracking status values</a>. A party that is tracking a user for reasons
+      allowable under this specification (for example, for one of the permitted
+      uses described below) <em title="MUST" class="rfc2119">MUST</em> use the <code>T</code> value. A party to a
+      given user action that is not engaged in tracking <em title="SHOULD" class="rfc2119">SHOULD</em> use the
+      <code>N</code> value (a <code>T</code> value is also conformant but not
+      as informative).</p>
+
+      <p>A party to a given user action that disregards a <code>DNT:1</code>
+      signal <em title="MUST" class="rfc2119">MUST</em> indicate that non-compliance to the user agent, using the
+      response mechanism defined in the [<cite><a href="#bib-TPE" class="bibref">TPE</a></cite>] specification. The party <em title="MUST" class="rfc2119">MUST</em>
+      provide information in its privacy policy listing the specific reasons
+      for not honoring the user's expressed preference. The party's
+      representation <em title="MUST" class="rfc2119">MUST</em> be clear and easily discoverable.</p>
+
+      <p>In the interest of transparency, especially where multiple reasons are
+      listed, a server might use the [<cite><a href="#bib-TPE" class="bibref">TPE</a></cite>] <a class="externalDFN" href="http://www.w3.org/TR/2014/WD-tracking-dnt-20140424/#rep.qualifiers">qualifiers</a>
+      or <a class="externalDFN" href="http://www.w3.org/TR/2014/WD-tracking-dnt-20140424/#rep.config">config</a>
+      properties to indicate a particular reason for disregarding or steps to
+      address the issue. A user agent can parse this response to communicate
+      the reason to the user or direct the user to the relevant section of a
+      privacy policy. This document does not define specific qualifiers for
+      different reasons servers might have for disregarding signals.</p>
+    </section>
+
+    <section property="bibo:hasPart" resource="#first-party-compliance" typeof="bibo:Chapter" id="first-party-compliance">
+      <h3 resource="#h-first-party-compliance" id="h-first-party-compliance"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2 </span>First Party Compliance</span></h3>
+
+      <p>With respect to a given user action, a first party to that action
+      which receives a <code>DNT:1</code> signal <em title="MAY" class="rfc2119">MAY</em> collect, retain and use
+      data received from those network interactions. This includes customizing
+      content, services and advertising with respect to those user actions.</p>
+
+      <aside class="example"><div class="example-title"><span>Example 1</span></div>
+        <p>A site that collects and uses data about users only when those users
+        visit the site itself can comply with the a user's expressed DNT
+        preference without changing the site's practices of data collection and
+        use. Such a site can create a static site-wide tracking status resource
+        with a tracking status value of <code>N</code>.</p>
+      </aside>
+
+      <p>A first party to a given user action <em title="MUST NOT" class="rfc2119">MUST NOT</em> share data about those
+      network interactions with third parties to that action who are prohibited
+      from collecting data from those network interactions under this
+      specification. Data about the interaction <em title="MAY" class="rfc2119">MAY</em> be shared with service
+      providers acting on behalf of that first party.</p>
+
+      <p>Compliance rules in this section apply where a party determines that
+      it is a first party to a given user action — either because network
+      resources are intended only for use as a first party to a user action or
+      because the status is dynamically discerned. For cases where a party
+      later determines that data was unknowingly collected as a third party to
+      a user action, see Section <a class="sec-ref" href="#unknowing-collection"><span class="secno">6.</span> <span class="sec-title">Unknowing Collection</span></a>.</p>
+
+      <p>A first party to a given user action <em title="MAY" class="rfc2119">MAY</em> elect to follow the rules
+      defined under this specification for third parties.</p>
+    </section>
+
+    <section property="bibo:hasPart" resource="#third-party-compliance" typeof="bibo:Chapter" id="third-party-compliance">
+      <h3 resource="#h-third-party-compliance" id="h-third-party-compliance"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3 </span>Third Party Compliance</span></h3>
+
+      <p>When a third party to a given user action receives a
+      <code>DNT:1</code> signal in a related network interaction, that party
+      <em title="MAY" class="rfc2119">MAY</em> collect and use data about those network interactions when:</p>
+
+      <ol start="1">
+        <li>a user has explicitly granted consent, as described below (Section
+        <a class="sec-ref" href="#user-granted-exceptions"><span class="secno">4.</span> <span class="sec-title">Consent</span></a>);
+        </li>
+
+        <li>data is collected for the set of permitted uses described below
+        (Section <a class="sec-ref" href="#permitted-uses"><span class="secno">3.3.2</span> <span class="sec-title">Permitted Uses</span></a>);
+        </li>
+
+        <li>or, the data is <a class="internalDFN" href="#dfn-permanently-de-identified">permanently de-identified</a> as defined in this
+        specification.
+        </li>
+      </ol>
+
+      <p>Other than under those enumerated conditions, that party:</p>
+
+      <ol start="1">
+        <li><em title="MUST NOT" class="rfc2119">MUST NOT</em> collect data from this network interaction that would
+        result in data regarding this particular user being associated across
+        multiple contexts;</li>
+
+        <li><em title="MUST NOT" class="rfc2119">MUST NOT</em> retain, use, or share data from this particular user's
+        activity outside the context in which that activity occurred; and</li>
+
+        <li><em title="MUST NOT" class="rfc2119">MUST NOT</em> use data from network interactions with this particular
+        user in a different <a class="internalDFN" href="#dfn-context">context</a>.
+        </li>
+      </ol>
+
+      <aside class="example"><div class="example-title"><span>Example 2</span></div>
+        <p>An embedded widget provider (a third party to users' interactions
+        with various sites) counts visitors' country of origin and device type
+        but removes identifiers in order to <a class="internalDFN" href="#dfn-permanently-de-identified" title="permanently de-identified">permanently de-identify</a> collected data.
+        For the purposes of this specification, the party is not
+        <a class="internalDFN" href="#dfn-tracking">tracking</a> the user and can create a static site-wide tracking
+        status resource with a tracking status value of <code>N</code> to
+        indicate that status.</p>
+      </aside>
+
+      <p>Outside the permitted uses and explicitly-granted exceptions listed
+      below, a third party to a given user action <em title="MUST NOT" class="rfc2119">MUST NOT</em> collect, share, or
+      associate with related network interactions any identifiers that identify
+      a specific user, user agent, or device. For example, a third party that
+      does not require unique user identifiers for one of the permitted uses
+      <em title="MUST NOT" class="rfc2119">MUST NOT</em> place a unique identifier in cookies or other browser-based
+      local storage mechanisms.</p>
+
+      <section property="bibo:hasPart" resource="#permitted-use-requirements" typeof="bibo:Chapter" id="permitted-use-requirements">
+        <h4 resource="#h-permitted-use-requirements" id="h-permitted-use-requirements"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.1 </span>General Requirements for Permitted Uses</span></h4>
+
+        <p>Some collection and use of data by third parties to a given user
+        action is permitted, notwithstanding receipt of <code>DNT:1</code> in a
+        network interaction, as enumerated below. Different permitted uses may
+        differ in their permitted items of data collection, retention times,
+        and consequences. In all cases, collection and use of data must be
+        reasonably necessary and proportionate to achieve the purpose for which
+        it is specifically permitted; unreasonable or disproportionate
+        collection, retention, or use are not “permitted uses”.</p>
+
+        <div class="note"><div id="h-note1" role="heading" aria-level="5" class="note-title"><span>Note</span></div><p class="">The requirements in the following sub-sections apply to
+        a party that collects data for a permitted use and that would otherwise
+        be prohibited from collecting, retaining or using that data under the
+        third-party compliance requirements above. Where a first party to a
+        given user action, for example, collects some data for a purpose listed
+        among the permitted uses (e.g. security of network services), these
+        requirements do not apply.</p></div>
+
+        <section property="bibo:hasPart" resource="#no-secondary-uses" typeof="bibo:Chapter" id="no-secondary-uses">
+          <h5 resource="#h-no-secondary-uses" id="h-no-secondary-uses"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.1.1 </span>No Secondary Uses</span></h5>
+
+          <p>A party <em title="MUST NOT" class="rfc2119">MUST NOT</em> use data collected for permitted uses for
+          purposes other than the permitted uses for which each datum was
+          permitted to be collected.</p>
+        </section>
+
+        <section property="bibo:hasPart" resource="#data-minimization-and-transparency" typeof="bibo:Chapter" id="data-minimization-and-transparency">
+          <h5 resource="#h-data-minimization-and-transparency" id="h-data-minimization-and-transparency"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.1.2 </span>Data Minimization, Retention and Transparency</span></h5>
+
+          <p>Data collected by a party for permitted uses <em title="MUST" class="rfc2119">MUST</em> be minimized to
+          the data reasonably necessary for such permitted uses. Such data <em title="MUST NOT" class="rfc2119">MUST NOT</em> be retained any longer than is proportionate to, and reasonably
+          necessary for, such permitted uses. A party <em title="MUST NOT" class="rfc2119">MUST NOT</em> rely on unique
+          identifiers if alternative solutions are reasonably available.</p>
+
+          <p>A party <em title="MUST" class="rfc2119">MUST</em> publicly describe definite time periods for which
+          data collected for permitted uses are retained. The party <em title="MAY" class="rfc2119">MAY</em>
+          enumerate different retention periods for different permitted uses.
+          Data <em title="MUST NOT" class="rfc2119">MUST NOT</em> be used for a permitted use once the data retention
+          period for that permitted use has expired. After there are no
+          remaining permitted uses for given data, the data <em title="MUST" class="rfc2119">MUST</em> be deleted or
+          <a class="internalDFN" href="#dfn-permanently-de-identified">permanently de-identified</a>.</p>
+        </section>
+
+        <section property="bibo:hasPart" resource="#no-personalization" typeof="bibo:Chapter" id="no-personalization">
+          <h5 resource="#h-no-personalization" id="h-no-personalization"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.1.3 </span>No Personalization</span></h5>
+
+          <p>A party that collects data for a permitted use <em title="MUST NOT" class="rfc2119">MUST NOT</em> use that
+          data to alter a specific user's online experience, except as
+          specifically permitted below.</p>
+        </section>
+
+        <section property="bibo:hasPart" resource="#reasonable-security" typeof="bibo:Chapter" id="reasonable-security">
+          <h5 resource="#h-reasonable-security" id="h-reasonable-security"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.1.4 </span>Reasonable Security</span></h5>
+
+          <p>A party that collects data for a permitted use <em title="MUST" class="rfc2119">MUST</em> use reasonable
+          technical and organizational safeguards to prevent further processing
+          of data retained for permitted uses. While physical separation of
+          data maintained for permitted uses is not required, best practices
+          <em title="SHOULD" class="rfc2119">SHOULD</em> be in place to ensure technical controls ensure access
+          limitations and information security.</p>
+        </section>
+      </section>
+
+      <section property="bibo:hasPart" resource="#permitted-uses" typeof="bibo:Chapter" id="permitted-uses">
+        <h4 resource="#h-permitted-uses" id="h-permitted-uses"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.2 </span>Permitted Uses</span></h4>
+
+        <section property="bibo:hasPart" resource="#frequency-capping" typeof="bibo:Chapter" id="frequency-capping">
+          <h5 resource="#h-frequency-capping" id="h-frequency-capping"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.2.1 </span>Frequency Capping</span></h5>
+
+          <p>Regardless of the tracking preference expressed, data <em title="MAY" class="rfc2119">MAY</em> be
+          collected, retained and used to limit the number of times that a user
+          sees a particular advertisement, often called <dfn id="dfn-frequency-capping">frequency
+          capping</dfn>, as long as the data retained do not reveal the user’s
+          browsing history.</p>
+        </section>
+
+        <section property="bibo:hasPart" resource="#financial-logging" typeof="bibo:Chapter" id="financial-logging">
+          <h5 resource="#h-financial-logging" id="h-financial-logging"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.2.2 </span>Financial Logging</span></h5>
+
+          <p>Regardless of the tracking preference expressed, data <em title="MAY" class="rfc2119">MAY</em> be
+          collected and used for <dfn id="dfn-billing-and-auditing">billing and auditing</dfn> related to the
+          current network interaction and concurrent transactions. This may
+          include counting ad impressions to unique visitors, verifying
+          positioning and quality of ad impressions and auditing compliance
+          with this specification and other standards.</p>
+        </section>
+
+        <section property="bibo:hasPart" resource="#security" typeof="bibo:Chapter" id="security">
+          <h5 resource="#h-security" id="h-security"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.2.3 </span>Security</span></h5>
+
+          <p>Regardless of the tracking preference expressed, data <em title="MAY" class="rfc2119">MAY</em> be
+          collected and used to the extent reasonably necessary to detect
+          <dfn id="dfn-security">security</dfn> incidents, protect the service against malicious,
+          deceptive, fraudulent, or illegal activity, and prosecute those
+          responsible for such activity, provided that such data is not used
+          for operational behavior beyond what is reasonably necessary to
+          protect the service or institute a graduated response.</p>
+
+          <p>When feasible, a graduated response to a detected security
+          incident is preferred over widespread data collection. In this
+          specification, a <dfn id="dfn-graduated-response">graduated response</dfn> is a data minimization
+          methodology where actions taken are proportional to the problem or
+          risk being mitigated.</p>
+
+          <aside class="example"><div class="example-title"><span>Example 3</span></div>
+            <p>Examples of using a graduated response for data minimization in
+            security and fraud prevention include:</p>
+
+            <ul>
+              <li>recording all use from a given IP address range, regardless
+              of DNT signal, when the party believes it is seeing a coordinated
+              click fraud attack on its service from that IP address
+              range.</li>
+
+              <li>collecting all data matching an identifiable fingerprint (a
+              combination of User Agent and other protocol information, say)
+              and retaining logs until it can be determined that they are not
+              associated with such an attack or such retention is no longer
+              necessary to support prosecution</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section property="bibo:hasPart" resource="#debugging" typeof="bibo:Chapter" id="debugging">
+          <h5 resource="#h-debugging" id="h-debugging"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.2.4 </span>Debugging</span></h5>
+
+          <p>Regardless of the tracking preference expressed, data <em title="MAY" class="rfc2119">MAY</em> be
+          collected, retained and used for <dfn id="dfn-debugging">debugging</dfn> purposes to
+          identify and repair errors that impair existing intended
+          functionality.</p>
+        </section>
+      </section>
+
+      <section property="bibo:hasPart" resource="#qualifiers" typeof="bibo:Chapter" id="qualifiers">
+        <h4 resource="#h-qualifiers" id="h-qualifiers"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.3 </span>Qualifiers for Permitted Uses</span></h4>
+
+        <p>A party <em title="MAY" class="rfc2119">MAY</em> indicate which of the listed permitted uses apply to
+        tracking of a user with the <a class="externalDFN" href="http://www.w3.org/TR/2014/WD-tracking-dnt-20140424/#rep.qualifiers">qualifiers</a>
+        mechanism defined in the [<cite><a href="#bib-TPE" class="bibref">TPE</a></cite>] document. While providing qualifiers
+        is <em title="OPTIONAL" class="rfc2119">OPTIONAL</em>, a party that wishes to indicate particular permitted uses
+        <em title="MUST" class="rfc2119">MUST</em> use the corresponding characters as indicated in the table
+        below.</p>
+
+        <table class="simple">
+          <tbody><tr>
+            <th>qualifier</th>
+
+            <th>permitted use</th>
+          </tr>
+
+          <tr>
+            <td>c</td>
+
+            <td>
+              <a class="internalDFN" href="#dfn-frequency-capping" title="frequency capping">frequency capping</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>f</td>
+
+            <td>
+              <a class="internalDFN" href="#dfn-billing-and-auditing" title="billing and auditing">financial logging</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>s</td>
+
+            <td>
+              <a class="internalDFN" href="#dfn-security" title="security">security</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>d</td>
+
+            <td>
+              <a class="internalDFN" href="#dfn-debugging" title="debugging">debugging</a>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <p>A party <em title="MAY" class="rfc2119">MAY</em> use multiple qualifiers to indicate that multiple
+        permitted uses of tracking might be ongoing and that each such use
+        conforms to any corresponding requirements. Where qualifiers are
+        present, a party <em title="MUST" class="rfc2119">MUST</em> indicate all claimed permitted uses.</p>
+
+        <aside class="example"><div class="example-title"><span>Example 4</span></div>
+          <p>A site that tracks user activity across several unrelated sites
+          (through a tracking pixel or embedded script, for example) but
+          collects and uses data about that activity only as necessary for
+          security and debugging purposes might create a tracking status
+          resource with a tracking status value of <code>T</code> (to indicate
+          tracking) and a qualifiers value of <code>sd</code> (to indicate the
+          particular permitted uses).</p>
+        </aside>
+      </section>
+    </section>
+  </section>
+
+  <section property="bibo:hasPart" resource="#user-granted-exceptions" typeof="bibo:Chapter" id="user-granted-exceptions">
+    <!--OddPage--><h2 resource="#h-user-granted-exceptions" id="h-user-granted-exceptions"><span property="xhv:role" resource="xhv:heading"><span class="secno">4. </span>Consent</span></h2>
+
+    <p>A party <em title="MAY" class="rfc2119">MAY</em> engage in practices otherwise proscribed by this
+    specification when the user has given explicit and informed consent. After
+    consent is received, it might be subsequently registered through the
+    User-Granted Exceptions API defined in the companion [<cite><a href="#bib-TPE" class="bibref">TPE</a></cite>] document or
+    recorded <dfn id="dfn-out-of-band">out of band</dfn> using a different technology. A party <em title="MUST" class="rfc2119">MUST</em>
+    indicate when it is relying on <a class="internalDFN" href="#dfn-out-of-band">out of band</a> consent to override a Do
+    Not Track preference, as described in the companion [<cite><a href="#bib-TPE" class="bibref">TPE</a></cite>] document.</p>
+
+    <aside class="example"><div class="example-title"><span>Example 5</span></div>
+      <p>A site may provide a settings page to its logged-in users with an
+      explanation of a feature that involves collecting data on that user's
+      activity on other sites in order to provide more relevant content on the
+      home site. To implement the feature and record that consent, the site
+      places a cookie on the user's machine. In subsequent requests where the
+      consent cookie is recognized and a <code>DNT:1</code> header is present,
+      the site responds with a <code>Tk</code> response header of
+      <code>C</code>, to indicate that consent to the user.</p>
+    </aside>
+
+    <section property="bibo:hasPart" resource="#transitive-exceptions" typeof="bibo:Chapter" id="transitive-exceptions">
+      <h3 resource="#h-transitive-exceptions" id="h-transitive-exceptions"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.1 </span>Transfer of consent to another party</span></h3>
+
+      <p>When a party requests consent from the user as described above, it
+      might include consent for sharing data with its <a class="internalDFN" href="#dfn-service-provider" title="service provider">service providers</a>. This <dfn id="dfn-transitive-permission">transitive
+      permission</dfn> might apply even to those parties to which the user has
+      not separately granted consent to be tracked.</p>
+
+      <p>A party that transfers consent in this way <em title="MUST" class="rfc2119">MUST</em> ensure that its
+      <a class="internalDFN" href="#dfn-service-provider" title="service provider">service providers</a> acknowledge this
+      consent by use of the corresponding <a class="externalDFN" href="http://www.w3.org/TR/2014/WD-tracking-dnt-20140424/#tracking-status-value">
+      tracking status value</a> of <code>C</code> and a <a class="externalDFN" href="http://www.w3.org/TR/2014/WD-tracking-dnt-20140424/#rep.qualifiers">qualifier</a>
+      of <code>t</code> ("transferred").</p>
+
+      <aside class="example"><div class="example-title"><span>Example 6</span></div>
+        <p>An advertisement network might receive consent from the user for
+        tracking in order to provide more targeted advertising by its partners
+        and record that consent using the User-Granted Exceptions API. On
+        subsequent requests, a <code>DNT:0</code> signal is sent to the ad
+        network which might use an out-of-band channel to indicate that consent
+        to its service providers. Those service providers which directly
+        communicated with the user, for example, to deliver an ad, would use a
+        tracking status value (<code>C</code>) and qualifier (<code>t</code>)
+        to indicate to the user that consent had been received by another
+        party.</p>
+      </aside>
+    </section>
+  </section>
+
+  <section property="bibo:hasPart" resource="#interactions" typeof="bibo:Chapter" id="interactions">
+    <!--OddPage--><h2 resource="#h-interactions" id="h-interactions"><span property="xhv:role" resource="xhv:heading"><span class="secno">5. </span>Interaction with Existing User Privacy Controls</span></h2>
+
+    <p>Multiple systems may be setting, sending, and receiving DNT and/or
+    opt-out signals at the same time. As a result, it will be important to
+    ensure industry and web browser vendors are on the same page with respect
+    to honoring user choices in circumstances where "mixed signals" may be
+    received.</p>
+
+    <p>As a general principle, more specific settings override less specific
+    settings, as where the specific consent in user-granted exceptions
+    overrides a general preference. If a party perceives a conflict between
+    settings, a party <em title="MAY" class="rfc2119">MAY</em> seek clarification from the user or <em title="MAY" class="rfc2119">MAY</em> honor the
+    more restrictive setting.</p>
+  </section>
+
+  <section property="bibo:hasPart" resource="#unknowing-collection" typeof="bibo:Chapter" id="unknowing-collection">
+    <!--OddPage--><h2 resource="#h-unknowing-collection" id="h-unknowing-collection"><span property="xhv:role" resource="xhv:heading"><span class="secno">6. </span>Unknowing Collection</span></h2>
+
+    <p>If a party learns that it possesses data in violation of this
+    specification, it <em title="MUST" class="rfc2119">MUST</em>, where reasonably feasible, delete or de-identify
+    that data at the earliest practical opportunity, even if it was previously
+    unaware of such information practices despite reasonable efforts to
+    understand its information practices.</p>
+  </section>
+
+  <section property="bibo:hasPart" resource="#legal-compliance" typeof="bibo:Chapter" id="legal-compliance">
+    <!--OddPage--><h2 resource="#h-legal-compliance" id="h-legal-compliance"><span property="xhv:role" resource="xhv:heading"><span class="secno">7. </span>Legal Compliance</span></h2>
+
+    <p>Notwithstanding anything in this specification, a party <em title="MAY" class="rfc2119">MAY</em> collect,
+    use, and share data required to comply with applicable laws, regulations,
+    and judicial processes.</p>
+  </section>
+
+  <section property="bibo:hasPart" resource="#acknowledgements" typeof="bibo:Chapter" id="acknowledgements" class="appendix">
+    <!--OddPage--><h2 resource="#h-acknowledgements" id="h-acknowledgements"><span property="xhv:role" resource="xhv:heading"><span class="secno">A. </span>Acknowledgements</span></h2>
+
+    <p>This specification consists of input from many discussions within and
+    around the <abbr title="World Wide Web Consortium">W3C</abbr> Tracking Protection Working Group, along with written
+    contributions from: Haakon Flage Bratsberg (Opera Software), Amy Colando
+    (Microsoft), Rob van Eijk (Invited Expert), Roy T. Fielding (Adobe), Vinay
+    Goel (Adobe), Yianni Lagos (Future of Privacy Forum), Tom Lowenthal
+    (Mozilla), Ted Leung (The Walt Disney Company), Jonathan Mayer (Stanford),
+    Ninja Marnau (Invited Expert), Mike O'Neill (Baycloud Systems), Thomas
+    Roessler (<abbr title="World Wide Web Consortium">W3C</abbr>), Wendy Seltzer (<abbr title="World Wide Web Consortium">W3C</abbr>), Rob Sherman (Facebook), John M.
+    Simpson (Invited Expert), David Singer (Apple), Kevin G. Smith (Adobe),
+    Vincent Toubiana (Invited Expert), Rigo Wenning (<abbr title="World Wide Web Consortium">W3C</abbr>), and Shane Wiley
+    (Yahoo!). The co-chairs of the group have helped guide those discussions:
+    Justin Brookman (<abbr title="Center for Democracy &amp; Technology">CDT</abbr>), Carl Cargill (Adobe),
+    Aleecia M. McDonald (Stanford), Matthias Schunter (Intel), and Peter Swire
+    (Invited Expert).</p>
+
+    <p>Many thanks to Robin Berjon for <a href="http://www.w3.org/respec/">ReSpec</a>.</p>
+  </section>
+
+
+<section property="bibo:hasPart" resource="#references" typeof="bibo:Chapter" id="references" class="appendix"><!--OddPage--><h2 resource="#h-references" id="h-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B. </span>References</span></h2><section property="bibo:hasPart" resource="#normative-references" typeof="bibo:Chapter" id="normative-references"><h3 resource="#h-normative-references" id="h-normative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B.1 </span>Normative references</span></h3><dl resource="" class="bibliography"><dt id="bib-RFC7230">[RFC7230]</dt><dd>R. Fielding, Ed.; J. Reschke, Ed.. <a property="dc:requires" href="https://tools.ietf.org/html/rfc7230"><cite>Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</cite></a>. June 2014. Proposed Standard. URL: <a property="dc:requires" href="https://tools.ietf.org/html/rfc7230">https://tools.ietf.org/html/rfc7230</a>
+</dd><dt id="bib-TPE">[TPE]</dt><dd>Roy T. Fielding; David Singer. <a property="dc:requires" href="http://www.w3.org/TR/tracking-dnt/"><cite>Tracking Preference Expression (DNT)</cite></a>. 24 April 2014. W3C Last Call Working Draft. URL: <a property="dc:requires" href="http://www.w3.org/TR/tracking-dnt/">http://www.w3.org/TR/tracking-dnt/</a>
+</dd></dl></section></section></body></html>

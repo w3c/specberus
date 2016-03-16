@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" typeof="bibo:Document w3p:WD" prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
+<head><meta lang="" property="dc:language" content="en">
+    <title>
+      Media Capture Depth Stream Extensions
+    </title>
+    <meta charset="utf-8">
+    
+    
+  <style>/*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+
+/* --- INLINES --- */
+em.rfc2119 { 
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  1px solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  1px dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+cite .bibref {
+    font-style: normal;
+}
+
+code {
+    color:  #C83500;
+}
+
+/* --- TOC --- */
+.toc a, .tof a {
+    text-decoration:    none;
+}
+
+a .secno, a .figno {
+    color:  #000;
+}
+
+ul.tof, ol.tof {
+    list-style: none outside none;
+}
+
+.caption {
+    margin-top: 0.5em;
+    font-style:   italic;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple th[scope="row"] {
+    background: inherit;
+    color:  inherit;
+    border-top: 1px solid #ddd;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+.section dl.attrs dd, .section dl.eldef dd {
+    margin-bottom:  0;
+}
+
+@media print {
+    .removeOnSave {
+        display: none;
+    }
+}
+</style><style>/* --- EXAMPLES --- */
+div.example-title {
+    min-width: 7.5em;
+    color: #b9ab2d;
+}
+div.example-title span {
+    text-transform: uppercase;
+}
+aside.example, div.example, div.illegal-example {
+    padding: 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+}
+div.illegal-example { color: red }
+div.illegal-example p { color: black }
+aside.example, div.example {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+    border-color: #e0cb52;
+    background: #fcfaee;
+}
+
+aside.example div.example {
+    border-left-width: .1em;
+    border-color: #999;
+    background: #fff;
+}
+aside.example div.example div.example-title {
+    color: #999;
+}
+</style><style>/* --- ISSUES/NOTES --- */
+div.issue-title, div.note-title , div.ednote-title, div.warning-title {
+    padding-right:  1em;
+    min-width: 7.5em;
+    color: #b9ab2d;
+}
+div.issue-title { color: #e05252; }
+div.note-title, div.ednote-title { color: #2b2; }
+div.warning-title { color: #f22; }
+div.issue-title span, div.note-title span, div.ednote-title span, div.warning-title span {
+    text-transform: uppercase;
+}
+div.note, div.issue, div.ednote, div.warning {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.note > p:first-child, .ednote > p:first-child, .issue > p:first-child, .warning > p:first-child { margin-top: 0 }
+.issue, .note, .ednote, .warning {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+}
+div.issue, div.note , div.ednote,  div.warning {
+    padding: 1em 1.2em 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+}
+span.note, span.ednote, span.issue, span.warning { padding: .1em .5em .15em; }
+
+.issue {
+    border-color: #e05252;
+    background: #fbe9e9;
+}
+.note, .ednote {
+    border-color: #52e052;
+    background: #e9fbe9;
+}
+
+.warning {
+    border-color: #f11;
+    border-right-width: .2em;
+    border-top-width: .2em;
+    border-bottom-width: .2em;
+    border-style: solid;
+    background: #fbe9e9;
+}
+
+.warning-title:before{
+    content: "⚠"; /*U+26A0 WARNING SIGN*/
+    font-size: 3em;
+    float: left;
+    height: 100%;
+    padding-right: .3em;
+    vertical-align: top;
+    margin-top: -0.5em;
+}
+
+li.task-list-item {
+    list-style: none;
+}
+
+input.task-list-item-checkbox {
+    margin: 0 0.35em 0.25em -1.6em;
+    vertical-align: middle;
+}
+</style><style>/* HIGHLIGHTS */
+code.prettyprint {
+    color:  inherit;
+}
+
+/* this from google-code-prettify */
+.pln{color:#000}@media screen{.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.pun,.opn,.clo{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun,.opn,.clo{color:#440}.tag{color:#006;font-weight:bold}.atn{color:#404}.atv{color:#060}}ol.linenums{margin-top:0;margin-bottom:0}li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}
+</style><style>/* --- WEB IDL --- */
+pre.idl {
+    border-top: 1px solid #90b8de;
+    border-bottom: 1px solid #90b8de;
+    padding:    1em;
+    line-height:    120%;
+}
+
+@media print {
+  pre.idl {
+      white-space: pre-wrap;
+  }
+}
+
+pre.idl::before {
+    content:    "WebIDL";
+    display:    block;
+    width:      150px;
+    background: #90b8de;
+    color:  #fff;
+    font-family:    sans-serif;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+.idlType {
+    color:  #ff4500;
+    font-weight:    bold;
+    text-decoration:    none;
+}
+
+/*.idlModule*/
+/*.idlModuleID*/
+/*.idlInterface*/
+.idlInterfaceID, .idlDictionaryID, .idlCallbackID, .idlEnumID {
+    font-weight:    bold;
+    color:  #005a9c;
+}
+a.idlEnumItem {
+    color:  #000;
+    border-bottom:  1px dotted #ccc;
+    text-decoration: none;
+}
+
+.idlSuperclass {
+    font-style: italic;
+    color:  #005a9c;
+}
+
+/*.idlAttribute*/
+.idlAttrType, .idlFieldType, .idlMemberType {
+    color:  #005a9c;
+}
+.idlAttrName, .idlFieldName, .idlMemberName {
+    color:  #ff4500;
+}
+.idlAttrName a, .idlFieldName a, .idlMemberName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlMethod*/
+.idlMethType, .idlCallbackType {
+    color:  #005a9c;
+}
+.idlMethName {
+    color:  #ff4500;
+}
+.idlMethName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlCtor*/
+.idlCtorName {
+    color:  #ff4500;
+}
+.idlCtorName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlParam*/
+.idlParamType {
+    color:  #005a9c;
+}
+.idlParamName, .idlDefaultValue {
+    font-style: italic;
+}
+
+.extAttr {
+    color:  #666;
+}
+
+/*.idlSectionComment*/
+.idlSectionComment {
+    color: gray;
+}
+
+/*.idlIterable*/
+.idlIterableKeyType, .idlIterableValueType {
+    color:  #005a9c;
+}
+
+/*.idlMaplike*/
+.idlMaplikeKeyType, .idlMaplikeValueType {
+    color:  #005a9c;
+}
+
+/*.idlConst*/
+.idlConstType {
+    color:  #005a9c;
+}
+.idlConstName {
+    color:  #ff4500;
+}
+.idlConstName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlException*/
+.idlExceptionID {
+    font-weight:    bold;
+    color:  #c00;
+}
+
+.idlTypedefID, .idlTypedefType {
+    color:  #005a9c;
+}
+
+.idlRaises, .idlRaises a.idlType, .idlRaises a.idlType code, .excName a, .excName a code {
+    color:  #c00;
+    font-weight:    normal;
+}
+
+.excName a {
+    font-family:    monospace;
+}
+
+.idlRaises a.idlType, .excName a.idlType {
+    border-bottom:  1px dotted #c00;
+}
+
+.excGetSetTrue, .excGetSetFalse, .prmNullTrue, .prmNullFalse, .prmOptTrue, .prmOptFalse {
+    width:  45px;
+    text-align: center;
+}
+.excGetSetTrue, .prmNullTrue, .prmOptTrue { color:  #0c0; }
+.excGetSetFalse, .prmNullFalse, .prmOptFalse { color:  #c00; }
+
+.idlImplements a {
+    font-weight:    bold;
+}
+
+dl.attributes, dl.methods, dl.constants, dl.constructors, dl.fields, dl.dictionary-members {
+    margin-left:    2em;
+}
+
+.attributes dt, .methods dt, .constants dt, .constructors dt, .fields dt, .dictionary-members dt {
+    font-weight:    normal;
+}
+
+.attributes dt code, .methods dt code, .constants dt code, .constructors dt code, .fields dt code, .dictionary-members dt code {
+    font-weight:    bold;
+    color:  #000;
+    font-family:    monospace;
+}
+
+.attributes dt code, .fields dt code, .dictionary-members dt code {
+    background:  #ffffd2;
+}
+
+.attributes dt .idlAttrType code, .fields dt .idlFieldType code, .dictionary-members dt .idlMemberType code {
+    color:  #005a9c;
+    background:  transparent;
+    font-family:    inherit;
+    font-weight:    normal;
+    font-style: italic;
+}
+
+.methods dt code {
+    background:  #d9e6f8;
+}
+
+.constants dt code {
+    background:  #ddffd2;
+}
+
+.constructors dt code {
+    background:  #cfc;
+}
+
+.attributes dd, .methods dd, .constants dd, .constructors dd, .fields dd, .dictionary-members dd {
+    margin-bottom:  1em;
+}
+
+table.parameters, table.exceptions {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    margin: 0.5em 0;
+    width:  100%;
+}
+table.parameters { border-bottom:  1px solid #90b8de; }
+table.exceptions { border-bottom:  1px solid #deb890; }
+
+.parameters th, .exceptions th {
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+    font-weight:    normal;
+    text-shadow:    #666 1px 1px 0;
+}
+.parameters th { background: #90b8de; }
+.exceptions th { background: #deb890; }
+
+.parameters td, .exceptions td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.parameters tr:first-child td, .exceptions tr:first-child td {
+    border-top: none;
+}
+
+.parameters td.prmName, .exceptions td.excName, .exceptions td.excCodeName {
+    width:  100px;
+}
+
+.parameters td.prmType {
+    width:  120px;
+}
+
+table.exceptions table {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    width:  100%;
+}
+</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-WD"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--><script id="initialUserConfig" type="application/json">{
+  "specStatus": "ED",
+  "shortName": "mediacapture-depth",
+  "previousPublishDate": "2015-12-08",
+  "previousMaturity": "WD",
+  "edDraftURI": "https://w3c.github.io/mediacapture-depth/",
+  "noLegacyStyle": true,
+  "editors": [
+    {
+      "w3cid": "41974",
+      "name": "Anssi Kostiainen",
+      "company": "Intel",
+      "companyURL": "http://www.intel.com/"
+    },
+    {
+      "w3cid": "68202",
+      "name": "Ningxin Hu",
+      "company": "Intel",
+      "companyURL": "http://www.intel.com/"
+    },
+    {
+      "w3cid": "76096",
+      "name": "Rob Manson",
+      "company": "Invited Expert"
+    }
+  ],
+  "wg": [
+    "Device APIs Working Group",
+    "Web Real-Time Communications Working Group"
+  ],
+  "wgURI": [
+    "http://www.w3.org/2009/dap/",
+    "http://www.w3.org/2011/04/webrtc/"
+  ],
+  "wgPublicList": "public-media-capture",
+  "wgPatentURI": [
+    "http://www.w3.org/2004/01/pp-impl/47318/status",
+    "http://www.w3.org/2004/01/pp-impl/43696/status"
+  ],
+  "otherLinks": [
+    {
+      "key": "Participate",
+      "data": [
+        {
+          "value": "Mailing list",
+          "href": "http://lists.w3.org/Archives/Public/public-media-capture/"
+        },
+        {
+          "value": "GitHub repository",
+          "href": "https://github.com/w3c/mediacapture-depth/"
+        },
+        {
+          "value": "Open issues",
+          "href": "https://github.com/w3c/mediacapture-depth/issues"
+        },
+        {
+          "value": "Commit history",
+          "href": "https://github.com/w3c/mediacapture-depth/commits/"
+        }
+      ]
+    }
+  ],
+  "localBiblio": {
+    "MEDIACAPTURE-WORKER": {
+      "title": "Media Capture Stream with Worker",
+      "href": "https://w3c.github.io/mediacapture-worker/",
+      "authors": [
+        "Chia-hung Tai",
+        "Robert O'Callahan",
+        "Tzuhao Kuo",
+        "Anssi Kostiainen"
+      ],
+      "status": "ED",
+      "publisher": "W3C"
+    }
+  }
+}</script></head>
+  <body class="h-entry" role="document" id="respecDocument"><div class="head" role="contentinfo" id="respecHeader">
+  <p>
+      
+        
+            <a class="logo" href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/Icons/w3c_home" alt="W3C"></a>
+            
+            
+        
+      
+  </p>
+  <h1 class="title p-name" id="title" property="dcterms:title">Media Capture Depth Stream Extensions</h1>
+  
+  <h2 id="w3c-working-draft-26-february-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Working Draft <time property="dcterms:issued" class="dt-published" datetime="2016-02-26">26 February 2016</time></h2>
+  <dl>
+    
+      <dt>This version:</dt>
+      <dd><a class="u-url" href="http://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/">http://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/</a></dd>
+      <dt>Latest published version:</dt>
+      <dd><a href="http://www.w3.org/TR/mediacapture-depth/">http://www.w3.org/TR/mediacapture-depth/</a></dd>
+    
+    
+      <dt>Latest editor's draft:</dt>
+      <dd><a href="https://w3c.github.io/mediacapture-depth/">https://w3c.github.io/mediacapture-depth/</a></dd>
+    
+    
+    
+    
+    
+    
+      <dt>Previous version:</dt>
+      <dd><a rel="dcterms:replaces" href="http://www.w3.org/TR/2016/WD-mediacapture-depth-20160202/">http://www.w3.org/TR/2016/WD-mediacapture-depth-20160202/</a></dd>
+    
+    
+    <dt>Editors:</dt>
+    <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0" data-editor-id="41974"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Anssi Kostiainen</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://www.intel.com/">Intel</a></span>
+<span property="rdf:rest" resource="_:editor1"></span>
+</dd>
+<dd class="p-author h-card vcard" resource="_:editor1" data-editor-id="68202"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Ningxin Hu</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://www.intel.com/">Intel</a></span>
+<span property="rdf:rest" resource="_:editor2"></span>
+</dd>
+<dd class="p-author h-card vcard" resource="_:editor2" data-editor-id="76096"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Rob Manson</span>, Invited Expert</span>
+<span property="rdf:rest" resource="rdf:nil"></span>
+</dd>
+
+    
+    
+      
+        
+          <dt>Participate:</dt>
+          
+             
+                
+                  <dd>
+                    <a href="http://lists.w3.org/Archives/Public/public-media-capture/">
+                      Mailing list
+                    </a>
+                  </dd>
+                
+             
+                
+                  <dd>
+                    <a href="https://github.com/w3c/mediacapture-depth/">
+                      GitHub repository
+                    </a>
+                  </dd>
+                
+             
+                
+                  <dd>
+                    <a href="https://github.com/w3c/mediacapture-depth/issues">
+                      Open issues
+                    </a>
+                  </dd>
+                
+             
+                
+                  <dd>
+                    <a href="https://github.com/w3c/mediacapture-depth/commits/">
+                      Commit history
+                    </a>
+                  </dd>
+                
+             
+          
+        
+      
+    
+  </dl>
+  
+  
+  
+  
+    
+      <p class="copyright">
+        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
+        2016
+        
+        <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
+        (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+        <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+        <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). 
+        
+        <abbr title="World Wide Web Consortium">W3C</abbr> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+        
+          
+            <a rel="license" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+          
+        
+        rules apply.
+      </p>
+    
+  
+  <hr title="Separator for header">
+</div>
+    <section id="abstract" class="introductory" property="dc:abstract"><h2 id="h-abstract" resource="#h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2>
+      <p>
+        This specification <a href="https://w3c.github.io/mediacapture-main/#extensibility">extends</a>
+        the <em>Media Capture and Streams</em> specification [<cite><a class="bibref" href="#bib-GETUSERMEDIA">GETUSERMEDIA</a></cite>]
+        to allow a <a href="#dfn-depth-only-stream" class="internalDFN" data-link-type="dfn">depth-only stream</a> or combined <a href="#dfn-depth-video-stream" class="internalDFN" data-link-type="dfn">depth+video
+        stream</a> to be requested from the web platform using APIs familiar to
+        web authors.
+      </p>
+    </section><section id="sotd" class="introductory"><h2 id="h-sotd" resource="#h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
+  
+    
+      
+        <p>
+          <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at http://www.w3.org/TR/.</em>
+        </p>
+        
+          
+          
+      <p>
+        This extensions specification defines a new media type and
+        constrainable property per <a href="https://w3c.github.io/mediacapture-main/#extensibility">Extensibility</a>
+        guidelines of the <em>Media Capture and Streams</em> specification
+        [<cite><a class="bibref" href="#bib-GETUSERMEDIA">GETUSERMEDIA</a></cite>]. Horizontal reviews and feedback from early
+        implementations of this specification are encouraged.
+      </p>
+    
+          
+          
+          <p>
+            This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a> and the <a href="http://www.w3.org/2011/04/webrtc/">Web Real-Time Communications Working Group</a> as a Working Draft.
+            
+              This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
+            
+            
+              If you wish to make comments regarding this document, please send them to
+              <a href="mailto:public-media-capture@w3.org">public-media-capture@w3.org</a>
+              (<a href="mailto:public-media-capture-request@w3.org?subject=subscribe">subscribe</a>,
+              <a href="http://lists.w3.org/Archives/Public/public-media-capture/">archives</a>).
+            
+            
+            
+            
+            
+              
+              All comments are welcome.
+              
+            
+          </p>
+          
+          
+          
+          
+            <p>
+              Publication as a Working Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
+              Membership. This is a draft document and may be updated, replaced or obsoleted by other
+              documents at any time. It is inappropriate to cite this document as other than work in
+              progress.
+            </p>
+          
+          
+          
+          <p>
+            
+              This document was produced by
+              
+              groups
+               operating under the
+              <a id="sotd_patent" property="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
+              Policy</a>.
+            
+            
+            
+              
+                <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/47318/status" rel="disclosure">public list of any patent disclosures  (Device APIs Working Group)</a> and a <a href="http://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent disclosures  (Web Real-Time Communications Working Group)</a>
+              
+              made in connection with the deliverables of
+              
+              each group; these pages also include
+              
+              instructions for disclosing a patent. An individual who has actual knowledge of a patent
+              which the individual believes contains
+              <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+              Claim(s)</a> must disclose the information in accordance with
+              <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+              6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+            
+            
+          </p>
+          
+            <p>This document is governed by the <a id="w3c_process_revision" href="http://www.w3.org/2015/Process-20150901/">1 September 2015 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+            </p>
+          
+          
+        
+      
+    
+  
+</section><section id="toc"><h2 class="introductory" id="h-toc" resource="#h-toc"><span property="xhv:role" resource="xhv:heading">Table of Contents</span></h2><ul class="toc" role="directory"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>
+        Introduction
+      </a></li><li class="tocline"><a href="#use-cases-and-requirements" class="tocxref"><span class="secno">2. </span>
+        Use cases and requirements
+      </a></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">3. </span>Conformance</a></li><li class="tocline"><a href="#dependencies" class="tocxref"><span class="secno">4. </span>
+        Dependencies
+      </a></li><li class="tocline"><a href="#terminology" class="tocxref"><span class="secno">5. </span>
+        Terminology
+      </a><ul class="toc"><li class="tocline"><a href="#depth-map" class="tocxref"><span class="secno">5.1 </span>
+          Depth map
+        </a></li></ul></li><li class="tocline"><a href="#extensions" class="tocxref"><span class="secno">6. </span>
+        Extensions
+      </a><ul class="toc"><li class="tocline"><a href="#mediastreamconstraints-dictionary" class="tocxref"><span class="secno">6.1 </span>
+          <code><span class="formerLink" data-link-type="dfn"><code>MediaStreamConstraints</code></span></code> dictionary
+        </a></li><li class="tocline"><a href="#mediastream-interface" class="tocxref"><span class="secno">6.2 </span>
+          <code>MediaStream</code> interface
+        </a><ul class="toc"><li class="tocline"><a href="#implementation-considerations" class="tocxref"><span class="secno">6.2.1 </span>
+            Implementation considerations
+          </a></li></ul></li><li class="tocline"><a href="#mediastreamtrack-interface" class="tocxref"><span class="secno">6.3 </span>
+          <code>MediaStreamTrack</code> interface
+        </a></li><li class="tocline"><a href="#mediadeviceinfo-interface" class="tocxref"><span class="secno">6.4 </span>
+          <code>MediaDeviceInfo</code> interface
+        </a></li><li class="tocline"><a href="#media-provider-object" class="tocxref"><span class="secno">6.5 </span>
+          Media provider object
+        </a></li><li class="tocline"><a href="#the-video-element" class="tocxref"><span class="secno">6.6 </span>
+          The <code>video</code> element
+        </a><ul class="toc"><li class="tocline"><a href="#videotrack-interface" class="tocxref"><span class="secno">6.6.1 </span>
+            <code>VideoTrack</code> interface
+          </a></li></ul></li><li class="tocline"><a href="#mediatracksettings-dictionary" class="tocxref"><span class="secno">6.7 </span>
+          <code>MediaTrackSettings</code> dictionary
+        </a></li><li class="tocline"><a href="#webglrenderingcontext-interface" class="tocxref"><span class="secno">6.8 </span>
+          <code>WebGLRenderingContext</code> interface
+        </a><ul class="toc"><li class="tocline"><a href="#implementation-considerations-1" class="tocxref"><span class="secno">6.8.1 </span>
+            Implementation considerations
+          </a></li></ul></li><li class="tocline"><a href="#depthmapunit-constrainable-property" class="tocxref"><span class="secno">6.9 </span>
+          <span class="formerLink" data-link-type="dfn"><code><code>depthMapUnit</code></code></span> constrainable property
+        </a></li></ul></li><li class="tocline"><a href="#examples" class="tocxref"><span class="secno">7. </span>
+        Examples
+      </a></li><li class="tocline"><a href="#privacy-and-security-considerations" class="tocxref"><span class="secno">8. </span>
+        Privacy and security considerations
+      </a></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A. </span>
+        Acknowledgements
+      </a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">B.2 </span>Informative references</a></li></ul></li></ul></section>
+    
+    <section id="introduction" typeof="bibo:Chapter" resource="#introduction" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-introduction" resource="#h-introduction"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>
+        Introduction
+      </span></h2>
+      <p>
+        Depth cameras are increasingly being integrated into devices such as
+        phones, tablets, and laptops. Depth cameras provide a <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a>,
+        which conveys the distance information between points on an object's
+        surface and the camera. With depth information, web content and
+        applications can be enhanced by, for example, the use of hand gestures
+        as an input mechanism, or by creating 3D models of real-world objects
+        that can interact and integrate with the web platform. Concrete
+        applications of this technology include more immersive gaming
+        experiences, more accessible 3D video conferences, and augmented
+        reality, to name a few.
+      </p>
+      <p>
+        To bring depth capability to the web platform, this specification
+        <a href="https://w3c.github.io/mediacapture-main/#extensibility">extends</a>
+        the <code><a href="#dom-mediastream" class="internalDFN" data-link-type="dfn"><code>MediaStream</code></a></code> interface [<cite><a class="bibref" href="#bib-GETUSERMEDIA">GETUSERMEDIA</a></cite>] to
+        enable it to also contain depth-based
+        <a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code><code>MediaStreamTrack</code></code></a>s. A depth-based
+        <a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code><code>MediaStreamTrack</code></code></a>, referred to as a <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream
+        track</a>, represents an abstraction of a stream of frames that can
+        each be converted to objects which contain an array of pixel data,
+        where each pixel represents the distance between the camera and the
+        objects in the scene for that point in the array. A
+        <code><a href="#dom-mediastream" class="internalDFN" data-link-type="dfn"><code>MediaStream</code></a></code> object that contains one or more
+        <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream track</a>s is referred to as a <a href="#dfn-depth-only-stream" class="internalDFN" data-link-type="dfn">depth-only stream</a>
+        or <a href="#dfn-depth-video-stream" class="internalDFN" data-link-type="dfn">depth+video stream</a>.
+      </p>
+      <p>
+        Depth cameras usually produce 16-bit depth values per pixel. However,
+        neither the canvas drawing surface used to draw and manipulate 2D
+        graphics on the web platform nor the <code><a href="#dfn-imagedata" class="internalDFN" data-link-type="dfn"><code>ImageData</code></a></code>
+        interface used to represent image data support 16 bits per pixel. To
+        address the issue, this specification defines a conversion into a 8-bit
+        grayscale representation of a <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a> for consumption by APIs
+        that are limited to 8 bits per pixel.
+      </p>
+      <p>
+        The Media Capture Stream with Worker specification
+        [<cite><a class="bibref" href="#bib-MEDIACAPTURE-WORKER">MEDIACAPTURE-WORKER</a></cite>] that complements this specification enables
+        processing of 16-bit depth values per pixel directly in a worker
+        environment and makes the <code>&lt;video&gt;</code> and
+        <code>&lt;canvas&gt;</code> indirection and depth-to-grayscale
+        conversion redundant. This alternative pipeline that supports greater
+        bit depth and does not incur the performance penalty of the indirection
+        and conversion enables more advanced use cases.
+      </p>
+    </section>
+    <section id="use-cases-and-requirements" typeof="bibo:Chapter" resource="#use-cases-and-requirements" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-use-cases-and-requirements" resource="#h-use-cases-and-requirements"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>
+        Use cases and requirements
+      </span></h2>
+      <p>
+        This specification attempts to address the <a href="https://www.w3.org/wiki/Media_Capture_Depth_Stream_Extension">Use
+        Cases and Requirements</a> for accessing depth stream from a depth
+        camera. See also the <a href="https://www.w3.org/wiki/Media_Capture_Depth_Stream_Extension#Examples">
+        Examples</a> section for concrete usage examples.
+      </p>
+    </section>
+    <section id="conformance" typeof="bibo:Chapter" resource="#conformance" property="bibo:hasPart"><!--OddPage--><h2 id="h-conformance" resource="#h-conformance"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>Conformance</span></h2>
+<p>
+  As well as sections marked as non-normative, all authoring guidelines, diagrams, examples,
+  and notes in this specification are non-normative. Everything else in this specification is
+  normative.
+</p>
+<p id="respecRFC2119">The key words <em class="rfc2119" title="MUST">MUST</em> and <em class="rfc2119" title="MUST NOT">MUST NOT</em> are 
+  to be interpreted as described in [<cite><a class="bibref" href="#bib-RFC2119">RFC2119</a></cite>].
+</p>
+
+      <p>
+        This specification defines conformance criteria that apply to a single
+        product: the <dfn data-dfn-type="dfn" id="dfn-user-agent">user agent</dfn> that implements the interfaces that
+        it contains.
+      </p>
+      <p>
+        Implementations that use ECMAScript to implement the APIs defined in
+        this specification must implement them in a manner consistent with the
+        ECMAScript Bindings defined in the Web IDL specification [<cite><a class="bibref" href="#bib-WEBIDL">WEBIDL</a></cite>],
+        as this specification uses that specification and terminology.
+      </p>
+    </section>
+    <section id="dependencies" typeof="bibo:Chapter" resource="#dependencies" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-dependencies" resource="#h-dependencies"><span property="xhv:role" resource="xhv:heading"><span class="secno">4. </span>
+        Dependencies
+      </span></h2>
+      <p>
+        The <code><a href="https://w3c.github.io/mediacapture-main/archives/20160222/getusermedia.html#idl-def-MediaStreamTrack">
+        <dfn data-dfn-type="dfn" id="dfn-mediastreamtrack">MediaStreamTrack</dfn></a></code> and <code><a href="https://w3c.github.io/mediacapture-main/archives/20160222/getusermedia.html#idl-def-MediaStream">
+        <dfn data-dfn-for="" data-dfn-type="dfn" id="dom-mediastream" data-idl="">MediaStream</dfn></a></code> interfaces this specification extends
+        are defined in [<cite><a class="bibref" href="#bib-GETUSERMEDIA">GETUSERMEDIA</a></cite>].
+      </p>
+      <p>
+        The <code><a href="https://w3c.github.io/mediacapture-main/archives/20160222/getusermedia.html#idl-def-Constraints">
+        <dfn data-dfn-type="dfn" id="dfn-constraints">Constraints</dfn></a></code>, <code><a href="https://w3c.github.io/mediacapture-main/archives/20160222/getusermedia.html#idl-def-MediaStreamConstraints">
+        <dfn data-dfn-for="" data-dfn-type="dfn" id="dom-mediastreamconstraints" data-idl="">MediaStreamConstraints</dfn></a></code>, <code><a href="https://w3c.github.io/mediacapture-main/archives/20160222/getusermedia.html#idl-def-MediaTrackSettings">
+        <dfn data-dfn-for="" data-dfn-type="dfn" id="dom-mediatracksettings" data-idl="">MediaTrackSettings</dfn></a></code>, <code><a href="https://w3c.github.io/mediacapture-main/archives/20160222/getusermedia.html#idl-def-MediaTrackConstraints">
+        <dfn data-dfn-for="" data-dfn-type="dfn" id="dom-mediatrackconstraints" data-idl="">MediaTrackConstraints</dfn></a></code>, <code><a href="https://w3c.github.io/mediacapture-main/archives/20160222/getusermedia.html#idl-def-MediaTrackSupportedConstraints">
+        <dfn data-dfn-for="" data-dfn-type="dfn" id="dom-mediatracksupportedconstraints" data-idl="">MediaTrackSupportedConstraints</dfn></a></code>, <code><a href="https://w3c.github.io/mediacapture-main/archives/20160222/getusermedia.html#idl-def-MediaTrackCapabilities">
+        <dfn data-dfn-for="" data-dfn-type="dfn" id="dom-mediatrackcapabilities" data-idl="">MediaTrackCapabilities</dfn></a></code>, and <code><a href="https://w3c.github.io/mediacapture-main/archives/20160222/getusermedia.html#idl-def-MediaTrackConstraintSet">
+        <dfn data-dfn-for="" data-dfn-type="dfn" id="dom-mediatrackconstraintset" data-idl="">MediaTrackConstraintSet</dfn></a></code> dictionaries this
+        specification extends are defined in [<cite><a class="bibref" href="#bib-GETUSERMEDIA">GETUSERMEDIA</a></cite>].
+      </p>
+      <p>
+        The <code><a href="https://w3c.github.io/mediacapture-main/#dom-mediadevices-getusermedia">
+        <dfn data-dfn-type="dfn" id="dfn-getusermedia">getUserMedia()</dfn></a></code>, <code><a href="https://w3c.github.io/mediacapture-main/#dfn-applyconstraints"><dfn data-dfn-type="dfn" id="dfn-applyconstraints">applyConstraints()</dfn></a></code>,
+        <code><a href="https://w3c.github.io/mediacapture-main/#dfn-getsettings"><dfn data-dfn-type="dfn" id="dfn-getsettings">getSettings()</dfn></a></code>
+        methods and the <code><a href="https://w3c.github.io/mediacapture-main/#idl-def-NavigatorUserMediaSuccessCallback">
+        <dfn data-dfn-type="dfn" id="dfn-navigatorusermediasuccesscallback">NavigatorUserMediaSuccessCallback</dfn></a></code> callback are
+        defined in [<cite><a class="bibref" href="#bib-GETUSERMEDIA">GETUSERMEDIA</a></cite>].
+      </p>
+      <p>
+        The concepts <a href="https://w3c.github.io/mediacapture-main/#track-muted"><dfn data-dfn-type="dfn" id="dfn-muted">muted</dfn></a>
+        and <a href="https://w3c.github.io/mediacapture-main/#track-enabled"><dfn data-dfn-type="dfn" id="dfn-disabled">disabled</dfn></a>
+        as applied to <a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code>MediaStreamTrack</code></a> are defined in [<cite><a class="bibref" href="#bib-GETUSERMEDIA">GETUSERMEDIA</a></cite>].
+      </p>
+      <p>
+        The terms <a href="https://w3c.github.io/mediacapture-main/#dfn-source"><dfn data-dfn-type="dfn" id="dfn-source">source</dfn></a>
+        and <a href="https://w3c.github.io/mediacapture-main/#dfn-consumer"><dfn data-dfn-type="dfn" id="dfn-consumer">consumer</dfn></a>
+        are defined are [<cite><a class="bibref" href="#bib-GETUSERMEDIA">GETUSERMEDIA</a></cite>].
+      </p>
+      <p>
+        The <code><a href="https://w3c.github.io/mediacapture-main/#idl-def-SourceTypeEnum"><dfn data-dfn-type="dfn" id="dfn-sourcetypeenum">SourceTypeEnum</dfn></a></code>
+        and <code><a href="https://w3c.github.io/mediacapture-main/#idl-def-MediaDeviceKind"><dfn data-dfn-type="dfn" id="dfn-mediadevicekind">
+        MediaDeviceKind</dfn></a></code> enumerations are defined in
+        [<cite><a class="bibref" href="#bib-GETUSERMEDIA">GETUSERMEDIA</a></cite>].
+      </p>
+      <p>
+        The <code><a href="https://html.spec.whatwg.org/#imagedata"><dfn data-dfn-type="dfn" id="dfn-imagedata">ImageData</dfn></a></code>
+        and <code><a href="https://html.spec.whatwg.org/#videotrack"><dfn data-dfn-type="dfn" id="dfn-videotrack">VideoTrack</dfn></a></code>
+        interfaces are defined in [<cite><a class="bibref" href="#bib-HTML">HTML</a></cite>].
+      </p>
+    </section>
+    <section id="terminology" typeof="bibo:Chapter" resource="#terminology" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-terminology" resource="#h-terminology"><span property="xhv:role" resource="xhv:heading"><span class="secno">5. </span>
+        Terminology
+      </span></h2>
+      <p>
+        The term <dfn data-dfn-type="dfn" id="dfn-depth-video-stream">depth+video stream</dfn> means a <a href="#dom-mediastream" class="internalDFN" data-link-type="dfn"><code>MediaStream</code></a>
+        object that contains one or more <a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code>MediaStreamTrack</code></a> objects of
+        kind "<code>depth</code>" (<a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream track</a>) and one or more
+        <a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code>MediaStreamTrack</code></a> objects of kind "<code>video</code>" (<a href="#dfn-video-stream-track" class="internalDFN" data-link-type="dfn">video
+        stream track</a>).
+      </p>
+      <p>
+        The term <dfn data-dfn-type="dfn" id="dfn-depth-only-stream">depth-only stream</dfn> means a <a href="#dom-mediastream" class="internalDFN" data-link-type="dfn"><code>MediaStream</code></a> object
+        that contains one or more <a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code>MediaStreamTrack</code></a> objects of kind
+        "<code>depth</code>" (<a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream track</a>) only.
+      </p>
+      <p>
+        The term <dfn data-dfn-type="dfn" id="dfn-video-only-stream">video-only stream</dfn> means a <a href="#dom-mediastream" class="internalDFN" data-link-type="dfn"><code>MediaStream</code></a> object
+        that contains one or more <a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code>MediaStreamTrack</code></a> objects of kind
+        "<code>video</code>" (<a href="#dfn-video-stream-track" class="internalDFN" data-link-type="dfn">video stream track</a>) only, and optionally
+        of kind "<code>audio</code>".
+      </p>
+      <p>
+        The term <dfn data-dfn-type="dfn" id="dfn-depth-stream-track">depth stream track</dfn> means a <a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code>MediaStreamTrack</code></a>
+        object whose kind is "<code>depth</code>". It represents a media stream
+        track whose <a href="#dfn-source" class="internalDFN" data-link-type="dfn">source</a> is a depth camera.
+      </p>
+      <p>
+        The term <dfn data-dfn-type="dfn" id="dfn-video-stream-track">video stream track</dfn> means a <a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code>MediaStreamTrack</code></a>
+        object whose kind is "<code>video</code>". It represents a media stream
+        track whose <a href="#dfn-source" class="internalDFN" data-link-type="dfn">source</a> is a video camera.
+      </p>
+      <section id="depth-map" typeof="bibo:Chapter" resource="#depth-map" property="bibo:hasPart">
+        <h3 id="h-depth-map" resource="#h-depth-map"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.1 </span>
+          Depth map
+        </span></h3>
+        <p>
+          A <dfn data-dfn-type="dfn" id="dfn-depth-map">depth map</dfn> is an abstract representation of a frame of a
+          <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream track</a>. A <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a> is an image that
+          contains information relating to the distance of the surfaces of
+          scene objects from a viewpoint.
+        </p>
+        <p>
+          A <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a> has an associated <dfn data-dfn-type="dfn" id="dfn-focal-length">focal length</dfn> which is
+          a double. It represents the focal length of the camera in
+          millimeters.
+        </p>
+        <p>
+          A <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a> has an associated <dfn data-dfn-type="dfn" id="dfn-horizontal-field-of-view">horizontal field of
+          view</dfn> which is a double. It represents the horizontal angle of
+          view in degrees.
+        </p>
+        <p>
+          A <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a> has an associated <dfn data-dfn-type="dfn" id="dfn-vertical-field-of-view">vertical field of
+          view</dfn> which is a double. It represents the vertical angle of
+          view in degrees.
+        </p>
+        <p>
+          A <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a> has an associated <dfn data-dfn-type="dfn" id="dfn-unit">unit</dfn> which is a
+          string. It represents the <a href="#dfn-active-depth-map-unit" class="internalDFN" data-link-type="dfn">active depth map unit</a>.
+        </p>
+        <p>
+          A <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a> has an associated <dfn data-dfn-type="dfn" id="dfn-near-value">near value</dfn> which is a
+          double. It represents the minimum range in <a href="#dfn-active-depth-map-unit" class="internalDFN" data-link-type="dfn">active depth map
+          unit</a>s.
+        </p>
+        <p>
+          A <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a> has an associated <dfn data-dfn-type="dfn" id="dfn-far-value">far value</dfn> which is a
+          double. It represents the maximum range in <a href="#dfn-active-depth-map-unit" class="internalDFN" data-link-type="dfn">active depth map
+          unit</a>s.
+        </p>
+      </section>
+    </section>
+    <section id="extensions" typeof="bibo:Chapter" resource="#extensions" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-extensions" resource="#h-extensions"><span property="xhv:role" resource="xhv:heading"><span class="secno">6. </span>
+        Extensions
+      </span></h2>
+      <section id="mediastreamconstraints-dictionary" typeof="bibo:Chapter" resource="#mediastreamconstraints-dictionary" property="bibo:hasPart">
+        <h3 id="h-mediastreamconstraints-dictionary" resource="#h-mediastreamconstraints-dictionary"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.1 </span>
+          <code><a href="#dom-mediastreamconstraints" class="internalDFN" data-link-type="dfn"><code>MediaStreamConstraints</code></a></code> dictionary
+        </span></h3>
+        <pre class="idl"><span class="idlDictionary" id="idl-def-mediastreamconstraints-partial-1" data-idl="" data-title="MediaStreamConstraints">partial dictionary <span class="idlDictionaryID"><a data-lt="MediaStreamConstraints" href="#dom-mediastreamconstraints" class="internalDFN" data-link-type="dfn" data-for=""><code>MediaStreamConstraints</code></a></span> {
+<span class="idlMember" id="idl-def-mediastreamconstraints-depth" data-idl="" data-title="depth" data-dfn-for="mediastreamconstraints">    <span class="idlMemberType">(boolean or <a href="#dom-mediatrackconstraints" class="internalDFN" data-link-type="dfn"><code>MediaTrackConstraints</code></a>)</span> <span class="idlMemberName"><a data-lt="depth" href="#dom-mediastreamconstraints-depth" class="internalDFN" data-link-type="dfn" data-for="MediaStreamConstraints"><code>depth</code></a></span> = <span class="idlMemberValue">false</span>;</span>
+};</span></pre>
+        <p data-dfn-for="mediastreamconstraints" data-link-for="MediaStreamConstraints">
+          If the <dfn data-dfn-for="mediastreamconstraints" data-dfn-type="dfn" id="dom-mediastreamconstraints-depth" data-idl=""><code>depth</code></dfn> dictionary member has the value
+          true, the <a href="#dom-mediastream" class="internalDFN" data-link-type="dfn"><code>MediaStream</code></a> returned by the <a href="#dfn-getusermedia" class="internalDFN" data-link-type="dfn"><code>getUserMedia()</code></a>
+          method <em class="rfc2119" title="MUST">MUST</em> contain a <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream track</a>. If the <a href="#dom-mediastreamconstraints-depth" class="internalDFN" data-link-type="dfn"><code>depth</code></a>
+          dictionary member is set to false, is not provided, or is set to
+          null, the <a href="#dom-mediastream" class="internalDFN" data-link-type="dfn"><code>MediaStream</code></a> <em class="rfc2119" title="MUST NOT">MUST NOT</em> contain a <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream
+          track</a>.
+        </p>
+        <p>
+          If <a href="#dfn-active-depth-map-unit" class="internalDFN" data-link-type="dfn">active depth map unit</a> is provided in
+          <a href="#dom-mediatrackconstraints" class="internalDFN" data-link-type="dfn"><code>MediaTrackConstraints</code></a>, let that unit be the <a href="#dfn-active-depth-map-unit" class="internalDFN" data-link-type="dfn">active depth
+          map unit</a> for the returned <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream track</a>.
+        </p>
+        <div class="note"><div class="note-title" aria-level="4" role="heading" id="h-note1"><span>Note</span></div><div class="">
+          If the user agent requests a combined <a href="#dfn-depth-video-stream" class="internalDFN" data-link-type="dfn">depth+video stream</a>, the
+          devices in the constraint should be satisfied as belonging to the
+          same group or physical device. The decision to select and satisfy
+          which device pair is left up to the implementation.
+        </div></div>
+      </section>
+      <section id="mediastream-interface" typeof="bibo:Chapter" resource="#mediastream-interface" property="bibo:hasPart">
+        <h3 id="h-mediastream-interface" resource="#h-mediastream-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2 </span>
+          <code>MediaStream</code> interface
+        </span></h3>
+        <pre class="idl"><span class="idlInterface" id="idl-def-mediastream-partial-1" data-idl="" data-title="MediaStream">partial interface <span class="idlInterfaceID"><a data-lt="MediaStream" href="#dom-mediastream" class="internalDFN" data-link-type="dfn" data-for=""><code>MediaStream</code></a></span> {
+<span class="idlMethod" id="idl-def-mediastream-getdepthtracks()" data-idl="" data-title="getDepthTracks" data-dfn-for="mediastream">    <span class="idlMethType">sequence&lt;<a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code>MediaStreamTrack</code></a>&gt;</span> <span class="idlMethName"><a data-lt="getDepthTracks" href="#dom-mediastream-getdepthtracks" class="internalDFN" data-link-type="dfn" data-for="MediaStream"><code>getDepthTracks</code></a></span>();</span>
+};</span></pre>
+        <p data-dfn-for="mediastream" data-link-for="MediaStream">
+          The <code><dfn data-dfn-for="mediastream" data-dfn-type="dfn" id="dom-mediastream-getdepthtracks" data-idl="">getDepthTracks</dfn>()</code> method, when invoked,
+          <em class="rfc2119" title="MUST">MUST</em> return a sequence of <a data-lt="depth stream track" href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth
+          stream tracks</a> in this stream.
+        </p>
+        <p>
+          The <dfn data-dfn-type="dfn" id="dfn-getdepthtracks"><code>getDepthTracks()</code></dfn> method <em class="rfc2119" title="MUST">MUST</em> return a
+          sequence that represents a snapshot of all the
+          <a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code><code>MediaStreamTrack</code></code></a> objects in this stream's track
+          set whose <a href="#dfn-kind" class="internalDFN" data-link-type="dfn"><code><code>kind</code></code></a> is equal to "<code>depth</code>".
+          The conversion from the track set to the sequence is <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user
+          agent</a> defined and the order does not have to be stable between
+          calls.
+        </p>
+        <p>
+          The <a href="#dom-mediastream" class="internalDFN" data-link-type="dfn"><code>MediaStream</code></a> <a href="#dfn-consumer" class="internalDFN" data-link-type="dfn">consumer</a> for the <a href="#dfn-depth-only-stream" class="internalDFN" data-link-type="dfn">depth-only
+          stream</a> and <a href="#dfn-depth-video-stream" class="internalDFN" data-link-type="dfn">depth+video stream</a> is <a href="#the-video-element">the <code>video</code> element</a> [<cite><a class="bibref" href="#bib-HTML">HTML</a></cite>].
+        </p>
+        <div class="note"><div class="note-title" aria-level="4" role="heading" id="h-note2"><span>Note</span></div><div class="">
+          New <a href="#dfn-consumer" class="internalDFN" data-link-type="dfn">consumer</a>s may be added in a future version of this
+          specification.
+        </div></div>
+        <section class="informative" id="implementation-considerations" typeof="bibo:Chapter" resource="#implementation-considerations" property="bibo:hasPart">
+          <h4 id="h-implementation-considerations" resource="#h-implementation-considerations"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.1 </span>
+            Implementation considerations
+          </span></h4><p><em>This section is non-normative.</em></p>
+          <p>
+            A <a href="#dfn-video-stream-track" class="internalDFN" data-link-type="dfn">video stream track</a> and a <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream track</a> can be
+            combined into one <a href="#dfn-depth-video-stream" class="internalDFN" data-link-type="dfn">depth+video stream</a>. The rendering of the
+            two tracks are intended to be synchronized. The resolution of the
+            two tracks are intended to be same. And the coordination of the two
+            tracks are intended to be calibrated. These are not hard
+            requirements, since it might not be possible to synchronize tracks
+            from sources.
+          </p>
+        </section>
+      </section>
+      <section id="mediastreamtrack-interface" typeof="bibo:Chapter" resource="#mediastreamtrack-interface" property="bibo:hasPart">
+        <h3 id="h-mediastreamtrack-interface" resource="#h-mediastreamtrack-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.3 </span>
+          <code>MediaStreamTrack</code> interface
+        </span></h3>
+        <p>
+          The <code><dfn data-dfn-type="dfn" id="dfn-kind">kind</dfn></code> attribute <em class="rfc2119" title="MUST">MUST</em>, on getting, return
+          the string "<code>depth</code>" if the object represents a <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth
+          stream track</a>.
+        </p>
+        <p>
+          If a <a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code>MediaStreamTrack</code></a> of <a href="#dfn-kind" class="internalDFN" data-link-type="dfn"><code>kind</code></a> "<code>depth</code>" is
+          <a href="#dfn-muted" class="internalDFN" data-link-type="dfn">muted</a> or <a href="#dfn-disabled" class="internalDFN" data-link-type="dfn">disabled</a>, it <em class="rfc2119" title="MUST">MUST</em> render black frames, or a
+          zero-information-content equivalent.
+        </p>
+        <p>
+          The string "<code>depth</code>" is the <a href="#dfn-sourcetypeenum" class="internalDFN" data-link-type="dfn"><code>SourceTypeEnum</code></a> value
+          for the <a href="#dfn-source" class="internalDFN" data-link-type="dfn">source</a> that is a local depth camera source.
+        </p>
+      </section>
+      <section id="mediadeviceinfo-interface" typeof="bibo:Chapter" resource="#mediadeviceinfo-interface" property="bibo:hasPart">
+        <h3 id="h-mediadeviceinfo-interface" resource="#h-mediadeviceinfo-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.4 </span>
+          <code>MediaDeviceInfo</code> interface
+        </span></h3>
+        <p>
+          The string "<code>depthinput</code>" is the <a href="#dfn-mediadevicekind" class="internalDFN" data-link-type="dfn"><code>MediaDeviceKind</code></a>
+          value for the depth camera input device.
+        </p>
+      </section>
+      <section id="media-provider-object" typeof="bibo:Chapter" resource="#media-provider-object" property="bibo:hasPart">
+        <h3 id="h-media-provider-object" resource="#h-media-provider-object"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.5 </span>
+          Media provider object
+        </span></h3>
+        <p>
+          A <a href="https://html.spec.whatwg.org/#media-provider-object">media
+          provider object</a> can represent a <a href="#dfn-depth-only-stream" class="internalDFN" data-link-type="dfn">depth-only stream</a> (and
+          specifically, not a <a href="#dfn-depth-video-stream" class="internalDFN" data-link-type="dfn">depth+video stream</a>). The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a>
+          <em class="rfc2119" title="MUST">MUST</em> support a <a href="https://html.spec.whatwg.org/#media-element">media element</a> with
+          an <a href="https://html.spec.whatwg.org/#assigned-media-provider-object">assigned
+          media provider object</a> that is a <a href="#dfn-depth-only-stream" class="internalDFN" data-link-type="dfn">depth-only stream</a>, and in
+          particular, the <a href="https://html.spec.whatwg.org/#dom-media-srcobject"><code>srcObject</code></a>
+          IDL attribute that allows the <a href="https://html.spec.whatwg.org/#media-element">media element</a> to be
+          assigned a <a href="https://html.spec.whatwg.org/#media-provider-object">media provider
+          object</a> <em class="rfc2119" title="MUST">MUST</em>, on setting and getting, behave as specified in
+          [<cite><a class="bibref" href="#bib-HTML">HTML</a></cite>].
+        </p>
+      </section>
+      <section id="the-video-element" typeof="bibo:Chapter" resource="#the-video-element" property="bibo:hasPart">
+        <h3 id="h-the-video-element" resource="#h-the-video-element"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.6 </span>
+          The <code>video</code> element
+        </span></h3>
+        <p>
+          For a <a href="https://html.spec.whatwg.org/#the-video-element"><code>video</code>
+          element</a> whose <a href="https://html.spec.whatwg.org/#assigned-media-provider-object">assigned
+          media provider object</a> is a <a href="#dfn-depth-only-stream" class="internalDFN" data-link-type="dfn">depth-only stream</a>, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user
+          agent</a> <em class="rfc2119" title="MUST">MUST</em>, for each pixel of the <a href="https://html.spec.whatwg.org/#media-data">media data</a> that is
+          represented by a <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a>, <a href="#dfn-convert-the-depth-map-value-to-grayscale" class="internalDFN" data-link-type="dfn">convert the depth map value to
+          grayscale</a> prior to when the <code>video</code> element is
+          <a href="https://html.spec.whatwg.org/#potentially-playing">potentially
+          playing</a>.
+        </p>
+        <p>
+          For a <a href="https://html.spec.whatwg.org/#the-video-element"><code>video</code>
+          element</a> whose <a href="https://html.spec.whatwg.org/#assigned-media-provider-object">assigned
+          media provider object</a> is a <a href="#dfn-depth-video-stream" class="internalDFN" data-link-type="dfn">depth+video stream</a>, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user
+          agent</a> <em class="rfc2119" title="MUST">MUST</em> act as if all the <a href="#dfn-mediastreamtrack" class="internalDFN" data-link-type="dfn"><code>MediaStreamTrack</code></a>s of kind
+          "<code>depth</code>" were removed prior to when the
+          <code>video</code> element is <a href="https://html.spec.whatwg.org/#potentially-playing">potentially
+          playing</a>.
+        </p>
+        <p>
+          The algorithm to <dfn data-dfn-type="dfn" id="dfn-convert-the-depth-map-value-to-grayscale">convert the depth map value to grayscale</dfn>,
+          given a depth map value <var>d</var>, is as follows:
+        </p>
+        <ol>
+          <li>Let <var>bit depth</var> be the bit depth of the depth map.
+          </li>
+          <li>Let <var>near</var> be the the <a href="#dfn-near-value" class="internalDFN" data-link-type="dfn">near value</a>.
+          </li>
+          <li>Let <var>far</var> be the the <a href="#dfn-far-value" class="internalDFN" data-link-type="dfn">far value</a>.
+          </li>
+          <li>If <var>bit depth</var> is greater than 8, then apply the
+          <a href="#dfn-rules-to-convert-using-range-inverse" class="internalDFN" data-link-type="dfn">rules to convert using range inverse</a> to <var>d</var> to obtain
+          quantized value <var>d<sub>8bit</sub>.</var>
+          </li>
+          <li>Otherwise, apply the <a href="#dfn-rules-to-convert-using-range-linear" class="internalDFN" data-link-type="dfn">rules to convert using range linear</a>
+          to <var>d</var> to obtain quantized value
+          <var>d<sub>8bit</sub></var>.
+          </li>
+          <li>Return <var>d<sub>8bit</sub></var>.
+          </li>
+        </ol>
+        <p>
+          The <dfn data-dfn-type="dfn" id="dfn-rules-to-convert-using-range-inverse">rules to convert using range inverse</dfn> are as given in
+          the following formula:
+        </p><img src="images/range-inverse.png" alt="Range inverse"><br>
+        <img src="images/quantization.png" alt="Quantization">
+        <p>
+          The <dfn data-dfn-type="dfn" id="dfn-rules-to-convert-using-range-linear">rules to convert using range linear</dfn> are as given in
+          the following formula:
+        </p><img src="images/range-linear.png" alt="Range linear"><br>
+        <img src="images/quantization.png" alt="Quantization">
+        <section id="videotrack-interface" typeof="bibo:Chapter" resource="#videotrack-interface" property="bibo:hasPart">
+          <h4 id="h-videotrack-interface" resource="#h-videotrack-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.6.1 </span>
+            <code>VideoTrack</code> interface
+          </span></h4>
+          <p>
+            For each <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream track</a> in the <a href="#dfn-depth-only-stream" class="internalDFN" data-link-type="dfn">depth-only stream</a>,
+            the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> create a corresponding <a href="#dfn-videotrack" class="internalDFN" data-link-type="dfn"><code>VideoTrack</code></a>
+            as defined in [<cite><a class="bibref" href="#bib-HTML">HTML</a></cite>].
+          </p>
+        </section>
+      </section>
+      <section id="mediatracksettings-dictionary" typeof="bibo:Chapter" resource="#mediatracksettings-dictionary" property="bibo:hasPart">
+        <h3 id="h-mediatracksettings-dictionary" resource="#h-mediatracksettings-dictionary"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.7 </span>
+          <code>MediaTrackSettings</code> dictionary
+        </span></h3>
+        <p>
+          When the <a href="#dfn-getsettings" class="internalDFN" data-link-type="dfn"><code>getSettings()</code></a> method is invoked on a <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream
+          track</a>, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> return the following dictionary
+          that extends the <a href="#dom-mediatracksettings" class="internalDFN" data-link-type="dfn"><code><code>MediaTrackSettings</code></code></a> dictionary:
+        </p>
+        <pre class="idl"><span class="idlEnum" id="idl-def-rangeformat" data-idl="" data-title="RangeFormat">enum <span class="idlEnumID"><a data-lt="RangeFormat" href="#dom-rangeformat" class="internalDFN" data-link-type="dfn" data-for=""><code>RangeFormat</code></a></span> {
+    "<a href="#dom-rangeformat-inverse" class="idlEnumItem">inverse</a>",
+    "<a href="#dom-rangeformat-linear" class="idlEnumItem">linear</a>"
+};</span>
+
+<span class="idlDictionary" id="idl-def-mediatracksettings-partial-1" data-idl="" data-title="MediaTrackSettings">partial dictionary <span class="idlDictionaryID"><a data-lt="MediaTrackSettings" href="#dom-mediatracksettings" class="internalDFN" data-link-type="dfn" data-for=""><code>MediaTrackSettings</code></a></span> {
+<span class="idlMember" id="idl-def-mediatracksettings-focallength" data-idl="" data-title="focalLength" data-dfn-for="mediatracksettings">    <span class="idlMemberType">double</span>        <span class="idlMemberName"><a data-lt="focalLength" href="#dom-mediatracksettings-focallength" class="internalDFN" data-link-type="dfn" data-for="MediaTrackSettings"><code>focalLength</code></a></span>;</span>
+<span class="idlMember" id="idl-def-mediatracksettings-format" data-idl="" data-title="format" data-dfn-for="mediatracksettings">    <span class="idlMemberType"><a href="#dom-rangeformat" class="internalDFN" data-link-type="dfn"><code>RangeFormat</code></a></span>   <span class="idlMemberName"><a data-lt="format" href="#dom-mediatracksettings-format" class="internalDFN" data-link-type="dfn" data-for="MediaTrackSettings"><code>format</code></a></span>;</span>
+<span class="idlMember" id="idl-def-mediatracksettings-horizontalfieldofview" data-idl="" data-title="horizontalFieldOfView" data-dfn-for="mediatracksettings">    <span class="idlMemberType">double</span>        <span class="idlMemberName"><a data-lt="horizontalFieldOfView" href="#dom-mediatracksettings-horizontalfieldofview" class="internalDFN" data-link-type="dfn" data-for="MediaTrackSettings"><code>horizontalFieldOfView</code></a></span>;</span>
+<span class="idlMember" id="idl-def-mediatracksettings-verticalfieldofview" data-idl="" data-title="verticalFieldOfView" data-dfn-for="mediatracksettings">    <span class="idlMemberType">double</span>        <span class="idlMemberName"><a data-lt="verticalFieldOfView" href="#dom-mediatracksettings-verticalfieldofview" class="internalDFN" data-link-type="dfn" data-for="MediaTrackSettings"><code>verticalFieldOfView</code></a></span>;</span>
+<span class="idlMember" id="idl-def-mediatracksettings-depthmapunit" data-idl="" data-title="depthMapUnit" data-dfn-for="mediatracksettings">    <span class="idlMemberType"><a href="#dom-depthmapunit" class="internalDFN" data-link-type="dfn"><code>DepthMapUnit</code></a>?</span> <span class="idlMemberName">depthMapUnit</span>;</span>
+<span class="idlMember" id="idl-def-mediatracksettings-near" data-idl="" data-title="near" data-dfn-for="mediatracksettings">    <span class="idlMemberType">double</span>        <span class="idlMemberName"><a data-lt="near" href="#dom-mediatracksettings-near" class="internalDFN" data-link-type="dfn" data-for="MediaTrackSettings"><code>near</code></a></span>;</span>
+<span class="idlMember" id="idl-def-mediatracksettings-far" data-idl="" data-title="far" data-dfn-for="mediatracksettings">    <span class="idlMemberType">double</span>        <span class="idlMemberName"><a data-lt="far" href="#dom-mediatracksettings-far" class="internalDFN" data-link-type="dfn" data-for="MediaTrackSettings"><code>far</code></a></span>;</span>
+};</span></pre>
+        <div data-dfn-for="mediatracksettings" data-link-for="MediaTrackSettings">
+          <p>
+            The <dfn data-dfn-for="mediatracksettings" data-dfn-type="dfn" id="dom-mediatracksettings-focallength" data-idl=""><code>focalLength</code></dfn> dictionary member
+            represents the <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a>'s <a href="#dfn-focal-length" class="internalDFN" data-link-type="dfn">focal length</a>.
+          </p>
+          <p>
+            The <dfn data-dfn-for="mediatracksettings" data-dfn-type="dfn" id="dom-mediatracksettings-format" data-idl=""><code>format</code></dfn> dictionary member represents the
+            depth to grayscale conversion method applied to the <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth
+            map</a> in the <a href="#dfn-convert-the-depth-map-value-to-grayscale" class="internalDFN" data-link-type="dfn">convert the depth map value to grayscale</a>
+            algorithm. The <dfn data-dfn-for="" data-dfn-type="dfn" id="dom-rangeformat" data-idl=""><code>RangeFormat</code></dfn> enumeration represents the
+            possible values. If the value is "<dfn data-dfn-for="rangeformat" data-dfn-type="dfn" id="dom-rangeformat-inverse" data-idl=""><code>inverse</code></dfn>", the <a href="#dfn-rules-to-convert-using-range-inverse" class="internalDFN" data-link-type="dfn">rules to convert using range
+            inverse</a> have been applied, and if the value is "<dfn data-dfn-for="rangeformat" data-dfn-type="dfn" id="dom-rangeformat-linear" data-idl=""><code>linear</code></dfn>", the <a href="#dfn-rules-to-convert-using-range-linear" class="internalDFN" data-link-type="dfn">rules to convert using range
+            linear</a> have been applied.
+          </p>
+          <p>
+            The <dfn data-dfn-for="mediatracksettings" data-dfn-type="dfn" id="dom-mediatracksettings-horizontalfieldofview" data-idl=""><code>horizontalFieldOfView</code></dfn> dictionary member
+            represents the <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a>'s <a href="#dfn-horizontal-field-of-view" class="internalDFN" data-link-type="dfn">horizontal field of view</a>.
+          </p>
+          <p>
+            The <dfn data-dfn-for="mediatracksettings" data-dfn-type="dfn" id="dom-mediatracksettings-verticalfieldofview" data-idl=""><code>verticalFieldOfView</code></dfn> dictionary member
+            represents the <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a>'s <a href="#dfn-vertical-field-of-view" class="internalDFN" data-link-type="dfn">vertical field of view</a>.
+          </p>
+          <p>
+            The <a href="#idl-def-mediatracksettings-depthmapunit" class="internalDFN" data-link-type="dfn"><code><code>depthMapUnit</code></code></a> dictionary member represents
+            the <a href="#dfn-active-depth-map-unit" class="internalDFN" data-link-type="dfn">active depth map unit</a>.
+          </p>
+          <p>
+            The <dfn data-dfn-for="mediatracksettings" data-dfn-type="dfn" id="dom-mediatracksettings-near" data-idl=""><code>near</code></dfn> dictionary member represents the
+            <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a>'s <a href="#dfn-near-value" class="internalDFN" data-link-type="dfn">near value</a>.
+          </p>
+          <p>
+            The <dfn data-dfn-for="mediatracksettings" data-dfn-type="dfn" id="dom-mediatracksettings-far" data-idl=""><code>far</code></dfn> dictionary member represents the
+            <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a>'s <a href="#dfn-far-value" class="internalDFN" data-link-type="dfn">far value</a>.
+          </p>
+        </div>
+      </section>
+      <section id="webglrenderingcontext-interface" typeof="bibo:Chapter" resource="#webglrenderingcontext-interface" property="bibo:hasPart">
+        <h3 id="h-webglrenderingcontext-interface" resource="#h-webglrenderingcontext-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.8 </span>
+          <code>WebGLRenderingContext</code> interface
+        </span></h3>
+        <section class="informative" id="implementation-considerations-1" typeof="bibo:Chapter" resource="#implementation-considerations-1" property="bibo:hasPart">
+          <h4 id="h-implementation-considerations-1" resource="#h-implementation-considerations-1"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.8.1 </span>
+            Implementation considerations
+          </span></h4><p><em>This section is non-normative.</em></p>
+          <p>
+            A <code>video</code> element whose source is a
+            <a href="#dom-mediastream" class="internalDFN" data-link-type="dfn"><code><code>MediaStream</code></code></a> object containing a <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream
+            track</a> may be uploaded to a WebGL texture of format
+            <code>RGB</code> and type <code>UNSIGNED_BYTE</code>. [<cite><a class="bibref" href="#bib-WEBGL">WEBGL</a></cite>]
+          </p>
+          <p>
+            For each pixel of this WebGL texture, the R component represents
+            the lower 8 bit value of 16 bit depth value, the G component
+            represents the upper 8 bit value of 16 bit depth value and the
+            value in B component is not defined.
+          </p>
+        </section>
+      </section>
+      <section id="depthmapunit-constrainable-property" typeof="bibo:Chapter" resource="#depthmapunit-constrainable-property" property="bibo:hasPart">
+        <h3 id="h-depthmapunit-constrainable-property" resource="#h-depthmapunit-constrainable-property"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.9 </span>
+          <a href="#dom-depthmapunit" class="internalDFN" data-link-type="dfn"><code><code>depthMapUnit</code></code></a> constrainable property
+        </span></h3>
+        <p>
+          The <a href="#dom-depthmapunit" class="internalDFN" data-link-type="dfn"><code>depthMapUnit</code></a> constrainable property is defined to apply
+          only to <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth stream track</a>s.
+        </p>
+        <table class="simple">
+          <thead>
+            <tr>
+              <th>
+                Property name
+              </th>
+              <th>
+                Values
+              </th>
+              <th>
+                Notes
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code><dfn data-dfn-for="" data-dfn-type="dfn" id="dom-depthmapunit" data-idl="">depthMapUnit</dfn></code>
+              </td>
+              <td>
+                <code>DOMString</code>
+              </td>
+              <td>
+                This property is used for setting the initial <a href="#dfn-active-depth-map-unit" class="internalDFN" data-link-type="dfn">active depth
+                map unit</a> when the <a href="#dfn-getusermedia" class="internalDFN" data-link-type="dfn"><code>getUserMedia()</code></a> method is invoked,
+                and is not applicable for subsequent media control.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          The <a href="#dfn-applyconstraints" class="internalDFN" data-link-type="dfn"><code>applyConstraints()</code></a> method <em class="rfc2119" title="MUST">MUST</em> reject the promise with
+          <code>OverconstrainedError</code>, when invoked with
+          <a href="#dom-depthmapunit" class="internalDFN" data-link-type="dfn"><code>depthMapUnit</code></a> property.
+        </p>
+        <pre class="idl"><span class="idlEnum" id="idl-def-depthmapunit" data-idl="" data-title="DepthMapUnit">enum <span class="idlEnumID"><a data-lt="DepthMapUnit" href="#dom-depthmapunit" class="internalDFN" data-link-type="dfn" data-for=""><code>DepthMapUnit</code></a></span> {
+    "<a href="#dom-depthmapunit-mm" class="idlEnumItem">mm</a>",
+    "<a href="#dom-depthmapunit-m" class="idlEnumItem">m</a>"
+};</span></pre>
+        <p>
+          The <code><a href="#dom-depthmapunit" class="internalDFN" data-link-type="dfn"><code>DepthMapUnit</code></a></code> enumeration represents the
+          possible <a href="#dfn-unit" class="internalDFN" data-link-type="dfn">unit</a>s for a <a href="#dfn-depth-map" class="internalDFN" data-link-type="dfn">depth map</a>. The "<dfn data-dfn-for="depthmapunit" data-dfn-type="dfn" id="dom-depthmapunit-mm" data-idl=""><code>mm</code></dfn>" value indicates millimeters, the "<dfn data-dfn-for="depthmapunit" data-dfn-type="dfn" id="dom-depthmapunit-m" data-idl=""><code>m</code></dfn>" value indicates meters.
+        </p>
+        <pre class="idl"><span class="idlDictionary" id="idl-def-mediatrackconstraints-partial-1" data-idl="" data-title="MediaTrackConstraints">partial dictionary <span class="idlDictionaryID"><a data-lt="MediaTrackConstraints" href="#dom-mediatrackconstraints" class="internalDFN" data-link-type="dfn" data-for=""><code>MediaTrackConstraints</code></a></span> {
+<span class="idlMember" id="idl-def-mediatrackconstraints-unit" data-idl="" data-title="unit" data-dfn-for="mediatrackconstraints">    <span class="idlMemberType"><a href="#dom-depthmapunit" class="internalDFN" data-link-type="dfn"><code>DepthMapUnit</code></a></span> <span class="idlMemberName">unit</span> = <span class="idlMemberValue">"mm"</span>;</span>
+};</span>
+
+<span class="idlDictionary" id="idl-def-mediatrackconstraintset-partial-1" data-idl="" data-title="MediaTrackConstraintSet">partial dictionary <span class="idlDictionaryID"><a data-lt="MediaTrackConstraintSet" href="#dom-mediatrackconstraintset" class="internalDFN" data-link-type="dfn" data-for=""><code>MediaTrackConstraintSet</code></a></span> {
+<span class="idlMember" id="idl-def-mediatrackconstraintset-unit" data-idl="" data-title="unit" data-dfn-for="mediatrackconstraintset">    <span class="idlMemberType">ConstrainBoolean</span> <span class="idlMemberName">unit</span>;</span>
+};</span></pre>
+        <p data-dfn-for="mediatrackconstraints" data-link-for="MediaTrackConstraints">
+          The <a href="#dom-depthmapunit" class="internalDFN" data-link-type="dfn"><code><code>depthMapUnit</code></code></a> of <a href="#dom-mediatrackconstraints" class="internalDFN" data-link-type="dfn"><code>MediaTrackConstraints</code></a>
+          is said to be the <dfn data-dfn-type="dfn" id="dfn-active-depth-map-unit">active depth map unit</dfn> for the <a href="#dfn-depth-stream-track" class="internalDFN" data-link-type="dfn">depth
+          stream track</a>, when <a href="#dfn-getusermedia" class="internalDFN" data-link-type="dfn"><code>getUserMedia()</code></a> invocation has
+          succeeded.
+        </p>
+        <pre class="idl"><span class="idlDictionary" id="idl-def-mediatracksupportedconstraints-partial-1" data-idl="" data-title="MediaTrackSupportedConstraints">partial dictionary <span class="idlDictionaryID"><a data-lt="MediaTrackSupportedConstraints" href="#dom-mediatracksupportedconstraints" class="internalDFN" data-link-type="dfn" data-for=""><code>MediaTrackSupportedConstraints</code></a></span> {
+<span class="idlMember" id="idl-def-mediatracksupportedconstraints-unit" data-idl="" data-title="unit" data-dfn-for="mediatracksupportedconstraints">    <span class="idlMemberType">boolean</span> <span class="idlMemberName">unit</span> = <span class="idlMemberValue">true</span>;</span>
+};</span>
+
+<span class="idlDictionary" id="idl-def-mediatrackcapabilities-partial-1" data-idl="" data-title="MediaTrackCapabilities">partial dictionary <span class="idlDictionaryID"><a data-lt="MediaTrackCapabilities" href="#dom-mediatrackcapabilities" class="internalDFN" data-link-type="dfn" data-for=""><code>MediaTrackCapabilities</code></a></span> {
+<span class="idlMember" id="idl-def-mediatrackcapabilities-unit" data-idl="" data-title="unit" data-dfn-for="mediatrackcapabilities">    <span class="idlMemberType"><a href="#dom-depthmapunit" class="internalDFN" data-link-type="dfn"><code>DepthMapUnit</code></a></span> <span class="idlMemberName">unit</span>;</span>
+};</span></pre>
+      </section>
+    </section>
+    <section class="informative" id="examples" typeof="bibo:Chapter" resource="#examples" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-examples" resource="#h-examples"><span property="xhv:role" resource="xhv:heading"><span class="secno">7. </span>
+        Examples
+      </span></h2><p><em>This section is non-normative.</em></p>
+      <h2 id="playback-of-depth-video-stream">
+        Playback of depth+video stream
+      </h2>
+      <div class="example"><div class="example-title"><span>Example 1</span></div><pre class="example highlight prettyprint prettyprinted" style=""><span class="pln">navigator</span><span class="pun">.</span><span class="pln">mediaDevices</span><span class="pun">.</span><span class="pln">getUserMedia</span><span class="pun">({</span><span class="pln">
+  depth</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln">
+  video</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pln">
+</span><span class="pun">}).</span><span class="kwd">then</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">stream</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="com">// Wire the media stream into a &lt;video&gt; element for playback.</span><span class="pln">
+    </span><span class="com">// The RGB video is rendered.</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> video </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">querySelector</span><span class="pun">(</span><span class="str">'#video'</span><span class="pun">);</span><span class="pln">
+    video</span><span class="pun">.</span><span class="pln">srcObject </span><span class="pun">=</span><span class="pln"> stream</span><span class="pun">;</span><span class="pln">
+    video</span><span class="pun">.</span><span class="pln">play</span><span class="pun">();</span><span class="pln">
+
+    </span><span class="com">// Construct a depth-only stream out of the existing depth stream track.</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> depthOnlyStream </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">MediaStream</span><span class="pun">(</span><span class="pln">s</span><span class="pun">.</span><span class="pln">getDepthTracks</span><span class="pun">()[</span><span class="lit">0</span><span class="pun">]);</span><span class="pln">
+
+    </span><span class="com">// Wire the depth-only stream into another &lt;video&gt; element for playback.</span><span class="pln">
+    </span><span class="com">// The depth information is rendered in its grayscale representation.</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> depthVideo </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">querySelector</span><span class="pun">(</span><span class="str">'#depthVideo'</span><span class="pun">);</span><span class="pln">
+    depthVideo</span><span class="pun">.</span><span class="pln">srcObject </span><span class="pun">=</span><span class="pln"> depthOnlyStream</span><span class="pun">;</span><span class="pln">
+    depthVideo</span><span class="pun">.</span><span class="pln">play</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">);</span></pre></div>
+      <h2 id="webgl-fragment-shader-based-post-processing">
+        WebGL Fragment Shader based post-processing
+      </h2>
+      <div class="example"><div class="example-title"><span>Example 2</span></div><pre class="example highlight prettyprint prettyprinted" style=""><span class="com">// This code sets up a video element from a depth stream, uploads it to a WebGL</span><span class="pln">
+</span><span class="com">// texture, and samples that texture in the fragment shader, reconstructing the</span><span class="pln">
+</span><span class="com">// 16-bit depth values from the red and green channels.</span><span class="pln">
+navigator</span><span class="pun">.</span><span class="pln">mediaDevices</span><span class="pun">.</span><span class="pln">getUserMedia</span><span class="pun">({</span><span class="pln">
+  depth</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">}).</span><span class="kwd">then</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">stream</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="com">// wire the stream into a &lt;video&gt; element for playback</span><span class="pln">
+  </span><span class="kwd">var</span><span class="pln"> depthVideo </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">querySelector</span><span class="pun">(</span><span class="str">'#depthVideo'</span><span class="pun">);</span><span class="pln">
+  depthVideo</span><span class="pun">.</span><span class="pln">srcObject </span><span class="pun">=</span><span class="pln"> stream</span><span class="pun">;</span><span class="pln">
+  depthVideo</span><span class="pun">.</span><span class="pln">play</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}).</span><span class="kwd">catch</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">reason</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="com">// handle gUM error here</span><span class="pln">
+</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">// ... later, in the rendering loop ...</span><span class="pln">
+gl</span><span class="pun">.</span><span class="pln">texImage2D</span><span class="pun">(</span><span class="pln">
+   gl</span><span class="pun">.</span><span class="pln">TEXTURE_2D</span><span class="pun">,</span><span class="pln">
+   </span><span class="lit">0</span><span class="pun">,</span><span class="pln">
+   gl</span><span class="pun">.</span><span class="pln">RGB</span><span class="pun">,</span><span class="pln">
+   gl</span><span class="pun">.</span><span class="pln">RGB</span><span class="pun">,</span><span class="pln">
+   gl</span><span class="pun">.</span><span class="pln">UNSIGNED_BYTE</span><span class="pun">,</span><span class="pln">
+   depthVideo
+</span><span class="pun">);</span><span class="pln">
+
+</span><span class="pun">&lt;</span><span class="pln">script id</span><span class="pun">=</span><span class="str">"fragment-shader"</span><span class="pln"> type</span><span class="pun">=</span><span class="str">"x-shader/x-fragment"</span><span class="pun">&gt;</span><span class="pln">
+  varying vec2 v_texCoord</span><span class="pun">;</span><span class="pln">
+  </span><span class="com">// u_tex points to the texture unit containing the depth texture.</span><span class="pln">
+  uniform sampler2D u_tex</span><span class="pun">;</span><span class="pln">
+  uniform </span><span class="kwd">float</span><span class="pln"> far</span><span class="pun">;</span><span class="pln">
+  uniform </span><span class="kwd">float</span><span class="pln"> near</span><span class="pun">;</span><span class="pln">
+  uniform </span><span class="kwd">bool</span><span class="pln"> isRangeInverse</span><span class="pun">;</span><span class="pln">
+  </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    vec4 floatColor </span><span class="pun">=</span><span class="pln"> texture2D</span><span class="pun">(</span><span class="pln">u_tex</span><span class="pun">,</span><span class="pln"> v_texCoord</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">float</span><span class="pln"> dn </span><span class="pun">=</span><span class="pln"> floatColor</span><span class="pun">.</span><span class="pln">r</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">float</span><span class="pln"> depth </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0.</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">isRangeInverse</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      depth </span><span class="pun">=</span><span class="pln"> far </span><span class="pun">*</span><span class="pln"> near </span><span class="pun">/</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> far </span><span class="pun">-</span><span class="pln"> dn </span><span class="pun">*</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> far </span><span class="pun">-</span><span class="pln"> near</span><span class="pun">));</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="com">// Otherwise, using range linear</span><span class="pln">
+      depth </span><span class="pun">=</span><span class="pln"> dn </span><span class="pun">*</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> far </span><span class="pun">-</span><span class="pln"> near </span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> near</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="com">// ...</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span></pre></div>
+    </section>
+    <section class="informative" id="privacy-and-security-considerations" typeof="bibo:Chapter" resource="#privacy-and-security-considerations" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-privacy-and-security-considerations" resource="#h-privacy-and-security-considerations"><span property="xhv:role" resource="xhv:heading"><span class="secno">8. </span>
+        Privacy and security considerations
+      </span></h2><p><em>This section is non-normative.</em></p>
+      <p>
+        The <a href="https://w3c.github.io/mediacapture-main/#privacy-and-security-considerations">
+        privacy and security considerations</a> discussed in [<cite><a class="bibref" href="#bib-GETUSERMEDIA">GETUSERMEDIA</a></cite>]
+        apply to this extension specification.
+      </p>
+    </section>
+    <section class="appendix" id="acknowledgements" typeof="bibo:Chapter" resource="#acknowledgements" property="bibo:hasPart">
+      <!--OddPage--><h2 id="h-acknowledgements" resource="#h-acknowledgements"><span property="xhv:role" resource="xhv:heading"><span class="secno">A. </span>
+        Acknowledgements
+      </span></h2>
+      <p>
+        Thanks to everyone who contributed to the <a href="https://www.w3.org/wiki/Media_Capture_Depth_Stream_Extension">Use
+        Cases and Requirements</a>, sent feedback and comments. Special thanks
+        to Ningxin Hu for experimental implementations, as well as to the
+        Project Tango for their experiments.
+      </p>
+    </section>
+  
+
+<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" property="bibo:hasPart"><!--OddPage--><h2 id="h-references" resource="#h-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B. </span>References</span></h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" property="bibo:hasPart"><h3 id="h-normative-references" resource="#h-normative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B.1 </span>Normative references</span></h3><dl class="bibliography" resource=""><dt id="bib-GETUSERMEDIA">[GETUSERMEDIA]</dt><dd>Daniel Burnett; Adam Bergkvist; Cullen Jennings; Anant Narayanan. <a href="http://www.w3.org/TR/mediacapture-streams/" property="dc:requires"><cite>Media Capture and Streams</cite></a>. 14 April 2015. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/mediacapture-streams/" property="dc:requires">http://www.w3.org/TR/mediacapture-streams/</a>
+</dd><dt id="bib-HTML">[HTML]</dt><dd>Ian Hickson. <a href="https://html.spec.whatwg.org/multipage/" property="dc:requires"><cite>HTML Standard</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/" property="dc:requires">https://html.spec.whatwg.org/multipage/</a>
+</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires">https://tools.ietf.org/html/rfc2119</a>
+</dd><dt id="bib-WEBIDL">[WEBIDL]</dt><dd>Cameron McCormack; Boris Zbarsky. <a href="http://www.w3.org/TR/WebIDL-1/" property="dc:requires"><cite>WebIDL Level 1</cite></a>. 4 August 2015. W3C Working Draft. URL: <a href="http://www.w3.org/TR/WebIDL-1/" property="dc:requires">http://www.w3.org/TR/WebIDL-1/</a>
+</dd></dl></section><section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" property="bibo:hasPart"><h3 id="h-informative-references" resource="#h-informative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B.2 </span>Informative references</span></h3><dl class="bibliography" resource=""><dt id="bib-MEDIACAPTURE-WORKER">[MEDIACAPTURE-WORKER]</dt><dd>Chia-hung Tai; Robert O'Callahan; Tzuhao Kuo; Anssi Kostiainen. <a href="https://w3c.github.io/mediacapture-worker/" property="dc:references"><cite>Media Capture Stream with Worker</cite></a>. W3C Editor's Draft. URL: <a href="https://w3c.github.io/mediacapture-worker/" property="dc:references">https://w3c.github.io/mediacapture-worker/</a>
+</dd><dt id="bib-WEBGL">[WEBGL]</dt><dd>Chris Marrin (Apple Inc.). <a href="https://www.khronos.org/registry/webgl/specs/1.0/" property="dc:references"><cite>WebGL Specification, Version 1.0</cite></a>. 10 February 2011. URL: <a href="https://www.khronos.org/registry/webgl/specs/1.0/" property="dc:references">https://www.khronos.org/registry/webgl/specs/1.0/</a>
+</dd></dl></section></section></body></html>
