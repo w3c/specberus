@@ -19,10 +19,10 @@ const bodyParser = require('body-parser')
 
 // Internal packages:
 const package = require('./package.json')
+,   api = require('./lib/api')
 ,   l10n = require('./lib/l10n')
 ,   sink = require('./lib/sink')
 ,   validator = require('./lib/validator')
-,   profileMetadata = require('./lib/profiles/metadata')
 ;
 
 const app = express()
@@ -47,71 +47,7 @@ app.use(morgan('combined'));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(express.static("public"));
-
-app.post('/api/*', function(req, res) {
-    var v
-    ,   file
-    ,   profile
-    ,   handler
-    ,   options
-    ;
-    if ('/api/validate' === req.path) {
-        v = new validator.Specberus;
-        file = req.query.file;
-        profile = profiles[req.query.profile];
-        handler = new Sink;
-        options = {file: file, events: handler, profile: profile};
-        handler.on("ok", function () {
-            console.log("OK");
-        });
-        handler.on("err", function (type, data) {
-            console.log(data);
-        });
-        handler.on("warning", function (type, data) {
-            console.log("[W]", data);
-        });
-        handler.on("done", function () {
-            console.log("---done---");
-        });
-        handler.on("exception", function (data) {
-            console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
-        });
-        handler.on("end-all", function () {
-            console.log('All done');
-        });
-        v.validate(options);
-    }
-    else if ('/api/metadata' === req.path) {
-        v = new validator.Specberus;
-        file = req.query.file;
-        handler = new Sink;
-        options = {file: file, events: handler, profile: profileMetadata};
-        handler.on("ok", function () {
-            console.log("OK");
-        });
-        handler.on("err", function (type, data) {
-            console.log(data);
-        });
-        handler.on("warning", function (type, data) {
-            console.log("[W]", data);
-        });
-        handler.on("done", function () {
-            console.log("---done---");
-        });
-        handler.on("exception", function (data) {
-            console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
-        });
-        handler.on("end-all", function () {
-            console.log('All done');
-            console.log(v.detectedProfile);
-        });
-        v.validate(options);
-    }
-    else {
-        res.status(404).send('Don\'t recognise "' + req.path + '"!');
-    }
-    res.end();
-});
+api.setUp(app);
 
 // listen up
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);

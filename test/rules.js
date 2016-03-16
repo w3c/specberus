@@ -3,7 +3,10 @@
  */
 
 // Settings:
-const DEBUG = false;
+const DEBUG = false
+,   METADATA_PROFILE = 'profile'
+,   METADATA_DELIVERERS = 'deliverers'
+;
 
 // Native packages:
 const pth = require('path');
@@ -13,9 +16,91 @@ const expect = require('expect.js');
 
 // Internal packages:
 const validation = require('./validation')
+,   samples = require('./samples')
 ,   validator = require('../lib/validator')
 ,   sink = require('../lib/sink')
 ;
+
+/**
+ * Assert that the profile detected in a spec is equal to the known profile.
+ *
+ * @param {String} url - public URL of a spec.
+ * @param {String} profile - profile that should be detected.
+ * @param {Array} deliverers - set of deliverers that should be detected.
+ */
+
+const compareMetadata = function(url, type, expectedValue) { // profile, deliverers) {
+
+    const specberus = new validator.Specberus
+    ,   handler = new sink.Sink(console.log) // , console.log)
+    ;
+    // handler.on('exception', function () {});
+    // handler.on('done', function () {});
+    const opts = {events: handler, url: url};
+
+    if (METADATA_PROFILE === type) {
+        it('Should detect a ' + expectedValue, function () {
+            handler.on('end-all', function () {
+                // console.dir(specberus.metadata);
+                // expect(specberus.metadata).to.not.be(undefined);
+                // expect(specberus.metadata.detectedProfile).to.not.be(undefined);
+                expect(specberus.metadata.detectedProfile).to.equal(expectedValue);
+            });
+            specberus.extractMetadata(opts);
+        });
+    }
+    else if (METADATA_DELIVERERS === type) {
+        it('Should find deliverers of sample spec', function () {
+            handler.on('end-all', function () {
+                // console.dir(specberus.metadata);
+                // expect(specberus.metadata).to.not.be(undefined);
+                // expect(specberus.metadata.detectedDeliverers).to.not.be(undefined);
+                // expect(specberus.metadata.detectedDeliverers).to.be.an('array');
+                expect(specberus.metadata.detectedDeliverers.length).to.equal(expectedValue.length);
+                // for(var i = 0; i < specberus.metadata.detectedDeliverers.length; i ++) {
+                //     @TODO: compare all deliverers, one by one.
+                // }
+                // done();
+            });
+            specberus.extractMetadata(opts);
+        });
+
+
+    }
+
+};
+
+describe('Basics', function() {
+
+    const specberus = new validator.Specberus;
+
+    describe('Method "extractMetadata"', function() {
+
+        // it('Should exist and be a function'), function() {
+        //     expect(specberus.extractMetadata).to.be.a('function');
+        // };
+
+        if (!process || !process.env || !process.env.SKIP_NETWORK) {
+            for(var i in samples) {
+                compareMetadata(samples[i].url, METADATA_PROFILE, samples[i].profile);
+            }
+        }
+
+        if (!process || !process.env || !process.env.SKIP_NETWORK) {
+            for(var i in samples) {
+                compareMetadata(samples[i].url, METADATA_DELIVERERS, samples[i].deliverers);
+            }
+        }
+
+    });
+
+    // describe('Method "validate"', function() {
+    //     it('Should exist and be a function'), function() {
+    //         expect(specberus.validate).to.be.a('function');
+    //     };
+    // });
+
+});
 
 var tests = {
     // Categories

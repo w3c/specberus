@@ -1,0 +1,62 @@
+[
+    {
+        "url": "https://www.w3.org/TR/2016/WD-appmanifest-20160312/"
+    ,   "profile": "WD"
+    ,   "deliverers": [
+            {
+                "name": "Web Platform Working Group"
+            ,   "homepage": "http://www.w3.org/WebPlatform/WG/"
+            }
+        ]
+    }
+,   {
+        "url": "https://www.w3.org/TR/2016/CR-WebIDL-1-20160308/"
+    ,   "profile": "CR"
+    ,   "deliverers": [
+            {
+                "name": "Web Platform Working Group"
+            ,   "homepage": "https://www.w3.org/WebPlatform/WG/"
+            }
+        ]
+    }
+,   {
+        "url": "https://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/"
+    ,   "profile": "PR"
+    ,   "deliverers": [
+            {
+                "name": "Timed Text Working Group"
+            ,   "homepage": "http://www.w3.org/AudioVideo/TT/"
+            }
+        ]
+    }
+,   {
+        "url": "https://www.w3.org/TR/2016/NOTE-csvw-ucr-20160225/"
+    ,   "profile": "WG-NOTE"
+    ,   "deliverers": [
+            {
+                "name": "CVS on the Web Working Group"
+            ,   "homepage": "http://www.w3.org/2013/csvw/"
+            }
+        ]
+    }
+,   {
+        "url": "https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/"
+    ,   "profile": "REC"
+    ,   "deliverers": [
+            {
+                "name": "CVS on the Web Working Group"
+            ,   "homepage": "http://www.w3.org/2013/csvw"
+            }
+        ]
+    }
+,   {
+        "url": "https://www.w3.org/TR/2015/WD-tracking-compliance-20150714/"
+    ,   "profile": "LC"
+    ,   "deliverers": [
+            {
+                "name": "Tracking Protection Working Group"
+            ,   "homepage": "http://www.w3.org/2011/tracking-protection/"
+            }
+        ]
+    }
+]
