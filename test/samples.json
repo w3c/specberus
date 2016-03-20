@@ -1,16 +1,5 @@
 [
-    {
-        "url": "https://www.w3.org/TR/2016/WD-appmanifest-20160312/"
-    ,   "file": "appmanifest"
-    ,   "profile": "WD"
-    ,   "deliverers": [
-            {
-                "name": "Web Platform Working Group"
-            ,   "homepage": "http://www.w3.org/WebPlatform/WG/"
-            }
-        ]
-    }
-,   {
+   {
         "url": "https://www.w3.org/TR/2016/CR-WebIDL-1-20160308/"
     ,   "file": "WebIDL-1"
     ,   "profile": "CR"
