@@ -19,7 +19,6 @@ const bodyParser = require('body-parser')
 
 // Internal packages:
 const package = require('./package.json')
-,   api = require('./lib/api')
 ,   l10n = require('./lib/l10n')
 ,   sink = require('./lib/sink')
 ,   validator = require('./lib/validator')
@@ -47,7 +46,6 @@ app.use(morgan('combined'));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(express.static("public"));
-api.setUp(app);
 
 // listen up
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
