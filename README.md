@@ -9,7 +9,16 @@
 
 Specberus is a checker used at [W3C](http://www.w3.org/) to validate the compliance of [Technical Reports](http://www.w3.org/TR/) with publication rules.
 
-## Installation
+1. [Installation](#1-installation)
+1. [Running](#2-running)
+1. [Testing](#3-testing)
+1. [JS API](#4-js-api)
+1. [REST API](#5-rest-api)
+1. [Profiles](#6-profiles)
+1. [Validation events](#7-validation-events)
+1. [Writing rules](#8-writing-rules)
+
+## 1. Installation
 
 Specberus is a [Node.js](https://nodejs.org/en/) application, [distributed through npm](https://www.npmjs.com/package/specberus).
 Alternatively, you can clone [the repository](https://github.com/w3c/specberus) and run:
@@ -19,7 +28,7 @@ Alternatively, you can clone [the repository](https://github.com/w3c/specberus) 
 In order to get all the dependencies installed. Naturally, this requires that you have a reasonably
 recent version of Node.js installed.
 
-## Running
+## 2. Running
 
 Currently there is no shell to run Specberus. Later we will add both Web and CLI interfaces based
 on the same core library.
@@ -42,7 +51,7 @@ $ npm start
 $ npm start 3001
 ```
 
-## Testing
+## 3. Testing
 
 Testing is done using mocha. Simply run:
 
@@ -57,11 +66,13 @@ unavailable. To work around this, you can set SKIP_NETWORK:
 
     SKIP_NETWORK=1 mocha
 
-## API
+## 4. JS API
 
 The interface you get when you `require("specberus")` is that from `lib/validator`. It returns a
 `Specberus` instance that is properly configured for operation in the Node.js environment
 (there is nominal support for running Specberus under other environments, but it isn't usable at this time).
+
+(See also [the REST API](#5-rest-api).)
 
 ### `validate(options)`
 
@@ -119,7 +130,89 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
 }
 ```
 
-## Profiles
+## 5. REST API
+
+Similar to the [JS API](#4-js-api), Specberus exposes a REST API via HTTP too.
+
+The endpoint is `<host>/api/`.
+Use either `url` or `file` to pass along the document (neither `source` nor `document` are allowed).
+
+There are three `GET` methods available.
+
+### `version`
+
+Returns the version string, eg `1.5.3`.
+
+### `metadata`
+
+Extract all known metadata from a document; see [below](#return-values) for information about the return value.
+
+### `validate`
+
+Check the document ([syntax](#validateoptions)).
+Many of [the options understood by the JS method `validate`](#validateoptions) are accepted.
+
+The special profile `auto` is also available.
+
+### Examples
+
+* `<host>/api/version`
+* `<host>/api/metadata?url=http://example.com/doc.html`
+* `<host>/api/validate?file=/home/me/docs/spec.html`
+* `<host>/api/validate?file=draft2.html&profile=WD&validation=simple-validation&processDocument=2015`
+
+### Return values
+
+Methods `metadata` and `validate` return a JSON object with these properties:
+
+* `success` (`boolean`): whether the operation succeeded, or not.
+* `errors` (`array`): all errors found.
+* `warnings` (`array`): all warnings.
+* `info` (`array`): additional, informative messages.
+* `metadata` (`object`): extracted metadata; [see structure here](#extractmetadataoptions).
+
+If there is an internal error, the document cannot be retrieved or is not recognised, or validation fails, both methods would return HTTP status code `400`.
+Also, in the case of `validate`, `success` would be `false` and `errors.length > 0`.
+
+This is an example of a successful validation of a document, with profile `auto`:
+
+```json
+{ "success": true,
+  "errors": [],
+  "warnings":
+   [ "headers.ol-toc",
+     "links.linkchecker",
+     "links.compound",
+     "headers.dl" ],
+  "info":
+   [ "sotd.diff",
+     "structure.display-only",
+     "structure.display-only",
+     "structure.display-only",
+     "validation.wcag" ],
+  "metadata":
+   { "profile": "WD",
+     "title": "Character Model for the World Wide Web: String Matching and Searching",
+     "docDate": "2016-4-7",
+     "thisVersion": "http://www.w3.org/TR/2016/WD-charmod-norm-20160407/",
+     "latestVersion": "http://www.w3.org/TR/charmod-norm/",
+     "previousVersion": "http://www.w3.org/TR/2015/WD-charmod-norm-20151119/",
+     "editorsDraft": "http://w3c.github.io/charmod-norm/",
+     "delivererIDs": [ 32113 ],
+     "editorIDs": [ 33573 ],
+     "rectrack": false,
+     "informative": false,
+     "process": "http://www.w3.org/2015/Process-20150901/",
+     "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
+  }
+}
+```
+
+When the profile is given by the user (instead of being set to `auto`), fewer items of metadata are returned.
+
+`metadata` returns a similar structure, where all values are empty arrays, except for the key `metadata` which contains the metadata object.
+
+## 6. Profiles
 
 Profiles are simple objects that support the following API:
 
@@ -154,7 +247,7 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
     * `LC`
 * `dummy`
 
-## Validation events
+## 7. Validation events
 
 For a given checking run, the event sink you specify will be receiving a bunch of events as
 indicated below. Events are shown as having parameters since those are passed to the event handler.
@@ -178,7 +271,7 @@ indicated below. Events are shown as having parameters since those are passed to
   contains details about this error. All exceptions are displayed on the error console in addition to
   this event being fired.
 
-## Writing rules
+## 8. Writing rules
 
 Rules are simple modules that just expose a `check(sr, cb)` method. They receive a Specberus object
 and a callback, use the Specberus object to fire validation events and call the callback when

@@ -19,26 +19,19 @@ const bodyParser = require('body-parser')
 
 // Internal packages:
 const package = require('./package.json')
+,   api = require('./lib/api')
 ,   l10n = require('./lib/l10n')
 ,   sink = require('./lib/sink')
+,   util = require('./lib/util')
 ,   validator = require('./lib/validator')
 ;
 
 const app = express()
 ,   server = http.createServer(app)
 ,   io = socket.listen(server)
-,   profiles = {}
+,   profiles = util.profiles
 ,   Sink = sink.Sink
 ,   version = package.version
-;
-
-("FPWD FPLC FPCR WD LC CR PR PER REC RSCND " +
-"CG-NOTE FPIG-NOTE IG-NOTE FPWG-NOTE WG-NOTE " +
-"WD-Echidna WG-NOTE-Echidna " +
-"MEM-SUBM TEAM-SUBM").split(" ")
-         .forEach(function (p) {
-             profiles[p] = require("./lib/profiles/" + p);
-         })
 ;
 
 // middleware
@@ -46,6 +39,7 @@ app.use(morgan('combined'));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(express.static("public"));
+api.setUp(app);
 
 // listen up
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
