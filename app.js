@@ -22,6 +22,7 @@ const package = require('./package.json')
 ,   l10n = require('./lib/l10n')
 ,   sink = require('./lib/sink')
 ,   validator = require('./lib/validator')
+,   api = require('./lib/api')
 ;
 
 const app = express()
@@ -46,6 +47,7 @@ app.use(morgan('combined'));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(express.static("public"));
+api.setUp(app);
 
 // listen up
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
