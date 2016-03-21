@@ -5,7 +5,6 @@
 // Settings:
 const DEBUG = false
 ,   META_PROFILE = 'profile'
-,   META_DELIVERERS = 'deliverers'
 ,   META_DELIVERER_IDS = 'delivererIDs'
 ;
 
@@ -23,36 +22,6 @@ const validation = require('./validation')
 ,   validator = require('../lib/validator')
 ,   sink = require('../lib/sink')
 ;
-
-/**
- * Compare two arrays of "deliverers" and check that they're equivalent.
- *
- * @param {Array} a1 - One array.
- * @param {Array} a2 - The other array.
- * @returns {Boolean} whether the two structures are really the same.
- */
-
-const equivalentDeliverers = function(a1, a2) {
-    if (a1 && a2 && a1.length === a2.length) {
-        var j
-        ,   found = 0;
-        for(var i = 0; i < a1.length; i ++) {
-            j = 0;
-            while (i === found && j < a2.length) {
-                if (a1[i].name === a2[j].name && a1[i].homepage === a2[j].homepage) {
-                    found++;
-                }
-                else {
-                    j++;
-                }
-            }
-        }
-        return (found === a1.length);
-    }
-    else {
-        return false;
-    }
-};
 
 /**
  * Compare two arrays of "deliverer IDs" and check that they're equivalent.
@@ -84,7 +53,7 @@ const equivalentDelivererIDs = function(a1, a2) {
  *
  * @param {String} url - public URL of a spec.
  * @param {String} file - name of local file containing a spec (without path and withouth ".html" suffix).
- * @param {String} type - metadata to check: {"META_PROFILE", "META_DELIVERERS"}.
+ * @param {String} type - metadata to check: {"META_PROFILE", "META_DELIVERER_IDS"}.
  * @param {Object} expectedValue - value that is expected to be found.
  */
 
@@ -100,18 +69,6 @@ const compareMetadata = function(url, file, type, expectedValue) {
         it('Should detect a ' + expectedValue, function (done) {
             handler.on('end-all', function () {
                 chai(specberus).to.have.property('meta').to.have.property('detectedProfile').equal(expectedValue);
-                done();
-            });
-            specberus.extractMetadata(opts);
-        });
-    }
-    else if (META_DELIVERERS === type) {
-        it('Should find deliverers of ' + (url ? url : file), function (done) {
-            handler.on('end-all', function () {
-                chai(specberus).to.have.property('meta').to.have.property('detectedDeliverers');
-                chai(specberus.meta.detectedDeliverers).to.satisfy(function(found) {
-                    return equivalentDeliverers(found, expectedValue);
-                });
                 done();
             });
             specberus.extractMetadata(opts);
@@ -149,18 +106,12 @@ describe('Basics', function() {
                 compareMetadata(samples[i].url, null, META_PROFILE, samples[i].profile);
             }
             for(var i in samples) {
-                compareMetadata(samples[i].url, null, META_DELIVERERS, samples[i].deliverers);
-            }
-            for(var i in samples) {
                 compareMetadata(samples[i].url, null, META_DELIVERER_IDS, samples[i].delivererIDs);
             }
         }
         else {
             for(var i in samples) {
                 compareMetadata(null, samples[i].file, META_PROFILE, samples[i].profile);
-            }
-            for(var i in samples) {
-                compareMetadata(null, samples[i].file, META_DELIVERERS, samples[i].deliverers);
             }
             for(var i in samples) {
                 compareMetadata(null, samples[i].file, META_DELIVERER_IDS, samples[i].delivererIDs);

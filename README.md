@@ -82,7 +82,7 @@ This method returns a simple object with metadata inferred from the document.
 The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
 goals of this method).
 
-The returned `Object` may contain up to 3 properties: `detectedProfile`, `detectedDeliverers` and `detectedDelivererIDs`.
+The returned `Object` may contain up to 2 properties: `detectedProfile` and `detectedDelivererIDs`.
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
 An example:
@@ -90,16 +90,6 @@ An example:
 ```json
 {
   "detectedProfile": "WD",
-  "detectedDeliverers": [
-    {
-      "name": "Device APIs Working Group",
-      "homepage":"http://www.w3.org/2009/dap/"
-    },
-    {
-      "name": "Web Real-Time Communications Working Group",
-      "homepage": "http://www.w3.org/2011/04/webrtc/"
-    }
-  ],
   "detectedDelivererIDs": [47318, 43696]
 }
 ```
