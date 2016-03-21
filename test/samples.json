@@ -9,6 +9,7 @@
             ,   "homepage": "https://www.w3.org/WebPlatform/WG/"
             }
         ]
+    ,   "delivererIDs": [83482]
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/"
@@ -20,6 +21,7 @@
             ,   "homepage": "http://www.w3.org/AudioVideo/TT/"
             }
         ]
+    ,   "delivererIDs": [34314]
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/NOTE-csvw-ucr-20160225/"
@@ -31,6 +33,7 @@
             ,   "homepage": "http://www.w3.org/2013/csvw/"
             }
         ]
+    ,   "delivererIDs": [68238]
     }
 ,   {
         "url": "https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/"
@@ -42,6 +45,7 @@
             ,   "homepage": "http://www.w3.org/2013/csvw"
             }
         ]
+    ,   "delivererIDs": [68238]
     }
 ,   {
         "url": "https://www.w3.org/TR/2015/WD-tracking-compliance-20150714/"
@@ -53,6 +57,7 @@
             ,   "homepage": "http://www.w3.org/2011/tracking-protection/"
             }
         ]
+    ,   "delivererIDs": [49311]
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/"
@@ -68,5 +73,6 @@
             ,   "homepage": "http://www.w3.org/2011/04/webrtc/"
             }
         ]
+    ,   "delivererIDs": [47318, 43696]
     }
 ]

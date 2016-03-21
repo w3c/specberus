@@ -6,6 +6,7 @@
 const DEBUG = false
 ,   META_PROFILE = 'profile'
 ,   META_DELIVERERS = 'deliverers'
+,   META_DELIVERER_IDS = 'delivererIDs'
 ;
 
 // Native packages:
@@ -47,7 +48,33 @@ const equivalentDeliverers = function(a1, a2) {
             }
         }
         return (found === a1.length);
-    } else {
+    }
+    else {
+        return false;
+    }
+};
+
+/**
+ * Compare two arrays of "deliverer IDs" and check that they're equivalent.
+ *
+ * @param {Array} a1 - One array.
+ * @param {Array} a2 - The other array.
+ * @returns {Boolean} whether the two arrays contain exactly the same integers.
+ */
+
+const equivalentDelivererIDs = function(a1, a2) {
+    if (a1 && a2 && a1.length === a2.length) {
+        var found = 0;
+        for(var i = 0; i < a1.length; i ++) {
+            for(var j = 0; j < a2.length && found === i; j ++) {
+                if (a1[i] === a2[j]) {
+                    found++;
+                }
+            }
+        }
+        return (found === a1.length);
+    }
+    else {
         return false;
     }
 };
@@ -90,6 +117,18 @@ const compareMetadata = function(url, file, type, expectedValue) {
             specberus.extractMetadata(opts);
         });
     }
+    else if (META_DELIVERER_IDS === type) {
+        it('Should find deliverer IDs of ' + (url ? url : file), function (done) {
+            handler.on('end-all', function () {
+                chai(specberus).to.have.property('meta').to.have.property('detectedDelivererIDs');
+                chai(specberus.meta.detectedDelivererIDs).to.satisfy(function(found) {
+                    return equivalentDelivererIDs(found, expectedValue);
+                });
+                done();
+            });
+            specberus.extractMetadata(opts);
+        });
+    }
 
 
 };
@@ -112,6 +151,9 @@ describe('Basics', function() {
             for(var i in samples) {
                 compareMetadata(samples[i].url, null, META_DELIVERERS, samples[i].deliverers);
             }
+            for(var i in samples) {
+                compareMetadata(samples[i].url, null, META_DELIVERER_IDS, samples[i].delivererIDs);
+            }
         }
         else {
             for(var i in samples) {
@@ -119,6 +161,9 @@ describe('Basics', function() {
             }
             for(var i in samples) {
                 compareMetadata(null, samples[i].file, META_DELIVERERS, samples[i].deliverers);
+            }
+            for(var i in samples) {
+                compareMetadata(null, samples[i].file, META_DELIVERER_IDS, samples[i].delivererIDs);
             }
         }
 
