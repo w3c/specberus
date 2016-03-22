@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" typeof="bibo:Document w3p:REC" prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
+<head><meta property="dc:language" content="en" lang="">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <title>Model for Tabular Data and Metadata on the Web</title>
+    
+    
+    
+    
+    
+    <style type="text/css">
+      .grammar td { font-family: monospace; vertical-align: top; }
+      .grammar-literal { color: gray;}
+      ol.algorithm {
+        counter-reset: numsection;
+        list-style-type: none;
+      }
+      ol.algorithm > li {
+        margin: 1em -1em;
+        padding-right: 1em;
+        text-indent: -1em;
+      }
+      ol.algorithm > li:before {
+        font-weight: bold;
+        counter-increment: numsection;
+        content: counters(numsection, ".") " ";
+      }
+      ol.algorithm>li p, ol.algorithm>li ul {text-indent: 0em}
+      ol.algorithm>li>p:first-child {position: relative; display: inline;}
+      pre {overflow: auto;}
+      dd a.externalDFN, p a.externalDFN, li a.externalDFN {border-bottom:  1px solid #99c; font-style: italic;}
+
+      dl.typography dt { font-weight: normal}
+      dl.typography dd { margin-bottom: 0.3em; margin-top: 0.2em;}
+      dl.typography a.externalDFN { border-bottom:  1px solid #99c; font-style: italic; }
+   </style>
+  <style>/*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+
+/* --- INLINES --- */
+em.rfc2119 { 
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  1px solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  1px dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+cite .bibref {
+    font-style: normal;
+}
+
+code {
+    color:  #C83500;
+}
+
+/* --- TOC --- */
+.toc a, .tof a {
+    text-decoration:    none;
+}
+
+a .secno, a .figno {
+    color:  #000;
+}
+
+ul.tof, ol.tof {
+    list-style: none outside none;
+}
+
+.caption {
+    margin-top: 0.5em;
+    font-style:   italic;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple th[scope="row"] {
+    background: inherit;
+    color:  inherit;
+    border-top: 1px solid #ddd;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+.section dl.attrs dd, .section dl.eldef dd {
+    margin-bottom:  0;
+}
+
+@media print {
+    .removeOnSave {
+        display: none;
+    }
+}
+</style><style>/* --- EXAMPLES --- */
+div.example-title {
+    min-width: 7.5em;
+    color: #b9ab2d;
+}
+div.example-title span {
+    text-transform: uppercase;
+}
+aside.example, div.example, div.illegal-example {
+    padding: 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+}
+div.illegal-example { color: red }
+div.illegal-example p { color: black }
+aside.example, div.example {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+    border-color: #e0cb52;
+    background: #fcfaee;
+}
+
+aside.example div.example {
+    border-left-width: .1em;
+    border-color: #999;
+    background: #fff;
+}
+aside.example div.example div.example-title {
+    color: #999;
+}
+</style><style>/* --- ISSUES/NOTES --- */
+div.issue-title, div.note-title , div.ednote-title, div.warning-title {
+    padding-right:  1em;
+    min-width: 7.5em;
+    color: #b9ab2d;
+}
+div.issue-title { color: #e05252; }
+div.note-title, div.ednote-title { color: #2b2; }
+div.warning-title { color: #f22; }
+div.issue-title span, div.note-title span, div.ednote-title span, div.warning-title span {
+    text-transform: uppercase;
+}
+div.note, div.issue, div.ednote, div.warning {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.note > p:first-child, .ednote > p:first-child, .issue > p:first-child, .warning > p:first-child { margin-top: 0 }
+.issue, .note, .ednote, .warning {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+}
+div.issue, div.note , div.ednote,  div.warning {
+    padding: 1em 1.2em 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+}
+span.note, span.ednote, span.issue, span.warning { padding: .1em .5em .15em; }
+
+.issue {
+    border-color: #e05252;
+    background: #fbe9e9;
+}
+.note, .ednote {
+    border-color: #52e052;
+    background: #e9fbe9;
+}
+
+.warning {
+    border-color: #f11;
+    border-right-width: .2em;
+    border-top-width: .2em;
+    border-bottom-width: .2em;
+    border-style: solid;
+    background: #fbe9e9;
+}
+
+.warning-title:before{
+    content: "⚠"; /*U+26A0 WARNING SIGN*/
+    font-size: 3em;
+    float: left;
+    height: 100%;
+    padding-right: .3em;
+    vertical-align: top;
+    margin-top: -0.5em;
+}
+
+li.task-list-item {
+    list-style: none;
+}
+
+input.task-list-item-checkbox {
+    margin: 0 0.35em 0.25em -1.6em;
+    vertical-align: middle;
+}
+</style><style>/* HIGHLIGHTS */
+code.prettyprint {
+    color:  inherit;
+}
+
+/* this from google-code-prettify */
+.pln{color:#000}@media screen{.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.pun,.opn,.clo{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun,.opn,.clo{color:#440}.tag{color:#006;font-weight:bold}.atn{color:#404}.atv{color:#060}}ol.linenums{margin-top:0;margin-bottom:0}li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}
+</style><link href="https://www.w3.org/StyleSheets/TR/W3C-REC" rel="stylesheet"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--><script type="application/json" id="initialUserConfig">{
+  "localBiblio": {
+    "tabular-data-model": {
+      "authors": [
+        "Jeni Tennison",
+        "Gregg Kellogg"
+      ],
+      "title": "Model for Tabular Data and Metadata on the Web",
+      "href": "http://www.w3.org/TR/2015/REC-tabular-data-model-20151217/",
+      "rawDate": "2015-12-17",
+      "status": "REC",
+      "publisher": "W3C"
+    },
+    "tabular-metadata": {
+      "authors": [
+        "Jeni Tennison",
+        "Gregg Kellogg"
+      ],
+      "title": "Metadata Vocabulary for Tabular Data",
+      "href": "http://www.w3.org/TR/2015/REC-tabular-metadata-20151217/",
+      "rawDate": "2015-12-17",
+      "status": "REC",
+      "publisher": "W3C"
+    },
+    "csv2json": {
+      "authors": [
+        "Jeremy Tandy",
+        "Ivan Herman"
+      ],
+      "title": "Generating JSON from Tabular Data on the Web",
+      "href": "http://www.w3.org/TR/2015/REC-csv2json-20151217/",
+      "rawDate": "2015-12-17",
+      "status": "REC",
+      "publisher": "W3C"
+    },
+    "csv2rdf": {
+      "authors": [
+        "Jeremy Tandy",
+        "Ivan Herman",
+        "Gregg Kellogg"
+      ],
+      "title": "Generating RDF from Tabular Data on the Web",
+      "href": "http://www.w3.org/TR/2015/REC-csv2rdf-20151217/",
+      "rawDate": "2015-12-17",
+      "status": "REC",
+      "publisher": "W3C"
+    },
+    "csvw-context": {
+      "authors": [
+        "Gregg Kellogg"
+      ],
+      "title": "Metadata Vocabulary for Tabular Data",
+      "href": "http://www.w3.org/ns/csvw",
+      "publisher": "W3C"
+    },
+    "csvw-tests": {
+      "authors": [
+        "Gregg Kellogg"
+      ],
+      "title": "CSVW Test Suite",
+      "href": "http://www.w3.org/ns/csvw",
+      "publisher": "W3C"
+    },
+    "EBNF-NOTATION": {
+      "authors": [
+        "Tim Bray",
+        "Jean Paoli",
+        "C. Michael Sperberg-McQueen",
+        "Eve Maler",
+        "François Yergau"
+      ],
+      "title": "EBNF Notation",
+      "rawDate": "2008-11-26",
+      "status": "REC",
+      "publisher": "W3C",
+      "href": "http://www.w3.org/TR/xml/#sec-notation"
+    },
+    "Knuth": {
+      "author": [
+        "Donald E. Knuth"
+      ],
+      "title": "The Art of Computer Programming Volume 1: Fundamental Algorithms (3rd ed.)",
+      "publisher": "Addison-Wesley Professional",
+      "rawDate": "1997-11-14"
+    },
+    "DOAP": {
+      "authors": [
+        "Ed Dumbill"
+      ],
+      "title": "Description of a Project",
+      "status": "Community Specification",
+      "href": "https://github.com/edumbill/doap/wiki"
+    }
+  },
+  "specStatus": "ED",
+  "shortName": "tabular-data-model",
+  "previousPublishDate": "2015-11-17",
+  "previousMaturity": "PR",
+  "previousURI": "http://www.w3.org/TR/2015/CR-tabular-data-model-20151117/",
+  "edDraftURI": "http://w3c.github.io/csvw/syntax/",
+  "testSuiteURI": "http://www.w3.org/2013/csvw/tests/",
+  "implementationReportURI": "http://www.w3.org/2013/csvw/implementation_report.html",
+  "lcEnd": "2015-10-30",
+  "crEnd": "2015-10-30",
+  "prEnd": "2015-12-15",
+  "editors": [
+    {
+      "name": "Jeni Tennison",
+      "company": "Open Data Institute",
+      "companyURL": "http://theodi.org/",
+      "w3cid": "33715"
+    },
+    {
+      "name": "Gregg Kellogg",
+      "url": "http://greggkellogg.net/",
+      "company": "Kellogg Associates",
+      "companyURL": "http://kellogg-assoc.com/",
+      "w3cid": "44770"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Jeni Tennison",
+      "company": "Open Data Institute",
+      "companyURL": "http://theodi.org/",
+      "w3cid": "33715"
+    },
+    {
+      "name": "Gregg Kellogg",
+      "url": "http://greggkellogg.net/",
+      "company": "Kellogg Associates",
+      "companyURL": "http://kellogg-assoc.com/",
+      "w3cid": "44770"
+    },
+    {
+      "name": "Ivan Herman",
+      "url": "http://www.w3.org/People/Ivan/",
+      "company": "W3C",
+      "companyURL": "http://www.w3.org",
+      "w3cid": "7382"
+    }
+  ],
+  "wg": "CSV on the Web Working Group",
+  "wgURI": "http://www.w3.org/2013/csvw/",
+  "wgPublicList": "public-csv-wg",
+  "wgPatentURI": "http://www.w3.org/2004/01/pp-impl/68238/status",
+  "otherLinks": [
+    {
+      "key": "Repository",
+      "data": [
+        {
+          "value": "We are on GitHub",
+          "href": "https://github.com/w3c/csvw"
+        },
+        {
+          "value": "File a bug",
+          "href": "https://github.com/w3c/csvw"
+        }
+      ]
+    },
+    {
+      "key": "Changes",
+      "data": [
+        {
+          "value": "Diff to previous version",
+          "href": "diff.html"
+        },
+        {
+          "value": "Commit history",
+          "href": "https://github.com/w3c/csvw/commits/gh-pages"
+        }
+      ]
+    }
+  ],
+  "alternateFormats": [
+    {
+      "uri": "tabular-data-model.epub",
+      "label": "ePub"
+    }
+  ],
+  "inlineCSS": true,
+  "issueBase": "https://github.com/w3c/csvw/issues/",
+  "noIDLIn": true,
+  "errata": "http://www.w3.org/2013/csvw/errata/",
+  "noLegacyStyle": false
+}</script></head>
+  <body id="respecDocument" role="document" class="h-entry"><div id="respecHeader" role="contentinfo" class="head">
+  <p>
+      
+        
+            <a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/Icons/w3c_home" alt="W3C" height="48" width="72"></a>
+            
+            
+        
+      
+  </p>
+  <h1 class="title p-name" id="title" property="dcterms:title">Model for Tabular Data and Metadata on the Web</h1>
+  
+  <h2 id="w3c-recommendation-17-december-2015"><abbr title="World Wide Web Consortium">W3C</abbr> Recommendation <time property="dcterms:issued" class="dt-published" datetime="2015-12-17">17 December 2015</time></h2>
+  <dl>
+    
+      <dt>This version:</dt>
+      <dd><a class="u-url" href="http://www.w3.org/TR/2015/REC-tabular-data-model-20151217/">http://www.w3.org/TR/2015/REC-tabular-data-model-20151217/</a></dd>
+      <dt>Latest published version:</dt>
+      <dd><a href="http://www.w3.org/TR/tabular-data-model/">http://www.w3.org/TR/tabular-data-model/</a></dd>
+    
+    
+      <dt>Latest editor's draft:</dt>
+      <dd><a href="http://w3c.github.io/csvw/syntax/">http://w3c.github.io/csvw/syntax/</a></dd>
+    
+    
+      <dt>Test suite:</dt>
+      <dd><a href="http://www.w3.org/2013/csvw/tests/">http://www.w3.org/2013/csvw/tests/</a></dd>
+    
+    
+      <dt>Implementation report:</dt>
+      <dd><a href="http://www.w3.org/2013/csvw/implementation_report.html">http://www.w3.org/2013/csvw/implementation_report.html</a></dd>
+    
+    
+    
+    
+      <dt>Previous version:</dt>
+      <dd><a rel="dcterms:replaces" href="http://www.w3.org/TR/2015/PR-tabular-data-model-20151117/">http://www.w3.org/TR/2015/PR-tabular-data-model-20151117/</a></dd>
+    
+    
+    <dt>Editors:</dt>
+    <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0" data-editor-id="33715"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Jeni Tennison</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://theodi.org/">Open Data Institute</a></span>
+<span property="rdf:rest" resource="_:editor1"></span>
+</dd>
+<dd class="p-author h-card vcard" resource="_:editor1" data-editor-id="44770"><span property="rdf:first" typeof="foaf:Person"><meta property="foaf:name" content="Gregg Kellogg"><a class="u-url url p-name fn" property="foaf:homepage" href="http://greggkellogg.net/">Gregg Kellogg</a>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://kellogg-assoc.com/">Kellogg Associates</a></span>
+<span property="rdf:rest" resource="rdf:nil"></span>
+</dd>
+
+    
+      <dt>Authors:</dt>
+      <dd class="p-author h-card vcard" data-editor-id="33715"><span property="dc:contributor" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Jeni Tennison</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://theodi.org/">Open Data Institute</a></span>
+</dd>
+<dd class="p-author h-card vcard" data-editor-id="44770"><span property="dc:contributor" typeof="foaf:Person"><meta property="foaf:name" content="Gregg Kellogg"><a class="u-url url p-name fn" property="foaf:homepage" href="http://greggkellogg.net/">Gregg Kellogg</a>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://kellogg-assoc.com/">Kellogg Associates</a></span>
+</dd>
+<dd class="p-author h-card vcard" data-editor-id="7382"><span property="dc:contributor" typeof="foaf:Person"><meta property="foaf:name" content="Ivan Herman"><a class="u-url url p-name fn" property="foaf:homepage" href="http://www.w3.org/People/Ivan/">Ivan Herman</a>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://www.w3.org"><abbr title="World Wide Web Consortium">W3C</abbr></a></span>
+</dd>
+
+    
+    
+      
+        
+          <dt>Repository:</dt>
+          
+             
+                
+                  <dd>
+                    <a href="https://github.com/w3c/csvw">
+                      We are on GitHub
+                    </a>
+                  </dd>
+                
+             
+                
+                  <dd>
+                    <a href="https://github.com/w3c/csvw">
+                      File a bug
+                    </a>
+                  </dd>
+                
+             
+          
+        
+      
+        
+          <dt>Changes:</dt>
+          
+             
+                
+                  <dd>
+                    <a href="diff.html">
+                      Diff to previous version
+                    </a>
+                  </dd>
+                
+             
+                
+                  <dd>
+                    <a href="https://github.com/w3c/csvw/commits/gh-pages">
+                      Commit history
+                    </a>
+                  </dd>
+                
+             
+          
+        
+      
+    
+  </dl>
+  
+    <p>
+      Please check the <a href="http://www.w3.org/2013/csvw/errata/"><strong>errata</strong></a> for any errors or issues
+      reported since publication.
+    </p>
+  
+  
+    <p>
+      
+        This document is also available in this non-normative format:
+      
+      <a rel="alternate" href="tabular-data-model.epub">ePub</a>
+    </p>
+  
+  
+    <p>
+      The English version of this specification is the only normative version. Non-normative
+      <a href="http://www.w3.org/Consortium/Translation/">translations</a> may also be available.
+    </p>
+  
+  
+    
+      <p class="copyright">
+        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
+        2015
+        
+        <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
+        (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+        <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+        <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). 
+        
+        <abbr title="World Wide Web Consortium">W3C</abbr> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+        
+          
+            <a rel="license" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+          
+        
+        rules apply.
+      </p>
+    
+  
+  <hr title="Separator for header">
+</div>
+    <section property="dc:abstract" class="introductory" id="abstract"><h2 resource="#h-abstract" id="h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2>
+      <p>
+        Tabular data is routinely transferred on the web in a variety of formats, including variants on CSV, tab-delimited files, fixed field formats, spreadsheets, HTML tables, and SQL dumps. This document outlines a data model, or infoset, for tabular data and metadata about that tabular data that can be used as a basis for validation, display, or creating other formats. It also contains some non-normative guidance for publishing tabular data as CSV and how that maps into the tabular data model.
+      </p>
+      <p>
+        An annotated model of tabular data can be supplemented by separate metadata about the table. This specification defines how implementations should locate that metadata, given a file containing tabular data. The standard syntax for that metadata is defined in [<cite><a href="#bib-tabular-metadata" class="bibref">tabular-metadata</a></cite>]. Note, however, that applications may have other means to create annotated tables, e.g., through some application specific API-s; this model does not depend on the specificities described in [<cite><a href="#bib-tabular-metadata" class="bibref">tabular-metadata</a></cite>].
+      </p>
+    </section><section id="sotd" class="introductory"><h2 resource="#h-sotd" id="h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
+  
+    
+      
+        <p>
+          <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at http://www.w3.org/TR/.</em>
+        </p>
+        
+          
+          
+      <p>
+        The <a href="http://www.w3.org/2013/csvw">CSV on the Web Working Group</a> was <a href="http://www.w3.org/2013/05/lcsv-charter.html">chartered</a> to produce a recommendation "Access methods for CSV Metadata" as well as recommendations for "Metadata vocabulary for CSV data" and "Mapping mechanism to transforming CSV into various formats (e.g., RDF, JSON, or XML)". This document aims to primarily satisfy the "Access methods for CSV Metadata" recommendation (see <a href="#locating-metadata" class="sectionRef sec-ref">section <span class="secno">5.</span> <span class="sec-title">Locating Metadata</span></a>), though it also specifies an underlying model for tabular data and is therefore a basis for the other chartered Recommendations.
+      </p>
+      <p>
+        This definition of CSV used in this document is based on IETF's [<cite><a href="#bib-RFC4180" class="bibref">RFC4180</a></cite>] which is an Informational RFC. The working group's expectation is that future suggestions to refine RFC 4180 will be relayed to the IETF (e.g. around encoding and line endings) and contribute to its discussions about moving CSV to the Standards track.
+      </p>
+      <p>
+        Many files containing tabular data embed metadata, for example in lines before the header row of an otherwise standard CSV document. This specification does not define any formats for embedding metadata within CSV files, aside from the titles of columns in the header row which is defined in CSV. We would encourage groups that define tabular data formats to also define a mapping into the annotated tabular data model defined in this document.
+      </p>
+    
+          
+          <p>
+            This document was published by the <a href="http://www.w3.org/2013/csvw/">CSV on the Web Working Group</a> as a Recommendation.
+            
+            
+              If you wish to make comments regarding this document, please send them to
+              <a href="mailto:public-csv-wg@w3.org">public-csv-wg@w3.org</a>
+              (<a href="mailto:public-csv-wg-request@w3.org?subject=subscribe">subscribe</a>,
+              <a href="http://lists.w3.org/Archives/Public/public-csv-wg/">archives</a>).
+            
+            
+            
+            
+            
+              
+              All comments are welcome.
+              
+            
+          </p>
+          
+            <p>
+              Please see the Working Group's  <a href="http://www.w3.org/2013/csvw/implementation_report.html">implementation
+              report</a>.
+            </p>
+          
+          
+          
+          
+            <p>
+              This document has been reviewed by <abbr title="World Wide Web Consortium">W3C</abbr> Members, by software developers, and by other <abbr title="World Wide Web Consortium">W3C</abbr>
+              groups and interested parties, and is endorsed by the Director as a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
+              It is a stable document and may be used as reference material or cited from another
+              document. <abbr title="World Wide Web Consortium">W3C</abbr>'s role in making the Recommendation is to draw attention to the
+              specification and to promote its widespread deployment. This enhances the functionality
+              and interoperability of the Web.
+            </p>
+          
+          
+          <p>
+            
+              This document was produced by
+              
+              a group
+               operating under the
+              <a id="sotd_patent" property="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
+              Policy</a>.
+            
+            
+            
+              
+                <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/68238/status" rel="disclosure">public list of any patent
+                disclosures</a>
+              
+              made in connection with the deliverables of
+              
+              the group; that page also includes
+              
+              instructions for disclosing a patent. An individual who has actual knowledge of a patent
+              which the individual believes contains
+              <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+              Claim(s)</a> must disclose the information in accordance with
+              <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+              6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+            
+            
+          </p>
+          
+            <p>This document is governed by the <a id="w3c_process_revision" href="http://www.w3.org/2015/Process-20150901/">1 September 2015 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+            </p>
+          
+          
+        
+      
+    
+  
+</section><section id="toc"><h2 resource="#h-toc" id="h-toc" class="introductory"><span property="xhv:role" resource="xhv:heading">Table of Contents</span></h2><ul role="directory" class="toc"><li class="tocline"><a class="tocxref" href="#intro"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a class="tocxref" href="#conformance"><span class="secno">2. </span>Conformance</a></li><li class="tocline"><a class="tocxref" href="#typographical-conventions"><span class="secno">3. </span>Typographical conventions</a></li><li class="tocline"><a class="tocxref" href="#model"><span class="secno">4. </span>Tabular Data Models</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#table-groups"><span class="secno">4.1 </span>Table groups</a></li><li class="tocline"><a class="tocxref" href="#tables"><span class="secno">4.2 </span>Tables</a></li><li class="tocline"><a class="tocxref" href="#columns"><span class="secno">4.3 </span>Columns</a></li><li class="tocline"><a class="tocxref" href="#rows"><span class="secno">4.4 </span>Rows</a></li><li class="tocline"><a class="tocxref" href="#cells"><span class="secno">4.5 </span>Cells</a></li><li class="tocline"><a class="tocxref" href="#datatypes"><span class="secno">4.6 </span>Datatypes</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#length-constraints"><span class="secno">4.6.1 </span>Length Constraints</a></li><li class="tocline"><a class="tocxref" href="#value-constraints"><span class="secno">4.6.2 </span>Value Constraints</a></li></ul></li></ul></li><li class="tocline"><a class="tocxref" href="#locating-metadata"><span class="secno">5. </span>Locating Metadata</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#overriding-metadata"><span class="secno">5.1 </span>Overriding Metadata</a></li><li class="tocline"><a class="tocxref" href="#link-header"><span class="secno">5.2 </span>Link Header</a></li><li class="tocline"><a class="tocxref" href="#default-locations-and-site-wide-location-configuration"><span class="secno">5.3 </span>Default Locations and Site-wide Location Configuration</a></li><li class="tocline"><a class="tocxref" href="#embedded-metadata"><span class="secno">5.4 </span>Embedded Metadata</a></li></ul></li><li class="tocline"><a class="tocxref" href="#processing-tables"><span class="secno">6. </span>Processing Tables</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#creating-annotated-tables"><span class="secno">6.1 </span>Creating Annotated Tables</a></li><li class="tocline"><a class="tocxref" href="#metadata-compatibility"><span class="secno">6.2 </span>Metadata Compatibility</a></li><li class="tocline"><a class="tocxref" href="#url-normalization"><span class="secno">6.3 </span>URL Normalization</a></li><li class="tocline"><a class="tocxref" href="#parsing-cells"><span class="secno">6.4 </span>Parsing Cells</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#parsing-examples"><span class="secno">6.4.1 </span>Parsing examples</a></li><li class="tocline"><a class="tocxref" href="#formats-for-numeric-types"><span class="secno">6.4.2 </span>Formats for numeric types</a></li><li class="tocline"><a class="tocxref" href="#formats-for-booleans"><span class="secno">6.4.3 </span>Formats for booleans</a></li><li class="tocline"><a class="tocxref" href="#formats-for-dates-and-times"><span class="secno">6.4.4 </span>Formats for dates and times</a></li><li class="tocline"><a class="tocxref" href="#formats-for-durations"><span class="secno">6.4.5 </span>Formats for durations</a></li><li class="tocline"><a class="tocxref" href="#formats-for-other-types"><span class="secno">6.4.6 </span>Formats for other types</a></li></ul></li><li class="tocline"><a class="tocxref" href="#presenting-tables"><span class="secno">6.5 </span>Presenting Tables</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#bidirectional-tables"><span class="secno">6.5.1 </span>Bidirectional Tables</a></li><li class="tocline"><a class="tocxref" href="#column-and-row-labelling"><span class="secno">6.5.2 </span>Column and row labelling</a></li></ul></li><li class="tocline"><a class="tocxref" href="#validating-tables"><span class="secno">6.6 </span>Validating Tables</a></li><li class="tocline"><a class="tocxref" href="#converting-tables"><span class="secno">6.7 </span>Converting Tables</a></li></ul></li><li class="tocline"><a class="tocxref" href="#syntax"><span class="secno">7. </span>Best Practice CSV</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#content-type"><span class="secno">7.1 </span>Content Type</a></li><li class="tocline"><a class="tocxref" href="#encoding"><span class="secno">7.2 </span>Encoding</a></li><li class="tocline"><a class="tocxref" href="#line-endings"><span class="secno">7.3 </span>Line Endings</a></li><li class="tocline"><a class="tocxref" href="#lines"><span class="secno">7.4 </span>Lines</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#headers"><span class="secno">7.4.1 </span>Headers</a></li></ul></li><li class="tocline"><a class="tocxref" href="#ebnf"><span class="secno">7.5 </span>Grammar</a></li></ul></li><li class="tocline"><a class="tocxref" href="#parsing"><span class="secno">8. </span>Parsing Tabular Data</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#bidirectionality-in-csv-files"><span class="secno">8.1 </span>Bidirectionality in CSV Files</a></li><li class="tocline"><a class="tocxref" href="#examples"><span class="secno">8.2 </span>Examples</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#simple-example"><span class="secno">8.2.1 </span>Simple Example</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#using-overriding-metadata"><span class="secno">8.2.1.1 </span>Using Overriding Metadata</a></li><li class="tocline"><a class="tocxref" href="#using-a-metadata-file"><span class="secno">8.2.1.2 </span>Using a Metadata File</a></li></ul></li><li class="tocline"><a class="tocxref" href="#empty-and-quoted-cells"><span class="secno">8.2.2 </span>Empty and Quoted Cells</a></li><li class="tocline"><a class="tocxref" href="#tabular-data-embedding-annotations"><span class="secno">8.2.3 </span>Tabular Data Embedding Annotations</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#naive-parsing"><span class="secno">8.2.3.1 </span>Naive Parsing</a></li><li class="tocline"><a class="tocxref" href="#parsing-with-flags"><span class="secno">8.2.3.2 </span>Parsing with Flags</a></li><li class="tocline"><a class="tocxref" href="#recognizing-tabular-data-formats"><span class="secno">8.2.3.3 </span>Recognizing Tabular Data Formats</a></li></ul></li><li class="tocline"><a class="tocxref" href="#parsing-multiple-header-lines"><span class="secno">8.2.4 </span>Parsing Multiple Header Lines</a></li></ul></li></ul></li><li class="tocline"><a class="tocxref" href="#iana-considerations"><span class="secno">A. </span>IANA Considerations</a></li><li class="tocline"><a class="tocxref" href="#standards"><span class="secno">B. </span>Existing Standards</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#rfc"><span class="secno">B.1 </span>RFC 4180</a></li><li class="tocline"><a class="tocxref" href="#excel"><span class="secno">B.2 </span>Excel</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#saved-csv"><span class="secno">B.2.1 </span>Saved CSV</a></li><li class="tocline"><a class="tocxref" href="#opened-csv"><span class="secno">B.2.2 </span>Opened CSV</a></li><li class="tocline"><a class="tocxref" href="#imported-csv"><span class="secno">B.2.3 </span>Imported CSV</a></li><li class="tocline"><a class="tocxref" href="#copied-tabular-data"><span class="secno">B.2.4 </span>Copied Tabular Data</a></li></ul></li><li class="tocline"><a class="tocxref" href="#google"><span class="secno">B.3 </span>Google Spreadsheets</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#downloading-csv"><span class="secno">B.3.1 </span>Downloading CSV</a></li><li class="tocline"><a class="tocxref" href="#importing-csv"><span class="secno">B.3.2 </span>Importing CSV</a></li></ul></li><li class="tocline"><a class="tocxref" href="#csv-files-in-a-tabular-data-package"><span class="secno">B.4 </span>CSV Files in a Tabular Data Package</a></li></ul></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><span class="secno">C. </span>Acknowledgements</a></li><li class="tocline"><a class="tocxref" href="#changes"><span class="secno">D. </span>Changes from previous drafts</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#changes-since-the-candidate-recommendation-of-16-july-2015"><span class="secno">D.1 </span>Changes since the candidate recommendation of 16 July 2015</a></li><li class="tocline"><a class="tocxref" href="#changes-since-the-working-draft-of-16-april-2015"><span class="secno">D.2 </span>Changes since the working draft of 16 April 2015</a></li><li class="tocline"><a class="tocxref" href="#changes-since-the-working-draft-of-08-january-2015"><span class="secno">D.3 </span>Changes since the working draft of 08 January 2015</a></li></ul></li><li class="tocline"><a class="tocxref" href="#references"><span class="secno">E. </span>References</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><span class="secno">E.1 </span>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><span class="secno">E.2 </span>Informative references</a></li></ul></li></ul></section>
+
+    <section>
+        [CONTENT]
+    </section>
+
+</body></html>

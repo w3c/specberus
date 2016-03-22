@@ -63,8 +63,9 @@ The interface you get when you `require("specberus")` is that from `lib/validato
 `Specberus` instance that is properly configured for operation in the Node.js environment
 (there is nominal support for running Specberus under other environments, but it isn't usable at this time).
 
-The validator interface supports a `validate(options)` methods, which takes an object with the
-following fields:
+### `validate(options)`
+
+This method takes an object with the following fields:
 
 * `url`: URL of the content to check. One of `url`, `source`, `file`, or `document` must be
   specified and if several are they will be used in this order.
@@ -74,6 +75,24 @@ following fields:
 * `profile`: A profile object which defines the validation. Required. See below.
 * `events`: An event sink which supports the same interface as Node.js's `EventEmitter`. Required. See
   below for the events that get generated.
+
+### `extractMetadata(options)`
+
+This method returns a simple object with metadata inferred from the document.
+The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
+goals of this method).
+
+The returned `Object` may contain up to 2 properties: `profile` and `delivererIDs`.
+If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
+
+An example:
+
+```json
+{
+  "profile": "WD",
+  "delivererIDs": [47318, 43696]
+}
+```
 
 ### Emitting metadata about the document
 
@@ -86,17 +105,12 @@ These properties are now returned when found:
 * `docDate`: The date associated to the document.
 * `title`: The (possible) title of the document.
 * `process`: The process rules, **as they appear on the text of the document**, eg `'1 September 2015'`.
-* `deliverers`: The deliverer(s) responsible for the document (WGs, TFs, etc); an `Array` of `Object`s, each one with these properties:
-  * `homepage`: URL of the group's home page.
-  * `name`: name of the group, exactly as it is found in the hyperlink on the document.
-* `delivererIDs` ID(s) of the deliverer(s); an `Array` of `Number`s.
 * `thisVersion`: URL of this version of the document.
 * `previousVersion`: URL of the previous version of the document (the last one, if multiple are shown).
 * `latestVersion`: URL of the latest version of the document.
 * `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
 * `editorsDraft`: URL of the latest editor's draft.
 * `shortname`: shortname extracted from latestVersion in the document; a `String`.
-* `status`: ID (acronym) of the profile detected in the document; a `String`. See file `public/data/profiles.json`.
 
 As an example, validating [`http://www.w3.org/TR/2014/REC-exi-profile-20140909/`](http://www.w3.org/TR/2014/REC-exi-profile-20140909/) (REC)
 emits these pairs of metadata:
@@ -108,13 +122,8 @@ emits these pairs of metadata:
 { latestVersion: 'http://www.w3.org/TR/exi-profile/' }
 { previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/' }
 { editorIDs: [] }
-{ status: 'REC' }
 { shortname: 'exi-profile'}
 { process: '1 September 2015' }
-{ deliverers: [
-   { homepage: 'http://www.w3.org/XML/EXI/',
-     name: 'Efficient XML Interchange Working Group' }
-  ] }
 ```
 
 If you download that very spec, edit it to include the following metadata&hellip;
@@ -133,13 +142,8 @@ If you download that very spec, edit it to include the following metadata&hellip
 { latestVersion: 'http://www.w3.org/TR/exi-profile/' }
 { previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/' }
 { editorIDs: [ '329883', '387297' ] }
-{ status: 'REC' }
 { shortname: 'exi-profile'}
 { process: '1 September 2015' }
-{ deliverers: [
-   { homepage: 'http://www.w3.org/XML/EXI/',
-     name: 'Efficient XML Interchange Working Group' }
-  ] }
 ```
 
 Another example: when applied to [`http://www.w3.org/TR/wai-aria-1.1/`](http://www.w3.org/TR/wai-aria-1.1/) (WD),
@@ -152,16 +156,9 @@ the following metadata will be found:
 { latestVersion: 'http://www.w3.org/TR/wai-aria-1.1/' }
 { previousVersion: 'http://www.w3.org/TR/2014/WD-wai-aria-1.1-20140612/' }
 { editorIDs: [] }
-{ status: 'WD' }
 { shortname: 'wai-aria-1.1' }
 { process: '1 September 2015' }
 { editorsDraft: 'http://w3c.github.io/aria/aria/aria.html' }
-{ deliverers: [
-   { homepage: 'http://www.w3.org/WAI/PF/',
-     name: 'Protocols & Formats Working Group' },
-   { homepage: 'http://www.w3.org/html/wg/',
-     name: 'HTML Working Group' }
-  ] }
 ```
 
 ## Profiles
@@ -243,4 +240,3 @@ The Specberus object exposes the following API that's useful for validation:
 * `getDocumentDate()`. Returns a Date object that matches the document's date as specified in the
   headers' h2.
 * `getDocumentDateElement()`. Returns the element that contains the document's date.
-

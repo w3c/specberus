@@ -1,0 +1,78 @@
+[
+   {
+        "url": "https://www.w3.org/TR/2016/CR-WebIDL-1-20160308/"
+    ,   "file": "WebIDL-1"
+    ,   "profile": "CR"
+    ,   "deliverers": [
+            {
+                "name": "Web Platform Working Group"
+            ,   "homepage": "https://www.w3.org/WebPlatform/WG/"
+            }
+        ]
+    ,   "delivererIDs": [83482]
+    }
+,   {
+        "url": "https://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/"
+    ,   "file": "ttml-imsc1"
+    ,   "profile": "PR"
+    ,   "deliverers": [
+            {
+                "name": "Timed Text Working Group"
+            ,   "homepage": "http://www.w3.org/AudioVideo/TT/"
+            }
+        ]
+    ,   "delivererIDs": [34314]
+    }
+,   {
+        "url": "https://www.w3.org/TR/2016/NOTE-csvw-ucr-20160225/"
+    ,   "file": "csvw-ucr"
+    ,   "profile": "WG-NOTE"
+    ,   "deliverers": [
+            {
+                "name": "CSV on the Web Working Group"
+            ,   "homepage": "http://www.w3.org/2013/csvw/"
+            }
+        ]
+    ,   "delivererIDs": [68238]
+    }
+,   {
+        "url": "https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/"
+    ,   "file": "tabular-data-model"
+    ,   "profile": "REC"
+    ,   "deliverers": [
+            {
+                "name": "CSV on the Web Working Group"
+            ,   "homepage": "http://www.w3.org/2013/csvw"
+            }
+        ]
+    ,   "delivererIDs": [68238]
+    }
+,   {
+        "url": "https://www.w3.org/TR/2015/WD-tracking-compliance-20150714/"
+    ,   "file": "tracking-compliance"
+    ,   "profile": "LC"
+    ,   "deliverers": [
+            {
+                "name": "Tracking Protection Working Group"
+            ,   "homepage": "http://www.w3.org/2011/tracking-protection/"
+            }
+        ]
+    ,   "delivererIDs": [49311]
+    }
+,   {
+        "url": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/"
+    ,   "file": "mediacapture-depth"
+    ,   "profile": "WD"
+    ,   "deliverers": [
+            {
+                "name": "Device APIs Working Group"
+            ,   "homepage":"http://www.w3.org/2009/dap/"
+            }
+        ,   {
+                "name": "Web Real-Time Communications Working Group"
+            ,   "homepage": "http://www.w3.org/2011/04/webrtc/"
+            }
+        ]
+    ,   "delivererIDs": [47318, 43696]
+    }
+]

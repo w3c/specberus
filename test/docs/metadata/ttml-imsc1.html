@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" typeof="bibo:Document w3p:PR" prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
+<head><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta lang="" property="dc:language" content="en">
+  <meta charset="utf-8">
+
+  <title>TTML Profiles for Internet Media Subtitles and Captions 1.0 (IMSC1)</title>
+
+
+  <style type="text/css">
+table.syntax { border: 0px solid black; width: 85%; border-collapse: collapse }
+  table.syntax caption { font-weight: bold; text-align: left; padding-bottom: 0.5em }
+  table.syntax th { border: 0px solid black; text-align: left }
+  table.syntax td { border: 0px solid black }
+  table.syntax div { background-color: #ffffc8 }
+  div.exampleInner { background-color: #d5dee3;
+                   border-top-width: 4px;
+                   border-top-style: double;
+                   border-top-color: #d3d3d3;
+                   border-bottom-width: 4px;
+                   border-bottom-style: double;
+                   border-bottom-color: #d3d3d3;
+                   padding: 4px; margin: 0em }
+	ul.short-list { margin: 0; padding-left: 0; list-style-position: inside;}
+	.note {font-size:small}
+	.equation {text-indent: 10%;}
+	.example {font-size: small}
+	.inline-note {font-size: small}
+  </style>
+<style>/*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+
+/* --- INLINES --- */
+em.rfc2119 {
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  1px solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  1px dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+cite .bibref {
+    font-style: normal;
+}
+
+code {
+    color:  #C83500;
+}
+
+/* --- TOC --- */
+.toc a, .tof a {
+    text-decoration:    none;
+}
+
+a .secno, a .figno {
+    color:  #000;
+}
+
+ul.tof, ol.tof {
+    list-style: none outside none;
+}
+
+.caption {
+    margin-top: 0.5em;
+    font-style:   italic;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple th[scope="row"] {
+    background: inherit;
+    color:  inherit;
+    border-top: 1px solid #ddd;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+.section dl.attrs dd, .section dl.eldef dd {
+    margin-bottom:  0;
+}
+
+@media print {
+    .removeOnSave {
+        display: none;
+    }
+}
+</style><style>/* --- EXAMPLES --- */
+div.example-title {
+    min-width: 7.5em;
+    color: #b9ab2d;
+}
+div.example-title span {
+    text-transform: uppercase;
+}
+aside.example, div.example, div.illegal-example {
+    padding: 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+}
+div.illegal-example { color: red }
+div.illegal-example p { color: black }
+aside.example, div.example {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+    border-color: #e0cb52;
+    background: #fcfaee;
+}
+
+aside.example div.example {
+    border-left-width: .1em;
+    border-color: #999;
+    background: #fff;
+}
+aside.example div.example div.example-title {
+    color: #999;
+}
+</style><style>/* --- ISSUES/NOTES --- */
+div.issue-title, div.note-title , div.ednote-title, div.warning-title {
+    padding-right:  1em;
+    min-width: 7.5em;
+    color: #b9ab2d;
+}
+div.issue-title { color: #e05252; }
+div.note-title, div.ednote-title { color: #2b2; }
+div.warning-title { color: #f22; }
+div.issue-title span, div.note-title span, div.ednote-title span, div.warning-title span {
+    text-transform: uppercase;
+}
+div.note, div.issue, div.ednote, div.warning {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.note > p:first-child, .ednote > p:first-child, .issue > p:first-child, .warning > p:first-child { margin-top: 0 }
+.issue, .note, .ednote, .warning {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+}
+div.issue, div.note , div.ednote,  div.warning {
+    padding: 1em 1.2em 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+}
+span.note, span.ednote, span.issue, span.warning { padding: .1em .5em .15em; }
+
+.issue {
+    border-color: #e05252;
+    background: #fbe9e9;
+}
+.note, .ednote {
+    border-color: #52e052;
+    background: #e9fbe9;
+}
+
+.warning {
+    border-color: #f11;
+    border-right-width: .2em;
+    border-top-width: .2em;
+    border-bottom-width: .2em;
+    border-style: solid;
+    background: #fbe9e9;
+}
+
+.warning-title:before{
+    content: "⚠"; /*U+26A0 WARNING SIGN*/
+    font-size: 3em;
+    float: left;
+    height: 100%;
+    padding-right: .3em;
+    vertical-align: top;
+    margin-top: -0.5em;
+}
+
+li.task-list-item {
+    list-style: none;
+}
+
+input.task-list-item-checkbox {
+    margin: 0 0.35em 0.25em -1.6em;
+    vertical-align: middle;
+}
+</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-PR"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--><script id="initialUserConfig" type="application/json">{
+  "specStatus": "PR",
+  "useExperimentalStyles": "true",
+  "prEnd": "2016-04-08",
+  "lcEnd": "2016-02-28",
+  "implementationReportURI": "https://www.w3.org/wiki/TimedText/IMSC1_Implementation_Report",
+  "processVersion": "2015",
+  "previousMaturity": "CR",
+  "publishDate": "2016-03-08",
+  "sotdAfterWGinfo": "true",
+  "previousPublishDate": "2016-01-28",
+  "shortName": "ttml-imsc1",
+  "editors": [
+    {
+      "name": "Pierre Lemieux",
+      "mailto": "pal@sandflow.com"
+    }
+  ],
+  "wg": "Timed Text Working Group",
+  "wgURI": "http://www.w3.org/AudioVideo/TT/",
+  "wgPublicList": "public-tt",
+  "wgPatentURI": "http://www.w3.org/2004/01/pp-impl/34314/status",
+  "subjectPrefix": "[imsc]",
+  "edDraftURI": "https://rawgit.com/w3c/imsc1/master/spec/ttml-ww-profiles.html",
+  "localBiblio": {
+    "SUBM": "World Wide Web Consortium (W3C). <a href='http://www.w3.org/Submission/2013/SUBM-ttml-ww-profiles-20130607/'>TTML Text and Image Profiles for Internet Media Subtitles and Captions</a> (Member Submission, 07 June 2013)",
+    "CEA-608": "<a href='http://www.ce.org/Standards/Standard-Listings/R4-3-Television-Data-Systems-Subcommittee/Line-21-Data-Service.aspx'>Line-21 Data Services</a>, ANSI/CEA Standard.",
+    "CEA-708": "<a href='http://www.ce.org/Standards/Standard-Listings/R4-3-Television-Data-Systems-Subcommittee/CEA-708-D.aspx'>Digital Television (DTV) Closed Captioning</a>, ANSI/CEA Standard.",
+    "CFF": "Digital Entertainment Content Ecosystem (DECE). <a href='http://uvcentral.com/page/ultraviolet-online-guide-homepage'>Common File Format & Media Formats Specification (CFF) Version 2.2</a>.",
+    "ST2052-1": "SMPTE ST 2052-1, Timed Text Format (SMPTE-TT) URL: <a href='https://www.smpte.org/standards '>https://www.smpte.org/standards</a>",
+    "EBU-TT-D": "European Broadcasting Union (EBU). <a href='https://tech.ebu.ch/docs/tech/tech3380.pdf'>Tech 3380, EBU-TT-D Subtitling Distribution Format Version 1.0</a>",
+    "CLDR": "Unicode Consortium. <a href='http://cldr.unicode.org'>The Common Locale Data Repository Project</a>"
+  }
+}</script></head>
+
+<body class="h-entry" role="document" id="respecDocument"><div class="head" role="contentinfo" id="respecHeader">
+  <p>
+
+
+
+
+            <a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/StyleSheets/TR/2016/logos/W3C"/></a>
+
+
+  </p>
+  <h1 class="title p-name" id="title" property="dcterms:title">TTML Profiles for Internet Media Subtitles and Captions 1.0 (IMSC1)</h1>
+
+  <h2 id="w3c-proposed-recommendation-08-march-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Proposed Recommendation <time property="dcterms:issued" class="dt-published" datetime="2016-03-08">08 March 2016</time></h2>
+  <dl>
+
+      <dt>This version:</dt>
+      <dd><a class="u-url" href="http://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/">http://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/</a></dd>
+      <dt>Latest published version:</dt>
+      <dd><a href="http://www.w3.org/TR/ttml-imsc1/">http://www.w3.org/TR/ttml-imsc1/</a></dd>
+
+
+      <dt>Latest editor's draft:</dt>
+      <dd><a href="https://rawgit.com/w3c/imsc1/master/spec/ttml-ww-profiles.html">https://rawgit.com/w3c/imsc1/master/spec/ttml-ww-profiles.html</a></dd>
+
+
+
+      <dt>Implementation report:</dt>
+      <dd><a href="https://www.w3.org/wiki/TimedText/IMSC1_Implementation_Report">https://www.w3.org/wiki/TimedText/IMSC1_Implementation_Report</a></dd>
+
+
+
+
+      <dt>Previous version:</dt>
+      <dd><a rel="dcterms:replaces" href="http://www.w3.org/TR/2016/CR-ttml-imsc1-20160128/">http://www.w3.org/TR/2016/CR-ttml-imsc1-20160128/</a></dd>
+
+
+    <dt>Editor:</dt>
+    <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Pierre Lemieux</span>, <span class="ed_mailto"><a class="u-email email" property="foaf:mbox" href="mailto:pal@sandflow.com">pal@sandflow.com</a></span></span>
+<span property="rdf:rest" resource="rdf:nil"></span>
+</dd>
+
+
+
+  </dl>
+
+
+
+
+
+      <p class="copyright">
+        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
+        2016
+
+        <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
+        (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+        <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+        <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>).
+
+        <abbr title="World Wide Web Consortium">W3C</abbr> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+        <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+
+
+            <a rel="license" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+
+
+        rules apply.
+      </p>
+
+
+  <hr title="Separator for header">
+</div>
+  <section id="abstract" class="introductory" property="dc:abstract"><h2 id="h-abstract" resource="#h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2>
+    <p>This document specifies two profiles of [<cite><a class="bibref" href="#bib-TTML1">TTML1</a></cite>]: a text-only profile and an image-only profile. These profiles are
+    intended to be used across subtitle and caption delivery applications worldwide, thereby simplifying interoperability,
+    consistent rendering and conversion to other subtitling and captioning formats.</p>
+
+		<p>It is feasible to create documents that simultaneously conform to both [<cite><a class="bibref" href="#bib-ttml10-sdp-us">ttml10-sdp-us</a></cite>] and the text-only profile.</p>
+
+    <p>The document defines extensions to [<cite><a class="bibref" href="#bib-TTML1">TTML1</a></cite>], as well as incorporates extensions specified in [<cite><a class="bibref" href="#bib-ST2052-1">ST2052-1</a></cite>] and
+    [<cite><a class="bibref" href="#bib-EBU-TT-D">EBU-TT-D</a></cite>].</p>
+
+    <p>Both profiles are based on [<cite><a class="bibref" href="#bib-SUBM">SUBM</a></cite>].</p>
+  </section><section id="sotd" class="introductory"><h2 id="h-sotd" resource="#h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
+
+
+
+        <p>
+          <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at http://www.w3.org/TR/.</em>
+        </p>
+
+
+
+          <p>
+            This document was published by the <a href="http://www.w3.org/AudioVideo/TT/">Timed Text Working Group</a> as a Proposed Recommendation.
+
+              This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
+
+
+
+
+
+
+                The <abbr title="World Wide Web Consortium">W3C</abbr> Membership and other interested parties are invited to review the document and
+                send comments to
+                <a rel="discussion" href="mailto:public-tt@w3.org">public-tt@w3.org</a>
+                (<a href="mailto:public-tt-request@w3.org?subject=subscribe">subscribe</a>,
+                <a href="http://lists.w3.org/Archives/Public/public-tt/">archives</a>)
+                through 08 April 2016. Advisory Committee Representatives should consult their
+                <a href="https://www.w3.org/2002/09/wbs/myQuestionnaires">WBS questionnaires</a>.
+                Note that substantive technical comments were expected during the last Candidate Recommendation review
+                period that ended 28 February 2016.
+
+          </p>
+
+
+            <p>
+              Please see the Working Group's  <a href="https://www.w3.org/wiki/TimedText/IMSC1_Implementation_Report">implementation
+              report</a>.
+            </p>
+
+
+
+		<p>
+		The implementation report documents that there is at least 2 independent implementations for every feature defined
+		in this specification but not already present in [<cite><a class="bibref" href="#bib-TTML1">TTML1</a></cite>], thereby satisfying the
+		<a href="http://www.w3.org/TR/2016/CR-ttml-imsc1-20160128/#sotd">Candidate Recommendation exit criteria</a>.
+		</p>
+
+		<p>A <a href="substantive-changes-summary.txt">list of the substantive changes</a> applied since the initial Working Draft is available.</p>
+
+
+
+            <p>
+              Publication as a Proposed Recommendation does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
+              Membership. This is a draft document and may be updated, replaced or obsoleted by other
+              documents at any time. It is inappropriate to cite this document as other than work in
+              progress.
+            </p>
+
+
+
+          <p>
+
+              This document was produced by
+
+              a group
+               operating under the
+              <a id="sotd_patent" property="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
+              Policy</a>.
+
+
+
+
+                <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/34314/status" rel="disclosure">public list of any patent
+                disclosures</a>
+
+              made in connection with the deliverables of
+
+              the group; that page also includes
+
+              instructions for disclosing a patent. An individual who has actual knowledge of a patent
+              which the individual believes contains
+              <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+              Claim(s)</a> must disclose the information in accordance with
+              <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+              6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+
+
+          </p>
+
+            <p>This document is governed by the <a id="w3c_process_revision" href="http://www.w3.org/2015/Process-20150901/">1 September 2015 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+            </p>
+
+
+
+
+
+
+</section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ul class="toc" role="directory"><li class="tocline"><a href="#scope" class="tocxref"><span class="secno">1. </span>Scope</a></li><li class="tocline"><a href="#conventions" class="tocxref"><span class="secno">2. </span>Documentation Conventions</a></li><li class="tocline"><a href="#terms" class="tocxref"><span class="secno">3. </span>Terms and Definitions</a></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">4. </span>Conformance</a></li><li class="tocline"><a href="#profiles" class="tocxref"><span class="secno">5. </span>Profiles</a><ul class="toc"><li class="tocline"><a href="#general" class="tocxref"><span class="secno">5.1 </span>General</a></li><li class="tocline"><a href="#text-profile" class="tocxref"><span class="secno">5.2 </span>Text Profile</a></li><li class="tocline"><a href="#image-profile" class="tocxref"><span class="secno">5.3 </span>Image Profile</a></li><li class="tocline"><a href="#profile-resolution" class="tocxref"><span class="secno">5.4 </span>Profile Resolution Semantics</a></li></ul></li><li class="tocline"><a href="#common-constraints" class="tocxref"><span class="secno">6. </span>Common Constraints</a><ul class="toc"><li class="tocline"><a href="#document-encoding" class="tocxref"><span class="secno">6.1 </span>Document Encoding</a></li><li class="tocline"><a href="#foreign-elements" class="tocxref"><span class="secno">6.2 </span>Foreign Element and Attributes</a></li><li class="tocline"><a href="#namespaces" class="tocxref"><span class="secno">6.3 </span>Namespaces</a></li><li class="tocline"><a href="#overflow" class="tocxref"><span class="secno">6.4 </span>Overflow</a></li><li class="tocline"><a href="#related-video-object" class="tocxref"><span class="secno">6.5 </span>Related Video Object</a></li><li class="tocline"><a href="#synchronization" class="tocxref"><span class="secno">6.6 </span>Synchronization</a></li><li class="tocline"><a href="#extensions" class="tocxref"><span class="secno">6.7 </span>Extensions</a><ul class="toc"><li class="tocline"><a href="#ttp-aspectRatio" class="tocxref"><span class="secno">6.7.1 </span>ittp:aspectRatio</a></li><li class="tocline"><a href="#ttp-progressivelyDecodable" class="tocxref"><span class="secno">6.7.2 </span>ittp:progressivelyDecodable</a></li><li class="tocline"><a href="#tts-forcedDisplay" class="tocxref"><span class="secno">6.7.3 </span>itts:forcedDisplay</a></li><li class="tocline"><a href="#ttm-altText" class="tocxref"><span class="secno">6.7.4 </span>ittm:altText</a></li></ul></li><li class="tocline"><a href="#region" class="tocxref"><span class="secno">6.8 </span>Region</a><ul class="toc"><li class="tocline"><a href="#presented-region" class="tocxref"><span class="secno">6.8.1 </span>Presented Region</a></li><li class="tocline"><a href="#dimensions-and-position" class="tocxref"><span class="secno">6.8.2 </span>Dimensions and Position</a></li><li class="tocline"><a href="#maximum-number" class="tocxref"><span class="secno">6.8.3 </span>Maximum number</a></li></ul></li><li class="tocline"><a href="#profile-signaling" class="tocxref"><span class="secno">6.9 </span>Profile Signaling</a></li><li class="tocline"><a href="#hypothetical-render-model-1" class="tocxref"><span class="secno">6.10 </span>Hypothetical Render Model</a></li><li class="tocline"><a href="#common-features" class="tocxref"><span class="secno">6.11 </span>Features and Extensions</a></li></ul></li><li class="tocline"><a href="#text-profile-constraints" class="tocxref"><span class="secno">7. </span>Text Profile Constraints</a><ul class="toc"><li class="tocline"><a href="#text-profile-designator" class="tocxref"><span class="secno">7.1 </span>Profile Designator</a></li><li class="tocline"><a href="#recommended-character-sets" class="tocxref"><span class="secno">7.2 </span>Recommended Character Sets</a></li><li class="tocline"><a href="#reference-fonts-1" class="tocxref"><span class="secno">7.3 </span>Reference Fonts</a></li><li class="tocline"><a href="#features-and-extensions-1" class="tocxref"><span class="secno">7.4 </span>Features and Extensions</a></li></ul></li><li class="tocline"><a href="#image-profile-constraints" class="tocxref"><span class="secno">8. </span>Image Profile Constraints</a><ul class="toc"><li class="tocline"><a href="#image-profile-designator" class="tocxref"><span class="secno">8.1 </span>Profile Designator</a></li><li class="tocline"><a href="#presented-image" class="tocxref"><span class="secno">8.2 </span>Presented Image</a><ul class="toc"><li class="tocline"><a href="#definition" class="tocxref"><span class="secno">8.2.1 </span>Definition</a></li><li class="tocline"><a href="#presented-image-constraints" class="tocxref"><span class="secno">8.2.2 </span>Constraints</a></li><li class="tocline"><a href="#intermediate-synchronic-document-construction" class="tocxref"><span class="secno">8.2.3 </span>Intermediate Synchronic Document Construction</a></li></ul></li><li class="tocline"><a href="#smpte-bg-constraints" class="tocxref"><span class="secno">8.3 </span>smpte:backgroundImage Constraints</a></li><li class="tocline"><a href="#features-and-extensions-2" class="tocxref"><span class="secno">8.4 </span>Features and Extensions</a></li></ul></li><li class="tocline"><a href="#hypothetical-render-model" class="tocxref"><span class="secno">9. </span>Hypothetical Render Model</a><ul class="toc"><li class="tocline"><a href="#overview-non-normative" class="tocxref"><span class="secno">9.1 </span>Overview (non-normative)</a></li><li class="tocline"><a href="#hypothetical-render-model-general" class="tocxref"><span class="secno">9.2 </span>General</a></li><li class="tocline"><a href="#paint-regions" class="tocxref"><span class="secno">9.3 </span>Paint Regions</a></li><li class="tocline"><a href="#paint-images" class="tocxref"><span class="secno">9.4 </span>Paint Images</a></li><li class="tocline"><a href="#paint-text" class="tocxref"><span class="secno">9.5 </span>Paint Text</a></li></ul></li><li class="tocline"><a href="#reference-fonts" class="tocxref"><span class="secno">A. </span>Reference Fonts</a></li><li class="tocline"><a href="#recommended-unicode-code-points-per-language" class="tocxref"><span class="secno">B. </span>Recommended Character Sets</a></li><li class="tocline"><a href="#forced-content" class="tocxref"><span class="secno">C. </span>Forced content (non-normative)</a></li><li class="tocline"><a href="#wcag-applications" class="tocxref"><span class="secno">D. </span>WCAG Considerations</a></li><li class="tocline"><a href="#sample-instance" class="tocxref"><span class="secno">E. </span>Sample Document Instance (non-normative)</a></li><li class="tocline"><a href="#features-and-extensions" class="tocxref"><span class="secno">F. </span>Extensions</a><ul class="toc"><li class="tocline"><a href="#general-1" class="tocxref"><span class="secno">F.1 </span>General</a></li><li class="tocline"><a href="#progressivelydecodable" class="tocxref"><span class="secno">F.2 </span>#progressivelyDecodable</a></li><li class="tocline"><a href="#aspectratio" class="tocxref"><span class="secno">F.3 </span>#aspectRatio</a></li><li class="tocline"><a href="#forceddisplay" class="tocxref"><span class="secno">F.4 </span>#forcedDisplay</a></li><li class="tocline"><a href="#alttext" class="tocxref"><span class="secno">F.5 </span>#altText</a></li><li class="tocline"><a href="#linepadding" class="tocxref"><span class="secno">F.6 </span>#linePadding</a></li><li class="tocline"><a href="#multirowalign" class="tocxref"><span class="secno">F.7 </span>#multiRowAlign</a></li></ul></li><li class="tocline"><a href="#xml-schemas" class="tocxref"><span class="secno">G. </span>XML Schema Definitions (non-normative)</a></li><li class="tocline"><a href="#extensibility-objectives-non-normative" class="tocxref"><span class="secno">H. </span>Extensibility Objectives (non-normative)</a></li><li class="tocline"><a href="#interop-examples" class="tocxref"><span class="secno">I. </span>Compatibility with other TTML-based specifications (non-normative)</a><ul class="toc"><li class="tocline"><a href="#overview" class="tocxref"><span class="secno">I.1 </span>Overview</a></li><li class="tocline"><a href="#ebu-tt-d" class="tocxref"><span class="secno">I.2 </span>EBU-TT-D</a></li><li class="tocline"><a href="#sdp-us" class="tocxref"><span class="secno">I.3 </span>SDP-US</a></li><li class="tocline"><a href="#smpte-tt-smpte-st-2052-1" class="tocxref"><span class="secno">I.4 </span>SMPTE-TT (SMPTE ST 2052-1)</a></li><li class="tocline"><a href="#cff-tt" class="tocxref"><span class="secno">I.5 </span>CFF-TT</a></li></ul></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">J. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">J.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">J.2 </span>Informative references</a></li></ul></li></ul></nav>
+
+    <section>
+        [CONTENT]
+    </section>
+
+<script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script></body></html>

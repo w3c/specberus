@@ -1,15 +1,135 @@
+/**
+ * Test the rules.
+ */
 
-var Specberus = require("../lib/validator").Specberus
-,   validator = new Specberus()
-,   selectors = require("../lib/l10n-selectors").selectors
-,   wording = require("../lib/rules")
-,   expect = require("expect.js")
-,   pth = require("path")
-,   events = require("events")
-,   util = require("util")
-,   networkCats = "validation".split(" ")
-,   DEBUG = false
+// Settings:
+const DEBUG = false
+,   META_PROFILE = 'profile'
+,   META_DELIVERER_IDS = 'delivererIDs'
 ;
+
+// Native packages:
+const pth = require('path');
+
+// External packages:
+const expect = require('expect.js')
+,   chai = require('chai').expect
+;
+
+// Internal packages:
+const validation = require('./validation')
+,   samples = require('./samples')
+,   validator = require('../lib/validator')
+,   sink = require('../lib/sink')
+;
+
+/**
+ * Compare two arrays of "deliverer IDs" and check that they're equivalent.
+ *
+ * @param {Array} a1 - One array.
+ * @param {Array} a2 - The other array.
+ * @returns {Boolean} whether the two arrays contain exactly the same integers.
+ */
+
+const equivalentDelivererIDs = function(a1, a2) {
+    if (a1 && a2 && a1.length === a2.length) {
+        var found = 0;
+        for(var i = 0; i < a1.length; i ++) {
+            for(var j = 0; j < a2.length && found === i; j ++) {
+                if (a1[i] === a2[j]) {
+                    found++;
+                }
+            }
+        }
+        return (found === a1.length);
+    }
+    else {
+        return false;
+    }
+};
+
+/**
+ * Assert that some metadata detected in a spec is equal to the expected value.
+ *
+ * @param {String} url - public URL of a spec.
+ * @param {String} file - name of local file containing a spec (without path and withouth ".html" suffix).
+ * @param {String} type - metadata to check: {"META_PROFILE", "META_DELIVERER_IDS"}.
+ * @param {Object} expectedValue - value that is expected to be found.
+ */
+
+const compareMetadata = function(url, file, type, expectedValue) {
+
+    const specberus = new validator.Specberus()
+    ,   handler = new sink.Sink(function(data) { throw new Error(data); })
+    ,   thisFile = file ? 'test/docs/metadata/' + file + '.html' : null
+    ;
+    const opts = {events: handler, url: url, file: thisFile};
+
+    if (META_PROFILE === type) {
+        it('Should detect a ' + expectedValue, function (done) {
+            handler.on('end-all', function () {
+                chai(specberus).to.have.property('meta').to.have.property('profile').equal(expectedValue);
+                done();
+            });
+            specberus.extractMetadata(opts);
+        });
+    }
+    else if (META_DELIVERER_IDS === type) {
+        it('Should find deliverer IDs of ' + (url ? url : file), function (done) {
+            handler.on('end-all', function () {
+                chai(specberus).to.have.property('meta').to.have.property('delivererIDs');
+                chai(specberus.meta.delivererIDs).to.satisfy(function(found) {
+                    return equivalentDelivererIDs(found, expectedValue);
+                });
+                done();
+            });
+            specberus.extractMetadata(opts);
+        });
+    }
+
+
+};
+
+describe('Basics', function() {
+
+    const specberus = new validator.Specberus;
+
+    describe('Method "extractMetadata"', function() {
+
+        it('Should exist and be a function', function(done) {
+            chai(specberus).to.have.property('extractMetadata').that.is.a('function');
+            done();
+        });
+
+        if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
+            for(var i in samples) {
+                compareMetadata(samples[i].url, null, META_PROFILE, samples[i].profile);
+            }
+            for(var i in samples) {
+                compareMetadata(samples[i].url, null, META_DELIVERER_IDS, samples[i].delivererIDs);
+            }
+        }
+        else {
+            for(var i in samples) {
+                compareMetadata(null, samples[i].file, META_PROFILE, samples[i].profile);
+            }
+            for(var i in samples) {
+                compareMetadata(null, samples[i].file, META_DELIVERER_IDS, samples[i].delivererIDs);
+            }
+        }
+
+    });
+
+    describe('Method "validate"', function() {
+
+        it('Should exist and be a function', function(done) {
+            chai(specberus).to.have.property('validate').that.is.a('function');
+            done();
+        });
+
+    });
+
+});
 
 var tests = {
     // Categories
@@ -215,35 +335,10 @@ var tests = {
         ,   { doc: "heuristic/dated-url.html" }
         ]
     }
+,   validation: validation
 };
 
-// HTML and CSS validations often time out, and Travis CI thinks the build is broken when it happens.
-// Therefore, we only add these test cases when testing locally.
-// See https://github.com/w3c/specberus/issues/164 and http://docs.travis-ci.com/user/ci-environment/#Environment-variables
-if (process.env.TRAVIS !== 'true') {
-    tests.validation = {
-        css:  [
-            { doc: "validation/simple.html", ignoreWarnings: true }
-        ,   { doc: "validation/css.html", ignoreWarnings: true }
-        ,   { doc: "validation/bad-css.html", errors: ["validation.css", "validation.css"], ignoreWarnings: true }
-        ]
-    ,   html:  [
-            { doc: "validation/simple.html" }
-        ,   { doc: "validation/invalid.html", errors: ["validation.html"] }
-        ]
-    };
-}
-
-function Sink () {
-    this.ok = 0;
-    this.errors = [];
-    this.warnings = [];
-    this.done = 0;
-}
-util.inherits(Sink, events.EventEmitter);
-
 Object.keys(tests).forEach(function (category) {
-    if (process.env.SKIP_NETWORK && networkCats.indexOf(category) > -1) return;
     describe("Category " + category, function () {
         Object.keys(tests[category]).forEach(function (rule) {
             describe("Rule " + rule, function () {
@@ -251,47 +346,47 @@ Object.keys(tests).forEach(function (category) {
                     var passTest = test.errors ? false : true;
                     it("should " + (passTest ? "pass" : "fail") + " for " + test.doc, function (done) {
                         var r = require("../lib/rules/" + category + "/" + rule)
-                        ,   sink = new Sink
+                        ,   handler = new sink.Sink
                         ;
-                        sink.on("ok", function () {
+                        handler.on("ok", function () {
                             if (DEBUG) console.log("OK");
-                            sink.ok++;
+                            handler.ok++;
                         });
-                        sink.on("err", function (type, data) {
+                        handler.on("err", function (type, data) {
                             if (DEBUG) console.log(data);
-                            sink.errors.push(type);
+                            handler.errors.push(type);
                         });
-                        sink.on("warning", function (type, data) {
+                        handler.on("warning", function (type, data) {
                             if (DEBUG) console.log("[W]", data);
-                            sink.warnings.push(type);
+                            handler.warnings.push(type);
                         });
-                        sink.on("done", function () {
+                        handler.on("done", function () {
                             if (DEBUG) console.log("---done---");
-                            sink.done++;
+                            handler.done++;
                         });
-                        sink.on("exception", function (data) {
+                        handler.on("exception", function (data) {
                             console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
                         });
-                        sink.on("end-all", function () {
+                        handler.on("end-all", function () {
                             if (passTest) {
-                                expect(sink.errors).to.be.empty();
-                                expect(sink.ok).to.eql(sink.done);
+                                expect(handler.errors).to.be.empty();
+                                expect(handler.ok).to.eql(handler.done);
                             }
                             else {
-                                expect(sink.errors.length).to.eql(test.errors.length);
+                                expect(handler.errors.length).to.eql(test.errors.length);
                                 for (var i = 0, n = test.errors.length; i < n; i++) {
-                                    expect(sink.errors).to.contain(test.errors[i]);
+                                    expect(handler.errors).to.contain(test.errors[i]);
                                 }
                             }
                             if (!test.ignoreWarnings) {
                                 if (test.warnings) {
-                                    expect(sink.warnings.length).to.eql(test.warnings.length);
+                                    expect(handler.warnings.length).to.eql(test.warnings.length);
                                     for (var i = 0, n = test.warnings.length; i < n; i++) {
-                                        expect(sink.warnings).to.contain(test.warnings[i]);
+                                        expect(handler.warnings).to.contain(test.warnings[i]);
                                     }
                                 }
                                 else {
-                                    expect(sink.warnings).to.be.empty();
+                                    expect(handler.warnings).to.be.empty();
                                 }
                             }
                             done();
@@ -304,38 +399,14 @@ Object.keys(tests).forEach(function (category) {
                         var options = {
                             file:       pth.join(__dirname, "docs", test.doc)
                         ,   profile:    profile
-                        ,   events:     sink
+                        ,   events:     handler
                         };
                         for (var o in test.options)
                             options[o] = test.options[o];
-                        validator.validate(options);
+                        new validator.Specberus().validate(options);
                     });
                 });
             });
         });
     });
 });
-
-describe('l10n', function() {
-
-    describe('UI messages module', function() {
-        it('should be a valid object', function() {
-            expect(wording).to.be.an('object');
-        });
-    });
-
-    describe('Selectors module', function() {
-        it('should be a valid object', function() {
-            expect(selectors).to.be.an('object');
-        });
-        it('should contain only selectors that resolve correctly', function() {
-            var message;
-            Object.keys(selectors).forEach(function (key) {
-                message = eval('wording.' + [selectors[key]]);
-                expect(message).to.be.a('string');
-            });
-        });
-    });
-
-});
-

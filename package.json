@@ -22,6 +22,7 @@
     "whacko": "0.19"
   },
   "devDependencies": {
+    "chai": "3.5",
     "coveralls": "2.11",
     "expect.js": "0.3",
     "istanbul": "0.4",
