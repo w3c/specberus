@@ -68,7 +68,7 @@ const compareMetadata = function(url, file, type, expectedValue) {
     if (META_PROFILE === type) {
         it('Should detect a ' + expectedValue, function (done) {
             handler.on('end-all', function () {
-                chai(specberus).to.have.property('meta').to.have.property('detectedProfile').equal(expectedValue);
+                chai(specberus).to.have.property('meta').to.have.property('profile').equal(expectedValue);
                 done();
             });
             specberus.extractMetadata(opts);
@@ -77,8 +77,8 @@ const compareMetadata = function(url, file, type, expectedValue) {
     else if (META_DELIVERER_IDS === type) {
         it('Should find deliverer IDs of ' + (url ? url : file), function (done) {
             handler.on('end-all', function () {
-                chai(specberus).to.have.property('meta').to.have.property('detectedDelivererIDs');
-                chai(specberus.meta.detectedDelivererIDs).to.satisfy(function(found) {
+                chai(specberus).to.have.property('meta').to.have.property('delivererIDs');
+                chai(specberus.meta.delivererIDs).to.satisfy(function(found) {
                     return equivalentDelivererIDs(found, expectedValue);
                 });
                 done();
