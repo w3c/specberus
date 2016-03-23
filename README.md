@@ -78,14 +78,16 @@ This method takes an object with the following fields:
 
 ### `extractMetadata(options)`
 
-This method returns a simple object with metadata inferred from the document.
+This method eventually extends `this` with metadata inferred from the document.
+Once the [event `end-all`](#validation-events) is emitted, the metadata should be available in a new property called `meta`.
+
 The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
 goals of this method).
 
-The returned `Object` may contain up to 2 properties: `profile` and `delivererIDs`.
+`this.meta` will be an `Object` and may include up to 2 properties: `profile` and `delivererIDs`.
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
-An example:
+This is an example of the value of `Specberus.meta` after the execution of `Specberus.extractMetadata()`:
 
 ```json
 {
