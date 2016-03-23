@@ -19,12 +19,12 @@ const bodyParser = require('body-parser')
 ;
 
 // Internal packages:
-const package = require('./package.json')
-,   api = require('./lib/api')
+const self = require('./package.json')
 ,   l10n = require('./lib/l10n')
 ,   sink = require('./lib/sink')
-,   util = require('./lib/util')
 ,   validator = require('./lib/validator')
+,   api = require('./lib/api')
+,   util = require('./lib/util')
 ;
 
 const app = express()
@@ -32,7 +32,7 @@ const app = express()
 ,   io = socket.listen(server)
 ,   profiles = util.profiles
 ,   Sink = sink.Sink
-,   version = package.version
+,   version = self.version
 ;
 
 var hb = handlebars.create({defaultLayout:"main"});
