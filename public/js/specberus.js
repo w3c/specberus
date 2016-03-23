@@ -276,9 +276,11 @@ jQuery.extend({
     function disableProfilesIfNeeded(checkbox) {
         if (checkbox.prop('checked')) {
             $profileOptions.each(function (_, el) {
-                if ($(el).val() !== 'WD') $(el).prop('disabled', true);
+                if ($(el).val() !== 'WD' && $(el).val() !== 'WG-NOTE')
+                  $(el).prop('disabled', true);
             });
-            if ($profile.val() !== 'WD') $profile.val('');
+            if ($profile.val() !== 'WD' && $(el).val() !== 'WG-NOTE')
+              $profile.val('');
         }
         else $profileOptions.each(function (_, el) {
             if ($(el).val() !== '') $(el).prop('disabled', false);
@@ -361,4 +363,3 @@ jQuery.extend({
     });
 
 }(jQuery));
-
