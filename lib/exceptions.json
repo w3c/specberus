@@ -16,6 +16,12 @@
       "rule": "headers.copyright"
     }
   ],
+  "^generic-sensor$": [
+      {
+      "rule": "validation.css",
+      "type": "generator.unrecognize"
+    }
+  ],
   "^css-ui-3$": [
     {
       "rule": "validation.css",
