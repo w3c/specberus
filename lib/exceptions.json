@@ -22,6 +22,12 @@
       "type": "generator.unrecognize"
     }
   ],
+  "^ambient-light$": [
+      {
+      "rule": "validation.css",
+      "type": "generator.unrecognize"
+    }
+  ],
   "^css-ui-3$": [
     {
       "rule": "validation.css",
