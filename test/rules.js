@@ -6,6 +6,7 @@
 const DEBUG = false
 ,   META_PROFILE = 'profile'
 ,   META_DELIVERER_IDS = 'delivererIDs'
+,   META_RECTRACK = 'rectrack'
 ;
 
 // Native packages:
@@ -86,6 +87,15 @@ const compareMetadata = function(url, file, type, expectedValue) {
             specberus.extractMetadata(opts);
         });
     }
+    else if (META_RECTRACK === type) {
+        it('Should find if ' + (url ? url : file) + ' is on REC track', function (done) {
+            handler.on('end-all', function () {
+                chai(specberus).to.have.property('meta').to.have.property('rectrack').equal(expectedValue);
+                done();
+            });
+            specberus.extractMetadata(opts);
+        });
+    }
 
 
 };
@@ -108,6 +118,9 @@ describe('Basics', function() {
             for(var i in samples) {
                 compareMetadata(samples[i].url, null, META_DELIVERER_IDS, samples[i].delivererIDs);
             }
+            for(var i in samples) {
+                compareMetadata(samples[i].url, null, META_RECTRACK, samples[i].rectrack);
+            }
         }
         else {
             for(var i in samples) {
@@ -115,6 +128,9 @@ describe('Basics', function() {
             }
             for(var i in samples) {
                 compareMetadata(null, samples[i].file, META_DELIVERER_IDS, samples[i].delivererIDs);
+            }
+            for(var i in samples) {
+                compareMetadata(null, samples[i].file, META_RECTRACK, samples[i].rectrack);
             }
         }
 
