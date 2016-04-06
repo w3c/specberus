@@ -58,7 +58,7 @@ const equivalentDelivererIDs = function(a1, a2) {
  * @param {Object} expectedValue - value that is expected to be found.
  */
 
-const compareMetadata = function(url, file, type, expectedValue) {
+const compareMetadata = function(url, file, expectedObject) {
 
     const specberus = new validator.Specberus()
     ,   handler = new sink.Sink(function(data) { throw new Error(data); })
@@ -66,37 +66,18 @@ const compareMetadata = function(url, file, type, expectedValue) {
     ;
     const opts = {events: handler, url: url, file: thisFile};
 
-    if (META_PROFILE === type) {
-        it('Should detect a ' + expectedValue, function (done) {
-            handler.on('end-all', function () {
-                chai(specberus).to.have.property('meta').to.have.property('profile').equal(expectedValue);
-                done();
+    it('Should detect metadata for ' + expectedObject.url, function (done) {
+        handler.on('end-all', function () {
+            chai(specberus).to.have.property('meta').to.have.property('profile').equal(expectedObject.profile);
+            chai(specberus).to.have.property('meta').to.have.property('delivererIDs');
+            chai(specberus.meta.delivererIDs).to.satisfy(function(found) {
+                return equivalentDelivererIDs(found, expectedObject.delivererIDs);
             });
-            specberus.extractMetadata(opts);
+            chai(specberus).to.have.property('meta').to.have.property('rectrack').equal(expectedObject.rectrack);
+            done();
         });
-    }
-    else if (META_DELIVERER_IDS === type) {
-        it('Should find deliverer IDs of ' + (url ? url : file), function (done) {
-            handler.on('end-all', function () {
-                chai(specberus).to.have.property('meta').to.have.property('delivererIDs');
-                chai(specberus.meta.delivererIDs).to.satisfy(function(found) {
-                    return equivalentDelivererIDs(found, expectedValue);
-                });
-                done();
-            });
-            specberus.extractMetadata(opts);
-        });
-    }
-    else if (META_RECTRACK === type) {
-        it('Should find if ' + (url ? url : file) + ' is on REC track', function (done) {
-            handler.on('end-all', function () {
-                chai(specberus).to.have.property('meta').to.have.property('rectrack').equal(expectedValue);
-                done();
-            });
-            specberus.extractMetadata(opts);
-        });
-    }
-
+        specberus.extractMetadata(opts);
+    });
 
 };
 
@@ -113,24 +94,12 @@ describe('Basics', function() {
 
         if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
             for(var i in samples) {
-                compareMetadata(samples[i].url, null, META_PROFILE, samples[i].profile);
-            }
-            for(var i in samples) {
-                compareMetadata(samples[i].url, null, META_DELIVERER_IDS, samples[i].delivererIDs);
-            }
-            for(var i in samples) {
-                compareMetadata(samples[i].url, null, META_RECTRACK, samples[i].rectrack);
+                compareMetadata(samples[i].url, null, samples[i]);
             }
         }
         else {
             for(var i in samples) {
-                compareMetadata(null, samples[i].file, META_PROFILE, samples[i].profile);
-            }
-            for(var i in samples) {
-                compareMetadata(null, samples[i].file, META_DELIVERER_IDS, samples[i].delivererIDs);
-            }
-            for(var i in samples) {
-                compareMetadata(null, samples[i].file, META_RECTRACK, samples[i].rectrack);
+                compareMetadata(null, samples[i].file, samples[i]);
             }
         }
 
