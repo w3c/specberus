@@ -3,11 +3,7 @@
  */
 
 // Settings:
-const DEBUG = false
-,   META_PROFILE = 'profile'
-,   META_DELIVERER_IDS = 'delivererIDs'
-,   META_RECTRACK = 'rectrack'
-;
+const DEBUG = false;
 
 // Native packages:
 const pth = require('path');
@@ -50,12 +46,11 @@ const equivalentDelivererIDs = function(a1, a2) {
 };
 
 /**
- * Assert that some metadata detected in a spec is equal to the expected value.
+ * Assert that metadata detected in a spec is equal to the expected values.
  *
  * @param {String} url - public URL of a spec.
  * @param {String} file - name of local file containing a spec (without path and withouth ".html" suffix).
- * @param {String} type - metadata to check: {"META_PROFILE", "META_DELIVERER_IDS"}.
- * @param {Object} expectedValue - value that is expected to be found.
+ * @param {Object} expectedObject - values that are expected to be found.
  */
 
 const compareMetadata = function(url, file, expectedObject) {
