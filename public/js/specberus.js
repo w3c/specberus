@@ -88,9 +88,9 @@ jQuery.extend({
             url:                decodeURIComponent(options.url)
         ,   profile:            options.profile
         ,   validation:         options.validation
-        ,   noRecTrack:         ('true' === options.noRecTrack)
-        ,   informativeOnly:    ('true' === options.informativeOnly)
-        ,   echidnaReady:       ('true' === options.echidnaReady)
+        ,   noRecTrack:         (true === options.noRecTrack)
+        ,   informativeOnly:    (true === options.informativeOnly)
+        ,   echidnaReady:       (true === options.echidnaReady)
         ,   patentPolicy:       options.patentPolicy
         ,   processDocument:    options.processDocument
         });
