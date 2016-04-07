@@ -84,7 +84,7 @@ Once the [event `end-all`](#validation-events) is emitted, the metadata should b
 The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
 goals of this method).
 
-`this.meta` will be an `Object` and may include up to 2 properties: `profile` and `delivererIDs`.
+`this.meta` will be an `Object` and may include up to 3 properties: `profile`, `delivererIDs` and `rectrack`.
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
 This is an example of the value of `Specberus.meta` after the execution of `Specberus.extractMetadata()`:
@@ -92,7 +92,8 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
 ```json
 {
   "profile": "WD",
-  "delivererIDs": [47318, 43696]
+  "delivererIDs": [47318, 43696],
+  "rectrack": true
 }
 ```
 
