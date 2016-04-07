@@ -10,6 +10,7 @@
             }
         ]
     ,   "delivererIDs": [83482]
+    ,   "rectrack": true
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/"
@@ -22,6 +23,7 @@
             }
         ]
     ,   "delivererIDs": [34314]
+    ,   "rectrack": true
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/NOTE-csvw-ucr-20160225/"
@@ -34,6 +36,7 @@
             }
         ]
     ,   "delivererIDs": [68238]
+    ,   "rectrack": true
     }
 ,   {
         "url": "https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/"
@@ -46,6 +49,7 @@
             }
         ]
     ,   "delivererIDs": [68238]
+    ,   "rectrack": true
     }
 ,   {
         "url": "https://www.w3.org/TR/2015/WD-tracking-compliance-20150714/"
@@ -58,6 +62,7 @@
             }
         ]
     ,   "delivererIDs": [49311]
+    ,   "rectrack": true
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/"
@@ -74,5 +79,19 @@
             }
         ]
     ,   "delivererIDs": [47318, 43696]
+    ,   "rectrack": true
     }
+    ,   {
+            "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
+        ,   "file": "charmod-norm"
+        ,   "profile": "WD"
+        ,   "deliverers": [
+                {
+                    "name": "Internationalization Working Group"
+                ,   "homepage":"http://www.w3.org/International/core/"
+                }
+            ]
+        ,   "delivererIDs": [32113]
+        ,   "rectrack": false
+        }
 ]
