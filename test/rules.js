@@ -176,6 +176,7 @@ var tests = {
             , warnings: ["headers.dl"] }
         ,   { doc: "headers/wrong-urls.html", errors: ["headers.dl", "headers.dl"], config: { previousVersion: true, status: "WD" } }
         ,   { doc: "headers/dl-trailing-whitespace.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl"] }
+        ,   { doc: "headers/dl-untrimmed-text.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl"] }
         ]
     ,   "h2-status":  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
