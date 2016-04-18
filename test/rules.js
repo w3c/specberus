@@ -315,6 +315,10 @@ var tests = {
         ,   { doc: "heuristic/bad-dates.html", errors: ['heuristic.date-format', 'heuristic.date-format', 'heuristic.date-format'] }
         ,   { doc: "heuristic/dated-url.html" }
         ]
+    ,   'shortname':  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "headers/diff-latest-version.html" }
+    ]
     }
 ,   validation: validation
 };
