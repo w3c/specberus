@@ -230,7 +230,7 @@ var tests = {
         ]
     ,   'body-toc-sidebar':  [
             { doc: "style/simple.html" }
-        ,   { doc: "style/toc-sidebar.html", errors: ["style.body-toc-sidebar"] }
+        ,   { doc: "style/wrong-meta.html", errors: ["style.body-toc-sidebar"] }
         ]
     }
 ,   links:   {
