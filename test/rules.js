@@ -228,6 +228,10 @@ var tests = {
             { doc: "headers/simple.html", warnings: ["style.back-to-top"] }
         ,   { doc: "headers/back-to-top.html" }
         ]
+    ,   'body-toc-sidebar':  [
+            { doc: "style/simple.html" }
+        ,   { doc: "style/wrong-meta.html", errors: ["style.body-toc-sidebar"] }
+        ]
     }
 ,   links:   {
         internal:  [
