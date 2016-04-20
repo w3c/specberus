@@ -11,6 +11,7 @@
         ]
     ,   "docDate": "2016-3-8"
     ,   "delivererIDs": [83482]
+    ,   "editorIDs": []
     ,   "rectrack": true
     }
 ,   {
@@ -25,6 +26,7 @@
         ]
     ,   "docDate": "2016-3-8"
     ,   "delivererIDs": [34314]
+    ,   "editorIDs": []
     ,   "rectrack": true
     }
 ,   {
@@ -39,6 +41,7 @@
         ]
     ,   "docDate": "2016-2-25"
     ,   "delivererIDs": [68238]
+    ,   "editorIDs": []
     ,   "rectrack": true
     }
 ,   {
@@ -53,6 +56,7 @@
         ]
     ,   "docDate": "2015-12-17"
     ,   "delivererIDs": [68238]
+    ,   "editorIDs": [33715,44770,7382]
     ,   "rectrack": true
     }
 ,   {
@@ -67,6 +71,7 @@
         ]
     ,   "docDate": "2015-7-14"
     ,   "delivererIDs": [49311]
+    ,   "editorIDs": []
     ,   "rectrack": true
     }
 ,   {
@@ -85,6 +90,7 @@
         ]
     ,   "docDate": "2016-2-26"
     ,   "delivererIDs": [47318, 43696]
+    ,   "editorIDs": [41974,68202,76096]
     ,   "rectrack": true
     }
   ,   {
@@ -99,6 +105,7 @@
           ]
       ,   "docDate": "2016-4-7"
       ,   "delivererIDs": [32113]
+      ,   "editorIDs": [33573]
       ,   "rectrack": false
       }
 ]

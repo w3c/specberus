@@ -28,7 +28,7 @@ const validation = require('./validation')
  * @returns {Boolean} whether the two arrays contain exactly the same integers.
  */
 
-const equivalentDelivererIDs = function(a1, a2) {
+const equivalentArray = function(a1, a2) {
     if (a1 && a2 && a1.length === a2.length) {
         var found = 0;
         for(var i = 0; i < a1.length; i ++) {
@@ -67,7 +67,11 @@ const compareMetadata = function(url, file, expectedObject) {
             chai(specberus).to.have.property('meta').to.have.property('docDate').equal(expectedObject.docDate);
             chai(specberus).to.have.property('meta').to.have.property('delivererIDs');
             chai(specberus.meta.delivererIDs).to.satisfy(function(found) {
-                return equivalentDelivererIDs(found, expectedObject.delivererIDs);
+                return equivalentArray(found, expectedObject.delivererIDs);
+            });
+            chai(specberus).to.have.property('meta').to.have.property('editorIDs');
+            chai(specberus.meta.editorIDs).to.satisfy(function(found) {
+                return equivalentArray(found, expectedObject.editorIDs);
             });
             chai(specberus).to.have.property('meta').to.have.property('rectrack').equal(expectedObject.rectrack);
             done();
