@@ -9,6 +9,7 @@
             ,   "homepage": "https://www.w3.org/WebPlatform/WG/"
             }
         ]
+    ,   "docDate": "2016-3-8"
     ,   "delivererIDs": [83482]
     ,   "rectrack": true
     }
@@ -22,6 +23,7 @@
             ,   "homepage": "http://www.w3.org/AudioVideo/TT/"
             }
         ]
+    ,   "docDate": "2016-3-8"
     ,   "delivererIDs": [34314]
     ,   "rectrack": true
     }
@@ -35,6 +37,7 @@
             ,   "homepage": "http://www.w3.org/2013/csvw/"
             }
         ]
+    ,   "docDate": "2016-2-25"
     ,   "delivererIDs": [68238]
     ,   "rectrack": true
     }
@@ -48,6 +51,7 @@
             ,   "homepage": "http://www.w3.org/2013/csvw"
             }
         ]
+    ,   "docDate": "2015-12-17"
     ,   "delivererIDs": [68238]
     ,   "rectrack": true
     }
@@ -61,6 +65,7 @@
             ,   "homepage": "http://www.w3.org/2011/tracking-protection/"
             }
         ]
+    ,   "docDate": "2015-7-14"
     ,   "delivererIDs": [49311]
     ,   "rectrack": true
     }
@@ -78,20 +83,22 @@
             ,   "homepage": "http://www.w3.org/2011/04/webrtc/"
             }
         ]
+    ,   "docDate": "2016-2-26"
     ,   "delivererIDs": [47318, 43696]
     ,   "rectrack": true
     }
-    ,   {
-            "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
-        ,   "file": "charmod-norm"
-        ,   "profile": "WD"
-        ,   "deliverers": [
-                {
-                    "name": "Internationalization Working Group"
-                ,   "homepage":"http://www.w3.org/International/core/"
-                }
-            ]
-        ,   "delivererIDs": [32113]
-        ,   "rectrack": false
-        }
+  ,   {
+          "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
+      ,   "file": "charmod-norm"
+      ,   "profile": "WD"
+      ,   "deliverers": [
+              {
+                  "name": "Internationalization Working Group"
+              ,   "homepage":"http://www.w3.org/International/core/"
+              }
+          ]
+      ,   "docDate": "2016-4-7"
+      ,   "delivererIDs": [32113]
+      ,   "rectrack": false
+      }
 ]

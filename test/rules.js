@@ -64,6 +64,7 @@ const compareMetadata = function(url, file, expectedObject) {
     it('Should detect metadata for ' + expectedObject.url, function (done) {
         handler.on('end-all', function () {
             chai(specberus).to.have.property('meta').to.have.property('profile').equal(expectedObject.profile);
+            chai(specberus).to.have.property('meta').to.have.property('docDate').equal(expectedObject.docDate);
             chai(specberus).to.have.property('meta').to.have.property('delivererIDs');
             chai(specberus.meta.delivererIDs).to.satisfy(function(found) {
                 return equivalentDelivererIDs(found, expectedObject.delivererIDs);
