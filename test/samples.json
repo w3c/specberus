@@ -13,6 +13,7 @@
     ,   "delivererIDs": [83482]
     ,   "editorIDs": []
     ,   "rectrack": true
+    ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/"
@@ -28,6 +29,7 @@
     ,   "delivererIDs": [34314]
     ,   "editorIDs": []
     ,   "rectrack": true
+    ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/NOTE-csvw-ucr-20160225/"
@@ -43,6 +45,7 @@
     ,   "delivererIDs": [68238]
     ,   "editorIDs": []
     ,   "rectrack": true
+    ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
 ,   {
         "url": "https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/"
@@ -58,6 +61,7 @@
     ,   "delivererIDs": [68238]
     ,   "editorIDs": [33715,44770,7382]
     ,   "rectrack": true
+    ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
 ,   {
         "url": "https://www.w3.org/TR/2015/WD-tracking-compliance-20150714/"
@@ -73,6 +77,7 @@
     ,   "delivererIDs": [49311]
     ,   "editorIDs": []
     ,   "rectrack": true
+    ,   "process": "http://www.w3.org/2005/10/Process-20051014/"
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/"
@@ -92,6 +97,7 @@
     ,   "delivererIDs": [47318, 43696]
     ,   "editorIDs": [41974,68202,76096]
     ,   "rectrack": true
+    ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
   ,   {
           "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
@@ -107,5 +113,6 @@
       ,   "delivererIDs": [32113]
       ,   "editorIDs": [33573]
       ,   "rectrack": false
+      ,   "process": "http://www.w3.org/2015/Process-20150901/"
       }
 ]

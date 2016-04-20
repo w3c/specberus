@@ -74,6 +74,7 @@ const compareMetadata = function(url, file, expectedObject) {
                 return equivalentArray(found, expectedObject.editorIDs);
             });
             chai(specberus).to.have.property('meta').to.have.property('rectrack').equal(expectedObject.rectrack);
+            chai(specberus).to.have.property('meta').to.have.property('process').equal(expectedObject.process);
             done();
         });
         specberus.extractMetadata(opts);
