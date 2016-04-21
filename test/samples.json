@@ -1,8 +1,11 @@
 [
    {
-        "url": "https://www.w3.org/TR/2016/CR-WebIDL-1-20160308/"
+        "url": "http://www.w3.org/TR/2016/CR-WebIDL-1-20160308/"
     ,   "file": "WebIDL-1"
     ,   "profile": "CR"
+    ,   "latestVersion": "http://www.w3.org/TR/WebIDL-1/"
+    ,   "previousVersion": "http://www.w3.org/TR/2015/WD-WebIDL-1-20150804/"
+    ,   "editorsDraft": "https://heycam.github.io/webidl/"
     ,   "deliverers": [
             {
                 "name": "Web Platform Working Group"
@@ -17,9 +20,12 @@
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
 ,   {
-        "url": "https://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/"
+        "url": "http://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/"
     ,   "file": "ttml-imsc1"
     ,   "profile": "PR"
+    ,   "latestVersion": "http://www.w3.org/TR/ttml-imsc1/"
+    ,   "previousVersion": "http://www.w3.org/TR/2016/CR-ttml-imsc1-20160128/"
+    ,   "editorsDraft": "https://rawgit.com/w3c/imsc1/master/spec/ttml-ww-profiles.html"
     ,   "deliverers": [
             {
                 "name": "Timed Text Working Group"
@@ -34,9 +40,12 @@
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
 ,   {
-        "url": "https://www.w3.org/TR/2016/NOTE-csvw-ucr-20160225/"
+        "url": "http://www.w3.org/TR/2016/NOTE-csvw-ucr-20160225/"
     ,   "file": "csvw-ucr"
     ,   "profile": "WG-NOTE"
+    ,   "latestVersion": "http://www.w3.org/TR/csvw-ucr/"
+    ,   "previousVersion": "http://www.w3.org/TR/2014/WD-csvw-ucr-20140701/"
+    ,   "editorsDraft": "http://w3c.github.io/csvw/use-cases-and-requirements/"
     ,   "deliverers": [
             {
                 "name": "CSV on the Web Working Group"
@@ -51,9 +60,12 @@
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
 ,   {
-        "url": "https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/"
+        "url": "http://www.w3.org/TR/2015/REC-tabular-data-model-20151217/"
     ,   "file": "tabular-data-model"
     ,   "profile": "REC"
+    ,   "latestVersion": "http://www.w3.org/TR/tabular-data-model/"
+    ,   "previousVersion": "http://www.w3.org/TR/2015/PR-tabular-data-model-20151117/"
+    ,   "editorsDraft": "http://w3c.github.io/csvw/syntax/"
     ,   "deliverers": [
             {
                 "name": "CSV on the Web Working Group"
@@ -68,9 +80,12 @@
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
 ,   {
-        "url": "https://www.w3.org/TR/2015/WD-tracking-compliance-20150714/"
+        "url": "http://www.w3.org/TR/2015/WD-tracking-compliance-20150714/"
     ,   "file": "tracking-compliance"
     ,   "profile": "LC"
+    ,   "latestVersion": "http://www.w3.org/TR/tracking-compliance/"
+    ,   "previousVersion": "http://www.w3.org/TR/2015/WD-tracking-compliance-20150331/"
+    ,   "editorsDraft": "http://www.w3.org/2011/tracking-protection/drafts/tracking-compliance.html"
     ,   "deliverers": [
             {
                 "name": "Tracking Protection Working Group"
@@ -85,9 +100,12 @@
     ,   "process": "http://www.w3.org/2005/10/Process-20051014/"
     }
 ,   {
-        "url": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/"
+        "url": "http://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/"
     ,   "file": "mediacapture-depth"
     ,   "profile": "WD"
+    ,   "latestVersion": "http://www.w3.org/TR/mediacapture-depth/"
+    ,   "previousVersion": "http://www.w3.org/TR/2016/WD-mediacapture-depth-20160202/"
+    ,   "editorsDraft": "https://w3c.github.io/mediacapture-depth/"
     ,   "deliverers": [
             {
                 "name": "Device APIs Working Group"
@@ -106,9 +124,12 @@
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
   ,   {
-          "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
+          "url": "http://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
       ,   "file": "charmod-norm"
       ,   "profile": "WD"
+      ,   "latestVersion": "http://www.w3.org/TR/charmod-norm/"
+      ,   "previousVersion": "http://www.w3.org/TR/2015/WD-charmod-norm-20151119/"
+      ,   "editorsDraft": "http://w3c.github.io/charmod-norm/"
       ,   "deliverers": [
               {
                   "name": "Internationalization Working Group"
