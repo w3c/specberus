@@ -207,10 +207,11 @@ jQuery.extend({
       $processDocument.find("label#2015").toggleClass("active", (processDocument === "2015"));
       $noRecTrack.prop('checked', !data.rectrack);
       $informativeOnly.prop('checked', data.informativeOnly);
+      $validation.val('simple-validation');
       var options = {
                         "url"             : data.url
                       , "profile"         : data.profile
-                      , "validation"      : true
+                      , "validation"      : 'simple-validation'
                       , "noRecTrack"      : !data.rectrack || false
                       , "informativeOnly" : data.informativeOnly || false
                       , "echidnaReady"    : false
@@ -390,9 +391,9 @@ jQuery.extend({
                 $profile.append(optgroup);
             });
             $profileOptions = $('#profile option');
-            $(".manual").toggle();
             var options = $.getQueryParameters();
             setFormParams(options);
+            $(".manual").toggle($profile.val() !== 'auto');
             if (options.url && options.profile) validate(options);
         });
     });
