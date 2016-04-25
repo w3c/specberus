@@ -200,6 +200,8 @@ jQuery.extend({
         // endValidation();
     });
     socket.on("finishedExtraction", function (data) {
+      $(".manual").toggle(true);
+      // TODO set the right options on the form from `data`
       var options = {
                         "url"             : data.url
                       , "profile"         : data.profile
