@@ -96,6 +96,13 @@ jQuery.extend({
         });
     }
 
+    // extractMetadata
+    function extractMetadata (url) {
+        socket.emit("extractMetadata", {
+            url: decodeURIComponent(url)
+        });
+    }
+
     // terminate validation
     function endValidation () {
         $progressContainer.hide();
@@ -192,35 +199,54 @@ jQuery.extend({
         attachCustomScroll();
         // endValidation();
     });
+    socket.on("finishedExtraction", function (data) {
+      var options = {
+                        "url"             : data.url
+                      , "profile"         : data.profile
+                      , "validation"      : data.validation || false
+                      , "noRecTrack"      : !data.rectrack || false
+                      , "informativeOnly" : data.informativeOnly || false
+                      , "echidnaReady"    : data.echidnaReady || false
+                      , "patentPolicy"    : data.patentPolicy || "pp2004"
+                      , "processDocument" : data.processDocument || "2015"
+                    };
+      validate(options);
+      var newurl = document.URL.split('?')[0] + "?" + $.param(options)
+      history.pushState(options, url + " - " + profile, newurl);
+    });
 
     // handle the form
     $("#options").submit(function () {
         clearError();
-        var url = $url.val()
-        ,   profile = $profile.val()
-        ,   validation = $validation.val()
-        ,   noRecTrack = $noRecTrack.is(":checked") || false
-        ,   informativeOnly = $informativeOnly.is(":checked") || false
-        ,   echidnaReady = $echidnaReady.is(":checked") || false
-        ,   patentPolicy = $patentPolicy.find('label.active').attr('id')
-        ,   processDocument = $processDocument.find('label.active').attr('id')
-        ;
-        if (!url) showError("Missing URL parameter.");
-        if (!profile) showError("Missing profile parameter.");
-        if (echidnaReady) profile += '-Echidna';
-        var options = {
-                          "url"             : url
-                        , "profile"         : profile
-                        , "validation"      : validation
-                        , "noRecTrack"      : noRecTrack
-                        , "informativeOnly" : informativeOnly
-                        , "echidnaReady"    : echidnaReady
-                        , "patentPolicy"    : patentPolicy
-                        , "processDocument" : processDocument
-                      };
-        validate(options);
-        var newurl = document.URL.split('?')[0] + "?" + $.param(options)
-        history.pushState(options, url + " - " + profile, newurl);
+        if ($profile.val() === "auto") {
+            extractMetadata($url.val());
+        } else {
+            var url = $url.val()
+            ,   profile = $profile.val()
+            ,   validation = $validation.val()
+            ,   noRecTrack = $noRecTrack.is(":checked") || false
+            ,   informativeOnly = $informativeOnly.is(":checked") || false
+            ,   echidnaReady = $echidnaReady.is(":checked") || false
+            ,   patentPolicy = $patentPolicy.find('label.active').attr('id')
+            ,   processDocument = $processDocument.find('label.active').attr('id')
+            ;
+            if (!url) showError("Missing URL parameter.");
+            if (!profile) showError("Missing profile parameter.");
+            if (echidnaReady) profile += '-Echidna';
+            var options = {
+                              "url"             : url
+                            , "profile"         : profile
+                            , "validation"      : validation
+                            , "noRecTrack"      : noRecTrack
+                            , "informativeOnly" : informativeOnly
+                            , "echidnaReady"    : echidnaReady
+                            , "patentPolicy"    : patentPolicy
+                            , "processDocument" : processDocument
+                          };
+            validate(options);
+            var newurl = document.URL.split('?')[0] + "?" + $.param(options)
+            history.pushState(options, url + " - " + profile, newurl);
+        }
         return false;
     });
 
