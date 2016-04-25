@@ -201,16 +201,21 @@ jQuery.extend({
     });
     socket.on("finishedExtraction", function (data) {
       $(".manual").toggle(true);
-      // TODO set the right options on the form from `data`
+      var processDocument = (data.processdocument && data.processDocument.indexOf('Process-20051014') > -1) ? "2005" : "2015";
+      $profile.val(data.profile);
+      $processDocument.find("label#2005").toggleClass("active", (processDocument === "2005"));
+      $processDocument.find("label#2015").toggleClass("active", (processDocument === "2015"));
+      $noRecTrack.prop('checked', !data.rectrack);
+      $informativeOnly.prop('checked', data.informativeOnly);
       var options = {
                         "url"             : data.url
                       , "profile"         : data.profile
-                      , "validation"      : data.validation || false
+                      , "validation"      : true
                       , "noRecTrack"      : !data.rectrack || false
                       , "informativeOnly" : data.informativeOnly || false
-                      , "echidnaReady"    : data.echidnaReady || false
-                      , "patentPolicy"    : data.patentPolicy || "pp2004"
-                      , "processDocument" : data.processDocument || "2015"
+                      , "echidnaReady"    : false
+                      , "patentPolicy"    : "pp2004"
+                      , "processDocument" : processDocument
                     };
       validate(options);
       var newurl = document.URL.split('?')[0] + "?" + $.param(options)
