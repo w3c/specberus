@@ -94,7 +94,8 @@ goals of this method).
 * `editorsDraft`: URL of the latest editor's draft.
 * `delivererIDs`: ID(s) of the deliverer(s); an `Array` of `Number`s.
 * `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
-* `rectrack`: Whether the document in on REC track
+* `informative`: Whether the document in informative or not
+* `rectrack`: Whether the document in on REC track or not
 * `process`: The process rules link.
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.

@@ -16,6 +16,7 @@
     ,   "docDate": "2016-3-8"
     ,   "delivererIDs": [83482]
     ,   "editorIDs": []
+    ,   "informative": false
     ,   "rectrack": true
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
@@ -36,6 +37,7 @@
     ,   "docDate": "2016-3-8"
     ,   "delivererIDs": [34314]
     ,   "editorIDs": []
+    ,   "informative": false
     ,   "rectrack": true
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
@@ -56,6 +58,7 @@
     ,   "docDate": "2016-2-25"
     ,   "delivererIDs": [68238]
     ,   "editorIDs": []
+    ,   "informative": false
     ,   "rectrack": true
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
@@ -76,6 +79,7 @@
     ,   "docDate": "2015-12-17"
     ,   "delivererIDs": [68238]
     ,   "editorIDs": [33715,44770,7382]
+    ,   "informative": false
     ,   "rectrack": true
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
@@ -96,6 +100,7 @@
     ,   "docDate": "2015-7-14"
     ,   "delivererIDs": [49311]
     ,   "editorIDs": []
+    ,   "informative": false
     ,   "rectrack": true
     ,   "process": "http://www.w3.org/2005/10/Process-20051014/"
     }
@@ -120,27 +125,49 @@
     ,   "docDate": "2016-2-26"
     ,   "delivererIDs": [47318, 43696]
     ,   "editorIDs": [41974,68202,76096]
+    ,   "informative": false
     ,   "rectrack": true
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
-  ,   {
-          "url": "http://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
-      ,   "file": "charmod-norm"
-      ,   "profile": "WD"
-      ,   "latestVersion": "http://www.w3.org/TR/charmod-norm/"
-      ,   "previousVersion": "http://www.w3.org/TR/2015/WD-charmod-norm-20151119/"
-      ,   "editorsDraft": "http://w3c.github.io/charmod-norm/"
-      ,   "deliverers": [
-              {
-                  "name": "Internationalization Working Group"
-              ,   "homepage":"http://www.w3.org/International/core/"
-              }
-          ]
-      ,   "title": "Character Model for the World Wide Web: String Matching and Searching"
-      ,   "docDate": "2016-4-7"
-      ,   "delivererIDs": [32113]
-      ,   "editorIDs": [33573]
-      ,   "rectrack": false
-      ,   "process": "http://www.w3.org/2015/Process-20150901/"
-      }
+,   {
+        "url": "http://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
+    ,   "file": "charmod-norm"
+    ,   "profile": "WD"
+    ,   "latestVersion": "http://www.w3.org/TR/charmod-norm/"
+    ,   "previousVersion": "http://www.w3.org/TR/2015/WD-charmod-norm-20151119/"
+    ,   "editorsDraft": "http://w3c.github.io/charmod-norm/"
+    ,   "deliverers": [
+            {
+                "name": "Internationalization Working Group"
+            ,   "homepage":"http://www.w3.org/International/core/"
+            }
+        ]
+    ,   "title": "Character Model for the World Wide Web: String Matching and Searching"
+    ,   "docDate": "2016-4-7"
+    ,   "delivererIDs": [32113]
+    ,   "editorIDs": [33573]
+    ,   "informative": false
+    ,   "rectrack": false
+    ,   "process": "http://www.w3.org/2015/Process-20150901/"
+    }
+,   {
+        "url": "http://www.w3.org/TR/2013/WD-components-intro-20130606/"
+    ,   "file": "components-intro"
+    ,   "profile": "WD"
+    ,   "latestVersion": "http://www.w3.org/TR/components-intro/"
+    ,   "previousVersion": "http://www.w3.org/TR/2012/WD-components-intro-20120522/"
+    ,   "editorsDraft": "https://dvcs.w3.org/hg/webcomponents/raw-file/tip/explainer/index.html"
+    ,   "deliverers": [
+            {
+                "name": "Web Applications Working Group"
+            ,   "homepage":"http://www.w3.org/2008/webapps/"
+            }
+        ]
+    ,   "title": "Introduction to Web Components"
+    ,   "docDate": "2013-6-6"
+    ,   "delivererIDs": [42538]
+    ,   "editorIDs": []
+    ,   "informative": true
+    ,   "rectrack": true
+    }
 ]

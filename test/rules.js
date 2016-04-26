@@ -78,6 +78,7 @@ const compareMetadata = function(url, file, expectedObject) {
             chai(specberus.meta.editorIDs).to.satisfy(function(found) {
                 return equivalentArray(found, expectedObject.editorIDs);
             });
+            chai(specberus).to.have.property('meta').to.have.property('informative').equal(expectedObject.informative);
             chai(specberus).to.have.property('meta').to.have.property('rectrack').equal(expectedObject.rectrack);
             chai(specberus).to.have.property('meta').to.have.property('process').equal(expectedObject.process);
             done();
