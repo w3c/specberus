@@ -206,14 +206,14 @@ jQuery.extend({
       $processDocument.find("label#2005").toggleClass("active", (processDocument === "2005"));
       $processDocument.find("label#2015").toggleClass("active", (processDocument === "2015"));
       $noRecTrack.prop('checked', !data.rectrack);
-      $informativeOnly.prop('checked', data.informativeOnly);
+      $informativeOnly.prop('checked', data.informative);
       $validation.val('simple-validation');
       var options = {
                         "url"             : data.url
                       , "profile"         : data.profile
                       , "validation"      : 'simple-validation'
                       , "noRecTrack"      : !data.rectrack || false
-                      , "informativeOnly" : data.informativeOnly || false
+                      , "informativeOnly" : data.informative || false
                       , "echidnaReady"    : false
                       , "patentPolicy"    : "pp2004"
                       , "processDocument" : processDocument
