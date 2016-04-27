@@ -84,7 +84,7 @@ Once the [event `end-all`](#validation-events) is emitted, the metadata should b
 The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
 goals of this method).
 
-`this.meta` will be an `Object` and may include up to 10 properties:
+`this.meta` will be an `Object` and may include up to 12 properties:
 * `profile`
 * `title`: The (possible) title of the document.
 * `docDate`: The date associated to the document.
@@ -113,6 +113,7 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
   "editorsDraft": 'http://w3c.github.io/foobar/',
   "delivererIDs": [123, 456],
   "editorIDs": [ 12345 ],
+  "informative": false,
   "rectrack": true,
   "process": 'http://www.w3.org/2015/Process-20150901/' }
 }
