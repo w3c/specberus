@@ -84,7 +84,20 @@ Once the [event `end-all`](#validation-events) is emitted, the metadata should b
 The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
 goals of this method).
 
-`this.meta` will be an `Object` and may include up to 3 properties: `profile`, `delivererIDs` and `rectrack`.
+`this.meta` will be an `Object` and may include up to 12 properties:
+* `profile`
+* `title`: The (possible) title of the document.
+* `docDate`: The date associated to the document.
+* `thisVersion`: URL of this version of the document.
+* `latestVersion`: URL of the latest version of the document.
+* `previousVersion`: URL of the previous version of the document (the last one, if multiple are shown).
+* `editorsDraft`: URL of the latest editor's draft.
+* `delivererIDs`: ID(s) of the deliverer(s); an `Array` of `Number`s.
+* `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
+* `informative`: Whether the document in informative or not
+* `rectrack`: Whether the document in on REC track or not
+* `process`: The process rules link.
+
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
 This is an example of the value of `Specberus.meta` after the execution of `Specberus.extractMetadata()`:
@@ -92,76 +105,18 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
 ```json
 {
   "profile": "WD",
-  "delivererIDs": [47318, 43696],
-  "rectrack": true
+  "title": 'Title of the spec',
+  "docDate": '2016-2-3',
+  "thisVersion": 'http://www.w3.org/TR/2016/WD-foobar-20160203/',
+  "latestVersion": 'http://www.w3.org/TR/foobar/',
+  "previousVersion": 'http://www.w3.org/TR/2015/WD-foobar-20150101/',
+  "editorsDraft": 'http://w3c.github.io/foobar/',
+  "delivererIDs": [123, 456],
+  "editorIDs": [ 12345 ],
+  "informative": false,
+  "rectrack": true,
+  "process": 'http://www.w3.org/2015/Process-20150901/' }
 }
-```
-
-### Emitting metadata about the document
-
-Every time the validator finds/deduces a piece of metadata about the document, it emits a `metadata` event.
-`metadata` messages contain two arguments: *key* and *value*.
-Keys are unique IDs, while the types of values are different according to the specific kind of metadata.
-
-These properties are now returned when found:
-
-* `docDate`: The date associated to the document.
-* `title`: The (possible) title of the document.
-* `process`: The process rules, **as they appear on the text of the document**, eg `'1 September 2015'`.
-* `thisVersion`: URL of this version of the document.
-* `previousVersion`: URL of the previous version of the document (the last one, if multiple are shown).
-* `latestVersion`: URL of the latest version of the document.
-* `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
-* `editorsDraft`: URL of the latest editor's draft.
-* `shortname`: shortname extracted from latestVersion in the document; a `String`.
-
-As an example, validating [`http://www.w3.org/TR/2014/REC-exi-profile-20140909/`](http://www.w3.org/TR/2014/REC-exi-profile-20140909/) (REC)
-emits these pairs of metadata:
-
-```javascript
-{ docDate: Tue Sep 09 2014 00:00:00 GMT+0900 (JST) }
-{ title: 'Efficient XML Interchange (EXI) Profile for limiting usage of dynamic memory' }
-{ thisVersion: 'http://www.w3.org/TR/2014/REC-exi-profile-20140909/' }
-{ latestVersion: 'http://www.w3.org/TR/exi-profile/' }
-{ previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/' }
-{ editorIDs: [] }
-{ shortname: 'exi-profile'}
-{ process: '1 September 2015' }
-```
-
-If you download that very spec, edit it to include the following metadata&hellip;
-
-```html
-<dt>Editors:</dt>
-<dd data-editor-id="329883">Youenn Fablet, Canon Research Centre France</dd>
-<dd data-editor-id="387297">Daniel Peintner, Siemens AG</dd>
-```
-
-&hellip;and serve it locally from your machine, *Specberus* will spit also editor IDs:
-
-```javascript
-{ docDate: Tue Sep 09 2014 00:00:00 GMT+0900 (JST) }
-{ title: 'Efficient XML Interchange (EXI) Profile for limiting usage of dynamic memory' }
-{ latestVersion: 'http://www.w3.org/TR/exi-profile/' }
-{ previousVersion: 'http://www.w3.org/TR/2014/PR-exi-profile-20140506/' }
-{ editorIDs: [ '329883', '387297' ] }
-{ shortname: 'exi-profile'}
-{ process: '1 September 2015' }
-```
-
-Another example: when applied to [`http://www.w3.org/TR/wai-aria-1.1/`](http://www.w3.org/TR/wai-aria-1.1/) (WD),
-the following metadata will be found:
-
-```javascript
-{ docDate: Thu Dec 11 2014 00:00:00 GMT+0900 (JST) }
-{ title: 'Accessible Rich Internet Applications (WAI-ARIA) 1.1' }
-{ thisVersion: 'http://www.w3.org/TR/2014/WD-wai-aria-1.1-20141211/' }
-{ latestVersion: 'http://www.w3.org/TR/wai-aria-1.1/' }
-{ previousVersion: 'http://www.w3.org/TR/2014/WD-wai-aria-1.1-20140612/' }
-{ editorIDs: [] }
-{ shortname: 'wai-aria-1.1' }
-{ process: '1 September 2015' }
-{ editorsDraft: 'http://w3c.github.io/aria/aria/aria.html' }
 ```
 
 ## Profiles
