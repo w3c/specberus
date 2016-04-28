@@ -394,9 +394,6 @@ jQuery.extend({
             var options = $.getQueryParameters();
             setFormParams(options);
             $(".manual").toggle($profile.val() !== 'auto');
-            if ($profile.val() === "auto") {
-                extractMetadata($url.val());
-            }
             if (options.url && options.profile) {
               if (options.profile === "auto") {
                 extractMetadata(options.url);
