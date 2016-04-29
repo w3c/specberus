@@ -65,6 +65,23 @@ server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
 
 io.sockets.on("connection", function (socket) {
     socket.emit("handshake", { version: version });
+    socket.on("extractMetadata", function (data) {
+        if (!data.url) return socket.emit("exception", { message: "URL not provided." });
+        var v = new validator.Specberus
+        ,   handler = new Sink
+        ;
+        handler.on("end-all", function (metadata) {
+            metadata.url = data.url;
+            socket.emit("finishedExtraction", metadata);
+        });
+        handler.on("exception", function (data) {
+            socket.emit("exception", data);
+        });
+        v.extractMetadata({
+            url    : data.url
+          , events : handler
+        });
+    });
     socket.on("validate", function (data) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
         if (!data.profile) return socket.emit("exception", { message: "Profile not provided." });

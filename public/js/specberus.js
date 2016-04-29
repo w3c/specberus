@@ -96,6 +96,13 @@ jQuery.extend({
         });
     }
 
+    // extractMetadata
+    function extractMetadata (url) {
+        socket.emit("extractMetadata", {
+            url: decodeURIComponent(url)
+        });
+    }
+
     // terminate validation
     function endValidation () {
         $progressContainer.hide();
@@ -192,35 +199,62 @@ jQuery.extend({
         attachCustomScroll();
         // endValidation();
     });
+    socket.on("finishedExtraction", function (data) {
+      $(".manual").toggle(true);
+      var processDocument = (data.processdocument && data.processDocument.indexOf('Process-20051014') > -1) ? "2005" : "2015";
+      $profile.val(data.profile);
+      $processDocument.find("label#2005").toggleClass("active", (processDocument === "2005"));
+      $processDocument.find("label#2015").toggleClass("active", (processDocument === "2015"));
+      $noRecTrack.prop('checked', !data.rectrack);
+      $informativeOnly.prop('checked', data.informative);
+      $validation.val('simple-validation');
+      var options = {
+                        "url"             : data.url
+                      , "profile"         : data.profile
+                      , "validation"      : 'simple-validation'
+                      , "noRecTrack"      : !data.rectrack || false
+                      , "informativeOnly" : data.informative || false
+                      , "echidnaReady"    : false
+                      , "patentPolicy"    : "pp2004"
+                      , "processDocument" : processDocument
+                    };
+      validate(options);
+      var newurl = document.URL.split('?')[0] + "?" + $.param(options)
+      history.pushState(options, url + " - " + profile, newurl);
+    });
 
     // handle the form
     $("#options").submit(function () {
         clearError();
-        var url = $url.val()
-        ,   profile = $profile.val()
-        ,   validation = $validation.val()
-        ,   noRecTrack = $noRecTrack.is(":checked") || false
-        ,   informativeOnly = $informativeOnly.is(":checked") || false
-        ,   echidnaReady = $echidnaReady.is(":checked") || false
-        ,   patentPolicy = $patentPolicy.find('label.active').attr('id')
-        ,   processDocument = $processDocument.find('label.active').attr('id')
-        ;
-        if (!url) showError("Missing URL parameter.");
-        if (!profile) showError("Missing profile parameter.");
-        if (echidnaReady) profile += '-Echidna';
-        var options = {
-                          "url"             : url
-                        , "profile"         : profile
-                        , "validation"      : validation
-                        , "noRecTrack"      : noRecTrack
-                        , "informativeOnly" : informativeOnly
-                        , "echidnaReady"    : echidnaReady
-                        , "patentPolicy"    : patentPolicy
-                        , "processDocument" : processDocument
-                      };
-        validate(options);
-        var newurl = document.URL.split('?')[0] + "?" + $.param(options)
-        history.pushState(options, url + " - " + profile, newurl);
+        if ($profile.val() === "auto") {
+            extractMetadata($url.val());
+        } else {
+            var url = $url.val()
+            ,   profile = $profile.val()
+            ,   validation = $validation.val()
+            ,   noRecTrack = $noRecTrack.is(":checked") || false
+            ,   informativeOnly = $informativeOnly.is(":checked") || false
+            ,   echidnaReady = $echidnaReady.is(":checked") || false
+            ,   patentPolicy = $patentPolicy.find('label.active').attr('id')
+            ,   processDocument = $processDocument.find('label.active').attr('id')
+            ;
+            if (!url) showError("Missing URL parameter.");
+            if (!profile) showError("Missing profile parameter.");
+            if (echidnaReady) profile += '-Echidna';
+            var options = {
+                              "url"             : url
+                            , "profile"         : profile
+                            , "validation"      : validation
+                            , "noRecTrack"      : noRecTrack
+                            , "informativeOnly" : informativeOnly
+                            , "echidnaReady"    : echidnaReady
+                            , "patentPolicy"    : patentPolicy
+                            , "processDocument" : processDocument
+                          };
+            validate(options);
+            var newurl = document.URL.split('?')[0] + "?" + $.param(options)
+            history.pushState(options, url + " - " + profile, newurl);
+        }
         return false;
     });
 
@@ -294,7 +328,6 @@ jQuery.extend({
             $processDocument.find("label#2015").toggleClass("active", isFPCR);
         }
         $processDocument.find("label#2005").toggleClass("disabled", isFPCR);
-
     }
 
     function setFormParams(options) {
@@ -337,7 +370,9 @@ jQuery.extend({
     });
 
     $profile.change(function() {
-        disableProcessIfNeeded($(this));
+        var profile = $(this);
+        $(".manual").toggle(profile.val() !== 'auto');
+        disableProcessIfNeeded(profile);
     });
 
     $echidnaReady.change(function () {
@@ -346,7 +381,7 @@ jQuery.extend({
 
     $(document).ready(function() {
         $.getJSON('data/profiles.json', function(data) {
-            var optgroup;
+            $profile.append($('<option value="auto" selected="selected">Auto-detect</option>'));
             $.each(data.tracks, function(foo, track) {
                 optgroup = $('<optgroup label="' + track.name + '"></optgroup>');
                 $.each(track.profiles, function(bar, profile) {
@@ -358,7 +393,14 @@ jQuery.extend({
             $profileOptions = $('#profile option');
             var options = $.getQueryParameters();
             setFormParams(options);
-            if (options.url && options.profile) validate(options);
+            $(".manual").toggle($profile.val() !== 'auto');
+            if (options.url && options.profile) {
+              if (options.profile === "auto") {
+                extractMetadata(options.url);
+              } else {
+                validate(options);
+              }
+            }
         });
     });
 
