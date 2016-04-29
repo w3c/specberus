@@ -50,6 +50,23 @@ app.use(express.static("public"));
 // listen up
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
 
+app.get('/get/metadata', function (req, res) {
+    var url = (req.query && req.query.url) ? req.query.url : null;
+    if (!url) {
+        res.status(500).json({ error: "'url' parameter is required." });
+    } else {
+        var v = new validator.Specberus
+        ,   handler = new Sink;
+        v.extractMetadata({url: url, events: handler});
+        handler.on("exception", function (data) {
+            res.status(500).json(data);
+        });
+        handler.on("end-all", function () {
+            res.status(200).json(v.meta);
+        });
+    }
+});
+
 // VALIDATION PROTOCOL
 //  Client:
 //      validate, { url: "document", profile: "WD", validation: "simple-validation" }
