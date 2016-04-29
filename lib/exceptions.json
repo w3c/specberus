@@ -1,11 +1,4 @@
 {
-  ".*": [
-    {
-      "rule": "validation.css",
-      "type": "generator.unrecognize",
-      "source": "https://www.w3.org/StyleSheets/TR/2016/base.css"
-    }
-  ],
   "^webrtc$": [
     {
       "rule": "headers.copyright"
@@ -14,18 +7,6 @@
   "^mediacapture-streams$": [
     {
       "rule": "headers.copyright"
-    }
-  ],
-  "^generic-sensor$": [
-      {
-      "rule": "validation.css",
-      "type": "generator.unrecognize"
-    }
-  ],
-  "^ambient-light$": [
-      {
-      "rule": "validation.css",
-      "type": "generator.unrecognize"
     }
   ],
   "^css-ui-3$": [
@@ -37,11 +18,7 @@
   "^powerful-features$": [
     {
       "rule": "validation.css",
-      "type": "generator.unrecognize"
-    },
-    {
-      "rule": "validation.css",
       "type": "noexistence-at-all"
-    } 
+    }
   ]
 }
