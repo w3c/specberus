@@ -381,7 +381,7 @@ jQuery.extend({
 
     $(document).ready(function() {
         $.getJSON('data/profiles.json', function(data) {
-            $profile.append($('<option value="auto">Auto-detect</option>'));
+            $profile.append($('<option value="auto" selected="selected">Auto-detect</option>'));
             $.each(data.tracks, function(foo, track) {
                 optgroup = $('<optgroup label="' + track.name + '"></optgroup>');
                 $.each(track.profiles, function(bar, profile) {
