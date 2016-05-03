@@ -313,7 +313,7 @@ jQuery.extend({
                 if ($(el).val() !== 'WD' && $(el).val() !== 'WG-NOTE')
                   $(el).prop('disabled', true);
             });
-            if ($profile.val() !== 'WD' && $(el).val() !== 'WG-NOTE')
+            if ($profile.val() !== 'WD' && $profile.val() !== 'WG-NOTE')
               $profile.val('');
         }
         else $profileOptions.each(function (_, el) {
