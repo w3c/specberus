@@ -57,11 +57,13 @@ unavailable. To work around this, you can set SKIP_NETWORK:
 
     SKIP_NETWORK=1 mocha
 
-## API
+## JS API
 
 The interface you get when you `require("specberus")` is that from `lib/validator`. It returns a
 `Specberus` instance that is properly configured for operation in the Node.js environment
 (there is nominal support for running Specberus under other environments, but it isn't usable at this time).
+
+(See also [the REST API](#rest-api).)
 
 ### `validate(options)`
 
@@ -118,6 +120,25 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
   "process": "http://www.w3.org/2015/Process-20150901/" }
 }
 ```
+
+## REST API
+
+Similar to the [Node.js API](#js-api), Specberus exposes a REST API too.
+
+The endpoint is `<host>/api/`.
+
+There are three `GET` methods available:
+
+* `version`: returns the version string, eg `1.5.3`.
+* `metadata`: extract all known metadata from document; [returns JSON object with inferred properties](#extractmetadataoptions).
+* `validate`: check the document ([syntax](#validateoptions)); fails and returns an array of errors, or succeeds and returns the profile.
+
+Examples:
+
+* `<host>/api/version`
+* `<host>/api/metadata?url=http://example.com/doc.html`
+* `<host>/api/validate?file=/home/me/docs/spec.html`
+* `<host>/api/validate?file=draft2.html&profile=WD&validation=simple-validation&processDocument=2015`
 
 ## Profiles
 
