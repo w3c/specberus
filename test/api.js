@@ -81,47 +81,63 @@ if (!process || !process.env || !process.env.SKIP_NETWORK) {
 
     describe('API', function() {
 
-        var suffix;
+        var query;
 
         before(function() {
             launchServer();
             setUp();
-            suffix = '?file=test/docs/metadata/ttml-imsc1.html'
         });
 
         describe('Endpoint', function() {
             it('Should exist and listen to GET requests', function() {
-                const bogus = get('');
-                return expect(bogus).to.eventually.be.rejectedWith(/wrong\ api\ method/i);
+                query = get('');
+                return expect(query).to.eventually.be.rejectedWith(/wrong\ api\ method/i);
             });
             it('Should not accept POST requests', function() {
-                const bogus = get('', true);
-                return expect(bogus).to.eventually.be.rejectedWith(/cannot\ post/i);
+                query = get('', true);
+                return expect(query).to.eventually.be.rejectedWith(/cannot\ post/i);
             });
         });
 
         describe('Method “version”', function() {
             it('Should return the right version string', function() {
-                const version = get('version');
-                return expect(version).to.eventually.become(package.version);
+                query = get('version');
+                return expect(query).to.eventually.become(package.version);
             });
         });
 
         describe('Method “metadata”', function() {
-            it('Should return the expected profile', function() {
-                const meta = get('metadata' + suffix);
-                return expect(meta).to.eventually.match(/"profile":\s*"pr"/i);
+            it('Should accept the parameter “file”, and return the right profile and date', function() {
+                query = get('metadata?file=test/docs/metadata/ttml-imsc1.html');
+                return expect(query).to.eventually.match(/"profile":\s*"pr"/i)
+                    .and.to.eventually.match(/"docDate":\s*"2016\-3\-8"/i);
             });
         });
 
         describe('Method “validate”', function() {
             it('Should 404 and return an array of errors when validation fails', function() {
-                const check = get('validate' + suffix + '&profile=REC&validation=simple-validation&processDocument=2047');
-                return expect(check).to.eventually.be.rejectedWith(/"headers\.\w+/i);
+                query = get('validate?file=test/docs/metadata/ttml-imsc1.html&profile=REC&validation=simple-validation&processDocument=2047');
+                return expect(query).to.eventually.be.rejectedWith(/"headers\.\w+/i);
             });
-            it('Should succeed and return the profile when the document is valid', function() {
-                const check = get('validate' + suffix + '&profile=PR&validation=simple-validation&processDocument=2015');
-                return expect(check).to.eventually.become('PR');
+            it('Should accept the parameter “url”, and succeed returning the profile when the document is valid', function() {
+                query = get('validate?url=https%3A%2F%2Fwww.w3.org%2FTR%2F2016%2FWD-charmod-norm-20160407%2F&' +
+                    'profile=WD&validation=simple-validation&processDocument=2015&noRecTrack=true');
+                return expect(query).to.eventually.become('WD');
+            });
+            it('Special profile “auto”: should detect the right profile and validate the document', function() {
+                query = get('validate?url=https%3A%2F%2Fwww.w3.org%2FTR%2F2016%2FWD-charmod-norm-20160407%2F&profile=auto');
+                return expect(query).to.eventually.become('WD');
+            });
+        });
+
+        describe('Parameter restrictions', function() {
+            it('Should reject the parameter “document”', function() {
+                query = get('metadata?document=foo');
+                return expect(query).to.eventually.be.rejectedWith('Parameter “document” is not allowed in this context');
+            });
+            it('Should reject the parameter “source”', function() {
+                query = get('metadata?source=foo');
+                return expect(query).to.eventually.be.rejectedWith('Parameter “source” is not allowed in this context');
             });
         });
 

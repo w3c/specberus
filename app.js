@@ -22,7 +22,7 @@ const package = require('./package.json')
 ,   api = require('./lib/api')
 ,   l10n = require('./lib/l10n')
 ,   sink = require('./lib/sink')
-,   util = require('./lib/util');
+,   util = require('./lib/util')
 ,   validator = require('./lib/validator')
 ;
 
