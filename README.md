@@ -123,17 +123,26 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
 
 ## REST API
 
-Similar to the [Node.js API](#js-api), Specberus exposes a REST API too.
+Similar to the [JS API](#js-api), Specberus exposes a REST API too.
 
 The endpoint is `<host>/api/`.
+Use either `url` or `file` to pass along the document (`source` and `document` are not allowed).
 
-There are three `GET` methods available:
+There are three `GET` methods available.
 
-* `version`: returns the version string, eg `1.5.3`.
-* `metadata`: extract all known metadata from document; [returns JSON object with inferred properties](#extractmetadataoptions).
-* `validate`: check the document ([syntax](#validateoptions)); fails and returns an array of errors, or succeeds and returns the profile.
+### `version`
 
-Examples:
+Returns the version string, eg `1.5.3`.
+
+### `metadata`
+
+Extract all known metadata from document; [returns a JSON object with inferred properties](#extractmetadataoptions).
+
+### `validate`
+
+Check the document ([syntax](#validateoptions)); fails and returns an array of errors, or succeeds and returns the profile.
+
+### Examples
 
 * `<host>/api/version`
 * `<host>/api/metadata?url=http://example.com/doc.html`
