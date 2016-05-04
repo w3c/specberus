@@ -142,6 +142,8 @@ Extract all known metadata from document; [returns a JSON object with inferred p
 
 Check the document ([syntax](#validateoptions)); fails and returns an array of errors, or succeeds and returns the profile.
 
+The special profile `auto` is also available.
+
 ### Examples
 
 * `<host>/api/version`
