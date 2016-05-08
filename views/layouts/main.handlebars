@@ -32,13 +32,15 @@
       </div>
     </header>
 
-    {{{body}}}
+    <div class="container">
+      {{{body}}}
+    </div>
 
     <script type="text/javascript" src="/js/jquery-2.2.1.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     {{#if interactive}}
-    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="/js/specberus.js"></script>
+      <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+      <script type="text/javascript" src="/js/specberus.js"></script>
     {{/if}}
 
   </body>

@@ -1,5 +1,5 @@
 /**
- * Main runnable file of Specberus.
+ * Main runnable file.
  */
 
 // Settings:
@@ -12,7 +12,6 @@ const http = require('http');
 const bodyParser = require('body-parser')
 ,   compression = require('compression')
 ,   express = require('express')
-,   handlebars = require('express-handlebars')
 ,   insafe = require('insafe')
 ,   morgan = require('morgan')
 ,   socket = require('socket.io')
@@ -23,8 +22,9 @@ const self = require('./package.json')
 ,   l10n = require('./lib/l10n')
 ,   sink = require('./lib/sink')
 ,   validator = require('./lib/validator')
-,   api = require('./lib/api')
+,   views = require('./lib/views')
 ,   util = require('./lib/util')
+,   api = require('./lib/api')
 ;
 
 const app = express()
@@ -35,28 +35,13 @@ const app = express()
 ,   version = self.version
 ;
 
-var hb = handlebars.create({defaultLayout:"main"});
-app.engine('handlebars', hb.engine);
-app.set('view engine', 'handlebars');
-
-app.get('/', function(req, res) {
-    res.render('index', {version: version});
-});
-
-app.get('/doc/', function(req, res) {
-    res.render('doc/index', {version: version, title: 'documentation'});
-});
-
-app.get('/check/', function(req, res) {
-    res.render('check/index', {version: version, title: 'checker', interactive: true});
-});
-
 // middleware
 app.use(morgan('combined'));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(express.static("public"));
 api.setUp(app);
+views.setUp(app);
 
 // listen up
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
