@@ -1,4 +1,8 @@
-/*global io*/
+/**
+ * @TODO Document.
+ */
+
+'use strict';
 
 // TODO:
 //  include socket.io
