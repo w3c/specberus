@@ -123,10 +123,10 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
 
 ## REST API
 
-Similar to the [JS API](#js-api), Specberus exposes a REST API too.
+Similar to the [JS API](#js-api), Specberus exposes a REST API via HTTP too.
 
 The endpoint is `<host>/api/`.
-Use either `url` or `file` to pass along the document (`source` and `document` are not allowed).
+Use either `url` or `file` to pass along the document (neither `source` nor `document` are allowed).
 
 There are three `GET` methods available.
 
@@ -136,11 +136,12 @@ Returns the version string, eg `1.5.3`.
 
 ### `metadata`
 
-Extract all known metadata from document; [returns a JSON object with inferred properties](#extractmetadataoptions).
+Extract all known metadata from a document; see [below](#return-values) for information about the return value.
 
 ### `validate`
 
-Check the document ([syntax](#validateoptions)); fails and returns an array of errors, or succeeds and returns the profile.
+Check the document ([syntax](#validateoptions)).
+Many of [the options understood by the JS method `validate`](#validateoptions) are accepted.
 
 The special profile `auto` is also available.
 
@@ -150,6 +151,57 @@ The special profile `auto` is also available.
 * `<host>/api/metadata?url=http://example.com/doc.html`
 * `<host>/api/validate?file=/home/me/docs/spec.html`
 * `<host>/api/validate?file=draft2.html&profile=WD&validation=simple-validation&processDocument=2015`
+
+### Return values
+
+Methods `metadata` and `validate` return a JSON object with these properties:
+
+* `success` (`boolean`): whether the operation succeeded, or not.
+* `errors` (`array`): all errors found.
+* `warnings` (`array`): all warnings.
+* `info` (`array`): additional, informative messages.
+* `metadata` (`object`):
+
+If there is an internal error, the document cannot be retrieved or is not recognised, or validation fails, both methods would return HTTP status code `400`.
+Also, in the case of `validate`, `success` would be `false`, and `errors.length > 0`.
+
+This is an example of a successful validation of a document, with profile `auto`:
+
+```json
+{ "success": true,
+  "errors": [],
+  "warnings":
+   [ "headers.ol-toc",
+     "links.linkchecker",
+     "links.compound",
+     "headers.dl" ],
+  "info":
+   [ "sotd.diff",
+     "structure.display-only",
+     "structure.display-only",
+     "structure.display-only",
+     "validation.wcag" ],
+  "metadata":
+   { "profile": "WD",
+     "title": "Character Model for the World Wide Web: String Matching and Searching",
+     "docDate": "2016-4-7",
+     "thisVersion": "http://www.w3.org/TR/2016/WD-charmod-norm-20160407/",
+     "latestVersion": "http://www.w3.org/TR/charmod-norm/",
+     "previousVersion": "http://www.w3.org/TR/2015/WD-charmod-norm-20151119/",
+     "editorsDraft": "http://w3c.github.io/charmod-norm/",
+     "delivererIDs": [ 32113 ],
+     "editorIDs": [ 33573 ],
+     "rectrack": false,
+     "informative": false,
+     "process": "http://www.w3.org/2015/Process-20150901/",
+     "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
+  }
+}
+```
+
+When the profile is given by the user, fewer items of metadata are returned.
+
+`metadata` returns a similar structure, where all values are empty arrays, except for the key `metadata` which contains the metadata object.
 
 ## Profiles
 
