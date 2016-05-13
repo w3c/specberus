@@ -72,7 +72,7 @@ The interface you get when you `require("specberus")` is that from `lib/validato
 `Specberus` instance that is properly configured for operation in the Node.js environment
 (there is nominal support for running Specberus under other environments, but it isn't usable at this time).
 
-(See also [the REST API](#rest-api).)
+(See also [the REST API](#5-rest-api).)
 
 ### `validate(options)`
 
@@ -132,7 +132,7 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
 
 ## 5. REST API
 
-Similar to the [JS API](#js-api), Specberus exposes a REST API via HTTP too.
+Similar to the [JS API](#4-js-api), Specberus exposes a REST API via HTTP too.
 
 The endpoint is `<host>/api/`.
 Use either `url` or `file` to pass along the document (neither `source` nor `document` are allowed).
