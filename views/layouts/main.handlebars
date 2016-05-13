@@ -9,7 +9,11 @@
     <meta name="keywords" content="pubrules,checker,specberus,w3c,publict">
     <meta name="author" content="W3C">
     <title>W3C's Specberus {{version}}{{#if title }} &mdash; {{title}}{{/if}}</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    {{#if DEBUG}}
+      <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    {{else}}
+      <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    {{/if}}
     <link rel="stylesheet" type="text/css" href="/css/specberus.css">
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   </head>
@@ -21,8 +25,8 @@
         <div class="row">
           <div class="col-md-8 navbar-brand">
             <a href="http://www.w3.org/"><img class="logo" src="/img/logo-w3c.svg" alt="W3C logo"></a>
-	    <img src="/img/logo.svg" alt="Logo for the Pubrules Checker">
-	    <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>'s
+            <img src="/img/logo.svg" alt="Logo for the Pubrules Checker">
+            <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>'s
             <a href="/">Specberus</a> {{version}}{{#if title }} &mdash; {{title}}{{/if}}
           </div>
           <div class="contribute col-md-4 text-right">
@@ -36,8 +40,14 @@
       {{{body}}}
     </div>
 
-    <script type="text/javascript" src="/js/jquery-2.2.1.min.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    {{#if DEBUG}}
+      <script type="text/javascript" src="/js/jquery.js"></script>
+      <script type="text/javascript" src="/js/bootstrap.js"></script>
+    {{else}}
+      <script type="text/javascript" src="/js/jquery.min.js"></script>
+      <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    {{/if}}
+
     {{#if interactive}}
       <script type="text/javascript" src="/socket.io/socket.io.js"></script>
       <script type="text/javascript" src="/js/specberus.js"></script>
