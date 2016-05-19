@@ -36,7 +36,6 @@ jQuery.extend({
     ,   $informativeOnly = $("#informativeOnly")
     ,   $echidnaReady = $("#echidnaReady")
     ,   $patentPolicy = $("#patentPolicy")
-    ,   $processDocument = $("#processDocument")
     ,   $results = $('#results')
     ,   $resultsBody = $results.find('.panel-body')
     ,   $resultsList = $results.find('.list-group')
@@ -68,7 +67,6 @@ jQuery.extend({
         ,   informativeOnly:    (true === options.informativeOnly)
         ,   echidnaReady:       (true === options.echidnaReady)
         ,   patentPolicy:       options.patentPolicy
-        ,   processDocument:    options.processDocument
         });
     }
 
@@ -180,11 +178,8 @@ jQuery.extend({
         }
         else {
             toggleManual(true);
-            var processDocument = (data.metadata.process && data.metadata.process.indexOf('Process-20051014') > -1) ? "2005" : "2015";
             profile = data.metadata.profile;
             $profile.val(profile);
-            $processDocument.find("label#2005").toggleClass("active", (processDocument === "2005"));
-            $processDocument.find("label#2015").toggleClass("active", (processDocument === "2015"));
             $noRecTrack.prop('checked', !data.metadata.rectrack);
             $informativeOnly.prop('checked', data.metadata.informative);
             var validation = 'simple-validation';
@@ -198,7 +193,6 @@ jQuery.extend({
                             , "informativeOnly" : data.metadata.informative || false
                             , "echidnaReady"    : false
                             , "patentPolicy"    : "pp2004"
-                            , "processDocument" : processDocument
                           };
             validate(options);
             var newurl = document.URL.split('?')[0] + "?" + $.param(options)
@@ -219,7 +213,6 @@ jQuery.extend({
             ,   informativeOnly = $informativeOnly.is(":checked") || false
             ,   echidnaReady = $echidnaReady.is(":checked") || false
             ,   patentPolicy = $patentPolicy.find('label.active').attr('id')
-            ,   processDocument = $processDocument.find('label.active').attr('id')
             ;
             profile = $profile.val();
             if (!url) addMessage(MSG_ERROR, 'Missing “URL” parameer');
@@ -233,7 +226,6 @@ jQuery.extend({
                             , "informativeOnly" : informativeOnly
                             , "echidnaReady"    : echidnaReady
                             , "patentPolicy"    : patentPolicy
-                            , "processDocument" : processDocument
                           };
             validate(options);
             var newurl = document.URL.split('?')[0] + "?" + $.param(options)
@@ -256,15 +248,6 @@ jQuery.extend({
         });
     }
 
-    function disableProcessIfNeeded(profileElement) {
-        var isFPCR = (profileElement.val() === "FPCR");
-        if (isFPCR) {
-            $processDocument.find("label#2005").toggleClass("active", !isFPCR);
-            $processDocument.find("label#2015").toggleClass("active", isFPCR);
-        }
-        $processDocument.find("label#2005").toggleClass("disabled", isFPCR);
-    }
-
     function setFormParams(options) {
         // Option "echidnaReady" processed first, as it may restrict the list of enabled profiles.
         $echidnaReady.prop('checked', options.echidnaReady);
@@ -276,15 +259,10 @@ jQuery.extend({
             newProfile = newProfile.substring(0, newProfile.indexOf('-Echidna'));
           }
           $profile.find('option[value=' + newProfile + ']').prop('selected', true);
-          disableProcessIfNeeded($profile);
         }
         if (options.validation) $validation.val(options.validation);
         $noRecTrack.prop('checked', options.noRecTrack);
         $informativeOnly.prop('checked', options.informativeOnly);
-        if (options.processDocument) {
-          $processDocument.find('label').removeClass('active');
-          $processDocument.find('label#' + options.processDocument).addClass('active');
-        }
         if (options.patentPolicy) {
           $patentPolicy.find('label').removeClass('active');
           $patentPolicy.find('label#' + options.patentPolicy).addClass('active');
@@ -362,7 +340,6 @@ jQuery.extend({
 
     $profile.change(function() {
         toggleManual('auto' !== $(this).val());
-        disableProcessIfNeeded($(this));
     });
 
     $echidnaReady.change(function () {

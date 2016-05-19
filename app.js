@@ -126,7 +126,6 @@ io.sockets.on("connection", function (socket) {
                     ,   informativeOnly:    data.informativeOnly
                     ,   echidnaReady:       data.echidnaReady
                     ,   patentPolicy:       data.patentPolicy
-                    ,   processDocument:    data.processDocument
                     });
                 }
                 catch (e) {
