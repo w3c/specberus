@@ -109,7 +109,7 @@ describe('API', function() {
             query = get('metadata?file=test/docs/metadata/ttml-imsc1.html');
             // @TODO: parse result as an Object (it's JSON) instead of a String.
             return expect(query).to.eventually.match(/"profile":\s*"pr"/i)
-                .and.to.eventually.match(/"docDate":\s*"2016\-3\-8"/i);
+                .and.to.eventually.match(/"docdate":\s*"2016\-3\-8"/i);
         });
     });
 
@@ -118,18 +118,17 @@ describe('API', function() {
             query = get('validate?file=test/docs/metadata/ttml-imsc1.html&profile=REC&validation=simple-validation&processDocument=2047');
             return expect(query).to.eventually.be.rejectedWith(/"headers\.\w+/i);
         })
-        it('Should accept the parameter “url”, and succeed returning the profile when the document is valid', function() {
+        it('Should accept the parameter “url”, and succeed when the document is valid', function() {
             query = get('validate?url=https%3A%2F%2Fwww.w3.org%2FTR%2F2016%2FWD-charmod-norm-20160407%2F&' +
                 'profile=WD&validation=simple-validation&processDocument=2015&noRecTrack=true');
             // @TODO: parse result as an Object (it's JSON) instead of a String.
-            return expect(query).to.eventually.match(/"success":\s*true/i)
-                .and.to.eventually.match(/"profile":\s*"WD"/i);
+            return expect(query).to.eventually.match(/"success":\s*true/i);
         });
         it('Special profile “auto”: should detect the right profile and validate the document', function() {
             query = get('validate?url=https%3A%2F%2Fwww.w3.org%2FTR%2F2016%2FWD-charmod-norm-20160407%2F&profile=auto');
             // @TODO: parse result as an Object (it's JSON) instead of a String.
             return expect(query).to.eventually.match(/"success":\s*true/i)
-                .and.to.eventually.match(/"profile":\s*"WD"/i);
+                .and.to.eventually.match(/"profile":\s*"wd"/i);
         });
     });
 

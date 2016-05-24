@@ -349,10 +349,6 @@ Object.keys(tests).forEach(function (category) {
                         var r = require("../lib/rules/" + category + "/" + rule)
                         ,   handler = new sink.Sink
                         ;
-                        handler.on("ok", function () {
-                            if (DEBUG) console.log("OK");
-                            handler.ok++;
-                        });
                         handler.on("err", function (type, data) {
                             if (DEBUG) console.log(data);
                             handler.errors.push(type);
@@ -371,7 +367,6 @@ Object.keys(tests).forEach(function (category) {
                         handler.on("end-all", function () {
                             if (passTest) {
                                 expect(handler.errors).to.be.empty();
-                                expect(handler.ok).to.eql(handler.done);
                             }
                             else {
                                 expect(handler.errors.length).to.eql(test.errors.length);
