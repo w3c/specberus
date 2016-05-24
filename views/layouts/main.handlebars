@@ -21,22 +21,22 @@
   <body>
 
     <header class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-md-8 navbar-brand">
+          <div class="col-xs-7 navbar-brand">
             <a href="http://www.w3.org/"><img class="logo" src="/img/logo-w3c.svg" alt="W3C logo"></a>
             <img src="/img/logo.svg" alt="Logo for the Pubrules Checker">
             <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>'s
             <a href="/">Specberus</a> {{version}}{{#if title }} &mdash; {{title}}{{/if}}
           </div>
-          <div class="contribute col-md-4 text-right">
+          <div class="contribute col-xs-5 text-right">
             <a id="infoLink" href="#" onclick="$('#about').show(); $('#infoLink').hide();">Important information about this tool</a>
           </div>
         </div>
       </div>
     </header>
 
-    <div class="container">
+    <div class="container-fluid">
       {{{body}}}
     </div>
 
@@ -46,6 +46,10 @@
     {{else}}
       <script type="text/javascript" src="/js/jquery.min.js"></script>
       <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    {{/if}}
+
+    {{#if scroll}}
+      <script type="text/javascript" src="/js/scroll-tweak.js"></script>
     {{/if}}
 
     {{#if interactive}}

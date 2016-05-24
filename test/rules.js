@@ -350,12 +350,12 @@ Object.keys(tests).forEach(function (category) {
                         ,   handler = new sink.Sink
                         ;
                         handler.on("err", function (type, data) {
-                            if (DEBUG) console.log(data);
-                            handler.errors.push(type);
+                            if (DEBUG) console.log(type, data);
+                            handler.errors.push(type.name);
                         });
                         handler.on("warning", function (type, data) {
                             if (DEBUG) console.log("[W]", data);
-                            handler.warnings.push(type);
+                            handler.warnings.push(type.name);
                         });
                         handler.on("done", function () {
                             if (DEBUG) console.log("---done---");

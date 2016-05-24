@@ -85,27 +85,21 @@ io.sockets.on("connection", function (socket) {
         var v = new validator.Specberus
         ,   handler = new Sink
         ,   profile = profiles[data.profile]
+        ,   profileCode = profile.name
         ;
+        // @TODO Localise this properly when messages are translated; hard-coded British English for now.
+        l10n.setLanguage('en_GB');
         socket.emit("start", {
             rules:  (profile.rules || []).map(function (rule) { return rule.name; })
         });
-        handler.on("ok", function (type) {
-            socket.emit("ok", { name: type });
+        handler.on('err', function (type, data) {
+            socket.emit('err', l10n.message(profileCode, type, data.key, data.extra));
         });
-        handler.on("err", function (type, data) {
-            data.name = type;
-            data.message = l10n.message(v.config.lang, type, data.key, data.extra);
-            socket.emit("err", data);
-        });
-        handler.on("warning", function (type, data) {
-            data.name = type;
-            data.message = l10n.message(v.config.lang, type, data.key, data.extra);
-            socket.emit("warning", data);
+        handler.on('warning', function (type, data) {
+            socket.emit('warning', l10n.message(profileCode, type, data.key, data.extra));
         });
         handler.on('info', function (type, data) {
-            data.name = type;
-            data.message = l10n.message(v.config.lang, type, data.key, data.extra);
-            socket.emit('info', data);
+            socket.emit('info', l10n.message(profileCode, type, data.key, data.extra));
         });
         handler.on("done", function (name) {
             socket.emit("done", { name: name });

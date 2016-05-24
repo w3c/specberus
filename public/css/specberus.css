@@ -1,6 +1,9 @@
-
 body {
     padding-top: 70px;
+}
+
+.container-fluid {
+    max-width: 1170px;
 }
 
 img.filler {
@@ -35,6 +38,7 @@ img.filler {
 
 #infoLink {
     display: none;
+    opacity: 1;
 }
 
 #progressBar, #summary, #results {
@@ -75,13 +79,13 @@ td.results a {
     text-decoration: underline;
 }
 
-#processDocument .btn-primary, #patentPolicy .btn-primary {
+.btn-group .btn-primary {
     background-color: #ffffff;
     color: #808080;
 }
 
-#processDocument .btn-primary.active, #patentPolicy .btn-primary.active {
-    background-color: #f5f5f5;
+.btn-group .btn-primary.active {
+    background-color: #f0f0f0;
     color: #000000;
 }
 
@@ -91,8 +95,12 @@ blockquote {
     border: 0;
 }
 
-.manual {
+form .manual {
     display: none;
+}
+
+form.manual .manual {
+    display: block;
 }
 
 .rules *:target {
@@ -109,4 +117,111 @@ span.rfc2119 {
 
 span.subset {
     display: none;
+}
+
+input[type=url] {
+    font-family: monospace;
+}
+
+span.info {
+    margin: 0;
+    padding: 0 .45em;
+    background-color: #8080ff;
+    border: 0 solid #8080ff;
+    border-radius: .5em;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.tooltip,
+.tooltip-inner {
+    background-color: #8080ff;
+    color: #ffffff;
+    font-size: 1em;
+}
+
+.tooltip-arrow {
+    display: none;
+}
+
+.panel-title a {
+    color: #337ab7;
+}
+
+option:disabled {
+    color: #c0c0c0;
+    text-decoration: line-through;
+}
+
+#check1,
+form.manual #check2 {
+    display: block;
+}
+
+#check2,
+form.manual #check1 {
+    display: none;
+}
+
+span.icon {
+    font-size: 6rem;
+    font-weight: bold;
+    vertical-align: middle;
+    text-shadow: 0 .5rem .5rem #c0c0c0;
+    line-height: 4rem;
+    margin-right: .2em;
+}
+
+span.icon.green {
+    color: #5cb85c;
+}
+
+span.icon.amber {
+    color: #f0ad4e;
+}
+
+span.icon.red {
+    color: #d9534f;
+}
+
+p.details {
+    clear: both;
+    margin-top: 3.5rem;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+#results .list-group-item {
+    padding-left: .5em;
+    border-left-width: .5em;
+    border-left-color: transparent;
+    border-left-style: solid;
+}
+
+#results .list-group-item .message,
+#results .list-group-item .quote {
+    margin-left: 5em;
+    margin-right: 9em;
+}
+
+#results .list-group-item .quote {
+    font-style: italic;
+}
+
+#results .list-group-item .detailed {
+    margin-top: -.5em;
+    margin-right: -.5em;
+    line-height: 1em;
+    visibility: hidden;
+}
+
+#results .list-group-item:hover {
+    background-color: #fcfcfc;
+    border-left-color: #c0c0c0;
+}
+
+#results .list-group-item:hover .detailed {
+    visibility: visible;
 }
