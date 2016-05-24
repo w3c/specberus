@@ -28,7 +28,7 @@
     "expect.js": "0.3",
     "istanbul": "0.4",
     "jsdoc": "3.4",
-    "mocha": "2.5.1",
+    "mocha": "2.5.2",
     "nsp": "2.4.0"
   },
   "scripts": {
