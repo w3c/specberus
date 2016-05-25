@@ -200,6 +200,10 @@ p.details {
     border-left-style: solid;
 }
 
+#results .list-group-item.exception {
+    background-color: #ffffe0;
+}
+
 #results .list-group-item .message,
 #results .list-group-item .quote {
     margin-left: 5em;

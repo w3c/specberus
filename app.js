@@ -35,7 +35,7 @@ const app = express()
 ,   version = self.version
 ;
 
-// middleware
+// Middleware:
 app.use(morgan('combined'));
 app.use(compression());
 app.use(bodyParser.json());
@@ -43,21 +43,7 @@ app.use(express.static("public"));
 api.setUp(app);
 views.setUp(app);
 
-// listen up
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
-
-// VALIDATION PROTOCOL
-//  Client:
-//      validate, { url: "document", profile: "WD", validation: "simple-validation" }
-//  Server:
-//      handshake, { version: "x.y.z"}
-//      exception, { message: "blah", code: "FOO"} (for system errors)
-//      start { rules: [rule names]}
-//      ok, { name: "test name" }
-//      warning, { name: "test name", code: "FOO" }
-//      error, { name: "test name", code: "FOO" }
-//      done, { name: "test name" }
-//      finished
 
 io.sockets.on("connection", function (socket) {
     socket.emit("handshake", { version: version });
@@ -93,13 +79,28 @@ io.sockets.on("connection", function (socket) {
             rules:  (profile.rules || []).map(function (rule) { return rule.name; })
         });
         handler.on('err', function (type, data) {
-            socket.emit('err', l10n.message(profileCode, type, data.key, data.extra));
+            try {
+                socket.emit('err', l10n.message(profileCode, type, data.key, data.extra));
+            }
+            catch (err) {
+                socket.emit('exception', err.message);
+            }
         });
         handler.on('warning', function (type, data) {
-            socket.emit('warning', l10n.message(profileCode, type, data.key, data.extra));
+            try {
+                socket.emit('warning', l10n.message(profileCode, type, data.key, data.extra));
+            }
+            catch (err) {
+                socket.emit('exception', err.message);
+            }
         });
         handler.on('info', function (type, data) {
-            socket.emit('info', l10n.message(profileCode, type, data.key, data.extra));
+            try {
+                socket.emit('info', l10n.message(profileCode, type, data.key, data.extra));
+            }
+            catch (err) {
+                socket.emit('exception', err.message);
+            }
         });
         handler.on("done", function (name) {
             socket.emit("done", { name: name });
