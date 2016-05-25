@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en-GB">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="application-name" content="Pubrules Checker">
+    <meta name="description" content="Pubrules checker — reloaded">
+    <meta name="keywords" content="pubrules,checker,specberus,w3c,publict">
+    <meta name="author" content="W3C">
+    <title>W3C's Specberus {{version}}{{#if title }} &mdash; {{title}}{{/if}}</title>
+    {{#if DEBUG}}
+      <link rel="stylesheet" type="text/css" href="https://www.w3.org/scripts/bootstrap/3.3/css/bootstrap.css">
+    {{else}}
+      <link rel="stylesheet" type="text/css" href="https://www.w3.org/scripts/bootstrap/3.3/css/bootstrap.min.css">
+    {{/if}}
+    <link rel="stylesheet" type="text/css" href="/css/specberus.css">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  </head>
+
+  <body>
+
+    <header class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-7 navbar-brand">
+            <a href="http://www.w3.org/"><img class="logo" src="/img/logo-w3c.svg" alt="W3C logo"></a>
+            <img src="/img/logo.svg" alt="Logo for the Pubrules Checker">
+            <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>'s
+            <a href="/">Specberus</a> {{version}}{{#if title }} &mdash; {{title}}{{/if}}
+          </div>
+          <div class="contribute col-xs-5 text-right">
+            <a id="infoLink" href="#" onclick="$('#about').show(); $('#infoLink').hide();">Important information about this tool</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container-fluid">
+      {{{body}}}
+    </div>
+
+    {{#if DEBUG}}
+      <script type="text/javascript" src="https://www.w3.org/scripts/jquery/2.1/jquery.js"></script>
+      <script type="text/javascript" src="https://www.w3.org/scripts/bootstrap/3.3/js/bootstrap.js"></script>
+    {{else}}
+      <script type="text/javascript" src="https://www.w3.org/scripts/jquery/2.1/jquery.min.js"></script>
+      <script type="text/javascript" src="https://www.w3.org/scripts/bootstrap/3.3/js/bootstrap.min.js"></script>
+    {{/if}}
+
+    {{#if scroll}}
+      <script type="text/javascript" src="/js/scroll-tweak.js"></script>
+    {{/if}}
+
+    {{#if interactive}}
+      <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+      <script type="text/javascript" src="/js/specberus.js"></script>
+    {{/if}}
+
+  </body>
+
+</html>

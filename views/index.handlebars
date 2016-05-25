@@ -1,0 +1,139 @@
+<div class="row">
+  <div class="col-md-12">
+    {{{nav}}}
+    <p><a href="/doc">Publication rules</a></p>
+  </div>
+</div>
+
+<div id="about" class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" onclick="$('#infoLink').show(); $('#about').hide();"><span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+  </button>
+  This alternative pubrules checker is scheduled to replace the <a href="http://www.w3.org/2005/07/pubrules">official pubrules checker</a> starting from August 1, 2016.<br>
+  Contribute and submit issues <a href="https://github.com/w3c/specberus">on GitHub</a>; send comments to
+  <a href="mailto:public-pubrules-comments@w3.org"><code>public-pubrules-comments@w3.org</code></a>.
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Test a document against the <a href="/doc">publication and transition rules</a></h3>
+      </div>
+      <div class="panel-body">
+        <form id="options" class="form-horizontal manual">
+
+          <div class="form-group">
+            <label for="url" class="col-xs-3 col-sm-1 col-md-1 col-lg-1 control-label">URL</label>
+            <div id="urlContainer" class="col-xs-9 col-sm-4 col-md-5 col-lg-5">
+              <input type="url" class="form-control" id="url" required autofocus="autofocus" placeholder="https://www.w3.org/TR/2016/WD-foobar-YYYYMMDD/">
+            </div>
+            <label for="profile" class="col-xs-3 col-sm-1 col-md-1 col-lg-1 control-label">Profile</label>
+            <div id="profileContainer" class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+              <select class="form-control" id="profile" required>
+                <option value disabled="disabled">Select an option</option>
+              </select>
+            </div>
+            <div id="check1" class="col-sm-2 col-md-1 col-lg-1">
+              <button type="submit" class="btn btn-primary pull-right">Check</button>
+            </div>
+          </div>
+
+          <div class="form-group manual">
+            <label class="col-xs-3 col-md-1 col-lg-1 control-label">Patent Policy</label>
+            <div id="patentPolicy" class="col-xs-9 col-md-3 col-lg-3 btn-group" data-toggle="buttons">
+              <label id="pp2004" class="btn btn-primary active">
+                <input type="radio" name="patentPolicy">
+                5 Feb 2004
+              </label>
+              <label id="pp2002" class="btn btn-primary">
+                <input type="radio" name="patentPolicy">
+                24 Jan 2002
+              </label>
+            </div>
+            <label class="col-xs-3 col-md-1 col-lg-1 control-label">Process</label>
+            <div id="processDocument" class="col-xs-9 col-md-3 col-lg-3 btn-group" data-toggle="buttons">
+              <label id="2015" class="btn btn-primary active">
+                <input type="radio" name="processDocument">
+                1 Sep 2015
+              </label>
+              <label id="2005" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="NB: will be deprecated on 1 Aug 2016">
+                <input type="radio" name="processDocument">
+                14 Oct 2005 <span class="info">i</span>
+              </label>
+            </div>
+            <label class="col-xs-3 col-md-1 col-lg-1 control-label">Validation</label>
+            <div id="validation" class="col-xs-9 col-md-3 col-lg-3 btn-group" data-toggle="buttons">
+              <label id="no-validation" class="btn btn-primary">
+                <input type="radio" name="validation">
+                None
+              </label>
+              <label id="simple-validation" class="btn btn-primary active">
+                <input type="radio" name="validation">
+                Simple
+              </label>
+              <label id="recursive" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Recursively validate multipart documents">
+                <input type="radio" name="validation">
+                Recursive <span class="info">i</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group manual">
+            <div class="col-xs-offset-3 col-xs-9 col-sm-offset-1 col-sm-4">
+              <label class="control-label" data-toggle="tooltip" data-placement="top" title="On rec-track status, but the document is not really on rec-track">
+                <input type="checkbox" id="noRecTrack" name="noRecTrack">
+                <em>Not</em> on rec-track <span class="info">i</span>
+              </label>
+            </div>
+            <div class="col-xs-offset-3 col-xs-9 col-sm-offset-0 col-sm-4">
+              <label class="control-label">
+                <input type="checkbox" id="informativeOnly" name="informativeOnly">
+                Informative-only
+              </label>
+            </div>
+            <div class="col-xs-offset-3 col-xs-9 col-sm-offset-0 col-sm-3">
+              <label class="control-label" data-toggle="tooltip" data-placement="top" title="Check that the document is valid for automatic publication with Echidna">
+                <input type="checkbox" id="echidnaReady" name="echidnaReady">
+                <a href="https://github.com/w3c/echidna/wiki">Echidna</a>-ready <span class="info">i</span>
+              </label>
+            </div>
+          </div>
+
+        <div id="check2" class="form-group">
+          <div class="col-xs-12">
+            <button type="submit" class="btn btn-primary pull-right">Check</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="progressBar" class="row">
+  <div class="col-xs-12">
+    <div class="progress progress-striped active">
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0">
+        <span class="">x/y done</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="results" class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Result</h2>
+      </div>
+      <div class="panel-body"></div>
+      <ul class="list-group"></ul>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-info" role="alert">
+  Graphical UI's not your thing? Check out the <a href="https://github.com/w3c/specberus/blob/master/README.md#5-rest-api">REST interface of Specberus</a>.
+</div>

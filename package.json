@@ -12,6 +12,7 @@
     "body-parser": "1.15.1",
     "compression": "1.6",
     "express": "4.13",
+    "express-handlebars": "3.0",
     "insafe": "0.3",
     "metaviewport-parser": "0.0.1",
     "morgan": "1.7.0",
@@ -36,8 +37,8 @@
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
     "jsdoc": "jsdoc -a all -d doc/api/ -e utf8 -r app.js lib/ test/ tools/",
     "nsp": "nsp check",
-    "start": "node app.js",
-    "test": "mocha -c -G"
+    "start": "node --use_strict app",
+    "test": "mocha"
   },
   "engines": {
     "node": "4 || 5 || 6",

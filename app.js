@@ -1,5 +1,5 @@
 /**
- * Main runnable file of Specberus.
+ * Main runnable file.
  */
 
 // Settings:
@@ -18,12 +18,13 @@ const bodyParser = require('body-parser')
 ;
 
 // Internal packages:
-const package = require('./package.json')
-,   api = require('./lib/api')
+const self = require('./package.json')
 ,   l10n = require('./lib/l10n')
 ,   sink = require('./lib/sink')
-,   util = require('./lib/util')
 ,   validator = require('./lib/validator')
+,   views = require('./lib/views')
+,   util = require('./lib/util')
+,   api = require('./lib/api')
 ;
 
 const app = express()
@@ -31,31 +32,18 @@ const app = express()
 ,   io = socket.listen(server)
 ,   profiles = util.profiles
 ,   Sink = sink.Sink
-,   version = package.version
+,   version = self.version
 ;
 
-// middleware
+// Middleware:
 app.use(morgan('combined'));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(express.static("public"));
 api.setUp(app);
+views.setUp(app);
 
-// listen up
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
-
-// VALIDATION PROTOCOL
-//  Client:
-//      validate, { url: "document", profile: "WD", validation: "simple-validation" }
-//  Server:
-//      handshake, { version: "x.y.z"}
-//      exception, { message: "blah", code: "FOO"} (for system errors)
-//      start { rules: [rule names]}
-//      ok, { name: "test name" }
-//      warning, { name: "test name", code: "FOO" }
-//      error, { name: "test name", code: "FOO" }
-//      done, { name: "test name" }
-//      finished
 
 io.sockets.on("connection", function (socket) {
     socket.emit("handshake", { version: version });
@@ -83,27 +71,36 @@ io.sockets.on("connection", function (socket) {
         var v = new validator.Specberus
         ,   handler = new Sink
         ,   profile = profiles[data.profile]
+        ,   profileCode = profile.name
         ;
+        // @TODO Localise this properly when messages are translated; hard-coded British English for now.
+        l10n.setLanguage('en_GB');
         socket.emit("start", {
             rules:  (profile.rules || []).map(function (rule) { return rule.name; })
         });
-        handler.on("ok", function (type) {
-            socket.emit("ok", { name: type });
+        handler.on('err', function (type, data) {
+            try {
+                socket.emit('err', l10n.message(profileCode, type, data.key, data.extra));
+            }
+            catch (err) {
+                socket.emit('exception', err.message);
+            }
         });
-        handler.on("err", function (type, data) {
-            data.name = type;
-            data.message = l10n.message(v.config.lang, type, data.key, data.extra);
-            socket.emit("err", data);
-        });
-        handler.on("warning", function (type, data) {
-            data.name = type;
-            data.message = l10n.message(v.config.lang, type, data.key, data.extra);
-            socket.emit("warning", data);
+        handler.on('warning', function (type, data) {
+            try {
+                socket.emit('warning', l10n.message(profileCode, type, data.key, data.extra));
+            }
+            catch (err) {
+                socket.emit('exception', err.message);
+            }
         });
         handler.on('info', function (type, data) {
-            data.name = type;
-            data.message = l10n.message(v.config.lang, type, data.key, data.extra);
-            socket.emit('info', data);
+            try {
+                socket.emit('info', l10n.message(profileCode, type, data.key, data.extra));
+            }
+            catch (err) {
+                socket.emit('exception', err.message);
+            }
         });
         handler.on("done", function (name) {
             socket.emit("done", { name: name });

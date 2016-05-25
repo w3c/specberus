@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-12 rules">
+    {{{nav}}}
+    <p><a href="/doc/">&uarr; up to documentation</a></p>
+    {{#if content.error}}
+      <h2>Error!</h2>
+      {{{content.error}}}
+    {{else}}
+      <h2>Publication rules for {{{content.name}}} (&ldquo;{{{content.abbr}}}&rdquo;)</h2>
+      {{{content.body}}}
+    {{/if}}
+  </div>
+</div>

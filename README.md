@@ -51,6 +51,16 @@ $ npm start
 $ npm start 3001
 ```
 
+Set the environment variable `DEBUG` to run in *debug mode* instead:
+
+```bash
+$ DEBUG=true npm start
+```
+
+This modifies the behaviour of certain parts of the application to facilitate debugging.
+eg, CSS and JS resources will *not* be loaded in their minified/uglified forms
+(the web UI will load `bootstrap.css`, `bootstrap.js` and `jquery.js` instead of `bootstrap.min.css`, `bootstrap.min.js` and `jquery.min.js`).
+
 ## 3. Testing
 
 Testing is done using mocha. Simply run:
