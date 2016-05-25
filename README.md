@@ -105,7 +105,7 @@ Once the [event `end-all`](#validation-events) is emitted, the metadata should b
 The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
 goals of this method).
 
-`this.meta` will be an `Object` and may include up to 12 properties:
+`this.meta` will be an `Object` and may include up to 13 properties:
 * `profile`
 * `title`: The (possible) title of the document.
 * `docDate`: The date associated to the document.
@@ -118,6 +118,7 @@ goals of this method).
 * `informative`: Whether the document in informative or not
 * `rectrack`: Whether the document in on REC track or not
 * `process`: The process rules link.
+* `sameWorkAs`: The previous shortlink if any.
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
