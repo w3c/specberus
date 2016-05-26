@@ -23,7 +23,9 @@ Specberus is a checker used at [W3C](http://www.w3.org/) to validate the complia
 Specberus is a [Node.js](https://nodejs.org/en/) application, [distributed through npm](https://www.npmjs.com/package/specberus).
 Alternatively, you can clone [the repository](https://github.com/w3c/specberus) and run:
 
-    npm install -d
+```bash
+$ npm install -d
+```
 
 In order to get all the dependencies installed. Naturally, this requires that you have a reasonably
 recent version of Node.js installed.
@@ -56,7 +58,7 @@ $ API_KEY="<YOUR W3C API KEY>" npm start 3001
 Set the environment variable `DEBUG` to run in *debug mode* instead:
 
 ```bash
-$ DEBUG=true npm start
+$ DEBUG=true API_KEY="<YOUR W3C API KEY>" npm start
 ```
 
 This modifies the behaviour of certain parts of the application to facilitate debugging.
@@ -67,16 +69,22 @@ eg, CSS and JS resources will *not* be loaded in their minified/uglified forms
 
 Testing is done using mocha. Simply run:
 
-    API_KEY="<YOUR W3C API KEY>" mocha
+```bash
+$ API_KEY="<YOUR W3C API KEY>" mocha
+```
 
 from the root and you will be running the test suite. Mocha can be installed with:
 
-    npm install -g mocha
+```bash
+$ npm install -g mocha
+```
 
 Some of the tests can on occasion take a long time, or fail outright because a remote service is
 unavailable. To work around this, you can set SKIP_NETWORK:
 
-    SKIP_NETWORK=1 API_KEY="<YOUR W3C API KEY>" mocha
+```bash
+$ SKIP_NETWORK=1 API_KEY="<YOUR W3C API KEY>" mocha
+```
 
 ## 4. JS API
 
