@@ -84,27 +84,6 @@
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
     }
 ,   {
-        "url": "http://www.w3.org/TR/2015/WD-tracking-compliance-20150714/"
-    ,   "file": "tracking-compliance"
-    ,   "profile": "LC"
-    ,   "latestVersion": "http://www.w3.org/TR/tracking-compliance/"
-    ,   "previousVersion": "http://www.w3.org/TR/2015/WD-tracking-compliance-20150331/"
-    ,   "editorsDraft": "http://www.w3.org/2011/tracking-protection/drafts/tracking-compliance.html"
-    ,   "deliverers": [
-            {
-                "name": "Tracking Protection Working Group"
-            ,   "homepage": "http://www.w3.org/2011/tracking-protection/"
-            }
-        ]
-    ,   "title": "Tracking Compliance and Scope"
-    ,   "docDate": "2015-7-14"
-    ,   "delivererIDs": [49311]
-    ,   "editorIDs": []
-    ,   "informative": false
-    ,   "rectrack": true
-    ,   "process": "http://www.w3.org/2005/10/Process-20051014/"
-    }
-,   {
         "url": "http://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/"
     ,   "file": "mediacapture-depth"
     ,   "profile": "WD"
