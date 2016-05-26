@@ -211,6 +211,10 @@ p.details {
 }
 
 #results .list-group-item .quote {
+    color: gray;
+    margin-top: 1em;
+    padding-left: 1em;
+    border-left-style: double;
     font-style: italic;
 }
 
