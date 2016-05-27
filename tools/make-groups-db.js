@@ -1,4 +1,3 @@
-
 // XXX
 //  This script is obsolete.
 //  I keep it here in case the RDF source becomes reliable and turns out to be better than the
@@ -13,6 +12,8 @@
 //
 // 1. Visit http://kwz.me/8p. Copy the JSON into groups-sparql.json
 // 2. Run this script
+
+/* globals __dirname: false */
 
 var src = require("./groups-sparql.json")
 ,   fs = require("fs")

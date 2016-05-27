@@ -2,7 +2,9 @@
  * @TODO Document.
  */
 
-'use strict';
+/* globals jQuery: false, document: false, io: false, location: false, console: false, window: false, history: false, url: false */
+
+'use strict'; // jshint ignore: line
 
 // TODO:
 //  grab on submit and cancel, get values
@@ -11,7 +13,13 @@
 
 jQuery.extend({
     getQueryParameters : function(str) {
-        return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = (n[1] === "true" || n[1] === "false") ? JSON.parse(n[1]) : n[1],this}.bind({}))[0];
+        return (str || document.location.search)
+            .replace(/(^\?)/,'')
+            .split("&")
+            .map(function(n){
+                return n = n.split("="), this[n[0]] = (n[1] === "true" || n[1] === "false") ? JSON.parse(n[1]) : n[1], this;
+            }
+            .bind({}))[0];
     }
 });
 
@@ -46,7 +54,6 @@ jQuery.extend({
     ,   done = 0
     ,   result = {exceptions: [], errors: [], warnings: [], infos: []}
     ,   total = 0
-    ,   icons = {done: '\u2714', info: '\u2714', warning: '\u2714', error: '\u2718'}
     ;
 
     // handshake
@@ -76,18 +83,6 @@ jQuery.extend({
             url: decodeURIComponent(url)
         });
     }
-
-    var type2class = {
-        error:      "text-danger"
-    ,   warning:    "text-warning"
-    ,   info:       "text-info"
-    };
-
-    var type2bgclass = {
-        error:      "bg-danger"
-    ,   warning:    "bg-warning"
-    ,   info:       "bg-info"
-    };
 
     function addMessage (type, data) {
         const url = $url.val();
@@ -160,7 +155,7 @@ jQuery.extend({
     socket.on('info', function (data) {
         addMessage(MSG_INFO, data);
     });
-    socket.on("done", function (data) {
+    socket.on("done", function () {
         done++;
         $progress.attr({
             "aria-valuenow":    done
@@ -184,7 +179,6 @@ jQuery.extend({
             $profile.val(profile);
             $noRecTrack.prop('checked', !data.metadata.rectrack);
             $informativeOnly.prop('checked', data.metadata.informative);
-            var validation = 'simple-validation';
             $validation.find("label").removeClass('active');
             $validation.find('label#simple-validation').addClass('active');
             var options = {
@@ -197,7 +191,7 @@ jQuery.extend({
                             , "patentPolicy"    : "pp2004"
                           };
             validate(options);
-            var newurl = document.URL.split('?')[0] + "?" + $.param(options)
+            var newurl = document.URL.split('?')[0] + "?" + $.param(options);
             history.pushState(options, url + " - " + profile, newurl);
         }
     });
@@ -230,7 +224,7 @@ jQuery.extend({
                             , "patentPolicy"    : patentPolicy
                           };
             validate(options);
-            var newurl = document.URL.split('?')[0] + "?" + $.param(options)
+            var newurl = document.URL.split('?')[0] + "?" + $.param(options);
             history.pushState(options, url + " - " + profile, newurl);
         }
         return false;
@@ -300,9 +294,9 @@ jQuery.extend({
                 message = `<span class="icon green pull-left">&#10003;</span>
                     <h4>OK!</h4>`;
         }
-        message += `<p class="details">`
+        message += `<p class="details">`;
         if (total > 0 && profile)
-            message += `<p class="details"><a href="doc/rules?profile=${profile}">${total} rules</a> were checked.`
+            message += `<p class="details"><a href="doc/rules?profile=${profile}">${total} rules</a> were checked.`;
         message += `Hover over the rows below for options.<p>`;
         $resultsBody.html(message);
         message = '';
@@ -326,7 +320,7 @@ jQuery.extend({
 
     window.addEventListener('popstate', function(event) {
         var options = event.state;
-        if (options == null) return;
+        if (null === options) return;
         setFormParams(options);
         validate(options);
     });

@@ -49,8 +49,8 @@ io.sockets.on("connection", function (socket) {
     socket.emit("handshake", { version: version });
     socket.on("extractMetadata", function (data) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
-        var v = new validator.Specberus
-        ,   handler = new Sink
+        var v = new validator.Specberus()
+        ,   handler = new Sink()
         ;
         handler.on("end-all", function (metadata) {
             metadata.url = data.url;
@@ -68,8 +68,8 @@ io.sockets.on("connection", function (socket) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
         if (!data.profile) return socket.emit("exception", { message: "Profile not provided." });
         if (!profiles[data.profile]) return socket.emit("exception", { message: "Profile does not exist." });
-        var v = new validator.Specberus
-        ,   handler = new Sink
+        var v = new validator.Specberus()
+        ,   handler = new Sink()
         ,   profile = profiles[data.profile]
         ,   profileCode = profile.name
         ;
@@ -133,7 +133,10 @@ io.sockets.on("connection", function (socket) {
                     socket.emit("finished");
                 }
             } else {
-                socket.emit("exception", {message: "error while resolving " + data.url + " Check the spelling of the host, the protocol (http, https) and ensure that the page is accessible from the public Internet."});
+                const message = `Error while resolving <a href="${data.url}"><code>${data.url}</code></a>;
+                    check the spelling of the host, the protocol (<code>HTTP</code>, <code>HTTPS</code>)
+                    and ensure that the page is accessible from the public internet.`;
+                socket.emit("exception", {message: message});
             }
         }).catch(function(e){
             socket.emit("exception", { message: "Insafe check blew up: " + e });

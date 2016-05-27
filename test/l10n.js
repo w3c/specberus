@@ -2,12 +2,13 @@
  * Test L10n features.
  */
 
+/* globals describe: false, it: false */
+
 // External packages:
 const expect = require('expect.js');
 
 // Internal packages:
-const rulesWrapper = require('../lib/rules-wrapper')
-;
+const rulesWrapper = require('../lib/rules-wrapper');
 
 describe('L10n', function() {
 

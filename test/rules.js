@@ -2,6 +2,8 @@
  * Test the rules.
  */
 
+/* globals __dirname: false, describe: false, it: false */
+
 // Settings:
 const DEBUG = false;
 
@@ -90,9 +92,11 @@ const compareMetadata = function(url, file, expectedObject) {
 
 describe('Basics', function() {
 
-    const specberus = new validator.Specberus;
+    const specberus = new validator.Specberus();
 
     describe('Method "extractMetadata"', function() {
+
+        var i;
 
         it('Should exist and be a function', function(done) {
             chai(specberus).to.have.property('extractMetadata').that.is.a('function');
@@ -100,12 +104,12 @@ describe('Basics', function() {
         });
 
         if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
-            for(var i in samples) {
+            for(i in samples) {
                 compareMetadata(samples[i].url, null, samples[i]);
             }
         }
         else {
-            for(var i in samples) {
+            for(i in samples) {
                 compareMetadata(null, samples[i].file, samples[i]);
             }
         }
@@ -347,7 +351,7 @@ Object.keys(tests).forEach(function (category) {
                     var passTest = test.errors ? false : true;
                     it("should " + (passTest ? "pass" : "fail") + " for " + test.doc, function (done) {
                         var r = require("../lib/rules/" + category + "/" + rule)
-                        ,   handler = new sink.Sink
+                        ,   handler = new sink.Sink()
                         ;
                         handler.on("err", function (type, data) {
                             if (DEBUG) console.log(type, data);
@@ -365,19 +369,21 @@ Object.keys(tests).forEach(function (category) {
                             console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
                         });
                         handler.on("end-all", function () {
+                            var i
+                            ,   n;
                             if (passTest) {
                                 expect(handler.errors).to.be.empty();
                             }
                             else {
                                 expect(handler.errors.length).to.eql(test.errors.length);
-                                for (var i = 0, n = test.errors.length; i < n; i++) {
+                                for (i = 0, n = test.errors.length; i < n; i++) {
                                     expect(handler.errors).to.contain(test.errors[i]);
                                 }
                             }
                             if (!test.ignoreWarnings) {
                                 if (test.warnings) {
                                     expect(handler.warnings.length).to.eql(test.warnings.length);
-                                    for (var i = 0, n = test.warnings.length; i < n; i++) {
+                                    for (i = 0, n = test.warnings.length; i < n; i++) {
                                         expect(handler.warnings).to.contain(test.warnings[i]);
                                     }
                                 }
