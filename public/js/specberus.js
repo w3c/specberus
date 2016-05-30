@@ -42,7 +42,7 @@ jQuery.extend({
     ,   $progressContainer = $("#progressBar")
     ,   $progress = $progressContainer.find(".progress-bar")
     ,   $progressStyler = $progress.parent()
-    ,   socket = io(location.protocol + "//" + location.host, {path: '/' + 'socket.io'})
+    ,   socket = io(location.protocol + "//" + location.host, {path: '/' + location.pathname.substring(1) + 'socket.io'})
     ,   done = 0
     ,   result = {exceptions: [], errors: [], warnings: [], infos: []}
     ,   total = 0
@@ -347,7 +347,7 @@ jQuery.extend({
     });
 
     $(document).ready(function() {
-        $.getJSON('/data/profiles.json', function(data) {
+        $.getJSON('data/profiles.json', function(data) {
             $profile.append($('<option value="auto" selected="selected">Auto-detect</option>'));
             $.each(data.tracks, function(foo, track) {
                 var optgroup = $('<optgroup label="' + track.name + '"></optgroup>');
