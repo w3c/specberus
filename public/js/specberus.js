@@ -95,8 +95,10 @@ jQuery.extend({
         ,   issue
         ,   exc = (data && data.exception) ? ' exception' : ''
         ;
-        if (data && data.id)
-            inContext = `<a href="doc/rules?profile=${profile}#${data.id}">See rule in context</a> <br>`;
+        if (data && data.id) {
+            const newProfile = profile.replace(/\-echidna$/i, '');
+            inContext = `<a href="doc/rules?profile=${newProfile}#${data.id}">See rule in context</a> <br>`;
+        }
         if (data && data.name)
             issue = `<a href="https://github.com/w3c/specberus/issues/new?` +
                 `title=Bug%20in%20rule%20%E2%80%9C${data.name}%E2%80%9D:%20[WHAT]&` +
@@ -254,10 +256,7 @@ jQuery.extend({
         if (options.url) $url.val(decodeURIComponent(options.url));
         // "profile" might be eg "WD-Echidna". Normalise.
         if (options.profile) {
-          var newProfile = options.profile;
-          if (newProfile.indexOf('-Echidna') > -1) {
-            newProfile = newProfile.substring(0, newProfile.indexOf('-Echidna'));
-          }
+          const newProfile = options.profile.replace(/\-echidna$/i, '');
           $profile.find('option[value=' + newProfile + ']').prop('selected', true);
         }
         if (options.validation) $validation.val(options.validation);
