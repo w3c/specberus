@@ -65,10 +65,12 @@ This modifies the behaviour of certain parts of the application to facilitate de
 eg, CSS and JS resources will *not* be loaded in their minified/uglified forms
 (the web UI will load `bootstrap.css`, `bootstrap.js` and `jquery.js` instead of `bootstrap.min.css`, `bootstrap.min.js` and `jquery.min.js`).
 
-When deploying, set also `BASE_URI` pointing to the public root URI of Specberus; eg
+If Specberus is *not* going to be served from the root directory of a domain, or if it will be served through a proxy,
+set also `BASE_URI` pointing to the public root URI of Specberus; eg
 
 ```bash
-$ BASE_URI=https://spec-store.com/check/ API_KEY="<YOUR W3C API KEY>" npm start
+$ BASE_URI=https://spec-store.com/check/ API_KEY=deadbeef npm start
+$ BASE_URI=/hostname/can/be/omitted/ API_KEY=deadbeef npm start 88
 ```
 
 ## 3. Testing
