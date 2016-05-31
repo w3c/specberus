@@ -253,7 +253,10 @@ jQuery.extend({
           const newProfile = options.profile.replace(/\-echidna$/i, '');
           $profile.find('option[value=' + newProfile + ']').prop('selected', true);
         }
-        if (options.validation) $validation.val(options.validation);
+        if (options.validation) {
+          $validation.find('label#' + options.validation).addClass('active');
+          $validation.find(':not(label#' + options.validation + ')').removeClass('active');
+        }
         $noRecTrack.prop('checked', options.noRecTrack);
         $informativeOnly.prop('checked', options.informativeOnly);
         if (options.patentPolicy) {
