@@ -14,15 +14,16 @@
                 "metadata": {
                     "name": "2. Document Metadata",
                     "rules": {
-                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/W3C-WD</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/W3C-WD\"/&gt;</code> </p>",
-                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles."
+                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/2016/W3C-WD</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/2016/W3C-WD\"/&gt;</code> </p>",
+                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles.",
+                        "viewportTest": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>"
                     }
                 },
                 "front-matter": {
                     "name": "3. Front Matter",
                     "rules": {
                         "divClassHeadTest": "The front matter <span class=\"rfc2119\">MUST</span> appear at the beginning of the body of the document, within &lt;div class=\"head\"&gt;. There is one exception to that requirement: the <code>hr</code> element after the copyright <span class=\"rfc2119\">MAY</span> appear inside or after the <code>div</code> element. Editors <span class=\"rfc2119\">SHOULD NOT</span> include other information in this section.",
-                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\"/&gt;&lt;/a&gt;</div>",
+                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\"/&gt;&lt;/a&gt;</div>",
                         "titleTest": "The document's title <span class=\"rfc2119\">MUST</span> be in the <code>title</code> element and in an <code>h1</code> element.",
                         "unknownTest0": "Technical report version information, i.e., version and edition numbers. <ol> <li>See the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for more information</li> </ol>",
                         "dateTitleH2Test": "The document's status and date <span class=\"rfc2119\">MUST</span> be in an <code>h2</code> element as follows (see also <a href=\"#date\">date syntax</a>): <pre xml:space=\"preserve\">&lt;h2&gt;W3C Working Draft 14 August 2014&lt;/h2&gt;</pre>",
@@ -40,7 +41,8 @@
                 "undefined": {
                     "name": "6. Table of Contents",
                     "rules": {
-                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\"."
+                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\".",
+                        "tocNavTest": "The table of content <span class=\"rfc2119\">MUST</span> be inside a navigation element (nav).<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;nav id=\"toc\"&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;</code></p>"
                     }
                 },
                 "document-status": {
@@ -75,6 +77,7 @@
                     "rules": {
                         "compoundFilesLocationTest": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">MUST</span> be under a directory /TR/2014/WD-shortname-2014MMDD/",
                         "compoundOverviewTest": "The main page <span class=\"rfc2119\">SHOULD</span> be called Overview.html.",
+                        "fixupJsTest": "The document <span class=\"rfc2119\">MUST</span> include the script <code> <a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\"&gt;&lt;/script&gt;</code></p>",
                         "compoundTest": "All other files <span class=\"rfc2119\">MUST</span> be reachable by links from the document."
                     }
                 }
@@ -94,15 +97,16 @@
                 "metadata": {
                     "name": "2. Document Metadata",
                     "rules": {
-                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/W3C-WD</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/W3C-WD\"/&gt;</code> </p>",
-                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles."
+                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/2016/W3C-WD</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/2016/W3C-WD\"/&gt;</code> </p>",
+                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles.",
+                        "viewportTest": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>"
                     }
                 },
                 "front-matter": {
                     "name": "3. Front Matter",
                     "rules": {
                         "divClassHeadTest": "The front matter <span class=\"rfc2119\">MUST</span> appear at the beginning of the body of the document, within &lt;div class=\"head\"&gt;. There is one exception to that requirement: the <code>hr</code> element after the copyright <span class=\"rfc2119\">MAY</span> appear inside or after the <code>div</code> element. Editors <span class=\"rfc2119\">SHOULD NOT</span> include other information in this section.",
-                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\"/&gt;&lt;/a&gt;</div>",
+                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\"/&gt;&lt;/a&gt;</div>",
                         "titleTest": "The document's title <span class=\"rfc2119\">MUST</span> be in the <code>title</code> element and in an <code>h1</code> element.",
                         "unknownTest0": "Technical report version information, i.e., version and edition numbers. <ol> <li>See the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for more information</li> </ol>",
                         "dateTitleH2Test": "The document's status and date <span class=\"rfc2119\">MUST</span> be in an <code>h2</code> element as follows (see also <a href=\"#date\">date syntax</a>): <pre xml:space=\"preserve\">&lt;h2&gt;W3C First Public Working Draft 14 August 2014&lt;/h2&gt;</pre>",
@@ -120,7 +124,8 @@
                 "undefined": {
                     "name": "6. Table of Contents",
                     "rules": {
-                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\"."
+                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\".",
+                        "tocNavTest": "The table of content <span class=\"rfc2119\">MUST</span> be inside a navigation element (nav).<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;nav id=\"toc\"&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;</code></p>"
                     }
                 },
                 "document-status": {
@@ -155,6 +160,7 @@
                     "rules": {
                         "compoundFilesLocationTest": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">MUST</span> be under a directory /TR/2014/WD-shortname-2014MMDD/",
                         "compoundOverviewTest": "The main page <span class=\"rfc2119\">SHOULD</span> be called Overview.html.",
+                        "fixupJsTest": "The document <span class=\"rfc2119\">MUST</span> include the script <code> <a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\"&gt;&lt;/script&gt;</code></p>",
                         "compoundTest": "All other files <span class=\"rfc2119\">MUST</span> be reachable by links from the document."
                     }
                 }
@@ -174,15 +180,16 @@
                 "metadata": {
                     "name": "2. Document Metadata",
                     "rules": {
-                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/W3C-CR</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/W3C-CR\"/&gt;</code> </p>",
-                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles."
+                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/2016/W3C-CR</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/2016/W3C-CR\"/&gt;</code> </p>",
+                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles.",
+                        "viewportTest": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>"
                     }
                 },
                 "front-matter": {
                     "name": "3. Front Matter",
                     "rules": {
                         "divClassHeadTest": "The front matter <span class=\"rfc2119\">MUST</span> appear at the beginning of the body of the document, within &lt;div class=\"head\"&gt;. There is one exception to that requirement: the <code>hr</code> element after the copyright <span class=\"rfc2119\">MAY</span> appear inside or after the <code>div</code> element. Editors <span class=\"rfc2119\">SHOULD NOT</span> include other information in this section.",
-                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\"/&gt;&lt;/a&gt;</div>",
+                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\"/&gt;&lt;/a&gt;</div>",
                         "titleTest": "The document's title <span class=\"rfc2119\">MUST</span> be in the <code>title</code> element and in an <code>h1</code> element.",
                         "unknownTest0": "Technical report version information, i.e., version and edition numbers. <ol> <li>See the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for more information</li> </ol>",
                         "dateTitleH2Test": "The document's status and date <span class=\"rfc2119\">MUST</span> be in an <code>h2</code> element as follows (see also <a href=\"#date\">date syntax</a>): <pre xml:space=\"preserve\">&lt;h2&gt;W3C Candidate Recommendation 14 August 2014&lt;/h2&gt;</pre>",
@@ -200,7 +207,8 @@
                 "undefined": {
                     "name": "6. Table of Contents",
                     "rules": {
-                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\"."
+                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\".",
+                        "tocNavTest": "The table of content <span class=\"rfc2119\">MUST</span> be inside a navigation element (nav).<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;nav id=\"toc\"&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;</code></p>"
                     }
                 },
                 "document-status": {
@@ -239,6 +247,7 @@
                     "rules": {
                         "compoundFilesLocationTest": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">MUST</span> be under a directory /TR/2014/CR-shortname-2014MMDD/",
                         "compoundOverviewTest": "The main page <span class=\"rfc2119\">SHOULD</span> be called Overview.html.",
+                        "fixupJsTest": "The document <span class=\"rfc2119\">MUST</span> include the script <code> <a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\"&gt;&lt;/script&gt;</code></p>",
                         "compoundTest": "All other files <span class=\"rfc2119\">MUST</span> be reachable by links from the document."
                     }
                 }
@@ -258,15 +267,16 @@
                 "metadata": {
                     "name": "2. Document Metadata",
                     "rules": {
-                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/W3C-CR</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/W3C-CR\"/&gt;</code> </p>",
-                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles."
+                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/2016/W3C-CR</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/2016/W3C-CR\"/&gt;</code> </p>",
+                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles.",
+                        "viewportTest": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>"
                     }
                 },
                 "front-matter": {
                     "name": "3. Front Matter",
                     "rules": {
                         "divClassHeadTest": "The front matter <span class=\"rfc2119\">MUST</span> appear at the beginning of the body of the document, within &lt;div class=\"head\"&gt;. There is one exception to that requirement: the <code>hr</code> element after the copyright <span class=\"rfc2119\">MAY</span> appear inside or after the <code>div</code> element. Editors <span class=\"rfc2119\">SHOULD NOT</span> include other information in this section.",
-                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\"/&gt;&lt;/a&gt;</div>",
+                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\"/&gt;&lt;/a&gt;</div>",
                         "titleTest": "The document's title <span class=\"rfc2119\">MUST</span> be in the <code>title</code> element and in an <code>h1</code> element.",
                         "unknownTest0": "Technical report version information, i.e., version and edition numbers. <ol> <li>See the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for more information</li> </ol>",
                         "dateTitleH2Test": "The document's status and date <span class=\"rfc2119\">MUST</span> be in an <code>h2</code> element as follows (see also <a href=\"#date\">date syntax</a>): <pre xml:space=\"preserve\">&lt;h2&gt;W3C First Public Candidate Recommendation 14 August 2014&lt;/h2&gt;</pre>",
@@ -284,7 +294,8 @@
                 "undefined": {
                     "name": "6. Table of Contents",
                     "rules": {
-                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\"."
+                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\".",
+                        "tocNavTest": "The table of content <span class=\"rfc2119\">MUST</span> be inside a navigation element (nav).<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;nav id=\"toc\"&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;</code></p>"
                     }
                 },
                 "document-status": {
@@ -321,6 +332,7 @@
                     "rules": {
                         "compoundFilesLocationTest": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">MUST</span> be under a directory /TR/2014/CR-shortname-2014MMDD/",
                         "compoundOverviewTest": "The main page <span class=\"rfc2119\">SHOULD</span> be called Overview.html.",
+                        "fixupJsTest": "The document <span class=\"rfc2119\">MUST</span> include the script <code> <a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\"&gt;&lt;/script&gt;</code></p>",
                         "compoundTest": "All other files <span class=\"rfc2119\">MUST</span> be reachable by links from the document."
                     }
                 }
@@ -340,15 +352,16 @@
                 "metadata": {
                     "name": "2. Document Metadata",
                     "rules": {
-                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/W3C-PR</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/W3C-PR\"/&gt;</code> </p>",
-                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles."
+                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/2016/W3C-PR</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/2016/W3C-PR\"/&gt;</code> </p>",
+                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles.",
+                        "viewportTest": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>"
                     }
                 },
                 "front-matter": {
                     "name": "3. Front Matter",
                     "rules": {
                         "divClassHeadTest": "The front matter <span class=\"rfc2119\">MUST</span> appear at the beginning of the body of the document, within &lt;div class=\"head\"&gt;. There is one exception to that requirement: the <code>hr</code> element after the copyright <span class=\"rfc2119\">MAY</span> appear inside or after the <code>div</code> element. Editors <span class=\"rfc2119\">SHOULD NOT</span> include other information in this section.",
-                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\"/&gt;&lt;/a&gt;</div>",
+                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\"/&gt;&lt;/a&gt;</div>",
                         "titleTest": "The document's title <span class=\"rfc2119\">MUST</span> be in the <code>title</code> element and in an <code>h1</code> element.",
                         "unknownTest0": "Technical report version information, i.e., version and edition numbers. <ol> <li>See the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for more information</li> </ol>",
                         "dateTitleH2Test": "The document's status and date <span class=\"rfc2119\">MUST</span> be in an <code>h2</code> element as follows (see also <a href=\"#date\">date syntax</a>): <pre xml:space=\"preserve\">&lt;h2&gt;W3C Proposed Recommendation 14 August 2014&lt;/h2&gt;</pre>",
@@ -366,7 +379,8 @@
                 "undefined": {
                     "name": "6. Table of Contents",
                     "rules": {
-                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\"."
+                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\".",
+                        "tocNavTest": "The table of content <span class=\"rfc2119\">MUST</span> be inside a navigation element (nav).<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;nav id=\"toc\"&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;</code></p>"
                     }
                 },
                 "document-status": {
@@ -405,6 +419,7 @@
                     "rules": {
                         "compoundFilesLocationTest": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">MUST</span> be under a directory /TR/2014/PR-shortname-2014MMDD/",
                         "compoundOverviewTest": "The main page <span class=\"rfc2119\">SHOULD</span> be called Overview.html.",
+                        "fixupJsTest": "The document <span class=\"rfc2119\">MUST</span> include the script <code> <a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\"&gt;&lt;/script&gt;</code></p>",
                         "compoundTest": "All other files <span class=\"rfc2119\">MUST</span> be reachable by links from the document."
                     }
                 }
@@ -424,15 +439,16 @@
                 "metadata": {
                     "name": "2. Document Metadata",
                     "rules": {
-                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/W3C-PER</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/W3C-PER\"/&gt;</code> </p>",
-                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles."
+                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/2016/W3C-PER</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/2016/W3C-PER\"/&gt;</code> </p>",
+                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles.",
+                        "viewportTest": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>"
                     }
                 },
                 "front-matter": {
                     "name": "3. Front Matter",
                     "rules": {
                         "divClassHeadTest": "The front matter <span class=\"rfc2119\">MUST</span> appear at the beginning of the body of the document, within &lt;div class=\"head\"&gt;. There is one exception to that requirement: the <code>hr</code> element after the copyright <span class=\"rfc2119\">MAY</span> appear inside or after the <code>div</code> element. Editors <span class=\"rfc2119\">SHOULD NOT</span> include other information in this section.",
-                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\"/&gt;&lt;/a&gt;</div>",
+                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\"/&gt;&lt;/a&gt;</div>",
                         "titleTest": "The document's title <span class=\"rfc2119\">MUST</span> be in the <code>title</code> element and in an <code>h1</code> element.",
                         "unknownTest0": "Technical report version information, i.e., version and edition numbers. <ol> <li>See the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for more information</li> </ol>",
                         "dateTitleH2Test": "The document's status and date <span class=\"rfc2119\">MUST</span> be in an <code>h2</code> element as follows (see also <a href=\"#date\">date syntax</a>): <pre xml:space=\"preserve\">&lt;h2&gt;W3C Proposed Edited Recommendation 14 August 2014&lt;/h2&gt;</pre>",
@@ -450,7 +466,8 @@
                 "undefined": {
                     "name": "6. Table of Contents",
                     "rules": {
-                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\"."
+                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\".",
+                        "tocNavTest": "The table of content <span class=\"rfc2119\">MUST</span> be inside a navigation element (nav).<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;nav id=\"toc\"&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;</code></p>"
                     }
                 },
                 "document-status": {
@@ -489,6 +506,7 @@
                     "rules": {
                         "compoundFilesLocationTest": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">MUST</span> be under a directory /TR/2014/PER-shortname-2014MMDD/",
                         "compoundOverviewTest": "The main page <span class=\"rfc2119\">SHOULD</span> be called Overview.html.",
+                        "fixupJsTest": "The document <span class=\"rfc2119\">MUST</span> include the script <code> <a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\"&gt;&lt;/script&gt;</code></p>",
                         "compoundTest": "All other files <span class=\"rfc2119\">MUST</span> be reachable by links from the document."
                     }
                 }
@@ -508,15 +526,16 @@
                 "metadata": {
                     "name": "2. Document Metadata",
                     "rules": {
-                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/W3C-REC</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/W3C-REC\"/&gt;</code> </p>",
-                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles."
+                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/2016/W3C-REC</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/2016/W3C-REC\"/&gt;</code> </p>",
+                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles.",
+                        "viewportTest": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>"
                     }
                 },
                 "front-matter": {
                     "name": "3. Front Matter",
                     "rules": {
                         "divClassHeadTest": "The front matter <span class=\"rfc2119\">MUST</span> appear at the beginning of the body of the document, within &lt;div class=\"head\"&gt;. There is one exception to that requirement: the <code>hr</code> element after the copyright <span class=\"rfc2119\">MAY</span> appear inside or after the <code>div</code> element. Editors <span class=\"rfc2119\">SHOULD NOT</span> include other information in this section.",
-                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\"/&gt;&lt;/a&gt;</div>",
+                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\"/&gt;&lt;/a&gt;</div>",
                         "titleTest": "The document's title <span class=\"rfc2119\">MUST</span> be in the <code>title</code> element and in an <code>h1</code> element.",
                         "unknownTest0": "Technical report version information, i.e., version and edition numbers. <ol> <li class=\"rec-in-place\">If a Recommendation modified in place, see the Comm Team's policy regarding <a href=\"http://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>, otherwise</li> <li>See the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for more information</li> </ol>",
                         "dateTitleH2Test": "The document's status and date <span class=\"rfc2119\">MUST</span> be in an <code>h2</code> element as follows (see also <a href=\"#date\">date syntax</a>): <pre xml:space=\"preserve\">&lt;h2&gt;W3C Recommendation 14 August 2014&lt;/h2&gt;</pre> <p>If this is a modified Recommendation that was modified in place or is a new edition, the document <span class=\"rfc2119\">MUST</span> include both the original publication date and the modification date. For example:</p> <pre xml:space=\"preserve\">&lt;h2&gt;W3C Recommendation 7 April 2004, edited in place 19 August2004&lt;/h2&gt;</pre>",
@@ -536,7 +555,8 @@
                 "undefined": {
                     "name": "6. Table of Contents",
                     "rules": {
-                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\"."
+                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\".",
+                        "tocNavTest": "The table of content <span class=\"rfc2119\">MUST</span> be inside a navigation element (nav).<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;nav id=\"toc\"&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;</code></p>"
                     }
                 },
                 "document-status": {
@@ -572,6 +592,7 @@
                     "rules": {
                         "compoundFilesLocationTest": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">MUST</span> be under a directory /TR/2014/REC-shortname-2014MMDD/",
                         "compoundOverviewTest": "The main page <span class=\"rfc2119\">SHOULD</span> be called Overview.html.",
+                        "fixupJsTest": "The document <span class=\"rfc2119\">MUST</span> include the script <code> <a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\"&gt;&lt;/script&gt;</code></p>",
                         "compoundTest": "All other files <span class=\"rfc2119\">MUST</span> be reachable by links from the document."
                     }
                 }
@@ -591,15 +612,16 @@
                 "metadata": {
                     "name": "2. Document Metadata",
                     "rules": {
-                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/W3C-WG-NOTE</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/W3C-WG-NOTE\"/&gt;</code> </p>",
-                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles."
+                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/2016/W3C-WG-NOTE</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/2016/W3C-WG-NOTE\"/&gt;</code> </p>",
+                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles.",
+                        "viewportTest": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>"
                     }
                 },
                 "front-matter": {
                     "name": "3. Front Matter",
                     "rules": {
                         "divClassHeadTest": "The front matter <span class=\"rfc2119\">MUST</span> appear at the beginning of the body of the document, within &lt;div class=\"head\"&gt;. There is one exception to that requirement: the <code>hr</code> element after the copyright <span class=\"rfc2119\">MAY</span> appear inside or after the <code>div</code> element. Editors <span class=\"rfc2119\">SHOULD NOT</span> include other information in this section.",
-                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\"/&gt;&lt;/a&gt;</div>",
+                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\"/&gt;&lt;/a&gt;</div>",
                         "titleTest": "The document's title <span class=\"rfc2119\">MUST</span> be in the <code>title</code> element and in an <code>h1</code> element.",
                         "unknownTest0": "Technical report version information, i.e., version and edition numbers. <ol> <li>See the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for more information</li> </ol>",
                         "dateTitleH2Test": "The document's status and date <span class=\"rfc2119\">MUST</span> be in an <code>h2</code> element as follows (see also <a href=\"#date\">date syntax</a>): <pre xml:space=\"preserve\">&lt;h2&gt;W3C Working Group Note 14 August 2014&lt;/h2&gt;</pre>",
@@ -617,7 +639,8 @@
                 "undefined": {
                     "name": "6. Table of Contents",
                     "rules": {
-                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\"."
+                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\".",
+                        "tocNavTest": "The table of content <span class=\"rfc2119\">MUST</span> be inside a navigation element (nav).<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;nav id=\"toc\"&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;</code></p>"
                     }
                 },
                 "document-status": {
@@ -654,6 +677,7 @@
                     "rules": {
                         "compoundFilesLocationTest": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">MUST</span> be under a directory /TR/2014/NOTE-shortname-2014MMDD/",
                         "compoundOverviewTest": "The main page <span class=\"rfc2119\">SHOULD</span> be called Overview.html.",
+                        "fixupJsTest": "The document <span class=\"rfc2119\">MUST</span> include the script <code> <a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\"&gt;&lt;/script&gt;</code></p>",
                         "compoundTest": "All other files <span class=\"rfc2119\">MUST</span> be reachable by links from the document."
                     }
                 }
@@ -673,15 +697,16 @@
                 "metadata": {
                     "name": "2. Document Metadata",
                     "rules": {
-                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/W3C-WG-NOTE</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/W3C-WG-NOTE\"/&gt;</code> </p>",
-                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles."
+                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/2016/W3C-WG-NOTE</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/2016/W3C-WG-NOTE\"/&gt;</code> </p>",
+                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles.",
+                        "viewportTest": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>"
                     }
                 },
                 "front-matter": {
                     "name": "3. Front Matter",
                     "rules": {
                         "divClassHeadTest": "The front matter <span class=\"rfc2119\">MUST</span> appear at the beginning of the body of the document, within &lt;div class=\"head\"&gt;. There is one exception to that requirement: the <code>hr</code> element after the copyright <span class=\"rfc2119\">MAY</span> appear inside or after the <code>div</code> element. Editors <span class=\"rfc2119\">SHOULD NOT</span> include other information in this section.",
-                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\"/&gt;&lt;/a&gt;</div>",
+                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\"/&gt;&lt;/a&gt;</div>",
                         "titleTest": "The document's title <span class=\"rfc2119\">MUST</span> be in the <code>title</code> element and in an <code>h1</code> element.",
                         "unknownTest0": "Technical report version information, i.e., version and edition numbers. <ol> <li>See the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for more information</li> </ol>",
                         "dateTitleH2Test": "The document's status and date <span class=\"rfc2119\">MUST</span> be in an <code>h2</code> element as follows (see also <a href=\"#date\">date syntax</a>): <pre xml:space=\"preserve\">&lt;h2&gt;W3C Working Group Note 14 August 2014&lt;/h2&gt;</pre>",
@@ -699,7 +724,8 @@
                 "undefined": {
                     "name": "6. Table of Contents",
                     "rules": {
-                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\"."
+                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\".",
+                        "tocNavTest": "The table of content <span class=\"rfc2119\">MUST</span> be inside a navigation element (nav).<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;nav id=\"toc\"&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;</code></p>"
                     }
                 },
                 "document-status": {
@@ -735,6 +761,7 @@
                     "rules": {
                         "compoundFilesLocationTest": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">MUST</span> be under a directory /TR/2014/NOTE-shortname-2014MMDD/",
                         "compoundOverviewTest": "The main page <span class=\"rfc2119\">SHOULD</span> be called Overview.html.",
+                        "fixupJsTest": "The document <span class=\"rfc2119\">MUST</span> include the script <code> <a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\"&gt;&lt;/script&gt;</code></p>",
                         "compoundTest": "All other files <span class=\"rfc2119\">MUST</span> be reachable by links from the document."
                     }
                 }
@@ -754,15 +781,16 @@
                 "metadata": {
                     "name": "2. Document Metadata",
                     "rules": {
-                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/W3C-IG-NOTE</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/W3C-IG-NOTE\"/&gt;</code> </p>",
-                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles."
+                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/2016/W3C-IG-NOTE</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/2016/W3C-IG-NOTE\"/&gt;</code> </p>",
+                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles.",
+                        "viewportTest": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>"
                     }
                 },
                 "front-matter": {
                     "name": "3. Front Matter",
                     "rules": {
                         "divClassHeadTest": "The front matter <span class=\"rfc2119\">MUST</span> appear at the beginning of the body of the document, within &lt;div class=\"head\"&gt;. There is one exception to that requirement: the <code>hr</code> element after the copyright <span class=\"rfc2119\">MAY</span> appear inside or after the <code>div</code> element. Editors <span class=\"rfc2119\">SHOULD NOT</span> include other information in this section.",
-                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\"/&gt;&lt;/a&gt;</div>",
+                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\"/&gt;&lt;/a&gt;</div>",
                         "titleTest": "The document's title <span class=\"rfc2119\">MUST</span> be in the <code>title</code> element and in an <code>h1</code> element.",
                         "unknownTest0": "Technical report version information, i.e., version and edition numbers. <ol> <li>See the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for more information</li> </ol>",
                         "dateTitleH2Test": "The document's status and date <span class=\"rfc2119\">MUST</span> be in an <code>h2</code> element as follows (see also <a href=\"#date\">date syntax</a>): <pre xml:space=\"preserve\">&lt;h2&gt;W3C Interest Group Note 14 August 2014&lt;/h2&gt;</pre>",
@@ -780,7 +808,8 @@
                 "undefined": {
                     "name": "6. Table of Contents",
                     "rules": {
-                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\"."
+                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\".",
+                        "tocNavTest": "The table of content <span class=\"rfc2119\">MUST</span> be inside a navigation element (nav).<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;nav id=\"toc\"&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;</code></p>"
                     }
                 },
                 "document-status": {
@@ -817,6 +846,7 @@
                     "rules": {
                         "compoundFilesLocationTest": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">MUST</span> be under a directory /TR/2014/NOTE-shortname-2014MMDD/",
                         "compoundOverviewTest": "The main page <span class=\"rfc2119\">SHOULD</span> be called Overview.html.",
+                        "fixupJsTest": "The document <span class=\"rfc2119\">MUST</span> include the script <code> <a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\"&gt;&lt;/script&gt;</code></p>",
                         "compoundTest": "All other files <span class=\"rfc2119\">MUST</span> be reachable by links from the document."
                     }
                 }
@@ -836,15 +866,16 @@
                 "metadata": {
                     "name": "2. Document Metadata",
                     "rules": {
-                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/W3C-IG-NOTE</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/W3C-IG-NOTE\"/&gt;</code> </p>",
-                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles."
+                        "goodStylesheetTest": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">MUST</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">http://www.w3.org/StyleSheets/TR/2016/W3C-IG-NOTE</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.w3.org/StyleSheets/TR/2016/W3C-IG-NOTE\"/&gt;</code> </p>",
+                        "lastStylesheetTest": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">MUST</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">MUST NOT</span> override the W3C tech report styles.",
+                        "viewportTest": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>"
                     }
                 },
                 "front-matter": {
                     "name": "3. Front Matter",
                     "rules": {
                         "divClassHeadTest": "The front matter <span class=\"rfc2119\">MUST</span> appear at the beginning of the body of the document, within &lt;div class=\"head\"&gt;. There is one exception to that requirement: the <code>hr</code> element after the copyright <span class=\"rfc2119\">MAY</span> appear inside or after the <code>div</code> element. Editors <span class=\"rfc2119\">SHOULD NOT</span> include other information in this section.",
-                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/Icons/w3c_home\"/&gt;&lt;/a&gt;</div>",
+                        "logoTest": "The document <span class=\"rfc2119\">MUST</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">MUST</span> be absolute. <div class=\"boilerplate\"> <a href=\"http://www.w3.org/\"> <img alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br>&lt;a href=\"http://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"http://www.w3.org/StyleSheets/TR/2016/logos/W3C\"/&gt;&lt;/a&gt;</div>",
                         "titleTest": "The document's title <span class=\"rfc2119\">MUST</span> be in the <code>title</code> element and in an <code>h1</code> element.",
                         "unknownTest0": "Technical report version information, i.e., version and edition numbers. <ol> <li>See the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for more information</li> </ol>",
                         "dateTitleH2Test": "The document's status and date <span class=\"rfc2119\">MUST</span> be in an <code>h2</code> element as follows (see also <a href=\"#date\">date syntax</a>): <pre xml:space=\"preserve\">&lt;h2&gt;W3C Interest Group Note 14 August 2014&lt;/h2&gt;</pre>",
@@ -862,7 +893,8 @@
                 "undefined": {
                     "name": "6. Table of Contents",
                     "rules": {
-                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\"."
+                        "tocTest": "There <span class=\"rfc2119\">SHOULD</span> be a table of contents after the status section, labeled with an <code>h2</code> element with content \"Table of Contents\".",
+                        "tocNavTest": "The table of content <span class=\"rfc2119\">MUST</span> be inside a navigation element (nav).<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;nav id=\"toc\"&gt;&lt;h2&gt;Table of Contents&lt;/h2&gt;</code></p>"
                     }
                 },
                 "document-status": {
@@ -898,6 +930,7 @@
                     "rules": {
                         "compoundFilesLocationTest": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">MUST</span> be under a directory /TR/2014/NOTE-shortname-2014MMDD/",
                         "compoundOverviewTest": "The main page <span class=\"rfc2119\">SHOULD</span> be called Overview.html.",
+                        "fixupJsTest": "The document <span class=\"rfc2119\">MUST</span> include the script <code> <a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\"&gt;&lt;/script&gt;</code></p>",
                         "compoundTest": "All other files <span class=\"rfc2119\">MUST</span> be reachable by links from the document."
                     }
                 }
