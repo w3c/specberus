@@ -324,6 +324,10 @@ var tests = {
     ,       { doc: "sotd/deprecated.html", errors: ['sotd.processDocument', 'sotd.processDocument']}
     ,       { doc: "sotd/wrongprocess.html", errors: ['sotd.processDocument', 'sotd.processDocument']}
         ]
+    ,   'group-homepage':  [
+            { doc: "sotd/group-homepage.html" }
+    ,       { doc: "sotd/group-homepage-wrong.html", errors: ['sotd.group-homepage'] }
+        ]
     }
 ,   heuristic:   {
         'date-format':  [
