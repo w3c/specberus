@@ -1,8 +1,9 @@
-
 // This script updates our local database of groups
 //  Usage: node fetch-groups-db.js your-w3c-user your-w3c-password
 
 // XXX also look at https://cvs.w3.org/Team/WWW/2000/04/mem-news/groups.rdf
+
+/* globals __dirname: false */
 
 var fs = require("fs")
 ,   pth = require("path")
@@ -36,7 +37,7 @@ function munge (err, res) {
         $($tr.find("td")[3]).find("a").each(function () {
             var list = $(this).text();
             if (!/@w3\.org$/.test(list)) list += "@w3.org";
-            if (href.indexOf("http") === 0) true; // noop
+            if (href.indexOf("http") === 0) true; // jshint ignore: line
             else if (href.indexOf("/") === 0) href = "http://www.w3.org" + href;
             else if (/^(\.\.\/){2}\w/.test(href)) href = "http://www.w3.org/" + href.replace(/^(\.\.\/){2}/, "");
             else console.error("--------------- UNKNOWN URL FORM -------------------");

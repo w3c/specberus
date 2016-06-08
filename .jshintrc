@@ -1,0 +1,8 @@
+{
+    "esversion": 6,
+    "globals": {"require": false, "console": false, "exports": false, "process": false},
+    "laxcomma": true,
+    "loopfunc": true,
+    "undef": true,
+    "unused": true
+}

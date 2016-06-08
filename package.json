@@ -11,8 +11,8 @@
   "dependencies": {
     "body-parser": "1.15.1",
     "compression": "1.6",
-    "express": "4.13",
     "express-handlebars": "3.0",
+    "express": "4.13",
     "insafe": "0.3",
     "metaviewport-parser": "0.0.1",
     "morgan": "1.7.0",
@@ -23,12 +23,14 @@
     "whacko": "0.19"
   },
   "devDependencies": {
-    "chai": "3.5",
     "chai-as-promised": "5.3.0",
+    "chai": "3.5",
     "coveralls": "2.11",
     "expect.js": "0.3",
     "istanbul": "0.4",
+    "jscs": "3.0.3",
     "jsdoc": "3.4",
+    "jshint": "2.9.2",
     "mocha": "2.5.3",
     "nsp": "2.4.0"
   },
@@ -36,9 +38,10 @@
     "coverage": "istanbul cover _mocha",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
     "jsdoc": "jsdoc -a all -d doc/api/ -e utf8 -r app.js lib/ test/ tools/",
+    "lint": "jscs app.js lib/ public/ test/ tools/ views/ && jshint app.js lib/ public/ test/ tools/ views/",
     "nsp": "nsp check",
     "start": "node --use_strict app",
-    "test": "mocha"
+    "test": "npm run lint && mocha"
   },
   "engines": {
     "node": "4 || 5 || 6",

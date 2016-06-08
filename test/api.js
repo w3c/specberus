@@ -2,6 +2,8 @@
  * Test the REST API.
  */
 
+/* globals describe: false, it: false, before: false, after: false */
+
 // Settings:
 const DEFAULT_PORT = 8000
 ,   PORT = process.env.PORT || DEFAULT_PORT
@@ -117,7 +119,7 @@ describe('API', function() {
         it('Should 404 and return an array of errors when validation fails', function() {
             query = get('validate?file=test/docs/metadata/ttml-imsc1.html&profile=REC&validation=simple-validation&processDocument=2047');
             return expect(query).to.eventually.be.rejectedWith(/"headers\.\w+/i);
-        })
+        });
         it('Should accept the parameter “url”, and succeed when the document is valid', function() {
             query = get('validate?url=https%3A%2F%2Fwww.w3.org%2FTR%2F2016%2FWD-charmod-norm-20160407%2F&' +
                 'profile=WD&validation=simple-validation&processDocument=2015&noRecTrack=true');

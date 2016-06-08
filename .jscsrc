@@ -1,0 +1,15 @@
+{
+    "disallowMultipleSpaces": {"allowEOLComments": true},
+    "disallowMultipleSpaces": false,
+    "disallowMultipleVarDecl": null,
+    "disallowTrailingWhitespace": true,
+    "disallowUnusedVariables": true,
+    "excludeFiles": ["lib/l10n-es_ES.js", "lib/l10n-en_GB.js"],
+    "fileExtensions": ".js",
+    "maximumLineLength": 160,
+    "requireCapitalizedConstructors": true,
+    "requireCapitalizedConstructorsNew": true,
+    "requireCurlyBraces": false,
+    "validateLineBreaks": "LF",
+    "validateQuoteMarks": false
+}
