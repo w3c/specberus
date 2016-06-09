@@ -2,7 +2,7 @@
  * Test the REST API.
  */
 
-/* globals describe: false, it: false, before: false, after: false */
+/* globals describe: false, it: false, before: false, after: false, expect: true */
 
 // Settings:
 const DEFAULT_PORT = 8000
@@ -26,9 +26,7 @@ const package = require('../package')
 ,   api = require('../lib/api')
 ;
 
-var expect
-,   server
-;
+var server;
 
 /**
  * Launch an HTTP server for tests.

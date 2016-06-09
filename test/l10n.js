@@ -2,11 +2,10 @@
  * Test L10n features.
  */
 
-/* globals describe: false, it: false */
+/* globals describe: false, it: false, expect: true, before: false */
 
 // Native packages:
 const fs = require('fs');
->>>>>>> Test all L10n messages; fix #403
 
 // External packages:
 const chai = require('chai')
@@ -17,7 +16,6 @@ const chai = require('chai')
 const rulesWrapper = require('../lib/rules-wrapper')
 ,   l10n = require('../lib/l10n-en_GB')
 ;
->>>>>>> Test all L10n messages; fix #403
 
 // Constants:
 const messages = l10n.messages
@@ -46,7 +44,7 @@ const setUp = function() {
 const scanStrings = function() {
     const result = {};
     for (var i in messages) {
-        const c = i.split('.');
+        var c = i.split('.');
         if (!c || c.length < 1 || c.length > 3)
             throw new Error(`message key “${i}” doesn't follow the pattern “x[.y[.z]]”`);
 
@@ -125,10 +123,16 @@ const scanFileSystem = function() {
                                     const name = file.replace(extensionRemover, '');
                                     var match;
                                     result[dir][name] = {};
-                                    while (match = messageFinder.exec(data))
+                                    match = messageFinder.exec(data);
+                                    while (match) {
                                         result[dir][name][match[2]] = true;
-                                    while (match = exceptionFinder.exec(data))
+                                        match = messageFinder.exec(data);
+                                    }
+                                    match = exceptionFinder.exec(data);
+                                    while (match) {
                                         result[dir][name][match[1]] = true;
+                                        match = exceptionFinder.exec(data);
+                                    }
                                     n ++;
                                     if (total === n)
                                         fulfill(result);
@@ -167,17 +171,6 @@ const findHoles = function(source, expected, labelSource, labelExpected) {
         throw new Error(errors.slice(0, -2) + '.');
 };
 
-/**
- * Utility function; useful only to debug these tests.
- */
-
-const showResults = function(files, strings) {
-    console.info('--------------------------------------- Filesystem ---------------------------------------');
-    console.dir(files);
-    console.info('--------------------------------------- Strings ---------------------------------------');
-    console.dir(strings);
-};
-
 describe('L10n', function() {
 
     var strings
@@ -190,7 +183,6 @@ describe('L10n', function() {
         var p = scanFileSystem();
         p.then(function(value) {
             files = value;
-            // For testing, here do: showResults(files, strings);
         });
         return expect(p).to.be.fulfilled;
     });
