@@ -158,7 +158,7 @@ var tests = {
         ]
     }
 ,   headers:   {
-        "div.head":  [
+        "div-head":  [
             { doc: "headers/simple.html" }
         ,   { doc: "headers/fails.html", errors: ["headers.div-head"] }
         ]
@@ -323,10 +323,10 @@ var tests = {
             { doc: "sotd/supersedable.html"}
         ,   { doc: "sotd/pp-bad.html", errors: ['sotd.ac-review'] }
         ]
-    ,   'process':  [
+    ,   'process-document':  [
             { doc: "sotd/process2015.html" }
-    ,       { doc: "sotd/deprecated.html", errors: ['sotd.processDocument', 'sotd.processDocument']}
-    ,       { doc: "sotd/wrongprocess.html", errors: ['sotd.processDocument', 'sotd.processDocument']}
+    ,       { doc: "sotd/deprecated.html", errors: ['sotd.process-document', 'sotd.process-document']}
+    ,       { doc: "sotd/wrongprocess.html", errors: ['sotd.process-document', 'sotd.process-document']}
         ]
     }
 ,   heuristic:   {
