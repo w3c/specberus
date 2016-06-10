@@ -328,6 +328,10 @@ var tests = {
     ,       { doc: "sotd/deprecated.html", errors: ['sotd.process-document', 'sotd.process-document']}
     ,       { doc: "sotd/wrongprocess.html", errors: ['sotd.process-document', 'sotd.process-document']}
         ]
+    ,   'group-homepage':  [
+            { doc: "sotd/group-homepage.html" }
+    ,       { doc: "sotd/group-homepage-wrong.html", errors: ['sotd.group-homepage'] }
+        ]
     }
 ,   heuristic:   {
         'date-format':  [
