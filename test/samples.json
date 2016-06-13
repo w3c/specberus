@@ -149,4 +149,25 @@
     ,   "informative": true
     ,   "rectrack": true
     }
+,   {
+        "url": "http://www.w3.org/TR/2016/WD-html51-20160602/"
+    ,   "file": "html51"
+    ,   "profile": "WD"
+    ,   "latestVersion": "http://www.w3.org/TR/html51/"
+    ,   "previousVersion": "http://www.w3.org/TR/2016/WD-html51-20160503/"
+    ,   "editorsDraft": "https://w3c.github.io/html/"
+    ,   "deliverers": [
+            {
+                "name": "Web Platform Working Group"
+            ,   "homepage":"http://www.w3.org/WebPlatform/WG/"
+            }
+        ]
+    ,   "title": "HTML 5.1"
+    ,   "docDate": "2016-6-2"
+    ,   "delivererIDs": [83482]
+    ,   "editorIDs": []
+    ,   "informative": false
+    ,   "rectrack": true
+    ,   "process": "http://www.w3.org/2015/Process-20150901/"
+    }
 ]
