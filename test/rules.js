@@ -331,6 +331,7 @@ var tests = {
         ]
     ,   'group-homepage':  [
             { doc: "sotd/group-homepage.html" }
+    ,       { doc: "sotd/group-homepage-https.html" }
     ,       { doc: "sotd/group-homepage-wrong.html", errors: ['sotd.group-homepage'] }
         ]
     }
