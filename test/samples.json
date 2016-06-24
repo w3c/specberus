@@ -16,6 +16,10 @@
     ,   "docDate": "2016-3-8"
     ,   "delivererIDs": [83482]
     ,   "editorIDs": []
+    ,   "editorNames": [
+            "Cameron McCormack"
+        ,   "Boris Zbarsky"
+    ]
     ,   "informative": false
     ,   "rectrack": true
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
@@ -37,6 +41,9 @@
     ,   "docDate": "2016-3-8"
     ,   "delivererIDs": [34314]
     ,   "editorIDs": []
+    ,   "editorNames": [
+            "Pierre Lemieux"
+    ]
     ,   "informative": false
     ,   "rectrack": true
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
@@ -58,6 +65,11 @@
     ,   "docDate": "2016-2-25"
     ,   "delivererIDs": [68238]
     ,   "editorIDs": []
+    ,   "editorNames": [
+            "Jeremy Tandy"
+        ,   "Davide Ceolin"
+        ,   "Eric Stephan"
+    ]
     ,   "informative": false
     ,   "rectrack": true
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
@@ -79,6 +91,10 @@
     ,   "docDate": "2015-12-17"
     ,   "delivererIDs": [68238]
     ,   "editorIDs": [33715,44770,7382]
+    ,   "editorNames": [
+            "Jeni Tennison"
+        ,   "Gregg Kellogg"
+    ]
     ,   "informative": false
     ,   "rectrack": true
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
@@ -104,6 +120,11 @@
     ,   "docDate": "2016-2-26"
     ,   "delivererIDs": [47318, 43696]
     ,   "editorIDs": [41974,68202,76096]
+    ,   "editorNames": [
+            "Anssi Kostiainen"
+        ,   "Ningxin Hu"
+        ,   "Rob Manson"
+    ]
     ,   "informative": false
     ,   "rectrack": true
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
@@ -125,6 +146,9 @@
     ,   "docDate": "2016-4-7"
     ,   "delivererIDs": [32113]
     ,   "editorIDs": [33573]
+    ,   "editorNames": [
+            "Addison Phillips"
+    ]
     ,   "informative": false
     ,   "rectrack": false
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
@@ -146,6 +170,10 @@
     ,   "docDate": "2013-6-6"
     ,   "delivererIDs": [42538]
     ,   "editorIDs": []
+    ,   "editorNames": [
+            "Dominic Cooney"
+        ,   "Dimitri Glazkov"
+    ]
     ,   "informative": true
     ,   "rectrack": true
     }
@@ -166,6 +194,12 @@
     ,   "docDate": "2016-6-2"
     ,   "delivererIDs": [83482]
     ,   "editorIDs": []
+    ,   "editorNames": [
+            "Steve Faulkner"
+        ,   "Arron Eicholz"
+        ,   "Travis Leithead"
+        ,   "Alex Danilo"
+    ]
     ,   "informative": false
     ,   "rectrack": true
     ,   "process": "http://www.w3.org/2015/Process-20150901/"
