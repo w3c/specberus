@@ -299,7 +299,7 @@ jQuery.extend({
         }
         message += `<p class="details">`;
         if (total > 0 && profile)
-            message += `<p class="details"><a href="doc/rules?profile=${profile}">${total} rules</a> were checked.`;
+            message += `<a href="doc/rules?profile=${profile}">${total} rules</a> were checked. `;
         message += `Hover over the rows below for options.<p>`;
         $resultsBody.html(message);
         message = '';
