@@ -107,15 +107,18 @@ describe('Basics', function() {
             done();
         });
 
-        if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
-            for(i in samples) {
-                compareMetadata(samples[i].url, null, samples[i]);
-            }
-        }
-        else {
-            for(i in samples) {
-                compareMetadata(null, samples[i].file, samples[i]);
-            }
+        // if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
+        //     for(i in samples) {
+        //         compareMetadata(samples[i].url, null, samples[i]);
+        //     }
+        // }
+        // else {
+        //     for(i in samples) {
+        //         compareMetadata(null, samples[i].file, samples[i]);
+        //     }
+        // }
+        for(i in samples) {
+            compareMetadata(null, samples[i].file, samples[i]);
         }
 
     });
