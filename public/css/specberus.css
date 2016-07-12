@@ -200,6 +200,10 @@ p.details {
     border-left-style: solid;
 }
 
+#results .list-group-item a {
+    text-decoration: underline;
+}
+
 #results .list-group-item.exception {
     background-color: #ffffe0;
 }
