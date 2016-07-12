@@ -256,27 +256,27 @@ A profile is basically a configuration of what to check. You can load a specific
 Here follows the current hierarchy of profiles. Each profile inherits all rules from its parent profile.
 Profiles that are identical to its parent profile, ie that do not add any new rules, are marked too.
 
+* `dummy`
 * `base`
   * `TR`
-    * `WG-NOTE` (identical)
+    * `WG-NOTE`
       * `FPWG-NOTE` (identical)
+    * `WG-NOTE-Echidna`
     * `IG-NOTE`
       * `FPIG-NOTE` (identical)
-    * `WD` (identical)
+    * `WD`
+      * `WD-Echidna`
+    * `FPWD` (identical)
     * `PER`
     * `RSCND` (identical)
     * `PR`
     * `CR`
-    * `FPWD` (identical)
     * `FPCR`
+    * `CG-NOTE`
+    * `REC`
+  * `Submission`
     * `SUBM`
     * `MEM-SUBM`
-    * `TEAM-SUBM`
-    * `CG-NOTE`
-    * `FPLC`
-    * `REC`
-    * `LC`
-* `dummy`
 
 ## 7. Validation events
 
