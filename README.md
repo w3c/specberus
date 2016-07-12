@@ -267,9 +267,9 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
     * `WD`
       * `WD-Echidna`
     * `FPWD` (identical)
-    * `PER`
     * `RSCND` (identical)
     * `PR`
+      * `PER` (identical)
     * `CR`
     * `FPCR`
     * `CG-NOTE`
