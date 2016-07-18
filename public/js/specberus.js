@@ -54,12 +54,32 @@ jQuery.extend({
     ,   done = 0
     ,   result = {exceptions: [], errors: [], warnings: [], infos: []}
     ,   total = 0
+    ,   running = false
     ;
 
     // handshake
     socket.on("handshake", function (data) {
         console.log(`Handshake; using version “${data.version}”.`);
+
+        socket.on('disconnect', () => {
+            socket.close();
+            toggleForm(false);
+            window.location.href = window.location.href;
+        });
+
     });
+
+    const toggleForm = (bool) => {
+        if (bool) {
+            $('form').css('opacity', 1);
+            $('form input').removeClass('disabled').removeAttr('disabled');
+            $('button[type=submit]').text('Check');
+        } else {
+            $('form').css('opacity', 0.25);
+            $('form input').addClass('disabled').attr('disabled', 'disabled');
+            $('button[type=submit]').text('Wait…');
+        }
+    };
 
     // validate
     function validate (options) {
@@ -166,6 +186,8 @@ jQuery.extend({
     });
     socket.on("finished", function () {
         console.log('Finished.');
+        toggleForm(true);
+        running = false;
         showResults();
     });
     socket.on("finishedExtraction", function (data) {
@@ -196,7 +218,14 @@ jQuery.extend({
         }
     });
 
-    $form.submit(function () {
+    $form.submit(function (event) {
+        if (running) {
+            if (event)
+                event.preventDefault();
+            return;
+        }
+        running = true;
+        toggleForm(false);
         $resultsBody.empty();
         $resultsList.empty();
         result = {exceptions: [], errors: [], warnings: [], infos: []};
@@ -278,7 +307,8 @@ jQuery.extend({
         $results.fadeIn();
         $progressStyler.removeClass("active progress-striped");
         $progressContainer.hide();
-        $progress.text('Done!');
+        $progress.text('');
+        $progress.attr('style', '0');
         var message;
         if (result.errors.length > 0 || result.exceptions.length > 0) {
             message = `<span class="icon red pull-left">&#10007;</span>`;
@@ -357,13 +387,8 @@ jQuery.extend({
             var options = $.getQueryParameters();
             setFormParams(options);
             toggleManual('auto' !== $profile.val());
-            if (options.url && options.profile) {
-              if (options.profile === "auto") {
-                extractMetadata(options.url);
-              } else {
-                validate(options);
-              }
-            }
+            if (options.url && options.profile)
+                $('form').submit();
             $('[data-toggle="tooltip"]').tooltip();
             $url.select();
         });
