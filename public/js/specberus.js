@@ -72,11 +72,11 @@ jQuery.extend({
     const toggleForm = (bool) => {
         if (bool) {
             $('form').css('opacity', 1);
-            $('form input').removeClass('disabled').removeAttr('disabled');
+            $('form input, form select, form label').removeClass('disabled').removeAttr('disabled');
             $('button[type=submit]').text('Check');
         } else {
-            $('form').css('opacity', 0.25);
-            $('form input').addClass('disabled').attr('disabled', 'disabled');
+            $('form').css('opacity', 0.333);
+            $('form input, form select, form label').addClass('disabled').attr('disabled', 'disabled');
             $('button[type=submit]').text('Wait…');
         }
     };
