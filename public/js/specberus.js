@@ -186,8 +186,6 @@ jQuery.extend({
     });
     socket.on("finished", function () {
         console.log('Finished.');
-        toggleForm(true);
-        running = false;
         showResults();
     });
     socket.on("finishedExtraction", function (data) {
@@ -304,6 +302,8 @@ jQuery.extend({
     };
 
     function showResults() {
+        toggleForm(true);
+        running = false;
         $results.fadeIn();
         $progressStyler.removeClass("active progress-striped");
         $progressContainer.hide();
