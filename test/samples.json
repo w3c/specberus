@@ -1,10 +1,10 @@
 [
    {
-        "url": "http://www.w3.org/TR/2016/CR-WebIDL-1-20160308/"
+        "url": "https://www.w3.org/TR/2016/CR-WebIDL-1-20160308/"
     ,   "file": "WebIDL-1"
     ,   "profile": "CR"
-    ,   "latestVersion": "http://www.w3.org/TR/WebIDL-1/"
-    ,   "previousVersion": "http://www.w3.org/TR/2015/WD-WebIDL-1-20150804/"
+    ,   "latestVersion": "https://www.w3.org/TR/WebIDL-1/"
+    ,   "previousVersion": "https://www.w3.org/TR/2015/WD-WebIDL-1-20150804/"
     ,   "editorsDraft": "https://heycam.github.io/webidl/"
     ,   "deliverers": [
             {
@@ -22,19 +22,19 @@
     ]
     ,   "informative": false
     ,   "rectrack": true
-    ,   "process": "http://www.w3.org/2015/Process-20150901/"
+    ,   "process": "https://www.w3.org/2015/Process-20150901/"
     }
 ,   {
-        "url": "http://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/"
+        "url": "https://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/"
     ,   "file": "ttml-imsc1"
     ,   "profile": "PR"
-    ,   "latestVersion": "http://www.w3.org/TR/ttml-imsc1/"
-    ,   "previousVersion": "http://www.w3.org/TR/2016/CR-ttml-imsc1-20160128/"
+    ,   "latestVersion": "https://www.w3.org/TR/ttml-imsc1/"
+    ,   "previousVersion": "https://www.w3.org/TR/2016/CR-ttml-imsc1-20160128/"
     ,   "editorsDraft": "https://rawgit.com/w3c/imsc1/master/spec/ttml-ww-profiles.html"
     ,   "deliverers": [
             {
                 "name": "Timed Text Working Group"
-            ,   "homepage": "http://www.w3.org/AudioVideo/TT/"
+            ,   "homepage": "https://www.w3.org/AudioVideo/TT/"
             }
         ]
     ,   "title": "TTML Profiles for Internet Media Subtitles and Captions 1.0 (IMSC1)"
@@ -46,19 +46,19 @@
     ]
     ,   "informative": false
     ,   "rectrack": true
-    ,   "process": "http://www.w3.org/2015/Process-20150901/"
+    ,   "process": "https://www.w3.org/2015/Process-20150901/"
     }
 ,   {
-        "url": "http://www.w3.org/TR/2016/NOTE-csvw-ucr-20160225/"
+        "url": "https://www.w3.org/TR/2016/NOTE-csvw-ucr-20160225/"
     ,   "file": "csvw-ucr"
     ,   "profile": "WG-NOTE"
-    ,   "latestVersion": "http://www.w3.org/TR/csvw-ucr/"
-    ,   "previousVersion": "http://www.w3.org/TR/2014/WD-csvw-ucr-20140701/"
+    ,   "latestVersion": "https://www.w3.org/TR/csvw-ucr/"
+    ,   "previousVersion": "https://www.w3.org/TR/2014/WD-csvw-ucr-20140701/"
     ,   "editorsDraft": "http://w3c.github.io/csvw/use-cases-and-requirements/"
     ,   "deliverers": [
             {
                 "name": "CSV on the Web Working Group"
-            ,   "homepage": "http://www.w3.org/2013/csvw/"
+            ,   "homepage": "https://www.w3.org/2013/csvw/"
             }
         ]
     ,   "title": "CSV on the Web: Use Cases and Requirements"
@@ -72,19 +72,19 @@
     ]
     ,   "informative": false
     ,   "rectrack": true
-    ,   "process": "http://www.w3.org/2015/Process-20150901/"
+    ,   "process": "https://www.w3.org/2015/Process-20150901/"
     }
 ,   {
-        "url": "http://www.w3.org/TR/2015/REC-tabular-data-model-20151217/"
+        "url": "https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/"
     ,   "file": "tabular-data-model"
     ,   "profile": "REC"
-    ,   "latestVersion": "http://www.w3.org/TR/tabular-data-model/"
-    ,   "previousVersion": "http://www.w3.org/TR/2015/PR-tabular-data-model-20151117/"
+    ,   "latestVersion": "https://www.w3.org/TR/tabular-data-model/"
+    ,   "previousVersion": "https://www.w3.org/TR/2015/PR-tabular-data-model-20151117/"
     ,   "editorsDraft": "http://w3c.github.io/csvw/syntax/"
     ,   "deliverers": [
             {
                 "name": "CSV on the Web Working Group"
-            ,   "homepage": "http://www.w3.org/2013/csvw"
+            ,   "homepage": "https://www.w3.org/2013/csvw"
             }
         ]
     ,   "title": "Model for Tabular Data and Metadata on the Web"
@@ -97,23 +97,23 @@
     ]
     ,   "informative": false
     ,   "rectrack": true
-    ,   "process": "http://www.w3.org/2015/Process-20150901/"
+    ,   "process": "https://www.w3.org/2015/Process-20150901/"
     }
 ,   {
-        "url": "http://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/"
+        "url": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/"
     ,   "file": "mediacapture-depth"
     ,   "profile": "WD"
-    ,   "latestVersion": "http://www.w3.org/TR/mediacapture-depth/"
-    ,   "previousVersion": "http://www.w3.org/TR/2016/WD-mediacapture-depth-20160202/"
+    ,   "latestVersion": "https://www.w3.org/TR/mediacapture-depth/"
+    ,   "previousVersion": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160202/"
     ,   "editorsDraft": "https://w3c.github.io/mediacapture-depth/"
     ,   "deliverers": [
             {
                 "name": "Device APIs Working Group"
-            ,   "homepage":"http://www.w3.org/2009/dap/"
+            ,   "homepage":"https://www.w3.org/2009/dap/"
             }
         ,   {
                 "name": "Web Real-Time Communications Working Group"
-            ,   "homepage": "http://www.w3.org/2011/04/webrtc/"
+            ,   "homepage": "https://www.w3.org/2011/04/webrtc/"
             }
         ]
     ,   "title": "Media Capture Depth Stream Extensions"
@@ -127,19 +127,19 @@
     ]
     ,   "informative": false
     ,   "rectrack": true
-    ,   "process": "http://www.w3.org/2015/Process-20150901/"
+    ,   "process": "https://www.w3.org/2015/Process-20150901/"
     }
 ,   {
-        "url": "http://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
+        "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
     ,   "file": "charmod-norm"
     ,   "profile": "WD"
-    ,   "latestVersion": "http://www.w3.org/TR/charmod-norm/"
-    ,   "previousVersion": "http://www.w3.org/TR/2015/WD-charmod-norm-20151119/"
+    ,   "latestVersion": "https://www.w3.org/TR/charmod-norm/"
+    ,   "previousVersion": "https://www.w3.org/TR/2015/WD-charmod-norm-20151119/"
     ,   "editorsDraft": "http://w3c.github.io/charmod-norm/"
     ,   "deliverers": [
             {
                 "name": "Internationalization Working Group"
-            ,   "homepage":"http://www.w3.org/International/core/"
+            ,   "homepage":"https://www.w3.org/International/core/"
             }
         ]
     ,   "title": "Character Model for the World Wide Web: String Matching and Searching"
@@ -151,19 +151,19 @@
     ]
     ,   "informative": false
     ,   "rectrack": false
-    ,   "process": "http://www.w3.org/2015/Process-20150901/"
+    ,   "process": "https://www.w3.org/2015/Process-20150901/"
     }
 ,   {
-        "url": "http://www.w3.org/TR/2013/WD-components-intro-20130606/"
+        "url": "https://www.w3.org/TR/2013/WD-components-intro-20130606/"
     ,   "file": "components-intro"
     ,   "profile": "WD"
-    ,   "latestVersion": "http://www.w3.org/TR/components-intro/"
-    ,   "previousVersion": "http://www.w3.org/TR/2012/WD-components-intro-20120522/"
+    ,   "latestVersion": "https://www.w3.org/TR/components-intro/"
+    ,   "previousVersion": "https://www.w3.org/TR/2012/WD-components-intro-20120522/"
     ,   "editorsDraft": "https://dvcs.w3.org/hg/webcomponents/raw-file/tip/explainer/index.html"
     ,   "deliverers": [
             {
                 "name": "Web Applications Working Group"
-            ,   "homepage":"http://www.w3.org/2008/webapps/"
+            ,   "homepage":"https://www.w3.org/2008/webapps/"
             }
         ]
     ,   "title": "Introduction to Web Components"
@@ -178,16 +178,16 @@
     ,   "rectrack": true
     }
 ,   {
-        "url": "http://www.w3.org/TR/2016/WD-html51-20160602/"
+        "url": "https://www.w3.org/TR/2016/WD-html51-20160602/"
     ,   "file": "html51"
     ,   "profile": "WD"
-    ,   "latestVersion": "http://www.w3.org/TR/html51/"
-    ,   "previousVersion": "http://www.w3.org/TR/2016/WD-html51-20160503/"
+    ,   "latestVersion": "https://www.w3.org/TR/html51/"
+    ,   "previousVersion": "https://www.w3.org/TR/2016/WD-html51-20160503/"
     ,   "editorsDraft": "https://w3c.github.io/html/"
     ,   "deliverers": [
             {
                 "name": "Web Platform Working Group"
-            ,   "homepage":"http://www.w3.org/WebPlatform/WG/"
+            ,   "homepage":"https://www.w3.org/WebPlatform/WG/"
             }
         ]
     ,   "title": "HTML 5.1"
@@ -202,6 +202,6 @@
     ]
     ,   "informative": false
     ,   "rectrack": true
-    ,   "process": "http://www.w3.org/2015/Process-20150901/"
+    ,   "process": "https://www.w3.org/2015/Process-20150901/"
     }
 ]

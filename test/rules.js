@@ -107,15 +107,18 @@ describe('Basics', function() {
             done();
         });
 
-        if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
-            for(i in samples) {
-                compareMetadata(samples[i].url, null, samples[i]);
-            }
-        }
-        else {
-            for(i in samples) {
-                compareMetadata(null, samples[i].file, samples[i]);
-            }
+        // if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
+        //     for(i in samples) {
+        //         compareMetadata(samples[i].url, null, samples[i]);
+        //     }
+        // }
+        // else {
+        //     for(i in samples) {
+        //         compareMetadata(null, samples[i].file, samples[i]);
+        //     }
+        // }
+        for(i in samples) {
+            compareMetadata(null, samples[i].file, samples[i]);
         }
 
     });
@@ -379,29 +382,33 @@ Object.keys(tests).forEach(function (category) {
                             console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
                         });
                         handler.on("end-all", function () {
-                            var i
-                            ,   n;
-                            if (passTest) {
-                                expect(handler.errors).to.be.empty();
-                            }
-                            else {
-                                expect(handler.errors.length).to.eql(test.errors.length);
-                                for (i = 0, n = test.errors.length; i < n; i++) {
-                                    expect(handler.errors).to.contain(test.errors[i]);
-                                }
-                            }
-                            if (!test.ignoreWarnings) {
-                                if (test.warnings) {
-                                    expect(handler.warnings.length).to.eql(test.warnings.length);
-                                    for (i = 0, n = test.warnings.length; i < n; i++) {
-                                        expect(handler.warnings).to.contain(test.warnings[i]);
-                                    }
+                            try {
+                                var i
+                                ,   n;
+                                if (passTest) {
+                                    expect(handler.errors).to.be.empty();
                                 }
                                 else {
-                                    expect(handler.warnings).to.be.empty();
+                                    expect(handler.errors.length).to.eql(test.errors.length);
+                                    for (i = 0, n = test.errors.length; i < n; i++) {
+                                        expect(handler.errors).to.contain(test.errors[i]);
+                                    }
                                 }
+                                if (!test.ignoreWarnings) {
+                                    if (test.warnings) {
+                                        expect(handler.warnings.length).to.eql(test.warnings.length);
+                                        for (i = 0, n = test.warnings.length; i < n; i++) {
+                                            expect(handler.warnings).to.contain(test.warnings[i]);
+                                        }
+                                    }
+                                    else {
+                                        expect(handler.warnings).to.be.empty();
+                                    }
+                                }
+                                done();
+                            } catch (e) {
+                                return done(e);
                             }
-                            done();
                         });
                         var profile = {
                             name:   "Synthetic " + category + "/" + rule
