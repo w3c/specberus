@@ -47,47 +47,50 @@ const scanStrings = function() {
         var c = i.split('.');
         if (!c || c.length < 1 || c.length > 3)
             throw new Error(`message key “${i}” doesn't follow the pattern “x[.y[.z]]”`);
+        if ('generic' !== c[0]) {
 
-        // 1. Process the section:
-        if (!result.hasOwnProperty(c[0])) {
-            if (1 === c.length) {
-                if (false === messages[i])
-                    result[c[0]] = false;
-                else
-                    throw new Error(`key “${i}” can be used only to indicate an empty category using “false”`);
-            }
-            else
-                result[c[0]] = {};
-        }
-        else if (1 === c.length &&
-            ((false === result[c[0]] && false !== messages[i]) ||
-            (false !== result[c[0]] && false === messages[i])))
-            throw new Error(`key “${i}” can't be used to indicate an empty category because it's used for messages too`);
-
-        // 2. Process the rule:
-        if (c.length > 1) {
-            if (!result[c[0]].hasOwnProperty(c[1])) {
-                if (2 === c.length) {
+            // 1. Process the section:
+            if (!result.hasOwnProperty(c[0])) {
+                if (1 === c.length) {
                     if (false === messages[i])
-                        result[c[0]][c[1]] = false;
+                        result[c[0]] = false;
                     else
                         throw new Error(`key “${i}” can be used only to indicate an empty category using “false”`);
                 }
                 else
-                    result[c[0]][c[1]] = {};
+                    result[c[0]] = {};
             }
-            else if (2 === c.length &&
-                ((false === result[c[0]][c[1]] && false !== messages[i]) ||
-                (false !== result[c[0]][c[1]] && false === messages[i])))
+            else if (1 === c.length &&
+                ((false === result[c[0]] && false !== messages[i]) ||
+                (false !== result[c[0]] && false === messages[i])))
                 throw new Error(`key “${i}” can't be used to indicate an empty category because it's used for messages too`);
-        }
 
-        // 3. Process the message ID:
-        if (c.length > 2) {
-            if (!result[c[0]][c[1]].hasOwnProperty(c[2]))
-                result[c[0]][c[1]][c[2]] = !!(messages[i]);
-            else
-                throw new Error(`key “${i}” is defined more than once`);
+            // 2. Process the rule:
+            if (c.length > 1) {
+                if (!result[c[0]].hasOwnProperty(c[1])) {
+                    if (2 === c.length) {
+                        if (false === messages[i])
+                            result[c[0]][c[1]] = false;
+                        else
+                            throw new Error(`key “${i}” can be used only to indicate an empty category using “false”`);
+                    }
+                    else
+                        result[c[0]][c[1]] = {};
+                }
+                else if (2 === c.length &&
+                    ((false === result[c[0]][c[1]] && false !== messages[i]) ||
+                    (false !== result[c[0]][c[1]] && false === messages[i])))
+                    throw new Error(`key “${i}” can't be used to indicate an empty category because it's used for messages too`);
+            }
+
+            // 3. Process the message ID:
+            if (c.length > 2) {
+                if (!result[c[0]][c[1]].hasOwnProperty(c[2]))
+                    result[c[0]][c[1]][c[2]] = !!(messages[i]);
+                else
+                    throw new Error(`key “${i}” is defined more than once`);
+            }
+
         }
 
     }
