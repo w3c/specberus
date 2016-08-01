@@ -221,7 +221,9 @@ p.details {
     font-style: italic;
 }
 
-#results .list-group-item .message + .quote {
+#results .list-group-item .message + .quote,
+#results .list-group-item .message + .message,
+#results .list-group-item .quote + .message {
     margin-top: 1em;
 }
 
