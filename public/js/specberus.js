@@ -64,7 +64,7 @@ jQuery.extend({
         socket.on('disconnect', () => {
             socket.close();
             toggleForm(false);
-            window.location.href = window.location.href;
+            $('#offline').modal();
         });
 
     });
