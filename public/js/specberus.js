@@ -59,7 +59,7 @@ jQuery.extend({
     socket.on("handshake", function (data) {
         console.log(`Handshake; using version “${data.version}”.`);
 
-        socket.on('disconnect', () => {
+        socket.on('disconnect', function () {
             socket.close();
             toggleForm(false);
             window.location.href = window.location.href;
@@ -67,7 +67,7 @@ jQuery.extend({
 
     });
 
-    const toggleForm = (bool) => {
+    const toggleForm = function (bool) {
         if (bool) {
             $('form').css('opacity', 1);
             $('form input, form select, form label').removeClass('disabled').removeAttr('disabled');
