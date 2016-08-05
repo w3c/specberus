@@ -4,8 +4,6 @@
 
 /* globals jQuery: false, document: false, io: false, location: false, console: false, window: false, history: false, url: false */
 
-'use strict'; // jshint ignore: line
-
 // TODO:
 //  grab on submit and cancel, get values
 //  client-side protocol
