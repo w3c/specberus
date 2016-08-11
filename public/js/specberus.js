@@ -58,13 +58,6 @@ jQuery.extend({
     // handshake
     socket.on("handshake", function (data) {
         console.log(`Handshake; using version “${data.version}”.`);
-
-        socket.on('disconnect', function () {
-            socket.close();
-            toggleForm(false);
-            $('#offline').modal();
-        });
-
     });
 
     const toggleForm = function (bool) {
