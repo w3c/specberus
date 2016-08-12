@@ -117,19 +117,22 @@ jQuery.extend({
         if (data && data.name)
             issue = `<a href="https://github.com/w3c/specberus/issues/new?` +
                 `title=Bug%20in%20rule%20%E2%80%9C${data.name}%E2%80%9D:%20[WHAT]&` +
-                `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${url}\`](${encodeURIComponent(window.location)}).&` +
+                `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${encodeURIComponent(url)}\`]` +
+                `(${encodeURIComponent(window.location)}).&` +
                 `labels=from-template` +
                 `" onclick="javascript:window.navigatingAway=true;">Report a bug</a>`;
         else if (data && data.exception)
             issue = `<a href="https://github.com/w3c/specberus/issues/new?` +
                 `title=Bug:%20[WHAT]&` +
-                `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${url}\`](${encodeURIComponent(window.location)}).&` +
+                `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${encodeURIComponent(url)}\`]` +
+                `(${encodeURIComponent(window.location)}).&` +
                 `labels=from-template` +
                 `" onclick="javascript:window.navigatingAway=true;">Report a bug</a>`;
         else
             issue = `<a href="https://github.com/w3c/specberus/issues/new?` +
                 `title=Bug%20in%20rules:%20[WHAT]&` +
-                `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${url}\`](${encodeURIComponent(window.location)}).&` +
+                `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${encodeURIComponent(url)}\`]` +
+                `(${encodeURIComponent(window.location)}).&` +
                 `labels=from-template` +
                 `" onclick="javascript:window.navigatingAway=true;">Report a bug</a>`;
         var item = `<li class="list-group-item alert alert-${type.bootstrap}${exc}">
