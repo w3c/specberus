@@ -1,36 +1,4 @@
 {
-  ".*": [
-    {
-      "rule": "validation.css",
-      "type": "noexistence-at-all",
-      "message": "Property fill doesn't exist : "
-    },
-    {
-      "rule": "validation.css",
-      "type": "noexistence-at-all",
-      "message": "Property fill-opacity doesn't exist : "
-    },
-    {
-      "rule": "validation.css",
-      "type": "noexistence-at-all",
-      "message": "Property text-anchor doesn't exist : "
-    },
-    {
-      "rule": "validation.css",
-      "type": "noexistence-at-all",
-      "message": "Property stroke doesn't exist : "
-    },
-    {
-      "rule": "validation.css",
-      "type": "noexistence-at-all",
-      "message": "Property stroke-width doesn't exist : "
-    },
-    {
-      "rule": "validation.css",
-      "type": "noexistence-at-all",
-      "message": "Property stroke-dasharray doesn't exist : "
-    }
-  ],
   "^webrtc$": [
     {
       "rule": "headers.copyright"
