@@ -29,7 +29,7 @@
     "expect.js": "0.3",
     "istanbul": "0.4.5",
     "jscs": "3.0.7",
-    "jsdoc": "3.4",
+    "jsdoc": "3.4.1",
     "jshint": "2.9.3",
     "mocha": "3.0.2",
     "nsp": "2.6.1"
