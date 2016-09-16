@@ -164,7 +164,6 @@ jQuery.extend({
     socket.on("start", function (data) {
         console.log('Started.');
         done = 0;
-        result = {exceptions: [], errors: [], warnings: [], infos: []};
         total = data.rules.length;
         $progressStyler.addClass("active progress-striped");
         $progressContainer.fadeIn();
@@ -197,6 +196,11 @@ jQuery.extend({
             if (data.warnings && data.warnings.length > 0)
                 for (var w in data.warnings)
                     addMessage(MSG_WARN, w);
+            const json = JSON.stringify(data.metadata, null, 4)
+            ,   jsonMessage = `<p>Review the <strong>metadata that was inferred from the document</strong>
+                to make sure that there are no errors:</p>\n<pre>${json}</pre>`
+            ;
+            addMessage(MSG_INFO, {message: `<div class="message">\n${jsonMessage}\n</div>`});
             toggleManual(true);
             profile = data.metadata.profile;
             $profile.val(profile);
