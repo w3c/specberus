@@ -254,8 +254,8 @@ jQuery.extend({
             ,   patentPolicy = $patentPolicy.find('label.active').attr('id')
             ;
             profile = $profile.val();
-            if (!url) addMessage(MSG_ERROR, 'Missing “URL” parameer');
-            if (!profile) addMessage(MSG_ERROR, 'Missing “profile” parameter');
+            if (!url) addMessage(MSG_ERROR, {message: 'Missing “URL” parameer'});
+            if (!profile) addMessage(MSG_ERROR, {message: 'Missing “profile” parameter'});
             if (echidnaReady) profile += '-Echidna';
             var options = {
                               "url"             : url
