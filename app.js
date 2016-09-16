@@ -43,6 +43,9 @@ app.use(express.static("public"));
 api.setUp(app);
 views.setUp(app);
 
+// @TODO Localise this properly when messages are translated; hard-coded British English for now.
+l10n.setLanguage('en_GB');
+
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
 
 io.sockets.on("connection", function (socket) {
@@ -52,6 +55,30 @@ io.sockets.on("connection", function (socket) {
         var v = new validator.Specberus()
         ,   handler = new Sink()
         ;
+        handler.on('err', function (type, data) {
+            try {
+                socket.emit('err', l10n.message(null, type, data.key, data.extra));
+            }
+            catch (err) {
+                socket.emit('exception', err.message);
+            }
+        });
+        handler.on('warning', function (type, data) {
+            try {
+                socket.emit('warning', l10n.message(null, type, data.key, data.extra));
+            }
+            catch (err) {
+                socket.emit('exception', err.message);
+            }
+        });
+        handler.on('info', function (type, data) {
+            try {
+                socket.emit('info', l10n.message(null, type, data.key, data.extra));
+            }
+            catch (err) {
+                socket.emit('exception', err.message);
+            }
+        });
         handler.on("end-all", function (metadata) {
             metadata.url = data.url;
             socket.emit("finishedExtraction", metadata);
@@ -73,8 +100,6 @@ io.sockets.on("connection", function (socket) {
         ,   profile = profiles[data.profile]
         ,   profileCode = profile.name
         ;
-        // @TODO Localise this properly when messages are translated; hard-coded British English for now.
-        l10n.setLanguage('en_GB');
         socket.emit("start", {
             rules:  (profile.rules || []).map(function (rule) { return rule.name; })
         });
