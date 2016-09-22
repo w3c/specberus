@@ -111,7 +111,8 @@ jQuery.extend({
         ,   exc = (data && data.exception) ? ' exception' : ''
         ;
         if (data && data.id) {
-            const newProfile = profile.replace(/\-echidna$/i, '');
+            // Corner case: if the profile is unknown, let's assume 'WD' (most common).
+            const newProfile = profile ? profile.replace(/\-echidna$/i, '') : 'WD';
             inContext = `<a href="doc/rules?profile=${newProfile}#${data.id}">See rule in context</a> <br>`;
         }
         if (data && data.name)
@@ -192,11 +193,10 @@ jQuery.extend({
         showResults();
     });
     socket.on("finishedExtraction", function (data) {
-        if (!data || !data.metadata || !data.metadata.profile) {
-            addMessage(MSG_EXCEPTION, {message: `<div class="message">Metadata extraction could not infer a profile for the document.</div>`});
-            window.setTimeout(showResults, 1000);
-        }
-        else {
+        if (data && data.success && data.errors && 0 === data.errors.length && data.metadata && data.metadata.profile) {
+            if (data.warnings && data.warnings.length > 0)
+                for (var w in data.warnings)
+                    addMessage(MSG_WARN, w);
             toggleManual(true);
             profile = data.metadata.profile;
             $profile.val(profile);
@@ -216,6 +216,19 @@ jQuery.extend({
             validate(options);
             var newurl = document.URL.split('?')[0] + "?" + $.param(options);
             history.pushState(options, url + " - " + profile, newurl);
+        }
+        else {
+            // Deal with all possible errors:
+            if (!data)
+                addMessage(MSG_EXCEPTION, {message: `<div class="message">An unknown error occurred while extracting metadata from the document.</div>`});
+            else if (!data.errors || 0 === data.errors.length) {
+                // If there were errors at all, those were shown to the user already; no need to add more here.
+                if (!data.metadata || !data.metadata.profile)
+                    addMessage(MSG_ERROR, {message: `<div class="message">Metadata extraction could not infer a profile for the document.</div>`});
+                else if (!data.success)
+                    addMessage(MSG_EXCEPTION, {message: `<div class="message">An unknown error occurred while extracting metadata from the document.</div>`});
+            }
+            window.setTimeout(showResults, 1000);
         }
     });
 
