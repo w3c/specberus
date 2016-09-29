@@ -196,11 +196,6 @@ jQuery.extend({
             if (data.warnings && data.warnings.length > 0)
                 for (var w in data.warnings)
                     addMessage(MSG_WARN, w);
-            const json = JSON.stringify(data.metadata, null, 4)
-            ,   jsonMessage = `<p>Review the <strong>metadata that was inferred from the document</strong>
-                to make sure that there are no errors:</p>\n<pre>${json}</pre>`
-            ;
-            addMessage(MSG_INFO, {message: `<div class="message">\n${jsonMessage}\n</div>`});
             toggleManual(true);
             profile = data.metadata.profile;
             $profile.val(profile);
@@ -329,7 +324,9 @@ jQuery.extend({
         $progressContainer.hide();
         $progress.text('');
         $progress.attr('style', '0');
-        var message;
+        var message
+        ,   metadataURL = `${baseURI}api/metadata?url=${encodeURIComponent(url.value)}`
+        ;
         if (result.errors.length > 0 || result.exceptions.length > 0) {
             message = `<span class="icon red pull-left">&#10007;</span>`;
             if (result.warnings.length > 0)
@@ -350,7 +347,9 @@ jQuery.extend({
         message += `<p class="details">`;
         if (total > 0 && profile)
             message += `<a href="doc/rules?profile=${profile}">${total} rules</a> were checked. `;
-        message += `Hover over the rows below for options.<p>`;
+        message += `Hover over the rows below for options.<br />`;
+        message += `Tip: review the <a href="${metadataURL}">metadata that was inferred from the document</a> to make sure that there are no errors.`;
+        message += '</p>';
         $resultsBody.html(message);
         message = '';
         if (result.exceptions.length > 0 || result.errors.length > 0 || result.warnings.length > 0 || result.infos.length > 0) {
