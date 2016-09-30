@@ -164,7 +164,6 @@ jQuery.extend({
     socket.on("start", function (data) {
         console.log('Started.');
         done = 0;
-        result = {exceptions: [], errors: [], warnings: [], infos: []};
         total = data.rules.length;
         $progressStyler.addClass("active progress-striped");
         $progressContainer.fadeIn();
@@ -325,7 +324,9 @@ jQuery.extend({
         $progressContainer.hide();
         $progress.text('');
         $progress.attr('style', '0');
-        var message;
+        var message
+        ,   metadataURL = `${baseURI}api/metadata?url=${encodeURIComponent(url.value)}`
+        ;
         if (result.errors.length > 0 || result.exceptions.length > 0) {
             message = `<span class="icon red pull-left">&#10007;</span>`;
             if (result.warnings.length > 0)
@@ -346,7 +347,9 @@ jQuery.extend({
         message += `<p class="details">`;
         if (total > 0 && profile)
             message += `<a href="doc/rules?profile=${profile}">${total} rules</a> were checked. `;
-        message += `Hover over the rows below for options.<p>`;
+        message += `Hover over the rows below for options.<br />`;
+        message += `Tip: review the <a href="${metadataURL}">metadata that was inferred from the document</a> to make sure that there are no errors.`;
+        message += '</p>';
         $resultsBody.html(message);
         message = '';
         if (result.exceptions.length > 0 || result.errors.length > 0 || result.warnings.length > 0 || result.infos.length > 0) {
