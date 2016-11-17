@@ -60,11 +60,11 @@ jQuery.extend({
         console.log(`Handshake; using version “${data.version}”.`);
 
         socket.on('disconnect', function () {
-            if (!window.navigatingAway) {
+            window.setTimeout(() => {
                 socket.close();
                 toggleForm(false);
-                $('#offline').modal();
-            }
+		$('#offline').modal();
+	    }, 1000);
         });
 
     });
@@ -121,21 +121,21 @@ jQuery.extend({
                 `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${encodeURIComponent(url)}\`]` +
                 `(${encodeURIComponent(window.location)}).&` +
                 `labels=from-template` +
-                `" onclick="javascript:window.navigatingAway=true;">Report a bug</a>`;
+                `">Report a bug</a>`;
         else if (data && data.exception)
             issue = `<a href="https://github.com/w3c/specberus/issues/new?` +
                 `title=Bug:%20[WHAT]&` +
                 `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${encodeURIComponent(url)}\`]` +
                 `(${encodeURIComponent(window.location)}).&` +
                 `labels=from-template` +
-                `" onclick="javascript:window.navigatingAway=true;">Report a bug</a>`;
+                `">Report a bug</a>`;
         else
             issue = `<a href="https://github.com/w3c/specberus/issues/new?` +
                 `title=Bug%20in%20rules:%20[WHAT]&` +
                 `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${encodeURIComponent(url)}\`]` +
                 `(${encodeURIComponent(window.location)}).&` +
                 `labels=from-template` +
-                `" onclick="javascript:window.navigatingAway=true;">Report a bug</a>`;
+                `">Report a bug</a>`;
         var item = `<li class="list-group-item alert alert-${type.bootstrap}${exc}">
             <label class="pull-left label label-${type.bootstrap}">${type.ui}</label>
             <div class="detailed pull-right"><small> ${inContext} ${issue} </small></div>
