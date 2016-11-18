@@ -60,11 +60,8 @@ jQuery.extend({
         console.log(`Handshake; using version “${data.version}”.`);
 
         socket.on('disconnect', function () {
-            window.setTimeout(() => {
-                socket.close();
-                toggleForm(false);
-		$('#offline').modal();
-	    }, 1000);
+            socket.close();
+            toggleForm(false);
         });
 
     });
@@ -73,11 +70,11 @@ jQuery.extend({
         if (bool) {
             $('form').css('opacity', 1);
             $('form input, form select, form label').removeClass('disabled').removeAttr('disabled');
-            $('button[type=submit]').text('Check');
+            $('button[type=submit]').fadeIn();
         } else {
             $('form').css('opacity', 0.333);
             $('form input, form select, form label').addClass('disabled').attr('disabled', 'disabled');
-            $('button[type=submit]').text('Wait…');
+            $('button[type=submit]').hide();
         }
     };
 
