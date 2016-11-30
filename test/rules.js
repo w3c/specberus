@@ -223,7 +223,7 @@ var tests = {
         ,   { doc: "headers/simple-oxford.html" }
         ,   { doc: "headers/copyright-freedom.html", warnings: ["headers.copyright"] }
         ,   { doc: "headers/fails.html", errors: ["headers.copyright"] }
-        ,   { doc: "headers/permissive-doc-license.html", warnings: ["headers.copyright"] }
+        ,   { doc: "headers/permissive-doc-license.html" }
         ]
     ,   translations:  [
             { doc: "headers/translations.html" }
