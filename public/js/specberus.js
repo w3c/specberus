@@ -60,11 +60,8 @@ jQuery.extend({
         console.log(`Handshake; using version “${data.version}”.`);
 
         socket.on('disconnect', function () {
-            if (!window.navigatingAway) {
-                socket.close();
-                toggleForm(false);
-                $('#offline').modal();
-            }
+            socket.close();
+            toggleForm(false);
         });
 
     });
@@ -73,11 +70,11 @@ jQuery.extend({
         if (bool) {
             $('form').css('opacity', 1);
             $('form input, form select, form label').removeClass('disabled').removeAttr('disabled');
-            $('button[type=submit]').text('Check');
+            $('button[type=submit]').fadeIn();
         } else {
             $('form').css('opacity', 0.333);
             $('form input, form select, form label').addClass('disabled').attr('disabled', 'disabled');
-            $('button[type=submit]').text('Wait…');
+            $('button[type=submit]').hide();
         }
     };
 
@@ -121,21 +118,21 @@ jQuery.extend({
                 `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${encodeURIComponent(url)}\`]` +
                 `(${encodeURIComponent(window.location)}).&` +
                 `labels=from-template` +
-                `" onclick="javascript:window.navigatingAway=true;">Report a bug</a>`;
+                `">Report a bug</a>`;
         else if (data && data.exception)
             issue = `<a href="https://github.com/w3c/specberus/issues/new?` +
                 `title=Bug:%20[WHAT]&` +
                 `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${encodeURIComponent(url)}\`]` +
                 `(${encodeURIComponent(window.location)}).&` +
                 `labels=from-template` +
-                `" onclick="javascript:window.navigatingAway=true;">Report a bug</a>`;
+                `">Report a bug</a>`;
         else
             issue = `<a href="https://github.com/w3c/specberus/issues/new?` +
                 `title=Bug%20in%20rules:%20[WHAT]&` +
                 `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${encodeURIComponent(url)}\`]` +
                 `(${encodeURIComponent(window.location)}).&` +
                 `labels=from-template` +
-                `" onclick="javascript:window.navigatingAway=true;">Report a bug</a>`;
+                `">Report a bug</a>`;
         var item = `<li class="list-group-item alert alert-${type.bootstrap}${exc}">
             <label class="pull-left label label-${type.bootstrap}">${type.ui}</label>
             <div class="detailed pull-right"><small> ${inContext} ${issue} </small></div>

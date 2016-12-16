@@ -1,6 +1,6 @@
 {
   "name": "specberus",
-  "version": "3.1.0",
+  "version": "3.1.2",
   "description": "Specberus is a checker used at W3C to validate the compliance of Technical Reports with publication rules.",
   "license": "MIT",
   "main": "lib/validator",
@@ -17,9 +17,9 @@
     "metaviewport-parser": "0.0.1",
     "morgan": "1.7.0",
     "promise": "7.1",
-    "request": "2.75.0",
-    "socket.io": "1.5.0",
-    "superagent": "2.3.0",
+    "request": "2.79.0",
+    "socket.io": "1.7.2",
+    "superagent": "3.2.1",
     "whacko": "0.19"
   },
   "devDependencies": {
@@ -29,9 +29,9 @@
     "expect.js": "0.3",
     "istanbul": "0.4.5",
     "jscs": "3.0.7",
-    "jsdoc": "3.4.2",
-    "jshint": "2.9.3",
-    "mocha": "3.1.2",
+    "jsdoc": "3.4.3",
+    "jshint": "2.9.4",
+    "mocha": "3.2.0",
     "nsp": "2.6.2"
   },
   "scripts": {
