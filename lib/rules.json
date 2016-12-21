@@ -69,7 +69,8 @@
                         "brokenLink": "The document <span class=\"rfc2119\">MUST NOT</span> have any broken internal links or broken links to other resources at w3.org. The document <span class=\"rfc2119\">SHOULD NOT</span> have any other broken links.",
                         "cssValide": "<span class=\"subset\">recursive</span> The document <span class=\"rfc2119\">MUST NOT</span> have any style sheet errors.",
                         "namespaces": "<span class=\"subset\">recursive</span> All proposed <a href=\"http://www.w3.org/TR/1999/REC-xml-names-19990114/\">XML namespaces</a> created by the publication of the document <span class=\"rfc2119\">MUST</span> follow <cite> <a href=\"http://www.w3.org/2005/07/13-nsuri\">URIs for W3C Namespaces</a> </cite>.",
-                        "wcag": "The document(s) <span class=\"rfc2119\">MUST</span> conform to the <a href=\"http://www.w3.org/TR/2008/REC-WCAG20-20081211/\">Web Content Accessibility Guidelines 2.0</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"http://www.w3.org/WAI/WCAG20/quickref/Overview.php\">customizable quick reference to Web Content Accessibility Guidelines 2.0</a>."
+                        "wcag": "The document(s) <span class=\"rfc2119\">MUST</span> conform to the <a href=\"http://www.w3.org/TR/2008/REC-WCAG20-20081211/\">Web Content Accessibility Guidelines 2.0</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"http://www.w3.org/WAI/WCAG20/quickref/Overview.php\">customizable quick reference to Web Content Accessibility Guidelines 2.0</a>.",
+                        "securityAndPrivacy": "The document <span class=\"rfc2119\">SHOULD</span> have a <a href=\"http://www.w3.org/TR/security-privacy-questionnaire/\">security and privacy considerations</a> section."                        
                     }
                 },
                 "compound": {
@@ -321,7 +322,8 @@
                         "brokenLink": "The document <span class=\"rfc2119\">MUST NOT</span> have any broken internal links or broken links to other resources at w3.org. The document <span class=\"rfc2119\">SHOULD NOT</span> have any other broken links.",
                         "cssValide": "<span class=\"subset\">recursive</span> The document <span class=\"rfc2119\">MUST NOT</span> have any style sheet errors.",
                         "namespaces": "<span class=\"subset\">recursive</span> All proposed <a href=\"http://www.w3.org/TR/1999/REC-xml-names-19990114/\">XML namespaces</a> created by the publication of the document <span class=\"rfc2119\">MUST</span> follow <cite> <a href=\"http://www.w3.org/2005/07/13-nsuri\">URIs for W3C Namespaces</a> </cite>.",
-                        "wcag": "The document(s) <span class=\"rfc2119\">MUST</span> conform to the <a href=\"http://www.w3.org/TR/2008/REC-WCAG20-20081211/\">Web Content Accessibility Guidelines 2.0</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"http://www.w3.org/WAI/WCAG20/quickref/Overview.php\">customizable quick reference to Web Content Accessibility Guidelines 2.0</a>."
+                        "wcag": "The document(s) <span class=\"rfc2119\">MUST</span> conform to the <a href=\"http://www.w3.org/TR/2008/REC-WCAG20-20081211/\">Web Content Accessibility Guidelines 2.0</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"http://www.w3.org/WAI/WCAG20/quickref/Overview.php\">customizable quick reference to Web Content Accessibility Guidelines 2.0</a>.",
+                        "securityAndPrivacy": "The document <span class=\"rfc2119\">SHOULD</span> have a <a href=\"http://www.w3.org/TR/security-privacy-questionnaire/\">security and privacy considerations</a> section."
                     }
                 },
                 "compound": {
@@ -406,7 +408,8 @@
                         "brokenLink": "The document <span class=\"rfc2119\">MUST NOT</span> have any broken internal links or broken links to other resources at w3.org. The document <span class=\"rfc2119\">SHOULD NOT</span> have any other broken links.",
                         "cssValide": "<span class=\"subset\">recursive</span> The document <span class=\"rfc2119\">MUST NOT</span> have any style sheet errors.",
                         "namespaces": "<span class=\"subset\">recursive</span> All proposed <a href=\"http://www.w3.org/TR/1999/REC-xml-names-19990114/\">XML namespaces</a> created by the publication of the document <span class=\"rfc2119\">MUST</span> follow <cite> <a href=\"http://www.w3.org/2005/07/13-nsuri\">URIs for W3C Namespaces</a> </cite>.",
-                        "wcag": "The document(s) <span class=\"rfc2119\">MUST</span> conform to the <a href=\"http://www.w3.org/TR/2008/REC-WCAG20-20081211/\">Web Content Accessibility Guidelines 2.0</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"http://www.w3.org/WAI/WCAG20/quickref/Overview.php\">customizable quick reference to Web Content Accessibility Guidelines 2.0</a>."
+                        "wcag": "The document(s) <span class=\"rfc2119\">MUST</span> conform to the <a href=\"http://www.w3.org/TR/2008/REC-WCAG20-20081211/\">Web Content Accessibility Guidelines 2.0</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"http://www.w3.org/WAI/WCAG20/quickref/Overview.php\">customizable quick reference to Web Content Accessibility Guidelines 2.0</a>.",
+                        "securityAndPrivacy": "The document <span class=\"rfc2119\">SHOULD</span> have a <a href=\"http://www.w3.org/TR/security-privacy-questionnaire/\">security and privacy considerations</a> section."
                     }
                 },
                 "compound": {
@@ -493,7 +496,8 @@
                         "brokenLink": "The document <span class=\"rfc2119\">MUST NOT</span> have any broken internal links or broken links to other resources at w3.org. The document <span class=\"rfc2119\">SHOULD NOT</span> have any other broken links.",
                         "cssValide": "<span class=\"subset\">recursive</span> The document <span class=\"rfc2119\">MUST NOT</span> have any style sheet errors.",
                         "namespaces": "<span class=\"subset\">recursive</span> All proposed <a href=\"http://www.w3.org/TR/1999/REC-xml-names-19990114/\">XML namespaces</a> created by the publication of the document <span class=\"rfc2119\">MUST</span> follow <cite> <a href=\"http://www.w3.org/2005/07/13-nsuri\">URIs for W3C Namespaces</a> </cite>.",
-                        "wcag": "The document(s) <span class=\"rfc2119\">MUST</span> conform to the <a href=\"http://www.w3.org/TR/2008/REC-WCAG20-20081211/\">Web Content Accessibility Guidelines 2.0</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"http://www.w3.org/WAI/WCAG20/quickref/Overview.php\">customizable quick reference to Web Content Accessibility Guidelines 2.0</a>."
+                        "wcag": "The document(s) <span class=\"rfc2119\">MUST</span> conform to the <a href=\"http://www.w3.org/TR/2008/REC-WCAG20-20081211/\">Web Content Accessibility Guidelines 2.0</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"http://www.w3.org/WAI/WCAG20/quickref/Overview.php\">customizable quick reference to Web Content Accessibility Guidelines 2.0</a>.",
+                        "securityAndPrivacy": "The document <span class=\"rfc2119\">SHOULD</span> have a <a href=\"http://www.w3.org/TR/security-privacy-questionnaire/\">security and privacy considerations</a> section."
                     }
                 },
                 "compound": {
@@ -580,7 +584,8 @@
                         "brokenLink": "The document <span class=\"rfc2119\">MUST NOT</span> have any broken internal links or broken links to other resources at w3.org. The document <span class=\"rfc2119\">SHOULD NOT</span> have any other broken links.",
                         "cssValide": "<span class=\"subset\">recursive</span> The document <span class=\"rfc2119\">MUST NOT</span> have any style sheet errors.",
                         "namespaces": "<span class=\"subset\">recursive</span> All proposed <a href=\"http://www.w3.org/TR/1999/REC-xml-names-19990114/\">XML namespaces</a> created by the publication of the document <span class=\"rfc2119\">MUST</span> follow <cite> <a href=\"http://www.w3.org/2005/07/13-nsuri\">URIs for W3C Namespaces</a> </cite>.",
-                        "wcag": "The document(s) <span class=\"rfc2119\">MUST</span> conform to the <a href=\"http://www.w3.org/TR/2008/REC-WCAG20-20081211/\">Web Content Accessibility Guidelines 2.0</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"http://www.w3.org/WAI/WCAG20/quickref/Overview.php\">customizable quick reference to Web Content Accessibility Guidelines 2.0</a>."
+                        "wcag": "The document(s) <span class=\"rfc2119\">MUST</span> conform to the <a href=\"http://www.w3.org/TR/2008/REC-WCAG20-20081211/\">Web Content Accessibility Guidelines 2.0</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"http://www.w3.org/WAI/WCAG20/quickref/Overview.php\">customizable quick reference to Web Content Accessibility Guidelines 2.0</a>.",
+                        "securityAndPrivacy": "The document <span class=\"rfc2119\">SHOULD</span> have a <a href=\"http://www.w3.org/TR/security-privacy-questionnaire/\">security and privacy considerations</a> section."
                     }
                 },
                 "compound": {
