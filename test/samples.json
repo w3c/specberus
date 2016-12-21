@@ -205,4 +205,59 @@
     ,   "rectrack": true
     ,   "process": "https://www.w3.org/2015/Process-20150901/"
     }
+,   {
+        "url": "http://www.w3.org/TR/2016/CR-mediacapture-streams-20160519/"
+    ,   "file": "cr-mediacapture-streams"
+    ,   "profile": "CR"
+    ,   "latestVersion": "http://www.w3.org/TR/mediacapture-streams/"
+    ,   "previousVersion": "http://www.w3.org/TR/2015/WD-mediacapture-streams-20150414/"
+    ,   "editorsDraft": "https://w3c.github.io/mediacapture-main/"
+    ,   "delivererIDs": [
+            47318,
+            43696
+        ]
+    ,   "title": "Media Capture and Streams"
+    ,   "docDate": "2016-5-19"
+    ,   "editorIDs": [
+            85118,
+            45507,
+            25254,
+            47326,
+            65611
+        ]
+    ,   "editorNames": [
+            "Daniel C. Burnett",
+            "Adam Bergkvist",
+            "Cullen Jennings",
+            "Anant Narayanan",
+            "Bernard Aboba"
+        ]
+    ,   "informative": false
+    ,   "rectrack": true
+    ,   "implementationFeedbackDue": "2016-6-15"
+    ,   "process": "http://www.w3.org/2015/Process-20150901/"
+    }
+,   {
+        "url": "https://www.w3.org/TR/2016/PR-media-source-20161004/"
+    ,   "file": "pr-media-source"
+    ,   "profile": "PR"
+    ,   "latestVersion": "https://www.w3.org/TR/media-source/"
+    ,   "previousVersion": "https://www.w3.org/TR/2016/CR-media-source-20160705/"
+    ,   "editorsDraft": "http://w3c.github.io/media-source/"
+    ,   "delivererIDs": [40318]
+    ,   "title": "Media Source Extensions™"
+    ,   "docDate": "2016-10-4"
+    ,   "editorIDs": []
+    ,   "editorNames": [
+            "Matthew Wolenetz",
+            "Jerry Smith",
+            "Mark Watson",
+            "Aaron Colwell",
+            "Adrian Bateman"
+        ]
+    ,   "informative": false
+    ,   "rectrack": true
+    ,   "prReviewsDue": "2016-11-1"
+    ,   "process": "https://www.w3.org/2015/Process-20150901/"
+    }
 ]
