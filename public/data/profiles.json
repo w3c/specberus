@@ -8,7 +8,8 @@
          {"id": "PR", "name": "Proposed Recommendation"},
          {"id": "PER", "name": "Proposed Edited Recommendation"},
          {"id": "REC", "name": "Recommendation"},
-         {"id": "RSCND", "name": "Rescinded Recommendation"}
+         {"id": "RSCND", "name": "Rescinded Recommendation"},
+         {"id": "OBSL", "name": "Obsolete Recommendation"}
      ]},
     {"name": "Notes",
      "profiles": [
