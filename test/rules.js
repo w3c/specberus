@@ -347,6 +347,12 @@ var tests = {
     ,       { doc: "sotd/group-homepage-https.html" }
     ,       { doc: "sotd/group-homepage-wrong.html", errors: ['sotd.group-homepage'] }
         ]
+    ,   'obsl-rescind':  [
+            { doc: "sotd/rec-obsl.html", config: { obsoletes: true } }
+    ,       { doc: "sotd/rec-rescind.html", config: { rescinds: true } }
+    ,       { doc: "sotd/rec-rescind.html", config: { obsoletes: true }, errors: ['sotd.obsl-rescind'] }
+    ,       { doc: "sotd/rec-obsl.html", config: { rescinds: true }, errors: ['sotd.obsl-rescind'] }
+        ]
     }
 ,   heuristic:   {
         'date-format':  [
