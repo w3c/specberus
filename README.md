@@ -7,6 +7,8 @@
 
 # Specberus
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/w3c/specberus.svg)](https://greenkeeper.io/)
+
 Specberus is a checker used at [W3C](http://www.w3.org/) to validate the compliance of [Technical Reports](http://www.w3.org/TR/) with publication rules.
 
 1. [Installation](#1-installation)
