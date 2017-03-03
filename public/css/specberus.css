@@ -108,7 +108,6 @@ form.manual .manual {
 }
 
 span.rfc2119 {
-    text-transform: lowercase;
     padding: 0 .25em;
     background-color: #e0ffe0;
     border: 1px solid #e0ffe0;
