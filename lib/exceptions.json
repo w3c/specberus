@@ -14,5 +14,11 @@
       "rule": "validation.css",
       "type": "at-rule"
     }
+  ],
+  "^css-tables-3$": [
+    {
+      "rule": "validation.css",
+      "type": "generator.unrecognize"
+    }
   ]
 }
