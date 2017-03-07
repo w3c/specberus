@@ -143,6 +143,22 @@ span.info {
     display: none;
 }
 
+.profile-abbr {
+    display: inline-block;
+    font-family: monospace;
+    min-width: 7em;
+    padding-right: .5em;
+}
+
+.profile-abbr:hover,
+.profile-abbr:active,
+.profile-abbr:focus,
+:hover > .profile-abbr,
+:active > .profile-abbr,
+:focus > .profile-abbr {
+    text-decoration: underline;
+}
+
 .panel-title a {
     color: #337ab7;
 }
