@@ -108,7 +108,6 @@ form.manual .manual {
 }
 
 span.rfc2119 {
-    text-transform: lowercase;
     padding: 0 .25em;
     background-color: #e0ffe0;
     border: 1px solid #e0ffe0;
@@ -142,6 +141,22 @@ span.info {
 
 .tooltip-arrow {
     display: none;
+}
+
+.profile-abbr {
+    display: inline-block;
+    font-family: monospace;
+    min-width: 7em;
+    padding-right: .5em;
+}
+
+.profile-abbr:hover,
+.profile-abbr:active,
+.profile-abbr:focus,
+:hover > .profile-abbr,
+:active > .profile-abbr,
+:focus > .profile-abbr {
+    text-decoration: underline;
 }
 
 .panel-title a {

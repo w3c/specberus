@@ -13,7 +13,7 @@ const chai = require('chai')
 ;
 
 // Internal packages:
-const rulesWrapper = require('../lib/rules-wrapper')
+const rules = require('../lib/rules')
 ,   l10n = require('../lib/l10n-en_GB')
 ;
 
@@ -192,7 +192,7 @@ describe('L10n', function() {
 
     describe('UI messages module', function() {
         it('“lib/rules-wrapper” should be a valid object', function() {
-            return expect(rulesWrapper).to.be.an('object');
+            return expect(rules).to.be.an('object');
         });
         it('“lib/l10n-en_GB” should be a valid object', function() {
             return expect(l10n).to.be.an('object');
