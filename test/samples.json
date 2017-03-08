@@ -70,7 +70,7 @@
         ,   "Davide Ceolin"
         ,   "Eric Stephan"
     ]
-    ,   "informative": false
+    ,   "informative": true
     ,   "rectrack": false
     ,   "process": "https://www.w3.org/2015/Process-20150901/"
     }
