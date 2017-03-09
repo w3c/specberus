@@ -18,7 +18,7 @@ const bodyParser = require('body-parser')
 ;
 
 // Internal packages:
-const self = require('./package.json')
+const self = require('./package')
 ,   l10n = require('./lib/l10n')
 ,   sink = require('./lib/sink')
 ,   validator = require('./lib/validator')

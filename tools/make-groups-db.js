@@ -15,7 +15,7 @@
 
 /* globals __dirname: false */
 
-var src = require("./groups-sparql.json")
+var src = require("./groups-sparql")
 ,   fs = require("fs")
 ,   pth = require("path")
 ,   res = {}
