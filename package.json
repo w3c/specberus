@@ -40,8 +40,8 @@
     "jsdoc": "jsdoc -a all -d doc/api/ -e utf8 -r app.js lib/ test/ tools/",
     "lint": "jscs app.js lib/ public/ test/ tools/ views/ && jshint app.js lib/ public/ test/ tools/ views/",
     "nsp": "nsp check",
-    "start": "node --use_strict app",
-    "test": "npm run lint && mocha"
+    "start": "node --use_strict --harmony app",
+    "test": "npm run lint && mocha --harmony"
   },
   "engines": {
     "node": "4 || 5 || 6",
