@@ -1,1347 +1,1380 @@
 {
-    "FPIG-NOTE": {
-        "order": 1,
-        "name": "First Public Interest Group Note",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
-                }
-            },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "IG-NOTE"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
-                }
-            },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        ""
-                    ],
-                    "dateTitleH2": [
-                        "Interest Group Note",
-                        ""
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> </ul>",
-                    "docIDThisVersion": [
-                        "NOTE"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "altRepresentations": [
-                        "NOTE"
-                    ],
-                    "copyright": true,
-                    "hrAfterCopyright": true
-                }
-            },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
-                }
-            },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "discontinue": true,
-                    "expectations": true,
-                    "customParagraph": true,
-                    "stability": [
-                        "an Interest Group Note",
-                        "(see also ideas for status sections regarding the <a href=\"http://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
-                    ],
-                    "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to disclosure requirements (with a link to the disclosure section of the group charter). <blockquote class=\"boilerplate\"> <p>The disclosure obligations of the Participants of this group are described in the <a href=\"@@URI to disclosure section of charter@@\">charter</a>. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;The disclosure obligations of the Participants of this group are described in the &lt;a href=\"@@URI to disclosure section of charter@@\"&gt;charter&lt;/a&gt;. &lt;/p&gt;</code></div>",
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
-                }
-            },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true
-                }
-            },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "NOTE"
-                    ],
-                    "compoundOverview": true,
-                    "fixupJs": true,
-                    "compound": true
-                }
-            }
-        }
-    },
-    "IG-NOTE": {
-        "order": 2,
-        "name": "Interest Group Note",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
-                }
-            },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "IG-NOTE"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
-                }
-            },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        ""
-                    ],
-                    "dateTitleH2": [
-                        "Interest Group Note",
-                        ""
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": true,
-                    "docIDThisVersion": [
-                        "NOTE"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "altRepresentations": [
-                        "WD"
-                    ],
-                    "copyright": true,
-                    "hrAfterCopyright": true
-                }
-            },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
-                }
-            },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "discontinue": true,
-                    "expectations": true,
-                    "customParagraph": true,
-                    "changesList": [
-                        "should",
-                        ""
-                    ],
-                    "stability": [
-                        "an Interest Group Note",
-                        "(see also ideas for status sections regarding the <a href=\"http://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
-                    ],
-                    "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to disclosure requirements (with a link to the disclosure section of the group charter). <blockquote class=\"boilerplate\"> <p>The disclosure obligations of the Participants of this group are described in the <a href=\"@@URI to disclosure section of charter@@\">charter</a>. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;The disclosure obligations of the Participants of this group are described in the &lt;a href=\"@@URI to disclosure section of charter@@\"&gt;charter&lt;/a&gt;. &lt;/p&gt;</code></div>",
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
-                }
-            },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true
-                }
-            },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "WD"
-                    ],
-                    "compoundOverview": true,
-                    "fixupJs": true,
-                    "compound": true
-                }
-            }
-        }
-    },
-    "FPWG-NOTE": {
+    "SUBM": {
+        "name": "Submissions",
         "order": 3,
-        "name": "First Public Working Group Note",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
-                }
+        "profiles": {
+            "TEAM-SUBM": {
+                "order": 1,
+                "name": "Team Submission",
+                "sections": {}
             },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "WG-NOTE"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
-                }
-            },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        ""
-                    ],
-                    "dateTitleH2": [
-                        "Working Group Note",
-                        ""
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">may</span> appear. Ask the Comm Team if you have questions.",
-                    "docIDThisVersion": [
-                        "NOTE"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "altRepresentations": [
-                        "NOTE"
-                    ],
-                    "copyright": true,
-                    "hrAfterCopyright": true
-                }
-            },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
-                }
-            },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "discontinue": true,
-                    "expectations": true,
-                    "customParagraph": true,
-                    "stability": [
-                        "a Working Group Note",
-                        "(see also ideas for status sections regarding the <a href=\"http://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
-                    ],
-                    "patPolReq": true,
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
-                }
-            },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true
-                }
-            },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "NOTE"
-                    ],
-                    "compoundOverview": true,
-                    "fixupJs": true,
-                    "compound": true
-                }
+            "MEM-SUBM": {
+                "order": 2,
+                "name": "Member Submission",
+                "sections": {}
             }
         }
     },
-    "WG-NOTE": {
-        "order": 4,
-        "name": "Working Group Note",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
+    "NOTE": {
+        "name": "Notes",
+        "order": 2,
+        "profiles": {
+            "CG-NOTE": {
+                "order": 1,
+                "name": "Coordination Group Note",
+                "sections": {}
+            },
+            "FPIG-NOTE": {
+                "order": 2,
+                "name": "First Public Interest Group Note",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "IG-NOTE"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Interest Group Note",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> </ul>",
+                            "docIDThisVersion": [
+                                "NOTE"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "NOTE"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "discontinue": true,
+                            "expectations": true,
+                            "customParagraph": true,
+                            "stability": [
+                                "an Interest Group Note",
+                                "(see also ideas for status sections regarding the <a href=\"http://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
+                            ],
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to disclosure requirements (with a link to the disclosure section of the group charter). <blockquote class=\"boilerplate\"> <p>The disclosure obligations of the Participants of this group are described in the <a href=\"@@URI to disclosure section of charter@@\">charter</a>. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;The disclosure obligations of the Participants of this group are described in the &lt;a href=\"@@URI to disclosure section of charter@@\"&gt;charter&lt;/a&gt;. &lt;/p&gt;</code></div>",
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "NOTE"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
                 }
             },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "WG-NOTE"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
+            "IG-NOTE": {
+                "order": 3,
+                "name": "Interest Group Note",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "IG-NOTE"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Interest Group Note",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": true,
+                            "docIDThisVersion": [
+                                "NOTE"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "WD"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "discontinue": true,
+                            "expectations": true,
+                            "customParagraph": true,
+                            "changesList": [
+                                "should",
+                                ""
+                            ],
+                            "stability": [
+                                "an Interest Group Note",
+                                "(see also ideas for status sections regarding the <a href=\"http://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
+                            ],
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to disclosure requirements (with a link to the disclosure section of the group charter). <blockquote class=\"boilerplate\"> <p>The disclosure obligations of the Participants of this group are described in the <a href=\"@@URI to disclosure section of charter@@\">charter</a>. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;The disclosure obligations of the Participants of this group are described in the &lt;a href=\"@@URI to disclosure section of charter@@\"&gt;charter&lt;/a&gt;. &lt;/p&gt;</code></div>",
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "WD"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
                 }
             },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        ""
-                    ],
-                    "dateTitleH2": [
-                        "Working Group Note",
-                        ""
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": true,
-                    "docIDThisVersion": [
-                        "NOTE"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "altRepresentations": [
-                        "PR"
-                    ],
-                    "copyright": true,
-                    "hrAfterCopyright": true
+            "FPWG-NOTE": {
+                "order": 4,
+                "name": "First Public Working Group Note",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "WG-NOTE"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Working Group Note",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">may</span> appear. Ask the Comm Team if you have questions.",
+                            "docIDThisVersion": [
+                                "NOTE"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "NOTE"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "discontinue": true,
+                            "expectations": true,
+                            "customParagraph": true,
+                            "stability": [
+                                "a Working Group Note",
+                                "(see also ideas for status sections regarding the <a href=\"http://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
+                            ],
+                            "patPolReq": true,
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "NOTE"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
                 }
             },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
-                }
-            },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "discontinue": true,
-                    "expectations": true,
-                    "customParagraph": true,
-                    "changesList": [
-                        "should",
-                        ""
-                    ],
-                    "stability": [
-                        "a Working Group Note",
-                        "(see also ideas for status sections regarding the <a href=\"http://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
-                    ],
-                    "patPolReq": true,
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
-                }
-            },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true
-                }
-            },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "NOTE"
-                    ],
-                    "compoundOverview": true,
-                    "fixupJs": true,
-                    "compound": true
-                }
-            }
-        }
-    },
-    "FPWD": {
-        "order": 5,
-        "name": "First Public Working Draft",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
-                }
-            },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "WD"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
-                }
-            },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        ""
-                    ],
-                    "dateTitleH2": [
-                        "First Public Working Draft",
-                        ""
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">MAY</span> appear. Ask the Comm Team if you have questions.",
-                    "docIDThisVersion": [
-                        "WD"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "altRepresentations": [
-                        "WD"
-                    ],
-                    "copyright": true,
-                    "hrAfterCopyright": true
-                }
-            },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
-                }
-            },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "FPWD": true,
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "customParagraph": true,
-                    "stability": [
-                        "a First Public Working Draft",
-                        ""
-                    ],
-                    "patPolReq": true,
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
-                }
-            },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true
-                }
-            },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "WD"
-                    ],
-                    "compoundOverview": true,
-                    "fixupJs": true,
-                    "compound": true
-                }
-            }
-        }
-    },
-    "WD": {
-        "order": 6,
-        "name": "Ordinary Working Draft",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
-                }
-            },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "WD"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
-                }
-            },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        ""
-                    ],
-                    "dateTitleH2": [
-                        "Working Draft",
-                        ""
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul>",
-                    "docIDThisVersion": [
-                        "WD"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "altRepresentations": [
-                        "WD"
-                    ],
-                    "copyright": true,
-                    "hrAfterCopyright": true
-                }
-            },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
-                }
-            },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "customParagraph": true,
-                    "changesList": [
-                        "should",
-                        ""
-                    ],
-                    "stability": [
-                        "a Working Draft",
-                        ""
-                    ],
-                    "patPolReq": true,
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
-                }
-            },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true,
-                    "securityAndPrivacy": true
-                }
-            },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "WD"
-                    ],
-                    "compoundOverview": true,
-                    "compound": true
-                }
-            }
-        }
-    },
-    "FPCR": {
-        "order": 7,
-        "name": "First Public Candidate Recommendation",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
-                }
-            },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "CR"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
-                }
-            },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        ""
-                    ],
-                    "dateTitleH2": [
-                        "First Public Candidate Recommendation",
-                        ""
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">may</span> appear. Ask the Comm Team if you have questions.",
-                    "docIDThisVersion": [
-                        "CR"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "altRepresentations": [
-                        "CR"
-                    ],
-                    "copyright": true,
-                    "hrAfterCopyright": true
-                }
-            },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
-                }
-            },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "FPWD": true,
-                    "CR": "It <span class=\"rfc2119\">must</span> indicate that this is a Candidate Recommendation.",
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "reviewEndDateCR": "It <span class=\"rfc2119\">must</span> include the end date of the Candidate Recommendation review period.",
-                    "customParagraph": true,
-                    "stability": [
-                        "a First Public Candidate Recommendation",
-                        ""
-                    ],
-                    "patPolReq": true,
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
-                }
-            },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true,
-                    "securityAndPrivacy": true
-                }
-            },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "CR"
-                    ],
-                    "compoundOverview": true,
-                    "fixupJs": true,
-                    "compound": true
-                }
-            }
-        }
-    },
-    "CR": {
-        "order": 8,
-        "name": "Candidate Recommendation",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
-                }
-            },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "CR"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
-                }
-            },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        ""
-                    ],
-                    "dateTitleH2": [
-                        "Candidate Recommendation",
-                        ""
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">may</span> appear. Ask the Comm Team if you have questions.",
-                    "docIDThisVersion": [
-                        "CR"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "altRepresentations": [
-                        "CR"
-                    ],
-                    "copyright": true,
-                    "hrAfterCopyright": true
-                }
-            },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
-                }
-            },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "reviewEndDateCR": "It <span class=\"rfc2119\">must</span> include a minimal duration (before which the group will not request the next transition). The duration <span class=\"rfc2119\">must</span> be expressed as an estimated date.",
-                    "implEstimation": "It <span class=\"rfc2119\">should</span> include an estimated date by which time the Working Group expects to have sufficient implementation experience.",
-                    "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report, or a statement that no such report exists.",
-                    "featAtRisk": "It <span class=\"rfc2119\">must</span> identify any \"features at risk\" declared by the Working Group (as defined in section <a href=\"https://www.w3.org/2015/Process-20150901/#candidate-rec\">7.4 of the W3C Process Document</a>).",
-                    "customParagraph": true,
-                    "changesList": [
-                        "must",
-                        ""
-                    ],
-                    "stability": [
-                        "a Candidate Recommendation",
-                        ""
-                    ],
-                    "patPolReq": true,
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
-                }
-            },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true,
-                    "securityAndPrivacy": true
-                }
-            },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "CR"
-                    ],
-                    "compoundOverview": true,
-                    "fixupJs": true,
-                    "compound": true
-                }
-            }
-        }
-    },
-    "PR": {
-        "order": 9,
-        "name": "Proposed Recommendation",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
-                }
-            },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "PR"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
-                }
-            },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        ""
-                    ],
-                    "dateTitleH2": [
-                        "Proposed Recommendation",
-                        ""
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": true,
-                    "docIDThisVersion": [
-                        "PR"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "altRepresentations": [
-                        "PR"
-                    ],
-                    "copyright": true,
-                    "hrAfterCopyright": true
-                }
-            },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
-                }
-            },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "ACRepFeedbackEmail": true,
-                    "reviewEndDatePR": true,
-                    "implReport": true,
-                    "skipCR": "If the previous version of this document was not a Candidate Recommendation, the status section <span class=\"rfc2119\">should</span> include rationale for the <a href=\"http://www.w3.org/2005/08/01-transitions-about#director\">Director</a>'s decision to skip CR (e.g., there was already sufficient implementation experience).",
-                    "customParagraph": true,
-                    "changesList": [
-                        "must",
-                        " The group <span class=\"rfc2119\">must</span> indicate which changes may affect conformance."
-                    ],
-                    "stability": [
-                        "a Proposed Recommendation",
-                        ""
-                    ],
-                    "patPolReq": true,
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
-                }
-            },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true,
-                    "securityAndPrivacy": true
-                }
-            },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "PR"
-                    ],
-                    "compoundOverview": true,
-                    "fixupJs": true,
-                    "compound": true
-                }
-            }
-        }
-    },
-    "PER": {
-        "order": 10,
-        "name": "Proposed Edited Recommendation",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
-                }
-            },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "PER"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
-                }
-            },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        ""
-                    ],
-                    "dateTitleH2": [
-                        "Proposed Edited Recommendation",
-                        ""
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": true,
-                    "docIDThisVersion": [
-                        "PER"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "altRepresentations": [
-                        "PER"
-                    ],
-                    "copyright": true,
-                    "hrAfterCopyright": true
-                }
-            },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
-                }
-            },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "ACRepFeedbackEmail": true,
-                    "reviewEndDatePR": true,
-                    "implReport": true,
-                    "PERMajorRev": "A Proposed Edited Recommendation that revises a previously published Recommendation with the same major revision number <span class=\"rfc2119\">should</span> link to the most recent Recommendation with that major revision number. Example: The version 2.1 Working Draft (Second Edition) is published after the 2.1 Recommendation and links to it as the most recent 2.x Recommendation available at time of publication.",
-                    "customParagraph": true,
-                    "changesList": [
-                        "must",
-                        " The group <span class=\"rfc2119\">must</span> indicate which changes may affect conformance."
-                    ],
-                    "stability": [
-                        "a Proposed Edited Recommendation",
-                        ""
-                    ],
-                    "patPolReq": true,
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
-                }
-            },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true,
-                    "securityAndPrivacy": true
-                }
-            },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "PER"
-                    ],
-                    "compoundOverview": true,
-                    "fixupJs": true,
-                    "compound": true
+            "WG-NOTE": {
+                "order": 5,
+                "name": "Working Group Note",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "WG-NOTE"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Working Group Note",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": true,
+                            "docIDThisVersion": [
+                                "NOTE"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "PR"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "discontinue": true,
+                            "expectations": true,
+                            "customParagraph": true,
+                            "changesList": [
+                                "should",
+                                ""
+                            ],
+                            "stability": [
+                                "a Working Group Note",
+                                "(see also ideas for status sections regarding the <a href=\"http://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
+                            ],
+                            "patPolReq": true,
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "NOTE"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
                 }
             }
         }
     },
     "REC": {
-        "order": 11,
-        "name": "Recommendation",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
+        "name": "Recommendations",
+        "order": 1,
+        "profiles": {
+            "FPWD": {
+                "order": 1,
+                "name": "First Public Working Draft",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "WD"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "First Public Working Draft",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">MAY</span> appear. Ask the Comm Team if you have questions.",
+                            "docIDThisVersion": [
+                                "WD"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "WD"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "FPWD": true,
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "customParagraph": true,
+                            "stability": [
+                                "a First Public Working Draft",
+                                ""
+                            ],
+                            "patPolReq": true,
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "WD"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
                 }
             },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "REC"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
+            "WD": {
+                "order": 2,
+                "name": "Working Draft",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "WD"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Working Draft",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul>",
+                            "docIDThisVersion": [
+                                "WD"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "WD"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "customParagraph": true,
+                            "changesList": [
+                                "should",
+                                ""
+                            ],
+                            "stability": [
+                                "a Working Draft",
+                                ""
+                            ],
+                            "patPolReq": true,
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true,
+                            "securityAndPrivacy": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "WD"
+                            ],
+                            "compoundOverview": true,
+                            "compound": true
+                        }
+                    }
                 }
             },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        "<li class=\"rec-in-place\">If a Recommendation modified in place, see the Comm Team's policy regarding <a href=\"http://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>, otherwise</li> "
-                    ],
-                    "dateTitleH2": [
-                        "Recommendation",
-                        " <p>If this is a modified Recommendation that was modified in place or is a new edition, the document <span class=\"rfc2119\">must</span> include both the original publication date and the modification date. For example:</p> <pre xml:space=\"preserve\">&lt;h2&gt;W3C Recommendation 7 April 2004, edited in place 19 August2004&lt;/h2&gt;</pre>"
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": true,
-                    "docIDThisVersion": [
-                        "REC"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "errata": true,
-                    "altRepresentations": [
-                        "REC"
-                    ],
-                    "translation": true,
-                    "copyright": true,
-                    "hrAfterCopyright": true
+            "FPCR": {
+                "order": 3,
+                "name": "First Public Candidate Recommendation",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "CR"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "First Public Candidate Recommendation",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">may</span> appear. Ask the Comm Team if you have questions.",
+                            "docIDThisVersion": [
+                                "CR"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "CR"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "FPWD": true,
+                            "CR": "It <span class=\"rfc2119\">must</span> indicate that this is a Candidate Recommendation.",
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "reviewEndDateCR": "It <span class=\"rfc2119\">must</span> include the end date of the Candidate Recommendation review period.",
+                            "customParagraph": true,
+                            "stability": [
+                                "a First Public Candidate Recommendation",
+                                ""
+                            ],
+                            "patPolReq": true,
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true,
+                            "securityAndPrivacy": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "CR"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
                 }
             },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
+            "CR": {
+                "order": 4,
+                "name": "Candidate Recommendation",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "CR"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Candidate Recommendation",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">may</span> appear. Ask the Comm Team if you have questions.",
+                            "docIDThisVersion": [
+                                "CR"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "CR"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "reviewEndDateCR": "It <span class=\"rfc2119\">must</span> include a minimal duration (before which the group will not request the next transition). The duration <span class=\"rfc2119\">must</span> be expressed as an estimated date.",
+                            "implEstimation": "It <span class=\"rfc2119\">should</span> include an estimated date by which time the Working Group expects to have sufficient implementation experience.",
+                            "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report, or a statement that no such report exists.",
+                            "featAtRisk": "It <span class=\"rfc2119\">must</span> identify any \"features at risk\" declared by the Working Group (as defined in section <a href=\"https://www.w3.org/2015/Process-20150901/#candidate-rec\">7.4 of the W3C Process Document</a>).",
+                            "customParagraph": true,
+                            "changesList": [
+                                "must",
+                                ""
+                            ],
+                            "stability": [
+                                "a Candidate Recommendation",
+                                ""
+                            ],
+                            "patPolReq": true,
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true,
+                            "securityAndPrivacy": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "CR"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
                 }
             },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "recRelation": "It <span class=\"rfc2119\">must</span> indicate its relationship to previous related Recommendations (e.g., an indication that a Recommendation supersedes, obsoletes, or subsumes another, or that a Recommendation is an editorial revision) and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number. The document thus links to two important resources: the previous edition of the Recommendation via the status section, and the previous draft (the Proposed [Edited] Recommendation) via the \"Previous version\" link.",
-                    "customParagraph": true,
-                    "changesList": [
-                        "must",
-                        ""
-                    ],
-                    "stability": "It <span class=\"rfc2119\">must</span> set expectations about the stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></div>",
-                    "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"http://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy-20040205/\">5 February 2004 W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy-20040205/\"&gt;5 February 2004 W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
+            "PR": {
+                "order": 5,
+                "name": "Proposed Recommendation",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "PR"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Proposed Recommendation",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": true,
+                            "docIDThisVersion": [
+                                "PR"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "PR"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "ACRepFeedbackEmail": true,
+                            "reviewEndDatePR": true,
+                            "implReport": true,
+                            "skipCR": "If the previous version of this document was not a Candidate Recommendation, the status section <span class=\"rfc2119\">should</span> include rationale for the <a href=\"http://www.w3.org/2005/08/01-transitions-about#director\">Director</a>'s decision to skip CR (e.g., there was already sufficient implementation experience).",
+                            "customParagraph": true,
+                            "changesList": [
+                                "must",
+                                " The group <span class=\"rfc2119\">must</span> indicate which changes may affect conformance."
+                            ],
+                            "stability": [
+                                "a Proposed Recommendation",
+                                ""
+                            ],
+                            "patPolReq": true,
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true,
+                            "securityAndPrivacy": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "PR"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
                 }
             },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true
+            "PER": {
+                "order": 6,
+                "name": "Proposed Edited Recommendation",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "PER"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Proposed Edited Recommendation",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": true,
+                            "docIDThisVersion": [
+                                "PER"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "PER"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "ACRepFeedbackEmail": true,
+                            "reviewEndDatePR": true,
+                            "implReport": true,
+                            "PERMajorRev": "A Proposed Edited Recommendation that revises a previously published Recommendation with the same major revision number <span class=\"rfc2119\">should</span> link to the most recent Recommendation with that major revision number. Example: The version 2.1 Working Draft (Second Edition) is published after the 2.1 Recommendation and links to it as the most recent 2.x Recommendation available at time of publication.",
+                            "customParagraph": true,
+                            "changesList": [
+                                "must",
+                                " The group <span class=\"rfc2119\">must</span> indicate which changes may affect conformance."
+                            ],
+                            "stability": [
+                                "a Proposed Edited Recommendation",
+                                ""
+                            ],
+                            "patPolReq": true,
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true,
+                            "securityAndPrivacy": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "PER"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
                 }
             },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "REC"
-                    ],
-                    "compoundOverview": true,
-                    "fixupJs": true,
-                    "compound": true
-                }
-            }
-        }
-    },
-    "RSCND": {
-        "order": 12,
-        "name": "Rescinded Recommendation",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
-                }
-            },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "RSCND"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
-                }
-            },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        "<li class=\"rec-in-place\">If a Recommendation modified in place, see the Comm Team's policy regarding <a href=\"http://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>, otherwise</li> "
-                    ],
-                    "dateTitleH2": [
-                        "Rescinded Recommendation",
-                        ""
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> <li class=\"prevrecuri\">\"Rescinds this Recommendation\" URI</li> </ul>",
-                    "docIDThisVersion": [
-                        "RSCND"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "altRepresentations": [
-                        "RSCND"
-                    ],
-                    "copyright": true,
-                    "hrAfterCopyright": true
-                }
-            },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
-                }
-            },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "recRelation": true,
-                    "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to rescind the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to rescind the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting and Rescinding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
-                    "altTechno": true,
-                    "customParagraph": true,
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
-                }
-            },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true
-                }
-            },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "RSCND"
-                    ],
-                    "compoundOverview": true,
-                    "fixupJs": true,
-                    "compound": true
-                }
-            }
-        }
-    },
-    "OBSL": {
-        "order": 13,
-        "name": "Obsolete Recommendation",
-        "sections": {
-            "format": {
-                "name": "1. Normative Document Representation",
-                "rules": {
-                    "normativeVersion": true,
-                    "valideHTML": true,
-                    "visualStyle": true
+            "REC": {
+                "order": 7,
+                "name": "Recommendation",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "REC"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                "<li class=\"rec-in-place\">If a Recommendation modified in place, see the Comm Team's policy regarding <a href=\"http://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>, otherwise</li> "
+                            ],
+                            "dateTitleH2": [
+                                "Recommendation",
+                                " <p>If this is a modified Recommendation that was modified in place or is a new edition, the document <span class=\"rfc2119\">must</span> include both the original publication date and the modification date. For example:</p> <pre xml:space=\"preserve\">&lt;h2&gt;W3C Recommendation 7 April 2004, edited in place 19 August2004&lt;/h2&gt;</pre>"
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": true,
+                            "docIDThisVersion": [
+                                "REC"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "errata": true,
+                            "altRepresentations": [
+                                "REC"
+                            ],
+                            "translation": true,
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "recRelation": "It <span class=\"rfc2119\">must</span> indicate its relationship to previous related Recommendations (e.g., an indication that a Recommendation supersedes, obsoletes, or subsumes another, or that a Recommendation is an editorial revision) and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number. The document thus links to two important resources: the previous edition of the Recommendation via the status section, and the previous draft (the Proposed [Edited] Recommendation) via the \"Previous version\" link.",
+                            "customParagraph": true,
+                            "changesList": [
+                                "must",
+                                ""
+                            ],
+                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></div>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"http://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy-20040205/\">5 February 2004 W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy-20040205/\"&gt;5 February 2004 W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "REC"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
                 }
             },
-            "metadata": {
-                "name": "2. Document Metadata",
-                "rules": {
-                    "goodStylesheet": [
-                        "OBSL"
-                    ],
-                    "lastStylesheet": true,
-                    "viewport": true
+            "RSCND": {
+                "order": 8,
+                "name": "Rescinded Recommendation",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "RSCND"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                "<li class=\"rec-in-place\">If a Recommendation modified in place, see the Comm Team's policy regarding <a href=\"http://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>, otherwise</li> "
+                            ],
+                            "dateTitleH2": [
+                                "Rescinded Recommendation",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> <li class=\"prevrecuri\">\"Rescinds this Recommendation\" URI</li> </ul>",
+                            "docIDThisVersion": [
+                                "RSCND"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "RSCND"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "recRelation": true,
+                            "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to rescind the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to rescind the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting and Rescinding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
+                            "altTechno": true,
+                            "customParagraph": true,
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "RSCND"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
                 }
             },
-            "front-matter": {
-                "name": "3. Front Matter",
-                "rules": {
-                    "divClassHead": true,
-                    "logo": true,
-                    "title": true,
-                    "versionNumber": [
-                        "<li class=\"rec-in-place\">If a Recommendation modified in place, see the Comm Team's policy regarding <a href=\"http://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>, otherwise</li> "
-                    ],
-                    "dateTitleH2": [
-                        "Obsolete Recommendation",
-                        ""
-                    ],
-                    "docIDFormat": true,
-                    "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> <li class=\"prevrecuri\">\"Obsoletes this Recommendation\" URI</li> </ul>",
-                    "docIDThisVersion": [
-                        "OBSL"
-                    ],
-                    "docIDLatestVersion": true,
-                    "docIDDate": true,
-                    "editorSection": true,
-                    "errata": true,
-                    "altRepresentations": [
-                        "OBSL"
-                    ],
-                    "translation": true,
-                    "copyright": true,
-                    "hrAfterCopyright": true
-                }
-            },
-            "navigation": {
-                "name": "6. Table of Contents",
-                "rules": {
-                    "toc": true,
-                    "tocNav": true
-                }
-            },
-            "document-status": {
-                "name": "5. Document Status Section",
-                "rules": {
-                    "sotd": true,
-                    "boilerplateTRDoc": true,
-                    "datesFormat": true,
-                    "WGLink": true,
-                    "mailingListName": true,
-                    "mailingListLink": true,
-                    "recRelation": true,
-                    "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to obsolete the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to obsolete the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting and Rescinding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
-                    "altTechno": true,
-                    "customParagraph": true,
-                    "changesList": [
-                        "must",
-                        ""
-                    ],
-                    "stability": "It <span class=\"rfc2119\">must</span> set expectations about the stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></div>",
-                    "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"http://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy-20040205/\">5 February 2004 W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy-20040205/\"&gt;5 February 2004 W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
-                    "knownDisclosureNumber": true,
-                    "whichProcess": true
-                }
-            },
-            "document-body": {
-                "name": "7. Document Body",
-                "rules": {
-                    "headingWithoutID": true,
-                    "brokenLink": true,
-                    "cssValide": true,
-                    "namespaces": true,
-                    "wcag": true
-                }
-            },
-            "compound": {
-                "name": "8. Compound Documents",
-                "rules": {
-                    "compoundFilesLocation": [
-                        "OBSL"
-                    ],
-                    "compoundOverview": true,
-                    "fixupJs": true,
-                    "compound": true
+            "OBSL": {
+                "order": 9,
+                "name": "Obsolete Recommendation",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "OBSL"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                "<li class=\"rec-in-place\">If a Recommendation modified in place, see the Comm Team's policy regarding <a href=\"http://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>, otherwise</li> "
+                            ],
+                            "dateTitleH2": [
+                                "Obsolete Recommendation",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> <li class=\"prevrecuri\">\"Obsoletes this Recommendation\" URI</li> </ul>",
+                            "docIDThisVersion": [
+                                "OBSL"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "errata": true,
+                            "altRepresentations": [
+                                "OBSL"
+                            ],
+                            "translation": true,
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "mailingListName": true,
+                            "mailingListLink": true,
+                            "recRelation": true,
+                            "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to obsolete the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to obsolete the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting and Rescinding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
+                            "altTechno": true,
+                            "customParagraph": true,
+                            "changesList": [
+                                "must",
+                                ""
+                            ],
+                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></div>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"http://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy-20040205/\">5 February 2004 W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy-20040205/\"&gt;5 February 2004 W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "OBSL"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
                 }
             }
         }

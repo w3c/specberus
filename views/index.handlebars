@@ -22,7 +22,14 @@
             <label for="profile" class="col-xs-3 col-sm-1 col-md-1 col-lg-1 control-label">Profile</label>
             <div id="profileContainer" class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
               <select class="form-control" id="profile" required>
-                <option value disabled="disabled">Select an option</option>
+                <option value="auto" selected="selected">Auto-detect</option>
+                {{#each tracks}}
+                  <optgroup label="{{this.name}}">
+                  {{#each this.profiles}}
+                    <option value="{{this.abbr}}">{{this.abbr}}&nbsp;&mdash;&nbsp;{{this.name}}</option>
+                  {{/each}}
+                  </optgroup>
+                {{/each}}
               </select>
             </div>
             <div id="check1" class="col-sm-2 col-md-1 col-lg-1">

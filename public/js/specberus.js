@@ -389,25 +389,14 @@ jQuery.extend({
     });
 
     $(document).ready(function() {
-        $.getJSON(`${baseURI}data/profiles.json`, function(data) {
-            $profile.append($('<option value="auto" selected="selected">Auto-detect</option>'));
-            $.each(data.tracks, function(foo, track) {
-                var optgroup = $('<optgroup label="' + track.name + '"></optgroup>');
-                $.each(track.profiles, function(bar, profile) {
-                    var option = $('<option value="' + profile.id + '">' + profile.id + '&nbsp;&mdash;&nbsp;' + profile.name + '</option>');
-                    optgroup.append(option);
-                });
-                $profile.append(optgroup);
-            });
-            $profileOptions = $('#profile option');
-            var options = $.getQueryParameters();
-            setFormParams(options);
-            toggleManual('auto' !== $profile.val());
-            if (options.url && options.profile)
-                $('form').submit();
-            $('[data-toggle="tooltip"]').tooltip();
-            $url.select();
-        });
+        $profileOptions = $('#profile option');
+        var options = $.getQueryParameters();
+        setFormParams(options);
+        toggleManual('auto' !== $profile.val());
+        if (options.url && options.profile)
+            $('form').submit();
+        $('[data-toggle="tooltip"]').tooltip();
+        $url.select();
     });
 
 }(jQuery));

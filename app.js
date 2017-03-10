@@ -18,7 +18,7 @@ const bodyParser = require('body-parser')
 ;
 
 // Internal packages:
-const self = require('./package.json')
+const self = require('./package')
 ,   l10n = require('./lib/l10n')
 ,   sink = require('./lib/sink')
 ,   validator = require('./lib/validator')
@@ -30,7 +30,6 @@ const self = require('./package.json')
 const app = express()
 ,   server = http.createServer(app)
 ,   io = socket.listen(server)
-,   profiles = util.profiles
 ,   Sink = sink.Sink
 ,   version = self.version
 ;
@@ -94,10 +93,10 @@ io.sockets.on("connection", function (socket) {
     socket.on("validate", function (data) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
         if (!data.profile) return socket.emit("exception", { message: "Profile not provided." });
-        if (!profiles[data.profile]) return socket.emit("exception", { message: "Profile does not exist." });
+        if (!util.profiles[data.profile]) return socket.emit("exception", { message: "Profile does not exist." });
         var v = new validator.Specberus()
         ,   handler = new Sink()
-        ,   profile = profiles[data.profile]
+        ,   profile = util.profiles[data.profile]
         ,   profileCode = profile.name
         ;
         socket.emit("start", {

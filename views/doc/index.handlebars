@@ -1,15 +1,22 @@
 <div class="row">
   <div class="col-md-12">
+
     {{{nav}}}
+
     <p><a href="{{BASE_URI}}">&uarr; up to Pubrules home</a></p>
+
     <h2>Pubrules documentation</h2>
 
     <h3 id="publication"><a href="#publication">Publication rules</a></h3>
-    <ul>
-      {{#each profiles}}
+
+    {{#each tracks}}
+      <h4 id="{{this.abbr}}"><a href="#{{this.abbr}}">{{this.name}}</a></h3>
+      <ul>
+      {{#each this.profiles}}
         <li><a href="{{../BASE_URI}}doc/rules/?profile={{this.abbr}}"><span class="profile-abbr">{{this.abbr}}</span> {{this.name}}</a></li>
       {{/each}}
-    </ul>
+      </ul>
+    {{/each}}
 
     <h3 id="transitions"><a href="#transitions">Transitions</a></h3>
     <p>See the <a href="http://www.w3.org/Guide/transitions">transition guide</a></p>
