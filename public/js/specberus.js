@@ -1,8 +1,10 @@
+/* globals jQuery: false, document: false, io: false, location: false, console: false, window: false, history: false, url: false */
+
+'use strict'; // jshint ignore: line
+
 /**
  * @TODO Document.
  */
-
-/* globals jQuery: false, document: false, io: false, location: false, console: false, window: false, history: false, url: false */
 
 // TODO:
 //  grab on submit and cancel, get values
@@ -23,7 +25,7 @@ jQuery.extend({
 
 (function ($) {
 
-    const MSG_EXCEPTION = {ui: 'Bug', bootstrap: 'danger'}
+    var MSG_EXCEPTION = {ui: 'Bug', bootstrap: 'danger'}
     ,   MSG_ERROR = {ui: 'Error', bootstrap: 'danger'}
     ,   MSG_WARN = {ui: 'Warning', bootstrap: 'warning'}
     ,   MSG_INFO = {ui: 'Advice', bootstrap: 'info'}
@@ -66,7 +68,7 @@ jQuery.extend({
 
     });
 
-    const toggleForm = function (bool) {
+    var toggleForm = function (bool) {
         if (bool) {
             $('form').css('opacity', 1);
             $('form input, form select, form label').removeClass('disabled').removeAttr('disabled');
@@ -102,14 +104,14 @@ jQuery.extend({
     }
 
     function addMessage (type, data) {
-        const url = $url.val();
+        var url = $url.val();
         var inContext = ''
         ,   issue
         ,   exc = (data && data.exception) ? ' exception' : ''
         ;
         if (data && data.id) {
             // Corner case: if the profile is unknown, let's assume 'WD' (most common).
-            const newProfile = profile ? profile.replace(/\-echidna$/i, '') : 'WD';
+            var newProfile = profile ? profile.replace(/\-echidna$/i, '') : 'WD';
             inContext = `<a href="doc/rules?profile=${newProfile}#${data.id}">See rule in context</a> <br>`;
         }
         if (data && data.name)
@@ -153,7 +155,7 @@ jQuery.extend({
     }
 
     socket.on("exception", function (data) {
-        const message = data.message ? data.message : data;
+        var message = data.message ? data.message : data;
         addMessage(MSG_EXCEPTION, {message: `<div class="message">${message}</div>`, exception: true});
         window.setTimeout(showResults, 1000);
     });
@@ -289,7 +291,7 @@ jQuery.extend({
         if (options.url) $url.val(decodeURIComponent(options.url));
         // "profile" might be eg "WD-Echidna". Normalise.
         if (options.profile) {
-          const newProfile = options.profile.replace(/\-echidna$/i, '');
+          var newProfile = options.profile.replace(/\-echidna$/i, '');
           $profile.find('option[value=' + newProfile + ']').prop('selected', true);
         }
         if (options.validation) {
@@ -304,7 +306,7 @@ jQuery.extend({
         }
     }
 
-    const countNicely = function(term, no) {
+    var countNicely = function(term, no) {
         if (0 === no)
             return 'No ' + term + 's';
         else if (1 === no)
