@@ -3,12 +3,36 @@
 'use strict'; // jshint ignore: line
 
 $(document).ready(function() {
-    if (document.location && document.location.hash && window.pageYOffset && window.innerHeight)
+
+    var scrolled = 0;
+
+    var scrollTo = function(selector) {
+        var elem = $(selector);
+        if (elem) {
+            var elemOffset = elem[0].offsetTop;
+            var elemHeight = elem.outerHeight(true);
+            var windowHeight = $(window).height();
+            window.scrollTo(window.pageXOffset, elemOffset - (windowHeight - elemHeight) / 2);
+        }
+    };
+
+    $(window).scroll(function() {
+        scrolled++;
+    });
+
+    $('a[href^="#"]').click(function(e) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        document.location.hash = e.target.hash;
+        scrollTo(e.target.hash);
+    });
+
+    if (document.location && document.location.hash) {
         window.setTimeout(function() {
-            var elem = $(document.location.hash);
-            if (elem && elem.length > 0) elem[0].scrollIntoViewIfNeeded();
-            window.setTimeout(function() {
-                window.scrollTo(window.pageXOffset, window.pageYOffset - window.innerHeight * 0.5);
-            }, 500);
+            $(window).off('scroll');
+            if (scrolled < 3)    // Merely loading a page may trigger one or two scroll events.
+                scrollTo(document.location.hash);
         }, 500);
+    }
+
 });
