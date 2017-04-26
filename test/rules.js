@@ -305,6 +305,7 @@ var tests = {
         ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true }
               , errors: ["sotd.pp"]
             }
+        ,   { doc: "headers/ig-note.html", config: { longStatus: "Interest Group Note" } }
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
@@ -346,6 +347,7 @@ var tests = {
             { doc: "sotd/group-homepage.html" }
     ,       { doc: "sotd/group-homepage-https.html" }
     ,       { doc: "sotd/group-homepage-wrong.html", errors: ['sotd.group-homepage'] }
+    ,       { doc: "headers/ig-note.html" }
         ]
     ,   'obsl-rescind':  [
             { doc: "sotd/rec-obsl.html", config: { obsoletes: true } }
