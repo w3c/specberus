@@ -292,6 +292,7 @@ var tests = {
             , errors: ["sotd.mailing-list", "sotd.mailing-list"]
             , warnings: ["sotd.mailing-list"]
             }
+        ,   { doc: "sotd/ml-missing.html" }
         ]
     ,   pp:  [
             { doc: "headers/simple.html", config: { recTrackStatus: true } }
