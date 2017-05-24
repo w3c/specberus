@@ -1128,7 +1128,7 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
+                            "mailingListName": "It <span class=\"rfc2119\">must</span> include a link to a GitHub repository issues list.",
                             "recRelation": "It <span class=\"rfc2119\">must</span> indicate its relationship to previous related Recommendations (e.g., an indication that a Recommendation supersedes, obsoletes, or subsumes another, or that a Recommendation is an editorial revision) and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number. The document thus links to two important resources: the previous edition of the Recommendation via the status section, and the previous draft (the Proposed [Edited] Recommendation) via the \"Previous version\" link.",
                             "customParagraph": true,
                             "changesList": [
