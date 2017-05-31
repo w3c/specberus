@@ -19,13 +19,8 @@
         "name": "Notes",
         "order": 2,
         "profiles": {
-            "CG-NOTE": {
-                "order": 1,
-                "name": "Coordination Group Note",
-                "sections": {}
-            },
             "FPIG-NOTE": {
-                "order": 2,
+                "order": 1,
                 "name": "First Public Interest Group Note",
                 "sections": {
                     "format": {
@@ -125,7 +120,7 @@
                 }
             },
             "IG-NOTE": {
-                "order": 3,
+                "order": 2,
                 "name": "Interest Group Note",
                 "sections": {
                     "format": {
@@ -229,7 +224,7 @@
                 }
             },
             "FPWG-NOTE": {
-                "order": 4,
+                "order": 3,
                 "name": "First Public Working Group Note",
                 "sections": {
                     "format": {
@@ -329,7 +324,7 @@
                 }
             },
             "WG-NOTE": {
-                "order": 5,
+                "order": 4,
                 "name": "Working Group Note",
                 "sections": {
                     "format": {
@@ -955,115 +950,8 @@
                     }
                 }
             },
-            "PER": {
-                "order": 6,
-                "name": "Proposed Edited Recommendation",
-                "sections": {
-                    "format": {
-                        "name": "1. Normative Document Representation",
-                        "rules": {
-                            "normativeVersion": true,
-                            "valideHTML": true,
-                            "visualStyle": true
-                        }
-                    },
-                    "metadata": {
-                        "name": "2. Document Metadata",
-                        "rules": {
-                            "goodStylesheet": [
-                                "PER"
-                            ],
-                            "lastStylesheet": true,
-                            "viewport": true
-                        }
-                    },
-                    "front-matter": {
-                        "name": "3. Front Matter",
-                        "rules": {
-                            "divClassHead": true,
-                            "logo": true,
-                            "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateTitleH2": [
-                                "Proposed Edited Recommendation",
-                                ""
-                            ],
-                            "docIDFormat": true,
-                            "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "PER"
-                            ],
-                            "docIDLatestVersion": true,
-                            "docIDDate": true,
-                            "editorSection": true,
-                            "altRepresentations": [
-                                "PER"
-                            ],
-                            "copyright": true,
-                            "hrAfterCopyright": true
-                        }
-                    },
-                    "navigation": {
-                        "name": "6. Table of Contents",
-                        "rules": {
-                            "toc": true,
-                            "tocNav": true
-                        }
-                    },
-                    "document-status": {
-                        "name": "5. Document Status Section",
-                        "rules": {
-                            "sotd": true,
-                            "boilerplateTRDoc": true,
-                            "datesFormat": true,
-                            "WGLink": true,
-                            "mailingListName": true,
-                            "ACRepFeedbackEmail": true,
-                            "reviewEndDatePR": true,
-                            "implReport": true,
-                            "PERMajorRev": "A Proposed Edited Recommendation that revises a previously published Recommendation with the same major revision number <span class=\"rfc2119\">should</span> link to the most recent Recommendation with that major revision number. Example: The version 2.1 Working Draft (Second Edition) is published after the 2.1 Recommendation and links to it as the most recent 2.x Recommendation available at time of publication.",
-                            "customParagraph": true,
-                            "changesList": [
-                                "must",
-                                " The group <span class=\"rfc2119\">must</span> indicate which changes may affect conformance."
-                            ],
-                            "stability": [
-                                "a Proposed Edited Recommendation",
-                                ""
-                            ],
-                            "patPolReq": true,
-                            "knownDisclosureNumber": true,
-                            "whichProcess": true
-                        }
-                    },
-                    "document-body": {
-                        "name": "7. Document Body",
-                        "rules": {
-                            "headingWithoutID": true,
-                            "brokenLink": true,
-                            "cssValide": true,
-                            "namespaces": true,
-                            "wcag": true,
-                            "securityAndPrivacy": true
-                        }
-                    },
-                    "compound": {
-                        "name": "8. Compound Documents",
-                        "rules": {
-                            "compoundFilesLocation": [
-                                "PER"
-                            ],
-                            "compoundOverview": true,
-                            "fixupJs": true,
-                            "compound": true
-                        }
-                    }
-                }
-            },
             "REC": {
-                "order": 7,
+                "order": 6,
                 "name": "Recommendation",
                 "sections": {
                     "format": {
@@ -1129,7 +1017,7 @@
                             "datesFormat": true,
                             "WGLink": true,
                             "mailingListName": "It <span class=\"rfc2119\">must</span> include a link to a GitHub repository issues list.",
-                            "recRelation": "It <span class=\"rfc2119\">must</span> indicate its relationship to previous related Recommendations (e.g., an indication that a Recommendation supersedes, obsoletes, or subsumes another, or that a Recommendation is an editorial revision) and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number. The document thus links to two important resources: the previous edition of the Recommendation via the status section, and the previous draft (the Proposed [Edited] Recommendation) via the \"Previous version\" link.",
+                            "recRelation": "It <span class=\"rfc2119\">must</span> indicate its relationship to previous related Recommendations (e.g., an indication that a Recommendation supersedes, obsoletes, or subsumes another, or that a Recommendation is an editorial revision) and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number. The document thus links to two important resources: the previous edition of the Recommendation via the status section, and the previous draft (the Proposed Recommendation) via the \"Previous version\" link.",
                             "customParagraph": true,
                             "changesList": [
                                 "must",
@@ -1165,7 +1053,7 @@
                 }
             },
             "RSCND": {
-                "order": 8,
+                "order": 7,
                 "name": "Rescinded Recommendation",
                 "sections": {
                     "format": {
@@ -1261,7 +1149,7 @@
                 }
             },
             "OBSL": {
-                "order": 9,
+                "order": 8,
                 "name": "Obsolete Recommendation",
                 "sections": {
                     "format": {

@@ -125,7 +125,8 @@ Once the [event `end-all`](#validation-events) is emitted, the metadata should b
 The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
 goals of this method).
 
-`this.meta` will be an `Object` and may include up to 14 properties described below:
+`this.meta` will be an `Object` and may include up to 15 properties described below:
+
 * `profile`
 * `title`: The (possible) title of the document.
 * `docDate`: The date associated to the document.
@@ -141,7 +142,6 @@ goals of this method).
 * `sameWorkAs`: The previous shortlink if any.
 * `implementationFeedbackDue`: The implementation review date for CRs
 * `prReviewsDue`: The review date for PRs
-* `perReviewsDue`: The review date for PERs
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
@@ -274,10 +274,8 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
     * `FPWD` (identical)
     * `RSCND` (identical)
     * `PR`
-      * `PER` (identical)
     * `CR`
     * `FPCR`
-    * `CG-NOTE`
     * `REC`
   * `Submission`
     * `SUBM`
