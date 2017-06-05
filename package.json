@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "chai-as-promised": "6.0.0",
-    "chai": "3.5",
+    "chai": "~4.0.2",
     "coveralls": "2.13.1",
     "expect.js": "0.3",
     "istanbul": "0.4.5",
