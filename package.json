@@ -11,8 +11,8 @@
   "dependencies": {
     "body-parser": "1.17.2",
     "compression": "1.6",
+    "express": "4.15.3",
     "express-handlebars": "3.0",
-    "express": "4.15.2",
     "insafe": "0.3",
     "metaviewport-parser": "0.0.1",
     "morgan": "1.8.2",
@@ -23,8 +23,8 @@
     "whacko": "0.19"
   },
   "devDependencies": {
+    "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
-    "chai": "3.5",
     "coveralls": "2.13.1",
     "expect.js": "0.3",
     "istanbul": "0.4.5",
@@ -40,11 +40,11 @@
     "jsdoc": "jsdoc -a all -d doc/api/ -e utf8 -r app.js lib/ test/ tools/",
     "lint": "jscs app.js lib/ public/ test/ tools/ views/ && jshint app.js lib/ public/ test/ tools/ views/",
     "nsp": "nsp check",
-    "start": "node --use_strict --harmony app",
-    "test": "npm run lint && mocha --harmony"
+    "start": "node --use_strict app",
+    "test": "npm run lint && mocha"
   },
   "engines": {
-    "node": "4 || 5 || 6",
+    "node": "6 || 8",
     "npm": ">=3"
   }
 }
