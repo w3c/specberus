@@ -16,7 +16,7 @@
     "insafe": "0.3",
     "metaviewport-parser": "0.0.1",
     "morgan": "1.8.2",
-    "promise": "7.1",
+    "promise": "~7.2.0",
     "request": "2.81.0",
     "socket.io": "2.0.1",
     "superagent": "3.5.2",
