@@ -10,15 +10,15 @@
   },
   "dependencies": {
     "body-parser": "1.17.2",
-    "compression": "~1.7.0",
+    "compression": "1.7.0",
     "express": "4.15.3",
     "express-handlebars": "3.0",
     "insafe": "0.3",
     "metaviewport-parser": "0.0.1",
     "morgan": "1.8.2",
-    "promise": "~7.3.1",
+    "promise": "8.0.0",
     "request": "2.81.0",
-    "socket.io": "2.0.1",
+    "socket.io": "2.0.3",
     "superagent": "3.5.2",
     "whacko": "0.19"
   },
@@ -29,7 +29,7 @@
     "expect.js": "0.3",
     "istanbul": "0.4.5",
     "jscs": "3.0.7",
-    "jsdoc": "3.5.0",
+    "jsdoc": "3.5.1",
     "jshint": "2.9.5",
     "mocha": "3.4.2",
     "nsp": "2.6.3"
