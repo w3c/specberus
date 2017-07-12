@@ -23,7 +23,7 @@
     "whacko": "0.19"
   },
   "devDependencies": {
-    "chai": "3.5.0",
+    "chai": "4.1.0",
     "chai-as-promised": "7.1.1",
     "coveralls": "2.13.1",
     "expect.js": "0.3",
