@@ -32,7 +32,7 @@
     "jsdoc": "3.5.3",
     "jshint": "2.9.5",
     "mocha": "3.4.2",
-    "nsp": "2.6.3"
+    "nsp": "2.7.0"
   },
   "scripts": {
     "coverage": "istanbul cover _mocha",
