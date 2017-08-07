@@ -14,7 +14,7 @@
     "express": "4.15.3",
     "express-handlebars": "3.0",
     "insafe": "0.3",
-    "metaviewport-parser": "0.0.1",
+    "metaviewport-parser": "0.1.0",
     "morgan": "1.8.2",
     "promise": "8.0.1",
     "request": "2.81.0",
