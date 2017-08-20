@@ -19,7 +19,7 @@
     "promise": "8.0.1",
     "request": "2.81.0",
     "socket.io": "2.0.3",
-    "superagent": "3.5.2",
+    "superagent": "3.6.0",
     "whacko": "0.19"
   },
   "devDependencies": {
