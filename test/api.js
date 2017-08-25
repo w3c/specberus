@@ -57,10 +57,7 @@ const setUp = function() {
 const get = function (suffix, post) {
     const method = post ? superagent.post : superagent.get;
     return new Promise(function (resolve, reject) {
-        method(ENDPOINT + suffix, {
-            timeout: TIMEOUT,
-            encoding: null
-        }, function (error, response, body) {
+        method(ENDPOINT + suffix, function (error, response, body) {
             if (error) {
                 if (error.response && error.response.error && error.response.error.text)
                     reject(new Error(error.response.error.text));
@@ -73,6 +70,10 @@ const get = function (suffix, post) {
                 resolve(response.res.text);
             else
                 resolve(body);
+        })
+        .set({
+            timeout: TIMEOUT,
+            encoding: null
         });
     });
 };
