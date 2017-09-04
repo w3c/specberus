@@ -71,10 +71,8 @@ const get = function (suffix, post) {
             else
                 resolve(body);
         })
-        .set({
-            timeout: TIMEOUT,
-            encoding: null
-        });
+        .timeout({response: TIMEOUT})
+        .set({encoding: null});
     });
 };
 
