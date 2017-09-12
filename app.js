@@ -9,8 +9,7 @@ const DEFAULT_PORT = 80;
 const http = require('http');
 
 // External packages:
-const bodyParser = require('body-parser')
-,   compression = require('compression')
+const compression = require('compression')
 ,   express = require('express')
 ,   insafe = require('insafe')
 ,   morgan = require('morgan')
@@ -37,7 +36,6 @@ const app = express()
 // Middleware:
 app.use(morgan('combined'));
 app.use(compression());
-app.use(bodyParser.json());
 app.use(express.static("public"));
 api.setUp(app);
 views.setUp(app);
