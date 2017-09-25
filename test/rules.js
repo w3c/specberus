@@ -281,6 +281,12 @@ var tests = {
                       ,"structure.section-ids", "structure.section-ids", "structure.section-ids"
                       ]  }
         ]
+    ,   canonical:  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "structure/canonical.html" }
+        ,   { doc: "structure/canonical-missing.html", errors: ["structure.canonical"] }
+        ,   { doc: "structure/canonical-href-missing.html", errors: ["structure.canonical"] }
+        ]
     }
 ,   sotd:   {
         supersedable:  [
