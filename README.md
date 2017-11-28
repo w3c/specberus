@@ -171,7 +171,7 @@ Similar to the [JS API](#4-js-api), Specberus exposes a REST API via HTTP too.
 The endpoint is `<host>/api/`.
 Use either `url` or `file` to pass along the document (neither `source` nor `document` are allowed).
 
-Note: If you want to use the public W3C instance of Specberus, you can replace `<host>` with `https://www.w3.org/pubrules/`.
+Note: If you want to use the public W3C instance of Specberus, you can replace `<host>` with `https://www.w3.org/pubrules`.
 
 There are three `GET` methods available.
 
