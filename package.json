@@ -12,7 +12,7 @@
     "compression": "1.7.1",
     "express": "5.0.0-alpha.6",
     "express-handlebars": "3.0",
-    "insafe": "0.3",
+    "insafe": "0.5.0",
     "metaviewport-parser": "0.2.0",
     "morgan": "1.9.0",
     "promise": "8.0.1",
