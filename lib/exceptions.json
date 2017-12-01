@@ -5,6 +5,11 @@
       "type": "at-rule"
     }
   ],
+  "^css.*$": [
+    {
+      "rule": "validation.css"
+    }
+  ],
   "^webrtc$": [
     {
       "rule": "headers.copyright"
@@ -13,12 +18,6 @@
   "^mediacapture-streams$": [
     {
       "rule": "headers.copyright"
-    }
-  ],
-  "^css-tables-3$": [
-    {
-      "rule": "validation.css",
-      "type": "generator.unrecognize"
     }
   ]
 }
