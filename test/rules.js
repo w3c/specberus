@@ -316,6 +316,7 @@ var tests = {
               , errors: ["sotd.pp"]
             }
         ,   { doc: "headers/ig-note.html", config: { longStatus: "Interest Group Note" } }
+        ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note" } }
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
