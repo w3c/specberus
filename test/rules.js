@@ -61,7 +61,9 @@ const compareMetadata = function(url, file, expectedObject) {
     ,   handler = new sink.Sink(function(data) { throw new Error(data); })
     ,   thisFile = file ? 'test/docs/metadata/' + file + '.html' : null
     ;
-    const opts = {events: handler, url: url, file: thisFile};
+    // const opts = {events: handler, url: url, file: thisFile};
+    // test only local fixtures
+    const opts = {events: handler, file: thisFile};
 
     it('Should detect metadata for ' + expectedObject.url, function (done) {
         handler.on('end-all', function () {
