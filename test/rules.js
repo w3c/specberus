@@ -368,6 +368,10 @@ var tests = {
     ,       { doc: "sotd/rec-rescind.html", config: { obsoletes: true }, errors: ['sotd.obsl-rescind'] }
     ,       { doc: "sotd/rec-obsl.html", config: { rescinds: true }, errors: ['sotd.obsl-rescind'] }
         ]
+    ,   'deliverer-note':  [
+            { doc: "sotd/note-deliverer.html", config: { status: "WG-NOTE" }}
+    ,       { doc: "sotd/note-deliverer-bad.html", config: { status: "WG-NOTE" }, errors: ['sotd.deliverer-note'] }
+        ]
     }
 ,   heuristic:   {
         'date-format':  [
