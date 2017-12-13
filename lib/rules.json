@@ -246,7 +246,7 @@
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true,
-                            "delivererID": "The Working Group(s) id(s) <span class=\"rfc2119\">must</span> be listed in a <code>data-deliverer</code> attribute in the section \"Status of This Document\".<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p data-deliverer=\"@@ID1@@,@@ID2@@,...\"&gt;</code></p>"
+                            "delivererID": true
                         }
                     },
                     "front-matter": {
@@ -348,7 +348,7 @@
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true,
-                            "delivererID": "The Working Group(s) id(s) <span class=\"rfc2119\">must</span> be listed in a <code>data-deliverer</code> attribute in the section \"Status of This Document\".<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p data-deliverer=\"@@ID1@@,@@ID2@@,...\"&gt;</code></p>"
+                            "delivererID": true
                         }
                     },
                     "front-matter": {
@@ -1284,7 +1284,8 @@
                     "goodStylesheet": "<span class=\"subset\">recursive</span> Each document <span class=\"rfc2119\">must</span> include the following absolute URI to identify a style sheet for this maturity level: <code> <span class=\"boilerplate-nocode\">https://www.w3.org/StyleSheets/TR/2016/W3C-@{param1}</span> </code> <p> <span style=\"font-style: italic\">Include this source code:</span> <br> <code>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"https://www.w3.org/StyleSheets/TR/2016/W3C-@{param1}\"/&gt;</code> </p>",
                     "lastStylesheet": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">must</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">must not</span> override the W3C tech report styles.",
                     "viewport": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>",
-                    "canonical": "<span class=\"subset\">recursive</span> The canonical link is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;link rel=\"canonical\" url=\"@@URL@@\"&gt;</code></p>"
+                    "canonical": "<span class=\"subset\">recursive</span> The canonical link is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;link rel=\"canonical\" url=\"@@URL@@\"&gt;</code></p>",
+                    "delivererID": "The Working Group(s) id(s) <span class=\"rfc2119\">must</span> be listed in a <code>data-deliverer</code> attribute in the section \"Status of This Document\".<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p data-deliverer=\"@@ID1@@,@@ID2@@,...\"&gt;</code></p>"
                 }
             },
             "front-matter": {
