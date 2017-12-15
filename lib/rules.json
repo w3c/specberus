@@ -11,7 +11,93 @@
             "MEM-SUBM": {
                 "order": 2,
                 "name": "Member Submission",
-                "sections": {}
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "Member-SUBM"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true,
+                            "canonical": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "submlogo": "In addition to the W3C logo, use this logo:<div class=\"boilerplate\"> <a href=\"https://www.w3.org/Submission/\"> <img alt=\"W3C Member Submission\" src=\"https://www.w3.org/Icons/member_subm\" height=\"48\" width=\"211\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;a href=\"https://www.w3.org/Submission/\"&gt;&lt;img height=\"48\" width=\"211\" alt=\"W3C Member Submission\" src=\"https://www.w3.org/Icons/member_subm\"/&gt;&lt;/a&gt;</code></div>",
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Member Submission",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s).</li></ul>",
+                            "docIDThisVersion": [
+                                "SUBM"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "SUBM"
+                            ],
+                            "copyright": "<b>Copyright</b>: The document <span class=\"rfc2119\">must</span> include a link to the W3C document notice. The copyright may be held by the Submitters.",
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "boilerplateSUBM": "It <span class=\"rfc2119\">must</span> include this boilerplate text (with links to the published Submission and Team Comment): <blockquote class=\"boilerplate\"> By publishing this document, W3C acknowledges that the <a href=\"https://www.w3.org/Submission/@@@submissiondoc@@@\">Submitting Members</a> have made a formal Submission request to W3C for discussion. Publication of this document by W3C indicates no endorsement of its content by W3C, nor that W3C has, is, or will be allocating any resources to the issues addressed by it. This document is not the product of a chartered W3C group, but is published as potential input to the <a href=\"https://www.w3.org/Consortium/Process\">W3C Process</a>. A <a href=\"https://www.w3.org/Submission/@@@teamcomment@@@\">W3C Team Comment</a> has been published in conjunction with this Member Submission. Publication of acknowledged Member Submissions at the W3C site is one of the benefits of <a href=\"https://www.w3.org/Consortium/Prospectus/Joining\">W3C Membership</a>. Please consult the requirements associated with Member Submissions of <a href=\"https://www.w3.org/Consortium/Patent-Policy-20030520.html#sec-submissions\">section 3.3 of the W3C Patent Policy</a>. Please consult the complete <a href=\"https://www.w3.org/Submission\">list of acknowledged W3C Member Submissions</a>.</blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;By publishing this document, W3C acknowledges that the &lt;a href=\"https://www.w3.org/Submission/@@@submissiondoc@@@\"&gt;Submitting Members&lt;/a&gt; have made a formal Submission request to W3C for discussion. Publication of this document by W3C indicates no endorsement of its content by W3C, nor that W3C has, is, or will be allocating any resources to the issues addressed by it. This document is not the product of a chartered W3C group, but is published as potential input to the &lt;a href=\"https://www.w3.org/Consortium/Process\"&gt;W3C Process&lt;/a&gt;. A &lt;a href=\"https://www.w3.org/Submission/@@@teamcomment@@@\"&gt;W3C Team Comment&lt;/a&gt; has been published in conjunction with this Member Submission. Publication of acknowledged Member Submissions at the W3C site is one of the benefits of &lt;a href=\"https://www.w3.org/Consortium/Prospectus/Joining\"&gt;W3C Membership&lt;/a&gt;. Please consult the requirements associated with Member Submissions of &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy-20030520.html#sec-submissions\"&gt;section 3.3 of the W3C Patent Policy&lt;/a&gt;. Please consult the complete &lt;a href=\"https://www.w3.org/Submission\"&gt;list of acknowledged W3C Member Submissions&lt;/a&gt;.&lt;/p&gt;</code></div>",
+                            "datesFormat": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "SUBM"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
+                }
             }
         }
     },
