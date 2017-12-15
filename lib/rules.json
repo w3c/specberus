@@ -6,7 +6,90 @@
             "TEAM-SUBM": {
                 "order": 1,
                 "name": "Team Submission",
-                "sections": {}
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "Team-SUBM"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true,
+                            "canonical": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "submlogo": "In addition to the W3C logo, use this logo:<div class=\"boilerplate\"> <a href=\"https://www.w3.org/Submission/\"> <img alt=\"W3C Member Submission\" src=\"https://www.w3.org/Icons/team_subm\" height=\"48\" width=\"211\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;a href=\"https://www.w3.org/Submission/\"&gt;&lt;img height=\"48\" width=\"211\" alt=\"W3C Member Submission\" src=\"https://www.w3.org/Icons/team_subm\"/&gt;&lt;/a&gt;</code></div>",
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Team Submission",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s).</li></ul>",
+                            "docIDThisVersion": "The syntax of a “this version” URI <span class=\"rfc2119\">must</span> be <code>https://www.w3.org/TeamSubmission/YYYY/SUBM-shortname-YYYYMMDD/</code>.",
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "SUBM"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "boilerplateSUBM": "It <span class=\"rfc2119\">must</span> include a link to the page listing all <a href=\"https://www.w3.org/TeamSubmission/\">Team Submissions</a>.",
+                            "datesFormat": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "SUBM"
+                            ],
+                            "compoundOverview": true,
+                            "fixupJs": true,
+                            "compound": true
+                        }
+                    }
+                }
             },
             "MEM-SUBM": {
                 "order": 2,
@@ -47,10 +130,8 @@
                             ],
                             "docIDFormat": true,
                             "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s).</li></ul>",
-                            "docIDThisVersion": [
-                                "SUBM"
-                            ],
-                            "docIDLatestVersion": true,
+                            "docIDThisVersion": "The syntax of a “This Version” URI <span class=\"rfc2119\">must</span> be <code>https://www.w3.org/Submission/YYYY/SUBM-shortname-YYYYMMDD/</code>.",
+                            "docIDLatestVersion": "The syntax of a “Latest Version” URI <span class=\"rfc2119\">must</span> be <code>https://www.w3.org/Submission/shortname/</code>.",
                             "docIDDate": true,
                             "editorSection": true,
                             "altRepresentations": [
