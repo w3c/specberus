@@ -61,7 +61,9 @@ const compareMetadata = function(url, file, expectedObject) {
     ,   handler = new sink.Sink(function(data) { throw new Error(data); })
     ,   thisFile = file ? 'test/docs/metadata/' + file + '.html' : null
     ;
-    const opts = {events: handler, url: url, file: thisFile};
+    // const opts = {events: handler, url: url, file: thisFile};
+    // test only local fixtures
+    const opts = {events: handler, file: thisFile};
 
     it('Should detect metadata for ' + expectedObject.url, function (done) {
         handler.on('end-all', function () {
@@ -316,6 +318,7 @@ var tests = {
               , errors: ["sotd.pp"]
             }
         ,   { doc: "headers/ig-note.html", config: { longStatus: "Interest Group Note" } }
+        ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note" } }
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
@@ -364,6 +367,10 @@ var tests = {
     ,       { doc: "sotd/rec-rescind.html", config: { rescinds: true } }
     ,       { doc: "sotd/rec-rescind.html", config: { obsoletes: true }, errors: ['sotd.obsl-rescind'] }
     ,       { doc: "sotd/rec-obsl.html", config: { rescinds: true }, errors: ['sotd.obsl-rescind'] }
+        ]
+    ,   'deliverer-note':  [
+            { doc: "sotd/note-deliverer.html", config: { status: "WG-NOTE" }}
+    ,       { doc: "sotd/note-deliverer-bad.html", config: { status: "WG-NOTE" }, errors: ['sotd.deliverer-note'] }
         ]
     }
 ,   heuristic:   {
