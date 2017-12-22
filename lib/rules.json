@@ -466,7 +466,7 @@
                                 "a Working Group Note",
                                 "(see also ideas for status sections regarding the <a href=\"http://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
                             ],
-                            "patPolReq": true,
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>.</p></blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. </code></div>",
                             "knownDisclosureNumber": true,
                             "whichProcess": true
                         }
@@ -572,7 +572,7 @@
                                 "a Working Group Note",
                                 "(see also ideas for status sections regarding the <a href=\"http://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
                             ],
-                            "patPolReq": true,
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>.</p></blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. </code></div>",
                             "knownDisclosureNumber": true,
                             "whichProcess": true
                         }
