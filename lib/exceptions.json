@@ -3,6 +3,16 @@
     {
       "rule": "validation.css",
       "type": "at-rule"
+    },
+    {
+      "rule": "validation.css",
+      "type": "noexistence-at-all",
+      "message": "Property justify-self doesn't exist : "
+    },
+    {
+      "rule": "validation.css",
+      "type": "noexistence-at-all",
+      "message": "Property user-select doesn't exist : "
     }
   ],
   "^css.*$": [
