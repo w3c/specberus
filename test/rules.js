@@ -350,10 +350,10 @@ var tests = {
         ,   { doc: "sotd/pp-bad.html", errors: ['sotd.ac-review'] }
         ]
     ,   'process-document':  [
-            { doc: "sotd/process2015.html" }
-    ,       { doc: "sotd/deprecated2014.html", errors: ['sotd.process-document', 'sotd.process-document']}
-    ,       { doc: "sotd/deprecated2015-allowed.html", warnings: ['sotd.process-document']}
-    ,       { doc: "sotd/deprecated2015-not-allowed.html", errors: ['sotd.process-document', 'sotd.process-document']}
+            { doc: "sotd/process2018.html" }
+    ,       { doc: "sotd/deprecated2015.html", errors: ['sotd.process-document', 'sotd.process-document']}
+    ,       { doc: "sotd/deprecated2017-allowed.html", warnings: ['sotd.process-document']}
+    ,       { doc: "sotd/deprecated2017-not-allowed.html", errors: ['sotd.process-document', 'sotd.process-document']}
     ,       { doc: "sotd/wrongprocess.html", errors: ['sotd.process-document', 'sotd.process-document']}
         ]
     ,   'group-homepage':  [
