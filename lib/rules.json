@@ -1541,7 +1541,7 @@
                     }
                 }
             },
-            "RSCND": {
+            "REC-RSCND": {
                 "order": 7,
                 "name": "Rescinded Recommendation",
                 "sections": {
@@ -1677,14 +1677,14 @@
                             "docIDFormat": true,
                             "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> <li class=\"prevrecuri\">\"Obsoletes this Recommendation\" URI</li> </ul>",
                             "docIDThisVersion": [
-                                "OBSL"
+                                "REC"
                             ],
                             "docIDLatestVersion": true,
                             "docIDDate": true,
                             "editorSection": true,
                             "errata": true,
                             "altRepresentations": [
-                                "OBSL"
+                                "REC"
                             ],
                             "translation": true,
                             "copyright": true,
