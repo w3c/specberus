@@ -212,6 +212,8 @@ var tests = {
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
         ,   { doc: "headers/h2-comma.html", config: { longStatus: "Working Draft" } }
         ,   { doc: "headers/simple.html", config: { longStatus: "Recommendation" }, errors: ["headers.h2-status"] }
+        ,   { doc: "headers/h2-amended.html", config: { longStatus: "Recommendation", amended: true } }
+        ,   { doc: "headers/simple.html", config: { longStatus: "Working Draft", amended: true }, errors: ["headers.h2-status"] }
         ]
     ,   "h2-toc":  [
             { doc: "headers/simple.html" }
