@@ -307,7 +307,7 @@ var tests = {
         ,   { doc: "headers/simple.html", config: { status: "REC" }, errors: ["sotd.mailing-list"] }
         ]
     ,   pp:  [
-            { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true} }
+            { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true } }
         ,   { doc: "headers/simple.html", config: { recTrackStatus: true }, warnings: ["sotd.pp"] }
         ,   { doc: "sotd/pp-bad.html"
             , errors: ["sotd.pp", "sotd.pp", "sotd.pp", "sotd.pp"]
@@ -321,6 +321,9 @@ var tests = {
             }
         ,   { doc: "headers/ig-note.html", config: { longStatus: "Interest Group Note" } }
         ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note" } }
+        ,   { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true, amended: true }, errors: ["sotd.pp"] }
+        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true }, errors: ["sotd.pp"] }
+        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, amended: true } }
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
