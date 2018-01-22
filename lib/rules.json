@@ -1759,7 +1759,7 @@
                         "name": "2. Document Metadata",
                         "rules": {
                             "goodStylesheet": [
-                                "OBSL"
+                                "SPSD"
                             ],
                             "lastStylesheet": true,
                             "viewport": true,
@@ -1776,20 +1776,20 @@
                                 "<li class=\"rec-in-place\">If a Recommendation modified in place, see the Comm Team's policy regarding <a href=\"http://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>, otherwise</li> "
                             ],
                             "dateTitleH2": [
-                                "Obsolete Recommendation",
+                                "Superseded Recommendation",
                                 ""
                             ],
                             "docIDFormat": true,
                             "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> <li class=\"prevrecuri\">\"Obsoletes this Recommendation\" URI</li> </ul>",
                             "docIDThisVersion": [
-                                "OBSL"
+                                "SPSD"
                             ],
                             "docIDLatestVersion": true,
                             "docIDDate": true,
                             "editorSection": true,
                             "errata": true,
                             "altRepresentations": [
-                                "OBSL"
+                                "SPSD"
                             ],
                             "translation": true,
                             "copyright": true,
@@ -1812,7 +1812,7 @@
                             "WGLink": true,
                             "mailingListName": true,
                             "recRelation": true,
-                            "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to obsolete the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to obsolete the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting and Rescinding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
+                            "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to supersede the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to obsolete the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting and Rescinding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
                             "altTechno": true,
                             "customParagraph": true,
                             "changesList": [
@@ -1839,7 +1839,7 @@
                         "name": "8. Compound Documents",
                         "rules": {
                             "compoundFilesLocation": [
-                                "OBSL"
+                                "SPSD"
                             ],
                             "compoundOverview": true,
                             "fixupJs": true,
