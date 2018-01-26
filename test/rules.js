@@ -370,8 +370,10 @@ var tests = {
     ,   'obsl-rescind':  [
             { doc: "sotd/rec-obsl.html", config: { obsoletes: true } }
     ,       { doc: "sotd/rec-rescind.html", config: { rescinds: true } }
+    ,       { doc: "sotd/rec-superseded.html", config: { supersedes: true } }
     ,       { doc: "sotd/rec-rescind.html", config: { obsoletes: true }, errors: ['sotd.obsl-rescind'] }
     ,       { doc: "sotd/rec-obsl.html", config: { rescinds: true }, errors: ['sotd.obsl-rescind'] }
+    ,       { doc: "sotd/rec-superseded.html", config: { supersedes: false }, errors: ['sotd.obsl-rescind'] }
         ]
     ,   'deliverer-note':  [
             { doc: "sotd/note-deliverer.html", config: { status: "WG-NOTE" }}
