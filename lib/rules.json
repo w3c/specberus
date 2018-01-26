@@ -1608,7 +1608,7 @@
                             "WGLink": true,
                             "mailingListName": true,
                             "recRelation": true,
-                            "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to rescind the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to rescind the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting and Rescinding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
+                            "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to rescind the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to rescind the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting, Rescinding or Superseding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
                             "altTechno": true,
                             "customParagraph": true,
                             "knownDisclosureNumber": true,
@@ -1707,7 +1707,7 @@
                             "WGLink": true,
                             "mailingListName": true,
                             "recRelation": true,
-                            "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to obsolete the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to obsolete the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting and Rescinding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
+                            "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to obsolete the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to obsolete the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting, Rescinding or Superseding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
                             "altTechno": true,
                             "customParagraph": true,
                             "changesList": [
@@ -1812,7 +1812,7 @@
                             "WGLink": true,
                             "mailingListName": true,
                             "recRelation": true,
-                            "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to supersede the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to obsolete the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting and Rescinding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
+                            "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to supersede the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to obsolete the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting, Rescinding or Superseding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
                             "altTechno": true,
                             "customParagraph": true,
                             "changesList": [
