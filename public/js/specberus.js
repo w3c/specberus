@@ -196,7 +196,8 @@ jQuery.extend({
                 for (var w in data.warnings)
                     addMessage(MSG_WARN, w);
             toggleManual(true);
-            profile = data.metadata.profile;
+
+            profile = (!data.metadata.amended) ? data.metadata.profile : data.metadata.profile + "-AMENDED";
             $profile.val(profile);
             $noRecTrack.prop('checked', !data.metadata.rectrack);
             $informativeOnly.prop('checked', data.metadata.informative);

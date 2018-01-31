@@ -212,6 +212,8 @@ var tests = {
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
         ,   { doc: "headers/h2-comma.html", config: { longStatus: "Working Draft" } }
         ,   { doc: "headers/simple.html", config: { longStatus: "Recommendation" }, errors: ["headers.h2-status"] }
+        ,   { doc: "headers/h2-amended.html", config: { longStatus: "Recommendation", amended: true } }
+        ,   { doc: "headers/simple.html", config: { longStatus: "Working Draft", amended: true }, errors: ["headers.h2-status"] }
         ]
     ,   "h2-toc":  [
             { doc: "headers/simple.html" }
@@ -305,7 +307,7 @@ var tests = {
         ,   { doc: "headers/simple.html", config: { status: "REC" }, errors: ["sotd.mailing-list"] }
         ]
     ,   pp:  [
-            { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true} }
+            { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true } }
         ,   { doc: "headers/simple.html", config: { recTrackStatus: true }, warnings: ["sotd.pp"] }
         ,   { doc: "sotd/pp-bad.html"
             , errors: ["sotd.pp", "sotd.pp", "sotd.pp", "sotd.pp"]
@@ -319,6 +321,9 @@ var tests = {
             }
         ,   { doc: "headers/ig-note.html", config: { longStatus: "Interest Group Note" } }
         ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note" } }
+        ,   { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true, amended: true }, errors: ["sotd.pp"] }
+        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true }, errors: ["sotd.pp"] }
+        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, amended: true } }
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
@@ -350,10 +355,10 @@ var tests = {
         ,   { doc: "sotd/pp-bad.html", errors: ['sotd.ac-review'] }
         ]
     ,   'process-document':  [
-            { doc: "sotd/process2015.html" }
-    ,       { doc: "sotd/deprecated2014.html", errors: ['sotd.process-document', 'sotd.process-document']}
-    ,       { doc: "sotd/deprecated2015-allowed.html", warnings: ['sotd.process-document']}
-    ,       { doc: "sotd/deprecated2015-not-allowed.html", errors: ['sotd.process-document', 'sotd.process-document']}
+            { doc: "sotd/process2018.html" }
+    ,       { doc: "sotd/deprecated2015.html", errors: ['sotd.process-document', 'sotd.process-document']}
+    ,       { doc: "sotd/deprecated2017-allowed.html", warnings: ['sotd.process-document']}
+    ,       { doc: "sotd/deprecated2017-not-allowed.html", errors: ['sotd.process-document', 'sotd.process-document']}
     ,       { doc: "sotd/wrongprocess.html", errors: ['sotd.process-document', 'sotd.process-document']}
         ]
     ,   'group-homepage':  [
@@ -365,8 +370,10 @@ var tests = {
     ,   'obsl-rescind':  [
             { doc: "sotd/rec-obsl.html", config: { obsoletes: true } }
     ,       { doc: "sotd/rec-rescind.html", config: { rescinds: true } }
+    ,       { doc: "sotd/rec-superseded.html", config: { supersedes: true } }
     ,       { doc: "sotd/rec-rescind.html", config: { obsoletes: true }, errors: ['sotd.obsl-rescind'] }
     ,       { doc: "sotd/rec-obsl.html", config: { rescinds: true }, errors: ['sotd.obsl-rescind'] }
+    ,       { doc: "sotd/rec-superseded.html", config: { supersedes: false }, errors: ['sotd.obsl-rescind'] }
         ]
     ,   'deliverer-note':  [
             { doc: "sotd/note-deliverer.html", config: { status: "WG-NOTE" }}

@@ -146,7 +146,7 @@ span.info {
 .profile-abbr {
     display: inline-block;
     font-family: monospace;
-    min-width: 7em;
+    min-width: 9em;
     padding-right: .5em;
 }
 
