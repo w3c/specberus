@@ -9,7 +9,7 @@
     "url": "https://github.com/w3c/specberus.git"
   },
   "dependencies": {
-    "compression": "1.7.1",
+    "compression": "1.7.2",
     "express": "5.0.0-alpha.6",
     "express-handlebars": "3.0",
     "insafe": "0.5.0",
