@@ -23,6 +23,7 @@
     ,   "informative": false
     ,   "rectrack": true
     ,   "process": "https://www.w3.org/2015/Process-20150901/"
+    ,   "implementationReport": "/2016/03/webidl/report.html"
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/"
@@ -47,6 +48,7 @@
     ,   "informative": false
     ,   "rectrack": true
     ,   "process": "https://www.w3.org/2015/Process-20150901/"
+    ,   "implementationReport": "https://www.w3.org/wiki/TimedText/IMSC1_Implementation_Report"
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/NOTE-csvw-ucr-20160225/"
@@ -98,6 +100,7 @@
     ,   "informative": false
     ,   "rectrack": true
     ,   "process": "https://www.w3.org/2015/Process-20150901/"
+    ,   "implementationReport": "http://www.w3.org/2013/csvw/implementation_report.html"
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/"
