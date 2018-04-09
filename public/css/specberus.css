@@ -257,3 +257,7 @@ p.details {
 #results .list-group-item:hover .detailed {
     visibility: visible;
 }
+
+.alert.alert-info a {
+    text-decoration: underline;
+}
