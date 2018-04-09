@@ -142,6 +142,7 @@ goals of this method).
 * `sameWorkAs`: The previous shortlink if any.
 * `implementationFeedbackDue`: The implementation review date for CRs
 * `prReviewsDue`: The review date for PRs
+* `implementationReport`: Implementation report link for CRs, PRs and RECs
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
