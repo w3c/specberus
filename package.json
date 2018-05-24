@@ -10,13 +10,13 @@
   },
   "dependencies": {
     "compression": "1.7.2",
-    "express": "5.0.0-alpha.6",
+    "express": "4.16.3",
     "express-handlebars": "3.0",
     "insafe": "0.5.0",
     "metaviewport-parser": "0.2.0",
     "morgan": "1.9.0",
     "promise": "8.0.1",
-    "request": "2.85.0",
+    "request": "2.87.0",
     "socket.io": "2.1.1",
     "superagent": "3.8.3",
     "whacko": "0.19"
@@ -24,13 +24,13 @@
   "devDependencies": {
     "chai": "4.1.2",
     "chai-as-promised": "7.1.1",
-    "coveralls": "3.0.0",
+    "coveralls": "3.0.1",
     "expect.js": "0.3",
     "istanbul": "0.4.5",
     "jscs": "3.0.7",
     "jsdoc": "3.5.5",
     "jshint": "2.9.5",
-    "mocha": "5.1.1",
+    "mocha": "5.2.0",
     "nsp": "3.2.1"
   },
   "scripts": {
@@ -43,7 +43,7 @@
     "test": "npm run lint && mocha"
   },
   "engines": {
-    "node": "6 || 8",
-    "npm": ">=3"
+    "node": "8 || 10",
+    "npm": "5"
   }
 }
