@@ -277,6 +277,7 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
       * `PR-AMENDED` (identical)
     * `CR`
       * `CR-AMENDED` (identical)
+      * `CR-Echidna`
     * `FPCR`
     * `REC`
       * `REC-AMENDED` (identical)
