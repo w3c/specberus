@@ -234,12 +234,6 @@ var tests = {
         ,   { doc: "headers/fails.html", errors: ["headers.copyright"] }
         ,   { doc: "headers/permissive-doc-license.html" }
         ]
-    ,   translations:  [
-            { doc: "headers/translations.html" }
-        ,   { doc: "headers/simple.html", errors: ["headers.translations"] }
-        ,   { doc: "headers/translations-warning.html", warnings: ["headers.translations"] }
-        ,   { doc: "headers/translations-alternative.html" }
-        ]
     }
 ,   style:   {
         sheet:  [

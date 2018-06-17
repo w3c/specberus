@@ -1386,7 +1386,6 @@
                             "altRepresentations": [
                                 "REC"
                             ],
-                            "translation": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1486,7 +1485,6 @@
                             "altRepresentations": [
                                 "REC"
                             ],
-                            "translation": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1686,7 +1684,6 @@
                             "altRepresentations": [
                                 "REC"
                             ],
-                            "translation": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1791,7 +1788,6 @@
                             "altRepresentations": [
                                 "SPSD"
                             ],
-                            "translation": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1887,8 +1883,7 @@
                     "copyright": "The copyright <span class=\"rfc2119\">must</span> use the following markup (fill in with the appropriate year, years, or year range). <div class=\"boilerplate\"> <p class=\"copyright\"> <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Copyright\">Copyright</a> © @{year} <a href=\"https://www.w3.org/\"> <abbr title=\"World Wide Web Consortium\">W3C</abbr> </a> <sup>®</sup> (<a href=\"https://www.csail.mit.edu/\"> <abbr title=\"Massachusetts Institute of Technology\">MIT</abbr> </a>, <a href=\"https://www.ercim.eu/\"> <abbr title=\"European Research Consortium for Informatics and Mathematics\">ERCIM</abbr> </a>, <a href=\"https://www.keio.ac.jp/\">Keio</a>, <a href=\"http://ev.buaa.edu.cn/\">Beihang</a>). W3C <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer\">liability</a>, <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks\">trademark</a> and <a href=\"https://www.w3.org/Consortium/Legal/copyright-documents\">document use</a> rules apply.</p> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p class=\"copyright\"&gt;&lt;a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Copyright\"&gt;Copyright&lt;/a&gt; © @{year} &lt;a href=\"https://www.w3.org/\"&gt;&lt;abbr title=\"World Wide Web Consortium\"&gt;W3C&lt;/abbr&gt;&lt;/a&gt;&lt;sup&gt;®&lt;/sup&gt; (&lt;a href=\"https://www.csail.mit.edu/\"&gt;&lt;abbr title=\"Massachusetts Institute of Technology\"&gt;MIT&lt;/abbr&gt;&lt;/a&gt;, &lt;a href=\"https://www.ercim.eu/\"&gt;&lt;abbr title=\"European Research Consortium for Informatics and Mathematics\"&gt;ERCIM&lt;/abbr&gt;&lt;/a&gt;, &lt;a href=\"https://www.keio.ac.jp/\"&gt;Keio&lt;/a&gt;, &lt;a href=\"http://ev.buaa.edu.cn/\"&gt;Beihang&lt;/a&gt;). W3C &lt;a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer\"&gt;liability&lt;/a&gt;, &lt;a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks\"&gt;trademark&lt;/a&gt; and &lt;a href=\"https://www.w3.org/Consortium/Legal/copyright-documents\"&gt;document use&lt;/a&gt; rules apply.&lt;/p&gt;</code></div>",
                     "hrAfterCopyright": "A horizontal rule (<code>hr</code>) <span class=\"rfc2119\">must</span> follow the copyright.",
                     "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> <li class=\"prevversionuri\">Previous version URI</li> </ul>",
-                    "errata": "Immediately after the editors/authors' names, there <span class=\"rfc2119\">must</span> be a link to an errata document made with the following markup: <p> <code> <small>&lt;p&gt;Please check the &lt;a href=\"http://www.w3.org/...\"&gt;&lt;strong&gt;errata&lt;/strong&gt;&lt;/a&gt; for any errors or issues reported since publication.&lt;/p&gt;</small> </code> </p> <p>The order of the <code>a</code> and <code>strong</code> elements <span class=\"rfc2119\">may</span> be reversed. See also suggestions on <a href=\"http://www.w3.org/2001/06/manual/#Errata\">errata page structure</a> in the Manual of Style. <strong>Note:</strong> Do not put the errata document in TR space as the expectation is that we will not modify document in TR space after publication; see the policy for <a href=\"http://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>.</p>",
-                    "translation": "There <span class=\"rfc2119\">must</span> be a link to a translations page. The <span class=\"rfc2119\">recommended</span> markup is: <p> <code> <small>&lt;p&gt;See also &lt;a href=\" http://www.w3.org/2003/03/Translations/byTechnology?technology=shortname\"&gt; &lt;strong&gt;translations&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;</small> </code> </p> <p>See <a href=\"http://www.w3.org/2001/06/manual/#Translations\">suggestions on translations</a> in the manual of style.</p>"
+                    "errata": "Immediately after the editors/authors' names, there <span class=\"rfc2119\">must</span> be a link to an errata document made with the following markup: <p> <code> <small>&lt;p&gt;Please check the &lt;a href=\"http://www.w3.org/...\"&gt;&lt;strong&gt;errata&lt;/strong&gt;&lt;/a&gt; for any errors or issues reported since publication.&lt;/p&gt;</small> </code> </p> <p>The order of the <code>a</code> and <code>strong</code> elements <span class=\"rfc2119\">may</span> be reversed. See also suggestions on <a href=\"http://www.w3.org/2001/06/manual/#Errata\">errata page structure</a> in the Manual of Style. <strong>Note:</strong> Do not put the errata document in TR space as the expectation is that we will not modify document in TR space after publication; see the policy for <a href=\"http://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>.</p>"
                 }
             },
             "navigation": {
