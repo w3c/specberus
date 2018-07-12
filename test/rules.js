@@ -373,6 +373,10 @@ var tests = {
             { doc: "sotd/note-deliverer.html", config: { status: "WG-NOTE" }}
     ,       { doc: "sotd/note-deliverer-bad.html", config: { status: "WG-NOTE" }, errors: ['sotd.deliverer-note'] }
         ]
+    ,   'cr-end':  [
+            { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR" }}
+    ,       { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR", editorial: true }, warnings: ["sotd.cr-end"]}
+        ]
     }
 ,   heuristic:   {
         'date-format':  [
