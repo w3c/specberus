@@ -15,8 +15,7 @@ var fs = require("fs")
 ;
 
 if (!user || !pass) {
-    console.error("Please pass in your W3C username and password to fetch from the groups page.");
-    process.exit(1);
+    throw new Error("Please pass in your W3C username and password to fetch from the groups page.");
 }
 
 function norm (str) {
@@ -28,7 +27,6 @@ function norm (str) {
 function munge (err, res) {
     var $ = w.load(res.text);
     $("tr.WG, tr.IG, tr.CG").each(function () {
-        // console.log("### tr", $(this).attr("class"));
         var $tr = $(this)
         ,   $td1 = $tr.find("td").first()
         ,   name = norm($td1.text())
@@ -40,9 +38,9 @@ function munge (err, res) {
             if (href.indexOf("http") === 0) true; // jshint ignore: line
             else if (href.indexOf("/") === 0) href = "http://www.w3.org" + href;
             else if (/^(\.\.\/){2}\w/.test(href)) href = "http://www.w3.org/" + href.replace(/^(\.\.\/){2}/, "");
-            else console.error("--------------- UNKNOWN URL FORM -------------------");
+            else
+              console.error("--------------- UNKNOWN URL FORM -------------------");  // eslint-disable-line no-console
             results[list] = { name: name, href: href };
-            // console.log("\t", list, "//", name, "//", href);
         });
     });
     fs.writeFileSync(pth.join(__dirname, "../lib/groups-db.json"), JSON.stringify(results, null, 4));

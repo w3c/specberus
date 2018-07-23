@@ -220,9 +220,9 @@ var tests = {
         ,   { doc: "headers/fails.html", errors: ["headers.h2-toc"] }
         ]
     ,   "ol-toc":  [
-	    { doc: "headers/proper-toc.html" }
-	,   { doc: "headers/fails.html", warnings: ["headers.ol-toc"] }
-	]
+            { doc: "headers/proper-toc.html" }
+        ,   { doc: "headers/fails.html", warnings: ["headers.ol-toc"] }
+        ]
     ,   "secno":  [
             { doc: "headers/proper-secno.html" }
         ,   { doc: "headers/fails.html", warnings: [ "headers.secno" ] }
@@ -403,19 +403,22 @@ Object.keys(tests).forEach(function (category) {
                         ,   handler = new sink.Sink()
                         ;
                         handler.on("err", function (type, data) {
-                            if (DEBUG) console.log(type, data);
+                            if (DEBUG)
+                                console.log(type, data); // eslint-disable-line no-console
                             handler.errors.push(type.name);
                         });
                         handler.on("warning", function (type, data) {
-                            if (DEBUG) console.log("[W]", data);
+                            if (DEBUG)
+                                console.log("[W]", data); // eslint-disable-line no-console
                             handler.warnings.push(type.name);
                         });
                         handler.on("done", function () {
-                            if (DEBUG) console.log("---done---");
+                            if (DEBUG)
+                                console.log("---done---"); // eslint-disable-line no-console
                             handler.done++;
                         });
                         handler.on("exception", function (data) {
-                            console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
+                            console.error("[EXCEPTION] Validator had a massive failure: " + data.message); // eslint-disable-line no-console
                         });
                         handler.on("end-all", function () {
                             try {

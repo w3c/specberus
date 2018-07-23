@@ -22,7 +22,7 @@ const chai = require('chai')
 ;
 
 // Internal packages:
-const package = require('../package')
+const meta = require('../package')
 ,   api = require('../lib/api')
 ;
 
@@ -88,18 +88,18 @@ describe('API', function() {
     describe('Endpoint', function() {
         it('Should exist and listen to GET requests', function() {
             query = get('');
-            return expect(query).to.eventually.be.rejectedWith(/wrong\ api\ method/i);
+            return expect(query).to.eventually.be.rejectedWith(/wrong api method/i);
         });
         it('Should not accept POST requests', function() {
             query = get('', true);
-            return expect(query).to.eventually.be.rejectedWith(/cannot\ post/i);
+            return expect(query).to.eventually.be.rejectedWith(/cannot post/i);
         });
     });
 
     describe('Method “version”', function() {
         it('Should return the right version string', function() {
             query = get('version');
-            return expect(query).to.eventually.become(package.version);
+            return expect(query).to.eventually.become(meta.version);
         });
     });
 
@@ -108,7 +108,7 @@ describe('API', function() {
             query = get('metadata?file=test/docs/metadata/ttml-imsc1.html');
             // @TODO: parse result as an Object (it's JSON) instead of a String.
             return expect(query).to.eventually.match(/"profile":\s*"pr"/i)
-                .and.to.eventually.match(/"docdate":\s*"2016\-3\-8"/i);
+                .and.to.eventually.match(/"docdate":\s*"2016-3-8"/i);
         });
     });
 

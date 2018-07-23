@@ -2,9 +2,10 @@ language: node_js
 node_js:
   - "8"
   - "10"
+before_install:
+  - npm i -g npm@latest
 script:
-  - npm test
-  - npm run nsp
+  - npm run build
 after_script:
   - npm run coveralls
 notifications:

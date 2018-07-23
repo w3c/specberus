@@ -24,26 +24,29 @@
   "devDependencies": {
     "chai": "4.1.2",
     "chai-as-promised": "7.1.1",
-    "coveralls": "3.0.1",
+    "coveralls": "3.0.2",
+    "eslint": "5.2.0",
+    "eslint-plugin-node": "7.0.1",
     "expect.js": "0.3",
     "istanbul": "0.4.5",
-    "jscs": "3.0.7",
     "jsdoc": "3.5.5",
     "jshint": "2.9.5",
-    "mocha": "5.2.0",
-    "nsp": "3.2.1"
+    "minami": "1.2.3",
+    "mocha": "5.2.0"
   },
   "scripts": {
+    "audit": "npm audit | grep -oP 'https://nodesecurity.io/advisories/(\\d+)' | diff known-vulns.txt -",
+    "lint": "eslint app.js lib/ public/ test/ tools/",
+    "hint": "jshint app.js lib/ public/ test/ tools/",
+    "test": "mocha",
+    "jsdoc": "jsdoc --configure jsdoc.json -r app.js lib/ public/ test/ tools/",
     "coverage": "istanbul cover _mocha",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
-    "jsdoc": "jsdoc -a all -d doc/api/ -e utf8 -r app.js lib/ test/ tools/",
-    "lint": "jscs app.js lib/ public/ test/ tools/ views/ && jshint app.js lib/ public/ test/ tools/ views/",
-    "nsp": "nsp check",
-    "start": "node --use_strict app",
-    "test": "npm run lint && mocha"
+    "build": "npm run audit && npm run lint && npm run hint && npm run test && npm run jsdoc",
+    "start": "node --use_strict app"
   },
   "engines": {
     "node": "8 || 10",
-    "npm": "5"
+    "npm": ">=6"
   }
 }
