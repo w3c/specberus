@@ -59,7 +59,7 @@ jQuery.extend({
 
     // handshake
     socket.on("handshake", function (data) {
-        console.log(`Handshake; using version “${data.version}”.`);
+        console.log(`Handshake; using version “${data.version}”.`); // eslint-disable-line no-console
 
         socket.on('disconnect', function () {
             socket.close();
@@ -111,7 +111,7 @@ jQuery.extend({
         ;
         if (data && data.id) {
             // Corner case: if the profile is unknown, let's assume 'WD' (most common).
-            var newProfile = profile ? profile.replace(/\-echidna$/i, '') : 'WD';
+            var newProfile = profile ? profile.replace(/-echidna$/i, '') : 'WD';
             inContext = `<a href="doc/rules?profile=${newProfile}#${data.id}">See rule in context</a> <br>`;
         }
         if (data && data.name)
@@ -161,7 +161,6 @@ jQuery.extend({
     });
 
     socket.on("start", function (data) {
-        console.log('Started.');
         done = 0;
         total = data.rules.length;
         $progressStyler.addClass("active progress-striped");
@@ -187,7 +186,6 @@ jQuery.extend({
         $progress.text(done + '/' + total);
     });
     socket.on("finished", function () {
-        console.log('Finished.');
         showResults();
     });
     socket.on("finishedExtraction", function (data) {
@@ -292,7 +290,7 @@ jQuery.extend({
         if (options.url) $url.val(decodeURIComponent(options.url));
         // "profile" might be eg "WD-Echidna". Normalise.
         if (options.profile) {
-          var newProfile = options.profile.replace(/\-echidna$/i, '');
+          var newProfile = options.profile.replace(/-echidna$/i, '');
           $profile.find('option[value=' + newProfile + ']').prop('selected', true);
         }
         if (options.validation) {

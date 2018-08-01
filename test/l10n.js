@@ -20,9 +20,9 @@ const rules = require('../lib/rules')
 // Constants:
 const messages = l10n.messages
 ,   baseDir = './lib/rules/'
-,   extensionRemover = /\.[^\.]+$/
-,   messageFinder = /\.(info|warning|error)\s*\(.+,\s*[\"\']([^\(\)\"\'{}]+)[\"\']/g
-,   exceptionFinder = /emits\s*:\s*[\"\']([^\(\)\"\'{}]+)[\"\']/g
+,   extensionRemover = /\.[^.]+$/
+,   messageFinder = /\.(info|warning|error)\s*\(.+,\s*["']([^()"'{}]+)["']/g
+,   exceptionFinder = /emits\s*:\s*["']([^()"'{}]+)["']/g
 ;
 
 /**
