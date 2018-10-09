@@ -1934,7 +1934,7 @@
                     "compoundFilesLocation": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">must</span> be under a directory /TR/YYYY/@{param1}-shortname-YYYYMMDD/",
                     "compoundOverview": "The main page <span class=\"rfc2119\">should</span> be called Overview.html.",
                     "compound": "All other files <span class=\"rfc2119\">must</span> be reachable by links from the document.",
-                    "fixupJs": "The document <span class=\"rfc2119\">must</span> include the script <code><a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\" type=\"text/javascript\"&gt;&lt;/script&gt;</code></p>"
+                    "fixupJs": "The document <span class=\"rfc2119\">must</span> include the script <code><a href=\"https://www.w3.org/scripts/TR/2016/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2016/fixup.js\" type=\"applicationjavascript\"&gt;&lt;/script&gt;</code></p>"
                 }
             }
         }
