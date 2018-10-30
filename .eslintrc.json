@@ -10,6 +10,8 @@
     "plugin:node/recommended"
   ],
   "rules": {
-    "node/no-unpublished-require": "off"
+    "node/no-unpublished-require": "off",
+    "no-eval": "error",
+    "no-implied-eval": "error"
   }
 }
