@@ -29,5 +29,11 @@
     {
       "rule": "headers.copyright"
     }
+  ],
+  "^wpub$": [
+    {
+      "rule": "validation.html",
+      "message": "Bad value “publication” for attribute “rel” on element “link”: The string “publication” is not a registered keyword."
+    }
   ]
 }
