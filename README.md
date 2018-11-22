@@ -40,10 +40,10 @@ on the same core library.
 ### Syntax and command-line parameters
 
 ```bash
-$ API_KEY="<YOUR W3C API KEY>" npm start [PORT]
+$ W3C_API_KEY="<YOUR W3C API KEY>" npm start [PORT]
 ```
 
-Specberus relies on the [W3C API](http://w3c.github.io/w3c-api/) to run a few checks. You will need to provide [your key](http://w3c.github.io/w3c-api/#apikeys) in an environment variable `API_KEY`
+Specberus relies on the [W3C API](http://w3c.github.io/w3c-api/) to run a few checks. You will need to provide [your key](http://w3c.github.io/w3c-api/#apikeys) in an environment variable `W3C_API_KEY`
 
 Meaning of positional parameters:
 
@@ -53,14 +53,14 @@ Meaning of positional parameters:
 Examples:
 
 ```bash
-$ API_KEY="<YOUR W3C API KEY>" npm start
-$ API_KEY="<YOUR W3C API KEY>" npm start 3001
+$ W3C_API_KEY="<YOUR W3C API KEY>" npm start
+$ W3C_API_KEY="<YOUR W3C API KEY>" npm start 3001
 ```
 
 Set the environment variable `DEBUG` to run in *debug mode* instead:
 
 ```bash
-$ DEBUG=true API_KEY="<YOUR W3C API KEY>" npm start
+$ DEBUG=true W3C_API_KEY="<YOUR W3C API KEY>" npm start
 ```
 
 This modifies the behaviour of certain parts of the application to facilitate debugging.
@@ -71,8 +71,8 @@ If Specberus is *not* going to be served from the root directory of a domain, or
 set also `BASE_URI` pointing to the public root URI of Specberus; eg
 
 ```bash
-$ BASE_URI=https://spec-store.com/check/ API_KEY=deadbeef npm start
-$ BASE_URI=/hostname/can/be/omitted/ API_KEY=deadbeef npm start 88
+$ BASE_URI=https://spec-store.com/check/ W3C_API_KEY=deadbeef npm start
+$ BASE_URI=/hostname/can/be/omitted/ W3C_API_KEY=deadbeef npm start 88
 ```
 
 ## 3. Testing
@@ -80,7 +80,7 @@ $ BASE_URI=/hostname/can/be/omitted/ API_KEY=deadbeef npm start 88
 Testing is done using mocha. Simply run:
 
 ```bash
-$ API_KEY="<YOUR W3C API KEY>" mocha
+$ W3C_API_KEY="<YOUR W3C API KEY>" mocha
 ```
 
 from the root and you will be running the test suite. Mocha can be installed with:
@@ -93,7 +93,7 @@ Some of the tests can on occasion take a long time, or fail outright because a r
 unavailable. To work around this, you can set SKIP_NETWORK:
 
 ```bash
-$ SKIP_NETWORK=1 API_KEY="<YOUR W3C API KEY>" mocha
+$ SKIP_NETWORK=1 W3C_API_KEY="<YOUR W3C API KEY>" mocha
 ```
 
 ## 4. JS API
