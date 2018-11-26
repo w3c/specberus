@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "compression": "1.7.3",
-    "express": "4.16.3",
+    "express": "4.16.4",
     "express-handlebars": "3.0",
     "insafe": "0.5.0",
     "metaviewport-parser": "0.2.0",
@@ -22,10 +22,10 @@
     "whacko": "0.19"
   },
   "devDependencies": {
-    "chai": "4.1.2",
+    "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "coveralls": "3.0.2",
-    "eslint": "5.2.0",
+    "eslint": "5.9.0",
     "eslint-plugin-node": "8.0.0",
     "expect.js": "0.3",
     "istanbul": "0.4.5",
