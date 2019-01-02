@@ -30,7 +30,7 @@
     "expect.js": "0.3",
     "istanbul": "0.4.5",
     "jsdoc": "3.5.5",
-    "jshint": "2.9.6",
+    "jshint": "2.9.7",
     "minami": "1.2.3",
     "mocha": "5.2.0"
   },
