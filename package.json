@@ -35,7 +35,7 @@
     "mocha": "5.2.0"
   },
   "scripts": {
-    "audit": "npm audit | grep -oP 'https://nodesecurity.io/advisories/(\\d+)' | diff known-vulns.txt -",
+    "audit": "npm audit | grep -oE 'https?\\:\\/\\/(www\\.)?(nodesecurity\\.io|npmjs\\.com)\\/advisories\\/[[:digit:]]+' | rev | cut -d '/' -f 1 | rev | diff known-vulns.txt -",
     "lint": "eslint app.js lib/ public/ test/ tools/",
     "hint": "jshint app.js lib/ public/ test/ tools/",
     "test": "mocha",
