@@ -24,4 +24,4 @@ deploy:
     secure: qPx+fMzf0AOVP1aIKGUrTTHcpoTkyYpsUq20rnDiqQbrNeMo44esOs4szPKtkwQYdM3iVY8AXMDBxej60g5dl4ZN2dy2FiuJnu9zy8ldsXJjEVTbMZT+nhQirJ17zczvP/AmBBY2s/MY5KUK69apgSuIa5nZNkfPjf1sBjfbnus=
   on:
     tags: true
-    repo: w3c/specberus
+    repo: w3c/spartacus

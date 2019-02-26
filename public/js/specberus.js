@@ -115,21 +115,21 @@ jQuery.extend({
             inContext = `<a href="doc/rules?profile=${newProfile}#${data.id}">See rule in context</a> <br>`;
         }
         if (data && data.name)
-            issue = `<a href="https://github.com/w3c/specberus/issues/new?` +
+            issue = `<a href="https://github.com/w3c/spartacus/issues/new?` +
                 `title=Bug%20in%20rule%20%E2%80%9C${data.name}%E2%80%9D:%20[WHAT]&` +
                 `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${encodeURIComponent(url)}\`]` +
                 `(${encodeURIComponent(window.location)}).&` +
                 `labels=from-template` +
                 `">Report a bug</a>`;
         else if (data && data.exception)
-            issue = `<a href="https://github.com/w3c/specberus/issues/new?` +
+            issue = `<a href="https://github.com/w3c/spartacus/issues/new?` +
                 `title=Bug:%20[WHAT]&` +
                 `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${encodeURIComponent(url)}\`]` +
                 `(${encodeURIComponent(window.location)}).&` +
                 `labels=from-template` +
                 `">Report a bug</a>`;
         else
-            issue = `<a href="https://github.com/w3c/specberus/issues/new?` +
+            issue = `<a href="https://github.com/w3c/spartacus/issues/new?` +
                 `title=Bug%20in%20rules:%20[WHAT]&` +
                 `body=[EXPLANATION]%0A%0AFound%20[while%20checking%20\`${encodeURIComponent(url)}\`]` +
                 `(${encodeURIComponent(window.location)}).&` +

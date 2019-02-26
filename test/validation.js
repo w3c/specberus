@@ -5,7 +5,7 @@
  *
  * HTML and CSS validations often time out, and Travis CI thinks the build is broken when it happens.
  * Therefore, we only add these test cases when testing locally.
- * See <a href="https://github.com/w3c/specberus/issues/164">w3c/specberus#164</a> and
+ * See <a href="https://github.com/w3c/spartacus/issues/164">w3c/spartacus#164</a> and
  * <a href="http://docs.travis-ci.com/user/ci-environment/#Environment-variables">Travis documentation</a>.
  */
 

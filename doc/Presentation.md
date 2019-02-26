@@ -1,17 +1,17 @@
 
 class: center, middle
 
-# Specberus
+# Spartacus
 
-.center[![Logo](https://raw.githubusercontent.com/w3c/specberus/master/doc/logo-small.png)]
+.center[![Logo](https://raw.githubusercontent.com/w3c/spartacus/master/doc/logo-small.png)]
 
 ---
 
 # What
 
-Specberus (ˈspɛk bər əs) *n. new* pubrules *automatic checker and documentation tool.*
+Spartacus (ˈspɛk bər əs) *n. new* pubrules *automatic checker and documentation tool.*
 
-*Specberus* is expected to replace the [current pubrules tool](http://www.w3.org/2005/07/pubrules) in the near future.
+*Spartacus* is expected to replace the [current pubrules tool](http://www.w3.org/2005/07/pubrules) in the near future.
 
 ---
 
@@ -36,7 +36,7 @@ In JavaScript, on [Node.js](http://nodejs.org/); with [Bootstrap](http://getboot
 
 # How: general architecture
 
-    Specberus
+    Spartacus
     ├── design
     ├── lib
     │   ├── profiles
@@ -55,7 +55,7 @@ In JavaScript, on [Node.js](http://nodejs.org/); with [Bootstrap](http://getboot
 
 # How: *rules*
 
-    Specberus
+    Spartacus
     ├── design
     ├── lib
     │   ├── profiles
@@ -107,7 +107,7 @@ In JavaScript, on [Node.js](http://nodejs.org/); with [Bootstrap](http://getboot
 
 # How: testing
 
-    Specberus
+    Spartacus
     ├── design
     ├── lib
     │   ├── profiles
@@ -173,7 +173,7 @@ Nice to have for debugging:
 
 ---
 
-# How Specberus has improved recently
+# How Spartacus has improved recently
 
 `0.3.3` → `0.4.0`
 
@@ -198,12 +198,12 @@ Nice to have for debugging:
 `0.5.0`?  
 `1.0.0`?
 
-1. *[Offer help descriptions for all rules and all errors](https://github.com/w3c/specberus/issues/22)* and *[Reproduce documentation from pubrules](https://github.com/w3c/specberus/issues/25)* (related).
-2. *[Write command-line client](https://github.com/w3c/specberus/issues/5)*
-3. *[Expose as HTTP API](https://github.com/w3c/specberus/issues/4)*
-4. *[The hierarchy of available profiles is hard-coded in the UI](https://github.com/w3c/specberus/issues/51)*
-5. *[Track whacko for better support for next/nextAll/prev/prevAll so that we can remove lots of nasty hacks](https://github.com/w3c/specberus/issues/3)*
-6. *[Make rule checking more parallelised, notably for network IO](https://github.com/w3c/specberus/issues/1)*
+1. *[Offer help descriptions for all rules and all errors](https://github.com/w3c/spartacus/issues/22)* and *[Reproduce documentation from pubrules](https://github.com/w3c/spartacus/issues/25)* (related).
+2. *[Write command-line client](https://github.com/w3c/spartacus/issues/5)*
+3. *[Expose as HTTP API](https://github.com/w3c/spartacus/issues/4)*
+4. *[The hierarchy of available profiles is hard-coded in the UI](https://github.com/w3c/spartacus/issues/51)*
+5. *[Track whacko for better support for next/nextAll/prev/prevAll so that we can remove lots of nasty hacks](https://github.com/w3c/spartacus/issues/3)*
+6. *[Make rule checking more parallelised, notably for network IO](https://github.com/w3c/spartacus/issues/1)*
 7. Improve performance.
 8. Polish design and test on more platforms.
 
@@ -214,7 +214,7 @@ Nice to have for debugging:
 You are encouraged to try this new checker, and especially to submit bug reports and suggestions.
 
 * General feedback about the publication workflow: [`public-pubrules-comments@w3.org`](public-pubrules-comments@w3.org)
-* Specific bugs or ideas about the pubrules checker: [`https://github.com/w3c/specberus/issues`](https://github.com/w3c/specberus/issues)
+* Specific bugs or ideas about the pubrules checker: [`https://github.com/w3c/spartacus/issues`](https://github.com/w3c/spartacus/issues)
 
 ---
 
@@ -224,7 +224,7 @@ You are encouraged to try this new checker, and especially to submit bug reports
 
 [On GitHub](https://github.com/w3c/).
 
-There are currently 22 [open issues](https://github.com/w3c/specberus/issues).
+There are currently 22 [open issues](https://github.com/w3c/spartacus/issues).
 
 The `#pubrules` channel on [irc.w3.org](http://irc.w3.org/) is a good place if you have any questions regarding the project.
 

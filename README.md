@@ -1,15 +1,15 @@
-[![npm version](https://img.shields.io/npm/v/specberus.svg)](https://npmjs.org/package/specberus)
-[![License](https://img.shields.io/npm/l/specberus.svg)](LICENSE)
-[![Build Status](https://travis-ci.org/w3c/specberus.svg?branch=master)](https://travis-ci.org/w3c/specberus)
-[![Coverage Status](https://coveralls.io/repos/w3c/specberus/badge.svg)](https://coveralls.io/r/w3c/specberus)
-[![Dependency Status](https://david-dm.org/w3c/specberus.svg)](https://david-dm.org/w3c/specberus)
-[![devDependency Status](https://david-dm.org/w3c/specberus/dev-status.svg)](https://david-dm.org/w3c/specberus#info=devDependencies)
+[![npm version](https://img.shields.io/npm/v/spartacus.svg)](https://npmjs.org/package/spartacus)
+[![License](https://img.shields.io/npm/l/spartacus.svg)](LICENSE)
+[![Build Status](https://travis-ci.org/w3c/spartacus.svg?branch=master)](https://travis-ci.org/w3c/spartacus)
+[![Coverage Status](https://coveralls.io/repos/w3c/spartacus/badge.svg)](https://coveralls.io/r/w3c/spartacus)
+[![Dependency Status](https://david-dm.org/w3c/spartacus.svg)](https://david-dm.org/w3c/spartacus)
+[![devDependency Status](https://david-dm.org/w3c/spartacus/dev-status.svg)](https://david-dm.org/w3c/spartacus#info=devDependencies)
 
-# Specberus
+# Spartacus
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/w3c/specberus.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/w3c/spartacus.svg)](https://greenkeeper.io/)
 
-Specberus is a checker used at [W3C](http://www.w3.org/) to validate the compliance of [Technical Reports](http://www.w3.org/TR/) with publication rules.
+Spartacus is a checker used at [W3C](http://www.w3.org/) to validate the compliance of [Technical Reports](http://www.w3.org/TR/) with publication rules.
 
 1. [Installation](#1-installation)
 1. [Running](#2-running)
@@ -22,8 +22,8 @@ Specberus is a checker used at [W3C](http://www.w3.org/) to validate the complia
 
 ## 1. Installation
 
-Specberus is a [Node.js](https://nodejs.org/en/) application, [distributed through npm](https://www.npmjs.com/package/specberus).
-Alternatively, you can clone [the repository](https://github.com/w3c/specberus) and run:
+Spartacus is a [Node.js](https://nodejs.org/en/) application, [distributed through npm](https://www.npmjs.com/package/spartacus).
+Alternatively, you can clone [the repository](https://github.com/w3c/spartacus) and run:
 
 ```bash
 $ npm install -d
@@ -34,7 +34,7 @@ recent version of Node.js installed.
 
 ## 2. Running
 
-Currently there is no shell to run Specberus. Later we will add both Web and CLI interfaces based
+Currently there is no shell to run Spartacus. Later we will add both Web and CLI interfaces based
 on the same core library.
 
 ### Syntax and command-line parameters
@@ -43,11 +43,11 @@ on the same core library.
 $ W3C_API_KEY="<YOUR W3C API KEY>" npm start [PORT]
 ```
 
-Specberus relies on the [W3C API](http://w3c.github.io/w3c-api/) to run a few checks. You will need to provide [your key](http://w3c.github.io/w3c-api/#apikeys) in an environment variable `W3C_API_KEY`
+Spartacus relies on the [W3C API](http://w3c.github.io/w3c-api/) to run a few checks. You will need to provide [your key](http://w3c.github.io/w3c-api/#apikeys) in an environment variable `W3C_API_KEY`
 
 Meaning of positional parameters:
 
-1. `PORT`: where Specberus will be listening for HTTP connections.
+1. `PORT`: where Spartacus will be listening for HTTP connections.
 (Default `80`.)
 
 Examples:
@@ -67,8 +67,8 @@ This modifies the behaviour of certain parts of the application to facilitate de
 eg, CSS and JS resources will *not* be loaded in their minified/uglified forms
 (the web UI will load `bootstrap.css`, `bootstrap.js` and `jquery.js` instead of `bootstrap.min.css`, `bootstrap.min.js` and `jquery.min.js`).
 
-If Specberus is *not* going to be served from the root directory of a domain, or if it will be served through a proxy,
-set also `BASE_URI` pointing to the public root URI of Specberus; eg
+If Spartacus is *not* going to be served from the root directory of a domain, or if it will be served through a proxy,
+set also `BASE_URI` pointing to the public root URI of Spartacus; eg
 
 ```bash
 $ BASE_URI=https://spec-store.com/check/ W3C_API_KEY=deadbeef npm start
@@ -98,9 +98,9 @@ $ SKIP_NETWORK=1 W3C_API_KEY="<YOUR W3C API KEY>" mocha
 
 ## 4. JS API
 
-The interface you get when you `require("specberus")` is that from `lib/validator`. It returns a
-`Specberus` instance that is properly configured for operation in the Node.js environment
-(there is nominal support for running Specberus under other environments, but it isn't usable at this time).
+The interface you get when you `require("spartacus")` is that from `lib/validator`. It returns a
+`Spartacus` instance that is properly configured for operation in the Node.js environment
+(there is nominal support for running Spartacus under other environments, but it isn't usable at this time).
 
 (See also [the REST API](#5-rest-api).)
 
@@ -146,7 +146,7 @@ goals of this method).
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
-This is an example of the value of `Specberus.meta` after the execution of `Specberus.extractMetadata()`:
+This is an example of the value of `Spartacus.meta` after the execution of `Spartacus.extractMetadata()`:
 
 ```json
 {
@@ -167,12 +167,12 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
 
 ## 5. REST API
 
-Similar to the [JS API](#4-js-api), Specberus exposes a REST API via HTTP too.
+Similar to the [JS API](#4-js-api), Spartacus exposes a REST API via HTTP too.
 
 The endpoint is `<host>/api/`.
 Use either `url` or `file` to pass along the document (neither `source` nor `document` are allowed).
 
-Note: If you want to use the public W3C instance of Specberus, you can replace `<host>` with `https://www.w3.org/pubrules`.
+Note: If you want to use the public W3C instance of Spartacus, you can replace `<host>` with `https://www.w3.org/pubrules`.
 
 There are three `GET` methods available.
 
@@ -314,20 +314,20 @@ indicated below. Events are shown as having parameters since those are passed to
 
 ## 8. Writing rules
 
-Rules are simple modules that just expose a `check(sr, cb)` method. They receive a Specberus object
-and a callback, use the Specberus object to fire validation events and call the callback when
+Rules are simple modules that just expose a `check(sr, cb)` method. They receive a Spartacus object
+and a callback, use the Spartacus object to fire validation events and call the callback when
 they're done.
 
-The Specberus object exposes the following API that's useful for validation:
+The Spartacus object exposes the following API that's useful for validation:
 
 * `$`. A jQuery-like interface to the document being checked.
 * `loader`. The loader object that loaded the content, which exposes the content's `url` and
   `source` if they are known.
 * `sink`. The event target on which to fire validation events.
-* `version`. The Specberus version.
+* `version`. The Spartacus version.
 * `checkSelector(selector, rule-name, cb)`. Some rules need to do nothing other than to check that a
   selector returns some content. For this case, the rule can just call this method with the selector
-  and its callback, and Specberus will conveniently take care of all the rest.
+  and its callback, and Spartacus will conveniently take care of all the rest.
 * `norm(text)`. Returns a whitespace-normalised version of the text.
 * `getDocumentDate()`. Returns a Date object that matches the document's date as specified in the
   headers' h2.

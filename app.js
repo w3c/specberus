@@ -49,7 +49,7 @@ io.sockets.on("connection", function (socket) {
     socket.emit("handshake", { version: version });
     socket.on("extractMetadata", function (data) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
-        var v = new validator.Specberus()
+        var v = new validator.Spartacus()
         ,   handler = new Sink()
         ;
         handler.on('err', function (type, data) {
@@ -92,7 +92,7 @@ io.sockets.on("connection", function (socket) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
         if (!data.profile) return socket.emit("exception", { message: "Profile not provided." });
         if (!util.profiles[data.profile]) return socket.emit("exception", { message: "Profile does not exist." });
-        var v = new validator.Specberus()
+        var v = new validator.Spartacus()
         ,   handler = new Sink()
         ,   profile = util.profiles[data.profile]
         ,   profileCode = profile.name
