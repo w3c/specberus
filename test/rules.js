@@ -349,10 +349,10 @@ var tests = {
         ,   { doc: "sotd/pp-bad.html", errors: ['sotd.ac-review'] }
         ]
     ,   'process-document':  [
-            { doc: "sotd/process2018.html" }
-    ,       { doc: "sotd/deprecated2015.html", errors: ['sotd.process-document', 'sotd.process-document']}
-    ,       { doc: "sotd/deprecated2017-allowed.html", warnings: ['sotd.process-document']}
-    ,       { doc: "sotd/deprecated2017-not-allowed.html", errors: ['sotd.process-document', 'sotd.process-document']}
+            { doc: "sotd/process2019.html" }
+    ,       { doc: "sotd/deprecated2017.html", errors: ['sotd.process-document', 'sotd.process-document']}
+    ,       { doc: "sotd/deprecated2018-allowed.html", warnings: ['sotd.process-document']}
+    ,       { doc: "sotd/deprecated2018-not-allowed.html", errors: ['sotd.process-document', 'sotd.process-document']}
     ,       { doc: "sotd/wrongprocess.html", errors: ['sotd.process-document', 'sotd.process-document']}
         ]
     ,   'group-homepage':  [
