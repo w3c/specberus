@@ -193,10 +193,10 @@ The special profile `auto` is also available.
 
 ### Examples
 
-* `<host>/api/version`
-* `<host>/api/metadata?url=http://example.com/doc.html`
-* `<host>/api/validate?file=/home/me/docs/spec.html`
-* `<host>/api/validate?file=draft2.html&profile=WD&validation=simple-validation&processDocument=2015`
+* `https://www.w3.org/pubrules/api/version`
+* `https://www.w3.org/pubrules/api/metadata?url=https://example.com/doc.html`
+* `https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=auto`
+* `https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=WD&validation=simple-validation`
 
 ### Return values
 
