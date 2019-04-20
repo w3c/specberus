@@ -26,7 +26,7 @@
     "chai-as-promised": "7.1.1",
     "coveralls": "3.0.3",
     "eslint": "5.15.3",
-    "eslint-plugin-node": "8.0.0",
+    "eslint-plugin-node": "8.0.1",
     "expect.js": "0.3",
     "istanbul": "0.4.5",
     "jsdoc": "3.5.5",
