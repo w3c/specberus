@@ -17,7 +17,7 @@
     "morgan": "1.9.1",
     "promise": "8.0.3",
     "request": "2.88.0",
-    "socket.io": "2.2.0",
+    "socket.io": "2.3.0",
     "superagent": "4.1.0",
     "whacko": "0.19"
   },
