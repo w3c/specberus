@@ -33,5 +33,10 @@
     {
       "rule": "headers.copyright"
     }
+  ],
+  "^did-core$": [
+    {
+      "rule": "heuristic.date-format"
+    }
   ]
 }
