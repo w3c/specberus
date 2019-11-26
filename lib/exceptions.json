@@ -34,6 +34,11 @@
       "rule": "headers.copyright"
     }
   ],
+  "^webauthn-2$": [
+    {
+      "rule": "metadata.title"
+    }
+  ],
   "^did-core$": [
     {
       "rule": "heuristic.date-format"
