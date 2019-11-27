@@ -36,7 +36,7 @@
   ],
   "^webauthn-2$": [
     {
-      "rule": "metadata.title"
+      "rule": "headers.h1-title"
     }
   ],
   "^did-core$": [
