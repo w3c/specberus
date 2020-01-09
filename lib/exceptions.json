@@ -15,9 +15,9 @@
       "message": "Property user-select doesn't exist : "
     },
     {
-      "rule": "validation.css",
+      "rule": "validation.html",
       "type": "noexistence-at-all",
-      "message": "Property caret-shape doesn't exist : "
+      "message": "CSS: “caret-shape”: Property “caret-shape” doesn't exist."
     },
     {
       "rule": "validation.html",
