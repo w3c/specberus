@@ -15,6 +15,16 @@
       "message": "Property user-select doesn't exist : "
     },
     {
+      "rule": "validation.css",
+      "type": "generator.unrecognize",
+      "message": "Parse Error"
+    },
+    {
+      "rule": "validation.css",
+      "type": "noexistence-at-all",
+      "message": "Property “pointer-events” doesn't exist : "
+    },
+    {
       "rule": "validation.html",
       "message": "Bad value “publication” for attribute “rel” on element “link”: The string “publication” is not a registered keyword."
     }
