@@ -1,8 +1,11 @@
 {
     "esversion": 6,
-    "globals": {"require": false, "console": false, "exports": false, "process": false, "__dirname": false},
+    "globals": {"require": false, "console": false, "exports": false, "process": false, "__dirname": false },
     "laxcomma": true,
     "loopfunc": true,
     "undef": true,
-    "unused": true
+    "unused": true,
+    "browser": true,
+    "jquery": true,
+    "mocha": true
 }

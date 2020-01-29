@@ -2,7 +2,7 @@
  * Test L10n features.
  */
 
-/* globals describe: false, it: false, expect: true, before: false */
+/* globals expect: true */
 
 // Native packages:
 const fs = require('fs');
@@ -50,7 +50,7 @@ const scanStrings = function() {
         if ('generic' !== c[0]) {
 
             // 1. Process the section:
-            if (!result.hasOwnProperty(c[0])) {
+            if (!Object.prototype.hasOwnProperty.call(result, c[0])) {
                 if (1 === c.length) {
                     if (false === messages[i])
                         result[c[0]] = false;
@@ -67,7 +67,7 @@ const scanStrings = function() {
 
             // 2. Process the rule:
             if (c.length > 1) {
-                if (!result[c[0]].hasOwnProperty(c[1])) {
+                if (!Object.prototype.hasOwnProperty.call(result[c[0]], c[1])) {
                     if (2 === c.length) {
                         if (false === messages[i])
                             result[c[0]][c[1]] = false;
@@ -85,7 +85,7 @@ const scanStrings = function() {
 
             // 3. Process the message ID:
             if (c.length > 2) {
-                if (!result[c[0]][c[1]].hasOwnProperty(c[2]))
+                if (!Object.prototype.hasOwnProperty.call(result[c[0]][c[1]], c[2]))
                     result[c[0]][c[1]][c[2]] = !!(messages[i]);
                 else
                     throw new Error(`key “${i}” is defined more than once`);
@@ -160,15 +160,15 @@ const scanFileSystem = function() {
 const findHoles = function(source, expected, labelSource, labelExpected) {
     var errors = '';
     for (var i in expected)
-        if (!source.hasOwnProperty(i))
+        if (!Object.prototype.hasOwnProperty.call(source, i))
             errors += `Section “${i}” exists in ${labelExpected} but is missing in ${labelSource}.\n`;
         else if (false !== source[i])
             for (var j in expected[i])
-                if (!source[i].hasOwnProperty(j))
+                if (!Object.prototype.hasOwnProperty.call(source[i], j))
                     errors += `Rule “${i}/${j}” exists in ${labelExpected} but is missing in ${labelSource}.\n`;
                 else if (false !== source[i][j])
                     for (var k in expected[i][j])
-                        if (!source[i][j].hasOwnProperty(k))
+                        if (!Object.prototype.hasOwnProperty.call(source[i][j], k))
                             errors += `Message ID “${i}/${j}/${k}” exists in ${labelExpected} but is missing in ${labelSource}.\n`;
     if (errors)
         throw new Error(errors.slice(0, -2) + '.');

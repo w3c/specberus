@@ -13,8 +13,6 @@
 // 1. Visit http://kwz.me/8p. Copy the JSON into groups-sparql.json
 // 2. Run this script
 
-/* globals __dirname: false */
-
 var src = require("./groups-sparql")
 ,   fs = require("fs")
 ,   pth = require("path")

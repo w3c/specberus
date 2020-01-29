@@ -1,5 +1,3 @@
-/* globals $: false, document: false, window: false */
-
 'use strict'; // jshint ignore: line
 
 $(document).ready(function() {

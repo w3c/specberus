@@ -2,7 +2,7 @@
  * Test the REST API.
  */
 
-/* globals describe: false, it: false, before: false, after: false, expect: true */
+/* globals expect: true */
 
 // Settings:
 const DEFAULT_PORT = 8000
