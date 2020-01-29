@@ -42,11 +42,11 @@
     "jsdoc": "jsdoc --configure jsdoc.json -r app.js lib/ public/ test/ tools/",
     "coverage": "istanbul cover _mocha",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
-    "build": "npm run audit && npm run lint && npm run hint && npm run test && npm run jsdoc",
+    "build": "npm run lint && npm run hint && npm run test && npm run jsdoc",
     "start": "node --use_strict app"
   },
   "engines": {
-    "node": "8 || 10",
+    "node": "10 || 12",
     "npm": ">=6"
   }
 }
