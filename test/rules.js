@@ -2,8 +2,6 @@
  * Test the rules.
  */
 
-/* globals __dirname: false, describe: false, it: false */
-
 // Settings:
 const DEBUG = false;
 
@@ -89,7 +87,7 @@ const compareMetadata = function(url, file, expectedObject) {
             chai(specberus).to.have.property('meta').to.have.property('rectrack').equal(expectedObject.rectrack);
             var optionalProperties = ['process', 'editorsDraft', 'implementationFeedbackDue', 'prReviewsDue', 'implementationReport'];
             optionalProperties.forEach(function(p) {
-                if (expectedObject.hasOwnProperty(p)) {
+                if (Object.prototype.hasOwnProperty.call(expectedObject, p)) {
                     chai(specberus).to.have.property('meta').to.have.property(p).equal(expectedObject[p]);
                 }
             });

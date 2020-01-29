@@ -1,8 +1,11 @@
 {
   "env": {
-    "node": true,
     "browser": true,
-    "mocha": true
+    "commonjs": true,
+    "es6": true,
+    "jquery": true,
+    "mocha": true,
+    "node": true
   },
   "plugins": ["node"],
   "extends": [

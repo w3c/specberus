@@ -3,8 +3,6 @@
 
 // XXX also look at https://cvs.w3.org/Team/WWW/2000/04/mem-news/groups.rdf
 
-/* globals __dirname: false */
-
 var fs = require("fs")
 ,   pth = require("path")
 ,   ua = require("superagent")

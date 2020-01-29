@@ -1,6 +1,6 @@
-/* globals jQuery: false, document: false, io: false, location: false, console: false, window: false, history: false, url: false */
-
 'use strict'; // jshint ignore: line
+
+/* globals io, url */
 
 /**
  * @TODO Document.
