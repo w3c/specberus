@@ -32,7 +32,7 @@
     "jsdoc": "3.6.3",
     "jshint": "2.11.0",
     "minami": "1.2.3",
-    "mocha": "7.0.1"
+    "mocha": "7.1.0"
   },
   "scripts": {
     "audit": "npm audit | grep -oE 'https?\\:\\/\\/(www\\.)?(nodesecurity\\.io|npmjs\\.com)\\/advisories\\/[[:digit:]]+' | rev | cut -d '/' -f 1 | rev | diff known-vulns.txt -",
