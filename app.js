@@ -49,6 +49,8 @@ io.sockets.on("connection", function (socket) {
     socket.emit("handshake", { version: version });
     socket.on("extractMetadata", function (data) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
+        if (!(/^https?:\/\/www.w3.org\/TR\/.+/.test(data.url)))
+            return socket.emit("exception", { message: "Invalid URL of document." });
         var v = new validator.Specberus()
         ,   handler = new Sink()
         ;
