@@ -43,6 +43,7 @@
     "coverage": "istanbul cover _mocha",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
     "build": "npm run lint && npm run hint && npm run test && npm run jsdoc",
+    "live": "nodemon --use_strict app",
     "start": "node --use_strict app"
   },
   "engines": {

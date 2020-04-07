@@ -57,6 +57,8 @@ $ W3C_API_KEY="<YOUR W3C API KEY>" npm start
 $ W3C_API_KEY="<YOUR W3C API KEY>" npm start 3001
 ```
 
+![running specberus](doc/running.jpg)
+
 Set the environment variable `DEBUG` to run in *debug mode* instead:
 
 ```bash
@@ -73,6 +75,15 @@ set also `BASE_URI` pointing to the public root URI of Specberus; eg
 ```bash
 $ BASE_URI=https://spec-store.com/check/ W3C_API_KEY=deadbeef npm start
 $ BASE_URI=/hostname/can/be/omitted/ W3C_API_KEY=deadbeef npm start 88
+```
+
+## 2. Auto reload when developing
+
+Use `npm install -g nodemon` to install `nodemon` globally, then run `npm run live`.
+The app will automatically reload when changes happen.
+
+```bash
+$ W3C_API_KEY="xxx" npm run live
 ```
 
 ## 3. Testing

@@ -49,7 +49,7 @@ io.sockets.on("connection", function (socket) {
     socket.emit("handshake", { version: version });
     socket.on("extractMetadata", function (data) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
-        var v = new validator.Specberus()
+        var vali = new validator.Specberus()
         ,   handler = new Sink()
         ;
         handler.on('err', function (type, data) {
@@ -81,9 +81,9 @@ io.sockets.on("connection", function (socket) {
             socket.emit("finishedExtraction", metadata);
         });
         handler.on("exception", function (data) {
-            socket.emit("exception", data);
+            socket.emit("exception", JSON.stringify(data));
         });
-        v.extractMetadata({
+        vali.extractMetadata({
             url    : data.url
           , events : handler
         });
@@ -92,7 +92,7 @@ io.sockets.on("connection", function (socket) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
         if (!data.profile) return socket.emit("exception", { message: "Profile not provided." });
         if (!util.profiles[data.profile]) return socket.emit("exception", { message: "Profile does not exist." });
-        var v = new validator.Specberus()
+        var vali = new validator.Specberus()
         ,   handler = new Sink()
         ,   profile = util.profiles[data.profile]
         ,   profileCode = profile.name
@@ -139,8 +139,8 @@ io.sockets.on("connection", function (socket) {
         }).then(function(res){
             if(res.status) {
                 try {
-                    v.validate({
-                        url:                res.url
+                    vali.validate({
+                        url:                data.url
                     ,   profile:            profile
                     ,   events:             handler
                     ,   validation:         data.validation
