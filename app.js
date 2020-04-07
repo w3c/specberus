@@ -81,7 +81,7 @@ io.sockets.on("connection", function (socket) {
             socket.emit("finishedExtraction", metadata);
         });
         handler.on("exception", function (data) {
-            socket.emit("exception", JSON.stringify(data));
+            socket.emit("exception", data);
         });
         vali.extractMetadata({
             url    : data.url
