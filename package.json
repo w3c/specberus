@@ -29,7 +29,7 @@
     "eslint-plugin-node": "11.0.0",
     "expect.js": "0.3",
     "istanbul": "0.4.5",
-    "jsdoc": "3.6.3",
+    "jsdoc": "3.6.4",
     "jshint": "2.11.0",
     "minami": "1.2.3",
     "mocha": "7.1.1"
