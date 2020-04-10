@@ -26,10 +26,10 @@ const self = require('./package')
 ,   api = require('./lib/api')
 ;
 
-const app = express()
+const app  = express()
 ,   server = http.createServer(app)
-,   io = socket.listen(server)
-,   Sink = sink.Sink
+,   io     = socket.listen(server)
+,   Sink   = sink.Sink
 ,   version = self.version
 ;
 
