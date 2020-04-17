@@ -24,3 +24,7 @@ scratch
 
 # JSDoc output
 doc/api/
+
+# mac files
+.DS_Store
+*/.DS_Store
