@@ -311,8 +311,9 @@ var tests = {
         ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true }
               , errors: ["sotd.pp"]
             }
-        ,   { doc: "headers/ig-note.html", config: { longStatus: "Interest Group Note" } }
         ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note" } }
+        ,   { doc: "headers/wg-note1.html", config: { longStatus: "Working Group Note" } }
+        ,   { doc: "headers/wg-note2.html", config: { longStatus: "Working Group Note" } }
         ,   { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true, amended: true }, errors: ["sotd.pp"] }
         ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true }, errors: ["sotd.pp"] }
         ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, amended: true } }
