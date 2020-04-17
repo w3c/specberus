@@ -1,0 +1,1432 @@
+
+<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 25.6.0"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>span.example-title{text-transform:none}aside.example,div.example,div.illegal-example{padding:.5em;margin:1em 0;position:relative;clear:both}div.illegal-example{color:red}div.illegal-example p{color:#000}aside.example,div.example{padding:.5em;border-left-width:.5em;border-left-style:solid;border-color:#e0cb52;background:#fcfaee}aside.example div.example{border-left-width:.1em;border-color:#999;background:#fff}aside.example div.example span.example-title{color:#999}</style><style>.issue-label{text-transform:initial}.warning>p:first-child{margin-top:0}.warning{padding:.5em;border-left-width:.5em;border-left-style:solid}span.warning{padding:.1em .5em .15em}.issue.closed span.issue-number{text-decoration:line-through}.warning{border-color:#f11;border-width:.2em;border-style:solid;background:#fbe9e9}.warning-title:before{content:"⚠";font-size:1.3em;float:left;padding-right:.3em;margin-top:-.3em}li.task-list-item{list-style:none}input.task-list-item-checkbox{margin:0 .35em .25em -1.6em;vertical-align:middle}.issue a.respec-gh-label{padding:5px;margin:0 2px 0 2px;font-size:10px;text-transform:none;text-decoration:none;font-weight:700;border-radius:4px;position:relative;bottom:2px;border:none;display:inline-block}</style><style>pre.idl{padding:1em;position:relative}@media print{pre.idl{white-space:pre-wrap}}.idlHeader{display:block;width:150px;background:#8ccbf2;color:#fff;font-family:sans-serif;font-weight:700;margin:-1em 0 1em -1em;height:28px;line-height:28px}.idlHeader a.self-link{margin-left:.3cm;text-decoration:none;border-bottom:none}.idlID{font-weight:700;color:#005a9c}.idlType{color:#005a9c}.idlName{color:#ff4500}.idlName a{color:#ff4500;border-bottom:1px dotted #ff4500;text-decoration:none}a.idlEnumItem{color:#000;border-bottom:1px dotted #ccc;text-decoration:none}.idlSuperclass{font-style:italic;color:#005a9c}.idlDefaultValue,.idlParamName{font-style:italic}.extAttr{color:#666}.idlSectionComment{color:gray}.idlIncludes a{font-weight:700}.respec-button-copy-paste:focus{text-decoration:none;border-color:#51a7e8;outline:0;box-shadow:0 0 5px rgba(81,167,232,.5)}.respec-button-copy-paste.selected:focus,.respec-button-copy-paste:focus:hover{border-color:#51a7e8}.respec-button-copy-paste.zeroclipboard-is-active,.respec-button-copy-paste.zeroclipboard-is-hover,.respec-button-copy-paste:active,.respec-button-copy-paste:hover{text-decoration:none;background-color:#ddd;background-image:linear-gradient(#eee,#ddd);border-color:#ccc}.respec-button-copy-paste.selected,.respec-button-copy-paste.zeroclipboard-is-active,.respec-button-copy-paste:active{background-color:#dcdcdc;background-image:none;border-color:#b5b5b5;box-shadow:inset 0 2px 4px rgba(0,0,0,.15)}.respec-button-copy-paste.selected:hover{background-color:#cfcfcf}.respec-button-copy-paste.disabled,.respec-button-copy-paste.disabled:hover,.respec-button-copy-paste:disabled,.respec-button-copy-paste:disabled:hover{color:rgba(102,102,102,.5);cursor:default;background-color:rgba(229,229,229,.5);background-image:none;border-color:rgba(197,197,197,.5);box-shadow:none}@media print{.respec-button-copy-paste{visibility:hidden}}</style>
+    
+    <title>The Screen Orientation API</title>
+    <style id="respec-mainstyle">@keyframes pop{0%{transform:scale(1,1)}25%{transform:scale(1.25,1.25);opacity:.75}100%{transform:scale(1,1)}}.hljs{background:0 0!important}a abbr,h1 abbr,h2 abbr,h3 abbr,h4 abbr,h5 abbr,h6 abbr{border:none}dfn{font-weight:700}a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}a.bibref{text-decoration:none}.respec-offending-element:target{animation:pop .25s ease-in-out 0s 1}.respec-offending-element,a[href].respec-offending-element{text-decoration:red wavy underline}@supports not (text-decoration:red wavy underline){.respec-offending-element:not(pre){display:inline-block}.respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}}#references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}cite .bibref{font-style:normal}code{color:#c63501}th code{color:inherit}a[href].orcid{padding-left:4px;padding-right:4px}a[href].orcid>svg{margin-bottom:-2px}.toc a,.tof a{text-decoration:none}a .figno,a .secno{color:#000}ol.tof,ul.tof{list-style:none outside none}.caption{margin-top:.5em;font-style:italic}table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}.simple th a{color:#fff;padding:3px 5px;text-align:left}.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}.simple td{padding:3px 10px;border-top:1px solid #ddd}.simple tr:nth-child(even){background:#f0f6ff}.section dd>p:first-child{margin-top:0}.section dd>p:last-child{margin-bottom:0}.section dd{margin-bottom:1em}.section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}#issue-summary>ul,.respec-dfn-list{column-count:2}#issue-summary li,.respec-dfn-list li{list-style:none}details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}details.respec-tests-details>*{padding-right:2em}details.respec-tests-details[open]{z-index:999999;position:absolute;border:thin solid #cad3e2;border-radius:.3em;background-color:#fff;padding-bottom:.5em}details.respec-tests-details[open]>summary{border-bottom:thin solid #cad3e2;padding-left:1em;margin-bottom:1em;line-height:2em}details.respec-tests-details>ul{width:100%;margin-top:-.3em}details.respec-tests-details>li{padding-left:1em}a[href].self-link:hover{opacity:1;text-decoration:none;background-color:transparent}h2,h3,h4,h5,h6{position:relative}aside.example .marker>a.self-link{color:inherit}h2>a.self-link,h3>a.self-link,h4>a.self-link,h5>a.self-link,h6>a.self-link{border:none;color:inherit;font-size:83%;height:2em;left:-1.6em;opacity:.5;position:absolute;text-align:center;text-decoration:none;top:0;transition:opacity .2s;width:2em}h2>a.self-link::before,h3>a.self-link::before,h4>a.self-link::before,h5>a.self-link::before,h6>a.self-link::before{content:"§";display:block}@media (max-width:767px){dd{margin-left:0}h2>a.self-link,h3>a.self-link,h4>a.self-link,h5>a.self-link,h6>a.self-link{left:auto;top:auto}}@media print{.removeOnSave{display:none}}</style>
+    
+  <meta name="description" content="The Screen Orientation API provides the ability to read
+        the screen orientation type and angle, to be informed when the screen
+        orientation changes, and to lock the screen to a specific orientation."><link rel="canonical" href="https://www.w3.org/TR/screen-orientation/"><style>.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}.hljs-comment,.hljs-quote{color:#717277;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}.hljs-literal{color:#0b76c5}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}</style><style>var{position:relative;cursor:pointer}var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}</style><script id="initialUserConfig" type="application/json">{
+  "specStatus": "WD",
+  "shortName": "screen-orientation",
+  "previousPublishDate": "2020-03-30",
+  "previousMaturity": "WD",
+  "editors": [
+    {
+      "name": "Mounir Lamouri",
+      "company": "Google Inc.",
+      "w3cid": 45389
+    },
+    {
+      "name": "Marcos Cáceres",
+      "company": "Mozilla",
+      "w3cid": 39125
+    },
+    {
+      "name": "Johanna Herman",
+      "company": "Invited Expert",
+      "w3cid": 111724
+    }
+  ],
+  "testSuiteURI": "https://w3c-test.org/screen-orientation/",
+  "github": "w3c/screen-orientation",
+  "wg": "Web Applications Working Group",
+  "wgURI": "https://www.w3.org/2019/webapps/",
+  "wgPatentURI": "https://www.w3.org/2004/01/pp-impl/114929/status",
+  "caniuse": "screen-orientation",
+  "xref": "web-platform",
+  "publishDate": "2020-04-17",
+  "publishISODate": "2020-04-17T00:00:00.000Z",
+  "generatedSubtitle": "Working Draft 17 April 2020"
+}</script><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-WD"></head>
+  <body class="h-entry" data-cite="WebIDL HTML INFRA URL WEBIDL DOM FETCH"><div class="head">
+    <a class="logo" href="https://www.w3.org/"><img alt="W3C" width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C"></a> <h1 id="title" class="title">The Screen Orientation API</h1>
+    
+    <h2>
+      W3C Working Draft
+      <time class="dt-published" datetime="2020-04-17">17 April 2020</time>
+    </h2>
+    <dl>
+      <dt>This version:</dt><dd>
+              <a class="u-url" href="https://www.w3.org/TR/2020/WD-screen-orientation-20200417/">https://www.w3.org/TR/2020/WD-screen-orientation-20200417/</a>
+            </dd><dt>Latest published version:</dt><dd>
+              <a href="https://www.w3.org/TR/screen-orientation/">https://www.w3.org/TR/screen-orientation/</a>
+            </dd>
+      <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/screen-orientation/">https://w3c.github.io/screen-orientation/</a></dd>
+      <dt>Test suite:</dt><dd><a href="https://w3c-test.org/screen-orientation/">https://w3c-test.org/screen-orientation/</a></dd>
+      
+      
+      <dt>Previous version:</dt><dd><a href="https://www.w3.org/TR/2020/WD-screen-orientation-20200330/">https://www.w3.org/TR/2020/WD-screen-orientation-20200330/</a></dd>
+      
+      <dt>Editors:</dt>
+      <dd class="p-author h-card vcard" data-editor-id="45389"><span class="p-name fn">Mounir Lamouri</span> (Google Inc.) </dd><dd class="p-author h-card vcard" data-editor-id="39125"><span class="p-name fn">Marcos Cáceres</span> (Mozilla) </dd><dd class="p-author h-card vcard" data-editor-id="111724"><span class="p-name fn">Johanna Herman</span> (Invited Expert) </dd>
+      
+      
+      <dt>Participate:</dt><dd>
+    <a href="https://github.com/w3c/screen-orientation/">GitHub w3c/screen-orientation</a>
+  </dd><dd>
+    <a href="https://github.com/w3c/screen-orientation/issues/">File a bug</a>
+  </dd><dd>
+    <a href="https://github.com/w3c/screen-orientation/commits/gh-pages">Commit history</a>
+  </dd><dd>
+    <a href="https://github.com/w3c/screen-orientation/pulls/">Pull requests</a>
+  </dd>
+    <dt class="caniuse-title">Browser support:</dt><dd class="caniuse-stats"><a href="https://caniuse.com/screen-orientation">caniuse.com</a></dd></dl>
+    
+    
+    
+    <p class="copyright">
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+    ©
+    2020
+    
+    <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+    <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>,
+    <a href="https://ev.buaa.edu.cn/">Beihang</a>). 
+    W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a> rules
+    apply.
+  </p>
+    <hr title="Separator for header">
+  </div>
+    <section id="abstract" class="introductory"><h2>Abstract</h2>
+      <p>
+        The <cite>Screen Orientation API</cite> provides the ability to read
+        the screen orientation type and angle, to be informed when the screen
+        orientation changes, and to lock the screen to a specific orientation.
+      </p>
+    </section>
+    <section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
+      document at the time of its publication. Other documents may supersede
+      this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision
+      of this technical report can be found in the
+      <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at
+      https://www.w3.org/TR/.</em></p>
+      <p>
+        This document is a work in progress.
+      </p>
+    <p>
+    This document was published by the <a href="https://www.w3.org/2019/webapps/">Web Applications Working Group</a> as a
+    Working Draft.
+    This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
+  </p><p>
+    <a href="https://github.com/w3c/screen-orientation/issues/">GitHub Issues</a> are preferred for
+          discussion of this specification.
+        
+    
+  </p><p>
+    Publication as a Working Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
+    Membership. This is a draft document and may be updated, replaced or
+    obsoleted by other documents at any time. It is inappropriate to cite this
+    document as other than work in progress.
+  </p><p>
+    
+        This document was produced by a group
+        operating under the
+        <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+       
+    
+                <abbr title="World Wide Web Consortium">W3C</abbr> maintains a
+                <a rel="disclosure" href="https://www.w3.org/2004/01/pp-impl/114929/status">public list of any patent disclosures</a>
+          made in connection with the deliverables of
+          the group; that page also includes
+          instructions for disclosing a patent. An individual who has actual
+          knowledge of a patent which the individual believes contains
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a>
+          must disclose the information in accordance with
+          <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+        
+    
+  </p><p>
+                  This document is governed by the
+                  <a id="w3c_process_revision" href="https://www.w3.org/2019/Process-20190301/">1 March 2019 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>
+        Introduction
+      </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#goals"><bdi class="secno">1.1 </bdi>
+          Goals
+        </a></li><li class="tocline"><a class="tocxref" href="#examples"><bdi class="secno">1.2 </bdi>
+          Examples
+        </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#locking-to-a-specific-orientation-and-unlocking"><bdi class="secno">1.2.1 </bdi>
+            Locking to a specific orientation and unlocking
+          </a></li><li class="tocline"><a class="tocxref" href="#locking-the-screen-before-calling-a-function"><bdi class="secno">1.2.2 </bdi>
+            Locking the screen before calling a function
+          </a></li><li class="tocline"><a class="tocxref" href="#alerting-the-user-if-the-api-is-not-supported"><bdi class="secno">1.2.3 </bdi>
+            Alerting the user if the API is not supported
+          </a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#extensions-to-the-screen-interface"><bdi class="secno">2. </bdi>
+        Extensions to the <code>Screen</code> interface
+      </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#orientation-attribute"><bdi class="secno">2.1 </bdi>
+          <span data-dfn-type="attribute" data-export="" data-idl="attribute" data-title="orientation" data-dfn-for="Screen" data-type="ScreenOrientation" data-lt="orientation" data-local-lt="Screen.orientation"><code>orientation</code></span> attribute
+        </a></li></ol></li><li class="tocline"><a class="tocxref" href="#screenorientation-interface"><bdi class="secno">3. </bdi>
+        <span data-dfn-type="interface" data-export="" data-idl="interface" data-title="ScreenOrientation" data-dfn-for=""><code>ScreenOrientation</code></span> interface
+      </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#lock-method-lock-screen-to-a-specific-orientation"><bdi class="secno">3.1 </bdi>
+          <span data-dfn-type="method" data-export="" data-idl="operation" data-title="lock()" data-dfn-for="ScreenOrientation" data-type="Promise" data-lt="lock()|lock(orientation)" data-local-lt="ScreenOrientation.lock|ScreenOrientation.lock()|lock"><code>lock()</code></span> method: Lock screen to a specific orientation
+        </a></li><li class="tocline"><a class="tocxref" href="#unlock-method-unlock-screen-to-default-orientation"><bdi class="secno">3.2 </bdi>
+          <span data-dfn-type="method" data-export="" data-idl="operation" data-title="unlock()" data-dfn-for="ScreenOrientation" data-type="void" data-lt="unlock()" data-local-lt="ScreenOrientation.unlock|ScreenOrientation.unlock()|unlock"><code>unlock()</code></span> method: Unlock screen to default orientation
+        </a></li><li class="tocline"><a class="tocxref" href="#type-attribute-get-current-orientation"><bdi class="secno">3.3 </bdi>
+          <span data-dfn-type="attribute" data-export="" data-idl="attribute" data-title="type" data-dfn-for="ScreenOrientation" data-type="OrientationType" data-lt="type" data-local-lt="ScreenOrientation.type"><code>type</code></span> attribute: Get current orientation
+        </a></li><li class="tocline"><a class="tocxref" href="#angle-attribute-get-orientation-angle"><bdi class="secno">3.4 </bdi>
+          <span data-dfn-type="attribute" data-export="" data-idl="attribute" data-title="angle" data-dfn-for="ScreenOrientation" data-type="unsigned short" data-lt="angle" data-local-lt="ScreenOrientation.angle"><code>angle</code></span> attribute: Get orientation angle
+        </a></li><li class="tocline"><a class="tocxref" href="#onchange-attribute-handle-orientation-changes"><bdi class="secno">3.5 </bdi>
+          <span data-dfn-type="attribute" data-export="" data-idl="attribute" data-title="onchange" data-dfn-for="ScreenOrientation" data-type="EventHandler" data-lt="onchange" data-local-lt="ScreenOrientation.onchange"><code>onchange</code></span> attribute: Handle orientation changes
+        </a></li></ol></li><li class="tocline"><a class="tocxref" href="#extensions-to-the-document-interface"><bdi class="secno">4. </bdi>
+        Extensions to the <code>Document</code> interface
+      </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#internal-slots"><bdi class="secno">4.1 </bdi>
+          Internal Slots
+        </a></li></ol></li><li class="tocline"><a class="tocxref" href="#concepts"><bdi class="secno">5. </bdi>
+        Concepts
+      </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#screen-orientation-types-and-locks"><bdi class="secno">5.1 </bdi>
+          Screen orientation types and locks
+        </a></li><li class="tocline"><a class="tocxref" href="#reading-the-screen-orientation"><bdi class="secno">5.2 </bdi>
+          Reading the screen orientation
+        </a></li><li class="tocline"><a class="tocxref" href="#locking-the-screen-orientation"><bdi class="secno">5.3 </bdi>
+          Locking the screen orientation
+        </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#locking-to-the-default-orientation"><bdi class="secno">5.3.1 </bdi>
+            Locking to the default orientation
+          </a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#interactions-with-other-specifications"><bdi class="secno">6. </bdi>
+        Interactions with other specifications
+      </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#interaction-with-fullscreen-api"><bdi class="secno">6.1 </bdi>
+          Interaction with Fullscreen API
+        </a></li><li class="tocline"><a class="tocxref" href="#interaction-with-web-application-manifest"><bdi class="secno">6.2 </bdi>
+          Interaction with Web Application Manifest
+        </a></li><li class="tocline"><a class="tocxref" href="#interaction-with-css-device-adaptation"><bdi class="secno">6.3 </bdi>
+          Interaction with CSS Device Adaptation
+        </a></li><li class="tocline"><a class="tocxref" href="#interaction-with-web-content-accessibility-guidelines"><bdi class="secno">6.4 </bdi>
+          Interaction with Web Content Accessibility Guidelines
+        </a></li></ol></li><li class="tocline"><a class="tocxref" href="#algorithms"><bdi class="secno">7. </bdi>
+        Algorithms
+      </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#updating-the-orientation-information"><bdi class="secno">7.1 </bdi>
+          Updating the orientation information
+        </a></li><li class="tocline"><a class="tocxref" href="#apply-an-orientation-lock"><bdi class="secno">7.2 </bdi>
+          Apply an orientation lock
+        </a></li><li class="tocline"><a class="tocxref" href="#locking-the-orientation"><bdi class="secno">7.3 </bdi>
+          Locking the orientation
+        </a></li><li class="tocline"><a class="tocxref" href="#determining-the-active-orientation-lock"><bdi class="secno">7.4 </bdi>
+          Determining the active orientation lock
+        </a></li><li class="tocline"><a class="tocxref" href="#Screen-orientation-change"><bdi class="secno">7.5 </bdi>
+          Screen orientation change
+        </a></li></ol></li><li class="tocline"><a class="tocxref" href="#privacy-and-security-considerations"><bdi class="secno">8. </bdi>
+        Privacy and Security Considerations
+      </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#access-to-aspects-of-a-user-s-local-computing-environment"><bdi class="secno">8.1 </bdi>
+          Access to aspects of a user’s local computing environment
+        </a></li></ol></li><li class="tocline"><a class="tocxref" href="#dependencies"><bdi class="secno">9. </bdi>
+        Dependencies
+      </a></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">10. </bdi>Conformance</a></li><li class="tocline"><a class="tocxref" href="#idl-index"><bdi class="secno">A. </bdi>IDL Index</a></li><li class="tocline"><a class="tocxref" href="#acknowledgments"><bdi class="secno">B. </bdi>
+        Acknowledgments
+      </a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>
+        Normative references
+      </a></li><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">C.2 </bdi>
+        Informative references
+      </a></li></ol></li></ol></nav>
+    <section class="informative" id="introduction">
+      <h2 id="x1-introduction"><bdi class="secno">1. </bdi>
+        Introduction
+      <a class="self-link" aria-label="§" href="#introduction"></a></h2><p><em>This section is non-normative.</em></p>
+      <p>
+        For web applications, the <cite>Screen Orientation API</cite> exposes
+        the type and angle of a device's current screen orientation, and can
+        provide notification if the device's orientation changes. This allows
+        web applications to programmatically adapt the user experience for many
+        possible screen orientations (in concert with CSS). The API also allows
+        locking the screen to a particular orientation. This is useful in
+        applications such as computer games where users physically rotate the
+        device but the screen orientation itself mustn't change.
+      </p>
+      <section id="goals">
+        <h3 id="x1-1-goals"><bdi class="secno">1.1 </bdi>
+          Goals
+        <a class="self-link" aria-label="§" href="#goals"></a></h3>
+        <ul>
+          <li>Allow a web application to have control over screen orientation
+          where needed and without being intrusive to end users.
+          </li>
+          <li>Support a better user experience by providing developers with
+          information on screen orientation changes so web applications can
+          update correspondingly.
+          </li>
+        </ul>
+      </section>
+      <section class="informative" id="examples">
+        <h3 id="x1-2-examples"><bdi class="secno">1.2 </bdi>
+          Examples
+        <a class="self-link" aria-label="§" href="#examples"></a></h3><p><em>This section is non-normative.</em></p>
+        <section id="locking-to-a-specific-orientation-and-unlocking">
+          <h4 id="x1-2-1-locking-to-a-specific-orientation-and-unlocking"><bdi class="secno">1.2.1 </bdi>
+            Locking to a specific orientation and unlocking
+          <a class="self-link" aria-label="§" href="#locking-to-a-specific-orientation-and-unlocking"></a></h4>
+          <p>
+            In this example, clicking the "Lock" button makes a request to go
+            into fullscreen and then lock the screen to the opposite
+            orientation. Pressing the "Unlock" button unlocks the screen so it
+            rotates if the user turns the device.
+          </p>
+          <p>
+            The developer console logs the change in orientation type and
+            angle.
+          </p>
+          <div class="example" id="example-1">
+        <div class="marker">
+    <a class="self-link" href="#example-1">Example<bdi> 1</bdi></a>
+  </div> <pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fullScreenCheck</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.fullscreenElement) <span class="hljs-keyword">return</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">document</span>.documentElement.requestFullscreen();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateDetails</span>(<span class="hljs-params">lockButton</span>) </span>{
+  <span class="hljs-keyword">const</span> buttonOrientation = getOppositeOrientation();
+  lockButton.textContent = <span class="hljs-string">`Lock to <span class="hljs-subst">${buttonOrientation}</span>`</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOppositeOrientation</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> { type } = screen.orientation;
+  <span class="hljs-keyword">return</span> type.startsWith(<span class="hljs-string">"portrait"</span>) ? <span class="hljs-string">"landscape"</span> : <span class="hljs-string">"portrait"</span>;
+}
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rotate</span>(<span class="hljs-params">lockButton</span>) </span>{
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">await</span> fullScreenCheck();
+  } <span class="hljs-keyword">catch</span> (err) {
+    <span class="hljs-built_in">console</span>.error(err);
+  }
+  <span class="hljs-keyword">const</span> newOrientation = getOppositeOrientation();
+  <span class="hljs-keyword">await</span> screen.orientation.lock(newOrientation);
+  updateDetails(lockButton);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">show</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> { type, angle } = screen.orientation;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Orientation type is <span class="hljs-subst">${type}</span> &amp; angle is <span class="hljs-subst">${angle}</span>.`</span>);
+}
+
+screen.orientation.addEventListener(<span class="hljs-string">"change"</span>, () =&gt; {
+  show();
+  updateDetails(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"button"</span>));
+});
+
+<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">"load"</span>, () =&gt; {
+  show();
+  updateDetails(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"button"</span>));
+});
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"rotate(this)"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"button"</span>&gt;</span>
+  Lock
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"screen.orientation.unlock()"</span>&gt;</span>
+  Unlock
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre>
+      </div>
+        </section>
+        <section id="locking-the-screen-before-calling-a-function">
+          <h4 id="x1-2-2-locking-the-screen-before-calling-a-function"><bdi class="secno">1.2.2 </bdi>
+            Locking the screen before calling a function
+          <a class="self-link" aria-label="§" href="#locking-the-screen-before-calling-a-function"></a></h4>
+          <p>
+            This example waits to go into fullscreen, then locks to landscape
+            before calling <code>ready()</code>.
+          </p>
+          <div class="example" id="example-2">
+        <div class="marker">
+    <a class="self-link" href="#example-2">Example<bdi> 2</bdi></a>
+  </div> <pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> { type } = screen.orientation;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Fullscreen and locked to <span class="hljs-subst">${type}</span>. Ready!`</span>);
+}
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">await</span> <span class="hljs-built_in">document</span>.body.requestFullscreen();
+  <span class="hljs-keyword">await</span> screen.orientation.lock(<span class="hljs-string">"landscape"</span>);
+  ready();
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"start()"</span>&gt;</span>
+  Start
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre>
+      </div>
+        </section>
+        <section id="alerting-the-user-if-the-api-is-not-supported">
+          <h4 id="x1-2-3-alerting-the-user-if-the-api-is-not-supported"><bdi class="secno">1.2.3 </bdi>
+            Alerting the user if the API is not supported
+          <a class="self-link" aria-label="§" href="#alerting-the-user-if-the-api-is-not-supported"></a></h4>
+          <p data-link-for="ScreenOrientation">
+            In this example, if the <cite>Screen Orientation API</cite> is not
+            supported, or the screen orientation <a data-lt="lock()" href="#dom-screenorientation-lock" class="internalDFN" data-link-type="idl"><code><code>lock</code></code></a><code>()</code> rejects, the user
+            is alerted to rotate their screen manually to landscape.
+          </p>
+          <div class="example" id="example-3">
+        <div class="marker">
+    <a class="self-link" href="#example-3">Example<bdi> 3</bdi></a>
+  </div> <pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">/* Start application when in correct orientation */</span>
+}
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rotate</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">await</span> screen.orientation.lock(<span class="hljs-string">"landscape"</span>);
+    start();
+  } <span class="hljs-keyword">catch</span> (err) {
+    <span class="hljs-built_in">console</span>.error(err);
+  }
+  <span class="hljs-keyword">const</span> matchLandscape = matchMedia(<span class="hljs-string">"(orientation: landscape)"</span>);
+  <span class="hljs-keyword">if</span> (matchLandscape.matches) <span class="hljs-keyword">return</span> start();
+  addEventListener(<span class="hljs-string">"orientationchange"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">listener</span>(<span class="hljs-params"></span>) </span>{
+    matchLandscape.addListener(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mediaChange</span>(<span class="hljs-params">e</span>) </span>{
+      <span class="hljs-keyword">if</span> (!e.matches) <span class="hljs-keyword">return</span>;
+      removeEventListener(<span class="hljs-string">"orientationchange"</span>, listener);
+      matchLandscape.removeListener(mediaChange);
+      start();
+    });
+  });
+  alert(<span class="hljs-string">"To start, please rotate your screen to landscape."</span>);
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"start()"</span>&gt;</span>
+  Start
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre>
+      </div>
+        </section>
+      </section>
+    </section>
+    <section data-dfn-for="Screen" id="extensions-to-the-screen-interface">
+      <h2 id="x2-extensions-to-the-screen-interface"><bdi class="secno">2. </bdi>
+        Extensions to the <code>Screen</code> interface
+      <a class="self-link" aria-label="§" href="#extensions-to-the-screen-interface"></a></h2>
+      <p>
+        The <cite><a href="https://www.w3.org/TR/cssom-view-1/">CSSOM View Module</a></cite> specification defines the <code><dfn data-dfn-type="dfn" id="dom-screen" data-idl="interface" data-title="Screen" data-dfn-for="" data-no-export=""><a href="https://www.w3.org/TR/cssom-view-1/#screen">Screen</a></dfn></code> interface, which this
+        specification extends:
+      </p>
+      <pre class="idl def" id="webidl-542801979"><span class="idlHeader"><a class="self-link" href="#webidl-542801979">WebIDL</a></span><span data-idl="" class="idlInterface" id="idl-def-screen-partial-1" data-title="Screen">partial interface <a class="internalDFN idlID" data-link-type="interface" href="#dom-screen"><code>Screen</code></a> {<span data-idl="" class="idlAttribute" id="idl-def-screen-orientation" data-title="orientation" data-dfn-for="Screen">
+  [<span class="extAttr"><a data-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a></span>] readonly attribute<span class="idlType"> <a href="#dom-screenorientation" class="internalDFN" data-link-type="idl"><code>ScreenOrientation</code></a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-screen-orientation"><code>orientation</code></a>;</span>
+};</span></pre>
+      <section id="orientation-attribute">
+        <h3 id="x2-1-orientation-attribute"><bdi class="secno">2.1 </bdi>
+          <dfn data-dfn-type="attribute" data-export="" id="dom-screen-orientation" data-idl="attribute" data-title="orientation" data-dfn-for="Screen" data-type="ScreenOrientation" data-lt="orientation" data-local-lt="Screen.orientation"><code>orientation</code></dfn> attribute
+        <a class="self-link" aria-label="§" href="#orientation-attribute"></a></h3>
+        <p>
+          The <a data-link-type="idl" href="https://www.w3.org/TR/cssom-view-1/#screen"><code><code>Screen</code></code></a>.<a href="#dom-screen-orientation" class="internalDFN" data-link-type="idl"><code><code>orientation</code></code></a> attribute is an instance of
+          <a href="#dom-screenorientation" class="internalDFN" data-link-type="idl"><code><code>ScreenOrientation</code></code></a>. This attribute provides the current
+          orientation, current angle and whether there was an onchange event.
+          The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> run the <a href="#dfn-update-the-orientation-information" class="internalDFN" data-link-type="dfn">update the orientation
+          information</a> algorithm steps to initialize the values and return
+          the <a data-link-type="idl" href="https://www.w3.org/TR/cssom-view-1/#screen"><code><code>Screen</code></code></a>.<a href="#dom-screen-orientation" class="internalDFN" data-link-type="idl"><code><code>orientation</code></code></a> attribute.
+        </p>
+      </section>
+    </section>
+    <section data-dfn-for="ScreenOrientation" data-link-for="ScreenOrientation" id="screenorientation-interface">
+      <h2 id="x3-screenorientation-interface"><bdi class="secno">3. </bdi>
+        <dfn data-dfn-type="interface" data-export="" id="dom-screenorientation" data-idl="interface" data-title="ScreenOrientation" data-dfn-for=""><code>ScreenOrientation</code></dfn> interface
+      <a class="self-link" aria-label="§" href="#screenorientation-interface"></a></h2>
+      <pre class="idl def" data-cite="WebIDL DOM HTML" id="webidl-181956299"><span class="idlHeader"><a class="self-link" href="#webidl-181956299">WebIDL</a></span><span data-idl="" class="idlInterface" id="idl-def-screenorientation" data-title="ScreenOrientation">[<span class="extAttr"><a data-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=<a data-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window">Window</a></span>]
+interface <a class="internalDFN idlID" data-link-type="interface" href="#dom-screenorientation"><code>ScreenOrientation</code></a> : <span class="idlSuperclass"><a data-type="interface" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a></span> {<span data-idl="" class="idlMethod" id="idl-def-screenorientation-lock-orientation" data-title="lock" data-dfn-for="ScreenOrientation"><span class="idlType">
+  <a data-type="interface" href="https://heycam.github.io/webidl/#idl-promise">Promise</a>&lt;<a data-type="interface" href="https://heycam.github.io/webidl/#idl-void">void</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dom-screenorientation-lock"><code>lock</code></a>(<span class="idlType"><a href="#dom-orientationlocktype" class="internalDFN" data-link-type="idl"><code>OrientationLockType</code></a></span> <span class="idlParamName">orientation</span>);</span><span data-idl="" class="idlMethod" id="idl-def-screenorientation-unlock" data-title="unlock" data-dfn-for="ScreenOrientation"><span class="idlType">
+  <a data-type="interface" href="https://heycam.github.io/webidl/#idl-void">void</a></span> <a class="internalDFN idlName" data-link-type="method" href="#dom-screenorientation-unlock"><code>unlock</code></a>();</span><span data-idl="" class="idlAttribute" id="idl-def-screenorientation-type" data-title="type" data-dfn-for="ScreenOrientation">
+  readonly attribute<span class="idlType"> <a href="#dom-orientationtype" class="internalDFN" data-link-type="idl"><code>OrientationType</code></a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-screenorientation-type"><code>type</code></a>;</span><span data-idl="" class="idlAttribute" id="idl-def-screenorientation-angle" data-title="angle" data-dfn-for="ScreenOrientation">
+  readonly attribute<span class="idlType"> <a data-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short">unsigned short</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-screenorientation-angle"><code>angle</code></a>;</span><span data-idl="" class="idlAttribute" id="idl-def-screenorientation-onchange" data-title="onchange" data-dfn-for="ScreenOrientation">
+  attribute<span class="idlType"> <a data-type="typedef" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-screenorientation-onchange"><code>onchange</code></a>;</span>
+};</span><span data-idl="" class="idlEnum" id="idl-def-orientationlocktype" data-title="OrientationLockType">
+
+enum <a class="internalDFN idlID" data-link-type="enum" href="#dom-orientationlocktype"><code>OrientationLockType</code></a> {
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-any"><code>any</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-natural"><code>natural</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-landscape"><code>landscape</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-portrait"><code>portrait</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-portrait-primary"><code>portrait-primary</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-portrait-secondary"><code>portrait-secondary</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-landscape-primary"><code>landscape-primary</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-landscape-secondary"><code>landscape-secondary</code></a>"</span>
+};</span><span data-idl="" class="idlEnum" id="idl-def-orientationtype" data-title="OrientationType">
+
+enum <a class="internalDFN idlID" data-link-type="enum" href="#dom-orientationtype"><code>OrientationType</code></a> {
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationtype-portrait-primary"><code>portrait-primary</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationtype-portrait-secondary"><code>portrait-secondary</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationtype-landscape-primary"><code>landscape-primary</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationtype-landscape-secondary"><code>landscape-secondary</code></a>"</span>
+};</span></pre>
+      <p data-dfn-for="OrientationLockType">
+        The <dfn data-dfn-type="enum" data-export="" id="dom-orientationlocktype" data-idl="enum" data-title="OrientationLockType" data-dfn-for=""><code>OrientationLockType</code></dfn> enum represents the screen
+        orientations to which a screen can be locked: the "<dfn data-dfn-type="enum-value" data-export="" id="dom-orientationlocktype-any" data-idl="enum-value" data-title="any" data-dfn-for="OrientationLockType"><code>any</code></dfn>" enum
+        value represents the <a href="#dfn-any" class="internalDFN" data-link-type="dfn">any</a> orientation, the "<dfn data-dfn-type="enum-value" data-export="" id="dom-orientationlocktype-natural" data-idl="enum-value" data-title="natural" data-dfn-for="OrientationLockType"><code>natural</code></dfn>"
+        enum represents the <a href="#dfn-natural" class="internalDFN" data-link-type="dfn">natural</a> orientation, the
+        "<dfn data-dfn-type="enum-value" data-export="" id="dom-orientationlocktype-landscape" data-idl="enum-value" data-title="landscape" data-dfn-for="OrientationLockType"><code>landscape</code></dfn>" enum represents the <a href="#dfn-landscape" class="internalDFN" data-link-type="dfn">landscape</a>
+        orientation, the "<dfn data-dfn-type="enum-value" data-export="" id="dom-orientationlocktype-portrait" data-idl="enum-value" data-title="portrait" data-dfn-for="OrientationLockType"><code>portrait</code></dfn>" enum represents the
+        <a href="#dfn-portrait" class="internalDFN" data-link-type="dfn">portrait</a> orientation, the "<dfn data-dfn-type="enum-value" data-export="" id="dom-orientationlocktype-portrait-primary" data-idl="enum-value" data-title="portrait-primary" data-dfn-for="OrientationLockType"><code>portrait-primary</code></dfn>" enum
+        represents the <a href="#dfn-portrait-primary" class="internalDFN" data-link-type="dfn">portrait-primary</a> orientation, the
+        "<dfn data-dfn-type="enum-value" data-export="" id="dom-orientationlocktype-portrait-secondary" data-idl="enum-value" data-title="portrait-secondary" data-dfn-for="OrientationLockType"><code>portrait-secondary</code></dfn>" enum represents the
+        <a href="#dfn-portrait-secondary" class="internalDFN" data-link-type="dfn">portrait-secondary</a> orientation, the
+        "<dfn data-dfn-type="enum-value" data-export="" id="dom-orientationlocktype-landscape-primary" data-idl="enum-value" data-title="landscape-primary" data-dfn-for="OrientationLockType"><code>landscape-primary</code></dfn>" enum represents the
+        <a href="#dfn-landscape-primary" class="internalDFN" data-link-type="dfn">landscape-primary</a> orientation, and the
+        "<dfn data-dfn-type="enum-value" data-export="" id="dom-orientationlocktype-landscape-secondary" data-idl="enum-value" data-title="landscape-secondary" data-dfn-for="OrientationLockType"><code>landscape-secondary</code></dfn>" enum represents the
+        <a href="#dfn-landscape-secondary" class="internalDFN" data-link-type="dfn">landscape-secondary</a> orientation.
+      </p>
+      <p data-dfn-for="OrientationType">
+        The <dfn data-dfn-type="enum" data-export="" id="dom-orientationtype" data-idl="enum" data-title="OrientationType" data-dfn-for=""><code>OrientationType</code></dfn> enum represents the actual current
+        screen orientation that the screen is in irrespective of which lock is
+        applied: the "<dfn data-dfn-type="enum-value" data-export="" id="dom-orientationtype-portrait-primary" data-idl="enum-value" data-title="portrait-primary" data-dfn-for="OrientationType"><code>portrait-primary</code></dfn>" enum represents the
+        <a href="#dfn-portrait-primary" class="internalDFN" data-link-type="dfn">portrait-primary</a> orientation, the
+        "<dfn data-dfn-type="enum-value" data-export="" id="dom-orientationtype-portrait-secondary" data-idl="enum-value" data-title="portrait-secondary" data-dfn-for="OrientationType"><code>portrait-secondary</code></dfn>" enum represents the
+        <a href="#dfn-portrait-secondary" class="internalDFN" data-link-type="dfn">portrait-secondary</a> orientation, the
+        "<dfn data-dfn-type="enum-value" data-export="" id="dom-orientationtype-landscape-primary" data-idl="enum-value" data-title="landscape-primary" data-dfn-for="OrientationType"><code>landscape-primary</code></dfn>" enum represents the
+        <a href="#dfn-landscape-primary" class="internalDFN" data-link-type="dfn">landscape-primary</a> orientation, and the
+        "<dfn data-dfn-type="enum-value" data-export="" id="dom-orientationtype-landscape-secondary" data-idl="enum-value" data-title="landscape-secondary" data-dfn-for="OrientationType"><code>landscape-secondary</code></dfn>" enum represents the
+        <a href="#dfn-landscape-secondary" class="internalDFN" data-link-type="dfn">landscape-secondary</a> orientation.
+      </p>
+      <section id="lock-method-lock-screen-to-a-specific-orientation">
+        <h3 id="x3-1-lock-method-lock-screen-to-a-specific-orientation"><bdi class="secno">3.1 </bdi>
+          <dfn data-dfn-type="method" data-export="" id="dom-screenorientation-lock" data-idl="operation" data-title="lock()" data-dfn-for="ScreenOrientation" data-type="Promise" data-lt="lock()|lock(orientation)" data-local-lt="ScreenOrientation.lock|ScreenOrientation.lock()|lock"><code>lock()</code></dfn> method: Lock screen to a specific orientation
+        <a class="self-link" aria-label="§" href="#lock-method-lock-screen-to-a-specific-orientation"></a></h3>
+        <p data-tests="lock-bad-argument.html, lock-basic.html">
+          When the <a data-lt="lock()" href="#dom-screenorientation-lock" class="internalDFN" data-link-type="idl"><code><code>lock</code></code></a><code>()</code> method is invoked, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> run
+          the <a href="#dfn-apply-an-orientation-lock" class="internalDFN" data-link-type="dfn">apply an orientation lock</a> steps to the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document">responsible document</a> using <var>orientation</var>.
+        </p>
+      </section>
+      <section id="unlock-method-unlock-screen-to-default-orientation">
+        <h3 id="x3-2-unlock-method-unlock-screen-to-default-orientation"><bdi class="secno">3.2 </bdi>
+          <dfn data-dfn-type="method" data-export="" id="dom-screenorientation-unlock" data-idl="operation" data-title="unlock()" data-dfn-for="ScreenOrientation" data-type="void" data-lt="unlock()" data-local-lt="ScreenOrientation.unlock|ScreenOrientation.unlock()|unlock"><code>unlock()</code></dfn> method: Unlock screen to default orientation
+        <a class="self-link" aria-label="§" href="#unlock-method-unlock-screen-to-default-orientation"></a></h3>
+        <p>
+          When the <a data-lt="unlock()" href="#dom-screenorientation-unlock" class="internalDFN" data-link-type="idl"><code><code>unlock</code></code></a><code>()</code> method is invoked, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em>
+          run the steps to <a href="#dfn-lock-the-orientation" class="internalDFN" data-link-type="dfn">lock the orientation</a> of the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document">responsible document</a> to its <a href="#dfn-default-screen-orientation" class="internalDFN" data-link-type="dfn">default screen
+          orientation</a>.
+        </p>
+        <div class="note" role="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note" aria-level="4"><span>Note</span><span class="issue-label">: Why does unlock() not return a promise?</span></div><p class="">
+          <a data-lt="unlock()" href="#dom-screenorientation-unlock" class="internalDFN" data-link-type="idl"><code><code>unlock</code></code></a><code>()</code> does not return a promise because it is equivalent to
+          locking to the <a href="#dfn-default-screen-orientation" class="internalDFN" data-link-type="dfn">default screen orientation</a> which might or might
+          not be known by the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a>. Hence, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a>
+          can not predict what the new orientation is going to be and even if
+          it is going to change at all.
+        </p></div>
+        <div class="issue" id="issue-container-number-104"><div role="heading" class="issue-title marker" id="h-issue" aria-level="4"><a href="https://github.com/w3c/screen-orientation/issues/104"><span class="issue-number">Issue 104</span></a><span class="issue-label" aria-label="This issue is labelled as question.">: Promise for unlock()? <a class="respec-gh-label" href="https://github.com/w3c/screen-orientation/issues/?q=is%3Aissue+is%3Aopen+label%3A%22question%22" style="background-color: rgb(204, 49, 124); color: rgb(0, 0, 0);">question</a></span></div><p>I understand that this might not be possible from the note -</p>
+<blockquote>
+<p>unlock() does not return a Promise because it is equivalent to locking to the default orientation which might or might not be known by the user agent. Hence, the user agent can not predict what the new orientation is going to be and even if it is going to change at all.</p>
+</blockquote>
+<p>I am working on building an app that uses WebVR. Entering VR mode requires going fullscreen and then locking orientation to landscape. This works perfectly.</p>
+<p>However exiting this mode when phone is in portrait orientation, on tested Android devices, results in the browser bar and menu disappearing and a large white space appearing under the app. Dragging down on the screen reveals the browser bar and covers the white space, you can not then drag back up.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://user-images.githubusercontent.com/6083490/27416369-38a07dfa-5737-11e7-951f-db992d44388e.jpg"><img src="https://user-images.githubusercontent.com/6083490/27416369-38a07dfa-5737-11e7-951f-db992d44388e.jpg" alt="orientation unlock issue" style="max-width:100%;"></a></p>
+<p>I've overcome this issue using the following code</p>
+<pre><code aria-busy="false" class="hljs javascript">screen.orientation.unlock();
+setTimeout( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    fullscreen.exit();
+}, <span class="hljs-number">0</span> );
+</code></pre>
+<p>A cleaner solution would be something like -</p>
+<pre><code aria-busy="false" class="hljs javascript">screen.orientation.unlock().then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    fullscreen.exit();
+});
+</code></pre></div>
+      </section>
+      <section id="type-attribute-get-current-orientation">
+        <h3 id="x3-3-type-attribute-get-current-orientation"><bdi class="secno">3.3 </bdi>
+          <dfn data-dfn-type="attribute" data-export="" id="dom-screenorientation-type" data-idl="attribute" data-title="type" data-dfn-for="ScreenOrientation" data-type="OrientationType" data-lt="type" data-local-lt="ScreenOrientation.type"><code>type</code></dfn> attribute: Get current orientation
+        <a class="self-link" aria-label="§" href="#type-attribute-get-current-orientation"></a></h3>
+        <p>
+          When getting the <a href="#dom-screenorientation-type" class="internalDFN" data-link-type="idl"><code><code>type</code></code></a> attribute, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em>
+          return the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document">responsible document</a>'s
+          <a href="#dfn-current-orientation-type" class="internalDFN" data-link-type="dfn">current orientation type</a>.
+        </p>
+      </section>
+      <section id="angle-attribute-get-orientation-angle">
+        <h3 id="x3-4-angle-attribute-get-orientation-angle"><bdi class="secno">3.4 </bdi>
+          <dfn data-dfn-type="attribute" data-export="" id="dom-screenorientation-angle" data-idl="attribute" data-title="angle" data-dfn-for="ScreenOrientation" data-type="unsigned short" data-lt="angle" data-local-lt="ScreenOrientation.angle"><code>angle</code></dfn> attribute: Get orientation angle
+        <a class="self-link" aria-label="§" href="#angle-attribute-get-orientation-angle"></a></h3>
+        <p>
+          When getting the <a href="#dom-screenorientation-angle" class="internalDFN" data-link-type="idl"><code><code>angle</code></code></a> attribute, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em>
+          return the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#responsible-document">responsible document</a>'s
+          <a href="#dfn-current-orientation-angle" class="internalDFN" data-link-type="dfn">current orientation angle</a>.
+        </p>
+        <div class="note" role="note" id="issue-container-generatedID-0"><div role="heading" class="note-title marker" id="h-note-0" aria-level="4"><span>Note</span><span class="issue-label">: What does the value given for angle represent?</span></div><div class="">
+          <p>
+            <a href="#dom-screenorientation-angle" class="internalDFN" data-link-type="idl"><code><code>angle</code></code></a> represents how far the user has turned the device
+            counterclockwise from the natural orientation. When the device is
+            rotated 90° counterclockwise, the screen compensates by rotating
+            90° clockwise, so <a href="#dom-screenorientation-angle" class="internalDFN" data-link-type="idl"><code><code>angle</code></code></a> returns <code>90</code>.
+          </p>
+          <p>
+            The <a href="#dfn-screen-orientation-values-table" class="internalDFN" data-link-type="dfn">screen orientation values table</a> shows how the angle
+            changes depending on the how the device is rotated.
+          </p>
+          <p>
+            The value returned by this property is always in the range 0-359.
+            It never returns negative values.
+          </p>
+        </div></div>
+      </section>
+      <section id="onchange-attribute-handle-orientation-changes">
+        <h3 id="x3-5-onchange-attribute-handle-orientation-changes"><bdi class="secno">3.5 </bdi>
+          <dfn data-dfn-type="attribute" data-export="" id="dom-screenorientation-onchange" data-idl="attribute" data-title="onchange" data-dfn-for="ScreenOrientation" data-type="EventHandler" data-lt="onchange" data-local-lt="ScreenOrientation.onchange"><code>onchange</code></dfn> attribute: Handle orientation changes
+        <a class="self-link" aria-label="§" href="#onchange-attribute-handle-orientation-changes"></a></h3>
+      </section>
+      <p>
+        The <a href="#dom-screenorientation-onchange" class="internalDFN" data-link-type="idl"><code><code>onchange</code></code></a> attribute is an <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a> whose
+        corresponding <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event type</a> is <code>"change"</code>.
+      </p>
+    </section>
+    <section id="extensions-to-the-document-interface">
+      <h2 id="x4-extensions-to-the-document-interface"><bdi class="secno">4. </bdi>
+        Extensions to the <code>Document</code> interface
+      <a class="self-link" aria-label="§" href="#extensions-to-the-document-interface"></a></h2>
+      <section id="internal-slots">
+        <h3 id="x4-1-internal-slots"><bdi class="secno">4.1 </bdi>
+          Internal Slots
+        <a class="self-link" aria-label="§" href="#internal-slots"></a></h3>
+        <table class="simple">
+          <thead>
+            <tr>
+              <th>
+                Internal Slot
+              </th>
+              <th>
+                Description
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <dfn data-dfn-type="dfn" id="dfn-orientationlock">[[orientationLock]]</dfn>
+              </td>
+              <td>
+                The <a data-lt="[[orientationLock]]" href="#dfn-orientationlock" class="internalDFN" data-link-type="dfn"><code>[[orientationLock]]</code></a> represents a <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s
+                <a href="#dfn-orientation-lock" class="internalDFN" data-link-type="dfn">orientation lock</a> as an <a data-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set">ordered set</a> of
+                <a href="#dom-orientationtype" class="internalDFN" data-link-type="idl"><code><code>OrientationType</code></code></a>.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <dfn data-dfn-type="dfn" id="dfn-defaultorientation">[[defaultOrientation]]</dfn>
+              </td>
+              <td>
+                An <a data-type="dfn" href="https://infra.spec.whatwg.org/#ordered-set">ordered set</a> of orientations to which the screen
+                orientation is locked when not explicitly locked by this API or
+                any other means.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <dfn data-dfn-type="dfn" id="dfn-orientationpendingpromise">[[orientationPendingPromise]]</dfn>
+              </td>
+              <td>
+                Either <code>null</code> or a <a data-type="interface" href="https://heycam.github.io/webidl/#idl-promise"><code>Promise</code></a>. When assigned a <a data-type="interface" href="https://heycam.github.io/webidl/#idl-promise"><code>Promise</code></a>,
+                that promise represents a request to lock the screen to one of
+                the supported orientations. The promise resolves after locking
+                the orientation succeeds or rejects if locking fails.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+    <section id="concepts">
+      <h2 id="x5-concepts"><bdi class="secno">5. </bdi>
+        Concepts
+      <a class="self-link" aria-label="§" href="#concepts"></a></h2>
+      <p>
+        The term <dfn data-lt="screen concept" data-lt-nodefault="" data-dfn-type="dfn" id="dfn-screen-concept">screen</dfn> is equivalent to the screen of the output device
+        associated to the <a data-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window"><code>Window</code></a>, as per [<cite><a class="bibref" data-link-type="biblio" href="#bib-cssom-view" title="CSSOM View Module">CSSOM-VIEW</a></cite>].
+      </p>
+      <p>
+        Algorithms defined in this specification assume that for each
+        <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> there is an <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a>.
+      </p>
+      <section id="screen-orientation-types-and-locks">
+        <h3 id="x5-1-screen-orientation-types-and-locks"><bdi class="secno">5.1 </bdi>
+          Screen orientation types and locks
+        <a class="self-link" aria-label="§" href="#screen-orientation-types-and-locks"></a></h3>
+        <p>
+          <dfn data-dfn-type="dfn" id="dfn-landscape-primary">Landscape-primary</dfn> is an orientation where the screen width
+          is greater than the screen height. If the device's natural
+          orientation is landscape, then it is in landscape-primary when held
+          in that position. If the device's natural orientation is portrait,
+          the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> sets landscape-primary from the two options as
+          shown in the <a href="#dfn-screen-orientation-values-table" class="internalDFN" data-link-type="dfn">screen orientation values table</a>.
+        </p>
+        <p>
+          <dfn data-dfn-type="dfn" id="dfn-landscape-secondary">Landscape-secondary</dfn> is an orientation where the screen
+          width is greater than the screen height. If the device's natural
+          orientation is landscape, it is in landscape-secondary when rotated
+          180º from its natural orientation. If the device's natural
+          orientation is portrait, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> sets
+          landscape-secondary from the two options as shown in the <a href="#dfn-screen-orientation-values-table" class="internalDFN" data-link-type="dfn">screen
+          orientation values table</a>.
+        </p>
+        <p>
+          <dfn data-dfn-type="dfn" id="dfn-portrait-primary">Portrait-primary</dfn> is an orientation where the screen width
+          is less than or equal to the screen height. If the device's natural
+          orientation is portrait, then it is in portrait-primary when held in
+          that position. If the device's natural orientation is landscape, the
+          <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> sets portrait-primary from the two options as shown
+          in the <a href="#dfn-screen-orientation-values-table" class="internalDFN" data-link-type="dfn">screen orientation values table</a>.
+        </p>
+        <p>
+          <dfn data-dfn-type="dfn" id="dfn-portrait-secondary">Portrait-secondary</dfn> is an orientation where the screen
+          width is less than or equal to the screen height. If the device's
+          natural orientation is portrait, then it is in portrait-secondary
+          when rotated 180º from its natural position. If the device's natural
+          orientation is landscape, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> sets
+          portrait-secondary from the two options as shown in the <a href="#dfn-screen-orientation-values-table" class="internalDFN" data-link-type="dfn">screen
+          orientation values table</a>.
+        </p>
+        <p>
+          <dfn data-dfn-type="dfn" id="dfn-portrait">Portrait</dfn> is an orientation where the screen width is less
+          than or equal to the screen height and depending on platform
+          convention locking the screen to portrait can represent
+          portrait-primary, portrait-secondary or both.
+        </p>
+        <p>
+          <dfn data-dfn-type="dfn" id="dfn-landscape">Landscape</dfn> is an orientation where the screen width is
+          greater than the screen height and depending on platform convention
+          locking the screen to landscape can represent landscape-primary,
+          landscape-secondary or both.
+        </p>
+        <p>
+          <dfn data-dfn-type="dfn" id="dfn-natural">Natural</dfn> is an orientation that refers to either
+          portrait-primary or landscape-primary depending on the device's usual
+          orientation. This orientation is usually provided by the underlying
+          operating system.
+        </p>
+        <p>
+          <dfn data-dfn-type="dfn" id="dfn-any">Any</dfn> is an orientation that means the screen can be locked
+          to any one of portrait-primary, portrait-secondary, landscape-primary
+          and landscape-secondary.
+        </p>
+        <p>
+          The <dfn data-export="" data-dfn-type="dfn" id="dfn-default-screen-orientation">default screen orientation</dfn> is the set of
+          orientations to which the screen is locked when there is no current
+          <a href="#dfn-orientation-lock" class="internalDFN" data-link-type="dfn">orientation lock</a>. This orientation is determined by the
+          device's operating system, or the user agent (e.g., <a href="#interaction-with-web-application-manifest" class="sec-ref">§&nbsp;<bdi class="secno">6.2 </bdi>
+          Interaction with Web Application Manifest
+        </a>), or controlled by
+          the end-user.
+        </p>
+        <div class="issue" id="issue-container-number-150"><div role="heading" class="issue-title marker" id="h-issue-0" aria-level="4"><a href="https://github.com/w3c/screen-orientation/issues/150"><span class="issue-number">Issue 150</span></a><span class="issue-label">: Definition of default orientation</span></div><p>Currently default orientation is defined with the following:</p>
+<pre><code aria-busy="false" class="hljs xml">        A <span class="hljs-tag">&lt;<span class="hljs-name">a</span>&gt;</span>document<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>'s <span class="hljs-tag">&lt;<span class="hljs-name">dfn</span>&gt;</span>default orientation<span class="hljs-tag">&lt;/<span class="hljs-name">dfn</span>&gt;</span> is the set of
+          orientations to which the screen orientation is locked when it is not
+          explicitly locked by this API or any other means.
+</code></pre>
+<p>It would be great to get some clarification on why default orientation is a set?  From looking at the android docs it looks like the system decides on one orientation if none is specified.</p>
+<p><a class="user-mention" data-hovercard-type="user" data-hovercard-url="/users/mounirlamouri/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/mounirlamouri">@mounirlamouri</a> Could you please explain this further?</p>
+<p>Relates to <a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="237724229" data-permission-text="Title is private" data-url="https://github.com/w3c/screen-orientation/issues/104" data-hovercard-type="issue" data-hovercard-url="/w3c/screen-orientation/issues/104/hovercard" href="https://github.com/w3c/screen-orientation/issues/104">#104</a></p></div>
+      </section>
+      <section data-dfn-for="OrientationType" data-link-for="OrientationType" id="reading-the-screen-orientation">
+        <h3 id="x5-2-reading-the-screen-orientation"><bdi class="secno">5.2 </bdi>
+          Reading the screen orientation
+        <a class="self-link" aria-label="§" href="#reading-the-screen-orientation"></a></h3>
+        <p>
+          All <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">documents</a> have a <dfn data-dfn-type="dfn" id="dfn-current-orientation-type">current orientation type</dfn> and a
+          <dfn data-dfn-type="dfn" id="dfn-current-orientation-angle">current orientation angle</dfn>. Both of them <em class="rfc2119" title="SHOULD">SHOULD</em> be
+          initialized when the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> is created, otherwise they <em class="rfc2119" title="MUST">MUST</em>
+          be initialized the first time they are accessed and before their
+          value is read. The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> <a href="#dfn-update-the-orientation-information" class="internalDFN" data-link-type="dfn">update the orientation
+          information</a> of the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> to initialize them.
+        </p>
+        <p>
+          For a given <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>, the <a href="#dfn-current-orientation-type" class="internalDFN" data-link-type="dfn">current orientation type</a> and
+          the <a href="#dfn-current-orientation-angle" class="internalDFN" data-link-type="dfn">current orientation angle</a> are strongly linked in the sense
+          that for any given type, there will be a specific angle associated.
+        </p>
+        <p>
+          One primary orientation will always be determined by the
+          <a href="#dfn-natural" class="internalDFN" data-link-type="dfn">natural</a> orientation of the device and this will then determine
+          the secondary value of its related orientation.
+        </p>
+        <p>
+          For example a device held in its natural <a href="#dfn-portrait" class="internalDFN" data-link-type="dfn">portrait</a> orientation
+          would have a current orientation of <a href="#dom-orientationtype-portrait-primary" class="internalDFN" data-link-type="idl"><code>portrait-primary</code></a> and its
+          <a href="#dom-orientationtype-portrait-secondary" class="internalDFN" data-link-type="idl"><code>portrait-secondary</code></a> orientation would be its position when
+          rotated 180°.
+        </p>
+        <p>
+          The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> can associate the other <code>*-primary</code> and
+          <code>*-secondary</code> values at will. For example, it can be based on the
+          device preferred angles, the user's preferred orientations or the
+          current orientation when the application starts.
+        </p>
+        <p>
+          The <a href="#dfn-screen-orientation-values-table" class="internalDFN" data-link-type="dfn">screen orientation values table</a> presents the possible
+          orientation types: <a href="#dom-orientationtype-portrait-primary" class="internalDFN" data-link-type="idl"><code>portrait-primary</code></a>,
+          <a href="#dom-orientationtype-portrait-secondary" class="internalDFN" data-link-type="idl"><code>portrait-secondary</code></a>, <a href="#dom-orientationtype-landscape-primary" class="internalDFN" data-link-type="idl"><code>landscape-primary</code></a> and
+          <a href="#dom-orientationtype-landscape-secondary" class="internalDFN" data-link-type="idl"><code>landscape-secondary</code></a>. The table shows the primary and secondary
+          values that are determined by the device's <a href="#dfn-natural" class="internalDFN" data-link-type="dfn">natural</a> orientation
+          and the possibilities available to the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> for setting
+          the other primary and secondary orientation values.
+        </p>
+        <table class="simple">
+          <caption>
+            The <dfn data-dfn-type="dfn" id="dfn-screen-orientation-values-table">screen orientation values table</dfn>
+          </caption>
+          <thead>
+            <tr>
+              <th>
+                Natural Orientation
+              </th>
+              <th>
+                Primary Orientation 1
+              </th>
+              <th>
+                Secondary Orientation 1
+              </th>
+              <th>
+                Primary Orientation 2
+              </th>
+              <th>
+                Secondary Orientation 2
+              </th>
+            </tr>
+          </thead>
+          <tbody data-link-for="ScreenOrientation">
+            <tr>
+              <td>
+                <a href="#dfn-portrait" class="internalDFN" data-link-type="dfn">Portrait</a>
+              </td>
+              <td>
+                <a href="#dfn-portrait-primary" class="internalDFN" data-link-type="dfn">portrait-primary</a><br>
+                <a href="#dom-screenorientation-angle" class="internalDFN" data-link-type="idl"><code><code>angle</code></code></a> <code>0</code>
+              </td>
+              <td>
+                <a href="#dfn-portrait-secondary" class="internalDFN" data-link-type="dfn">portrait-secondary</a><br>
+                <a href="#dom-screenorientation-angle" class="internalDFN" data-link-type="idl"><code><code>angle</code></code></a> <code>180</code>
+              </td>
+              <td>
+                <a href="#dfn-landscape-primary" class="internalDFN" data-link-type="dfn">landscape-primary</a><br>
+                <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">User agent</a> to set at either <a href="#dom-screenorientation-angle" class="internalDFN" data-link-type="idl"><code><code>angle</code></code></a> <code>90</code> or <a href="#dom-screenorientation-angle" class="internalDFN" data-link-type="idl"><code><code>angle</code></code></a>
+                <code>270</code>
+              </td>
+              <td>
+                <a href="#dfn-landscape-secondary" class="internalDFN" data-link-type="dfn">landscape-secondary</a><br>
+                Set at the angle not used for landscape-primary
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#dfn-landscape" class="internalDFN" data-link-type="dfn">Landscape</a>
+              </td>
+              <td>
+                <a href="#dfn-landscape-primary" class="internalDFN" data-link-type="dfn">landscape-primary</a><br>
+                <a href="#dom-screenorientation-angle" class="internalDFN" data-link-type="idl"><code><code>angle</code></code></a> <code>0</code>
+              </td>
+              <td>
+                <a href="#dfn-landscape-secondary" class="internalDFN" data-link-type="dfn">landscape-secondary</a><br>
+                <a href="#dom-screenorientation-angle" class="internalDFN" data-link-type="idl"><code><code>angle</code></code></a> <code>180</code>
+              </td>
+              <td>
+                <a href="#dfn-portrait-primary" class="internalDFN" data-link-type="dfn">portrait-primary</a><br>
+                <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">User agent</a> to set at either <a href="#dom-screenorientation-angle" class="internalDFN" data-link-type="idl"><code><code>angle</code></code></a> <code>90</code> or <a href="#dom-screenorientation-angle" class="internalDFN" data-link-type="idl"><code><code>angle</code></code></a>
+                <code>270</code>
+              </td>
+              <td>
+                <a href="#dfn-portrait-secondary" class="internalDFN" data-link-type="dfn">portrait-secondary</a><br>
+                Set at the angle not used for portrait-primary
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Once the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> has set the primary and secondary values
+          from the options in the <a href="#dfn-screen-orientation-values-table" class="internalDFN" data-link-type="dfn">screen orientation values table</a>, the
+          <a href="#dfn-current-orientation-type" class="internalDFN" data-link-type="dfn">current orientation type</a> and the <a href="#dfn-current-orientation-angle" class="internalDFN" data-link-type="dfn">current orientation
+          angle</a> relation <em class="rfc2119" title="MUST">MUST</em> be kept consistent for any given
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>.
+        </p>
+        <div class="practice advisement"><a class="marker self-link" href="#bp-screenorientation-angle-and-screenorientation-type-relationship"><bdi lang="en">Best Practice 1</bdi></a>: <span class="practicelab" id="bp-screenorientation-angle-and-screenorientation-type-relationship"><a href="#dom-screenorientation" class="internalDFN" data-link-type="idl"><code><code>ScreenOrientation</code></code></a>.<a href="#dom-screenorientation-angle" class="internalDFN" data-link-type="idl"><code><code>angle</code></code></a> and
+            <a href="#dom-screenorientation" class="internalDFN" data-link-type="idl"><code><code>ScreenOrientation</code></code></a>.<a href="#dom-screenorientation-type" class="internalDFN" data-link-type="idl"><code><code>type</code></code></a> relationship</span>
+          <p class="practicedesc">
+             Never assume any
+            cross-devices relationship between the screen orientation type and
+            the screen orientation angle. Any assumption would be wrong given
+            that a device might have <code>90</code> and <code>270</code> as the angles for
+            <code>landscape</code> types but another device will have <code>0</code> and <code>180</code>,
+            depending on its <a href="#dfn-natural" class="internalDFN" data-link-type="dfn">natural</a> orientation. Instead, it is
+            recommended to check during runtime the relationship between angle
+            and type.
+          </p>
+        </div>
+      </section>
+      <section data-dfn-for="OrientationLockType" id="locking-the-screen-orientation">
+        <h3 id="x5-3-locking-the-screen-orientation"><bdi class="secno">5.3 </bdi>
+          Locking the screen orientation
+        <a class="self-link" aria-label="§" href="#locking-the-screen-orientation"></a></h3>
+        <p>
+          The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MAY">MAY</em> require a <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> and its
+          associated <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-document-bc">browsing context</a> to meet one or more
+          <dfn data-dfn-type="dfn" data-plurals="pre-lock condition" id="dfn-pre-lock-conditions">pre-lock conditions</dfn> in order to lock the screen
+          orientation. For example, a <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> might require a
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a> to be fullscreen
+          (see <a href="#interaction-with-fullscreen-api" class="sec-ref">§&nbsp;<bdi class="secno">6.1 </bdi>
+          Interaction with Fullscreen API
+        </a>) in order to
+          allow an <a href="#dfn-orientation-lock" class="internalDFN" data-link-type="dfn">orientation lock</a>.
+        </p>
+        <p>
+          The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MAY">MAY</em> reject all attempts to lock the screen
+          orientation if the platform conventions do not expect applications to
+          be able to change the screen orientation. For example, on most
+          desktop platforms, applications can not change the screen
+          orientation.
+        </p>
+        <p>
+          If the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> supports locking the screen orientation, it
+          <em class="rfc2119" title="MUST">MUST</em> allow the screen to be locked to all of the states of the
+          <a href="#dom-orientationlocktype" class="internalDFN" data-link-type="idl"><code><code>OrientationLockType</code></code></a> enum.
+        </p>
+        <p>
+          The <a data-lt="[[orientationLock]]" href="#dfn-orientationlock" class="internalDFN" data-link-type="dfn"><code>[[orientationLock]]</code></a> internal slot represents the
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a href="#dfn-orientation-lock" class="internalDFN" data-link-type="dfn">orientation lock</a>.
+        </p>
+        <p>
+          An <dfn data-dfn-type="dfn" id="dfn-orientation-lock">orientation lock</dfn> is in place when the screen has
+          successfully been locked to a specific orientation.
+        </p>
+        <section id="locking-to-the-default-orientation">
+          <h4 id="x5-3-1-locking-to-the-default-orientation"><bdi class="secno">5.3.1 </bdi>
+            Locking to the default orientation
+          <a class="self-link" aria-label="§" href="#locking-to-the-default-orientation"></a></h4>
+          <p>
+            From the perspective of a <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>, locking to the
+            <a href="#dfn-default-screen-orientation" class="internalDFN" data-link-type="dfn">default screen orientation</a> is equivalent to unlocking
+            because it means that it no longer has a lock applied.
+          </p>
+          <div class="note" role="note" id="issue-container-generatedID-1"><div role="heading" class="note-title marker" id="h-note-1" aria-level="5"><span>Note</span><span class="issue-label">: Who controls the default orientation?</span></div><p class="">
+            This does not mean that the <a data-lt="[[defaultOrientation]]" href="#dfn-defaultorientation" class="internalDFN" data-link-type="dfn"><code>[[defaultOrientation]]</code></a> will only
+            contain the item <a href="#dfn-any" class="internalDFN" data-link-type="dfn">any</a>. The <a href="#dfn-default-screen-orientation" class="internalDFN" data-link-type="dfn">default screen orientation</a>
+            is likely device-specific and <a data-lt="[[defaultOrientation]]" href="#dfn-defaultorientation" class="internalDFN" data-link-type="dfn"><code>[[defaultOrientation]]</code></a> could for
+            example contain <a href="#dfn-portrait-primary" class="internalDFN" data-link-type="dfn">portrait-primary</a> and/or
+            <a href="#dfn-landscape-primary" class="internalDFN" data-link-type="dfn">landscape-primary</a>. Alternatively, the user could restrict
+            the default orientation to a specific orientation via some OS or
+            browser level preference for accessibility reasons. The user agent
+            can also set the default orientation e.g., <a href="#interaction-with-web-application-manifest" class="sec-ref">§&nbsp;<bdi class="secno">6.2 </bdi>
+          Interaction with Web Application Manifest
+        </a>.
+          </p></div>
+        </section>
+      </section>
+    </section>
+    <section id="interactions-with-other-specifications">
+      <h2 id="x6-interactions-with-other-specifications"><bdi class="secno">6. </bdi>
+        Interactions with other specifications
+      <a class="self-link" aria-label="§" href="#interactions-with-other-specifications"></a></h2>
+      <p>
+        This section explains how this specification interacts with other
+        related specifications of the platform.
+      </p>
+      <section id="interaction-with-fullscreen-api">
+        <h3 id="x6-1-interaction-with-fullscreen-api"><bdi class="secno">6.1 </bdi>
+          Interaction with Fullscreen API
+        <a class="self-link" aria-label="§" href="#interaction-with-fullscreen-api"></a></h3>
+        <p>
+          As a <a href="#dfn-pre-lock-conditions" class="internalDFN" data-link-type="dfn">pre-lock condition</a>, a user agent <em class="rfc2119" title="MAY">MAY</em> restrict locking the
+          screen orientation exclusively to when the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing
+          context</a>'s <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s is full screen. When that <a href="#dfn-pre-lock-conditions" class="internalDFN" data-link-type="dfn">pre-lock
+          condition</a> applies, whenever the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a data-type="dfn" href="https://fullscreen.spec.whatwg.org/#fullscreen-element">fullscreen
+          element</a> is empty and a screen <a href="#dfn-orientation-lock" class="internalDFN" data-link-type="dfn">orientation lock</a> is applied,
+          the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> <a href="#dfn-lock-the-orientation" class="internalDFN" data-link-type="dfn">lock the orientation</a> of the
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> to the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a href="#dfn-default-screen-orientation" class="internalDFN" data-link-type="dfn">default screen
+          orientation</a>.
+        </p>
+        <div class="issue" id="issue-container-generatedID-2"><div role="heading" class="issue-title marker" id="h-issue-1" aria-level="4"><span>Issue</span></div><div class="">
+          This section could be improved if the [<cite><a class="bibref" data-link-type="biblio" href="#bib-fullscreen" title="Fullscreen API Standard">FULLSCREEN</a></cite>] specification
+          had a hook for when the document is no longer fullscreen. See
+          <a href="https://github.com/w3c/screen-orientation/issues/62">issue
+          62</a>.
+        </div></div>
+      </section>
+      <section class="informative" id="interaction-with-web-application-manifest">
+        <h3 id="x6-2-interaction-with-web-application-manifest"><bdi class="secno">6.2 </bdi>
+          Interaction with Web Application Manifest
+        <a class="self-link" aria-label="§" href="#interaction-with-web-application-manifest"></a></h3><p><em>This section is non-normative.</em></p>
+        <p>
+          The <cite><a href="https://www.w3.org/TR/appmanifest/">Web App Manifest</a></cite> allows web applications to set the
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a href="#dfn-default-screen-orientation" class="internalDFN" data-link-type="dfn">default screen orientation</a>.
+        </p>
+      </section>
+      <section class="informative" id="interaction-with-css-device-adaptation">
+        <h3 id="x6-3-interaction-with-css-device-adaptation"><bdi class="secno">6.3 </bdi>
+          Interaction with CSS Device Adaptation
+        <a class="self-link" aria-label="§" href="#interaction-with-css-device-adaptation"></a></h3><p><em>This section is non-normative.</em></p>
+        <p>
+          The <cite><a href="https://www.w3.org/TR/css-device-adapt-1/">CSS Device Adaptation Module Level 1</a></cite> specification defines, independently of this
+          document, a way to lock the screen orientation for a web page using
+          CSS.
+        </p>
+      </section>
+      <section class="informative" id="interaction-with-web-content-accessibility-guidelines">
+        <h3 id="x6-4-interaction-with-web-content-accessibility-guidelines"><bdi class="secno">6.4 </bdi>
+          Interaction with Web Content Accessibility Guidelines
+        <a class="self-link" aria-label="§" href="#interaction-with-web-content-accessibility-guidelines"></a></h3><p><em>This section is non-normative.</em></p>
+        <p>
+          The <cite><a href="https://www.w3.org/TR/WCAG21/">Web Content Accessibility Guidelines (WCAG) 2.1</a></cite> includes a <a href="https://www.w3.org/TR/WCAG21/#orientation">Success
+          Criterion related to screen orientation</a>.
+        </p>
+        <p>
+          ​The intent of this Success Criterion is to ensure that all
+          <a href="https://www.w3.org/TR/WCAG21/#dfn-essential">essential</a> content and
+          functionality is available regardless of the display orientation
+          (portrait or landscape). Some websites and applications automatically
+          set the screen to a particular display orientation and expect that
+          users will respond by rotating their device to match.
+        </p>
+        <p>
+          However, some users may have their devices mounted in a fixed
+          orientation (e.g. on the arm of a power wheelchair). Therefore,
+          websites and applications need to support both orientations by making
+          sure <a href="https://www.w3.org/TR/WCAG21/#dfn-essential">essential</a> content and
+          functionality is available in each orientation. While the order of
+          content and method of functionality may have differences the content
+          and functionality must always be available. When a particular
+          orientation is <a href="https://www.w3.org/TR/WCAG21/#dfn-essential">essential</a>, the
+          user needs to be advised of the orientation requirements.​
+        </p>
+      </section>
+    </section>
+    <section id="algorithms">
+      <h2 id="x7-algorithms"><bdi class="secno">7. </bdi>
+        Algorithms
+      <a class="self-link" aria-label="§" href="#algorithms"></a></h2>
+      <section data-link-for="OrientationType" id="updating-the-orientation-information">
+        <h3 id="x7-1-updating-the-orientation-information"><bdi class="secno">7.1 </bdi>
+          Updating the orientation information
+        <a class="self-link" aria-label="§" href="#updating-the-orientation-information"></a></h3>
+        <p data-tests="orientation-reading.html">
+          The steps to <dfn data-dfn-type="dfn" id="dfn-update-the-orientation-information">update the orientation information</dfn> of a
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> are as follows:
+        </p>
+        <ol class="algorithm">
+          <li>If the screen width is greater than the screen height, set the
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a href="#dfn-current-orientation-type" class="internalDFN" data-link-type="dfn">current orientation type</a> to
+          <a href="#dom-orientationtype-landscape-primary" class="internalDFN" data-link-type="idl"><code>landscape-primary</code></a> or <a href="#dom-orientationtype-landscape-secondary" class="internalDFN" data-link-type="idl"><code>landscape-secondary</code></a>.
+          </li>
+          <li>Otherwise, if the screen width is less than or equal to the
+          screen height, set the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a href="#dfn-current-orientation-type" class="internalDFN" data-link-type="dfn">current orientation
+          type</a> to <a href="#dom-orientationtype-portrait-primary" class="internalDFN" data-link-type="idl"><code>portrait-primary</code></a> or <a href="#dom-orientationtype-portrait-secondary" class="internalDFN" data-link-type="idl"><code>portrait-secondary</code></a>.
+          </li>
+          <li data-tests="orientation-reading.html">Set the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s
+          <a href="#dfn-current-orientation-angle" class="internalDFN" data-link-type="dfn">current orientation angle</a> to the clockwise angle in degrees
+          between the orientation of the viewport as it is drawn and the
+          <a href="#dfn-natural" class="internalDFN" data-link-type="dfn">natural</a> orientation of the device (i.e., the top of the
+          physical screen). This is the opposite of the physical rotation. In
+          other words, if a device is turned 90 degrees on the right, the
+          <a href="#dfn-current-orientation-angle" class="internalDFN" data-link-type="dfn">current orientation angle</a> would be 270 degrees. The <a href="#dfn-screen-orientation-values-table" class="internalDFN" data-link-type="dfn">screen
+          orientation values table</a> gives the options for each orientation
+          and possible associated angles.
+          </li>
+        </ol>
+      </section>
+      <section data-link-for="OrientationType" id="apply-an-orientation-lock">
+        <h3 id="x7-2-apply-an-orientation-lock"><bdi class="secno">7.2 </bdi>
+          Apply an orientation lock
+        <a class="self-link" aria-label="§" href="#apply-an-orientation-lock"></a></h3>
+        <p class="algorithm">
+          The steps to <dfn data-dfn-type="dfn" id="dfn-apply-an-orientation-lock">apply an orientation lock</dfn> to a
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> using <var>orientation</var> are as follows:
+        </p>
+        <ol class="algorithm">
+          <li>If the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> does not support locking the screen
+          orientation, return a promise rejected with a <code>"NotSupportedError"</code>
+          <a data-type="interface" href="https://heycam.github.io/webidl/#idl-DOMException"><code>DOMException</code></a> and abort these steps.
+          </li>
+          <li data-tests="lock-sandboxed-iframe.html">If the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s
+          has the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#sandboxed-orientation-lock-browsing-context-flag">sandboxed orientation lock browsing context flag</a> set,
+          or <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> doesn't meet the <a href="#dfn-pre-lock-conditions" class="internalDFN" data-link-type="dfn">pre-lock conditions</a> to
+          perform an orientation change, return a promise rejected with a
+          <code>"SecurityError"</code> <a data-type="interface" href="https://heycam.github.io/webidl/#idl-DOMException"><code>DOMException</code></a> and abort these steps.
+          </li>
+          <li data-tests="lock-basic.html">Set <var>doc</var>'s
+          <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> to a newly-created promise.
+          </li>
+          <li>Return <var>doc</var>'s <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> and <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in
+          parallel</a>:
+            <ol>
+              <li>Let <var>browsing contexts</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#list-of-the-descendant-browsing-contexts">list of the descendant
+              browsing contexts</a> of the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a>'s
+              <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>.
+              </li>
+              <li>If one of the <var>browsing contexts</var>'s <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s
+              <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> is not <code>null</code>:
+                <ol>
+                  <li>Let <var>doc</var> be the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> which has a not <code>null</code>
+                  <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a>.
+                  </li>
+                  <li>Reject <var>doc</var>'s <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> with
+                  <code>"AbortError"</code> <a data-type="interface" href="https://heycam.github.io/webidl/#idl-DOMException"><code>DOMException</code></a>.
+                  </li>
+                  <li>Set <var>doc</var>'s <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> to <code>null</code> .
+                  </li>
+                </ol>
+              </li>
+              <li data-tests="lock-basic.html">Let <var>orientations</var> be an empty
+              <a data-type="dfn" href="https://infra.spec.whatwg.org/#list">list</a>.
+              </li>
+              <li>Depending on <var>orientation</var> value, do the following:
+                <dl>
+                  <dt>
+                    <a href="#dom-orientationtype-portrait-primary" class="internalDFN" data-link-type="idl"><code>portrait-primary</code></a> or <a href="#dom-orientationtype-portrait-secondary" class="internalDFN" data-link-type="idl"><code>portrait-secondary</code></a> or
+                    <a href="#dom-orientationtype-landscape-primary" class="internalDFN" data-link-type="idl"><code>landscape-primary</code></a> or <a href="#dom-orientationtype-landscape-secondary" class="internalDFN" data-link-type="idl"><code>landscape-secondary</code></a>
+                  </dt>
+                  <dd>
+                    Append <var>orientation</var> to <var>orientations</var>.
+                  </dd>
+                  <dt>
+                    <a href="#dom-orientationlocktype-landscape" class="internalDFN" data-link-type="idl"><code>landscape</code></a>
+                  </dt>
+                  <dd>
+                    Depending on platform convention, append
+                    <code>landscape-primary</code>, or <code>landscape-secondary</code>, or both to
+                    <var>orientations</var>.
+                  </dd>
+                  <dt>
+                    <a href="#dom-orientationlocktype-portrait" class="internalDFN" data-link-type="idl"><code>portrait</code></a>
+                  </dt>
+                  <dd>
+                    Depending on platform convention, append
+                    <code>portrait-primary</code>, or <code>portrait-secondary</code>, or both to
+                    <var>orientations</var>.
+                  </dd>
+                  <dt>
+                    <a href="#dom-orientationlocktype-natural" class="internalDFN" data-link-type="idl"><code>natural</code></a>
+                  </dt>
+                  <dd>
+                    Append <code>portrait-primary</code> or <code>landscape-primary</code> to
+                    <var>orientations</var> such as the associated <a href="#dfn-current-orientation-angle" class="internalDFN" data-link-type="dfn">current
+                    orientation angle</a> is 0.
+                  </dd>
+                  <dt>
+                    <code>any</code>
+                  </dt>
+                  <dd>
+                    Append <code>portrait-primary</code>, <code>portrait-secondary</code>,
+                    <code>landscape-primary</code> and <code>landscape-secondary</code> to
+                    <var>orientations</var>.
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <a href="#dfn-lock-the-orientation" class="internalDFN" data-link-type="dfn">Lock the orientation</a> of the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> to
+                <var>orientations</var>.
+              </li>
+              <li>If locking the orientation did not result in a change of
+              orientation, as part of the next <a href="#dfn-animation-frame-task" class="internalDFN" data-link-type="dfn">animation frame task</a>,
+              resolve <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> with <code>undefined</code> and
+              set <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> to <code>null</code>.
+              </li>
+            </ol>
+          </li>
+        </ol>
+        <div class="note" role="note" id="issue-container-generatedID-3"><div role="heading" class="note-title marker" id="h-note-2" aria-level="4"><span>Note</span></div><div class="">
+          If locking the orientation results in an orientation change, the
+          promise will be resolved when the orientation will change as
+          described in the <a href="#Screen-orientation-change" class="sec-ref">§&nbsp;<bdi class="secno">7.5 </bdi>
+          Screen orientation change
+        </a> section.
+        </div></div>
+      </section>
+      <section id="locking-the-orientation">
+        <h3 id="x7-3-locking-the-orientation"><bdi class="secno">7.3 </bdi>
+          Locking the orientation
+        <a class="self-link" aria-label="§" href="#locking-the-orientation"></a></h3>
+        <p>
+          The steps to <dfn data-dfn-type="dfn" id="dfn-lock-the-orientation">lock the orientation</dfn> to <var>orientation</var> are as
+          follows.
+        </p>
+        <ol class="algorithm">
+          <li class="algorithm" data-tests="lock-basic.html">Set the
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a data-lt="[[orientationLock]]" href="#dfn-orientationlock" class="internalDFN" data-link-type="dfn"><code>[[orientationLock]]</code></a> to <var>orientations</var>.
+          </li>
+          <li>If the <a href="#dfn-active-orientation-lock" class="internalDFN" data-link-type="dfn">active orientation lock</a> is not the
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a data-lt="[[orientationLock]]" href="#dfn-orientationlock" class="internalDFN" data-link-type="dfn"><code>[[orientationLock]]</code></a>, abort these steps.
+          </li>
+          <li>If the <a href="#dfn-active-orientation-lock" class="internalDFN" data-link-type="dfn">active orientation lock</a> value is equal to
+          <var>orientations</var> value, abort these steps.
+          </li>
+          <li>If <var>orientations</var> contains only one value, run the following
+          sub-steps:
+            <ol>
+              <li>Let <var>orientation</var> be the value contained in <var>orientations</var>.
+              </li>
+              <li>Change how the viewport is drawn so that the
+              <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a href="#dfn-current-orientation-type" class="internalDFN" data-link-type="dfn">current orientation type</a> will be equal
+              to <var>orientation</var>.
+              </li>
+              <li>After the change has happened, prevent the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s
+              <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a>'s screen orientation from
+              changing until those steps are run again.
+              </li>
+              <li>Abort these steps.
+              </li>
+            </ol>
+          </li>
+          <li>If the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a href="#dfn-current-orientation-type" class="internalDFN" data-link-type="dfn">current orientation type</a> is not
+          part of <var>orientations</var>, change how the viewport is drawn such as the
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a href="#dfn-current-orientation-type" class="internalDFN" data-link-type="dfn">current orientation type</a> will be equal to
+          one of <var>orientations</var>' values.
+          </li>
+          <li>Otherwise, depending on platform conventions, change how the
+          viewport is drawn in order to make it match another screen
+          orientation type. However, it has to be part of <var>orientations</var>.
+          </li>
+          <li>Allow the user to change the screen orientation to any value part
+          of <var>orientations</var> and only those values until those steps are run
+          again. The method to define the current screen orientation has to
+          match the platform conventions.
+          </li>
+        </ol>
+      </section>
+      <section id="determining-the-active-orientation-lock">
+        <h3 id="x7-4-determining-the-active-orientation-lock"><bdi class="secno">7.4 </bdi>
+          Determining the active orientation lock
+        <a class="self-link" aria-label="§" href="#determining-the-active-orientation-lock"></a></h3>
+        <p>
+          The steps to determine the <dfn data-dfn-type="dfn" id="dfn-active-orientation-lock">active orientation lock</dfn> are as
+          follows:
+        </p>
+        <ol class="algorithm">
+          <li>If there is only one <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a> with a <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">
+            document</a> that is visible per [<cite><a class="bibref" data-link-type="biblio" href="#bib-page-visibility" title="Page Visibility (Second Edition)">PAGE-VISIBILITY</a></cite>], the <a href="#dfn-active-orientation-lock" class="internalDFN" data-link-type="dfn">active
+            orientation lock</a> is the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s
+            <a data-lt="[[orientationLock]]" href="#dfn-orientationlock" class="internalDFN" data-link-type="dfn"><code>[[orientationLock]]</code></a>.
+          </li>
+          <li>Otherwise, if there are more than one <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing
+          context</a> with a <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> that is visible per
+          [<cite><a class="bibref" data-link-type="biblio" href="#bib-page-visibility" title="Page Visibility (Second Edition)">PAGE-VISIBILITY</a></cite>] but only one of those <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>s is
+          focused, the <a href="#dfn-active-orientation-lock" class="internalDFN" data-link-type="dfn">active orientation lock</a> is the focused
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a data-lt="[[orientationLock]]" href="#dfn-orientationlock" class="internalDFN" data-link-type="dfn"><code>[[orientationLock]]</code></a>.
+          </li>
+          <li>Otherwise, the <a href="#dfn-active-orientation-lock" class="internalDFN" data-link-type="dfn">active orientation lock</a> <em class="rfc2119" title="SHOULD">SHOULD</em> be the
+          latest focused <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a data-lt="[[orientationLock]]" href="#dfn-orientationlock" class="internalDFN" data-link-type="dfn"><code>[[orientationLock]]</code></a>, unless
+          stated otherwise by the platform conventions.
+          </li>
+        </ol>
+        <p>
+          Whenever the <a href="#dfn-active-orientation-lock" class="internalDFN" data-link-type="dfn">active orientation lock</a> changes, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user
+          agent</a> <em class="rfc2119" title="MUST">MUST</em> run the steps to <a href="#dfn-lock-the-orientation" class="internalDFN" data-link-type="dfn">lock the orientation</a> of the
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> to the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a data-lt="[[orientationLock]]" href="#dfn-orientationlock" class="internalDFN" data-link-type="dfn"><code>[[orientationLock]]</code></a>.
+        </p>
+        <p>
+          Whenever a <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a> is <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#navigate">navigated</a>, the
+          <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> <a href="#dfn-lock-the-orientation" class="internalDFN" data-link-type="dfn">lock the orientation</a> of the
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> to the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a data-lt="[[defaultOrientation]]" href="#dfn-defaultorientation" class="internalDFN" data-link-type="dfn"><code>[[defaultOrientation]]</code></a>.
+        </p>
+      </section>
+      <section data-link-for="ScreenOrientation" id="Screen-orientation-change">
+        <h3 id="x7-5-screen-orientation-change"><bdi class="secno">7.5 </bdi>
+          Screen orientation change
+        <a class="self-link" aria-label="§" href="#Screen-orientation-change"></a></h3>
+        <p data-tests="onchange-event.html">
+          Whenever the viewport's angle changes, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> run
+          the following steps as part of the next <a href="#dfn-animation-frame-task" class="internalDFN" data-link-type="dfn">animation frame task</a>:
+        </p>
+        <ol class="algorithm">
+          <li>Let <var>browsing contexts</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#list-of-the-descendant-browsing-contexts">list of the descendant browsing
+          contexts</a> of the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level browsing context</a>'s
+          <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>.
+          </li>
+          <li>For each <var data-type="browsing context">context</var> in <var>browsing contexts</var>, run
+          the following sub-steps:
+            <ol>
+              <li>Let <var>doc</var> be the <var data-type="browsing context">context</var>'s <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-document">active document</a>.
+              </li>
+              <li>If <var>doc</var> is not visible per [<cite><a class="bibref" data-link-type="biblio" href="#bib-page-visibility" title="Page Visibility (Second Edition)">PAGE-VISIBILITY</a></cite>], abort these
+              steps.
+              </li>
+              <li>
+                <a href="#dfn-update-the-orientation-information" class="internalDFN" data-link-type="dfn">Update the orientation information</a> of <var>doc</var>.
+              </li>
+              <li>If the orientation change was triggered by a user gesture
+              such as the user turning the device, as opposed to a call to
+              <a data-lt="lock()" href="#dom-screenorientation-lock" class="internalDFN" data-link-type="idl"><code><code>lock</code></code></a><code>()</code>, the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task">task</a> <em class="rfc2119" title="MUST">MUST</em> be annotated with <code>process user
+              orientation change</code> when running the next step.
+              </li>
+              <li>
+                <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named <code>change</code> at <var>doc</var>'s
+                <a data-link-type="idl" href="https://www.w3.org/TR/cssom-view-1/#screen"><code><code>Screen</code></code></a>.<a href="#dom-screen-orientation" class="internalDFN" data-link-type="idl"><code><code>orientation</code></code></a> object.
+              </li>
+              <li>If <var>doc</var>'s <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> is not <code>null</code>:
+                <ol>
+                  <li>Resolve <var>doc</var>'s <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> with
+                  <code>undefined</code>.
+                  </li>
+                  <li>Set <var>doc</var>'s <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> to <code>null</code> .
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+        <p>
+          Whenever a <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> becomes visible per [<cite><a class="bibref" data-link-type="biblio" href="#bib-page-visibility" title="Page Visibility (Second Edition)">PAGE-VISIBILITY</a></cite>],
+          in other words after the <a data-link-type="dfn" href="https://www.w3.org/TR/page-visibility/#dfn-now-visible-algorithm">now visible algorithm</a> is run, the
+          <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn">user agent</a> <em class="rfc2119" title="MUST">MUST</em> run the following substeps as part of the next
+          <a href="#dfn-animation-frame-task" class="internalDFN" data-link-type="dfn">animation frame task</a>:
+        </p>
+        <ol class="algorithm">
+          <li>Let <var>type</var> and <var>angle</var> be respectively the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a href="#dfn-current-orientation-type" class="internalDFN" data-link-type="dfn">
+            current orientation type</a> and <a href="#dfn-current-orientation-angle" class="internalDFN" data-link-type="dfn">current orientation angle</a>.
+          </li>
+          <li>
+            <a href="#dfn-update-the-orientation-information" class="internalDFN" data-link-type="dfn">Update the orientation information</a> of the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>.
+          </li>
+          <li>If <var>type</var> is different from the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a href="#dfn-current-orientation-type" class="internalDFN" data-link-type="dfn">current
+          orientation type</a> or <var>angle</var> from the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a href="#dfn-current-orientation-angle" class="internalDFN" data-link-type="dfn">current
+          orientation angle</a>, run the following sub-steps:
+            <ol>
+              <li>If the orientation change was triggered by a user gesture
+              such as the user turning the device, as opposed to a call to <a href="#dom-screenorientation-lock" class="internalDFN" data-link-type="idl"><code>
+                lock()</code></a>, the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task">task</a> <em class="rfc2119" title="MUST">MUST</em> be annotated with <code>process
+                user orientation change</code> when running the next step.
+              </li>
+              <li>
+                <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named <code>change</code> at the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s
+                <a data-link-type="idl" href="https://www.w3.org/TR/cssom-view-1/#screen"><code><code>Screen</code></code></a>.<a href="#dom-screen-orientation" class="internalDFN" data-link-type="idl"><code><code>orientation</code></code></a> object.
+              </li>
+              <li>If the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> is
+              not <code>null</code>:
+                <ol>
+                  <li>Resolve the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s
+                  <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> with <code>undefined</code>.
+                  </li>
+                  <li>Set the <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a>'s
+                  <a data-lt="[[orientationPendingPromise]]" href="#dfn-orientationpendingpromise" class="internalDFN" data-link-type="dfn"><code>[[orientationPendingPromise]]</code></a> to <code>null</code>.
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+        <p>
+          An algorithm is <dfn data-dfn-type="dfn" id="dfn-triggered-by-a-user-generated-orientation-change">triggered by a user generated orientation
+          change</dfn> if the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-task">task</a> in which the algorithm is running is
+          annotated with <code>process user orientation change</code>.
+        </p>
+        <div class="note" role="note" id="issue-container-generatedID-4"><div role="heading" class="note-title marker" id="h-note-3" aria-level="4"><span>Note</span></div><div class="">
+          <p>
+            Developers need to be aware that a <a data-link-type="idl" href="https://www.w3.org/TR/cssom-view-1/#screen"><code><code>Screen</code></code></a>.<a href="#dom-screen-orientation" class="internalDFN" data-link-type="idl"><code><code>orientation</code></code></a> object
+            from a <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-document">document</a> that is not visible, as per
+            [<cite><a class="bibref" data-link-type="biblio" href="#bib-page-visibility" title="Page Visibility (Second Edition)">PAGE-VISIBILITY</a></cite>], will not receive an orientation change event.
+            This is to prevent unnecessary changes to layout, etc. in the
+            non-visible web application.
+          </p>
+        </div></div>
+        <div class="issue" id="issue-container-generatedID-5"><div role="heading" class="issue-title marker" id="h-issue-2" aria-level="4"><span>Issue</span></div><div class="">
+          This section could be improved if the [<cite><a class="bibref" data-link-type="biblio" href="#bib-page-visibility" title="Page Visibility (Second Edition)">PAGE-VISIBILITY</a></cite>]
+          specification had a hook for when the document becomes visible and
+          hidden. <a href="https://github.com/w3c/screen-orientation/issues/77">issue 77</a>.
+        </div></div>
+      </section>
+    </section>
+    <section class="informative" id="privacy-and-security-considerations">
+      <h2 id="x8-privacy-and-security-considerations"><bdi class="secno">8. </bdi>
+        Privacy and Security Considerations
+      <a class="self-link" aria-label="§" href="#privacy-and-security-considerations"></a></h2><p><em>This section is non-normative.</em></p>
+      <section id="access-to-aspects-of-a-user-s-local-computing-environment">
+        <h3 id="x8-1-access-to-aspects-of-a-user-s-local-computing-environment"><bdi class="secno">8.1 </bdi>
+          Access to aspects of a user’s local computing environment
+        <a class="self-link" aria-label="§" href="#access-to-aspects-of-a-user-s-local-computing-environment"></a></h3>
+        <p>
+          The screen orientation type and angle of the device can be accessed
+          with the API specified in this document, and can be a potential
+          fingerprinting vector.
+        </p>
+        <p>
+          The screen orientation type can already be known by using the screen
+          width and height. In practice, the additional information provided
+          with the API concerning the angle of the device and the primary or
+          secondary screen orientation is unlikely to be used by any competent
+          attack.
+        </p>
+      </section>
+    </section>
+    <section id="dependencies">
+      <h2 id="x9-dependencies"><bdi class="secno">9. </bdi>
+        Dependencies
+      <a class="self-link" aria-label="§" href="#dependencies"></a></h2>
+      <p>
+        The following concepts and interfaces are defined in [<cite><a class="bibref" data-link-type="biblio" href="#bib-html" title="HTML Standard">HTML</a></cite>]:
+        <dfn data-dfn-type="dfn" id="dfn-list-of-the-descendant-browsing-contexts" data-no-export=""><a href="https://html.spec.whatwg.org/multipage/browsers.html#list-of-the-descendant-browsing-contexts">list of
+        the descendant browsing contexts</a></dfn>.
+      </p>
+      <p>
+        The following is defined in [<cite><a class="bibref" data-link-type="biblio" href="#bib-page-visibility" title="Page Visibility (Second Edition)">PAGE-VISIBILITY</a></cite>]: <dfn data-dfn-type="dfn" id="dfn-now-visible-algorithm" data-no-export=""><a href="https://www.w3.org/TR/page-visibility/#dfn-now-visible-algorithm">now visible
+        algorithm</a></dfn>.
+      </p>
+      <p>
+        The following is used but not defined in [<cite><a class="bibref" data-link-type="biblio" href="#bib-fullscreen" title="Fullscreen API Standard">FULLSCREEN</a></cite>]: <dfn data-dfn-type="dfn" id="dfn-animation-frame-task"><a href="https://github.com/whatwg/fullscreen/issues/16">animation frame
+        task</a></dfn>.
+      </p>
+      <div class="issue" id="issue-container-generatedID-6"><div role="heading" class="issue-title marker" id="h-issue-3" aria-level="3"><span>Issue</span></div><div class="">
+        This should now be updated since the <a href="#dfn-animation-frame-task" class="internalDFN" data-link-type="dfn">animation frame task</a> issue
+        is recently resolved and the timing is now defined.
+      </div></div>
+    </section>
+    <section id="conformance"><h2 id="x10-conformance"><bdi class="secno">10. </bdi>Conformance<a class="self-link" aria-label="§" href="#conformance"></a></h2><p>
+      As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.
+    </p><p>
+        The key words <em class="rfc2119">MAY</em>, <em class="rfc2119">MUST</em>, and <em class="rfc2119">SHOULD</em> in this document
+        are to be interpreted as described in
+        <a href="https://tools.ietf.org/html/bcp14">BCP 14</a>
+        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>] [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8174" title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">RFC8174</a></cite>]
+        when, and only when, they appear in all capitals, as shown here.
+      </p>
+      <p>
+        This specification defines conformance criteria that apply to a single
+        product: the <dfn data-dfn-type="dfn" id="dfn-user-agent">user agent</dfn> that implements the interfaces that
+        it contains.
+      </p>
+    </section>
+    <section id="idl-index" class="appendix"><h2 id="a-idl-index"><bdi class="secno">A. </bdi>IDL Index<a class="self-link" aria-label="§" href="#idl-index"></a></h2><pre class="idl def" id="actual-idl-index"><span class="idlHeader"><a class="self-link" href="#actual-idl-index">WebIDL</a></span><span data-idl="" class="idlInterface" data-title="Screen">partial interface <a class="internalDFN idlID" data-link-type="interface" href="#dom-screen"><code>Screen</code></a> {<span data-idl="" class="idlAttribute" data-title="orientation" data-dfn-for="Screen">
+  [<span class="extAttr"><a data-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a></span>] readonly attribute<span class="idlType"> <a href="#dom-screenorientation" class="internalDFN" data-link-type="idl"><code>ScreenOrientation</code></a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-screen-orientation"><code>orientation</code></a>;</span>
+};</span>
+
+<span data-idl="" class="idlInterface" data-title="ScreenOrientation">[<span class="extAttr"><a data-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=<a data-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window">Window</a></span>]
+interface <a class="internalDFN idlID" data-link-type="interface" href="#dom-screenorientation"><code>ScreenOrientation</code></a> : <span class="idlSuperclass"><a data-type="interface" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a></span> {<span data-idl="" class="idlMethod" data-title="lock" data-dfn-for="ScreenOrientation"><span class="idlType">
+  <a data-type="interface" href="https://heycam.github.io/webidl/#idl-promise">Promise</a>&lt;<a data-type="interface" href="https://heycam.github.io/webidl/#idl-void">void</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dom-screenorientation-lock"><code>lock</code></a>(<span class="idlType"><a href="#dom-orientationlocktype" class="internalDFN" data-link-type="idl"><code>OrientationLockType</code></a></span> <span class="idlParamName">orientation</span>);</span><span data-idl="" class="idlMethod" data-title="unlock" data-dfn-for="ScreenOrientation"><span class="idlType">
+  <a data-type="interface" href="https://heycam.github.io/webidl/#idl-void">void</a></span> <a class="internalDFN idlName" data-link-type="method" href="#dom-screenorientation-unlock"><code>unlock</code></a>();</span><span data-idl="" class="idlAttribute" data-title="type" data-dfn-for="ScreenOrientation">
+  readonly attribute<span class="idlType"> <a href="#dom-orientationtype" class="internalDFN" data-link-type="idl"><code>OrientationType</code></a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-screenorientation-type"><code>type</code></a>;</span><span data-idl="" class="idlAttribute" data-title="angle" data-dfn-for="ScreenOrientation">
+  readonly attribute<span class="idlType"> <a data-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short">unsigned short</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-screenorientation-angle"><code>angle</code></a>;</span><span data-idl="" class="idlAttribute" data-title="onchange" data-dfn-for="ScreenOrientation">
+  attribute<span class="idlType"> <a data-type="typedef" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-screenorientation-onchange"><code>onchange</code></a>;</span>
+};</span><span data-idl="" class="idlEnum" data-title="OrientationLockType">
+
+enum <a class="internalDFN idlID" data-link-type="enum" href="#dom-orientationlocktype"><code>OrientationLockType</code></a> {
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-any"><code>any</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-natural"><code>natural</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-landscape"><code>landscape</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-portrait"><code>portrait</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-portrait-primary"><code>portrait-primary</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-portrait-secondary"><code>portrait-secondary</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-landscape-primary"><code>landscape-primary</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationlocktype-landscape-secondary"><code>landscape-secondary</code></a>"</span>
+};</span><span data-idl="" class="idlEnum" data-title="OrientationType">
+
+enum <a class="internalDFN idlID" data-link-type="enum" href="#dom-orientationtype"><code>OrientationType</code></a> {
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationtype-portrait-primary"><code>portrait-primary</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationtype-portrait-secondary"><code>portrait-secondary</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationtype-landscape-primary"><code>landscape-primary</code></a>"</span>,
+  <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-orientationtype-landscape-secondary"><code>landscape-secondary</code></a>"</span>
+};</span></pre></section>
+    <section class="appendix" id="acknowledgments">
+      <h2 id="b-acknowledgments"><bdi class="secno">B. </bdi>
+        Acknowledgments
+      <a class="self-link" aria-label="§" href="#acknowledgments"></a></h2>
+      <p>
+        Thanks Christophe Dumez, Anne van Kesteren, Chundong Wang, Fuqiao Xue,
+        and Chaals McCathie Nevile for their useful comments.
+      </p>
+      <p>
+        Special thanks to Chris Jones and Jonas Sicking for their contributions
+        to the initial design of this API.
+      </p>
+    </section>
+  
+
+<section id="references" class="appendix"><h2 id="c-references"><bdi class="secno">C. </bdi>References<a class="self-link" aria-label="§" href="#references"></a></h2><section id="normative-references">
+      <h3 id="c-1-normative-references"><bdi class="secno">C.1 </bdi>
+        Normative references
+      <a class="self-link" aria-label="§" href="#normative-references"></a></h3>
+    <dl class="bibliography">
+      <dt id="bib-cssom-view">[CSSOM-VIEW]</dt><dd><a href="https://www.w3.org/TR/cssom-view-1/"><cite>CSSOM View Module</cite></a>. Simon Pieters.  W3C. 17 March 2016. W3C Working Draft. URL: <a href="https://www.w3.org/TR/cssom-view-1/">https://www.w3.org/TR/cssom-view-1/</a></dd><dt id="bib-dom">[dom]</dt><dd><a href="https://dom.spec.whatwg.org/"><cite>DOM Standard</cite></a>. Anne van Kesteren.  WHATWG. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a></dd><dt id="bib-fullscreen">[FULLSCREEN]</dt><dd><a href="https://fullscreen.spec.whatwg.org/"><cite>Fullscreen API Standard</cite></a>. Philip Jägenstedt.  WHATWG. Living Standard. URL: <a href="https://fullscreen.spec.whatwg.org/">https://fullscreen.spec.whatwg.org/</a></dd><dt id="bib-html">[HTML]</dt><dd><a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a></dd><dt id="bib-infra">[infra]</dt><dd><a href="https://infra.spec.whatwg.org/"><cite>Infra Standard</cite></a>. Anne van Kesteren; Domenic Denicola.  WHATWG. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a></dd><dt id="bib-page-visibility">[PAGE-VISIBILITY]</dt><dd><a href="https://www.w3.org/TR/page-visibility/"><cite>Page Visibility (Second Edition)</cite></a>. Jatinder Mann; Arvind Jain.  W3C. 29 October 2013. W3C Recommendation. URL: <a href="https://www.w3.org/TR/page-visibility/">https://www.w3.org/TR/page-visibility/</a></dd><dt id="bib-rfc2119">[RFC2119]</dt><dd><a href="https://tools.ietf.org/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a></dd><dt id="bib-rfc8174">[RFC8174]</dt><dd><a href="https://tools.ietf.org/html/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</cite></a>. B. Leiba.  IETF. May 2017. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc8174">https://tools.ietf.org/html/rfc8174</a></dd><dt id="bib-webidl">[WebIDL]</dt><dd><a href="https://heycam.github.io/webidl/"><cite>Web IDL</cite></a>. Boris Zbarsky.  W3C. 15 December 2016. W3C Editor's Draft. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a></dd>
+    </dl></section><section id="informative-references">
+      <h3 id="c-2-informative-references"><bdi class="secno">C.2 </bdi>
+        Informative references
+      <a class="self-link" aria-label="§" href="#informative-references"></a></h3>
+    <dl class="bibliography">
+      <dt id="bib-appmanifest">[appmanifest]</dt><dd><a href="https://www.w3.org/TR/appmanifest/"><cite>Web App Manifest</cite></a>. Marcos Caceres; Kenneth Christiansen; Mounir Lamouri; Anssi Kostiainen; Matt Giuca; Aaron Gustafson.  W3C. 30 March 2020. W3C Working Draft. URL: <a href="https://www.w3.org/TR/appmanifest/">https://www.w3.org/TR/appmanifest/</a></dd><dt id="bib-css-adaptation">[CSS-ADAPTATION]</dt><dd><a href="https://www.w3.org/TR/css-device-adapt-1/"><cite>CSS Device Adaptation Module Level 1</cite></a>. Rune Lillesveen; Florian Rivoal; Matt Rakow.  W3C. 29 March 2016. W3C Working Draft. URL: <a href="https://www.w3.org/TR/css-device-adapt-1/">https://www.w3.org/TR/css-device-adapt-1/</a></dd><dt id="bib-wcag21">[WCAG21]</dt><dd><a href="https://www.w3.org/TR/WCAG21/"><cite>Web Content Accessibility Guidelines (WCAG) 2.1</cite></a>. Andrew Kirkpatrick; Joshue O Connor; Alastair Campbell; Michael Cooper.  W3C. 5 June 2018. W3C Recommendation. URL: <a href="https://www.w3.org/TR/WCAG21/">https://www.w3.org/TR/WCAG21/</a></dd>
+    </dl></section></section><p role="navigation" id="back-to-top">
+    <a href="#title"><abbr title="Back to Top">↑</abbr></a>
+  </p><script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script></body></html>
