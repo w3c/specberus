@@ -311,11 +311,15 @@ var tests = {
         ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true }
               , errors: ["sotd.pp"]
             }
-        ,   { doc: "headers/ig-note.html", config: { longStatus: "Interest Group Note" } }
         ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note" } }
+        ,   { doc: "headers/wg-note1.html", config: { longStatus: "Working Group Note" } }
+        ,   { doc: "headers/wg-note2.html", config: { longStatus: "Working Group Note" } }
         ,   { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true, amended: true }, errors: ["sotd.pp"] }
         ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true }, errors: ["sotd.pp"] }
         ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, amended: true } }
+        ,   { doc: "online/WG-NOTE-lpf.html", config: { longStatus: "Working Group Note"} }
+        ,   { doc: "online/WD-screen-orientation.html", config: { longStatus: "Working Draft", recTrackStatus: true} }
+        ,   { doc: "online/IG-NOTE-media-timed-events.html", config: { longStatus: "Interest Group Note"}, errors: ["sotd.pp"] }
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
@@ -332,10 +336,25 @@ var tests = {
         ,   { doc: "headers/ig-note.html"
               , config: { longStatus: "Interest Group Note" , stabilityWarning: true }
             }
-        ,   { doc: "headers/ig-note.html"
-              , config: { longStatus: "Working Draft" , stabilityWarning: true }
+        ,   { doc: "headers/wg-note.html"
+              , config: { longStatus: "Working Group Note" , stabilityWarning: true }
               , errors: ["sotd.stability"]
             }
+        ,   { doc: "headers/wg-note1.html"
+              , config: { longStatus: "Working Group Note" , stabilityWarning: true }
+            }
+        ,   { doc: "headers/wg-note2.html"
+              , config: { longStatus: "Working Group Note" , stabilityWarning: true }
+        }
+        ,   { doc: "online/WG-NOTE-lpf.html"
+              , config: { longStatus: "Working Group Note" , stabilityWarning: true }
+        }
+        ,   { doc: "online/WD-screen-orientation.html"
+              , config: { longStatus: "Working Draft" , stabilityWarning: true }
+        }
+        ,   { doc: "online/IG-NOTE-media-timed-events.html"
+              , config: { longStatus: "Interest Group Note" , stabilityWarning: true }
+        }        
         ]
     ,   implementation:  [
             { doc: "sotd/supersedable.html"}

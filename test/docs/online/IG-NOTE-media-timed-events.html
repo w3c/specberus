@@ -1,0 +1,2387 @@
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Linux version 5.2.0">
+  <meta charset="utf-8">
+  <meta name="generator" content="ReSpec 24.21.3">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+  /* --- EXAMPLES --- */
+  span.example-title {
+    text-transform: none;
+  }
+  aside.example, div.example, div.illegal-example {
+    padding: 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+  }
+  div.illegal-example { color: red }
+  div.illegal-example p { color: black }
+  aside.example, div.example {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+    border-color: #e0cb52;
+    background: #fcfaee;
+  }
+
+  aside.example div.example {
+    border-left-width: .1em;
+    border-color: #999;
+    background: #fff;
+  }
+  aside.example div.example span.example-title {
+    color: #999;
+  }
+  </style>
+  <title>Media Timed Events</title>
+  <style id="respec-mainstyle">
+  /*****************************************************************
+  * ReSpec 3 CSS
+  * Robin Berjon - http://berjon.com/
+  *****************************************************************/
+
+  @keyframes pop {
+  0% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(1.25, 1.25);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+  }
+
+  /* Override code highlighter background */
+  .hljs {
+  background: transparent !important;
+  }
+
+  /* --- INLINES --- */
+  h1 abbr,
+  h2 abbr,
+  h3 abbr,
+  h4 abbr,
+  h5 abbr,
+  h6 abbr,
+  a abbr {
+  border: none;
+  }
+
+  dfn {
+  font-weight: bold;
+  }
+
+  a.internalDFN {
+  color: inherit;
+  border-bottom: 1px solid #99c;
+  text-decoration: none;
+  }
+
+  a.externalDFN {
+  color: inherit;
+  border-bottom: 1px dotted #ccc;
+  text-decoration: none;
+  }
+
+  a.bibref {
+  text-decoration: none;
+  }
+
+  .respec-offending-element:target {
+  animation: pop 0.25s ease-in-out 0s 1;
+  }
+
+  /* TODO: Remove once https://github.com/w3c/tr-design/pull/176 is merged. */
+  .respec-offending-element a[href] {
+  margin: 0;
+  }
+
+  .respec-offending-element {
+  display: inline-block;
+  position: relative;
+  /* Red squiggly line */
+  background: url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=)
+    bottom repeat-x;
+  }
+  @supports (text-decoration-style: wavy) {
+  .respec-offending-element {
+    background: none;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: red;
+  }
+  }
+
+  #references :target {
+  background: #eaf3ff;
+  animation: pop 0.4s ease-in-out 0s 1;
+  }
+
+  cite .bibref {
+  font-style: normal;
+  }
+
+  code {
+  color: #c83500;
+  }
+
+  th code {
+  color: inherit;
+  }
+
+  a[href].orcid {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  a[href].orcid > svg {
+    margin-bottom: -2px;
+  }
+
+  /* --- TOC --- */
+
+  .toc a,
+  .tof a {
+  text-decoration: none;
+  }
+
+  a .secno,
+  a .figno {
+  color: #000;
+  }
+
+  ul.tof,
+  ol.tof {
+  list-style: none outside none;
+  }
+
+  .caption {
+  margin-top: 0.5em;
+  font-style: italic;
+  }
+
+  /* --- TABLE --- */
+
+  table.simple {
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-bottom: 3px solid #005a9c;
+  }
+
+  .simple th {
+  background: #005a9c;
+  color: #fff;
+  padding: 3px 5px;
+  text-align: left;
+  }
+
+  .simple th[scope="row"] {
+  background: inherit;
+  color: inherit;
+  border-top: 1px solid #ddd;
+  }
+
+  .simple td {
+  padding: 3px 10px;
+  border-top: 1px solid #ddd;
+  }
+
+  .simple tr:nth-child(even) {
+  background: #f0f6ff;
+  }
+
+  /* --- DL --- */
+
+  .section dd > p:first-child {
+  margin-top: 0;
+  }
+
+  .section dd > p:last-child {
+  margin-bottom: 0;
+  }
+
+  .section dd {
+  margin-bottom: 1em;
+  }
+
+  .section dl.attrs dd,
+  .section dl.eldef dd {
+  margin-bottom: 0;
+  }
+
+  #issue-summary > ul,
+  .respec-dfn-list {
+  column-count: 2;
+  }
+
+  #issue-summary li,
+  .respec-dfn-list li {
+  list-style: none;
+  }
+
+  details.respec-tests-details {
+  margin-left: 1em;
+  display: inline-block;
+  vertical-align: top;
+  }
+
+  details.respec-tests-details > * {
+  padding-right: 2em;
+  }
+
+  details.respec-tests-details[open] {
+  z-index: 999999;
+  position: absolute;
+  border: thin solid #cad3e2;
+  border-radius: 0.3em;
+  background-color: white;
+  padding-bottom: 0.5em;
+  }
+
+  details.respec-tests-details[open] > summary {
+  border-bottom: thin solid #cad3e2;
+  padding-left: 1em;
+  margin-bottom: 1em;
+  line-height: 2em;
+  }
+
+  details.respec-tests-details > ul {
+  width: 100%;
+  margin-top: -0.3em;
+  }
+
+  details.respec-tests-details > li {
+  padding-left: 1em;
+  }
+
+  a[href].self-link:hover {
+  opacity: 1;
+  text-decoration: none;
+  background-color: transparent;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+  position: relative;
+  }
+
+  aside.example .marker > a.self-link {
+  color: inherit;
+  }
+
+  h2 > a.self-link,
+  h3 > a.self-link,
+  h4 > a.self-link,
+  h5 > a.self-link,
+  h6 > a.self-link {
+  border: none;
+  color: inherit;
+  font-size: 83%;
+  height: 2em;
+  left: -1.6em;
+  opacity: 0.5;
+  position: absolute;
+  text-align: center;
+  text-decoration: none;
+  top: 0;
+  transition: opacity 0.2s;
+  width: 2em;
+  }
+
+  h2 > a.self-link::before,
+  h3 > a.self-link::before,
+  h4 > a.self-link::before,
+  h5 > a.self-link::before,
+  h6 > a.self-link::before {
+  content: "§";
+  display: block;
+  }
+
+  @media (max-width: 767px) {
+  dd {
+    margin-left: 0;
+  }
+
+  /* Don't position self-link in headings off-screen */
+  h2 > a.self-link,
+  h3 > a.self-link,
+  h4 > a.self-link,
+  h5 > a.self-link,
+  h6 > a.self-link {
+    left: auto;
+    top: auto;
+  }
+  }
+
+  @media print {
+  .removeOnSave {
+    display: none;
+  }
+  }
+  </style>
+  <link rel="canonical" href=
+  "https://www.w3.org/TR/media-timed-events/">
+  <style>
+  /*
+
+  github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+  */
+
+  .hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+  color: #998;
+  font-style: italic;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-subst {
+  color: #333;
+  font-weight: bold;
+  }
+
+  .hljs-number,
+  .hljs-literal,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-tag .hljs-attr {
+  color: #008080;
+  }
+
+  .hljs-string,
+  .hljs-doctag {
+  color: #d14;
+  }
+
+  .hljs-title,
+  .hljs-section,
+  .hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+  }
+
+  .hljs-subst {
+  font-weight: normal;
+  }
+
+  .hljs-type,
+  .hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+  }
+
+  .hljs-tag,
+  .hljs-name,
+  .hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+  }
+
+  .hljs-regexp,
+  .hljs-link {
+  color: #009926;
+  }
+
+  .hljs-symbol,
+  .hljs-bullet {
+  color: #990073;
+  }
+
+  .hljs-built_in,
+  .hljs-builtin-name {
+  color: #0086b3;
+  }
+
+  .hljs-meta {
+  color: #999;
+  font-weight: bold;
+  }
+
+  .hljs-deletion {
+  background: #fdd;
+  }
+
+  .hljs-addition {
+  background: #dfd;
+  }
+
+  .hljs-emphasis {
+  font-style: italic;
+  }
+
+  .hljs-strong {
+  font-weight: bold;
+  }
+  </style>
+  <style>
+  var {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  }
+
+  var[data-type]::before,
+  var[data-type]::after {
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  }
+
+  /* the triangle or arrow or caret or whatever */
+  var[data-type]::before {
+  content: "";
+  transform: translateX(-50%);
+  border-width: 4px 6px 0 6px;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: #000;
+  }
+
+  /* actual text */
+  var[data-type]::after {
+  content: attr(data-type);
+  transform: translateX(-50%) translateY(-100%);
+  background: #000;
+  text-align: center;
+  /* additional styling */
+  font-family: "Dank Mono", "Fira Code", monospace;
+  font-style: normal;
+  padding: 6px;
+  border-radius: 3px;
+  color: #daca88;
+  }
+
+  var[data-type]:hover::after,
+  var[data-type]:hover::before {
+  opacity: 1;
+  }
+  </style>
+  <script id="initialUserConfig" type="application/json">
+  {
+  "specStatus": "IG-NOTE",
+  "edDraftURI": "https://w3c.github.io/me-media-timed-events/",
+  "shortName": "media-timed-events",
+  "editors": [
+    {
+      "name": "Chris Needham",
+      "mailto": "chris.needham@bbc.co.uk",
+      "company": "British Broadcasting Corporation",
+      "companyURL": "https://www.bbc.co.uk"
+    },
+  ],
+  "formerEditors": [
+    {
+      "name": "Giridhar Mandyam",
+      "company": "Qualcomm",
+      "note": "until December 2018"
+    }
+  ],
+  "wg": "Media & Entertainment Interest Group",
+  "wgURI": "https://www.w3.org/2011/webtv/",
+  "charterDisclosureURI": "https://www.w3.org/2017/03/webtv-charter.html",
+  "github": {
+    "repoURL": "https://github.com/w3c/me-media-timed-events/",
+    "branch": "master"
+  },
+  "localBiblio": {
+    "WEB-ISOBMFF": {
+      "title": "ISO/IEC JTC1/SC29/WG11 N16944 Working Draft on Carriage of Web Resources in ISOBMFF",
+      "href": "https://mpeg.chiariglione.org/standards/mpeg-4/timed-text-and-other-visual-overlays-iso-base-media-file-format/wd-carriage-web",
+      "authors": [
+        "Thomas Stockhammer",
+        "Cyril Concolato"
+      ],
+      "publisher": "MPEG",
+      "date": "July 2017",
+      "id": "web-isobmff"
+    },
+    "DASH-EVENTING": {
+      "title": "DASH Eventing and HTML5",
+      "href": "https://www.w3.org/2011/webtv/wiki/images/a/a5/DASH_Eventing_and_HTML5.pdf",
+      "authors": [
+        "Giridhar Mandyam"
+      ],
+      "date": "February 2018",
+      "id": "dash-eventing"
+    }
+  },
+  "publishISODate": "2019-05-16T00:00:00.000Z",
+  "generatedSubtitle": "Interest Group Note 16 May 2019"
+  }
+  </script>
+  <meta name="description" content=
+  "This document collects use cases and requirements for improved support for timed events related to audio or video media on the web, where synchronization to a playing audio or video media stream is needed, and makes recommendations for new or changed web APIs to realize these requirements. The goal is to extend the existing support in HTML for text track cue events to add support for dynamic content replacement cues and generic metadata events that drive synchronized interactive media experiences, and improve the timing accuracy of rendering of web content intended to be synchronized with audio or video media playback.">
+  <link rel="stylesheet" href=
+  "https://www.w3.org/StyleSheets/TR/2016/W3C-IG-NOTE">
+</head>
+<body class="h-entry informative">
+  <div class="head">
+    <a class="logo" href="https://www.w3.org/"><img alt="W3C" src=
+    "https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"
+    height="48"></a>
+    <h1 id="title" class="title p-name">Media Timed Events</h1>
+    <h2>W3C Interest Group Note <time class="dt-published"
+    datetime="2019-05-16">16 May 2019</time></h2>
+    <dl>
+      <dt>This version:</dt>
+      <dd>
+        <a class="u-url" href=
+        "https://www.w3.org/TR/2019/NOTE-media-timed-events-20190516/">
+        https://www.w3.org/TR/2019/NOTE-media-timed-events-20190516/</a>
+      </dd>
+      <dt>Latest published version:</dt>
+      <dd>
+        <a href=
+        "https://www.w3.org/TR/media-timed-events/">https://www.w3.org/TR/media-timed-events/</a>
+      </dd>
+      <dt>Latest editor's draft:</dt>
+      <dd>
+        <a href=
+        "https://w3c.github.io/me-media-timed-events/">https://w3c.github.io/me-media-timed-events/</a>
+      </dd>
+      <dt>Editors:</dt>
+      <dd class="p-author h-card vcard">
+        <a class="ed_mailto u-email email p-name" href=
+        "mailto:chris.needham@bbc.co.uk">Chris Needham</a>
+        (<a class="p-org org h-org h-card" href=
+        "https://www.bbc.co.uk">British Broadcasting
+        Corporation</a>)
+      </dd>
+      <dt>Former Editor:</dt>
+      <dd class="p-author h-card vcard">
+        Giridhar Mandyam
+        (Qualcomm) (until December 2018)
+      </dd>
+      <dt>Participate:</dt>
+      <dd>
+        <a href=
+        "https://github.com/w3c/me-media-timed-events/">GitHub
+        w3c/me-media-timed-events</a>
+      </dd>
+      <dd>
+        <a href=
+        "https://github.com/w3c/me-media-timed-events/issues/">File
+        a bug</a>
+      </dd>
+      <dd>
+        <a href=
+        "https://github.com/w3c/me-media-timed-events/commits/master">
+        Commit history</a>
+      </dd>
+      <dd>
+        <a href=
+        "https://github.com/w3c/me-media-timed-events/pulls/">Pull
+        requests</a>
+      </dd>
+    </dl>
+    <p class="copyright"><a href=
+    "https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+    © 2019 <a href="https://www.w3.org/"><abbr title=
+    "World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
+    (<a href="https://www.csail.mit.edu/"><abbr title=
+    "Massachusetts Institute of Technology">MIT</abbr></a>,
+    <a href="https://www.ercim.eu/"><abbr title=
+    "European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+    <a href="https://www.keio.ac.jp/">Keio</a>, <a href=
+    "https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href=
+    "https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">
+    liability</a>, <a href=
+    "https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">
+    trademark</a> and <a rel="license" href=
+    "https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">
+    permissive document license</a> rules apply.</p>
+    <hr title="Separator for header">
+  </div>
+  <section id="abstract" class="introductory">
+    <h2>Abstract</h2>
+    <p>This document collects use cases and requirements for
+    improved support for timed events related to audio or video
+    media on the web, where synchronization to a playing audio or
+    video media stream is needed, and makes recommendations for new
+    or changed web APIs to realize these requirements. The goal is
+    to extend the existing support in HTML for text track cue
+    events to add support for dynamic content replacement cues and
+    generic metadata events that drive synchronized interactive
+    media experiences, and improve the timing accuracy of rendering
+    of web content intended to be synchronized with audio or video
+    media playback.</p>
+  </section>
+  <section id="sotd" class="introductory">
+    <h2>Status of This Document</h2>
+    <p><em>This section describes the status of this document at
+    the time of its publication. Other documents may supersede this
+    document. A list of current <abbr title=
+    "World Wide Web Consortium">W3C</abbr> publications and the
+    latest revision of this technical report can be found in the
+    <a href="https://www.w3.org/TR/"><abbr title=
+    "World Wide Web Consortium">W3C</abbr> technical reports
+    index</a> at https://www.w3.org/TR/.</em></p>
+    <p>The Media & Entertainment Interest Group may update these
+    use cases and requirements over time. Development of new web
+    APIs based on the requirements described here, for example,
+    <code>DataCue</code>, will proceed in the <a href=
+    "https://wicg.io/">Web Platform Incubator Community Group
+    (WICG)</a>, with the goal of eventual standardization within a
+    <abbr title="World Wide Web Consortium">W3C</abbr> Working
+    Group. Contributors to this document are encouraged to
+    participate in the WICG. Where the requirements described here
+    affect the HTML specification, contributors will follow up with
+    <a href="https://whatwg.org/">WHATWG</a>. The Interest Group
+    will continue to track these developments and provide input and
+    review feedback on how any proposed API meets these
+    requirements.</p>
+    <p data-deliverer="46300">This document was published by the <a href=
+    "https://www.w3.org/2011/webtv/">Media & Entertainment Interest
+    Group</a> as an Interest Group Note.</p>
+    <p><a href=
+    "https://github.com/w3c/me-media-timed-events/issues/">GitHub
+    Issues</a> are preferred for discussion of this
+    specification.</p>
+    <p>Publication as an Interest Group Note does not imply
+    endorsement by the <abbr title=
+    "World Wide Web Consortium">W3C</abbr> Membership. This is a
+    draft document and may be updated, replaced or obsoleted by
+    other documents at any time. It is inappropriate to cite this
+    document as other than work in progress.</p>
+    <p>The disclosure obligations of the Participants of this group
+    are described in the <a href=
+    "https://www.w3.org/2017/03/webtv-charter.html">charter</a>.</p>
+    <p>This document is governed by the <a id=
+    "w3c_process_revision" href=
+    "https://www.w3.org/2019/Process-20190301/">1 March 2019
+    <abbr title="World Wide Web Consortium">W3C</abbr> Process
+    Document</a>.</p>
+  </section>
+  <nav id="toc">
+    <h2 class="introductory" id="table-of-contents">Table of
+    Contents</h2>
+    <ol class="toc">
+      <li class="tocline">
+        <a class="tocxref" href="#introduction">
+        <bdi class="secno">
+          1.
+        </bdi>Introduction</a>
+      </li>
+      <li class="tocline">
+        <a class="tocxref" href="#terminology">
+        <bdi class="secno">
+          2.
+        </bdi>Terminology</a>
+      </li>
+      <li class="tocline">
+        <a class="tocxref" href="#use-cases">
+        <bdi class="secno">
+          3.
+        </bdi>Use cases</a>
+        <ol class="toc">
+          <li class="tocline">
+            <a class="tocxref" href="#dynamic-content-insertion">
+            <bdi class="secno">
+              3.1
+            </bdi>Dynamic content insertion</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=
+            "#audio-stream-with-titles-and-images">
+            <bdi class="secno">
+              3.2
+            </bdi>Audio stream with titles and images</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=
+            "#control-messages-for-media-streaming-clients">
+            <bdi class="secno">
+              3.3
+            </bdi>Control messages for media streaming clients</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=
+            "#subtitle-and-caption-rendering-synchronization">
+            <bdi class="secno">
+              3.4
+            </bdi>Subtitle and caption rendering
+            synchronization</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href="#synchronized-map-animations">
+            <bdi class="secno">
+              3.5
+            </bdi>Synchronized map animations</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=
+            "#media-analysis-visualization">
+            <bdi class="secno">
+              3.6
+            </bdi>Media analysis visualization</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=
+            "#presentation-of-auxiliary-content-in-live-media">
+            <bdi class="secno">
+              3.7
+            </bdi>Presentation of auxiliary content in live
+            media</a>
+          </li>
+        </ol>
+      </li>
+      <li class="tocline">
+        <a class="tocxref" href="#related-industry-specifications">
+        <bdi class="secno">
+          4.
+        </bdi>Related industry specifications</a>
+        <ol class="toc">
+          <li class="tocline">
+            <a class="tocxref" href=
+            "#mpeg-common-media-application-format-cmaf">
+            <bdi class="secno">
+              4.1
+            </bdi>MPEG Common Media Application Format (CMAF)</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href="#mpeg-dash">
+            <bdi class="secno">
+              4.2
+            </bdi>MPEG-DASH</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href="#hbbtv">
+            <bdi class="secno">
+              4.3
+            </bdi>HbbTV</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=
+            "#dash-industry-forum-apis-for-interactivity">
+            <bdi class="secno">
+              4.4
+            </bdi>DASH Industry Forum APIs for Interactivity</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href="#scte-35">
+            <bdi class="secno">
+              4.5
+            </bdi>SCTE-35</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=
+            "#mpeg-working-draft-on-carriage-of-web-resources-in-iso-bmff">
+            <bdi class="secno">
+              4.6
+            </bdi>MPEG Working Draft on Carriage of Web Resources
+            in ISO BMFF</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href="#webvtt">
+            <bdi class="secno">
+              4.7
+            </bdi>WebVTT</a>
+          </li>
+        </ol>
+      </li>
+      <li class="tocline">
+        <a class="tocxref" href="#gap-analysis">
+        <bdi class="secno">
+          5.
+        </bdi>Gap analysis</a>
+        <ol class="toc">
+          <li class="tocline">
+            <a class="tocxref" href=
+            "#mpeg-dash-and-iso-bmff-emsg-events">
+            <bdi class="secno">
+              5.1
+            </bdi>MPEG-DASH and ISO BMFF emsg events</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=
+            "#synchronized-rendering-of-web-resources">
+            <bdi class="secno">
+              5.2
+            </bdi>Synchronized rendering of web resources</a>
+            <ol class="toc">
+              <li class="tocline">
+                <a class="tocxref" href=
+                "#using-cues-to-track-progress-on-the-media-timeline">
+                <bdi class="secno">
+                  5.2.1
+                </bdi>Using cues to track progress on the media
+                timeline</a>
+              </li>
+              <li class="tocline">
+                <a class="tocxref" href=
+                "#using-timeupdate-events-from-the-media-element">
+                <bdi class="secno">
+                  5.2.2
+                </bdi>Using <code>timeupdate</code> events from the
+                media element</a>
+              </li>
+              <li class="tocline">
+                <a class="tocxref" href=
+                "#polling-the-current-position-on-the-media-timeline">
+                <bdi class="secno">
+                  5.2.3
+                </bdi>Polling the current position on the media
+                timeline</a>
+              </li>
+              <li class="tocline">
+                <a class="tocxref" href=
+                "#detecting-when-the-next-media-frame-will-be-rendered">
+                <bdi class="secno">
+                  5.2.4
+                </bdi>Detecting when the next media frame will be
+                rendered</a>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li class="tocline">
+        <a class="tocxref" href="#recommendations">
+        <bdi class="secno">
+          6.
+        </bdi>Recommendations</a>
+        <ol class="toc">
+          <li class="tocline">
+            <a class="tocxref" href=
+            "#subscribing-to-event-streams">
+            <bdi class="secno">
+              6.1
+            </bdi>Subscribing to event streams</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href="#out-of-band-events">
+            <bdi class="secno">
+              6.2
+            </bdi>Out-of-band events</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href="#event-triggering">
+            <bdi class="secno">
+              6.3
+            </bdi>Event triggering</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href="#in-band-event-processing">
+            <bdi class="secno">
+              6.4
+            </bdi>In-band event processing</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href="#mpeg-dash-events">
+            <bdi class="secno">
+              6.5
+            </bdi>MPEG-DASH events</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href="#synchronization">
+            <bdi class="secno">
+              6.6
+            </bdi>Synchronization</a>
+          </li>
+        </ol>
+      </li>
+      <li class="tocline">
+        <a class="tocxref" href="#acknowledgments">
+        <bdi class="secno">
+          7.
+        </bdi>Acknowledgments</a>
+      </li>
+      <li class="tocline">
+        <a class="tocxref" href="#references">
+        <bdi class="secno">
+          A.
+        </bdi>References</a>
+        <ol class="toc">
+          <li class="tocline">
+            <a class="tocxref" href="#informative-references">
+            <bdi class="secno">
+              A.1
+            </bdi>Informative references</a>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </nav>
+  <section id="introduction">
+    <!--OddPage-->
+    <h2 id="x1-introduction"></h2>
+    <bdi class="secno">
+      1.
+    </bdi>Introduction<a class="self-link" aria-label="§" href=
+    "#introduction"></a>
+    <p>There is a need in the media industry for an API to support
+    metadata events synchronized to audio or video media,
+    specifically for both <a href="#dfn-out-of-band" class=
+    "internalDFN" data-link-type="dfn">out-of-band</a> event
+    streams and <a href="#dfn-in-band" class="internalDFN"
+    data-link-type="dfn">in-band</a> discrete events (for example,
+    MPD and <code>emsg</code> events in MPEG-DASH). These <a href=
+    "#dfn-media-timed-event" class="internalDFN" data-link-type=
+    "dfn">media timed events</a> can be used to support use cases
+    such as dynamic content replacement, ad insertion, or
+    presentation of supplemental content alongside the audio or
+    video, or more generally, making changes to a web page, or
+    executing application code triggered from JavaScript events, at
+    specific points on the <a data-link-type="dfn" href=
+    "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+    media timeline</a> of an audio or video media stream.</p>
+  </section>
+  <section id="terminology">
+    <!--OddPage-->
+    <h2 id="x2-terminology"></h2>
+    <bdi class="secno">
+      2.
+    </bdi>Terminology<a class="self-link" aria-label="§" href=
+    "#terminology"></a>
+    <p>The following terms are used in this document:</p>
+    <ul>
+      <li>
+        <dfn data-lt="media timed event|media timed events"
+        data-dfn-type="dfn" id="dfn-media-timed-event">media timed
+        events</dfn> — metadata events synchronized to the
+        <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+        media timeline</a> of a <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#media-resource">
+        media resource</a>.
+      </li>
+      <li><dfn data-dfn-type="dfn" id="dfn-in-band">in-band</dfn> —
+      timed event information that is delivered within the audio or
+      video media container or multiplexed with the media
+      stream.</li>
+      <li><dfn data-dfn-type="dfn" id=
+      "dfn-out-of-band">out-of-band</dfn> — timed event information
+      that is delivered over some other mechanism external to the
+      media container or media stream.</li>
+    </ul>
+    <p>The following terms are defined in [<cite><a class="bibref"
+    href="#bib-html">HTML</a></cite>]:</p>
+    <ul>
+      <li><dfn data-dfn-type="dfn" id="dfn-media-element"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-element">
+      media element</a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-media-timeline"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+      media timeline</a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-media-resource"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-resource">
+      media resource</a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id=
+      "dfn-time-marches-on"><a href="https://html.spec.whatwg.org/multipage/media.html#time-marches-on">
+      time marches on</a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-activecues"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#dom-texttrack-activecues">
+      <code>activeCues</code></a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-currenttime"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#dom-media-currenttime">
+      <code>currentTime</code></a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-enter"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#event-media-enter">
+      <code>enter</code></a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-exit"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#event-media-exit">
+      <code>exit</code></a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-oncuechange"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#handler-texttrack-oncuechange">
+      <code>oncuechange</code></a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-onenter"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#handler-texttrackcue-onenter">
+      <code>onenter</code></a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-onexit"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#handler-texttrackcue-onexit">
+      <code>onexit</code></a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-texttrack"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#texttrack">
+      <code>TextTrack</code></a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-texttrackcue"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#texttrackcue">
+      <code>TextTrackCue</code></a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-timeupdate"><a href=
+      "https://html.spec.whatwg.org/multipage/media.html#event-media-timeupdate">
+      <code>timeupdate</code></a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-settimeout"><a href=
+      "https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout">
+      <code>setTimeout()</code></a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id="dfn-setinterval"><a href=
+      "https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval">
+      <code>setInterval()</code></a></dfn></li>
+      <li><dfn data-dfn-type="dfn" id=
+      "dfn-requestanimationframe"><a href=
+      "https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-animationframeprovider-requestanimationframe">
+      <code>requestAnimationFrame()</code></a></dfn></li>
+    </ul>
+    <p>The following term is defined in [<cite><a class="bibref"
+    href="#bib-hr-time">HR-TIME</a></cite>]:</p>
+    <ul>
+      <li><dfn data-dfn-type="dfn" id=
+      "dfn-performance-now"><a href="https://www.w3.org/TR/hr-time/#dom-performance-now">
+      <code>Performance.now()</code></a></dfn></li>
+    </ul>
+    <p>The following term is defined in [<cite><a class="bibref"
+    href="#bib-webvtt">WEBVTT</a></cite>]:</p>
+    <ul>
+      <li><dfn data-dfn-type="dfn" id="dfn-vttcue"><a href=
+      "https://www.w3.org/TR/webvtt1/#vttcue"><code>VTTCue</code></a></dfn></li>
+    </ul>
+  </section>
+  <section id="use-cases">
+    <!--OddPage-->
+    <h2 id="x3-use-cases"></h2>
+    <bdi class="secno">
+      3.
+    </bdi>Use cases<a class="self-link" aria-label="§" href=
+    "#use-cases"></a>
+    <p><a href="#dfn-media-timed-event" class="internalDFN"
+    data-link-type="dfn">Media timed events</a> carry metadata that
+    is related to points in time, or regions of time on the
+    <a data-link-type="dfn" href=
+    "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+    media timeline</a>, which can be used to trigger retrieval
+    and/or rendering of web resources synchronized with media
+    playback. Such resources can be used to enhance user experience
+    in the context of media that is being rendered. Some examples
+    include display of social media feeds corresponding to a live
+    video stream such as a sporting event, banner advertisements
+    for sponsored content, accessibility-related assets such as
+    large print rendering of captions, and display of track titles
+    or images alongside an audio stream.</p>
+    <p>The following sections describe a few use cases in more
+    detail.</p>
+    <section id="dynamic-content-insertion">
+      <h3 id="x3-1-dynamic-content-insertion"></h3>
+      <bdi class="secno">
+        3.1
+      </bdi>Dynamic content insertion<a class="self-link"
+      aria-label="§" href="#dynamic-content-insertion"></a>
+      <p>A media content provider wants to allow insertion of
+      content, such as personalised video, local news, or
+      advertisements, into a video media stream that contains the
+      main program content. To achieve this, <a href=
+      "#dfn-media-timed-event" class="internalDFN" data-link-type=
+      "dfn">media timed events</a> can be used to describe the
+      points on the <a data-link-type="dfn" href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+      media timeline</a>, known as splice points, where switching
+      playback to inserted content is possible.</p>
+      <p>The Society for Cable and Televison Engineers (SCTE)
+      specification "Digital Program Insertion Cueing for Cable"
+      [<cite><a class="bibref" href=
+      "#bib-scte35">SCTE35</a></cite>] defines a data cue format
+      for describing such insertion points. Use of these cues in
+      MPEG-DASH and HLS streams is described in [<cite><a class=
+      "bibref" href="#bib-scte35">SCTE35</a></cite>], sections 12.1
+      and 12.2.</p>
+    </section>
+    <section id="audio-stream-with-titles-and-images">
+      <h3 id="x3-2-audio-stream-with-titles-and-images"></h3>
+      <bdi class="secno">
+        3.2
+      </bdi>Audio stream with titles and images<a class="self-link"
+      aria-label="§" href=
+      "#audio-stream-with-titles-and-images"></a>
+      <p>A media content provider wants to provide visual
+      information alongside an audio stream, such as an image of
+      the artist and title of the current playing track, to give
+      users live information about the content they are listening
+      to.</p>
+      <p>HLS timed metadata [<cite><a class="bibref" href=
+      "#bib-hls-timed-metadata">HLS-TIMED-METADATA</a></cite>] uses
+      <a href="#dfn-in-band" class="internalDFN" data-link-type=
+      "dfn">in-band</a> ID3 metadata to carry the artist and title
+      information, and image content. RadioVIS in DVB
+      ([<cite><a class="bibref" href=
+      "#bib-dvb-dash">DVB-DASH</a></cite>], section 9.1.7) defines
+      <a href="#dfn-in-band" class="internalDFN" data-link-type=
+      "dfn">in-band</a> event messages that contain image URLs and
+      text messages to be displayed, with information about when
+      the content should be displayed in relation to the
+      <a data-link-type="dfn" href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+      media timeline</a>.</p>
+    </section>
+    <section id="control-messages-for-media-streaming-clients">
+      <h3 id="x3-3-control-messages-for-media-streaming-clients">
+      </h3>
+      <bdi class="secno">
+        3.3
+      </bdi>Control messages for media streaming clients<a class=
+      "self-link" aria-label="§" href=
+      "#control-messages-for-media-streaming-clients"></a>
+      <p>A media streaming server uses <a href=
+      "#dfn-media-timed-event" class="internalDFN" data-link-type=
+      "dfn">media timed events</a> to send control messages to
+      media client library, such as <a href=
+      "https://github.com/Dash-Industry-Forum/dash.js">dash.js</a>.
+      Typically segmented streaming protocols such as HLS and
+      MPEG-DASH make use of a manifest document that informs the
+      client of the available encodings of a media stream, e.g.,
+      the Media Presentation Description (MPD) document in
+      [<cite><a class="bibref" href=
+      "#bib-mpegdash">MPEGDASH</a></cite>].</p>
+      <p>Should any of the content in the manifest document need to
+      change, the client should refresh it by requesting an updated
+      copy from the server. Section 5.10.4 of [<cite><a class=
+      "bibref" href="#bib-mpegdash">MPEGDASH</a></cite>] describes
+      an MPEG-DASH specific event that is used to notify a client
+      application. An <a href="#dfn-in-band" class="internalDFN"
+      data-link-type="dfn">in-band</a> <code>emsg</code> event is
+      used as an alternative to setting a cache duration in the
+      response to the HTTP request for the manifest, so the client
+      can refresh the MPD when it actually changes, as opposed to
+      waiting for a cache duration expiry period to elapse. This
+      also has the benefit of reducing the load on HTTP servers
+      caused by frequent server requests.</p>
+      <p>Reference: M&amp;E IG call 1 Feb 2018: <a href=
+      "https://www.w3.org/2018/02/01-me-minutes.html">Minutes</a>,
+      [<cite><a class="bibref" href=
+      "#bib-dash-eventing">DASH-EVENTING</a></cite>].</p>
+    </section>
+    <section id="subtitle-and-caption-rendering-synchronization">
+      <h3 id="x3-4-subtitle-and-caption-rendering-synchronization">
+      </h3>
+      <bdi class="secno">
+        3.4
+      </bdi>Subtitle and caption rendering synchronization<a class=
+      "self-link" aria-label="§" href=
+      "#subtitle-and-caption-rendering-synchronization"></a>
+      <p>A subtitle or caption author wants ensure that subtitle
+      changes are aligned as closely as possible to shot changes in
+      the video. The BBC Subtitle Guidelines [<cite><a class=
+      "bibref" href="#bib-bbc-subtitle">BBC-SUBTITLE</a></cite>]
+      describes authoring best practices. In particular, in section
+      6.1 authors are advised "it is likely to be less tiring for
+      the viewer if shot changes and subtitle changes occur at the
+      same time. Many subtitles therefore start on the first frame
+      of the shot and end on the last frame."</p>
+    </section>
+    <section id="synchronized-map-animations">
+      <h3 id="x3-5-synchronized-map-animations"></h3>
+      <bdi class="secno">
+        3.5
+      </bdi>Synchronized map animations<a class="self-link"
+      aria-label="§" href="#synchronized-map-animations"></a>
+      <p>A user records footage with metadata, including
+      geolocation, on a mobile video device, e.g., drone or
+      dashcam, to share on the web alongside a map, e.g.,
+      OpenStreetMap.</p>
+      <p>[<cite><a class="bibref" href=
+      "#bib-webvmt">WEBVMT</a></cite>] is an open format for
+      metadata cues, synchronized with a timed media file, that can
+      be used to drive an online map rendered in a separate HTML
+      element alongside the <a data-link-type="dfn" href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-element">
+      media element</a> on the web page. The media playhead
+      position controls presentation and animation of the map,
+      e.g., pan and zoom, and allows annotations to be added and
+      removed, e.g., markers, at specified times during media
+      playback. Control can also be overridden by the user with the
+      usual interactive features of the map at any time, e.g.,
+      zoom. Concrete examples are provided by the <a href=
+      "http://webvmt.org/demos">tech demos</a> at the WebVMT
+      website.</p>
+    </section>
+    <section id="media-analysis-visualization">
+      <h3 id="x3-6-media-analysis-visualization"></h3>
+      <bdi class="secno">
+        3.6
+      </bdi>Media analysis visualization<a class="self-link"
+      aria-label="§" href="#media-analysis-visualization"></a>
+      <p>A video image analysis system processes a media stream to
+      detect and recognize objects shown in the video. This system
+      generates metadata describing the objects, including
+      timestamps that describe the when the objects are visible,
+      together with position information (e.g., bounding boxes). A
+      web application then uses this timed metadata to overlay
+      labels and annotations on the video using HTML and CSS.</p>
+    </section>
+    <section id="presentation-of-auxiliary-content-in-live-media">
+      <h3 id=
+      "x3-7-presentation-of-auxiliary-content-in-live-media"></h3>
+      <bdi class="secno">
+        3.7
+      </bdi>Presentation of auxiliary content in live
+      media<a class="self-link" aria-label="§" href=
+      "#presentation-of-auxiliary-content-in-live-media"></a>
+      <p>During a live media presentation, dynamic and
+      unpredictable events may occur which cause temporary
+      suspension of the media presentation. During that suspension
+      interval, auxiliary content such as the presentation of UI
+      controls and media files, may be unavailable. Depending on
+      the specific user engagement (or not) with the UI controls
+      and the time at which any such engagement occurs, specific
+      web resources may be rendered at defined times in a
+      synchronized manner. For example, a multimedia A/V clip along
+      with subtitles corresponding to an advertisement, and which
+      were previously downloaded and cached by the UA, are played
+      out.</p>
+    </section>
+  </section>
+  <section id="related-industry-specifications">
+    <!--OddPage-->
+    <h2 id="x4-related-industry-specifications"></h2>
+    <bdi class="secno">
+      4.
+    </bdi>Related industry specifications<a class="self-link"
+    aria-label="§" href="#related-industry-specifications"></a>
+    <p>This section describes existing media industry
+    specifications and standards that specify carriage of <a href=
+    "#dfn-media-timed-event" class="internalDFN" data-link-type=
+    "dfn">media timed events</a>, or otherwise provide requirements
+    for web APIs related to the triggering of media timed
+    events.</p>
+    <section id="mpeg-common-media-application-format-cmaf">
+      <h3 id="x4-1-mpeg-common-media-application-format-cmaf"></h3>
+      <bdi class="secno">
+        4.1
+      </bdi>MPEG Common Media Application Format (CMAF)<a class=
+      "self-link" aria-label="§" href=
+      "#mpeg-common-media-application-format-cmaf"></a>
+      <p>MPEG Common Media Application Format (CMAF)
+      [<cite><a class="bibref" href=
+      "#bib-mpegcmaf">MPEGCMAF</a></cite>] is a media container
+      format optimized for large scale delivery of a single
+      encrypted, adaptable multimedia presentation to a wide range
+      of devices and adaptive streaming methods, including HTTP
+      Live Streaming [<cite><a class="bibref" href=
+      "#bib-rfc8216">RFC8216</a></cite>] and MPEG-DASH
+      [<cite><a class="bibref" href=
+      "#bib-mpegdash">MPEGDASH</a></cite>]. It is based on the ISO
+      BMFF [<cite><a class="bibref" href=
+      "#bib-isobmff">ISOBMFF</a></cite>] and supports the AVC, AAC,
+      HEVC codecs, Common Encryption (CENC), and subtitles using
+      IMSC1 and WebVTT. The goal is to reduce media storage and
+      delivery costs by using a single common media format across
+      different client devices.</p>
+      <p>CMAF media may contain <a href="#dfn-in-band" class=
+      "internalDFN" data-link-type="dfn">in-band</a> events in the
+      form of Event Message (<code>emsg</code>) boxes in ISO BMFF
+      files. <code>emsg</code> is specified in [<cite><a class=
+      "bibref" href="#bib-mpegdash">MPEGDASH</a></cite>], section
+      5.10.3.3, and described in more detail in the following
+      section of this document.</p>
+    </section>
+    <section id="mpeg-dash">
+      <h3 id="x4-2-mpeg-dash"></h3>
+      <bdi class="secno">
+        4.2
+      </bdi>MPEG-DASH<a class="self-link" aria-label="§" href=
+      "#mpeg-dash"></a>
+      <p>MPEG-DASH is an adaptive bitrate streaming technique in
+      which the audio and video media is partitioned into segments.
+      The Media Presentation Description (MPD) is an XML document
+      that contains metadata required by a DASH client to access
+      the media segments and to provide the streaming service to
+      the user. The media segments can use any codec, typically
+      within a fragmented MP4 (ISO BMFF) container or MPEG-2
+      transport stream.</p>
+      <p>In MPEG-DASH, <a href="#dfn-media-timed-event" class=
+      "internalDFN" data-link-type="dfn">media timed events</a> may
+      be delivered either <a href="#dfn-in-band" class=
+      "internalDFN" data-link-type="dfn">in-band</a> or <a href=
+      "#dfn-out-of-band" class="internalDFN" data-link-type=
+      "dfn">out-of-band</a>:</p>
+      <ul>
+        <li>
+          <a href="#dfn-in-band" class="internalDFN"
+          data-link-type="dfn">In-band</a> events are
+          <code>emsg</code> boxes in ISO BMFF files. The presence
+          of <code>emsg</code> events in the media container for
+          given event schemes is signaled in the MPD document using
+          an <code>EventStream</code> XML element ([<cite><a class=
+          "bibref" href="#bib-mpegdash">MPEGDASH</a></cite>],
+          section 5.10.2).
+        </li>
+        <li>
+          <a href="#dfn-out-of-band" class="internalDFN"
+          data-link-type="dfn">Out-of-band</a> events are
+          represented by <code>Event</code> XML elements contained
+          within an <code>EventStream</code> element in the MPD.
+        </li>
+      </ul>
+      <p>An <code>emsg</code> event contains the following
+      information, as specified in [<cite><a class="bibref" href=
+      "#bib-mpegdash">MPEGDASH</a></cite>], section 5.10.3.3:</p>
+      <ul>
+        <li><code>scheme_id_uri</code> — A URI that identifies the
+        message scheme</li>
+        <li><code>value</code> — The event value (string)</li>
+        <li><code>timescale</code> — Timescale units, in ticks per
+        second</li>
+        <li><code>presentation_time_delta</code> — Presentation
+        time delta (with respect to the media segment), in
+        <code>timescale</code> units</li>
+        <li><code>event_duration</code> — Event duration, in
+        <code>timescale</code> units</li>
+        <li><code>id</code> — Event message identifier</li>
+        <li><code>message_data</code> — Message body (may be
+        empty)</li>
+      </ul>
+    </section>
+    <section id="hbbtv">
+      <h3 id="x4-3-hbbtv"></h3>
+      <bdi class="secno">
+        4.3
+      </bdi>HbbTV<a class="self-link" aria-label="§" href=
+      "#hbbtv"></a>
+      <p>HbbTV is an interactive TV application standard that
+      supports both broadcast (DVB) media delivery, and internet
+      streaming using MPEG-DASH. The HbbTV application environment
+      is based on HTML and JavaScript. MPEG-DASH streaming is
+      implemented nativey by the user agent, rather than through a
+      JavaScript web application using Media Source Extensions.</p>
+      <p>HbbTV includes support for <code>emsg</code> events
+      ([<cite><a class="bibref" href=
+      "#bib-dvb-dash">DVB-DASH</a></cite>], section 9.1) and
+      requires this be mapped to HTML5 <code>DataCue</code>
+      ([<cite><a class="bibref" href=
+      "#bib-hbbtv">HBBTV</a></cite>], section 9.3.2). The revision
+      of HTML5 referenced by [<cite><a class="bibref" href=
+      "#bib-hbbtv">HBBTV</a></cite>] is [<cite><a class="bibref"
+      href="#bib-html51-20151008">html51-20151008</a></cite>]. This
+      feature is included in user agents shipping in connected TVs
+      across Europe from 2017.</p>
+      <p>The <a href=
+      "https://www.hbbtv.org/wp-content/uploads/2018/03/HbbTV-testcases-2018-1.pdf">
+      HbbTV device test suite</a> includes test pages and streams
+      that cover <code>emsg</code> support. HbbTV has a <a href=
+      "https://github.com/HbbTV-Association/ReferenceApplication">reference
+      application</a> and content for DASH+DRM which includes
+      <code>emsg</code> support.</p>
+    </section>
+    <section id="dash-industry-forum-apis-for-interactivity">
+      <h3 id="x4-4-dash-industry-forum-apis-for-interactivity">
+      </h3>
+      <bdi class="secno">
+        4.4
+      </bdi>DASH Industry Forum APIs for Interactivity<a class=
+      "self-link" aria-label="§" href=
+      "#dash-industry-forum-apis-for-interactivity"></a>
+      <p>The DASH-IF InterOp Working Group has an ongoing work
+      item, <em>DAInty</em>, "DASH APIs for Interactivity", which
+      aims to specify a set of APIs between the DASH client/player
+      and interactivity-capable applications, for both web and
+      native applications [<cite><a class="bibref" href=
+      "#bib-dashifiop">DASHIFIOP</a></cite>]. The origin of this
+      work is a related <a href=
+      "http://www.3gpp.org/ftp/tsg_sa/TSG_SA/TSGS_77/Docs/SP-170796.zip">
+      3GPP work item</a> on Service Interactivity [<cite><a class=
+      "bibref" href=
+      "#bib-3gpp-interactivity">3GPP-INTERACTIVITY</a></cite>]. The
+      objective is to provide service enablers for user engagement
+      with auxiliary content and UIs on mobile device during live
+      or time-shifted viewing of streaming content delivered over
+      3GPP broadcast or unicast bearers, and the measurement and
+      reporting of such interactive consumption.</p>
+      <p>Two APIs are being developed that are relevant to the
+      scope of the present document:</p>
+      <ul>
+        <li>Application subscription/DASH client dispatch of DASH
+        event stream messages containing interactivity information.
+        Events can be delivered <a href="#dfn-in-band" class=
+        "internalDFN" data-link-type="dfn">in-band</a>
+        (<code>emsg</code>) and/or as MPD events.
+        </li>
+        <li>Application subscription/DASH client dispatch of ISO
+        BMFF Timed Metadata tracks providing similar functionality
+        to DASH event streams.</li>
+      </ul>
+      <p>Two modes for dispatching events <a href=
+      "https://www.w3.org/2018/08/20-me-minutes.html#item05"></a>are
+      defined. In Mode 1 events are dispatched at the time the
+      event arrives, and in Mode 2 events are dispatched at the
+      given time on the <a data-link-type="dfn" href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+      media timeline</a>. The "arrival" of events from the DASH
+      client perspective may be either static or pre-provisioned,
+      in the case MPD Events, or dynamic in the case of <a href=
+      "#dfn-in-band" class="internalDFN" data-link-type=
+      "dfn">in-band</a> events carried in the <code>emsg</code>.
+      The application can register with the DASH client which Mode
+      to use.</p>
+    </section>
+    <section id="scte-35">
+      <h3 id="x4-5-scte-35"></h3>
+      <bdi class="secno">
+        4.5
+      </bdi>SCTE-35<a class="self-link" aria-label="§" href=
+      "#scte-35"></a>
+      <p>The Society for Cable and Televison Engineers (SCTE) has
+      produced the SCTE-35 specification "Digital Program Insertion
+      Cueing for Cable" [<cite><a class="bibref" href=
+      "#bib-scte35">SCTE35</a></cite>], which defines a data cue
+      format for describing insertion points, to support the
+      <a href="#dynamic-content-insertion">dynamic content
+      insertion</a> use case.</p>
+      <p>[<cite><a class="bibref" href=
+      "#bib-scte214-1">SCTE214-1</a></cite>] section 6.7 describes
+      the carriage of SCTE-35 events in a MPEG-DASH MPD document,
+      as <a href="#dfn-out-of-band" class="internalDFN"
+      data-link-type="dfn">out-of-band</a> events. [<cite><a class=
+      "bibref" href="#bib-scte214-2">SCTE214-2</a></cite>] section
+      9 and [<cite><a class="bibref" href=
+      "#bib-scte214-3">SCTE214-3</a></cite>] section 7.3 describe
+      the carriage of SCTE-35 events as <a href="#dfn-in-band"
+      class="internalDFN" data-link-type="dfn">in-band</a> events
+      in MPEG-DASH using MPEG2-TS and ISO BMFF respectively, using
+      <code>emsg</code>.</p>[<cite><a class="bibref" href=
+      "#bib-scte35">SCTE35</a></cite>] section 9.1 describes the
+      requirements for content splicing: "In order to give advance
+      warning of the impending splice (a pre-roll function), the
+      splice_insert() command could be sent multiple times before
+      the splice point. For example, the splice_insert() command
+      could be sent at 8, 5, 4 and 2 seconds prior to the packet
+      containing the related splice point. In order to meet other
+      splicing deadlines in the system, any message received with
+      less than 4 seconds of advance notice may not create the
+      desired result."
+      <p>This places an implicit requirement on the user agent in
+      handling of media-timed events related to insertion cues. The
+      content originator may provide the cue in advance with as
+      little as 2 seconds of the insertion time. Therefore the
+      propagation of the event data associated with the insertion
+      cue to the application by the user agent should be
+      considerably less than 2 seconds.</p>
+    </section>
+    <section id=
+    "mpeg-working-draft-on-carriage-of-web-resources-in-iso-bmff">
+      <h3 id=
+      "x4-6-mpeg-working-draft-on-carriage-of-web-resources-in-iso-bmff">
+      </h3>
+      <bdi class="secno">
+        4.6
+      </bdi>MPEG Working Draft on Carriage of Web Resources in ISO
+      BMFF<a class="self-link" aria-label="§" href=
+      "#mpeg-working-draft-on-carriage-of-web-resources-in-iso-bmff"></a>
+      <p>The MPEG Working Draft on Carriage of Web Resources in ISO
+      BMFF [<cite><a class="bibref" href=
+      "#bib-web-isobmff">WEB-ISOBMFF</a></cite>] is a draft
+      document that specifies the use of the ISO BMFF container
+      format for the storage and delivery of web content. The goal
+      is to allow web resources (HTML, JavaScript, etc.) to be
+      parsed from the storage and processed by a user agent at
+      specific presentation times on the <a data-link-type="dfn"
+      href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+      media timeline</a>, and so be synchronized with other tracks
+      within the container, such as audio, video, and
+      subtitles.</p>
+      <p>The Media & Entertainment Interest Group is actively
+      tracking this work is open to discussing specific
+      requirements for media timed events as development
+      progresses.</p>
+    </section>
+    <section id="webvtt">
+      <h3 id="x4-7-webvtt"></h3>
+      <bdi class="secno">
+        4.7
+      </bdi>WebVTT<a class="self-link" aria-label="§" href=
+      "#webvtt"></a>
+      <p>[<cite><a class="bibref" href=
+      "#bib-webvtt">WEBVTT</a></cite>] is a <abbr title=
+      "World Wide Web Consortium">W3C</abbr> specification that
+      provides a format for web video text tracks. A
+      <a data-link-type="dfn" href=
+      "https://www.w3.org/TR/webvtt1/#vttcue"><code>VTTCue</code></a>
+      is a text track cue, and may have attributes that affect
+      rendering of the cue text on a web page. WebVTT metadata cues
+      are text that is aligned to the <a data-link-type="dfn" href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+      media timeline</a>. Web applications can use
+      <a data-link-type="dfn" href=
+      "https://www.w3.org/TR/webvtt1/#vttcue"><code>VTTCue</code></a>
+      to schedule <a href="#dfn-out-of-band" class="internalDFN"
+      data-link-type="dfn">out-of-band</a> metadata events by
+      serializing the event data to a string format (JSON, for
+      example) when creating the cue, and deserializing the data
+      when the cue is triggered.</p>
+      <p>Web applications can also use <a data-link-type="dfn"
+      href="https://www.w3.org/TR/webvtt1/#vttcue"><code>VTTCue</code></a>
+      to trigger rendering of <a href="#dfn-out-of-band" class=
+      "internalDFN" data-link-type="dfn">out-of-band</a> delivered
+      timed text cues, such as TTML or IMSC format captions.</p>
+    </section>
+  </section>
+  <section id="gap-analysis">
+    <!--OddPage-->
+    <h2 id="x5-gap-analysis"></h2>
+    <bdi class="secno">
+      5.
+    </bdi>Gap analysis<a class="self-link" aria-label="§" href=
+    "#gap-analysis"></a>
+    <p>This section describes gaps in existing existing web
+    platform capabilities needed to support the use cases and
+    requirements described in this document. Where applicable, this
+    section also describes how existing web platform features can
+    be used as workarounds, and any associated limitations.</p>
+    <section id="mpeg-dash-and-iso-bmff-emsg-events">
+      <h3 id="x5-1-mpeg-dash-and-iso-bmff-emsg-events"></h3>
+      <bdi class="secno">
+        5.1
+      </bdi>MPEG-DASH and ISO BMFF emsg events<a class="self-link"
+      aria-label="§" href=
+      "#mpeg-dash-and-iso-bmff-emsg-events"></a>
+      <p>The <code>DataCue</code> API has been previously discussed
+      as a means to deliver <a href="#dfn-in-band" class=
+      "internalDFN" data-link-type="dfn">in-band</a> event data to
+      web applications, but this is not implemented in all of the
+      main browser engines. It is <a href=
+      "https://www.w3.org/TR/2018/WD-html53-20181018/semantics-embedded-content.html#text-tracks-exposing-inband-metadata">
+      included</a> in the 18 October 2018 HTML 5.3 draft
+      [<cite><a class="bibref" href=
+      "#bib-html53-20181018">HTML53-20181018</a></cite>], but is
+      <a href=
+      "https://html.spec.whatwg.org/multipage/media.html#timed-text-tracks">
+      not included</a> in [<cite><a class="bibref" href=
+      "#bib-html">HTML</a></cite>]. See discussion <a href=
+      "https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/U06zrT2N-Xk">
+      here</a> and notes on implementation status <a href=
+      "https://lists.w3.org/Archives/Public/public-html/2016Apr/0005.html">
+      here</a>.</p>
+      <p>WebKit <a href=
+      "https://discourse.wicg.io/t/media-timed-events-api-for-mpeg-dash-mpd-and-emsg-events/3096/2">
+      supports</a> a <code>DataCue</code> interface that extends
+      HTML5 <code>DataCue</code> with two attributes to support
+      non-text metadata, <code>type</code> and
+      <code>value</code>.</p>
+      <div class="example" id="example-1">
+        <div class="marker">
+          <a class="self-link" href="#example-1">Example
+          <bdi>
+            1
+          </bdi></a>
+        </div>
+        <pre aria-busy="false"><code class=
+        "hljs javascript">interface DataCue : TextTrackCue {
+  attribute <span class=
+"hljs-built_in">ArrayBuffer</span> data; <span class=
+"hljs-comment">// Always empty</span>
+
+  <span class="hljs-comment">// Proposed extensions.</span>
+  attribute any value;
+  readonly attribute DOMString type;
+};</code></pre>
+      </div>
+      <p><code>type</code> is a string identifying the type of
+      metadata:</p>
+      <table class="simple">
+        <thead>
+          <tr>
+            <th colspan="2">WebKit <code>DataCue</code> metadata
+            types</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>"com.apple.quicktime.udta"</code></td>
+            <td>QuickTime User Data</td>
+          </tr>
+          <tr>
+            <td><code>"com.apple.quicktime.mdta"</code></td>
+            <td>QuickTime Metadata</td>
+          </tr>
+          <tr>
+            <td><code>"com.apple.itunes"</code></td>
+            <td>iTunes metadata</td>
+          </tr>
+          <tr>
+            <td><code>"org.mp4ra"</code></td>
+            <td>MPEG-4 metadata</td>
+          </tr>
+          <tr>
+            <td><code>"org.id3"</code></td>
+            <td>ID3 metadata</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>and <code>value</code> is an object with the metadata item
+      key, data, and optionally a locale:</p>
+      <div class="example" id="example-2">
+        <div class="marker">
+          <a class="self-link" href="#example-2">Example
+          <bdi>
+            2
+          </bdi></a>
+        </div>
+        <pre aria-busy="false"><code class=
+        "hljs javascript">value = {
+  <span class="hljs-attr">key</span>: <span class=
+"hljs-built_in">String</span>
+  data: <span class="hljs-built_in">String</span> | <span class=
+"hljs-built_in">Number</span> | <span class=
+"hljs-built_in">Array</span> | <span class=
+"hljs-built_in">ArrayBuffer</span> | <span class=
+"hljs-built_in">Object</span>
+  locale: <span class="hljs-built_in">String</span>
+}</code></pre>
+      </div>
+      <p>Neither [<cite><a class="bibref" href=
+      "#bib-mse-byte-stream-format-isobmff">MSE-BYTE-STREAM-FORMAT-ISOBMFF</a></cite>]
+      nor [<cite><a class="bibref" href=
+      "#bib-inbandtracks">INBANDTRACKS</a></cite>] describe
+      handling of <code>emsg</code> boxes.</p>
+      <p>On resource constrained devices such as smart TVs and
+      streaming sticks, parsing media segments to extract event
+      information leads to a significant performance penalty, which
+      can have an impact on UI rendering updates if this is done on
+      the UI thread. There can also be an impact on the battery
+      life of mobile devices. Given that the media segments will be
+      parsed anyway by the user agent, parsing in JavaScript is an
+      expensive overhead that could be avoided.</p>
+      <p>[<cite><a class="bibref" href=
+      "#bib-hbbtv">HBBTV</a></cite>] section 9.3.2 describes a
+      mapping between the <code>emsg</code> fields described
+      <a href="#mpeg-dash">above</a> and the <a data-link-type=
+      "dfn" href=
+      "https://html.spec.whatwg.org/multipage/media.html#texttrack">
+      <code>TextTrack</code></a> and <a href=
+      "https://www.w3.org/TR/2018/WD-html53-20180426/semantics-embedded-content.html#datacue">
+      <code>DataCue</code></a> APIs. A <a data-link-type="dfn"
+      href="https://html.spec.whatwg.org/multipage/media.html#texttrack">
+      <code>TextTrack</code></a> instance is created for each event
+      stream signalled in the MPD document (as identified by the
+      <code>schemeIdUri</code> and <code>value</code>), and the
+      <a href=
+      "https://html.spec.whatwg.org/multipage/media.html#dom-texttrack-inbandmetadatatrackdispatchtype">
+      <code>inBandMetadataTrackDispatchType</code></a>
+      <a data-link-type="dfn" href=
+      "https://html.spec.whatwg.org/multipage/media.html#texttrack">
+      <code>TextTrack</code></a> attribute contains the
+      <code>scheme_id_uri</code> and <code>value</code> values.
+      Because HbbTV devices include a native DASH client, parsing
+      of the MPD document and creation of the <a data-link-type=
+      "dfn" href=
+      "https://html.spec.whatwg.org/multipage/media.html#texttrack">
+      <code>TextTrack</code></a>s is done by the user agent, rather
+      than by application JavaScript code.</p>
+    </section>
+    <section id="synchronized-rendering-of-web-resources">
+      <h3 id="x5-2-synchronized-rendering-of-web-resources"></h3>
+      <bdi class="secno">
+        5.2
+      </bdi>Synchronized rendering of web resources<a class=
+      "self-link" aria-label="§" href=
+      "#synchronized-rendering-of-web-resources"></a>
+      <p>In browsers, non media web rendering is handled through
+      repaint operations at a rate that generally matches the
+      display refresh rate (e.g., 60 times per second), following
+      the user's wall clock. A web application can schedule actions
+      and render web content at specific points on the user's wall
+      clock, notably through <a data-link-type="dfn" href=
+      "https://www.w3.org/TR/hr-time/#dom-performance-now"><code>Performance.now()</code></a>,
+      <a data-link-type="dfn" href=
+      "https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout">
+      <code>setTimeout()</code></a>, <a data-link-type="dfn" href=
+      "https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval">
+      <code>setInterval()</code></a>, and <a data-link-type="dfn"
+      href=
+      "https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-animationframeprovider-requestanimationframe">
+      <code>requestAnimationFrame()</code></a>.</p>
+      <p>In most cases, media rendering follows a different path,
+      be it because it gets handled by a dedicated background
+      process or by dedicated hardware circuitry. As a result,
+      progress along the <a data-link-type="dfn" href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+      media timeline</a> may follow a <a href=
+      "https://html.spec.whatwg.org/multipage/media.html#offsets-into-the-media-resource:media-timeline-8">
+      clock</a> different from the user's wall clock.
+      [<cite><a class="bibref" href="#bib-html">HTML</a></cite>]
+      recommends that the media clock approximate the user's wall
+      clock but does not require it to match the user's wall
+      clock.</p>
+      <p>To synchronize rendering of web content to a video with
+      frame accuracy, a web application needs:</p>
+      <ul>
+        <li>A way to track progress along the <a data-link-type=
+        "dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+          media timeline</a> with <em>sufficient precision</em>.
+          The actual precision required depends on the use case.
+          Subtitles for video are typically authored against video
+          at the nominal video frame rate, e.g., 25 frames per
+          second, which corresponds to 40 milliseconds per frame,
+          even when the actual video frame rate gets adjusted
+          dynamically ([<cite><a class="bibref" href=
+          "#bib-ebu-tt-d">EBU-TT-D</a></cite>], Annex E). This
+          suggests a 20 milliseconds precision, or half of the
+          duration of a typical video frame, to render subtitles
+          with frame accuracy.
+        </li>
+        <li>In cases where synchronization needs to occur at frame
+        boundaries, a way to tie the rendering of non media
+        content, typically done at the display refresh rate, with
+        the rendering of a video frame. This need does not replace
+        the former one: a web application that needs to render web
+        content at media frame boundaries may also need to perform
+        actions at specific points on the <a data-link-type="dfn"
+        href=
+        "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+          media timeline</a> regardless of when the next frame gets
+          rendered.
+        </li>
+      </ul>
+      <p>The following sub-sections discusses mechanisms currently
+      available to web applications to track progress on the
+      <a data-link-type="dfn" href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+      media timeline</a> and render content at frame
+      boundaries.</p>
+      <section id=
+      "using-cues-to-track-progress-on-the-media-timeline">
+        <h4 id=
+        "x5-2-1-using-cues-to-track-progress-on-the-media-timeline">
+        </h4>
+        <bdi class="secno">
+          5.2.1
+        </bdi>Using cues to track progress on the media
+        timeline<a class="self-link" aria-label="§" href=
+        "#using-cues-to-track-progress-on-the-media-timeline"></a>
+        <p>Cues (e.g., <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#texttrackcue">
+        <code>TextTrackCue</code></a>, or <a data-link-type="dfn"
+        href=
+        "https://www.w3.org/TR/webvtt1/#vttcue"><code>VTTCue</code></a>)
+        are units of time-sensitive data on a <a data-link-type=
+        "dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+        media timeline</a> [<cite><a class="bibref" href=
+        "#bib-html">HTML</a></cite>]. The <a data-link-type="dfn"
+        href=
+        "https://html.spec.whatwg.org/multipage/media.html#time-marches-on">
+        time marches on</a> steps in [<cite><a class="bibref" href=
+        "#bib-html">HTML</a></cite>] control the firing of cue
+        events during media playback. <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#time-marches-on">
+        Time marches on</a> requires a <a data-link-type="dfn"
+        href="https://html.spec.whatwg.org/multipage/media.html#event-media-timeupdate">
+        <code>timeupdate</code></a> event to be fired at the
+        <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#media-element">
+        media element</a> between 15 and 250 milliseconds since the
+        last such event, and this requirement therefore specifies
+        the rate at which <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#time-marches-on">
+        time marches on</a> is executed during playback. In
+        practice it <a href=
+        "https://www.w3.org/2018/12/17-me-minutes.html#item06">has
+        been found</a> that the timing varies between browser
+        implementations.</p>
+        <p>There are two methods a web application can use to
+        handle cues:</p>
+        <ul>
+          <li>Add an <a data-link-type="dfn" href=
+          "https://html.spec.whatwg.org/multipage/media.html#handler-texttrack-oncuechange">
+            <code>oncuechange</code></a> handler function to the
+            <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#texttrack">
+            <code>TextTrack</code></a> and inspect the track's
+            <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#dom-texttrack-activecues">
+            <code>activeCues</code></a> list. Because
+            <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#dom-texttrack-activecues">
+            <code>activeCues</code></a> contains the list of cues
+            that are active at the time that <a data-link-type=
+            "dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#time-marches-on">
+            time marches on</a> is run, it is possible for cues to
+            be missed by a web application using this method, where
+            cues appear on the <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+            media timeline</a> between successive executions of
+            <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#time-marches-on">
+            time marches on</a> during media playback. This may
+            occur if the cues have short duration, or by a
+            long-running event handler function.
+          </li>
+          <li>Add <a data-link-type="dfn" href=
+          "https://html.spec.whatwg.org/multipage/media.html#handler-texttrackcue-onenter">
+            <code>onenter</code></a> and <a data-link-type="dfn"
+            href=
+            "https://html.spec.whatwg.org/multipage/media.html#handler-texttrackcue-onexit">
+            <code>onexit</code></a> handler functions to each cue.
+            The <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#time-marches-on">
+            time marches on</a> steps guarantee that
+            <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#event-media-enter">
+            <code>enter</code></a> and <a data-link-type="dfn"
+            href="https://html.spec.whatwg.org/multipage/media.html#event-media-exit">
+            <code>exit</code></a> events will be fired for all
+            cues, including those that appear on the
+            <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+            media timeline</a> between successive executions of
+            <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#time-marches-on">
+            time marches on</a> during media playback. This method
+            is only possible for cues created by the web
+            application, i.e., <a data-link-type="dfn" href=
+            "https://www.w3.org/TR/webvtt1/#vttcue"><code>VTTCue</code></a>
+            objects, and not cue objects created by the user agent.
+          </li>
+        </ul>
+        <p>An issue with handling of text track and data cue events
+        in HbbTV <a href=
+        "https://lists.w3.org/Archives/Public/public-inbandtracks/2013Dec/0004.html">
+        was reported</a> in 2013. HbbTV requires the user agent to
+        implement an MPEG-DASH client, and so applications must use
+        the first of the above methods for cue handling, which
+        means that applications can miss cues as described
+        above.</p>
+      </section>
+      <section id="using-timeupdate-events-from-the-media-element">
+        <h4 id=
+        "x5-2-2-using-timeupdate-events-from-the-media-element">
+        </h4>
+        <bdi class="secno">
+          5.2.2
+        </bdi>Using <code>timeupdate</code> events from the media
+        element<a class="self-link" aria-label="§" href=
+        "#using-timeupdate-events-from-the-media-element"></a>
+        <p>Another approach to synchronizing rendering of web
+        content to media playback is to use the <a data-link-type=
+        "dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#event-media-timeupdate">
+        <code>timeupdate</code></a> event, and for the web
+        application to manage the <a href="#dfn-media-timed-event"
+        class="internalDFN" data-link-type="dfn">media timed
+        events</a> to be triggered, rather than use the text track
+        cue APIs in [<cite><a class="bibref" href=
+        "#bib-html">HTML</a></cite>]. This approach has the same
+        synchronization limitations as described above due to the
+        250 millisecond update rate specified in <a data-link-type=
+        "dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#time-marches-on">
+        time marches on</a>, and so is <a href=
+        "https://html.spec.whatwg.org/multipage/media.html#best-practices-for-metadata-text-tracks:event-media-timeupdate">
+        explicitly discouraged</a> in [<cite><a class="bibref"
+        href="#bib-html">HTML</a></cite>]. In addition, the timing
+        variability of <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#event-media-timeupdate">
+        <code>timeupdate</code></a> events between browser engines
+        makes them unreliable for the purpose of synchronized
+        rendering of web content.</p>
+      </section>
+      <section id=
+      "polling-the-current-position-on-the-media-timeline">
+        <h4 id=
+        "x5-2-3-polling-the-current-position-on-the-media-timeline">
+        </h4>
+        <bdi class="secno">
+          5.2.3
+        </bdi>Polling the current position on the media
+        timeline<a class="self-link" aria-label="§" href=
+        "#polling-the-current-position-on-the-media-timeline"></a>
+        <p>Synchronization accuracy can be improved by polling the
+        media element's <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#dom-media-currenttime">
+        <code>currentTime</code></a> property from a
+        <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval">
+        <code>setInterval()</code></a> callback, or by using
+        <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-animationframeprovider-requestanimationframe">
+        <code>requestAnimationFrame()</code></a> for greater
+        accuracy. This technique can be useful in where content
+        should be animated smoothly in synchronicity with the
+        media, for example, rendering a playhead position marker in
+        an audio waveform visualization, or displaying web content
+        at specific points on the <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+        media timeline</a>. However, the use of <a data-link-type=
+        "dfn" href=
+        "https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval">
+        <code>setInterval()</code></a> or <a data-link-type="dfn"
+        href=
+        "https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-animationframeprovider-requestanimationframe">
+        <code>requestAnimationFrame()</code></a> for media
+        synchronized rendering is CPU intensive.</p>
+      </section>
+      <section id=
+      "detecting-when-the-next-media-frame-will-be-rendered">
+        <h4 id=
+        "x5-2-4-detecting-when-the-next-media-frame-will-be-rendered">
+        </h4>
+        <bdi class="secno">
+          5.2.4
+        </bdi>Detecting when the next media frame will be
+        rendered<a class="self-link" aria-label="§" href=
+        "#detecting-when-the-next-media-frame-will-be-rendered"></a>
+        <p>[<cite><a class="bibref" href=
+        "#bib-html">HTML</a></cite>] does not expose any precise
+        mechanism to assess the time, from a user's wall clock
+        perspective, at which a particular media frame is going to
+        be rendered. A web application may only infer this
+        information by looking at the <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#media-element">
+        media element</a>'s <a data-link-type="dfn" href=
+        "https://html.spec.whatwg.org/multipage/media.html#dom-media-currenttime">
+        <code>currentTime</code></a> property to infer the frame
+        being rendered and the time at which the user will see the
+        next frame. This has several limitations:</p>
+        <ul>
+          <li>
+            <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#dom-media-currenttime">
+            <code>currentTime</code></a> is represented as a
+            <code>double</code> value, which does not allow to
+            identify individual frames due to rounding errors. This
+            is a <a href=
+            "https://github.com/whatwg/html/issues/609">known
+            issue</a>.
+          </li>
+          <li>
+            <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#dom-media-currenttime">
+            <code>currentTime</code></a> is updated at a user-agent
+            defined rate (typically the rate at which
+            <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#time-marches-on">
+            time marches on</a> runs), and is kept stable while
+            scripts are running. When a web application reads
+            <a data-link-type="dfn" href=
+            "https://html.spec.whatwg.org/multipage/media.html#dom-media-currenttime">
+            <code>currentTime</code></a>, it cannot tell when this
+            property was last updated, and thus cannot reliably
+            assess whether this property still represents the frame
+            currently being rendered.
+          </li>
+        </ul>
+      </section>
+    </section>
+  </section>
+  <section id="recommendations">
+    <!--OddPage-->
+    <h2 id="x6-recommendations"></h2>
+    <bdi class="secno">
+      6.
+    </bdi>Recommendations<a class="self-link" aria-label="§" href=
+    "#recommendations"></a>
+    <p>This section describes recommendations from the Media &
+    Entertainment Interest Group for the development of a generic
+    <a href="#dfn-media-timed-event" class="internalDFN"
+    data-link-type="dfn">media timed event</a> API, and associated
+    synchronization considerations.</p>
+    <section id="subscribing-to-event-streams">
+      <h3 id="x6-1-subscribing-to-event-streams"></h3>
+      <bdi class="secno">
+        6.1
+      </bdi>Subscribing to event streams<a class="self-link"
+      aria-label="§" href="#subscribing-to-event-streams"></a>
+      <p>The API should allow web applications to subscribe to
+      receive specific event streams by event type. For example, to
+      support MPEG-DASH <code>emsg</code> and MPD events, the API
+      should allow subscription by <code>id</code> and (optional)
+      <code>value</code>. This is to make receiving events opt-in
+      from the application point of view. The user agent should
+      deliver only those events to a web application for which the
+      application has subscribed. The API should also allow web
+      applications to unsubscribe from specific event streams by
+      event type.</p>
+    </section>
+    <section id="out-of-band-events">
+      <h3 id="x6-2-out-of-band-events"></h3>
+      <bdi class="secno">
+        6.2
+      </bdi>Out-of-band events<a class="self-link" aria-label="§"
+      href="#out-of-band-events"></a>
+      <p>To be able to handle out of band events, including
+      MPEG-DASH MPD events, the API should allow web applications
+      to create events to be added to the <a data-link-type="dfn"
+      href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+      media timeline</a>, to be triggered by the user agent. The
+      API should allow the web application to provide all necessary
+      parameters to define the event, including start and end
+      times, event type, and data payload. The payload should be
+      any data type (e.g., the set of types supported by the WebKit
+      <code>DataCue</code>). For MPEG-DASH MPD events, the event
+      type is defined by the <code>id</code> and (optional)
+      <code>value</code> fields.</p>
+    </section>
+    <section id="event-triggering">
+      <h3 id="x6-3-event-triggering"></h3>
+      <bdi class="secno">
+        6.3
+      </bdi>Event triggering<a class="self-link" aria-label="§"
+      href="#event-triggering"></a>
+      <p>For those events that the application has subscribed to
+      receive, the API should:</p>
+      <ul>
+        <li>Generate a JavaScript event when an <a href=
+        "#dfn-in-band" class="internalDFN" data-link-type=
+        "dfn">in-band</a> <a href="#dfn-media-timed-event" class=
+        "internalDFN" data-link-type="dfn">media timed event</a> is
+        parsed from the media container or media stream (DAInty
+        Mode 1).
+        </li>
+        <li>Generate JavaScript events when the current media
+        playback position reaches the start time and the end time
+        of a media timed event during playback (DAInty Mode 2).
+        This applies equally to <a href="#dfn-in-band" class=
+        "internalDFN" data-link-type="dfn">in-band</a> events that
+        the user agent has extracted from the media container, and
+        <a href="#dfn-out-of-band" class="internalDFN"
+        data-link-type="dfn">out-of-band</a> events added by the
+        web application.
+        </li>
+      </ul>
+      <p>The API should provide guarantees that no events can be
+      missed during linear playback of the media.</p>
+    </section>
+    <section id="in-band-event-processing">
+      <h3 id="x6-4-in-band-event-processing"></h3>
+      <bdi class="secno">
+        6.4
+      </bdi>In-band event processing<a class="self-link"
+      aria-label="§" href="#in-band-event-processing"></a>
+      <p>We recommend updating [<cite><a class="bibref" href=
+      "#bib-inbandtracks">INBANDTRACKS</a></cite>] to describe
+      handling of <a href="#dfn-in-band" class="internalDFN"
+      data-link-type="dfn">in-band</a> <a href=
+      "#dfn-media-timed-event" class="internalDFN" data-link-type=
+      "dfn">media timed events</a> supported on the web platform,
+      following a registry approach with one specification per
+      media format that describes the event details for that
+      format.</p>
+    </section>
+    <section id="mpeg-dash-events">
+      <h3 id="x6-5-mpeg-dash-events"></h3>
+      <bdi class="secno">
+        6.5
+      </bdi>MPEG-DASH events<a class="self-link" aria-label="§"
+      href="#mpeg-dash-events"></a>
+      <p>We recommend that browser engines support MPEG-DASH
+      <code>emsg</code> <a href="#dfn-in-band" class="internalDFN"
+      data-link-type="dfn">in-band</a> events and MPD <a href=
+      "#dfn-out-of-band" class="internalDFN" data-link-type=
+      "dfn">out-of-band</a> events, as part of their support for
+      the MPEG Common Media Application Format (CMAF)
+      [<cite><a class="bibref" href=
+      "#bib-mpegcmaf">MPEGCMAF</a></cite>].</p>
+    </section>
+    <section id="synchronization">
+      <h3 id="x6-6-synchronization"></h3>
+      <bdi class="secno">
+        6.6
+      </bdi>Synchronization<a class="self-link" aria-label="§"
+      href="#synchronization"></a>
+      <p>In order to achieve greater synchronization accuracy
+      between media playback and web content rendered by an
+      application, the <a data-link-type="dfn" href=
+      "https://html.spec.whatwg.org/multipage/media.html#time-marches-on">
+      time marches on</a> steps in [<cite><a class="bibref" href=
+      "#bib-html">HTML</a></cite>] should be modified to allow
+      delivery of <a href="#dfn-media-timed-event" class=
+      "internalDFN" data-link-type="dfn">media timed event</a>
+      start time and end time notifications within 20 milliseconds
+      of their positions on the <a data-link-type="dfn" href=
+      "https://html.spec.whatwg.org/multipage/media.html#media-timeline">
+      media timeline</a>.</p>
+      <p>Additionally, to allow such synchronization to happen at
+      frame boundaries, we recommend introducing a mechanism that
+      would allow a web application to accurately predict, using
+      the user's wall clock, when the next frame will be rendered
+      (e.g., as done in the <a href=
+      "https://webaudio.github.io/web-audio-api/#dom-audiocontext-getoutputtimestamp">
+      Web Audio API</a>). The same outcome could perhaps be
+      achieved through a mechanism similar to <a data-link-type=
+      "dfn" href=
+      "https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-animationframeprovider-requestanimationframe">
+      <code>requestAnimationFrame()</code></a> that would allow to
+      couple rendering of non media web content and rendering of
+      the next media frame.</p>
+    </section>
+  </section>
+  <section id="acknowledgments">
+    <!--OddPage-->
+    <h2 id="x7-acknowledgments"></h2>
+    <bdi class="secno">
+      7.
+    </bdi>Acknowledgments<a class="self-link" aria-label="§" href=
+    "#acknowledgments"></a>
+    <p>Thanks to François Daoust, Charles Lo, Nigel Megitt, Jon
+    Piesing, Rob Smith, and Mark Vickers for their contributions
+    and feedback on this document.</p>
+  </section>
+  <section id="references" class="appendix">
+    <!--OddPage-->
+    <h2 id="a-references"></h2>
+    <bdi class="secno">
+      A.
+    </bdi>References<a class="self-link" aria-label="§" href=
+    "#references"></a>
+    <section id="informative-references">
+      <h3 id="a-1-informative-references"></h3>
+      <bdi class="secno">
+        A.1
+      </bdi>Informative references<a class="self-link" aria-label=
+      "§" href="#informative-references"></a>
+      <dl class="bibliography">
+        <dt id="bib-3gpp-interactivity">[3GPP-INTERACTIVITY]</dt>
+        <dd>
+          <a href=
+          "https://www.3gpp.org/ftp/Specs/archive/26_series/26.953/26953-f00.zip">
+          <cite>Interactivity Support for 3GPP-Based Streaming and
+          Download Services (Release 15)</cite></a>. 3GPP. June
+          2018. URL: <a href=
+          "https://www.3gpp.org/ftp/Specs/archive/26_series/26.953/26953-f00.zip">
+          https://www.3gpp.org/ftp/Specs/archive/26_series/26.953/26953-f00.zip</a>
+        </dd>
+        <dt id="bib-bbc-subtitle">[BBC-SUBTITLE]</dt>
+        <dd>
+          <a href=
+          "https://bbc.github.io/subtitle-guidelines/"><cite>Subtitle
+          Guidelines, Version 1.1.7</cite></a>. BBC. May 2018. URL:
+          <a href=
+          "https://bbc.github.io/subtitle-guidelines/">https://bbc.github.io/subtitle-guidelines/</a>
+        </dd>
+        <dt id="bib-dash-eventing">[DASH-EVENTING]</dt>
+        <dd>
+          <a href=
+          "https://www.w3.org/2011/webtv/wiki/images/a/a5/DASH_Eventing_and_HTML5.pdf">
+          <cite>DASH Eventing and HTML5</cite></a>. Giridhar
+          Mandyam.February 2018. URL: <a href=
+          "https://www.w3.org/2011/webtv/wiki/images/a/a5/DASH_Eventing_and_HTML5.pdf">
+          https://www.w3.org/2011/webtv/wiki/images/a/a5/DASH_Eventing_and_HTML5.pdf</a>
+        </dd>
+        <dt id="bib-dashifiop">[DASHIFIOP]</dt>
+        <dd>
+          <a href=
+          "https://dash-industry-forum.github.io/docs/DASH-IF-IOP-v4.2-clean.pdf">
+          <cite>Guidelines for Implementation: DASH-IF
+          Interoperability Points</cite></a>. DASH Industry Forum.
+          9 April 2018. Version 4.2. URL: <a href=
+          "https://dash-industry-forum.github.io/docs/DASH-IF-IOP-v4.2-clean.pdf">
+          https://dash-industry-forum.github.io/docs/DASH-IF-IOP-v4.2-clean.pdf</a>
+        </dd>
+        <dt id="bib-dvb-dash">[DVB-DASH]</dt>
+        <dd>
+          <a href=
+          "http://www.etsi.org/deliver/etsi_ts/103200_103299/103285/01.02.01_60/ts_103285v010201p.pdf">
+          <cite>ETSI TS 103 285 Digital Video Broadcasting (DVB);
+          MPEG-DASH Profile for Transport of ISO BMFF Based DVB
+          Services over IP Based Networks</cite></a>. European
+          Telecommunications Standards Insitute. March 2018. URL:
+          <a href=
+          "http://www.etsi.org/deliver/etsi_ts/103200_103299/103285/01.02.01_60/ts_103285v010201p.pdf">
+          http://www.etsi.org/deliver/etsi_ts/103200_103299/103285/01.02.01_60/ts_103285v010201p.pdf</a>
+        </dd>
+        <dt id="bib-ebu-tt-d">[EBU-TT-D]</dt>
+        <dd>
+          <a href=
+          "https://tech.ebu.ch/docs/tech/tech3380.pdf"><cite>EBU
+          TECH 3380: "EBU-TT-D Subtitling Distribution
+          Format"</cite></a>. European Broadcasting Union. URL:
+          <a href=
+          "https://tech.ebu.ch/docs/tech/tech3380.pdf">https://tech.ebu.ch/docs/tech/tech3380.pdf</a>
+        </dd>
+        <dt id="bib-hbbtv">[HBBTV]</dt>
+        <dd>
+          <a href=
+          "https://www.hbbtv.org/wp-content/uploads/2018/02/HbbTV_v202_specification_2018_02_16.pdf">
+          <cite>HbbTV 2.0.2 Specification</cite></a>. HbbTV
+          Association. 16 February 2018. URL: <a href=
+          "https://www.hbbtv.org/wp-content/uploads/2018/02/HbbTV_v202_specification_2018_02_16.pdf">
+          https://www.hbbtv.org/wp-content/uploads/2018/02/HbbTV_v202_specification_2018_02_16.pdf</a>
+        </dd>
+        <dt id="bib-hls-timed-metadata">[HLS-TIMED-METADATA]</dt>
+        <dd>
+          <a href=
+          "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/HTTP_Live_Streaming_Metadata_Spec/Introduction/Introduction.html">
+          <cite>Timed Metadata for HTTP Live Streaming</cite></a>.
+          Apple, Inc. 28 April 2011. URL: <a href=
+          "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/HTTP_Live_Streaming_Metadata_Spec/Introduction/Introduction.html">
+          https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/HTTP_Live_Streaming_Metadata_Spec/Introduction/Introduction.html</a>
+        </dd>
+        <dt id="bib-hr-time">[HR-TIME]</dt>
+        <dd>
+          <a href="https://www.w3.org/TR/hr-time/"><cite>High
+          Resolution Time</cite></a>. Jatinder Mann. W3C. 17
+          December 2012. W3C Recommendation. URL: <a href=
+          "https://www.w3.org/TR/hr-time/">https://www.w3.org/TR/hr-time/</a>
+        </dd>
+        <dt id="bib-html">[HTML]</dt>
+        <dd>
+          <a href=
+          "https://html.spec.whatwg.org/multipage/"><cite>HTML
+          Standard</cite></a>. Anne van Kesteren; Domenic Denicola;
+          Ian Hickson; Philip Jägenstedt; Simon Pieters. WHATWG.
+          Living Standard. URL: <a href=
+          "https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
+        </dd>
+        <dt id="bib-html51-20151008">[html51-20151008]</dt>
+        <dd>
+          <a href=
+          "https://www.w3.org/TR/2015/WD-html51-20151008/"><cite>HTML
+          5.1</cite></a>. Simon Pieters; Anne van Kesteren; Philip
+          Jägenstedt; Domenic Denicola; Ian Hickson; Steve
+          Faulkner; Travis Leithead; Erika Doyle Navara; Theresa
+          O'Connor; Robin Berjon. W3C. 8 October 2015. W3C Working
+          Draft. URL: <a href=
+          "https://www.w3.org/TR/2015/WD-html51-20151008/">https://www.w3.org/TR/2015/WD-html51-20151008/</a>
+        </dd>
+        <dt id="bib-html53-20181018">[HTML53-20181018]</dt>
+        <dd>
+          <a href=
+          "https://www.w3.org/TR/2018/WD-html53-20181018/"><cite>HTML
+          5.3</cite></a>. Patricia Aas; Shwetank Dixit; Terence
+          Eden; Bruce Lawson; Sangwhan Moon; Xiaoqian Wu; Scott
+          O'Hara. W3C. 18 October 2018. W3C Working Draft. URL:
+          <a href=
+          "https://www.w3.org/TR/2018/WD-html53-20181018/">https://www.w3.org/TR/2018/WD-html53-20181018/</a>
+        </dd>
+        <dt id="bib-inbandtracks">[INBANDTRACKS]</dt>
+        <dd>
+          <a href=
+          "https://dev.w3.org/html5/html-sourcing-inband-tracks/"><cite>
+          Sourcing In-band Media Resource Tracks from Media
+          Containers into HTML</cite></a>. Silvia Pfeiffer; Bob
+          Lund. W3C. 26 April 2015. Unofficial Draft. URL: <a href=
+          "https://dev.w3.org/html5/html-sourcing-inband-tracks/">https://dev.w3.org/html5/html-sourcing-inband-tracks/</a>
+        </dd>
+        <dt id="bib-isobmff">[ISOBMFF]</dt>
+        <dd>
+          <a href=
+          "http://standards.iso.org/ittf/PubliclyAvailableStandards/c068960_ISO_IEC_14496-12_2015.zip">
+          <cite>Information technology — Coding of audio-visual
+          objects — Part 12: ISO Base Media File Format</cite></a>.
+          ISO/IEC. December 2015. International Standard. URL:
+          <a href=
+          "http://standards.iso.org/ittf/PubliclyAvailableStandards/c068960_ISO_IEC_14496-12_2015.zip">
+          http://standards.iso.org/ittf/PubliclyAvailableStandards/c068960_ISO_IEC_14496-12_2015.zip</a>
+        </dd>
+        <dt id="bib-mpegcmaf">[MPEGCMAF]</dt>
+        <dd>
+          <a href=
+          "https://www.iso.org/standard/71975.html?browse=tc"><cite>
+          Information technology -- Multimedia application format
+          (MPEG-A) -- Part 19: Common media application format
+          (CMAF) for segmented media</cite></a>. ISO/IEC.
+          Published. URL: <a href=
+          "https://www.iso.org/standard/71975.html?browse=tc">https://www.iso.org/standard/71975.html?browse=tc</a>
+        </dd>
+        <dt id="bib-mpegdash">[MPEGDASH]</dt>
+        <dd>
+          <a href=
+          "https://www.iso.org/standard/65274.html?browse=tc"><cite>
+          Information technology -- Dynamic adaptive streaming over
+          HTTP (DASH) -- Part 1: Media presentation description and
+          segment formats</cite></a>. ISO/IEC. Published. URL:
+          <a href=
+          "https://www.iso.org/standard/65274.html?browse=tc">https://www.iso.org/standard/65274.html?browse=tc</a>
+        </dd>
+        <dt id="bib-mse-byte-stream-format-isobmff">
+        [MSE-BYTE-STREAM-FORMAT-ISOBMFF]</dt>
+        <dd>
+          <a href=
+          "https://www.w3.org/TR/mse-byte-stream-format-isobmff/"><cite>
+          ISO BMFF Byte Stream Format</cite></a>. Matthew Wolenetz;
+          Jerry Smith; Mark Watson; Aaron Colwell; Adrian Bateman.
+          W3C. 4 October 2016. W3C Note. URL: <a href=
+          "https://www.w3.org/TR/mse-byte-stream-format-isobmff/">https://www.w3.org/TR/mse-byte-stream-format-isobmff/</a>
+        </dd>
+        <dt id="bib-rfc8216">[RFC8216]</dt>
+        <dd>
+          <a href="https://tools.ietf.org/html/rfc8216"><cite>HTTP
+          Live Streaming</cite></a>. R. Pantos, Ed.; W. May. IETF.
+          August 2017. Informational. URL: <a href=
+          "https://tools.ietf.org/html/rfc8216">https://tools.ietf.org/html/rfc8216</a>
+        </dd>
+        <dt id="bib-scte214-1">[SCTE214-1]</dt>
+        <dd>
+          <a href=
+          "https://www.scte.org/SCTEDocs/Standards/ANSI_SCTE%20214-1%202015.pdf">
+          <cite>MPEG DASH for IP-Based Cable Services, Part 1: MPD
+          Constraints and Extensions</cite></a>. ANSI/SCTE. URL:
+          <a href=
+          "https://www.scte.org/SCTEDocs/Standards/ANSI_SCTE%20214-1%202015.pdf">
+          https://www.scte.org/SCTEDocs/Standards/ANSI_SCTE%20214-1%202015.pdf</a>
+        </dd>
+        <dt id="bib-scte214-2">[SCTE214-2]</dt>
+        <dd>
+          <a href=
+          "https://www.scte.org/SCTEDocs/Standards/ANSI_SCTE%20214-2%202015.pdf">
+          <cite>MPEG DASH for IP-Based Cable Services, Part 2:
+          DASH/TS Profile</cite></a>. ANSI/SCTE. URL: <a href=
+          "https://www.scte.org/SCTEDocs/Standards/ANSI_SCTE%20214-2%202015.pdf">
+          https://www.scte.org/SCTEDocs/Standards/ANSI_SCTE%20214-2%202015.pdf</a>
+        </dd>
+        <dt id="bib-scte214-3">[SCTE214-3]</dt>
+        <dd>
+          <a href=
+          "https://www.scte.org/SCTEDocs/Standards/ANSI_SCTE%20214-3%202015.pdf">
+          <cite>MPEG DASH for IP-Based Cable Services, Part 3:
+          DASH/FF Profile</cite></a>. ANSI/SCTE. URL: <a href=
+          "https://www.scte.org/SCTEDocs/Standards/ANSI_SCTE%20214-3%202015.pdf">
+          https://www.scte.org/SCTEDocs/Standards/ANSI_SCTE%20214-3%202015.pdf</a>
+        </dd>
+        <dt id="bib-scte35">[SCTE35]</dt>
+        <dd>
+          <a href=
+          "https://www.scte.org/SCTEDocs/Standards/SCTE%2035%202019.pdf">
+          <cite>Digital Program Insertion Cueing Message for
+          Cable</cite></a>. ANSI/SCTE. URL: <a href=
+          "https://www.scte.org/SCTEDocs/Standards/SCTE%2035%202019.pdf">
+          https://www.scte.org/SCTEDocs/Standards/SCTE%2035%202019.pdf</a>
+        </dd>
+        <dt id="bib-web-isobmff">[WEB-ISOBMFF]</dt>
+        <dd>
+          <a href=
+          "https://mpeg.chiariglione.org/standards/mpeg-4/timed-text-and-other-visual-overlays-iso-base-media-file-format/wd-carriage-web">
+          <cite>ISO/IEC JTC1/SC29/WG11 N16944 Working Draft on
+          Carriage of Web Resources in ISOBMFF</cite></a>. Thomas
+          Stockhammer; Cyril Concolato. MPEG. July 2017. URL:
+          <a href=
+          "https://mpeg.chiariglione.org/standards/mpeg-4/timed-text-and-other-visual-overlays-iso-base-media-file-format/wd-carriage-web">
+          https://mpeg.chiariglione.org/standards/mpeg-4/timed-text-and-other-visual-overlays-iso-base-media-file-format/wd-carriage-web</a>
+        </dd>
+        <dt id="bib-webvmt">[WEBVMT]</dt>
+        <dd>
+          <a href=
+          "https://w3c.github.io/sdw/proposals/geotagging/webvmt/"><cite>
+          WebVMT: The Web Video Map Tracks Format</cite></a>. Rob
+          Smith. W3C. 29 January 2019. W3C Editor's Draft. URL:
+          <a href=
+          "https://w3c.github.io/sdw/proposals/geotagging/webvmt/">https://w3c.github.io/sdw/proposals/geotagging/webvmt/</a>
+        </dd>
+        <dt id="bib-webvtt">[WEBVTT]</dt>
+        <dd>
+          <a href="https://www.w3.org/TR/webvtt1/"><cite>WebVTT:
+          The Web Video Text Tracks Format</cite></a>. Silvia
+          Pfeiffer. W3C. 4 April 2019. W3C Candidate
+          Recommendation. URL: <a href=
+          "https://www.w3.org/TR/webvtt1/">https://www.w3.org/TR/webvtt1/</a>
+        </dd>
+      </dl>
+    </section>
+  </section>
+  <p role="navigation" id="back-to-top"><a href=
+  "#toc"><abbr title="Back to Top">↑</abbr></a></p>
+  <script src="https://www.w3.org/scripts/TR/2016/fixup.js">
+  </script>
+</body>
+</html>
