@@ -32,7 +32,8 @@
     "jsdoc": "3.6.4",
     "jshint": "2.11.0",
     "minami": "1.2.3",
-    "mocha": "7.1.1"
+    "mocha": "7.1.1",
+    "nodemon": "2.0.3"
   },
   "scripts": {
     "audit": "npm audit | grep -oE 'https?\\:\\/\\/(www\\.)?(nodesecurity\\.io|npmjs\\.com)\\/advisories\\/[[:digit:]]+' | rev | cut -d '/' -f 1 | rev | diff known-vulns.txt -",
@@ -43,6 +44,7 @@
     "coverage": "istanbul cover _mocha",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
     "build": "npm run lint && npm run hint && npm run test && npm run jsdoc",
+    "live": "nodemon --use_strict app",
     "start": "node --use_strict app"
   },
   "engines": {
