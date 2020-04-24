@@ -392,6 +392,7 @@ var tests = {
         ]
     ,   'cr-end':  [
             { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR" }}
+    ,       { doc: "online/CR-JSON-ld.html", config: { status: "CR"}, errors: ["sotd.cr-end"] } //sotd.cr-end.found-not-valid
     ,       { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR", editorial: true }, warnings: ["sotd.cr-end"]}
         ]
     }
