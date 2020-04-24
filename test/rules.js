@@ -140,189 +140,201 @@ describe('Basics', function() {
 
 var tests = {
     // Categories
-    dummy:  {
+    dummy: {
         // Rules
-        dahut:  [
+        dahut: [
             // Tests
             { doc: "dummy/simple.html" } // pass test
-        ,   { doc: "dummy/dahut.html", errors: ["dummy.dahut"] } // fail test
-        ,   { doc: "dummy/all.html", errors: ["dummy.dahut"] }
+            , { doc: "dummy/dahut.html", errors: ["dummy.dahut"] } // fail test
+            , { doc: "dummy/all.html", errors: ["dummy.dahut"] }
         ]
-    ,   h1:  [
+        , h1: [
             { doc: "dummy/simple.html" }
-        ,   { doc: "dummy/h1.html", errors: ["dummy.h1"] }
-        ,   { doc: "dummy/all.html", errors: ["dummy.h1"] }
+            , { doc: "dummy/h1.html", errors: ["dummy.h1"] }
+            , { doc: "dummy/all.html", errors: ["dummy.h1"] }
         ]
-    ,   "h2-foo":  [
+        , "h2-foo": [
             { doc: "dummy/simple.html" }
-        ,   { doc: "dummy/h2-foo.html", errors: ["dummy.h2-foo"] }
-        ,   { doc: "dummy/all.html", errors: ["dummy.h2-foo"] }
+            , { doc: "dummy/h2-foo.html", errors: ["dummy.h2-foo"] }
+            , { doc: "dummy/all.html", errors: ["dummy.h2-foo"] }
         ]
     }
-,   echidna:  {
-        "editor-ids":  [
+    , echidna: {
+        "editor-ids": [
             { doc: "echidna/automated-wg.html" }
-        ,   { doc: "echidna/fails-missing-editorsid.html", errors: ["echidna.editor-ids"] }
+            , { doc: "echidna/fails-missing-editorsid.html", errors: ["echidna.editor-ids"] }
         ]
-    ,   "todays-date":  [
+        , "todays-date": [
             { doc: "echidna/fails-future-date.html", errors: ["echidna.todays-date"] }
         ]
     }
-,   headers:   {
-        "div-head":  [
+    , headers: {
+        "div-head": [
             { doc: "headers/simple.html" }
-        ,   { doc: "headers/fails.html", errors: ["headers.div-head"] }
+            , { doc: "headers/fails.html", errors: ["headers.div-head"] }
         ]
-    ,   hr:  [
+        , hr: [
             { doc: "headers/simple.html" }
-        ,   { doc: "headers/hr.html" }
-        ,   { doc: "headers/fails.html", errors: ["headers.hr"] }
-        ,   { doc: "headers/fails-too.html", errors: ["headers.hr"] }
+            , { doc: "headers/hr.html" }
+            , { doc: "headers/fails.html", errors: ["headers.hr"] }
+            , { doc: "headers/fails-too.html", errors: ["headers.hr"] }
         ]
-    ,   title:  [
+        , title: [
             { doc: "headers/simple.html" }
-        ,   { doc: "headers/fails.html", errors: ["headers.title"] }
+            , { doc: "headers/fails.html", errors: ["headers.title"] }
         ]
-    ,   logo:  [
+        , logo: [
             { doc: "headers/simple.html" }
-        ,   { doc: "headers/logo.html" }
-        ,   { doc: "headers/fails.html", errors: ["headers.logo"] }
+            , { doc: "headers/logo.html" }
+            , { doc: "headers/fails.html", errors: ["headers.logo"] }
         ]
-    ,   "h1-title":  [
+        , "h1-title": [
             { doc: "headers/simple.html" }
-        ,   { doc: "headers/fails.html", errors: ["headers.h1-title"] }
-        ,   { doc: "headers/h1-title.html", errors: ["headers.h1-title"] }
+            , { doc: "headers/fails.html", errors: ["headers.h1-title"] }
+            , { doc: "headers/h1-title.html", errors: ["headers.h1-title"] }
         ]
-    ,   dl:  [
+        , dl: [
             { doc: "headers/simple.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl"] }
-        ,   { doc: "headers/fails.html", errors: ["headers.dl", "headers.dl"] }
-        ,   { doc: "headers/fails.html", config: { previousVersion: true }, errors: ["headers.dl", "headers.dl", "headers.dl"] }
-        ,   { doc: "headers/dl-order.html", errors: ["headers.dl", "headers.dl", "headers.dl"], warnings: ["headers.dl"] }
-        ,   { doc: "headers/dl-mismatch.html"
-            , errors: ["headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl"]
-            , warnings: ["headers.dl"] }
-        ,   { doc: "headers/wrong-urls.html", errors: ["headers.dl", "headers.dl"], config: { previousVersion: true, status: "WD" } }
-        ,   { doc: "headers/dl-trailing-whitespace.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl"] }
-        ,   { doc: "headers/dl-untrimmed-text.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl"] }
-        ,   { doc: "headers/shortnameChange.html", config: { previousVersion: true, status: "WD" }, warnings: ["headers.dl"] }
+            , { doc: "headers/fails.html", errors: ["headers.dl", "headers.dl"] }
+            , { doc: "headers/fails.html", config: { previousVersion: true }, errors: ["headers.dl", "headers.dl", "headers.dl"] }
+            , { doc: "headers/dl-order.html", errors: ["headers.dl", "headers.dl", "headers.dl"], warnings: ["headers.dl"] }
+            , {
+                doc: "headers/dl-mismatch.html"
+                , errors: ["headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl", "headers.dl"]
+                , warnings: ["headers.dl"]
+            }
+            , { doc: "headers/wrong-urls.html", errors: ["headers.dl", "headers.dl"], config: { previousVersion: true, status: "WD" } }
+            , { doc: "headers/dl-trailing-whitespace.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl"] }
+            , { doc: "headers/dl-untrimmed-text.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl"] }
+            , { doc: "headers/shortnameChange.html", config: { previousVersion: true, status: "WD" }, warnings: ["headers.dl"] }
         ]
-    ,   "h2-status":  [
+        , "h2-status": [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
-        ,   { doc: "headers/h2-comma.html", config: { longStatus: "Working Draft" } }
-        ,   { doc: "headers/simple.html", config: { longStatus: "Recommendation" }, errors: ["headers.h2-status"] }
-        ,   { doc: "headers/h2-amended.html", config: { longStatus: "Recommendation", amended: true } }
-        ,   { doc: "headers/simple.html", config: { longStatus: "Working Draft", amended: true }, errors: ["headers.h2-status"] }
+            , { doc: "headers/h2-comma.html", config: { longStatus: "Working Draft" } }
+            , { doc: "headers/simple.html", config: { longStatus: "Recommendation" }, errors: ["headers.h2-status"] }
+            , { doc: "headers/h2-amended.html", config: { longStatus: "Recommendation", amended: true } }
+            , { doc: "headers/simple.html", config: { longStatus: "Working Draft", amended: true }, errors: ["headers.h2-status"] }
         ]
-    ,   "h2-toc":  [
+        , "h2-toc": [
             { doc: "headers/simple.html" }
-        ,   { doc: "headers/fails.html", errors: ["headers.h2-toc"] }
+            , { doc: "headers/fails.html", errors: ["headers.h2-toc"] }
         ]
-    ,   "ol-toc":  [
+        , "ol-toc": [
             { doc: "headers/proper-toc.html" }
-        ,   { doc: "headers/fails.html", warnings: ["headers.ol-toc"] }
+            , { doc: "headers/fails.html", warnings: ["headers.ol-toc"] }
         ]
-    ,   "secno":  [
+        , "secno": [
             { doc: "headers/proper-secno.html" }
-        ,   { doc: "headers/fails.html", warnings: [ "headers.secno" ] }
+            , { doc: "headers/fails.html", warnings: ["headers.secno"] }
         ]
-    ,   copyright:  [
+        , copyright: [
             { doc: "headers/simple.html" }
-        ,   { doc: "headers/simple-oxford.html" }
-        ,   { doc: "headers/copyright-freedom.html", warnings: ["headers.copyright"] }
-        ,   { doc: "headers/fails.html", errors: ["headers.copyright"] }
-        ,   { doc: "headers/permissive-doc-license.html" }
+            , { doc: "headers/simple-oxford.html" }
+            , { doc: "headers/copyright-freedom.html", warnings: ["headers.copyright"] }
+            , { doc: "headers/fails.html", errors: ["headers.copyright"] }
+            , { doc: "headers/permissive-doc-license.html" }
         ]
     }
-,   style:   {
-        sheet:  [
-            { doc: "headers/simple.html", config: { styleSheet: "W3C-WD"} }
-        ,   { doc: "headers/fails.html", config: { styleSheet: "W3C-WD"}, errors: ["style.sheet"] }
-        ,   { doc: "style/style-not-last.html", config: { styleSheet: "W3C-WD"}, errors: ["style.sheet"] }
+    , style: {
+        sheet: [
+            { doc: "headers/simple.html", config: { styleSheet: "W3C-WD" } }
+            , { doc: "headers/fails.html", config: { styleSheet: "W3C-WD" }, errors: ["style.sheet"] }
+            , { doc: "style/style-not-last.html", config: { styleSheet: "W3C-WD" }, errors: ["style.sheet"] }
         ]
-    ,   meta:  [
+        , meta: [
             { doc: "dummy/simple.html", errors: ["style.meta"] }
-        ,   { doc: "style/simple.html" }
-        ,   { doc: "style/wrong-meta.html", errors: ["style.meta"] }
+            , { doc: "style/simple.html" }
+            , { doc: "style/wrong-meta.html", errors: ["style.meta"] }
         ]
-    ,   script:  [
+        , script: [
             { doc: "headers/simple.html", errors: ["style.script"] }
-        ,   { doc: "headers/fixup.html" }
+            , { doc: "headers/fixup.html" }
         ]
-    ,   'back-to-top':  [
+        , 'back-to-top': [
             { doc: "headers/simple.html", warnings: ["style.back-to-top"] }
-        ,   { doc: "headers/back-to-top.html" }
+            , { doc: "headers/back-to-top.html" }
         ]
-    ,   'body-toc-sidebar':  [
+        , 'body-toc-sidebar': [
             { doc: "style/simple.html" }
-        ,   { doc: "style/wrong-meta.html", errors: ["style.body-toc-sidebar"] }
+            , { doc: "style/wrong-meta.html", errors: ["style.body-toc-sidebar"] }
         ]
     }
-,   links:   {
-        internal:  [
+    , links: {
+        internal: [
             { doc: "links/internal-good.html" }
-        ,   { doc: "links/internal-fails.html", errors: ["links.internal", "links.internal"] }
+            , { doc: "links/internal-fails.html", errors: ["links.internal", "links.internal"] }
         ]
     }
-,   structure:   {
-        h2:  [
+    , structure: {
+        h2: [
             { doc: "headers/simple.html" }
-        ,   { doc: "structure/h2-abstract.html", errors: ["structure.h2"] }
-        ,   { doc: "structure/h2-sotd.html", errors: ["structure.h2", "structure.h2"] }
-        ,   { doc: "structure/h2-toc.html", errors: ["structure.h2", "structure.h2", "structure.h2"] }
+            , { doc: "structure/h2-abstract.html", errors: ["structure.h2"] }
+            , { doc: "structure/h2-sotd.html", errors: ["structure.h2", "structure.h2"] }
+            , { doc: "structure/h2-toc.html", errors: ["structure.h2", "structure.h2", "structure.h2"] }
         ]
-    ,   "section-ids":  [
+        , "section-ids": [
             { doc: "structure/sid-ok.html" }
-        ,   { doc: "structure/sid-all-wrong.html"
-            , errors: ["structure.section-ids", "structure.section-ids", "structure.section-ids"
-                      ,"structure.section-ids", "structure.section-ids", "structure.section-ids"
-                      ]  }
+            , {
+                doc: "structure/sid-all-wrong.html"
+                , errors: ["structure.section-ids", "structure.section-ids", "structure.section-ids"
+                    , "structure.section-ids", "structure.section-ids", "structure.section-ids"
+                ]
+            }
         ]
-    ,   canonical:  [
+        , canonical: [
             { doc: "headers/simple.html" }
-        ,   { doc: "structure/canonical.html" }
-        ,   { doc: "structure/canonical-missing.html", errors: ["structure.canonical"] }
-        ,   { doc: "structure/canonical-href-missing.html", errors: ["structure.canonical"] }
+            , { doc: "structure/canonical.html" }
+            , { doc: "structure/canonical-missing.html", errors: ["structure.canonical"] }
+            , { doc: "structure/canonical-href-missing.html", errors: ["structure.canonical"] }
         ]
     }
-,   sotd:   {
-        supersedable:  [
+    , sotd: {
+        supersedable: [
             { doc: "headers/simple.html" }
-        ,   { doc: "sotd/supersedable.html", errors: ["sotd.supersedable", "sotd.supersedable"] }
+            , { doc: "sotd/supersedable.html", errors: ["sotd.supersedable", "sotd.supersedable"] }
         ]
-    ,   "mailing-list":  [
+        , "mailing-list": [
             { doc: "headers/simple.html" }
-        ,   { doc: "sotd/ml-bad.html"
-            , errors: ["sotd.mailing-list", "sotd.mailing-list"]
-            , warnings: ["sotd.mailing-list"]
+            , {
+                doc: "sotd/ml-bad.html"
+                , errors: ["sotd.mailing-list", "sotd.mailing-list"]
+                , warnings: ["sotd.mailing-list"]
             }
-        ,   { doc: "sotd/ml-missing.html" }
-        ,   { doc: "headers/simple.html", config: { status: "REC" }, errors: ["sotd.mailing-list"] }
+            , { doc: "sotd/ml-missing.html" }
+            , { doc: "headers/simple.html", config: { status: "REC" }, errors: ["sotd.mailing-list"] }
         ]
-    ,   pp:  [
+        , pp: [
             { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true } }
-        ,   { doc: "headers/simple.html", config: { recTrackStatus: true }, warnings: ["sotd.pp"] }
-        ,   { doc: "sotd/pp-bad.html"
-            , errors: ["sotd.pp", "sotd.pp", "sotd.pp", "sotd.pp"]
-            , config: { recTrackStatus: true }
+            , { doc: "headers/simple.html", config: { recTrackStatus: true }, warnings: ["sotd.pp"] }
+            , {
+                doc: "sotd/pp-bad.html"
+                , errors: ["sotd.pp", "sotd.pp", "sotd.pp", "sotd.pp"]
+                , config: { recTrackStatus: true }
             }
-        ,   { doc: "sotd/pp-cpp2002.html", options: { patentPolicy: "pp2002" } }
-        ,   { doc: "sotd/joint-publication.html", config: { recTrackStatus: true }, warnings: ["sotd.pp", "sotd.pp"] }
-        ,   { doc: "sotd/joint-publication-tag.html", config: { recTrackStatus: true }, warnings: ["sotd.pp", "sotd.pp"] }
-        ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true }
-              , errors: ["sotd.pp"]
+            , { doc: "sotd/pp-cpp2002.html", options: { patentPolicy: "pp2002" } }
+            , { doc: "sotd/joint-publication.html", config: { recTrackStatus: true }, warnings: ["sotd.pp", "sotd.pp"] }
+            , { doc: "sotd/joint-publication-tag.html", config: { recTrackStatus: true }, warnings: ["sotd.pp", "sotd.pp"] }
+            , {
+                doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true }
+                , errors: ["sotd.pp"]
             }
-        ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note" } }
-        ,   { doc: "headers/wg-note1.html", config: { longStatus: "Working Group Note" } }
-        ,   { doc: "headers/wg-note2.html", config: { longStatus: "Working Group Note" } }
-        ,   { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true, amended: true }, errors: ["sotd.pp"] }
-        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true }, errors: ["sotd.pp"] }
-        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, amended: true } }
-        ,   { doc: "online/WG-NOTE-lpf.html", config: { longStatus: "Working Group Note"} }
-        ,   { doc: "online/WD-screen-orientation.html", config: { longStatus: "Working Draft", recTrackStatus: true} }
-        ,   { doc: "online/IG-NOTE-media-timed-events.html", config: { longStatus: "Interest Group Note"}, errors: ["sotd.pp"] }
+            , { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note" } }
+            , { doc: "headers/wg-note1.html", config: { longStatus: "Working Group Note" } }
+            , { doc: "headers/wg-note2.html", config: { longStatus: "Working Group Note" } }
+            , { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true, amended: true }, errors: ["sotd.pp"] }
+            , { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true }, errors: ["sotd.pp"] }
+            , { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, amended: true } }
+            , { doc: "online/WG-NOTE-lpf.html", config: { longStatus: "Working Group Note" } }
+            , { doc: "online/WD-screen-orientation.html", config: { longStatus: "Working Draft", recTrackStatus: true } }
+            , { doc: "online/IG-NOTE-media-timed-events.html", config: { longStatus: "Interest Group Note" }, errors: ["sotd.pp"] }
         ]
-    ,   "charter-disclosure":  [
-            { doc: "headers/ig-note.html" }
+        , "charter-disclosure": [
+            { doc: "headers/ig-note.html", }
+            , { doc: "online/IG-NOTE-media-timed-events.html", errors: 
+            ["sotd.charter-disclosure"] },
+            , { doc: "online/IG-NOTE-media-timed-events.html", errors: ["sotd.charter-disclosure"] } // errors: ["sotd.charter-disclosure.wrong-link"]
+            , { doc: "headers/ig-note2.html", errors: ["sotd.charter-disclosure"] }  // errors: ["sotd.charter-disclosure.no-group"]
+            , { doc: "headers/ig-note3.html", errors: ["sotd.charter-disclosure"] } // errors: ["sotd.charter-disclosure.text-not-found"]
         ]
     ,   stability:  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft", stabilityWarning: true } }
