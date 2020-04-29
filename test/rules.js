@@ -98,45 +98,45 @@ const compareMetadata = function(url, file, expectedObject) {
 
 };
 
-// describe('Basics', function() {
+describe('Basics', function() {
 
-//     const specberus = new validator.Specberus();
+    const specberus = new validator.Specberus();
 
-//     describe('Method "extractMetadata"', function() {
+    describe('Method "extractMetadata"', function() {
 
-//         var i;
+        var i;
 
-//         it('Should exist and be a function', function(done) {
-//             chai(specberus).to.have.property('extractMetadata').that.is.a('function');
-//             done();
-//         });
+        it('Should exist and be a function', function(done) {
+            chai(specberus).to.have.property('extractMetadata').that.is.a('function');
+            done();
+        });
 
-//         // if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
-//         //     for(i in samples) {
-//         //         compareMetadata(samples[i].url, null, samples[i]);
-//         //     }
-//         // }
-//         // else {
-//         //     for(i in samples) {
-//         //         compareMetadata(null, samples[i].file, samples[i]);
-//         //     }
-//         // }
-//         for(i in samples) {
-//             compareMetadata(null, samples[i].file, samples[i]);
-//         }
+        // if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
+        //     for(i in samples) {
+        //         compareMetadata(samples[i].url, null, samples[i]);
+        //     }
+        // }
+        // else {
+        //     for(i in samples) {
+        //         compareMetadata(null, samples[i].file, samples[i]);
+        //     }
+        // }
+        for(i in samples) {
+            compareMetadata(null, samples[i].file, samples[i]);
+        }
 
-//     });
+    });
 
-//     describe('Method "validate"', function() {
+    describe('Method "validate"', function() {
 
-//         it('Should exist and be a function', function(done) {
-//             chai(specberus).to.have.property('validate').that.is.a('function');
-//             done();
-//         });
+        it('Should exist and be a function', function(done) {
+            chai(specberus).to.have.property('validate').that.is.a('function');
+            done();
+        });
 
-//     });
+    });
 
-// });
+});
 
 var tests = {
     // Categories
@@ -391,13 +391,24 @@ var tests = {
     ,       { doc: "sotd/note-deliverer-bad.html", config: { status: "WG-NOTE" }, errors: ['sotd.deliverer-note'] }
         ]
     ,   'cr-end':  [
-            { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR" } }
+            { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR" }}
     ,       { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR", editorial: true }, warnings: ["sotd.cr-end"]}
     ,       { doc: "sotd/cr-end.html", config: { status: "CR"}}
     ,       { doc: "sotd/cr-end-27days.html", config: { status: "CR" }, errors: ["sotd.cr-end"] } //sotd.cr-end.found-not-valid
     ,       { doc: "sotd/cr-end-multiple.html", config: { status: "CR" }, warnings: ["sotd.cr-end"] } //sotd.cr-end.multiple-found
     ,       { doc: "sotd/cr-end-nodate.html", config: { status: "CR" }, errors: ["sotd.cr-end"] } //sotd.cr-end.not-found
         ]
+    }
+    , heuristic: {	
+        'date-format':  [	
+            { doc: "heuristic/dates.html" }	
+        ,   { doc: "heuristic/bad-dates.html", errors: ['heuristic.date-format', 'heuristic.date-format', 'heuristic.date-format'] }	
+        ,   { doc: "heuristic/dated-url.html" }	
+        ]	
+    ,   'shortname':  [	
+            { doc: "headers/simple.html" }	
+        ,   { doc: "headers/diff-latest-version.html" }	
+    ]	
     }
 ,   validation: validation
 };
