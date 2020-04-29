@@ -51,7 +51,7 @@ io.sockets.on("connection", function (socket) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
         var vali = new validator.Specberus()
         ,   handler = new Sink()
-        ;
+            ;
         handler.on('err', function (type, data) {
             try {
                 socket.emit('err', l10n.message(null, type, data.key, data.extra));
@@ -97,9 +97,6 @@ io.sockets.on("connection", function (socket) {
         ,   profile = util.profiles[data.profile]
         ,   profileCode = profile.name
         ;
-        console.log(data.profile);
-        console.log('\n profile');
-        console.log(profile);
         
         socket.emit("start", {
             rules:  (profile.rules || []).map(function (rule) { return rule.name; })
