@@ -97,7 +97,6 @@ io.sockets.on("connection", function (socket) {
         ,   profile = util.profiles[data.profile]
         ,   profileCode = profile.name
         ;
-        
         socket.emit("start", {
             rules:  (profile.rules || []).map(function (rule) { return rule.name; })
         });
