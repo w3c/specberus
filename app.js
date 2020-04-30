@@ -51,7 +51,7 @@ io.sockets.on("connection", function (socket) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
         var vali = new validator.Specberus()
         ,   handler = new Sink()
-            ;
+        ;
         handler.on('err', function (type, data) {
             try {
                 socket.emit('err', l10n.message(null, type, data.key, data.extra));

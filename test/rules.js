@@ -393,22 +393,18 @@ var tests = {
     ,   'cr-end':  [
             { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR" }}
     ,       { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR", editorial: true }, warnings: ["sotd.cr-end"]}
-    ,       { doc: "sotd/cr-end.html", config: { status: "CR"}}
-    ,       { doc: "sotd/cr-end-27days.html", config: { status: "CR" }, errors: ["sotd.cr-end"] } //sotd.cr-end.found-not-valid
-    ,       { doc: "sotd/cr-end-multiple.html", config: { status: "CR" }, warnings: ["sotd.cr-end"] } //sotd.cr-end.multiple-found
-    ,       { doc: "sotd/cr-end-nodate.html", config: { status: "CR" }, errors: ["sotd.cr-end"] } //sotd.cr-end.not-found
         ]
     }
-    , heuristic: {	
-        'date-format':  [	
-            { doc: "heuristic/dates.html" }	
-        ,   { doc: "heuristic/bad-dates.html", errors: ['heuristic.date-format', 'heuristic.date-format', 'heuristic.date-format'] }	
-        ,   { doc: "heuristic/dated-url.html" }	
-        ]	
-    ,   'shortname':  [	
-            { doc: "headers/simple.html" }	
-        ,   { doc: "headers/diff-latest-version.html" }	
-    ]	
+    , heuristic: {
+        'date-format':  [
+            { doc: "heuristic/dates.html" }
+        ,   { doc: "heuristic/bad-dates.html", errors: ['heuristic.date-format', 'heuristic.date-format', 'heuristic.date-format'] }
+        ,   { doc: "heuristic/dated-url.html" }
+        ]
+    ,   'shortname':  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "headers/diff-latest-version.html" }
+    ]
     }
 ,   validation: validation
 };
