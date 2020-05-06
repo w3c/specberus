@@ -323,6 +323,11 @@ var tests = {
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
+        ,   { doc: "online/IG-NOTE-media-timed-events.html", errors: 
+        ["sotd.charter-disclosure"] }
+        ,   { doc: "online/IG-NOTE-media-timed-events.html", errors: ["sotd.charter-disclosure"] } // errors: ["sotd.charter-disclosure.wrong-link"]
+        ,   { doc: "headers/ig-note2.html", errors: ["sotd.charter-disclosure"] }  // errors: ["sotd.charter-disclosure.no-group"]
+        ,   { doc: "headers/ig-note3.html", errors: ["sotd.charter-disclosure"] } // errors: ["sotd.charter-disclosure.text-not-found"]
         ]
     ,   stability:  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft", stabilityWarning: true } }
