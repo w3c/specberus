@@ -205,6 +205,8 @@ var tests = {
         ,   { doc: "headers/dl-trailing-whitespace.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl"] }
         ,   { doc: "headers/dl-untrimmed-text.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl"] }
         ,   { doc: "headers/shortnameChange.html", config: { previousVersion: true, status: "WD" }, warnings: ["headers.dl"] }
+        ,   { doc: "headers/wg-note.html", config: { previousVersion: true, status: "NOTE" }, errors: ["headers.dl"] } // headers.dl.previous-version
+        ,   { doc: "headers/wg-note.html", config: { status: "NOTE" } }
         ]
     ,   "h2-status":  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
