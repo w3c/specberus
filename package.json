@@ -31,7 +31,7 @@
     "husky": "^4.2.5",
     "istanbul": "0.4.5",
     "jsdoc": "3.6.4",
-    "jshint": "2.11.0",
+    "jshint": "2.11.1",
     "minami": "1.2.3",
     "mocha": "7.1.2",
     "nodemon": "2.0.3"
