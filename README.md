@@ -137,7 +137,7 @@ Once the [event `end-all`](#validation-events) is emitted, the metadata should b
 The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
 goals of this method).
 
-`this.meta` will be an `Object` and may include up to 15 properties described below:
+`this.meta` will be an `Object` and may include up to 16 properties described below:
 
 * `profile`
 * `title`: The (possible) title of the document.
