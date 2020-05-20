@@ -34,7 +34,7 @@
     "jshint": "2.11.1",
     "minami": "1.2.3",
     "mocha": "7.1.2",
-    "nodemon": "2.0.3"
+    "nodemon": "2.0.4"
   },
   "scripts": {
     "audit": "npm audit | grep -oE 'https?\\:\\/\\/(www\\.)?(nodesecurity\\.io|npmjs\\.com)\\/advisories\\/[[:digit:]]+' | rev | cut -d '/' -f 1 | rev | diff known-vulns.txt -",
