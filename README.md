@@ -137,7 +137,7 @@ Once the [event `end-all`](#validation-events) is emitted, the metadata should b
 The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
 goals of this method).
 
-`this.meta` will be an `Object` and may include up to 15 properties described below:
+`this.meta` will be an `Object` and may include up to 16 properties described below:
 
 * `profile`
 * `title`: The (possible) title of the document.
@@ -148,13 +148,14 @@ goals of this method).
 * `editorsDraft`: URL of the latest editor's draft.
 * `delivererIDs`: ID(s) of the deliverer(s); an `Array` of `Number`s.
 * `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
-* `informative`: Whether the document in informative or not
-* `rectrack`: Whether the document in on REC track or not
+* `informative`: Whether the document in informative or not.
+* `rectrack`: Whether the document in on REC track or not.
 * `process`: The process rules link.
 * `sameWorkAs`: The previous shortlink if any.
-* `implementationFeedbackDue`: The implementation review date for CRs
-* `prReviewsDue`: The review date for PRs
-* `implementationReport`: Implementation report link for CRs, PRs and RECs
+* `implementationFeedbackDue`: The implementation review date for CRs.
+* `prReviewsDue`: The review date for PRs.
+* `implementationReport`: Implementation report link for CRs, PRs and RECs.
+* `errata`: The errata link of the document.
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 

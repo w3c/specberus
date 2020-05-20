@@ -85,7 +85,7 @@ const compareMetadata = function(url, file, expectedObject) {
             });
             chai(specberus).to.have.property('meta').to.have.property('informative').equal(expectedObject.informative);
             chai(specberus).to.have.property('meta').to.have.property('rectrack').equal(expectedObject.rectrack);
-            var optionalProperties = ['process', 'editorsDraft', 'implementationFeedbackDue', 'prReviewsDue', 'implementationReport'];
+            var optionalProperties = ['process', 'editorsDraft', 'implementationFeedbackDue', 'prReviewsDue', 'implementationReport','errata'];
             optionalProperties.forEach(function(p) {
                 if (Object.prototype.hasOwnProperty.call(expectedObject, p)) {
                     chai(specberus).to.have.property('meta').to.have.property(p).equal(expectedObject[p]);
@@ -205,6 +205,8 @@ var tests = {
         ,   { doc: "headers/dl-trailing-whitespace.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl"] }
         ,   { doc: "headers/dl-untrimmed-text.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl"] }
         ,   { doc: "headers/shortnameChange.html", config: { previousVersion: true, status: "WD" }, warnings: ["headers.dl"] }
+        ,   { doc: "headers/wg-note.html", config: { previousVersion: true, status: "NOTE" }, errors: ["headers.dl"] } // headers.dl.previous-version
+        ,   { doc: "headers/wg-note.html", config: { status: "NOTE" } }
         ]
     ,   "h2-status":  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
