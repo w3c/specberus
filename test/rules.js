@@ -356,6 +356,10 @@ var tests = {
         ,   { doc: "headers/wd.html"
               , config: { status: "WD", longStatus: "Working Draft", stabilityWarning: true }
         }
+        ,   { doc: "headers/wd.html"
+              , config: { status: "CR", longStatus: "Candidate Recommendation", stabilityWarning: true }
+              , errors: ["sotd.stability"]
+        }
         ,   { doc: "online/WG-NOTE-lpf.html"
               , config: { longStatus: "Working Group Note" , stabilityWarning: true }
         }
