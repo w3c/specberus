@@ -8,8 +8,6 @@ script:
 after_script:
   - npm run coveralls
 notifications:
-  email:
-    - denis@w3.org
   irc:
     channels:
       - "irc.w3.org#pubrules"
