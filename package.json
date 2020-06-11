@@ -34,7 +34,7 @@
     "jsdoc": "3.6.4",
     "jshint": "2.11.1",
     "minami": "1.2.3",
-    "mocha": "7.2.0",
+    "mocha": "8.0.1",
     "nodemon": "2.0.4"
   },
   "scripts": {
