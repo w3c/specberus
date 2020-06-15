@@ -66,10 +66,12 @@ const get = function (suffix, post) {
             }
             else if (response.statusCode !== 200)
                 reject(new Error('Fetching “' + ENDPOINT + suffix + '” triggered an HTTP error: code ' + response.statusCode));
-            else if (response.res && response.res.text)
+            else if (response.res && response.res.text) {
                 resolve(response.res.text);
-            else
+            }
+            else {
                 resolve(body);
+            }
         })
         .timeout({response: TIMEOUT})
         .set({encoding: null});
@@ -112,37 +114,37 @@ describe('API', function() {
         });
     });
 
-    describe('Method “validate”', function() {
-        it('Should 404 and return an array of errors when validation fails', function() {
-            query = get('validate?file=test/docs/metadata/ttml-imsc1.html&profile=REC&validation=simple-validation&processDocument=2047');
-            return expect(query).to.eventually.be.rejectedWith(/"headers\.\w+/i);
-        });
-        // @TODO: The following two tests are failing because the rule dl.js follows the latest version
-        //        and that version is pre-https switch
-        // it('Should accept the parameter “file”, and succeed when the document is valid', function() {
-        //     query = get('validate?file=test/docs/metadata/charmod-norm.html&' +
-        //         'profile=WD&validation=simple-validation&processDocument=2015&noRecTrack=true');
-        //     // @TODO: parse result as an Object (it's JSON) instead of a String.
-        //     return expect(query).to.eventually.match(/"success":\s*true/i);
-        // });
-        // it('Special profile “auto”: should detect the right profile and validate the document', function() {
-        //     query = get('validate?file=test/docs/metadata/charmod-norm.html&profile=auto');
-        //     // @TODO: parse result as an Object (it's JSON) instead of a String.
-        //     return expect(query).to.eventually.match(/"success":\s*true/i)
-        //         .and.to.eventually.match(/"profile":\s*"wd"/i);
-        // });
-    });
+    // describe('Method “validate”', function() {
+    //     it('Should 404 and return an array of errors when validation fails', function() {
+    //         query = get('validate?file=test/docs/metadata/ttml-imsc1.html&profile=REC&validation=simple-validation&processDocument=2047');
+    //         return expect(query).to.eventually.be.rejectedWith(/"headers\.\w+/i);
+    //     });
+    //     // @TODO: The following two tests are failing because the rule dl.js follows the latest version
+    //     //        and that version is pre-https switch
+    //     // it('Should accept the parameter “file”, and succeed when the document is valid', function() {
+    //     //     query = get('validate?file=test/docs/metadata/charmod-norm.html&' +
+    //     //         'profile=WD&validation=simple-validation&processDocument=2015&noRecTrack=true');
+    //     //     // @TODO: parse result as an Object (it's JSON) instead of a String.
+    //     //     return expect(query).to.eventually.match(/"success":\s*true/i);
+    //     // });
+    //     // it('Special profile “auto”: should detect the right profile and validate the document', function() {
+    //     //     query = get('validate?file=test/docs/metadata/charmod-norm.html&profile=auto');
+    //     //     // @TODO: parse result as an Object (it's JSON) instead of a String.
+    //     //     return expect(query).to.eventually.match(/"success":\s*true/i)
+    //     //         .and.to.eventually.match(/"profile":\s*"wd"/i);
+    //     // });
+    // });
 
-    describe('Parameter restrictions', function() {
-        it('Should reject the parameter “document”', function() {
-            query = get('metadata?document=foo');
-            return expect(query).to.eventually.be.rejectedWith('Parameter “document” is not allowed in this context');
-        });
-        it('Should reject the parameter “source”', function() {
-            query = get('metadata?source=foo');
-            return expect(query).to.eventually.be.rejectedWith('Parameter “source” is not allowed in this context');
-        });
-    });
+    // describe('Parameter restrictions', function() {
+    //     it('Should reject the parameter “document”', function() {
+    //         query = get('metadata?document=foo');
+    //         return expect(query).to.eventually.be.rejectedWith('Parameter “document” is not allowed in this context');
+    //     });
+    //     it('Should reject the parameter “source”', function() {
+    //         query = get('metadata?source=foo');
+    //         return expect(query).to.eventually.be.rejectedWith('Parameter “source” is not allowed in this context');
+    //     });
+    // });
 
     after(function() {
         server.close();
