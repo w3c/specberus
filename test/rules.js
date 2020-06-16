@@ -456,7 +456,7 @@ Object.keys(tests).forEach(function (category) {
                         handler.on("end-all", function () {
                             try {
                                 var i
-                                ,   n;
+                                , n;
                                 if (passTest) {
                                     expect(handler.errors).to.be.empty();
                                 }
