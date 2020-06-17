@@ -425,12 +425,6 @@ var tests = {
 ,   validation: validation
 };
 
-// var tests = {
-//     // Categories
-//     sotd:   {
-//     }
-// }
-
 Object.keys(tests).forEach(function (category) {
     describe("Category " + category, function () {
         Object.keys(tests[category]).forEach(function (rule) {
