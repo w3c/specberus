@@ -127,7 +127,7 @@ describe('Basics', function() {
 
     });
 
-    describe('Method "validate"', function() {
+    describe('Method "validate"', function () {
 
         it('Should exist and be a function', function(done) {
             chai(specberus).to.have.property('validate').that.is.a('function');
@@ -425,6 +425,12 @@ var tests = {
 ,   validation: validation
 };
 
+// var tests = {
+//     // Categories
+//     sotd:   {
+//     }
+// }
+
 Object.keys(tests).forEach(function (category) {
     describe("Category " + category, function () {
         Object.keys(tests[category]).forEach(function (rule) {
@@ -461,8 +467,6 @@ Object.keys(tests).forEach(function (category) {
                                     expect(handler.errors).to.be.empty();
                                 }
                                 else {
-                                    // console.log('\n\nhandler.errors:', handler.errors)
-                                    // console.log('test.errors:', test.errors);
                                     expect(handler.errors.length).to.eql(test.errors.length);
                                     for (i = 0, n = test.errors.length; i < n; i++) {
                                         expect(handler.errors).to.contain(test.errors[i]);
