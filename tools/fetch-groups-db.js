@@ -31,7 +31,7 @@ function munge (err, res) {
             , td1 = tds && tds[0]
             , td4 = tds && tds[3]
             , name = td1 && norm(td1.textContent)
-            , href = td1 && td1.querySelector('a').getAttribute('href')
+            , href = td1 && td1.querySelector('a') && td1.querySelector('a').getAttribute('href')
             ;
         if (td4) {
             td4.querySelectorAll('a').forEach(function (element) {
