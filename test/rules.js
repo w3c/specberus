@@ -144,18 +144,18 @@ var tests = {
         dahut:  [
             // Tests
             { doc: "dummy/simple.html" } // pass test
-            , { doc: "dummy/dahut.html", errors: ["dummy.dahut.not-found"] } // fail test
-            , { doc: "dummy/all.html", errors: ["dummy.dahut.not-found"] }
+        ,   { doc: "dummy/dahut.html", errors: ["dummy.dahut.not-found"] } // fail test
+        ,   { doc: "dummy/all.html", errors: ["dummy.dahut.not-found"] }
         ]
     ,   h1:  [
             { doc: "dummy/simple.html" }
-            , { doc: "dummy/h1.html", errors: ["dummy.h1.not-found"] }
-            , { doc: "dummy/all.html", errors: ["dummy.h1.not-found"] }
+        ,   { doc: "dummy/h1.html", errors: ["dummy.h1.not-found"] }
+        ,   { doc: "dummy/all.html", errors: ["dummy.h1.not-found"] }
         ]
     ,   "h2-foo":  [
             { doc: "dummy/simple.html" }
-            , { doc: "dummy/h2-foo.html", errors: ["dummy.h2-foo.not-found"] }
-            , { doc: "dummy/all.html", errors: ["dummy.h2-foo.not-found"] }
+        ,   { doc: "dummy/h2-foo.html", errors: ["dummy.h2-foo.not-found"] }
+        ,   { doc: "dummy/all.html", errors: ["dummy.h2-foo.not-found"] }
         ]
     }
 ,   echidna:  {
@@ -324,9 +324,9 @@ var tests = {
             { doc: "headers/ig-note.html" }
         ,   { doc: "online/IG-NOTE-media-timed-events.html", errors: 
         ["sotd.charter-disclosure.wrong-link"] }
-        ,   { doc: "online/IG-NOTE-media-timed-events.html", errors: ["sotd.charter-disclosure.wrong-link"] } // errors: ["sotd.charter-disclosure.wrong-link"]
-        ,   { doc: "headers/ig-note2.html", errors: ["sotd.charter-disclosure.no-group"] }  // errors: ["sotd.charter-disclosure.no-group"]
-        ,   { doc: "headers/ig-note3.html", errors: ["sotd.charter-disclosure.text-not-found"] } // errors: ["sotd.charter-disclosure.text-not-found"]
+        ,   { doc: "online/IG-NOTE-media-timed-events.html", errors: ["sotd.charter-disclosure.wrong-link"] }
+        ,   { doc: "headers/ig-note2.html", errors: ["sotd.charter-disclosure.no-group"] }
+        ,   { doc: "headers/ig-note3.html", errors: ["sotd.charter-disclosure.text-not-found"] }
         ]
     ,   stability:  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft", stabilityWarning: true } }
@@ -405,9 +405,9 @@ var tests = {
             { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR" }}
     ,       { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR", editorial: true }, warnings: ["sotd.cr-end.editorial"]}
     ,       { doc: "sotd/cr-end.html", config: { status: "CR"}}
-    ,       { doc: "sotd/cr-end-27days.html", config: { status: "CR" }, errors: ["sotd.cr-end.found-not-valid"] } //sotd.cr-end.found-not-valid
-    ,       { doc: "sotd/cr-end-multiple.html", config: { status: "CR" }, warnings: ["sotd.cr-end.multiple-found"] } //sotd.cr-end.multiple-found
-    ,       { doc: "sotd/cr-end-nodate.html", config: { status: "CR" }, errors: ["sotd.cr-end.not-found"] } //sotd.cr-end.not-found
+    ,       { doc: "sotd/cr-end-27days.html", config: { status: "CR" }, errors: ["sotd.cr-end.found-not-valid"] }
+    ,       { doc: "sotd/cr-end-multiple.html", config: { status: "CR" }, warnings: ["sotd.cr-end.multiple-found"] }
+    ,       { doc: "sotd/cr-end-nodate.html", config: { status: "CR" }, errors: ["sotd.cr-end.not-found"] }
         ]
     }
     , heuristic: {	
