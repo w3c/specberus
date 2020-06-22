@@ -98,7 +98,7 @@ const compareMetadata = function(url, file, expectedObject) {
 
 };
 
-describe('Basics', function () {
+describe('Basics', function() {
 
     const specberus = new validator.Specberus();
 
