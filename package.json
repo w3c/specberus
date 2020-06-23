@@ -21,7 +21,7 @@
     "socket.io": "2.3.0",
     "superagent": "5.2.2",
     "whacko": "0.19",
-    "snyk": "^1.323.0"
+    "snyk": "^1.347.1"
   },
   "devDependencies": {
     "chai": "4.2.0",
