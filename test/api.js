@@ -66,10 +66,12 @@ const get = function (suffix, post) {
             }
             else if (response.statusCode !== 200)
                 reject(new Error('Fetching “' + ENDPOINT + suffix + '” triggered an HTTP error: code ' + response.statusCode));
-            else if (response.res && response.res.text)
+            else if (response.res && response.res.text) {
                 resolve(response.res.text);
-            else
+            }
+            else {
                 resolve(body);
+            }
         })
         .timeout({response: TIMEOUT})
         .set({encoding: null});

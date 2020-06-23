@@ -6,7 +6,7 @@
 var fs = require("fs")
 ,   pth = require("path")
 ,   ua = require("superagent")
-,   w = require("whacko")
+,   {JSDOM} = require('jsdom')
 ,   user = process.argv[2]
 ,   pass = process.argv[3]
 ,   results = {}
@@ -23,23 +23,29 @@ function norm (str) {
 }
 
 function munge (err, res) {
-    var $ = w.load(res.text);
-    $("tr.WG, tr.IG, tr.CG").each(function () {
-        var $tr = $(this)
-        ,   $td1 = $tr.find("td").first()
-        ,   name = norm($td1.text())
-        ,   href = $td1.find("a").first().attr("href")
-        ;
-        $($tr.find("td")[3]).find("a").each(function () {
-            var list = $(this).text();
-            if (!/@w3\.org$/.test(list)) list += "@w3.org";
-            if (href.indexOf("http") === 0) true; // jshint ignore: line
-            else if (href.indexOf("/") === 0) href = "http://www.w3.org" + href;
-            else if (/^(\.\.\/){2}\w/.test(href)) href = "http://www.w3.org/" + href.replace(/^(\.\.\/){2}/, "");
-            else
-              console.error("--------------- UNKNOWN URL FORM -------------------");  // eslint-disable-line no-console
-            results[list] = { name: name, href: href };
-        });
+    var jsdom = new JSDOM(res.text);
+    var jsDocument = jsdom.window.document;
+
+    jsDocument.querySelectorAll("tr.WG, tr.IG, tr.CG").forEach(function (tr) {
+        var tds = tr.querySelectorAll("td")
+            , td1 = tds && tds[0]
+            , td4 = tds && tds[3]
+            , name = td1 && norm(td1.textContent)
+            , href = td1 && td1.querySelector('a') && td1.querySelector('a').getAttribute('href')
+            ;
+        if (td4) {
+            td4.querySelectorAll('a').forEach(function (element) {
+                var list = element.textContent;
+                if (!/@w3\.org$/.test(list)) list += "@w3.org";
+                if (href.indexOf("http") === 0) true; // jshint ignore: line
+                else if (href.indexOf("/") === 0) href = "http://www.w3.org" + href;
+                else if (/^(\.\.\/){2}\w/.test(href)) href = "http://www.w3.org/" + href.replace(/^(\.\.\/){2}/, "");
+                else
+                console.error("--------------- UNKNOWN URL FORM -------------------");  // eslint-disable-line no-console
+                results[list] = { name: name, href: href };
+            });
+        }
+        
     });
     fs.writeFileSync(pth.join(__dirname, "../lib/groups-db.json"), JSON.stringify(results, null, 4));
 }

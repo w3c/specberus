@@ -127,7 +127,7 @@ describe('Basics', function() {
 
     });
 
-    describe('Method "validate"', function() {
+    describe('Method "validate"', function () {
 
         it('Should exist and be a function', function(done) {
             chai(specberus).to.have.property('validate').that.is.a('function');
@@ -456,7 +456,7 @@ Object.keys(tests).forEach(function (category) {
                         handler.on("end-all", function () {
                             try {
                                 var i
-                                ,   n;
+                                , n;
                                 if (passTest) {
                                     expect(handler.errors).to.be.empty();
                                 }
