@@ -206,7 +206,8 @@
                             ],
                             "lastStylesheet": true,
                             "viewport": true,
-                            "canonical": true
+                            "canonical": true,
+                            "delivererID": true
                         }
                     },
                     "front-matter": {
@@ -307,7 +308,8 @@
                             ],
                             "lastStylesheet": true,
                             "viewport": true,
-                            "canonical": true
+                            "canonical": true,
+                            "delivererID": true
                         }
                     },
                     "front-matter": {
