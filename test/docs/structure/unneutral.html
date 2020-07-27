@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <title>Simple, unneutral document</title>
+  </head>
+  <body>
+     <!--- fail test. text has 'Sanity', which is in blocklist. -->
+    <h1>Sanity check is required.</h1>
+    <p>
+      <!--- fail test. text has 'master', which is in blocklist. -->
+      Use master branch for publication.
+    </p>
+    <p>
+      <!--- pass test. 'webmaster' is not in blocklist. -->
+      Every major branch should be protected by webmaster.
+    </p>
+    <p>
+      <!--- pass test. Link text with 'master' but the same as href. -->
+      See how to use protected branch at <a href="https://github.com/master/usage">https://github.com/master/usage</a>
+    </p>
+    <p>
+      <!--- pass test. 'master' in link:href only, text is good. -->
+      And also get information <a href="https://github.com/master">here</a>.
+    </p> 
+    <p>
+      <!--- fail test. link text has 'master'. -->
+      If you have any questions, feel free to contact with our <a href="https://github.com/contact">web master</a>
+    </p>
+    <!--- fail test. text has 'whitelist', which is in blocklist. -->
+    <p>To be more neutral, we suggest use "allowlist" instead of "whitelist".</p>
+  </body>
+</html>

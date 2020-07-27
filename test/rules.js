@@ -283,6 +283,10 @@ var tests = {
         ,   { doc: "structure/canonical-missing.html", errors: ["structure.canonical.not-found"] }
         ,   { doc: "structure/canonical-href-missing.html", errors: ["structure.canonical.not-found"] }
         ]
+    ,   neutral: [
+            { doc: "structure/unneutral.html", warnings: ["structure.neutral.neutral", "structure.neutral.neutral", "structure.neutral.neutral", "structure.neutral.neutral"] }
+            , { doc: "structure/canonical.html", warnings: ["structure.neutral.neutral"] }
+        ]
     }
 ,   sotd:   {
         supersedable:  [
