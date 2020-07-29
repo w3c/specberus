@@ -1,0 +1,90 @@
+[
+  {
+    "term": [
+      "master"
+    ],
+    "variation": [
+      "masters"
+    ],
+    "alternatives": [
+      "main"
+    ]
+  },
+  {
+    "term": [
+      "slave"
+    ],
+    "variation": [
+      "slaves"
+    ],
+    "alternatives": [
+      "replica"
+    ]
+  },
+  {
+    "term": [
+      "whitelist"
+    ],
+    "variation": [
+      "whitelists"
+    ],
+    "alternatives": [
+      "allowlist"
+    ]
+  },
+  {
+    "term": [
+      "blacklist"
+    ],
+    "variation": [
+      "blacklists"
+    ],
+    "alternatives": [
+      "denylist"
+    ]
+  },
+  {
+    "term": [
+      "grandfather"
+    ],
+    "alternatives": [
+      "legacy"
+    ]
+  },
+  {
+    "term": [
+      "sanity"
+    ],
+    "alternatives": [
+      "coherence"
+    ]
+  },
+  {
+    "term": [
+      "dummy"
+    ],
+    "alternatives": [
+      "placeholder"
+    ]
+  },
+  {
+    "term": [
+      "he",
+      "her",
+      "him",
+      "hers"
+    ],
+    "alternatives": [
+      "they"
+    ]
+  },
+  {
+    "term": [
+      "his",
+      "hers"
+    ],
+    "alternatives": [
+      "theirs"
+    ]
+  }
+]
