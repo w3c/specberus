@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <title>Simple, unneutral document</title>
+  </head>
+  <body>
+    <p>
+      <!--- pass test. 'webmaster' is not in blocklist. -->
+      Every major branch should be protected by webmaster.
+    </p>
+    <p>
+      <!--- pass test. Link text with 'master' but the same as href. -->
+      See how to use protected branch at <a href="https://github.com/master/usage">https://github.com/master/usage</a>
+    </p>
+    <p>
+      <!--- pass test. 'master' in link:href only, text is good. -->
+      And also get information <a href="https://github.com/master">here</a>.
+    </p> 
+  </body>
+</html>
