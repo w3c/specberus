@@ -36,6 +36,7 @@ const app = express()
 // Middleware:
 app.use(morgan('combined'));
 app.use(compression());
+app.use('/badterms.json', require('cors')());
 app.use(express.static("public"));
 api.setUp(app);
 views.setUp(app);
