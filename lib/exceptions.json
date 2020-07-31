@@ -54,6 +54,16 @@
       "rule": "headers.h1-title"
     }
   ],
+  "^audiobooks$": [
+    {
+      "rule": "sotd.cr-end"
+    }
+  ],
+  "^epub-manifest$": [
+    {
+      "rule": "sotd.cr-end"
+    }
+  ],
   "^did-core$": [
     {
       "rule": "heuristic.date-format"
