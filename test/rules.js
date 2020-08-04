@@ -208,6 +208,10 @@ var tests = {
         ,   { doc: "headers/wg-note.html", config: { previousVersion: true, status: "NOTE" }, errors: ["headers.dl.previous-version"] }
         ,   { doc: "headers/wg-note.html", config: { status: "NOTE" } }
         ]
+    ,   "errata": [
+            { doc: "headers/simple.html", config: { longStatus: "Recommendation" } }
+        ,   { doc: "headers/simple-oxford.html", config: { longStatus: "Recommendation"}, errors: ["headers.errata.link-should-be-https"] }
+    ]
     ,   "h2-status":  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
         ,   { doc: "headers/h2-comma.html", config: { longStatus: "Working Draft" } }
