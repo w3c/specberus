@@ -381,7 +381,7 @@ var tests = {
         ]
     ,   implementation:  [
             { doc: "sotd/supersedable.html"}
-        ,   { doc: "sotd/pp-bad.html"}
+        ,   { doc: "sotd/pp-bad.html", errors: ["sotd.implementation.link-should-be-https"] }
         ,   { doc: "sotd/ml-bad.html", errors: ["sotd.implementation.unknown"] }
         ]
     ,   'ac-review':  [
