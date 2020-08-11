@@ -197,7 +197,7 @@ var tests = {
             { doc: "headers/simple.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
         ,   { doc: "headers/fails.html", errors: ["headers.dl.this-version", "headers.dl.latest-version"] }
         ,   { doc: "headers/fails.html", config: { previousVersion: true }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.previous-version"] }
-        ,   { doc: "headers/dl-order.html", errors: ["headers.dl.this-latest-order", "headers.dl.latest-previous-order", "headers.dl.cant-retrieve"], warnings: ["headers.dl.previous-not-needed"] }
+        ,   { doc: "headers/dl-order.html", errors: ["headers.dl.this-latest-order", "headers.dl.latest-previous-order", "headers.dl.cant-retrieve", "headers.dl.implelink-should-be-https", "headers.dl.editors-draft-should-be-https"], warnings: ["headers.dl.previous-not-needed"] }
         ,   { doc: "headers/dl-mismatch.html"
             , errors: ["headers.dl.this-link", "headers.dl.this-syntax", "headers.dl.latest-link", "headers.dl.latest-syntax", "headers.dl.previous-link", "headers.dl.previous-syntax"]
             , warnings: ["headers.dl.previous-not-needed"] }
@@ -208,6 +208,10 @@ var tests = {
         ,   { doc: "headers/wg-note.html", config: { previousVersion: true, status: "NOTE" }, errors: ["headers.dl.previous-version"] }
         ,   { doc: "headers/wg-note.html", config: { status: "NOTE" } }
         ]
+    ,   "errata": [
+            { doc: "headers/simple.html", config: { longStatus: "Recommendation" } }
+        ,   { doc: "headers/simple-oxford.html", config: { longStatus: "Recommendation"}, errors: ["headers.errata.link-should-be-https"] }
+    ]
     ,   "h2-status":  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
         ,   { doc: "headers/h2-comma.html", config: { longStatus: "Working Draft" } }
@@ -377,7 +381,7 @@ var tests = {
         ]
     ,   implementation:  [
             { doc: "sotd/supersedable.html"}
-        ,   { doc: "sotd/pp-bad.html"}
+        ,   { doc: "sotd/pp-bad.html", errors: ["sotd.implementation.link-should-be-https"] }
         ,   { doc: "sotd/ml-bad.html", errors: ["sotd.implementation.unknown"] }
         ]
     ,   'ac-review':  [
