@@ -96,7 +96,6 @@ In JavaScript, on [Node.js](http://nodejs.org/); with [Bootstrap](http://getboot
             "FPIG-NOTE" (identical)
         "SUBM"
         "MEM-SUBM"
-        "TEAM-SUBM"
         "CG-NOTE"
         "FPLC"
         "REC"
