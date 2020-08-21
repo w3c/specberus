@@ -296,8 +296,10 @@ var tests = {
         ]
     }
 ,   sotd:   {
-        "rec-addition":  [
-            { doc: "sotd/rec-addition.html" }
+        "rec-addition": [
+            { doc: "sotd/rec-addition.html" },
+            { doc: "sotd/rec-obsl.html", errors: ["sotd.rec-addition.no-addition", "sotd.rec-addition.no-correction"] },
+            { doc: "sotd/rec-rescind.html", errors: ["sotd.rec-addition.wrong-text", "sotd.rec-addition.wrong-text"]}
         ],
         supersedable:  [
             { doc: "headers/simple.html" }
