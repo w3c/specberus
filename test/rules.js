@@ -296,9 +296,10 @@ var tests = {
     }
 ,   sotd:   {
         "rec-addition": [
-            { doc: "sotd/rec-addition-2020.html" },
-            { doc: "sotd/rec-obsl.html", errors: ["sotd.rec-addition.no-addition", "sotd.rec-addition.no-correction"] },
-            { doc: "sotd/rec-rescind.html", errors: ["sotd.rec-addition.wrong-text", "sotd.rec-addition.wrong-text"]}
+            { doc: "sotd/rec-addition-2020.html" }
+        ,   { doc: "sotd/rec-obsl.html", errors: ["sotd.rec-addition.no-addition", "sotd.rec-addition.no-correction"] }
+        ,   { doc: "sotd/rec-rescind.html", errors: ["sotd.rec-addition.wrong-text", "sotd.rec-addition.wrong-text"] }
+        ,   { doc: "sotd/cr-end.html", errors: ["sotd.rec-addition.unnecessary-correction", "sotd.rec-addition.unnecessary-addition"]}
         ],
         supersedable:  [
             { doc: "headers/simple.html" }
