@@ -135,7 +135,6 @@ describe('Basics', function() {
         });
 
     });
-
 });
 
 var tests = {
@@ -297,7 +296,7 @@ var tests = {
     }
 ,   sotd:   {
         "rec-addition": [
-            { doc: "sotd/rec-addition.html" },
+            { doc: "sotd/rec-addition-2020.html" },
             { doc: "sotd/rec-obsl.html", errors: ["sotd.rec-addition.no-addition", "sotd.rec-addition.no-correction"] },
             { doc: "sotd/rec-rescind.html", errors: ["sotd.rec-addition.wrong-text", "sotd.rec-addition.wrong-text"]}
         ],
@@ -395,8 +394,8 @@ var tests = {
         ]
     ,   'process-document':  [
             { doc: "sotd/process2019.html" }
+    ,       { doc: "sotd/rec-addition-2020.html" }
     ,       { doc: "sotd/deprecated2017.html", errors: ["sotd.process-document.wrong-process", "sotd.process-document.not-found"]}
-    ,       { doc: "sotd/deprecated2018-allowed.html", warnings: ['sotd.process-document.deprecatedAllowed']}
     ,       { doc: "sotd/deprecated2018-not-allowed.html", errors: ["sotd.process-document.deprecated", "sotd.process-document.not-found"]}
     ,       { doc: "sotd/wrongprocess.html", errors: ["sotd.process-document.wrong-process", "sotd.process-document.not-found"]}
         ]
