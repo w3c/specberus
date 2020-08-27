@@ -301,6 +301,11 @@ var tests = {
         ,   { doc: "sotd/rec-rescind.html", errors: ["sotd.rec-addition.wrong-text", "sotd.rec-addition.wrong-text"] }
         ,   { doc: "sotd/cr-end.html", errors: ["sotd.rec-addition.unnecessary-correction", "sotd.rec-addition.unnecessary-addition"]}
         ]
+    ,   "rec-comment-end": [
+            { doc: "sotd/rec-addition-2020.html" }
+        ,   { doc: "sotd/rec-obsl.html", errors: ["sotd.rec-comment-end.not-found"] }
+        ,   { doc: "sotd/rec-rescind.html", warnings: ["sotd.rec-comment-end.multi-found"] }
+        ]
     ,   "rec-intro": [
             { doc: "sotd/rec-addition-2020.html" }
         ,   { doc: "sotd/rec-obsl.html", errors: ["sotd.rec-intro.not-found"] }
