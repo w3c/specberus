@@ -216,7 +216,7 @@ var tests = {
     ,   "errata": [
             { doc: "headers/simple.html", config: { longStatus: "Recommendation" } }
         ,   { doc: "headers/simple-oxford.html", config: { longStatus: "Recommendation"}, errors: ["headers.errata.link-should-be-https"] }
-    ]
+        ]
     ,   "h2-status":  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
         ,   { doc: "headers/h2-comma.html", config: { longStatus: "Working Draft" } }
