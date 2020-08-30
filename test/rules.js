@@ -320,7 +320,12 @@ var tests = {
             { doc: "sotd/cr-end.html", config: { status: "CR", crType: "Snapshot"}}
         ,   { doc: "sotd/cr-end-27days.html", config: { status: "CRD", crType: "Draft" }}
         ]
-    , supersedable: [
+    ,   "cr-stability": [
+            { doc: "sotd/cr-end.html"}
+        ,   { doc: "sotd/cr-end-27days.html", errors: [ 'sotd.cr-stability.two-found' ] }
+        ,   { doc: "sotd/cr-end-multiple.html", errors: [ 'sotd.cr-stability.not-found' ] }
+        ]
+    ,   supersedable: [
             { doc: "headers/simple.html" }
         ,   { doc: "sotd/supersedable.html", errors: ["sotd.supersedable.no-sotd-intro", "sotd.supersedable.no-sotd-tr"] }
         ]

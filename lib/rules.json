@@ -1013,6 +1013,7 @@
                                 "must",
                                 ""
                             ],
+                            "crStability": "W3C Candidate Recommendation Draft <span class=\"rfc2119\">must</span> include 1 of 2 paragraphs in \"Status Of This Document\": <pre xml:space=\"preserve\" style=\"white-space: normal;\">&lt;p&gt;This document may be updated, replaced or obsoleted at any time. It is inappropriate to cite this document as other than work in progress.&lt;/p&gt;</pre><pre xml:space=\"preserve\" style=\"white-space: normal;\">&lt;p&gt;This document is maintained and updated at any time. Some parts of this document are work in progress.&lt;/p&gt;</pre>",
                             "stability": [
                                 "a Candidate Recommendation",
                                 ""
