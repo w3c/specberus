@@ -310,7 +310,11 @@ var tests = {
             { doc: "sotd/rec-addition-2020.html" }
         ,   { doc: "sotd/rec-obsl.html", errors: ["sotd.rec-intro.not-found"] }
         ]
-    ,   supersedable: [
+    ,   "cr-intro": [
+            { doc: "sotd/cr-end.html", config: { status: "CR", crType: "Snapshot"}}
+        ,   { doc: "sotd/cr-end-27days.html", config: { status: "CRD", crType: "Draft" }}
+        ]
+    , supersedable: [
             { doc: "headers/simple.html" }
         ,   { doc: "sotd/supersedable.html", errors: ["sotd.supersedable.no-sotd-intro", "sotd.supersedable.no-sotd-tr"] }
         ]
