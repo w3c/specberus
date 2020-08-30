@@ -192,6 +192,12 @@ var tests = {
         ,   { doc: "headers/fails.html", errors: ["headers.h1-title.title"] }
         ,   { doc: "headers/h1-title.html", errors: ["headers.h1-title.title"] }
         ]
+    ,   'h3-cr-type': [
+            { doc: "sotd/cr-end.html", config: {crType: "Snapshot"}}
+        ,   { doc: "sotd/cr-end-27days.html", config: { crType: "Draft" } }
+        ,   { doc: "sotd/cr-end-27days.html", config: { crType: "Snapshot" }, errors: ["headers.h3-cr-type.not-match"] }
+        ,   { doc: "sotd/cr-end-multiple.html", config: {crType: "Snapshot" }, errors: ["headers.h3-cr-type.not-found"]}
+        ]
     ,   dl:  [
             { doc: "headers/simple.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
         ,   { doc: "headers/fails.html", errors: ["headers.dl.this-version", "headers.dl.latest-version"] }
