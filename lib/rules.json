@@ -953,7 +953,7 @@
                         "name": "2. Document Metadata",
                         "rules": {
                             "goodStylesheet": [
-                                "CR"
+                                "CRD"
                             ],
                             "lastStylesheet": true,
                             "viewport": true,
