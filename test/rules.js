@@ -200,16 +200,16 @@ var tests = {
         ]
     ,   dl:  [
             { doc: "headers/simple.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
-        ,   { doc: "headers/fails.html", errors: ["headers.dl.this-version", "headers.dl.latest-version"] }
-        ,   { doc: "headers/fails.html", config: { previousVersion: true }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.previous-version"] }
+        ,   { doc: "headers/fails.html", errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.implelink-not-found"] }
+        ,   { doc: "headers/fails.html", config: { previousVersion: true }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.previous-version", "headers.dl.implelink-not-found"] }
         ,   { doc: "headers/dl-order.html", errors: ["headers.dl.this-latest-order", "headers.dl.latest-previous-order", "headers.dl.cant-retrieve", "headers.dl.implelink-should-be-https", "headers.dl.editors-draft-should-be-https"], warnings: ["headers.dl.previous-not-needed"] }
         ,   { doc: "headers/dl-mismatch.html"
-            , errors: ["headers.dl.this-link", "headers.dl.this-syntax", "headers.dl.latest-link", "headers.dl.latest-syntax", "headers.dl.previous-link", "headers.dl.previous-syntax"]
+            , errors: ["headers.dl.this-link", "headers.dl.this-syntax", "headers.dl.latest-link", "headers.dl.latest-syntax", "headers.dl.previous-link", "headers.dl.previous-syntax", "headers.dl.implelink-not-found"]
             , warnings: ["headers.dl.previous-not-needed"] }
-        ,   { doc: "headers/wrong-urls.html", errors: ["headers.dl.previous-syntax", "headers.dl.cant-retrieve"], config: { previousVersion: true, status: "WD" } }
-        ,   { doc: "headers/dl-trailing-whitespace.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
-        ,   { doc: "headers/dl-untrimmed-text.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
-        ,   { doc: "headers/shortnameChange.html", config: { previousVersion: true, status: "WD" }, warnings: ["headers.dl.this-previous-shortname"] }
+        ,   { doc: "headers/wrong-urls.html", errors: ["headers.dl.previous-syntax", "headers.dl.cant-retrieve", "headers.dl.implelink-not-found"], config: { previousVersion: true, status: "WD" } }
+        ,   { doc: "headers/dl-trailing-whitespace.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve", "headers.dl.implelink-not-found"] }
+        ,   { doc: "headers/dl-untrimmed-text.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve", "headers.dl.implelink-not-found"] }
+        ,   { doc: "headers/shortnameChange.html", config: { previousVersion: true, status: "WD" }, warnings: ["headers.dl.this-previous-shortname", "headers.dl.implelink-not-found"] }
         ,   { doc: "headers/wg-note.html", config: { previousVersion: true, status: "NOTE" }, errors: ["headers.dl.previous-version"] }
         ,   { doc: "headers/wg-note.html", config: { status: "NOTE" } }
         ]
@@ -407,11 +407,6 @@ var tests = {
         ,   { doc: "online/IG-NOTE-media-timed-events.html"
               , config: { longStatus: "Interest Group Note" , stabilityWarning: true }
         }        
-        ]
-    ,   implementation:  [
-            { doc: "sotd/supersedable.html"}
-        ,   { doc: "sotd/pp-bad.html", errors: ["sotd.implementation.link-should-be-https"] }
-        ,   { doc: "sotd/ml-bad.html", errors: ["sotd.implementation.unknown"] }
         ]
     ,   'ac-review':  [
             { doc: "sotd/supersedable.html"}
