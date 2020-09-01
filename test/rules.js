@@ -363,7 +363,7 @@ var tests = {
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
-        ,   { doc: "online/IG-NOTE-media-timed-events.html", errors: 
+        ,   { doc: "online/IG-NOTE-media-timed-events.html", errors:
         ["sotd.charter-disclosure.wrong-link"] }
         ,   { doc: "online/IG-NOTE-media-timed-events.html", errors: ["sotd.charter-disclosure.wrong-link"] }
         ,   { doc: "headers/ig-note2.html", errors: ["sotd.charter-disclosure.no-group"] }
@@ -406,7 +406,7 @@ var tests = {
         }
         ,   { doc: "online/IG-NOTE-media-timed-events.html"
               , config: { longStatus: "Interest Group Note" , stabilityWarning: true }
-        }        
+        }
         ]
     ,   'ac-review':  [
             { doc: "sotd/supersedable.html"}
@@ -415,8 +415,7 @@ var tests = {
     ,   'process-document':  [
             { doc: "sotd/process2019.html" }
     ,       { doc: "sotd/rec-addition-2020.html" }
-    ,       { doc: "sotd/deprecated2017.html", errors: ["sotd.process-document.wrong-process", "sotd.process-document.not-found"]}
-    ,       { doc: "sotd/deprecated2018-not-allowed.html", errors: ["sotd.process-document.deprecated", "sotd.process-document.not-found"]}
+    ,       { doc: "sotd/process2019-not-allowed.html", errors: ["sotd.process-document.wrong-process", "sotd.process-document.not-found"]}
     ,       { doc: "sotd/wrongprocess.html", errors: ["sotd.process-document.wrong-process", "sotd.process-document.not-found"]}
         ]
     ,   'group-homepage':  [
@@ -446,16 +445,16 @@ var tests = {
     ,       { doc: "sotd/cr-end-nodate.html", config: { status: "CR" }, errors: ["sotd.cr-end.not-found"] }
         ]
     }
-    , heuristic: {	
-        'date-format':  [	
-            { doc: "heuristic/dates.html" }	
-        ,   { doc: "heuristic/bad-dates.html", errors: ["heuristic.date-format.wrong", "heuristic.date-format.wrong", "heuristic.date-format.wrong"] }	
-        ,   { doc: "heuristic/dated-url.html" }	
-        ]	
-    ,   'shortname':  [	
-            { doc: "headers/simple.html" }	
-        ,   { doc: "headers/diff-latest-version.html" }	
-    ]	
+    , heuristic: {
+        'date-format':  [
+            { doc: "heuristic/dates.html" }
+        ,   { doc: "heuristic/bad-dates.html", errors: ["heuristic.date-format.wrong", "heuristic.date-format.wrong", "heuristic.date-format.wrong"] }
+        ,   { doc: "heuristic/dated-url.html" }
+        ]
+    ,   'shortname':  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "headers/diff-latest-version.html" }
+    ]
     }
 ,   validation: validation
 };
