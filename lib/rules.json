@@ -856,7 +856,6 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "h3CrType": true,
                             "versionNumber": [
                                 ""
                             ],
@@ -864,6 +863,7 @@
                                 "Candidate Recommendation",
                                 ""
                             ],
+                            "h3CrType": true,
                             "docIDFormat": true,
                             "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">may</span> appear. Ask the Comm Team if you have questions.",
                             "docIDThisVersion": [
@@ -966,7 +966,6 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "h3CrType": true,
                             "versionNumber": [
                                 ""
                             ],
@@ -974,6 +973,7 @@
                                 "Candidate Recommendation",
                                 ""
                             ],
+                            "h3CrType": true,
                             "docIDFormat": true,
                             "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">may</span> appear. Ask the Comm Team if you have questions.",
                             "docIDThisVersion": [
