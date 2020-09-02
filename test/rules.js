@@ -212,6 +212,7 @@ var tests = {
         ,   { doc: "headers/shortnameChange.html", config: { previousVersion: true, status: "WD" }, warnings: ["headers.dl.this-previous-shortname", "headers.dl.implelink-not-found"] }
         ,   { doc: "headers/wg-note.html", config: { previousVersion: true, status: "NOTE" }, errors: ["headers.dl.previous-version"] }
         ,   { doc: "headers/wg-note.html", config: { status: "NOTE" } }
+        ,   { doc: "headers/seriesShortlink.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
         ]
     ,   "errata": [
             { doc: "headers/simple.html", config: { longStatus: "Recommendation" } }
