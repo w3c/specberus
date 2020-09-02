@@ -909,7 +909,7 @@
                             ],
                             "patPolReq": true,
                             "knownDisclosureNumber": true,
-                            "crIntro": "W3C Candidate Recommendation Snapshot <span class=\"rfc2119\">must</span> include 2 paragraphs in \"Status Of This Document\": <pre xml:space=\"preserve\" style=\"white-space: normal;\">&lt;p&gt;Publication as a Candidate Recommendation does not imply endorsement by the W3C Membership. A Candidate Recommendation Snapshot has received wide review and is intended to gather implementation experience.&lt;/p&gt;</pre><pre xml:space=\"preserve\" style=\"white-space: normal;\">&lt;p&gt;This document was published by the (.)+ Working Group as a Candidate Recommendation Snapshot.&lt;/p&gt;</pre>",
+                            "publish": "W3C Candidate Recommendation Snapshot <span class=\"rfc2119\">must</span> include publish information in \"Status Of This Document\":<blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Candidate Recommendation Snapshot.</blockquote> <p> <span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Candidate Recommendation Snapshot.&lt;/p&gt;</code> </p>",
                             "whichProcess": true
                         }
                     },
@@ -1020,7 +1020,7 @@
                             ],
                             "patPolReq": true,
                             "knownDisclosureNumber": true,
-                            "crIntro": "W3C Candidate Recommendation Draft <span class=\"rfc2119\">must</span> include 2 paragraphs in \"Status Of This Document\": <pre xml:space=\"preserve\" style=\"white-space: normal;\">&lt;p&gt;Publication as a Candidate Recommendation does not imply endorsement by the W3C Membership. A Candidate Recommendation Draft integrates changes from the previous Candidate Recommendation that the Working Group intends to include in a subsequent Candidate Recommendation Snapshot.&lt;/p&gt;</pre><pre xml:space=\"preserve\" style=\"white-space: normal;\">&lt;p&gt;This document was published by the (.)+ Working Group as a Candidate Recommendation Draft.&lt;/p&gt;</pre>",
+                            "publish": "W3C Candidate Recommendation Draft <span class=\"rfc2119\">must</span> include publish information in \"Status Of This Document\":<blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Candidate Recommendation Draft.</blockquote> <p> <span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Candidate Recommendation Draft.&lt;/p&gt;</code> </p>",
                             "whichProcess": true
                         }
                     },
