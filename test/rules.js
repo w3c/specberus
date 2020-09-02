@@ -313,10 +313,6 @@ var tests = {
         ,   { doc: "sotd/rec-obsl.html", errors: ["sotd.rec-comment-end.not-found"] }
         ,   { doc: "sotd/rec-rescind.html", warnings: ["sotd.rec-comment-end.multi-found"] }
         ]
-    ,   "rec-intro": [
-            { doc: "sotd/rec-addition-2020.html" }
-        ,   { doc: "sotd/rec-obsl.html", errors: ["sotd.rec-intro.not-found"] }
-        ]
     ,   "cr-intro": [
             { doc: "sotd/cr-end.html", config: { status: "CR", crType: "Snapshot"}}
         ,   { doc: "sotd/cr-end-27days.html", config: { status: "CRD", crType: "Draft" }}
@@ -391,6 +387,8 @@ var tests = {
               , config: { status: "CR", longStatus: "Candidate Recommendation", stabilityWarning: true }
               , errors: ["sotd.stability.no-stability"]
         }
+        ,   { doc: "sotd/rec-addition-2020.html", config: { "stabilityWarning": "REC" } }
+        ,   { doc: "sotd/rec-obsl.html", config: { "stabilityWarning": "REC" }, errors: ["sotd.stability.no-rec-review"] }
         ,   { doc: "online/WG-NOTE-lpf.html"
               , config: { longStatus: "Working Group Note" , stabilityWarning: true }
         }
