@@ -17,6 +17,7 @@
     "jsdom": "16.4.0",
     "metaviewport-parser": "0.2.0",
     "morgan": "1.10.0",
+    "node-w3capi": "1.8.0",
     "promise": "8.1.0",
     "request": "2.88.2",
     "socket.io": "2.3.0",

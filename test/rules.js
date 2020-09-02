@@ -340,27 +340,19 @@ var tests = {
         ,   { doc: "headers/simple.html", config: { status: "REC" }, errors: ["sotd.mailing-list.no-repo"] }
         ]
     ,   pp:  [
-            { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true } }
-        ,   { doc: "headers/simple.html", config: { recTrackStatus: true }, warnings: ["sotd.pp.deprecatedAllowed"] }
-        ,   { doc: "sotd/pp-bad.html"
-            , errors: ["sotd.pp.no-aug1", "sotd.pp.no-disclosures", "sotd.pp.no-claims", "sotd.pp.no-section6"]
-            , config: { recTrackStatus: true }
-            }
+            { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp", "sotd.pp.no-claims", "sotd.pp.no-section6"] }
+        ,   { doc: "headers/simple.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
+        ,   { doc: "sotd/pp-bad.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "sotd/pp-cpp2002.html", options: { patentPolicy: "pp2002" } }
-        ,   { doc: "sotd/joint-publication.html", config: { recTrackStatus: true }, warnings: ["sotd.pp.joint-publication", "sotd.pp.deprecatedAllowed"] }
-        ,   { doc: "sotd/joint-publication-tag.html", config: { recTrackStatus: true }, warnings: ["sotd.pp.joint-publication", "sotd.pp.deprecatedAllowed"] }
-        ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true }
-              , errors: ["sotd.pp.no-pp"]
-            }
+        ,   { doc: "sotd/joint-publication.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"], warnings: ["sotd.pp.joint-publication"] }
+        ,   { doc: "sotd/joint-publication-tag.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"], warnings: ["sotd.pp.joint-publication"] }
+        ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note" } }
         ,   { doc: "headers/wg-note1.html", config: { longStatus: "Working Group Note" } }
         ,   { doc: "headers/wg-note2.html", config: { longStatus: "Working Group Note" } }
         ,   { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true, amended: true }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, amended: true } }
-        ,   { doc: "online/WG-NOTE-lpf.html", config: { longStatus: "Working Group Note"} }
-        ,   { doc: "online/WD-screen-orientation.html", config: { longStatus: "Working Draft", recTrackStatus: true} }
-        ,   { doc: "online/IG-NOTE-media-timed-events.html", config: { longStatus: "Interest Group Note"}, errors: ["sotd.pp.no-pp"] }
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
