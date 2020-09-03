@@ -329,11 +329,11 @@ var tests = {
     ,   "mailing-list":  [
             { doc: "headers/simple.html" }
         ,   { doc: "sotd/ml-bad.html"
-            , errors: ["sotd.mailing-list.no-list", "sotd.mailing-list.no-arch"]
-            , warnings: ["sotd.mailing-list.no-sub"]
+            , errors: ["headers.mailing-list.no-list", "headers.mailing-list.no-arch"]
+            , warnings: ["headers.mailing-list.no-sub"]
             }
         ,   { doc: "sotd/ml-missing.html" }
-        ,   { doc: "headers/simple.html", config: { status: "REC" }, errors: ["sotd.mailing-list.no-repo"] }
+        ,   { doc: "headers/simple.html", config: { status: "REC" }, errors: ["headers.mailing-list.no-repo"] }
         ]
     ,   pp:  [
             { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp", "sotd.pp.no-claims", "sotd.pp.no-section6"] }
