@@ -156,6 +156,8 @@ goals of this method).
 * `prReviewsDue`: The review date for PRs.
 * `implementationReport`: Implementation report link for CRs, PRs and RECs.
 * `errata`: The errata link of the document.
+* `substantiveChanges`: Whether the document is a REC and has proposed changes
+* `newFeatures`: Whether the document is a REC and has proposed additions
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
@@ -291,7 +293,8 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
     * `CR`
       * `CR-AMENDED` (identical)
       * `CR-Echidna`
-    * `FPCR`
+    * `CRD`
+      * `CRD-Echidna`
     * `REC`
       * `REC-AMENDED` (identical)
     * `REC-OBSOLETE`
