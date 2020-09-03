@@ -1433,6 +1433,8 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
+                            "publish": "W3C Recommendation <span class=\"rfc2119\">must</span> include publish information in \"Status Of This Document\":<blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation.</blockquote> <p> <span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation.&lt;/p&gt;</code> </p>",
+                            "recChanges": "W3C Recommendation with changes<span class=\"rfc2119\">must</span> indicate type of changes and link to https://www.w3.org/2020/Process-20200915/#proposed-changes.",
                             "mailingListName": "It <span class=\"rfc2119\">must</span> include a link to a GitHub repository issues list (of the form <code>https://github.com/&lt;USER_OR_ORG&gt;/&lt;REPO_NAME&gt;/issues[/&hellip;]</code>).",
                             "recRelation": "It <span class=\"rfc2119\">must</span> indicate its relationship to previous related Recommendations (e.g., an indication that a Recommendation supersedes, obsoletes, or subsumes another, or that a Recommendation is an editorial revision) and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number. The document thus links to two important resources: the previous edition of the Recommendation via the status section, and the previous draft (the Proposed Recommendation) via the \"Previous version\" link.",
                             "customParagraph": true,
