@@ -214,6 +214,15 @@ var tests = {
         ,   { doc: "headers/wg-note.html", config: { status: "NOTE" } }
         ,   { doc: "headers/seriesShortlink.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
         ]
+    ,   "mailing-list":  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "sotd/ml-bad.html"
+            , errors: ["headers.mailing-list.no-list", "headers.mailing-list.no-arch"]
+            , warnings: ["headers.mailing-list.no-sub"]
+            }
+        ,   { doc: "sotd/ml-missing.html" }
+        ,   { doc: "headers/simple.html", config: { status: "REC" }, errors: ["headers.mailing-list.no-repo"] }
+        ]
     ,   "errata": [
             { doc: "headers/simple.html", config: { longStatus: "Recommendation" } }
         ,   { doc: "headers/simple-oxford.html", config: { longStatus: "Recommendation"}, errors: ["headers.errata.link-should-be-https"] }
@@ -326,15 +335,6 @@ var tests = {
             { doc: "headers/simple.html" }
         ,   { doc: "sotd/supersedable.html", errors: ["sotd.supersedable.no-sotd-intro", "sotd.supersedable.no-sotd-tr"] }
         ]
-    // ,   "mailing-list":  [
-    //         { doc: "headers/simple.html" }
-    //     ,   { doc: "sotd/ml-bad.html"
-    //         , errors: ["headers.mailing-list.no-list", "headers.mailing-list.no-arch"]
-    //         , warnings: ["headers.mailing-list.no-sub"]
-    //         }
-    //     ,   { doc: "sotd/ml-missing.html" }
-    //     ,   { doc: "headers/simple.html", config: { status: "REC" }, errors: ["headers.mailing-list.no-repo"] }
-    //     ]
     ,   pp:  [
             { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp", "sotd.pp.no-claims", "sotd.pp.no-section6"] }
         ,   { doc: "headers/simple.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
