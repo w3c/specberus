@@ -208,7 +208,7 @@ jQuery.extend({
                             , "noRecTrack"      : !data.metadata.rectrack || false
                             , "informativeOnly" : data.metadata.informative || false
                             , "echidnaReady"    : false
-                            , "patentPolicy"    : "pp2004"
+                            , "patentPolicy"    : "pp2020"
                           };
             validate(options);
             var newurl = document.URL.split('?')[0] + "?" + $.param(options);
