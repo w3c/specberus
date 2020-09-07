@@ -431,7 +431,7 @@ var tests = {
             { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR" }}
     ,       { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR", editorial: true }, warnings: ["sotd.cr-end.editorial"]}
     ,       { doc: "sotd/cr-end.html", config: { status: "CR"}}
-    ,       { doc: "sotd/cr-end-27days.html", config: { status: "CR" }, errors: ["sotd.cr-end.found-not-valid"] }
+    ,       { doc: "sotd/cr-end-27days.html", config: { status: "CR" }, errors: ["sotd.cr-end.not-found"] }
     ,       { doc: "sotd/cr-end-multiple.html", config: { status: "CR" }, warnings: ["sotd.cr-end.multiple-found"] }
     ,       { doc: "sotd/cr-end-nodate.html", config: { status: "CR" }, errors: ["sotd.cr-end.not-found"] }
         ]
