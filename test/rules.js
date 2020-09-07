@@ -343,12 +343,13 @@ var tests = {
         ,   { doc: "sotd/joint-publication.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"], warnings: ["sotd.pp.joint-publication"] }
         ,   { doc: "sotd/joint-publication-tag.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"], warnings: ["sotd.pp.joint-publication"] }
         ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
-        ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note" } }
-        ,   { doc: "headers/wg-note1.html", config: { longStatus: "Working Group Note" } }
-        ,   { doc: "headers/wg-note2.html", config: { longStatus: "Working Group Note" } }
-        ,   { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true, amended: true }, errors: ["sotd.pp.no-pp"] }
-        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
-        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, amended: true } }
+        ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
+        ,   { doc: "headers/wg-note1.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
+        ,   { doc: "headers/wg-note2.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
+        ,   { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true, patentPolicy: "pp2004" , amended: true }, errors: ["sotd.pp.no-pp"] }
+        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"] }
+        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, patentPolicy: "pp2004" , amended: true } }
+        ,   { doc: "sotd/pp-20200915.html", config: { recTrackStatus: true, patentPolicy: "pp2020" } }
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
