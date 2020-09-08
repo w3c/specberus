@@ -398,6 +398,10 @@ var tests = {
             }
             , errors: ["sotd.stability.no-cr-review"]
         }
+        , { doc: "sotd/cr-end-multiple.html"
+            , config: { "crType": "Snapshot", "stabilityWarning": true, longStatus: "Candidate Recommendation" }
+            , errors: ["sotd.stability.wrong-cr-review-link"]
+        }
         ,   { doc: "online/WG-NOTE-lpf.html"
               , config: { longStatus: "Working Group Note" , stabilityWarning: true }
         }
