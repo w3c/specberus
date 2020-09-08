@@ -390,6 +390,14 @@ var tests = {
         }
         ,   { doc: "sotd/rec-addition-2020.html", config: { "stabilityWarning": "REC" } }
         ,   { doc: "sotd/rec-obsl.html", config: { "stabilityWarning": "REC" }, errors: ["sotd.stability.no-rec-review"] }
+        ,   { doc: "sotd/cr-end-27days.html"
+            , config: {
+                    "crType": "Snapshot"
+                ,   "stabilityWarning": true
+                ,   longStatus: "Candidate Recommendation"
+            }
+            , errors: ["sotd.stability.no-cr-review"]
+        }
         ,   { doc: "online/WG-NOTE-lpf.html"
               , config: { longStatus: "Working Group Note" , stabilityWarning: true }
         }
