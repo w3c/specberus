@@ -324,7 +324,16 @@ var tests = {
         ]
     ,   "publish": [
             { doc: "sotd/cr-end.html", config: { status: "CR", crType: "Snapshot"}}
-        ,   { doc: "sotd/cr-end-27days.html", config: { status: "CRD", crType: "Draft" }}
+        ,   { doc: "sotd/cr-end-27days.html", config: { status: "CRD", crType: "Draft" } }
+        ,   { doc: "sotd/cr-end.html", config: { status: "CR", crType: "Draft" }, errors: ["sotd.publish.not-found"] }
+        ,   { doc: "sotd/rec-obsl.html", config: { status: "REC", longStatus: "Recommendation" } }
+        ,   { doc: "sotd/rec-rescind.html", config: { status: "REC", longStatus: "Recommendation" }, errors: ["sotd.publish.url-not-match"] }
+            , {doc: "sotd/rec-superseded.html", config: { status: "REC", longStatus: "Recommendation"}, errors: ["sotd.publish.url-text-not-found"]}
+        ]
+    ,   "new-features": [
+            { doc: "sotd/rec-addition-2020.html", config: { status: "REC" } }
+        ,   { doc: "sotd/rec-addition-2020.html", config: { status: "PR" }, warnings: ["sotd.new-features.no-warning"] }
+        ,   { doc: "sotd/cr-end-nodate.html", config: { status: "REC"}, errors: ["sotd.new-features.no-link"] }
         ]
     ,   "cr-stability": [
             { doc: "sotd/cr-end.html"}
@@ -446,7 +455,7 @@ var tests = {
     ,       { doc: "sotd/cr-end.html", config: { status: "CR"}}
     ,       { doc: "sotd/cr-end-27days.html", config: { status: "CR" }, errors: ["sotd.cr-end.not-found"] }
     ,       { doc: "sotd/cr-end-multiple.html", config: { status: "CR" }, warnings: ["sotd.cr-end.multiple-found"] }
-    ,       { doc: "sotd/cr-end-nodate.html", config: { status: "CR" }, errors: ["sotd.cr-end.not-found"] }
+    ,       { doc: "sotd/cr-end-nodate.html", config: { status: "CR" }, errors: ["sotd.cr-end.found-not-valid"] }
         ]
     }
     , heuristic: {
