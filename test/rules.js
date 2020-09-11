@@ -218,7 +218,6 @@ var tests = {
             { doc: "headers/simple.html" }
         ,   { doc: "sotd/ml-bad.html"
             , errors: ["headers.mailing-list.no-list", "headers.mailing-list.no-arch"]
-            , warnings: ["headers.mailing-list.no-sub"]
             }
         ,   { doc: "sotd/ml-missing.html" }
         ,   { doc: "headers/simple.html", config: { status: "REC" }, errors: ["headers.mailing-list.no-repo"] }
