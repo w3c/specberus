@@ -135,7 +135,6 @@ describe('Basics', function() {
         });
 
     });
-
 });
 
 var tests = {
@@ -193,13 +192,19 @@ var tests = {
         ,   { doc: "headers/fails.html", errors: ["headers.h1-title.title"] }
         ,   { doc: "headers/h1-title.html", errors: ["headers.h1-title.title"] }
         ]
+    ,   'h3-cr-type': [
+            { doc: "sotd/cr-end.html", config: {crType: "Snapshot"}}
+        ,   { doc: "sotd/cr-end-27days.html", config: { crType: "Draft" } }
+        ,   { doc: "sotd/cr-end-27days.html", config: { crType: "Snapshot" }, errors: ["headers.h3-cr-type.not-match"] }
+        ,   { doc: "sotd/cr-end-multiple.html", config: {crType: "Snapshot" }, errors: ["headers.h3-cr-type.not-found"]}
+        ]
     ,   dl:  [
             { doc: "headers/simple.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
-        ,   { doc: "headers/fails.html", errors: ["headers.dl.this-version", "headers.dl.latest-version"] }
-        ,   { doc: "headers/fails.html", config: { previousVersion: true }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.previous-version"] }
+        ,   { doc: "headers/fails.html", config: {status: "REC" }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.implelink-not-found"] }
+        ,   { doc: "headers/fails.html", config: {status: "REC", previousVersion: true }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.previous-version", "headers.dl.implelink-not-found"] }
         ,   { doc: "headers/dl-order.html", errors: ["headers.dl.this-latest-order", "headers.dl.latest-previous-order", "headers.dl.cant-retrieve", "headers.dl.implelink-should-be-https", "headers.dl.editors-draft-should-be-https"], warnings: ["headers.dl.previous-not-needed"] }
-        ,   { doc: "headers/dl-mismatch.html"
-            , errors: ["headers.dl.this-link", "headers.dl.this-syntax", "headers.dl.latest-link", "headers.dl.latest-syntax", "headers.dl.previous-link", "headers.dl.previous-syntax"]
+        ,   { doc: "headers/dl-mismatch.html", config: { status: "REC" }
+            , errors: ["headers.dl.this-link", "headers.dl.this-syntax", "headers.dl.latest-link", "headers.dl.latest-syntax", "headers.dl.previous-link", "headers.dl.previous-syntax", "headers.dl.implelink-not-found"]
             , warnings: ["headers.dl.previous-not-needed"] }
         ,   { doc: "headers/wrong-urls.html", errors: ["headers.dl.previous-syntax", "headers.dl.cant-retrieve"], config: { previousVersion: true, status: "WD" } }
         ,   { doc: "headers/dl-trailing-whitespace.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
@@ -207,11 +212,20 @@ var tests = {
         ,   { doc: "headers/shortnameChange.html", config: { previousVersion: true, status: "WD" }, warnings: ["headers.dl.this-previous-shortname"] }
         ,   { doc: "headers/wg-note.html", config: { previousVersion: true, status: "NOTE" }, errors: ["headers.dl.previous-version"] }
         ,   { doc: "headers/wg-note.html", config: { status: "NOTE" } }
+        ,   { doc: "headers/seriesShortlink.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
+        ]
+    ,   "mailing-list":  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "sotd/ml-bad.html"
+            , errors: ["headers.mailing-list.no-list", "headers.mailing-list.no-arch"]
+            }
+        ,   { doc: "sotd/ml-missing.html" }
+        ,   { doc: "headers/simple.html", config: { status: "REC" }, errors: ["headers.mailing-list.no-repo"] }
         ]
     ,   "errata": [
             { doc: "headers/simple.html", config: { longStatus: "Recommendation" } }
         ,   { doc: "headers/simple-oxford.html", config: { longStatus: "Recommendation"}, errors: ["headers.errata.link-should-be-https"] }
-    ]
+        ]
     ,   "h2-status":  [
             { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
         ,   { doc: "headers/h2-comma.html", config: { longStatus: "Working Draft" } }
@@ -296,45 +310,58 @@ var tests = {
         ]
     }
 ,   sotd:   {
-        supersedable:  [
+        "rec-addition": [
+            { doc: "sotd/rec-addition-2020.html" }
+        ,   { doc: "sotd/rec-obsl.html", errors: ["sotd.rec-addition.no-addition", "sotd.rec-addition.no-correction"] }
+        ,   { doc: "sotd/rec-rescind.html", errors: ["sotd.rec-addition.wrong-text", "sotd.rec-addition.wrong-text"] }
+        ,   { doc: "sotd/cr-end.html", errors: ["sotd.rec-addition.unnecessary-correction", "sotd.rec-addition.unnecessary-addition"]}
+        ]
+    ,   "rec-comment-end": [
+            { doc: "sotd/rec-addition-2020.html" }
+        ,   { doc: "sotd/rec-obsl.html", errors: ["sotd.rec-comment-end.not-found"] }
+        ,   { doc: "sotd/rec-rescind.html", warnings: ["sotd.rec-comment-end.multi-found"] }
+        ]
+    ,   "publish": [
+            { doc: "sotd/cr-end.html", config: { status: "CR", crType: "Snapshot"}}
+        ,   { doc: "sotd/cr-end-27days.html", config: { status: "CRD", crType: "Draft" } }
+        ,   { doc: "sotd/cr-end.html", config: { status: "CR", crType: "Draft" }, errors: ["sotd.publish.not-found"] }
+        ,   { doc: "sotd/rec-obsl.html", config: { status: "REC", longStatus: "Recommendation" } }
+        ,   { doc: "sotd/rec-rescind.html", config: { status: "REC", longStatus: "Recommendation" }, errors: ["sotd.publish.url-not-match"] }
+            , {doc: "sotd/rec-superseded.html", config: { status: "REC", longStatus: "Recommendation"}, errors: ["sotd.publish.url-text-not-found"]}
+        ]
+    ,   "new-features": [
+            { doc: "sotd/rec-addition-2020.html", config: { status: "REC" } }
+        ,   { doc: "sotd/rec-addition-2020.html", config: { status: "PR" }, warnings: ["sotd.new-features.no-warning"] }
+        ,   { doc: "sotd/cr-end-nodate.html", config: { status: "REC"}, errors: ["sotd.new-features.no-link"] }
+        ]
+    ,   "cr-stability": [
+            { doc: "sotd/cr-end.html"}
+        ,   { doc: "sotd/cr-end-27days.html", errors: [ 'sotd.cr-stability.two-found' ] }
+        ,   { doc: "sotd/cr-end-multiple.html", errors: [ 'sotd.cr-stability.not-found' ] }
+        ]
+    ,   supersedable: [
             { doc: "headers/simple.html" }
         ,   { doc: "sotd/supersedable.html", errors: ["sotd.supersedable.no-sotd-intro", "sotd.supersedable.no-sotd-tr"] }
         ]
-    ,   "mailing-list":  [
-            { doc: "headers/simple.html" }
-        ,   { doc: "sotd/ml-bad.html"
-            , errors: ["sotd.mailing-list.no-list", "sotd.mailing-list.no-arch"]
-            , warnings: ["sotd.mailing-list.no-sub"]
-            }
-        ,   { doc: "sotd/ml-missing.html" }
-        ,   { doc: "headers/simple.html", config: { status: "REC" }, errors: ["sotd.mailing-list.no-repo"] }
-        ]
     ,   pp:  [
-            { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true } }
-        ,   { doc: "headers/simple.html", config: { recTrackStatus: true }, warnings: ["sotd.pp.deprecatedAllowed"] }
-        ,   { doc: "sotd/pp-bad.html"
-            , errors: ["sotd.pp.no-aug1", "sotd.pp.no-disclosures", "sotd.pp.no-claims", "sotd.pp.no-section6"]
-            , config: { recTrackStatus: true }
-            }
+            { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp", "sotd.pp.no-claims", "sotd.pp.no-section6"] }
+        ,   { doc: "headers/simple.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
+        ,   { doc: "sotd/pp-bad.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "sotd/pp-cpp2002.html", options: { patentPolicy: "pp2002" } }
-        ,   { doc: "sotd/joint-publication.html", config: { recTrackStatus: true }, warnings: ["sotd.pp.joint-publication", "sotd.pp.deprecatedAllowed"] }
-        ,   { doc: "sotd/joint-publication-tag.html", config: { recTrackStatus: true }, warnings: ["sotd.pp.joint-publication", "sotd.pp.deprecatedAllowed"] }
-        ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true }
-              , errors: ["sotd.pp.no-pp"]
-            }
-        ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note" } }
-        ,   { doc: "headers/wg-note1.html", config: { longStatus: "Working Group Note" } }
-        ,   { doc: "headers/wg-note2.html", config: { longStatus: "Working Group Note" } }
-        ,   { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true, amended: true }, errors: ["sotd.pp.no-pp"] }
-        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
-        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, amended: true } }
-        ,   { doc: "online/WG-NOTE-lpf.html", config: { longStatus: "Working Group Note"} }
-        ,   { doc: "online/WD-screen-orientation.html", config: { longStatus: "Working Draft", recTrackStatus: true} }
-        ,   { doc: "online/IG-NOTE-media-timed-events.html", config: { longStatus: "Interest Group Note"}, errors: ["sotd.pp.no-pp"] }
+        ,   { doc: "sotd/joint-publication.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"], warnings: ["sotd.pp.joint-publication"] }
+        ,   { doc: "sotd/joint-publication-tag.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"], warnings: ["sotd.pp.joint-publication"] }
+        ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
+        ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
+        ,   { doc: "headers/wg-note1.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
+        ,   { doc: "headers/wg-note2.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
+        ,   { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true, patentPolicy: "pp2004" , amended: true }, errors: ["sotd.pp.no-pp"] }
+        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"] }
+        ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, patentPolicy: "pp2004" , amended: true } }
+        ,   { doc: "sotd/pp-20200915.html", config: { recTrackStatus: true, patentPolicy: "pp2020" } }
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
-        ,   { doc: "online/IG-NOTE-media-timed-events.html", errors: 
+        ,   { doc: "online/IG-NOTE-media-timed-events.html", errors:
         ["sotd.charter-disclosure.wrong-link"] }
         ,   { doc: "online/IG-NOTE-media-timed-events.html", errors: ["sotd.charter-disclosure.wrong-link"] }
         ,   { doc: "headers/ig-note2.html", errors: ["sotd.charter-disclosure.no-group"] }
@@ -369,6 +396,20 @@ var tests = {
               , config: { status: "CR", longStatus: "Candidate Recommendation", stabilityWarning: true }
               , errors: ["sotd.stability.no-stability"]
         }
+        ,   { doc: "sotd/rec-addition-2020.html", config: { "stabilityWarning": "REC" } }
+        ,   { doc: "sotd/rec-obsl.html", config: { "stabilityWarning": "REC" }, errors: ["sotd.stability.no-rec-review"] }
+        ,   { doc: "sotd/cr-end-27days.html"
+            , config: {
+                    "crType": "Snapshot"
+                ,   "stabilityWarning": true
+                ,   longStatus: "Candidate Recommendation"
+            }
+            , errors: ["sotd.stability.no-cr-review"]
+        }
+        , { doc: "sotd/cr-end-multiple.html"
+            , config: { "crType": "Snapshot", "stabilityWarning": true, longStatus: "Candidate Recommendation" }
+            , errors: ["sotd.stability.wrong-cr-review-link"]
+        }
         ,   { doc: "online/WG-NOTE-lpf.html"
               , config: { longStatus: "Working Group Note" , stabilityWarning: true }
         }
@@ -377,12 +418,7 @@ var tests = {
         }
         ,   { doc: "online/IG-NOTE-media-timed-events.html"
               , config: { longStatus: "Interest Group Note" , stabilityWarning: true }
-        }        
-        ]
-    ,   implementation:  [
-            { doc: "sotd/supersedable.html"}
-        ,   { doc: "sotd/pp-bad.html", errors: ["sotd.implementation.link-should-be-https"] }
-        ,   { doc: "sotd/ml-bad.html", errors: ["sotd.implementation.unknown"] }
+        }
         ]
     ,   'ac-review':  [
             { doc: "sotd/supersedable.html"}
@@ -390,9 +426,8 @@ var tests = {
         ]
     ,   'process-document':  [
             { doc: "sotd/process2019.html" }
-    ,       { doc: "sotd/deprecated2017.html", errors: ["sotd.process-document.wrong-process", "sotd.process-document.not-found"]}
-    ,       { doc: "sotd/deprecated2018-allowed.html", warnings: ['sotd.process-document.deprecatedAllowed']}
-    ,       { doc: "sotd/deprecated2018-not-allowed.html", errors: ["sotd.process-document.deprecated", "sotd.process-document.not-found"]}
+    ,       { doc: "sotd/rec-addition-2020.html" }
+    ,       { doc: "sotd/process2019-not-allowed.html", errors: ["sotd.process-document.wrong-process", "sotd.process-document.not-found"]}
     ,       { doc: "sotd/wrongprocess.html", errors: ["sotd.process-document.wrong-process", "sotd.process-document.not-found"]}
         ]
     ,   'group-homepage':  [
@@ -417,21 +452,21 @@ var tests = {
             { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR" }}
     ,       { doc: "metadata/cr-mediacapture-streams.html", config: { status: "CR", editorial: true }, warnings: ["sotd.cr-end.editorial"]}
     ,       { doc: "sotd/cr-end.html", config: { status: "CR"}}
-    ,       { doc: "sotd/cr-end-27days.html", config: { status: "CR" }, errors: ["sotd.cr-end.found-not-valid"] }
+    ,       { doc: "sotd/cr-end-27days.html", config: { status: "CR" }, errors: ["sotd.cr-end.not-found"] }
     ,       { doc: "sotd/cr-end-multiple.html", config: { status: "CR" }, warnings: ["sotd.cr-end.multiple-found"] }
-    ,       { doc: "sotd/cr-end-nodate.html", config: { status: "CR" }, errors: ["sotd.cr-end.not-found"] }
+    ,       { doc: "sotd/cr-end-nodate.html", config: { status: "CR" }, errors: ["sotd.cr-end.found-not-valid"] }
         ]
     }
-    , heuristic: {	
-        'date-format':  [	
-            { doc: "heuristic/dates.html" }	
-        ,   { doc: "heuristic/bad-dates.html", errors: ["heuristic.date-format.wrong", "heuristic.date-format.wrong", "heuristic.date-format.wrong"] }	
-        ,   { doc: "heuristic/dated-url.html" }	
-        ]	
-    ,   'shortname':  [	
-            { doc: "headers/simple.html" }	
-        ,   { doc: "headers/diff-latest-version.html" }	
-    ]	
+    , heuristic: {
+        'date-format':  [
+            { doc: "heuristic/dates.html" }
+        ,   { doc: "heuristic/bad-dates.html", errors: ["heuristic.date-format.wrong", "heuristic.date-format.wrong", "heuristic.date-format.wrong"] }
+        ,   { doc: "heuristic/dated-url.html" }
+        ]
+    ,   'shortname':  [
+            { doc: "headers/simple.html" }
+        ,   { doc: "headers/diff-latest-version.html" }
+    ]
     }
 ,   validation: validation
 };

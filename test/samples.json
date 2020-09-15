@@ -23,7 +23,7 @@
     ,   "informative": false
     ,   "rectrack": true
     ,   "process": "https://www.w3.org/2015/Process-20150901/"
-    ,   "implementationReport": "/2016/03/webidl/report.html"
+    ,   "implementationReport": "http://www.w3.org/2016/03/webidl/report.html"
     }
 ,   {
         "url": "https://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/"

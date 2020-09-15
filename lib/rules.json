@@ -146,6 +146,7 @@
                             "altRepresentations": [
                                 "NOTE"
                             ],
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -164,7 +165,6 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "discontinue": true,
                             "expectations": true,
                             "customParagraph": true,
@@ -248,6 +248,7 @@
                             "altRepresentations": [
                                 "WD"
                             ],
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -266,7 +267,6 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "discontinue": true,
                             "expectations": true,
                             "customParagraph": true,
@@ -354,6 +354,7 @@
                             "altRepresentations": [
                                 "NOTE"
                             ],
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -372,7 +373,6 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "discontinue": true,
                             "expectations": true,
                             "customParagraph": true,
@@ -380,7 +380,7 @@
                                 "a Working Group Note",
                                 "(see also ideas for status sections regarding the <a href=\"http://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
                             ],
-                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>.</p></blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. </code></div>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy<sup>*</sup> requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>.</p></blockquote><strong><sup>*</sup>If the Working Group is operating under the Patent Policy 2017, the link to the Patent Policy should be <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">https://www.w3.org/Consortium/Patent-Policy-20170801/</a></strong>.<div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. </code></div>",
                             "knownDisclosureNumber": true,
                             "whichProcess": true
                         }
@@ -456,6 +456,7 @@
                             "altRepresentations": [
                                 "PR"
                             ],
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -474,7 +475,6 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "discontinue": true,
                             "expectations": true,
                             "customParagraph": true,
@@ -486,7 +486,7 @@
                                 "a Working Group Note",
                                 "(see also ideas for status sections regarding the <a href=\"http://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
                             ],
-                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>.</p></blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. </code></div>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy<sup>*</sup> requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>.</p></blockquote><strong><sup>*</sup>If the Working Group is operating under the Patent Policy 2017, the link to the Patent Policy should be <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">https://www.w3.org/Consortium/Patent-Policy-20170801/</a></strong>.<div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. </code></div>",
                             "knownDisclosureNumber": true,
                             "whichProcess": true
                         }
@@ -567,6 +567,7 @@
                             "altRepresentations": [
                                 "WD"
                             ],
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -586,7 +587,6 @@
                             "datesFormat": true,
                             "FPWD": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "customParagraph": true,
                             "stability": [
                                 "a First Public Working Draft",
@@ -667,6 +667,7 @@
                             "altRepresentations": [
                                 "WD"
                             ],
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -685,7 +686,6 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "customParagraph": true,
                             "changesList": [
                                 "should",
@@ -724,112 +724,9 @@
                     }
                 }
             },
-            "FPCR": {
-                "order": 3,
-                "name": "First Public Candidate Recommendation",
-                "sections": {
-                    "format": {
-                        "name": "1. Normative Document Representation",
-                        "rules": {
-                            "normativeVersion": true,
-                            "valideHTML": true,
-                            "visualStyle": true
-                        }
-                    },
-                    "metadata": {
-                        "name": "2. Document Metadata",
-                        "rules": {
-                            "goodStylesheet": [
-                                "CR"
-                            ],
-                            "lastStylesheet": true,
-                            "viewport": true,
-                            "canonical": true
-                        }
-                    },
-                    "front-matter": {
-                        "name": "3. Front Matter",
-                        "rules": {
-                            "divClassHead": true,
-                            "logo": true,
-                            "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateTitleH2": [
-                                "First Public Candidate Recommendation",
-                                ""
-                            ],
-                            "docIDFormat": true,
-                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">may</span> appear. Ask the Comm Team if you have questions.",
-                            "docIDThisVersion": [
-                                "CR"
-                            ],
-                            "docIDLatestVersion": true,
-                            "docIDDate": true,
-                            "editorSection": true,
-                            "altRepresentations": [
-                                "CR"
-                            ],
-                            "copyright": true,
-                            "hrAfterCopyright": true
-                        }
-                    },
-                    "navigation": {
-                        "name": "6. Table of Contents",
-                        "rules": {
-                            "toc": true,
-                            "tocNav": true
-                        }
-                    },
-                    "document-status": {
-                        "name": "5. Document Status Section",
-                        "rules": {
-                            "sotd": true,
-                            "boilerplateTRDoc": true,
-                            "datesFormat": true,
-                            "FPWD": true,
-                            "CR": "It <span class=\"rfc2119\">must</span> indicate that this is a Candidate Recommendation.",
-                            "WGLink": true,
-                            "mailingListName": true,
-                            "reviewEndDateCR": "It <span class=\"rfc2119\">must</span> include the end date of the Candidate Recommendation review period.",
-                            "customParagraph": true,
-                            "stability": [
-                                "a First Public Candidate Recommendation",
-                                ""
-                            ],
-                            "patPolReq": true,
-                            "knownDisclosureNumber": true,
-                            "whichProcess": true
-                        }
-                    },
-                    "document-body": {
-                        "name": "7. Document Body",
-                        "rules": {
-                            "headingWithoutID": true,
-                            "brokenLink": true,
-                            "cssValide": true,
-                            "namespaces": true,
-                            "wcag": true,
-                            "fixupJs": true,
-                            "securityAndPrivacy": true
-                        }
-                    },
-                    "compound": {
-                        "name": "8. Compound Documents",
-                        "rules": {
-                            "compoundFilesLocation": [
-                                "CR"
-                            ],
-                            "compoundOverview": true,
-                            "compound": true
-                        }
-                    }
-                }
-            },
             "CR": {
                 "order": 4,
-                "name": "Candidate Recommendation",
+                "name": "Candidate Recommendation Snapshot",
                 "sections": {
                     "format": {
                         "name": "1. Normative Document Representation",
@@ -863,6 +760,7 @@
                                 "Candidate Recommendation",
                                 ""
                             ],
+                            "h3CrType": true,
                             "docIDFormat": true,
                             "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">may</span> appear. Ask the Comm Team if you have questions.",
                             "docIDThisVersion": [
@@ -874,6 +772,8 @@
                             "altRepresentations": [
                                 "CR"
                             ],
+                            "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report, or a statement that no such report exists.",
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -892,20 +792,16 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "reviewEndDateCR": "It <span class=\"rfc2119\">must</span> include a minimal duration (before which the group will not request the next transition). The duration <span class=\"rfc2119\">must</span> be expressed as an estimated date.",
                             "implEstimation": "It <span class=\"rfc2119\">should</span> include an estimated date by which time the Working Group expects to have sufficient implementation experience.",
-                            "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report, or a statement that no such report exists.",
                             "featAtRisk": "It <span class=\"rfc2119\">must</span> identify any \"features at risk\" declared by the Working Group (as defined in section <a href=\"https://www.w3.org/Consortium/Process/#candidate-rec\">6.4 of the W3C Process Document</a>).",
                             "customParagraph": true,
                             "changesList": [
                                 "must",
                                 ""
                             ],
-                            "stability": [
-                                "a Candidate Recommendation",
-                                ""
-                            ],
+                            "publish": "W3C Candidate Recommendation Snapshot <span class=\"rfc2119\">must</span> include publish information in \"Status Of This Document\":<blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Candidate Recommendation Snapshot.</blockquote> <p> <span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Candidate Recommendation Snapshot.&lt;/p&gt;</code> </p>",
+                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Publication as a Candidate Recommendation does not imply endorsement by the W3C Membership. A Candidate Recommendation Snapshot has received <a href=\"https://www.w3.org/2020/Process-20200915/#dfn-wide-review\">wide review</a> and is intended to gather implementation experience.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;Publication as a Candidate Recommendation does not imply endorsement by the W3C Membership. A Candidate Recommendation Snapshot has received &lt;a href=\"https://www.w3.org/2020/Process-20200915/#dfn-wide-review\"&gt;wide review&lt;/a&gt; and is intended to gather implementation experience.&lt;/p&gt;</code></div>",
                             "patPolReq": true,
                             "knownDisclosureNumber": true,
                             "whichProcess": true
@@ -928,6 +824,114 @@
                         "rules": {
                             "compoundFilesLocation": [
                                 "CR"
+                            ],
+                            "compoundOverview": true,
+                            "compound": true
+                        }
+                    }
+                }
+            },
+            "CRD": {
+                "order": 4,
+                "name": "Candidate Recommendation Draft",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "CRD"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true,
+                            "canonical": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Candidate Recommendation",
+                                ""
+                            ],
+                            "h3CrType": "Candidate Recommendation Draft <span class=\"rfc2119\">must</span> include a <code>h3</code> element in document's <code>div.head</code> right after the <code>h2</code> as follows:<pre xml:space=\"preserve\">&lt;h3&gt;Draft&lt;/h3&gt;</pre>",
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management. If multiple latest versions are found, only the first one will serve as the identifier.</li> <li class=\"prevversionuri\">Previous version URI. If multiple previous versions are found, only the first one will serve as the identifier.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">may</span> appear. Ask the Comm Team if you have questions.",
+                            "docIDThisVersion": [
+                                "CRD"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "CRD"
+                            ],
+                            "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report, or a statement that no such report exists.",
+                            "mailingListName": true,
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "reviewEndDateCR": "It <span class=\"rfc2119\">must</span> include a minimal duration (before which the group will not request the next transition). The duration <span class=\"rfc2119\">must</span> be expressed as an estimated date.",
+                            "implEstimation": "It <span class=\"rfc2119\">should</span> include an estimated date by which time the Working Group expects to have sufficient implementation experience.",
+                            "featAtRisk": "It <span class=\"rfc2119\">must</span> identify any \"features at risk\" declared by the Working Group (as defined in section <a href=\"https://www.w3.org/Consortium/Process/#candidate-rec\">6.4 of the W3C Process Document</a>).",
+                            "customParagraph": true,
+                            "changesList": [
+                                "must",
+                                ""
+                            ],
+                            "publish": "W3C Candidate Recommendation Draft <span class=\"rfc2119\">must</span> include publish information in \"Status Of This Document\":<blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Candidate Recommendation Draft.</blockquote> <p> <span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Candidate Recommendation Draft.&lt;/p&gt;</code> </p>",
+                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Publication as a Candidate Recommendation does not imply endorsement by the W3C Membership. A Candidate Recommendation Draft integrates changes from the previous Candidate Recommendation that the Working Group intends to include in a subsequent Candidate Recommendation Snapshot.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;Publication as a Candidate Recommendation does not imply endorsement by the W3C Membership. A Candidate Recommendation Draft integrates changes from the previous Candidate Recommendation that the Working Group intends to include in a subsequent Candidate Recommendation Snapshot.&lt;/p&gt;</code></div>",
+                            "crStability": "W3C Candidate Recommendation Draft <span class=\"rfc2119\">must</span> include one of the following two paragraphs in the \"Status Of This Document\": <blockquote class=\"boilerplate\">This document may be updated, replaced or obsoleted at any time. It is inappropriate to cite this document as other than work in progress.</blockquote><blockquote class=\"boilerplate\">This document is maintained and updated at any time. Some parts of this document are work in progress.</blockquote>",
+                            "patPolReq": true,
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true,
+                            "fixupJs": true,
+                            "securityAndPrivacy": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "CRD"
                             ],
                             "compoundOverview": true,
                             "compound": true
@@ -979,6 +983,8 @@
                             "altRepresentations": [
                                 "CR"
                             ],
+                            "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report, or a statement that no such report exists.",
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -997,10 +1003,8 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "reviewEndDateCR": "It <span class=\"rfc2119\">must</span> include a minimal duration (before which the group will not request the next transition). The duration <span class=\"rfc2119\">must</span> be expressed as an estimated date.",
                             "implEstimation": "It <span class=\"rfc2119\">should</span> include an estimated date by which time the Working Group expects to have sufficient implementation experience.",
-                            "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report, or a statement that no such report exists.",
                             "featAtRisk": "It <span class=\"rfc2119\">must</span> identify any \"features at risk\" declared by the Working Group (as defined in section <a href=\"https://www.w3.org/Consortium/Process/#candidate-rec\">6.4 of the W3C Process Document</a>).",
                             "customParagraph": true,
                             "changesList": [
@@ -1011,7 +1015,7 @@
                                 "a Candidate Recommendation",
                                 ""
                             ],
-                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> The Recommendation from which this document is derived  was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\">Essential Claim(s)</a> must disclose the information in accordance with <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\">section 6 of the W3C Patent Policy</a>. This Amended Candidate Recommendation was produced by incorporating <a href=\"@@@\">errata</a> after that group closed.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; The Recommendation from which this document is derived was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\"&gt;Essential Claim(s)&lt;/a&gt; must disclose the information in accordance with &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\"&gt;section 6 of the W3C Patent Policy&lt;/a&gt;. This Amended Candidate Recommendation was produced by incorporating &lt;a href=\"@@@\"&gt;errata&lt;/a&gt; after that group closed.&lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy<sup>*</sup> requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> The Recommendation from which this document is derived  was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\">Essential Claim(s)</a> must disclose the information in accordance with <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\">section 6 of the W3C Patent Policy</a>. This Amended Candidate Recommendation was produced by incorporating <a href=\"@@@\">errata</a> after that group closed.</p> </blockquote><strong><sup>*</sup>If the Working Group is operating under the Patent Policy 2017, the link to the Patent Policy should be <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">https://www.w3.org/Consortium/Patent-Policy-20170801/</a></strong>.<div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; The Recommendation from which this document is derived was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\"&gt;Essential Claim(s)&lt;/a&gt; must disclose the information in accordance with &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\"&gt;section 6 of the W3C Patent Policy&lt;/a&gt;. This Amended Candidate Recommendation was produced by incorporating &lt;a href=\"@@@\"&gt;errata&lt;/a&gt; after that group closed.&lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
                             "knownDisclosureNumber": true,
                             "whichProcess": true
                         }
@@ -1087,6 +1091,8 @@
                             "altRepresentations": [
                                 "PR"
                             ],
+                            "implReport": true,
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1105,10 +1111,8 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "ACRepFeedbackEmail": true,
                             "reviewEndDatePR": true,
-                            "implReport": true,
                             "skipCR": "If the previous version of this document was not a Candidate Recommendation, the status section <span class=\"rfc2119\">should</span> include rationale for the <a href=\"http://www.w3.org/2005/08/01-transitions-about#director\">Director</a>'s decision to skip CR (e.g., there was already sufficient implementation experience).",
                             "customParagraph": true,
                             "changesList": [
@@ -1121,6 +1125,7 @@
                             ],
                             "patPolReq": true,
                             "knownDisclosureNumber": true,
+                            "newFeatures": "If it is the intention to incorporate new features in future updates of the specification, please make sure to identify the document as intending to allow new features. Recommended text is: <blockquote class=\"boilerplate\">Future updates to this specification may incorporate new features.</blockquote>Include one of this source code:</span><br> <code>&lt;p&gt;Future updates to this specification may incorporate &lt;a href=\"https://www.w3.org/2020/Process-20200915/#allow-new-features\"&gt;new features&lt;a&gt;.&lt;/p&gt;</code>",
                             "whichProcess": true
                         }
                     },
@@ -1192,6 +1197,8 @@
                             "altRepresentations": [
                                 "PR"
                             ],
+                            "implReport": true,
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1210,10 +1217,8 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "ACRepFeedbackEmail": true,
                             "reviewEndDatePR": true,
-                            "implReport": true,
                             "skipCR": "If the previous version of this document was not a Candidate Recommendation, the status section <span class=\"rfc2119\">should</span> include rationale for the <a href=\"http://www.w3.org/2005/08/01-transitions-about#director\">Director</a>'s decision to skip CR (e.g., there was already sufficient implementation experience).",
                             "customParagraph": true,
                             "changesList": [
@@ -1224,7 +1229,7 @@
                                 "a Proposed Recommendation",
                                 ""
                             ],
-                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> The Recommendation from which this document is derived  was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\">Essential Claim(s)</a> must disclose the information in accordance with <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\">section 6 of the W3C Patent Policy</a>. This Amended Proposed Recommendation was produced by incorporating <a href=\"@@@\">errata</a> after that group closed.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; The Recommendation from which this document is derived was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\"&gt;Essential Claim(s)&lt;/a&gt; must disclose the information in accordance with &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\"&gt;section 6 of the W3C Patent Policy&lt;/a&gt;. This Amended Proposed Recommendation was produced by incorporating &lt;a href=\"@@@\"&gt;errata&lt;/a&gt; after that group closed.&lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy<sup>*</sup> requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> The Recommendation from which this document is derived  was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\">Essential Claim(s)</a> must disclose the information in accordance with <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\">section 6 of the W3C Patent Policy</a>. This Amended Proposed Recommendation was produced by incorporating <a href=\"@@@\">errata</a> after that group closed.</p> </blockquote><strong><sup>*</sup>If the Working Group is operating under the Patent Policy 2017, the link to the Patent Policy should be <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">https://www.w3.org/Consortium/Patent-Policy-20170801/</a></strong>.<div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; The Recommendation from which this document is derived was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\"&gt;Essential Claim(s)&lt;/a&gt; must disclose the information in accordance with &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\"&gt;section 6 of the W3C Patent Policy&lt;/a&gt;. This Amended Proposed Recommendation was produced by incorporating &lt;a href=\"@@@\"&gt;errata&lt;/a&gt; after that group closed.&lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
                             "knownDisclosureNumber": true,
                             "whichProcess": true
                         }
@@ -1301,6 +1306,8 @@
                             "altRepresentations": [
                                 "REC"
                             ],
+                            "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report.",
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1319,6 +1326,7 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
+                            "publish": "W3C Recommendation <span class=\"rfc2119\">must</span> include one of the four paragraphs below in the \"Status Of This Document\" depending on the type of Recommendations:<blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation.</blockquote>Recommandation with proposed changes:<blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2020/Process-20200915/#proposed-correction\">proposed corrections</a></blockquote>Recommendation with new features: <blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2020/Process-20200915/#proposed-addition\">proposed addition</a>, introducing new features since the Previous Recommentation.</blockquote>Recommendation with proposed changes and new features: <blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2020/Process-20200915/#proposed-changes\">proposed changes</a>, introducing substantive changes and new features since the Previous Recommentation.</blockquote><p> <span style=\"font-style: italic\">Include one of these source codes:</span><br> <code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation.&lt;/p&gt;</code> <br> <code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2020/Process-20200915/#proposed-correction\"&gt;proposed corrections&lt;/a&gt;.&lt;/p&gt;</code> <br> <code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2020/Process-20200915/#proposed-addition\"&gt;proposed addition&lt;/a&gt;, introducing new features since the Previous Recommentation.&lt;/p&gt;</code> <br> <code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2020/Process-20200915/#proposed-changes\"&gt;proposed changes&lt;/a&gt;, introducing substantive changes and new features since the Previous Recommentation.&lt;/p&gt;</code></p>",
                             "mailingListName": "It <span class=\"rfc2119\">must</span> include a link to a GitHub repository issues list (of the form <code>https://github.com/&lt;USER_OR_ORG&gt;/&lt;REPO_NAME&gt;/issues[/&hellip;]</code>).",
                             "recRelation": "It <span class=\"rfc2119\">must</span> indicate its relationship to previous related Recommendations (e.g., an indication that a Recommendation supersedes, obsoletes, or subsumes another, or that a Recommendation is an editorial revision) and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number. The document thus links to two important resources: the previous edition of the Recommendation via the status section, and the previous draft (the Proposed Recommendation) via the \"Previous version\" link.",
                             "customParagraph": true,
@@ -1326,10 +1334,13 @@
                                 "must",
                                 ""
                             ],
-                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></div>",
-                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"http://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
+                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>A W3C Recommendation is a specification that, after extensive consensus-building, has received the endorsement of the W3C and its Members. W3C recommends the wide deployment of this specification as a standard for the Web.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;A W3C Recommendation is a specification that, after extensive consensus-building, has received the endorsement of the W3C and its Members. W3C recommends the wide deployment of this specification as a standard for the Web.&lt;/p&gt;</code></div>",
+                            "patPolReq": true,
                             "knownDisclosureNumber": true,
-                            "whichProcess": true
+                            "newFeatures": "If it is the intention to incorporate new features in future updates of the Recommendation, please make sure to identify the document as intending to allow new features. Recommended text is: <blockquote class=\"boilerplate\">Future updates to this Recommendation may incorporate new features.</blockquote>Include one of this source code:</span><br> <code>&lt;p&gt;Future updates to this Recommendation may incorporate &lt;a href=\"https://www.w3.org/2020/Process-20200915/#allow-new-features\"&gt;new features&lt;a&gt;.&lt;/p&gt;</code>",
+                            "whichProcess": true,
+                            "recAddition": "Modifications in W3C Recommendation are divided into \"new features\" and \"changes\". Recommendations with modifications <span class=\"rfc2119\">must</span> include the following paragraphs depending on the changes.<br><p>For substantive changes, there should be a paragraph with <code>class=\"correction\"</code>:<blockquote class=\"boilerplate\">Proposed corrections are marked in the document.</blockquote><code>&lt;p class=\"correction\"&gt;Proposed corrections are marked in the document.&lt;/p&gt;</code></p><p>For new features, there should be a paragraph with <code>class=\"addition\"</code>:<blockquote class=\"\"boilerplate>Proposed additions are marked in the document.</blockquote><code>&lt;p class=\"addition\"&gt;Proposed additions are marked in the document.&lt;/p&gt;</code></p>",
+                            "commentEnd": "W3C Recommendation with substantive changes or new features <span class=\"rfc2119\">must</span> have a comment review date of at least 60 days after the publication date."
                         }
                     },
                     "document-body": {
@@ -1400,6 +1411,7 @@
                             "altRepresentations": [
                                 "REC"
                             ],
+                            "mailingListName": "It <span class=\"rfc2119\">must</span> include a link to a GitHub repository issues list.",
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1418,7 +1430,6 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": "It <span class=\"rfc2119\">must</span> include a link to a GitHub repository issues list.",
                             "recRelation": "It <span class=\"rfc2119\">must</span> indicate its relationship to previous related Recommendations (e.g., an indication that a Recommendation supersedes, obsoletes, or subsumes another, or that a Recommendation is an editorial revision) and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number. The document thus links to two important resources: the previous edition of the Recommendation via the status section, and the previous draft (the Proposed Recommendation) via the \"Previous version\" link.",
                             "customParagraph": true,
                             "changesList": [
@@ -1426,7 +1437,7 @@
                                 ""
                             ],
                             "stability": "It <span class=\"rfc2119\">must</span> set expectations about the stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></div>",
-                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> The Recommendation from which this document is derived  was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\">Essential Claim(s)</a> must disclose the information in accordance with <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\">section 6 of the W3C Patent Policy</a>. This Amended Recommendation was produced by incorporating <a href=\"@@@\">errata</a> after that group closed.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; The Recommendation from which this document is derived was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\"&gt;Essential Claim(s)&lt;/a&gt; must disclose the information in accordance with &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\"&gt;section 6 of the W3C Patent Policy&lt;/a&gt;. This Amended Recommendation was produced by incorporating &lt;a href=\"@@@\"&gt;errata&lt;/a&gt; after that group closed.&lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy<sup>*</sup> requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> The Recommendation from which this document is derived  was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\">Essential Claim(s)</a> must disclose the information in accordance with <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\">section 6 of the W3C Patent Policy</a>. This Amended Recommendation was produced by incorporating <a href=\"@@@\">errata</a> after that group closed.</p> </blockquote><strong><sup>*</sup>If the Working Group is operating under the Patent Policy 2017, the link to the Patent Policy should be <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">https://www.w3.org/Consortium/Patent-Policy-20170801/</a></strong>.<div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; The Recommendation from which this document is derived was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\"&gt;Essential Claim(s)&lt;/a&gt; must disclose the information in accordance with &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\"&gt;section 6 of the W3C Patent Policy&lt;/a&gt;. This Amended Recommendation was produced by incorporating &lt;a href=\"@@@\"&gt;errata&lt;/a&gt; after that group closed.&lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
                             "knownDisclosureNumber": true,
                             "whichProcess": true
                         }
@@ -1501,6 +1512,7 @@
                             "altRepresentations": [
                                 "RSCND"
                             ],
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1519,7 +1531,6 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "recRelation": true,
                             "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to rescind the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to rescind the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting, Rescinding or Superseding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
                             "altTechno": true,
@@ -1599,6 +1610,7 @@
                             "altRepresentations": [
                                 "OBSL"
                             ],
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1617,7 +1629,6 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "recRelation": true,
                             "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to obsolete the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to obsolete the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting, Rescinding or Superseding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
                             "altTechno": true,
@@ -1627,7 +1638,7 @@
                                 ""
                             ],
                             "stability": "It <span class=\"rfc2119\">must</span> set expectations about the stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></div>",
-                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"http://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy<sup>*</sup> requirements (with suitable links inserted; see <a href=\"http://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. </p> </blockquote><strong><sup>*</sup>If the Working Group is operating under the Patent Policy 2017, the link to the Patent Policy should be <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">https://www.w3.org/Consortium/Patent-Policy-20170801/</a></strong>.<div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
                             "knownDisclosureNumber": true,
                             "whichProcess": true
                         }
@@ -1703,6 +1714,7 @@
                             "altRepresentations": [
                                 "SPSD"
                             ],
+                            "mailingListName": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1721,7 +1733,6 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "WGLink": true,
-                            "mailingListName": true,
                             "recRelation": true,
                             "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to supersede the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to obsolete the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting, Rescinding or Superseding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
                             "altTechno": true,
@@ -1731,7 +1742,7 @@
                                 ""
                             ],
                             "stability": "It <span class=\"rfc2119\">must</span> set expectations about the stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></div>",
-                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"http://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy<sup>*</sup> requirements (with suitable links inserted; see <a href=\"http://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. </p> </blockquote><strong><sup>*</sup>If the Working Group is operating under the Patent Policy 2017, the link to the Patent Policy should be <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">https://www.w3.org/Consortium/Patent-Policy-20170801/</a></strong>.<div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
                             "knownDisclosureNumber": true,
                             "whichProcess": true
                         }
@@ -1787,6 +1798,7 @@
                     "divClassHead": "The front matter <span class=\"rfc2119\">must</span> appear at the beginning of the body of the document, within &lt;div class=\"head\"&gt;. There is one exception to that requirement: the <code>hr</code> element after the copyright <span class=\"rfc2119\">may</span> appear inside or after the <code>div</code> element. Editors <span class=\"rfc2119\">should not</span> include other information in this section.",
                     "logo": "The document <span class=\"rfc2119\">must</span> include a link to the W3C logo identified below. The URI used to identify the logo <span class=\"rfc2119\">must</span> be absolute. <div class=\"boilerplate\"> <a href=\"https://www.w3.org/\"> <img alt=\"W3C\" src=\"https://www.w3.org/StyleSheets/TR/2016/logos/W3C\" height=\"48\" width=\"72\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;a href=\"https://www.w3.org/\"&gt;&lt;img height=\"48\" width=\"72\" alt=\"W3C\" src=\"https://www.w3.org/StyleSheets/TR/2016/logos/W3C\"/&gt;&lt;/a&gt;</code></div>",
                     "title": "The document's title <span class=\"rfc2119\">must</span> be in the <code>title</code> element and in an <code>h1</code> element.",
+                    "h3CrType": "Candidate Recommendation Snapshot <span class=\"rfc2119\">must</span> include a <code>h3</code> element in document's <code>div.head</code> right after the <code>h2</code> as follows:<pre xml:space=\"preserve\">&lt;h3&gt;Snapshot&lt;/h3&gt;</pre>",
                     "versionNumber": "Technical report version information, i.e., version and edition numbers. <ol> @{param1}<li>See the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for more information.</li> </ol>",
                     "dateTitleH2": "The document's status and date <span class=\"rfc2119\">must</span> be in an <code>h2</code> element as follows (see also <a href=\"#datesFormat\">date syntax</a>): <pre xml:space=\"preserve\">&lt;h2&gt;W3C @{param1} DD Month YYYY&lt;/h2&gt;</pre>@{param2}",
                     "docIDFormat": "Document identifier information <span class=\"rfc2119\">must</span> be presented in a <code>dl</code> list, where each <code>dt</code> element marks up an identifier role (\"This Version\", \"Latest Version\", \"Previous Version\", etc.) and each <code>dd</code> element includes a link whose link text is the identifier.",
@@ -1795,6 +1807,8 @@
                     "docIDDate": "The title page date and the date at the end of the \"This Version\" URI <span class=\"rfc2119\">must</span> match.",
                     "editorSection": "<a id=\"author\" name=\"author\">The editors'/authors' names</a> <span class=\"rfc2119\">must</span> be listed. Affiliations and email addresses are <span class=\"rfc2119\">optional</span>; email addresses are <span class=\"rfc2119\">not recommended</span>. If an editor/author is acknowledged in an earlier version of this document and the individual's affiliation has since changed, list the individual using the notation \"&lt;name&gt;, &lt;affiliation&gt; (until DD Month YYYY)\". If the list of authors is very long (e.g., the entire Working Group), identify the authors in the acknowledgments section, linked from the head of the document. Distinguish any contributors from authors in the acknowledgments section.",
                     "altRepresentations": "Authors <span class=\"rfc2119\">may</span> provide links to alternative (non-normative) representations or packages for the document. For instance: <p> <code> <small>&lt;p&gt;This document is also available in these non-normative formats: &lt;a href=\"@{param1}-shortname-20180101.html\"&gt;single HTML file&lt;/a&gt;, &lt;a href=\"@{param1}-shortname-20180101.tgz\"&gt;gzipped tar file of HTML&lt;/a&gt;.&lt;/p&gt; </small> </code> </p>",
+                    "implReport": "It <span class=\"rfc2119\">must</span> include either: <ul> <li>a link to an interoperability or implementation report if the Director used such a report as part of the decision to advance the specification, or</li> <li>a statement that the Director's decision did not involve such a report.</li> </ul>",
+                    "mailingListName": "It <span class=\"rfc2119\">must</span> include a public archived place to send comments to. (GitHub repository issue links are expected to be of the form <code>https://github.com/&lt;USER_OR_ORG&gt;/&lt;REPO_NAME&gt;/issues[/&hellip;]</code>.)",
                     "copyright": "The copyright <span class=\"rfc2119\">must</span> use the following markup (fill in with the appropriate year, years, or year range). <div class=\"boilerplate\"> <p class=\"copyright\"> <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Copyright\">Copyright</a> © @{year} <a href=\"https://www.w3.org/\"> <abbr title=\"World Wide Web Consortium\">W3C</abbr> </a> <sup>®</sup> (<a href=\"https://www.csail.mit.edu/\"> <abbr title=\"Massachusetts Institute of Technology\">MIT</abbr> </a>, <a href=\"https://www.ercim.eu/\"> <abbr title=\"European Research Consortium for Informatics and Mathematics\">ERCIM</abbr> </a>, <a href=\"https://www.keio.ac.jp/\">Keio</a>, <a href=\"https://ev.buaa.edu.cn/\">Beihang</a>). W3C <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer\">liability</a>, <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks\">trademark</a> and <a href=\"https://www.w3.org/Consortium/Legal/copyright-documents\">document use</a> rules apply.</p> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p class=\"copyright\"&gt;&lt;a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Copyright\"&gt;Copyright&lt;/a&gt; © @{year} &lt;a href=\"https://www.w3.org/\"&gt;&lt;abbr title=\"World Wide Web Consortium\"&gt;W3C&lt;/abbr&gt;&lt;/a&gt;&lt;sup&gt;®&lt;/sup&gt; (&lt;a href=\"https://www.csail.mit.edu/\"&gt;&lt;abbr title=\"Massachusetts Institute of Technology\"&gt;MIT&lt;/abbr&gt;&lt;/a&gt;, &lt;a href=\"https://www.ercim.eu/\"&gt;&lt;abbr title=\"European Research Consortium for Informatics and Mathematics\"&gt;ERCIM&lt;/abbr&gt;&lt;/a&gt;, &lt;a href=\"https://www.keio.ac.jp/\"&gt;Keio&lt;/a&gt;, &lt;a href=\"https://ev.buaa.edu.cn/\"&gt;Beihang&lt;/a&gt;). W3C &lt;a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer\"&gt;liability&lt;/a&gt;, &lt;a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks\"&gt;trademark&lt;/a&gt; and &lt;a href=\"https://www.w3.org/Consortium/Legal/copyright-documents\"&gt;document use&lt;/a&gt; rules apply.&lt;/p&gt;</code></div>",
                     "hrAfterCopyright": "A horizontal rule (<code>hr</code>) <span class=\"rfc2119\">must</span> follow the copyright.",
                     "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li> <a id=\"thisversionuri\" name=\"thisversionuri\">This version URI</a>.</li> <li> <a id=\"latestversionuri\" name=\"latestversionuri\">Latest version</a> URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> <li class=\"prevversionuri\">Previous version URI</li> </ul>",
@@ -1815,19 +1829,17 @@
                     "boilerplateTRDoc": "It <span class=\"rfc2119\">must</span> begin with the following boilerplate text: <blockquote class=\"boilerplate\"> <p> <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the <a href=\"https://www.w3.org/TR/\">W3C technical reports index</a> at https://www.w3.org/TR/.</em> </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;&lt;em&gt;This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the &lt;a href=\"https://www.w3.org/TR/\"&gt;W3C technical reports index&lt;/a&gt; at https://www.w3.org/TR/.&lt;/em&gt;&lt;/p&gt;</code></div>",
                     "datesFormat": "All dates <span class=\"rfc2119\">must</span> have the form DD Month YYYY. A leading zero in the day is <span class=\"rfc2119\">optional</span>.",
                     "WGLink": "It <span class=\"rfc2119\">must</span> include the name of the W3C group that produced the document. The name <span class=\"rfc2119\">must</span> be a link to a public page for the group.",
-                    "mailingListName": "It <span class=\"rfc2119\">must</span> include a public archived place to send comments to. (GitHub repository issue links are expected to be of the form <code>https://github.com/&lt;USER_OR_ORG&gt;/&lt;REPO_NAME&gt;/issues[/&hellip;]</code>.)",
                     "customParagraph": "It <span class=\"rfc2119\">must</span> include at least one customized paragraph. This section <span class=\"rfc2119\">should</span> include the title page date (i.e., the one next to the maturity level at the top of the document). These paragraphs <span class=\"rfc2119\">should</span> explain the publication context, including rationale and relationships to other work. See <a href=\"http://www.w3.org/2001/06/manual/#Status\">examples and more discussion in the Manual of Style</a>.",
                     "changesList": "It <span class=\"rfc2119\">@{param1}</span> include a link to changes since the previous draft (e.g., a list of changes or a diff document or both; see the <a href=\"http://www.w3.org/2007/10/htmldiff\">online HTML diff tool</a>).@{param2}",
                     "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text @{param2}is: <blockquote class=\"boilerplate\"> <p>Publication as @{param1} does not imply endorsement by the W3C Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;Publication as @{param1} does not imply endorsement by the W3C Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.&lt;/p&gt;</code></div>",
-                    "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\">Essential Claim(s)</a> must disclose the information in accordance with <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\">section 6 of the W3C Patent Policy</a>. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\"&gt;Essential Claim(s)&lt;/a&gt; must disclose the information in accordance with &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\"&gt;section 6 of the W3C Patent Policy&lt;/a&gt;. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
+                    "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy<sup>*</sup> requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\">Essential Claim(s)</a> must disclose the information in accordance with <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\">section 6 of the W3C Patent Policy</a>. </p> </blockquote><strong><sup>*</sup>If the Working Group is operating under the Patent Policy 2017, the link to the Patent Policy should be <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">https://www.w3.org/Consortium/Patent-Policy-20170801/</a></strong>.<div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\"&gt;Essential Claim(s)&lt;/a&gt; must disclose the information in accordance with &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\"&gt;section 6 of the W3C Patent Policy&lt;/a&gt;. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
                     "knownDisclosureNumber": "It <span class=\"rfc2119\">must not</span> indicate the number of known disclosures at the time of publication.",
-                    "whichProcess": "The document <span class=\"rfc2119\">must</span> include the following boilerplate text in the status section to identify the governing process: <blockquote class=\"boilerplate\"> <p>This document is governed by the <a id=\"w3c_process_revision\" href=\"https://www.w3.org/2019/Process-20190301/\">1 March 2019 W3C Process Document</a>. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document is governed by the &lt;a id=\"w3c_process_revision\" href=\"https://www.w3.org/2019/Process-20190301/\"&gt;1 March 2019 W3C Process Document&lt;/a&gt;. &lt;/p&gt;</code></div>",
+                    "whichProcess": "The document <span class=\"rfc2119\">must</span> include the following boilerplate text in the status section to identify the governing process: <blockquote class=\"boilerplate\"> <p>This document is governed by the <a id=\"w3c_process_revision\" href=\"https://www.w3.org/2020/Process-20200915/\">15 September 2020 W3C Process Document</a>. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document is governed by the &lt;a id=\"w3c_process_revision\" href=\"https://www.w3.org/2020/Process-20200915/\"&gt;15 September 2020 W3C Process Document&lt;/a&gt;. &lt;/p&gt;</code></div>",
                     "discontinue": "If the document was published due to a W3C decision to stop work on this material, the status section <span class=\"rfc2119\">should</span> include that rationale.",
                     "expectations": "It <span class=\"rfc2119\">should</span> indicate the level of endorsement within the group for the material, set expectations that the group has completed work on the topics covered by the document, and set expectations about the group's commitment to respond to comments about the document.",
                     "FPWD": "It <span class=\"rfc2119\">must</span> indicate that this is a First Public Working Draft.",
                     "ACRepFeedbackEmail": "It also <span class=\"rfc2119\">must</span> provide information to Advisory Committee Representatives about how to send their review comments (e.g., the <a href=\"https://www.w3.org/2002/09/wbs/33280/\">link to all AC reviews</a>, or a link to a specific questionnaire)",
                     "reviewEndDatePR": "It <span class=\"rfc2119\">must</span> include the end date of the review period.",
-                    "implReport": "It <span class=\"rfc2119\">must</span> include either: <ul> <li>a link to an interoperability or implementation report if the Director used such a report as part of the decision to advance the specification, or</li> <li>a statement that the Director's decision did not involve such a report.</li> </ul>",
                     "recRelation": "It <span class=\"rfc2119\">must</span> indicate that it rescinds a Recommendation and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number.",
                     "altTechno": "It <span class=\"rfc2119\">should</span> direct readers to alternative technologies."
                 }

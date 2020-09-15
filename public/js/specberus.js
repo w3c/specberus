@@ -201,6 +201,15 @@ jQuery.extend({
             $informativeOnly.prop('checked', data.metadata.informative);
             $validation.find("label").removeClass('active');
             $validation.find('label#simple-validation').addClass('active');
+            let patentPolicy;
+            if (data.metadata.patentPolicy && data.metadata.patentPolicy === "https://www.w3.org/Consortium/Patent-Policy-20170801/") {
+                patentPolicy = "pp2004";
+            } else {
+                patentPolicy = "pp2020";
+            }
+            $patentPolicy.find('label').removeClass('active');
+            $patentPolicy.find('label#' + patentPolicy).addClass('active');
+
             var options = {
                               "url"             : data.url
                             , "profile"         : profile
@@ -208,7 +217,7 @@ jQuery.extend({
                             , "noRecTrack"      : !data.metadata.rectrack || false
                             , "informativeOnly" : data.metadata.informative || false
                             , "echidnaReady"    : false
-                            , "patentPolicy"    : "pp2004"
+                            , "patentPolicy"    : patentPolicy
                           };
             validate(options);
             var newurl = document.URL.split('?')[0] + "?" + $.param(options);
@@ -273,10 +282,10 @@ jQuery.extend({
     function disableProfilesIfNeeded(checkbox) {
         if (checkbox.prop('checked')) {
             $profileOptions.each(function (_, el) {
-                if (!['WD', 'WG-NOTE', 'IG-NOTE', 'CR'].includes($(el).val()))
+                if (!['WD', 'WG-NOTE', 'IG-NOTE', 'CR', 'CRD'].includes($(el).val()))
                   $(el).prop('disabled', true);
             });
-            if (!['WD', 'WG-NOTE', 'IG-NOTE', 'CR'].includes($profile.val()))
+            if (!['WD', 'WG-NOTE', 'IG-NOTE', 'CR', 'CRD'].includes($profile.val()))
               $profile.val('');
         }
         else $profileOptions.each(function (_, el) {
