@@ -334,10 +334,31 @@ var tests = {
         ,   { doc: "sotd/rec-addition-2020.html", config: { status: "PR" }, warnings: ["sotd.new-features.no-warning"] }
         ,   { doc: "sotd/cr-end-nodate.html", config: { status: "REC"}, errors: ["sotd.new-features.no-link"] }
         ]
-    ,   "cr-stability": [
-            { doc: "sotd/cr-end.html"}
-        ,   { doc: "sotd/cr-end-27days.html", errors: [ 'sotd.cr-stability.two-found' ] }
-        ,   { doc: "sotd/cr-end-multiple.html", errors: [ 'sotd.cr-stability.not-found' ] }
+    ,   "draft-stability": [
+            { doc: "headers/simple.html", config: { longStatus: "Working Draft" } }
+        ,   { doc: "headers/wd.html"
+              , config: { status: "WD", longStatus: "Working Draft" }
+        }
+        ,   { doc: "headers/wd.html"
+              , config: { status: "CR", longStatus: "Candidate Recommendation" }
+        }
+        ,   { doc: "sotd/rec-addition-2020.html"
+              , config: { stabilityWarning: "REC" } }
+        ,   { doc: "sotd/rec-obsl.html"
+              , config: { stabilityWarning: "REC" } }
+        ,   { doc: "sotd/cr-end-27days.html"
+            , config: {
+                    "crType": "Snapshot"
+                ,   longStatus: "Candidate Recommendation"
+            }
+        }
+        , { doc: "sotd/cr-end-multiple.html"
+            , config: { "crType": "Snapshot", longStatus: "Candidate Recommendation" }
+        }
+        ,   { doc: "online/WD-screen-orientation.html"
+              , config: { longStatus: "Working Draft" , stabilityWarning: true }
+        }
+        ,   { doc: "sotd/cr-end.html"}
         ]
     ,   supersedable: [
             { doc: "headers/simple.html" }
