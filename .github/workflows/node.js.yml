@@ -28,3 +28,4 @@ jobs:
     - run: npm run build --if-present
       env:
         W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
+        SKIP_NETWORK: true 
