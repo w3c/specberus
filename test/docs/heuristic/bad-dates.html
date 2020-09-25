@@ -11,7 +11,10 @@
       <h2 id="abstract">Abstract</h2>
       <p>Hi! This is an abstract</p>
       <h2 id="sotd">Status of This Document</h2>
+      <!-- fail heuristic.date-format, candidateDates:  ["13/Jan/1998","february 2 1998"], note that '2014-11-02' is not a candidate -->
       <p>Hi! This date has the wrong format: 13/Jan/1998. And these two, too: 2014-11-02 and february 2 1998.</p>
+      <!-- check for heuristic.date-format, cause no error. The following contains 16-1-00 but without word boundry, so shouldn't be recognized as time. -->
+      <p>Our ID on website is: SPECBERUS-16-R00015-H-SB2016-1-002, 70RGOOD0T00000010</p>
       <h2 id="intro">Introduction</h2>
     </div>
     <article id='bar'>

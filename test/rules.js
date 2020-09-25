@@ -481,7 +481,7 @@ var tests = {
     , heuristic: {
         'date-format':  [
             { doc: "heuristic/dates.html" }
-        ,   { doc: "heuristic/bad-dates.html", errors: ["heuristic.date-format.wrong", "heuristic.date-format.wrong", "heuristic.date-format.wrong"] }
+        ,   { doc: "heuristic/bad-dates.html", errors: ["heuristic.date-format.wrong", "heuristic.date-format.wrong"] }
         ,   { doc: "heuristic/dated-url.html" }
         ]
     ,   'shortname':  [
