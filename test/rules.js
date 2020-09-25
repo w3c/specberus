@@ -282,6 +282,9 @@ var tests = {
             { doc: "links/internal-good.html" }
         ,   { doc: "links/internal-fails.html", errors: ["links.internal.anchor", "links.internal.anchor"] }
         ]
+    ,   reliability:  [
+            { doc: "links/internal-fails.html", warnings: ["links.reliability.unreliable-link"] }
+        ]
     }
 ,   structure:   {
         h2:  [
