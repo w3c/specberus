@@ -1,0 +1,48 @@
+name: Specberus tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: npm run build --if-present
+      #env:
+        #W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
+        #SKIP_NETWORK: true 
+    - name: Notify failure
+      uses: rectalogic/notify-irc@v1
+      if: ${{ failure() }}
+      with:
+        server: "irc.w3.org"
+        port: 6679
+        channel: "#infobot"
+        nickname: gh-action-notifier
+        tls: true
+        message: |
+          ${{ github.actor }} pushed to ${{ github.repository }}. https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} FAILED (PR: ${{ github.event.pull_request.html_url }})
+    - name: Notify success
+      uses: rectalogic/notify-irc@v1
+      if: ${{ success() }}
+      with:
+        server: "irc.w3.org"
+        port: 6679
+        channel: "#infobot"
+        nickname: gh-action-notifier
+        tls: true
+        message: |
+          ${{ github.actor }} pushed to ${{ github.repository }}. https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} PASSED (PR: ${{ github.event.pull_request.html_url }})
+
