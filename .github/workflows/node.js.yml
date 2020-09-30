@@ -36,7 +36,7 @@ jobs:
         nickname: gh-action-notifier
         tls: true
         message: |
-          ${{ github.actor }} pushed to {{ github.repository }}. ${{ github.event.pull_request }} FAILED
+          ${{ github.actor }} pushed to {{ github.event.repository }}. ${{ github.event.pull_request }} FAILED
     - name: Notify success
       uses: rectalogic/notify-irc@v1
       if: ${{ success() }}
@@ -47,5 +47,5 @@ jobs:
         nickname: gh-action-notifier
         tls: true
         message: |
-          ${{ github.actor }} pushed to {{ github.repository }}. ${{ github.event.pull_request }} FAILED
+          ${{ github.actor }} pushed to {{ github.event.repository }}. ${{ github.event.pull_request }} FAILED
 
