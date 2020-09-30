@@ -31,6 +31,7 @@ jobs:
       if: ${{ failure() }}
       with:
         server: "irc.w3.org"
+        port: 6667
         channel: "#pubrules"
         nickname: gh-action-notifier
         message: |
@@ -41,6 +42,7 @@ jobs:
       if: ${{ success() }}
       with:
         server: "irc.w3.org"
+        port: 6667
         channel: "#pubrules"
         nickname: gh-action-notifier
         message: |
