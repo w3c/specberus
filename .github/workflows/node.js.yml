@@ -30,8 +30,9 @@ jobs:
       uses: rectalogic/notify-irc@v1
       if: ${{ failure() }}
       with:
-        server: irc.w3.org
+        server: "irc.w3.org"
         channel: "#pubrules"
+        nickname: gh-action-notifier
         message: |
           ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }} FAILURE
           ${{ join(github.event.commits.*.message) }}
@@ -39,8 +40,9 @@ jobs:
       uses: rectalogic/notify-irc@v1
       if: ${{ success() }}
       with:
-        server: irc.w3.org
+        server: "irc.w3.org"
         channel: "#pubrules"
+        nickname: gh-action-notifier
         message: |
           ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }} SUCCESS
           ${{ join(github.event.commits.*.message) }}
