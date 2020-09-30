@@ -10,14 +10,11 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
-
+        node-version: [14.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -29,3 +26,22 @@ jobs:
       env:
         W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
         SKIP_NETWORK: true 
+    - name: Notify failure
+      uses: rectalogic/notify-irc@v1
+      if: ${{ failure() }}
+      with:
+        server: irc.w3.org
+        channel: "#pubrules"
+        message: |
+          ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }} FAILURE
+          ${{ join(github.event.commits.*.message) }}
+    - name: Notify success
+      uses: rectalogic/notify-irc@v1
+      if: ${{ success() }}
+      with:
+        server: irc.w3.org
+        channel: "#pubrules"
+        message: |
+          ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }} SUCCESS
+          ${{ join(github.event.commits.*.message) }}
+
