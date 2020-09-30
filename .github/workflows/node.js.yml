@@ -20,16 +20,16 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm run build --if-present
-      #env:
-        #W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
-        #SKIP_NETWORK: true 
+      env:
+        W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
+        SKIP_NETWORK: true 
     - name: Notify failure
       uses: rectalogic/notify-irc@v1
       if: ${{ failure() }}
       with:
         server: "irc.w3.org"
         port: 6679
-        channel: "#infobot"
+        channel: "#pubrules"
         nickname: gh-action-notifier
         tls: true
         message: |
@@ -40,7 +40,7 @@ jobs:
       with:
         server: "irc.w3.org"
         port: 6679
-        channel: "#infobot"
+        channel: "#pubrules"
         nickname: gh-action-notifier
         tls: true
         message: |
