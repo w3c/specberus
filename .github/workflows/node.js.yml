@@ -33,10 +33,10 @@ jobs:
         server: "irc.w3.org"
         port: 6679
         channel: "#pubrules"
-        nickname: denis
+        nickname: gh-action-notifier
         tls: true
         message: |
-          ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }} FAILURE
+          ${{ github.actor }} pushed to {{ github.repository }}. ${{ github.event.pull_request }} FAILED
     - name: Notify success
       uses: rectalogic/notify-irc@v1
       if: ${{ success() }}
@@ -44,8 +44,8 @@ jobs:
         server: "irc.w3.org"
         port: 6679
         channel: "#pubrules"
-        nickname: denis
+        nickname: gh-action-notifier
         tls: true
         message: |
-          ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }} SUCCESS
+          ${{ github.actor }} pushed to {{ github.repository }}. ${{ github.event.pull_request }} FAILED
 
