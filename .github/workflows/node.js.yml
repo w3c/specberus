@@ -32,8 +32,7 @@ jobs:
         channel: "#pubrules"
         nickname: gh-action-notifier
         tls: true
-        message: |
-          ${{ github.actor }} pushed to ${{ github.repository }}. https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} FAILED (PR: ${{ github.event.pull_request.html_url }})
+        message: ${{ github.actor }} pushed to ${{ github.repository }}. https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} FAILED with node ${{ matrix.node-version}} (PR: ${{ github.event.pull_request.html_url }})
     - name: Notify success
       uses: rectalogic/notify-irc@v1
       if: ${{ success() }}
@@ -43,6 +42,5 @@ jobs:
         channel: "#pubrules"
         nickname: gh-action-notifier
         tls: true
-        message: |
-          ${{ github.actor }} pushed to ${{ github.repository }}. https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} PASSED (PR: ${{ github.event.pull_request.html_url }})
+        message: ${{ github.actor }} pushed to ${{ github.repository }}. https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} PASSED with node ${{ matrix.node-version }} (PR: ${{ github.event.pull_request.html_url }})
 
