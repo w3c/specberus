@@ -202,10 +202,12 @@ jQuery.extend({
             $validation.find("label").removeClass('active');
             $validation.find('label#simple-validation').addClass('active');
             let patentPolicy;
-            if (data.metadata.patentPolicy && data.metadata.patentPolicy === "https://www.w3.org/Consortium/Patent-Policy-20170801/") {
-                patentPolicy = "pp2004";
-            } else {
-                patentPolicy = "pp2020";
+            if (data.metadata.patentPolicy) {
+                if (data.metadata.patentPolicy === "https://www.w3.org/Consortium/Patent-Policy-20170801/") {
+                    patentPolicy = "pp2004";
+                } else if (data.metadata.patentPolicy === "https://www.w3.org/Consortium/Patent-Policy-20200915/") {
+                    patentPolicy = "pp2020";
+                }
             }
             $patentPolicy.find('label').removeClass('active');
             $patentPolicy.find('label#' + patentPolicy).addClass('active');
@@ -308,8 +310,8 @@ jQuery.extend({
         }
         $noRecTrack.prop('checked', options.noRecTrack);
         $informativeOnly.prop('checked', options.informativeOnly);
+        $patentPolicy.find('label').removeClass('active');
         if (options.patentPolicy) {
-          $patentPolicy.find('label').removeClass('active');
           $patentPolicy.find('label#' + options.patentPolicy).addClass('active');
         }
     }
