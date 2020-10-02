@@ -1,4 +1,0 @@
-instrumentation:
-  include-all-sources: true
-  excludes:
-    - "**/*.min.js"
