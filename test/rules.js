@@ -368,13 +368,12 @@ var tests = {
         ,   { doc: "sotd/supersedable.html", errors: ["sotd.supersedable.no-sotd-intro", "sotd.supersedable.no-sotd-tr"] }
         ]
     ,   pp:  [
-            { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp", "sotd.pp.no-claims", "sotd.pp.no-section6"] }
-        ,   { doc: "headers/simple.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
-        ,   { doc: "sotd/pp-bad.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
+            { doc: "headers/simple.html", config: { recTrackStatus: true }, errors: ["sotd.pp.undefined"] }
+        ,   { doc: "sotd/pp-bad.html", config: { recTrackStatus: true, patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "sotd/pp-cpp2002.html", options: { patentPolicy: "pp2002" } }
-        ,   { doc: "sotd/joint-publication.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"], warnings: ["sotd.pp.joint-publication"] }
-        ,   { doc: "sotd/joint-publication-tag.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"], warnings: ["sotd.pp.joint-publication"] }
-        ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true }, errors: ["sotd.pp.no-pp"] }
+        ,   { doc: "sotd/joint-publication.html", config: { recTrackStatus: true, patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"], warnings: ["sotd.pp.joint-publication"] }
+        ,   { doc: "sotd/joint-publication-tag.html", config: { recTrackStatus: true, patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"], warnings: ["sotd.pp.joint-publication"] }
+        ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true, patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
         ,   { doc: "headers/wg-note1.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
         ,   { doc: "headers/wg-note2.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
@@ -382,6 +381,7 @@ var tests = {
         ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, patentPolicy: "pp2004" , amended: true } }
         ,   { doc: "sotd/pp-20200915.html", config: { recTrackStatus: true, patentPolicy: "pp2020" } }
+        ,   { doc: "sotd/pp-20200915.html", config: { recTrackStatus: true }, errors: ["sotd.pp.undefined"] }
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
