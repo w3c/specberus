@@ -26,7 +26,6 @@
   "devDependencies": {
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
-    "coveralls": "3.1.0",
     "eslint": "7.10.0",
     "eslint-plugin-node": "11.1.0",
     "expect.js": "0.3",
@@ -45,7 +44,6 @@
     "test": "mocha --timeout 10000",
     "jsdoc": "jsdoc --configure jsdoc.json -r app.js lib/ public/ test/ tools/",
     "coverage": "nyc npm test",
-    "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
     "build": "npm run lint && npm run hint && npm run test && npm run jsdoc",
     "live": "nodemon --use_strict app",
     "start": "node --use_strict app"
