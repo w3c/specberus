@@ -12,6 +12,8 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 14.x]
+    env:
+      W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
     steps:
     - uses: actions/checkout@v2
 
@@ -21,7 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - run: npm install
-    
+
     - run: npm run lint
 
     - run: npm run hint
@@ -29,13 +31,13 @@ jobs:
     - run: npm run jsdoc
 
     - run: npm run coverage
-      if: secrets.W3C_API_KEY != ""
+      if: env.W3C_API_KEY != ''
       env:
-        W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
-        SKIP_NETWORK: true 
+        SKIP_NETWORK: true
 
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@v1.1.2
+      if: env.W3C_API_KEY != ''
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
