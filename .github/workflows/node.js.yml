@@ -3,7 +3,7 @@ name: Specberus tests
 on:
   push:
     branches: [ main ]
-  pull_request_target:
+  pull_request:
     branches: [ main ]
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
 
     - name: Notify failure
       uses: rectalogic/notify-irc@v1
-      if: ${{ failure() }}
+      if: failure()
       with:
         server: "irc.w3.org"
         port: 6679
