@@ -26,6 +26,7 @@
   "devDependencies": {
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
+    "cspell": "4.1.0",
     "eslint": "7.10.0",
     "eslint-plugin-node": "11.1.0",
     "expect.js": "0.3",
@@ -39,6 +40,7 @@
   },
   "scripts": {
     "audit": "npm audit | grep -oE 'https?\\:\\/\\/(www\\.)?(nodesecurity\\.io|npmjs\\.com)\\/advisories\\/[[:digit:]]+' | rev | cut -d '/' -f 1 | rev | diff known-vulns.txt -",
+    "cspell": "cspell **/*.css **/*.js",
     "lint": "eslint app.js lib/ public/ test/ tools/",
     "hint": "jshint app.js lib/ public/ test/ tools/",
     "test": "mocha --timeout 10000",
