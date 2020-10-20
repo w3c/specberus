@@ -224,7 +224,6 @@ var tests = {
   'headers.mailing-list.no-arch' ]
             }
         ,   { doc: "sotd/ml-missing.html" }
-        ,   { doc: "headers/simple.html", errors: ["headers.mailing-list.no-repo"] }
         ]
     ,   "errata": [
             { doc: "headers/simple.html", config: { longStatus: "Recommendation" } }
