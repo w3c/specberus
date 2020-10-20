@@ -43,6 +43,7 @@
     "cspell": "cspell **/*.css **/*.js",
     "lint": "eslint app.js lib/ public/ test/ tools/",
     "hint": "jshint app.js lib/ public/ test/ tools/",
+    "spelling": "cspell \"**/*.*\"",
     "test": "mocha --timeout 10000",
     "jsdoc": "jsdoc --configure jsdoc.json -r app.js lib/ public/ test/ tools/",
     "coverage": "nyc npm test",
