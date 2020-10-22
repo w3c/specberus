@@ -122,7 +122,7 @@ This method takes an object with the following fields:
 * `file`: A file system path to the content to check.
 * `document`: A DOM `Document` object to be checked.
 * `profile`: A profile object which defines the validation. Required. See below.
-* `events`: An event sink which supports the same interface as Node.js's `EventEmitter`. Required. See
+* `events`: An event sink which supports the same interface as the Node.js `EventEmitter`. Required. See
   below for the events that get generated.
 
 ### `extractMetadata(options)`

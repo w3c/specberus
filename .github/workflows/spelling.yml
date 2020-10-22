@@ -1,0 +1,22 @@
+name: Spellcheck
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: cSpell
+        run: |
+          echo "::add-matcher::.github/workflows/cspell-problem-matcher.json"
+          npm run spelling
