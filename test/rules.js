@@ -215,12 +215,15 @@ var tests = {
         ,   { doc: "headers/seriesShortlink.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
         ]
     ,   "mailing-list":  [
-            { doc: "headers/simple.html" }
+            { doc: "headers/simple.html"
+            , errors: ["headers.mailing-list.no-repo"]
+            }
         ,   { doc: "sotd/ml-bad.html"
-            , errors: ["headers.mailing-list.no-list", "headers.mailing-list.no-arch"]
+            , errors: ["headers.mailing-list.no-repo"]
+            , warnings: [ 'headers.mailing-list.no-list',
+  'headers.mailing-list.no-arch' ]
             }
         ,   { doc: "sotd/ml-missing.html" }
-        ,   { doc: "headers/simple.html", config: { status: "REC" }, errors: ["headers.mailing-list.no-repo"] }
         ]
     ,   "errata": [
             { doc: "headers/simple.html", config: { longStatus: "Recommendation" } }
