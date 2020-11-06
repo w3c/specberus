@@ -226,6 +226,10 @@ var tests = {
         ,   { doc: "headers/simple.html", config: { longStatus: "Recommendation" }, errors: ["headers.h2-status.bad-h2"] }
         ,   { doc: "headers/h2-amended.html", config: { longStatus: "Recommendation", amended: true } }
         ,   { doc: "headers/simple.html", config: { longStatus: "Working Draft", amended: true }, errors: ["headers.h2-status.bad-h2"] }
+        ,   { doc: "sotd/cr-end.html", config: { longStatus: "Candidate Recommendation", crType: "Snapshot"}}
+        ,   { doc: "sotd/cr-end-27days.html", config: { longStatus: "Candidate Recommendation", crType: "Draft" } }
+        ,   { doc: "sotd/cr-end-27days.html", config: { longStatus: "Candidate Recommendation", crType: "Snapshot" }, errors: ["headers.h2-status.bad-h2"] }
+        ,   { doc: "sotd/cr-end-multiple.html", config: { longStatus: "Candidate Recommendation", crType: "Snapshot" }, errors: ["headers.h2-status.bad-h2", "headers.h2-status.bad-h2"]}
         ]
     ,   "h2-toc":  [
             { doc: "headers/simple.html" }
