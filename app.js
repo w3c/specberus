@@ -28,7 +28,7 @@ const self = require('./package')
 
 const app = express()
 ,   server = http.createServer(app)
-,   io = socket.listen(server)
+,   io = socket(server)
 ,   Sink = sink.Sink
 ,   version = self.version
 ;
@@ -46,7 +46,7 @@ l10n.setLanguage('en_GB');
 
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
 
-io.sockets.on("connection", function (socket) {
+io.on("connection", function (socket) {
     socket.emit("handshake", { version: version });
     socket.on("extractMetadata", function (data) {
         if (!data.url) return socket.emit("exception", { message: "URL not provided." });
