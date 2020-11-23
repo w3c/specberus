@@ -377,7 +377,7 @@ var tests = {
         ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true, patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
         ,   { doc: "headers/wg-note1.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
-        ,   { doc: "headers/wg-note2.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
+        ,   { doc: "headers/wg-note2.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "sotd/pp-20170801.html", config: { recTrackStatus: true, patentPolicy: "pp2004" , amended: true }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, patentPolicy: "pp2004" , amended: true } }
