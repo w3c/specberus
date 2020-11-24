@@ -49,11 +49,6 @@
       "rule": "headers.copyright"
     }
   ],
-  "^webauthn-2$": [
-    {
-      "rule": "headers.h1-title"
-    }
-  ],
   "^audiobooks$": [
     {
       "rule": "sotd.cr-end"
