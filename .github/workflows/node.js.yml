@@ -1,10 +1,7 @@
 name: Specberus tests
 
 on:
-  push:
-    branches: [ main ]
-  pull_request_target:
-    branches: [ main ]
+  push
 
 jobs:
   test:
