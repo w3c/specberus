@@ -383,6 +383,7 @@ var tests = {
         ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, patentPolicy: "pp2004" , amended: true } }
         ,   { doc: "sotd/pp-20200915.html", config: { recTrackStatus: true, patentPolicy: "pp2020" } }
         ,   { doc: "sotd/pp-20200915.html", config: { recTrackStatus: true }, errors: ["sotd.pp.undefined"] }
+        ,   { doc: "headers/wd.html"}
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
