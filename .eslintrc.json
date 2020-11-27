@@ -1,8 +1,6 @@
 {
-  "plugins": ["node"],
   "extends": [
-    "eslint:recommended",
-    "plugin:node/recommended"
+    "eslint:recommended"
   ],
   "overrides": [
     {
@@ -11,8 +9,18 @@
       ],
       "env": {
         "browser": true,
-        "jquery": true
+        "jquery": true,
+        "es6": true
       }
+    },
+    {
+      "files": [
+        "app.js",
+        "lib/**/*.js",
+        "tools/**/*.js"
+      ],
+      "plugins": ["node"],
+      "extends": "plugin:node/recommended"
     },
     {
       "files": [
@@ -23,7 +31,9 @@
       },
       "rules": {
         "node/no-unpublished-require": "off"
-      }
+      },
+      "plugins": ["node"],
+      "extends": "plugin:node/recommended"
     }
   ]
 }
