@@ -4,7 +4,6 @@
     "commonjs": true,
     "es6": true,
     "jquery": true,
-    "mocha": true,
     "node": true
   },
   "plugins": ["node"],
@@ -12,7 +11,17 @@
     "eslint:recommended",
     "plugin:node/recommended"
   ],
-  "rules": {
-    "node/no-unpublished-require": "off"
-  }
+  "overrides": [
+    {
+      "files": [
+        "test/**/*.js"
+      ],
+      "env": {
+        "mocha": true
+      },
+      "rules": {
+        "node/no-unpublished-require": "off"
+      }
+    }
+  ]
 }
