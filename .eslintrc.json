@@ -1,17 +1,19 @@
 {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "jquery": true,
-    "node": true
-  },
   "plugins": ["node"],
   "extends": [
     "eslint:recommended",
     "plugin:node/recommended"
   ],
   "overrides": [
+    {
+      "files": [
+        "public/js/*.js"
+      ],
+      "env": {
+        "browser": true,
+        "jquery": true
+      }
+    },
     {
       "files": [
         "test/**/*.js"
