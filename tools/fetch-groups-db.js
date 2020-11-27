@@ -41,7 +41,7 @@ function munge (err, res) {
                 else if (href.indexOf("/") === 0) href = "http://www.w3.org" + href;
                 else if (/^(\.\.\/){2}\w/.test(href)) href = "http://www.w3.org/" + href.replace(/^(\.\.\/){2}/, "");
                 else
-                console.error("--------------- UNKNOWN URL FORM -------------------");  // eslint-disable-line no-console
+                console.error("--------------- UNKNOWN URL FORM -------------------");
                 results[list] = { name: name, href: href };
             });
         }

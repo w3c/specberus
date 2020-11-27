@@ -1,20 +1,39 @@
 {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "jquery": true,
-    "mocha": true,
-    "node": true
-  },
-  "plugins": ["node"],
   "extends": [
-    "eslint:recommended",
-    "plugin:node/recommended"
+    "eslint:recommended"
   ],
-  "rules": {
-    "node/no-unpublished-require": "off",
-    "no-eval": "error",
-    "no-implied-eval": "error"
-  }
+  "overrides": [
+    {
+      "files": [
+        "public/js/*.js"
+      ],
+      "env": {
+        "browser": true,
+        "jquery": true,
+        "es6": true
+      }
+    },
+    {
+      "files": [
+        "app.js",
+        "lib/**/*.js",
+        "tools/**/*.js"
+      ],
+      "plugins": ["node"],
+      "extends": "plugin:node/recommended"
+    },
+    {
+      "files": [
+        "test/**/*.js"
+      ],
+      "env": {
+        "mocha": true
+      },
+      "rules": {
+        "node/no-unpublished-require": "off"
+      },
+      "plugins": ["node"],
+      "extends": "plugin:node/recommended"
+    }
+  ]
 }

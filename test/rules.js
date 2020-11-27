@@ -509,21 +509,21 @@ Object.keys(tests).forEach(function (category) {
                         ;
                         handler.on("err", function (type, data) {
                             if (DEBUG)
-                                console.log(type, data); // eslint-disable-line no-console
+                                console.log(type, data);
                             handler.errors.push(type.name + '.' + data.key);
                         });
                         handler.on("warning", function (type, data) {
                             if (DEBUG)
-                                console.log("[W]", data); // eslint-disable-line no-console
+                                console.log("[W]", data);
                             handler.warnings.push(type.name + '.' + data.key);
                         });
                         handler.on("done", function () {
                             if (DEBUG)
-                                console.log("---done---"); // eslint-disable-line no-console
+                                console.log("---done---");
                             handler.done++;
                         });
                         handler.on("exception", function (data) {
-                            console.error("[EXCEPTION] Validator had a massive failure: " + data.message); // eslint-disable-line no-console
+                            console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
                         });
                         handler.on("end-all", function () {
                             try {
