@@ -331,7 +331,7 @@ var tests = {
         ,   { doc: "sotd/cr-end.html", config: { status: "CR", crType: "Draft" }, errors: ["sotd.publish.not-found"] }
         ,   { doc: "sotd/rec-obsl.html", config: { status: "REC", longStatus: "Recommendation" } }
         ,   { doc: "sotd/rec-rescind.html", config: { status: "REC", longStatus: "Recommendation" }, errors: ["sotd.publish.url-not-match"] }
-            , {doc: "sotd/rec-superseded.html", config: { status: "REC", longStatus: "Recommendation"}, errors: ["sotd.publish.url-text-not-found"]}
+        ,   {doc: "sotd/rec-superseded.html", config: { status: "REC", longStatus: "Recommendation"}, errors: ["sotd.publish.url-text-not-found"]}
         ]
     ,   "new-features": [
             { doc: "sotd/rec-addition-2020.html", config: { status: "REC" } }
@@ -356,7 +356,7 @@ var tests = {
                 ,   longStatus: "Candidate Recommendation"
             }
         }
-        , { doc: "sotd/cr-end-multiple.html"
+        ,   { doc: "sotd/cr-end-multiple.html"
             , config: { "crType": "Snapshot", longStatus: "Candidate Recommendation" }
         }
         ,   { doc: "online/WD-screen-orientation.html"
@@ -383,7 +383,9 @@ var tests = {
         ,   { doc: "sotd/pp-20170801-amended.html", config: { recTrackStatus: true, patentPolicy: "pp2004" , amended: true } }
         ,   { doc: "sotd/pp-20200915.html", config: { recTrackStatus: true, patentPolicy: "pp2020" } }
         ,   { doc: "sotd/pp-20200915.html", config: { recTrackStatus: true }, errors: ["sotd.pp.undefined"] }
-        ,   { doc: "headers/wd.html"}
+        ,   { doc: "headers/wd.html" }
+        ,   { doc: "sotd/wg-note-IG-good.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
+        ,   { doc: "sotd/wg-note-IG-bad.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"] }
         ]
     ,   "charter-disclosure":  [
             { doc: "headers/ig-note.html" }
@@ -432,7 +434,7 @@ var tests = {
             }
             , errors: ["sotd.stability.no-cr-review"]
         }
-        , { doc: "sotd/cr-end-multiple.html"
+        ,   { doc: "sotd/cr-end-multiple.html"
             , config: { "crType": "Snapshot", "stabilityWarning": true, longStatus: "Candidate Recommendation" }
             , errors: ["sotd.stability.wrong-cr-review-link"]
         }
