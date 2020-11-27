@@ -41,8 +41,8 @@
   "scripts": {
     "audit": "npm audit | grep -oE 'https?\\:\\/\\/(www\\.)?(nodesecurity\\.io|npmjs\\.com)\\/advisories\\/[[:digit:]]+' | rev | cut -d '/' -f 1 | rev | diff known-vulns.txt -",
     "cspell": "cspell **/*.css **/*.js",
-    "lint": "eslint app.js lib/ public/ test/ tools/",
-    "hint": "jshint app.js lib/ public/ test/ tools/",
+    "lint": "eslint .",
+    "hint": "jshint --exclude node_modules/ .",
     "spelling": "cspell \"**/*.*\"",
     "test": "mocha --timeout 10000",
     "jsdoc": "jsdoc --configure jsdoc.json -r app.js lib/ public/ test/ tools/",
