@@ -59,7 +59,7 @@ jQuery.extend({
 
     // handshake
     socket.on("handshake", function (data) {
-        console.log(`Handshake; using version “${data.version}”.`); // eslint-disable-line no-console
+        console.log(`Handshake; using version “${data.version}”.`);
 
         socket.on('disconnect', function () {
             socket.close();
