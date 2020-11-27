@@ -28,6 +28,7 @@
     "chai-as-promised": "7.1.1",
     "cspell": "4.2.2",
     "eslint": "7.14.0",
+    "eslint-plugin-jsdoc": "^30.7.8",
     "eslint-plugin-node": "11.1.0",
     "expect.js": "0.3",
     "husky": "^4.2.5",

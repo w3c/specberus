@@ -19,8 +19,11 @@
         "lib/**/*.js",
         "tools/**/*.js"
       ],
-      "plugins": ["node"],
-      "extends": "plugin:node/recommended"
+      "plugins": ["node", "jsdoc"],
+      "extends": [
+        "plugin:node/recommended",
+        "plugin:jsdoc/recommended"
+      ]
     },
     {
       "files": [
