@@ -38,7 +38,6 @@ function munge(err, res) {
                 var list = element.textContent;
                 if (!/@w3\.org$/.test(list)) list += '@w3.org';
                 if (href.indexOf('http') === 0) true;
-                // jshint ignore: line
                 else if (href.indexOf('/') === 0)
                     href = 'http://www.w3.org' + href;
                 else if (/^(\.\.\/){2}\w/.test(href))
