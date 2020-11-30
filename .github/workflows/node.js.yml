@@ -1,7 +1,7 @@
 name: Specberus tests
 
 on:
-  push
+  push:
 
 jobs:
   test:
@@ -20,12 +20,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - run: npm install
-
-    - run: npm run lint
-
-    - run: npm run hint
-
-    - run: npm run jsdoc
 
     - run: npm run coverage
       if: env.W3C_API_KEY != ''
