@@ -9,14 +9,22 @@
  * <a href="http://docs.travis-ci.com/user/ci-environment/#Environment-variables">Travis documentation</a>.
  */
 
-if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
+if (
+    !process ||
+    !process.env ||
+    (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)
+) {
     exports.css = [
-        {doc: 'validation/simple.html', ignoreWarnings: true}
-    ,   {doc: 'validation/css.html', ignoreWarnings: true}
-    ,   {doc: 'validation/bad-css.html', errors: ['validation.css.error', 'validation.css.error'], ignoreWarnings: true}
+        { doc: 'validation/simple.html', ignoreWarnings: true },
+        { doc: 'validation/css.html', ignoreWarnings: true },
+        {
+            doc: 'validation/bad-css.html',
+            errors: ['validation.css.error', 'validation.css.error'],
+            ignoreWarnings: true,
+        },
     ];
     exports.html = [
-        {doc: 'validation/simple.html'}
-    ,   {doc: 'validation/invalid.html', errors: ['validation.html.error']}
+        { doc: 'validation/simple.html' },
+        { doc: 'validation/invalid.html', errors: ['validation.html.error'] },
     ];
 }

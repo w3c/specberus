@@ -5,27 +5,21 @@
 /* globals expect: true */
 
 // Settings:
-const DEFAULT_PORT = 8000
-,   PORT = process.env.PORT || DEFAULT_PORT
-,   ENDPOINT = 'http://localhost:' + PORT + '/api/'
-,   TIMEOUT = 30000
-;
-
+const DEFAULT_PORT = 8000,
+    PORT = process.env.PORT || DEFAULT_PORT,
+    ENDPOINT = 'http://localhost:' + PORT + '/api/',
+    TIMEOUT = 30000;
 // Native packages:
 const http = require('http');
 
 // External packages:
-const chai = require('chai')
-,   chaiAsPromised = require('chai-as-promised')
-,   express = require('express')
-,   superagent = require('superagent')
-;
-
+const chai = require('chai'),
+    chaiAsPromised = require('chai-as-promised'),
+    express = require('express'),
+    superagent = require('superagent');
 // Internal packages:
-const meta = require('../package')
-,   api = require('../lib/api')
-;
-
+const meta = require('../package'),
+    api = require('../lib/api');
 var server;
 
 /**
@@ -36,7 +30,7 @@ const launchServer = function () {
     const app = express();
     server = http.createServer(app);
     api.setUp(app);
-    server.listen(PORT).on('error', function(err) {
+    server.listen(PORT).on('error', function (err) {
         throw new Error(err);
     });
 };
@@ -45,7 +39,7 @@ const launchServer = function () {
  * Set up the testing framework.
  */
 
-const setUp = function() {
+const setUp = function () {
     chai.use(chaiAsPromised);
     expect = chai.expect;
 };
@@ -59,65 +53,89 @@ const get = function (suffix, post) {
     return new Promise(function (resolve, reject) {
         method(ENDPOINT + suffix, function (error, response, body) {
             if (error) {
-                if (error.response && error.response.error && error.response.error.text)
+                if (
+                    error.response &&
+                    error.response.error &&
+                    error.response.error.text
+                )
                     reject(new Error(error.response.error.text));
                 else
-                    reject(new Error('Fetching “' + ENDPOINT + suffix + '” triggered a network error: ' + error.message));
-            }
-            else if (response.statusCode !== 200)
-                reject(new Error('Fetching “' + ENDPOINT + suffix + '” triggered an HTTP error: code ' + response.statusCode));
+                    reject(
+                        new Error(
+                            'Fetching “' +
+                                ENDPOINT +
+                                suffix +
+                                '” triggered a network error: ' +
+                                error.message
+                        )
+                    );
+            } else if (response.statusCode !== 200)
+                reject(
+                    new Error(
+                        'Fetching “' +
+                            ENDPOINT +
+                            suffix +
+                            '” triggered an HTTP error: code ' +
+                            response.statusCode
+                    )
+                );
             else if (response.res && response.res.text) {
                 resolve(response.res.text);
-            }
-            else {
+            } else {
                 resolve(body);
             }
         })
-        .timeout({response: TIMEOUT})
-        .set({encoding: null});
+            .timeout({ response: TIMEOUT })
+            .set({ encoding: null });
     });
 };
 
-describe('API', function() {
-
+describe('API', function () {
     var query;
 
-    before(function() {
+    before(function () {
         launchServer();
         setUp();
     });
 
-    describe('Endpoint', function() {
-        it('Should exist and listen to GET requests', function() {
+    describe('Endpoint', function () {
+        it('Should exist and listen to GET requests', function () {
             query = get('');
-            return expect(query).to.eventually.be.rejectedWith(/wrong api method/i);
+            return expect(query).to.eventually.be.rejectedWith(
+                /wrong api method/i
+            );
         });
-        it('Should not accept POST requests', function() {
+        it('Should not accept POST requests', function () {
             query = get('', true);
             return expect(query).to.eventually.be.rejectedWith(/cannot post/i);
         });
     });
 
-    describe('Method “version”', function() {
-        it('Should return the right version string', function() {
+    describe('Method “version”', function () {
+        it('Should return the right version string', function () {
             query = get('version');
             return expect(query).to.eventually.become(meta.version);
         });
     });
 
-    describe('Method “metadata”', function() {
-        it('Should accept the parameter “file”, and return the right profile and date', function() {
+    describe('Method “metadata”', function () {
+        it('Should accept the parameter “file”, and return the right profile and date', function () {
             query = get('metadata?file=test/docs/metadata/ttml-imsc1.html');
             // @TODO: parse result as an Object (it's JSON) instead of a String.
-            return expect(query).to.eventually.match(/"profile":\s*"pr"/i)
+            return expect(query)
+                .to.eventually.match(/"profile":\s*"pr"/i)
                 .and.to.eventually.match(/"docdate":\s*"2016-3-8"/i);
         });
     });
 
-    describe('Method “validate”', function() {
-        it('Should 404 and return an array of errors when validation fails', function() {
-            query = get('validate?file=test/docs/metadata/ttml-imsc1.html&profile=REC&validation=simple-validation&processDocument=2047');
-            return expect(query).to.eventually.be.rejectedWith(/"headers\.\w+/i);
+    describe('Method “validate”', function () {
+        it('Should 404 and return an array of errors when validation fails', function () {
+            query = get(
+                'validate?file=test/docs/metadata/ttml-imsc1.html&profile=REC&validation=simple-validation&processDocument=2047'
+            );
+            return expect(query).to.eventually.be.rejectedWith(
+                /"headers\.\w+/i
+            );
         });
         // @TODO: The following two tests are failing because the rule dl.js follows the latest version
         //        and that version is pre-https switch
@@ -135,19 +153,22 @@ describe('API', function() {
         // });
     });
 
-    describe('Parameter restrictions', function() {
-        it('Should reject the parameter “document”', function() {
+    describe('Parameter restrictions', function () {
+        it('Should reject the parameter “document”', function () {
             query = get('metadata?document=foo');
-            return expect(query).to.eventually.be.rejectedWith('Parameter “document” is not allowed in this context');
+            return expect(query).to.eventually.be.rejectedWith(
+                'Parameter “document” is not allowed in this context'
+            );
         });
-        it('Should reject the parameter “source”', function() {
+        it('Should reject the parameter “source”', function () {
             query = get('metadata?source=foo');
-            return expect(query).to.eventually.be.rejectedWith('Parameter “source” is not allowed in this context');
+            return expect(query).to.eventually.be.rejectedWith(
+                'Parameter “source” is not allowed in this context'
+            );
         });
     });
 
-    after(function() {
+    after(function () {
         server.close();
     });
-
 });
