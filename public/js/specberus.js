@@ -1,4 +1,4 @@
-'use strict'; // jshint ignore: line
+'use strict';
 
 /* globals io, url */
 

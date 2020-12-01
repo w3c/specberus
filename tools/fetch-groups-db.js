@@ -37,7 +37,7 @@ function munge (err, res) {
             td4.querySelectorAll('a').forEach(function (element) {
                 var list = element.textContent;
                 if (!/@w3\.org$/.test(list)) list += "@w3.org";
-                if (href.indexOf("http") === 0) true; // jshint ignore: line
+                if (href.indexOf("http") === 0) true;
                 else if (href.indexOf("/") === 0) href = "http://www.w3.org" + href;
                 else if (/^(\.\.\/){2}\w/.test(href)) href = "http://www.w3.org/" + href.replace(/^(\.\.\/){2}/, "");
                 else
@@ -45,7 +45,7 @@ function munge (err, res) {
                 results[list] = { name: name, href: href };
             });
         }
-        
+
     });
     fs.writeFileSync(pth.join(__dirname, "../lib/groups-db.json"), JSON.stringify(results, null, 4));
 }

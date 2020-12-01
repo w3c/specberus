@@ -33,7 +33,6 @@
     "expect.js": "0.3",
     "husky": "^4.2.5",
     "jsdoc": "3.6.6",
-    "jshint": "2.12.0",
     "minami": "1.2.3",
     "mocha": "8.2.1",
     "nodemon": "2.0.6",
@@ -43,18 +42,17 @@
     "audit": "npm audit | grep -oE 'https?\\:\\/\\/(www\\.)?(nodesecurity\\.io|npmjs\\.com)\\/advisories\\/[[:digit:]]+' | rev | cut -d '/' -f 1 | rev | diff known-vulns.txt -",
     "cspell": "cspell **/*.css **/*.js",
     "lint": "eslint .",
-    "hint": "jshint --exclude node_modules/ .",
     "spelling": "cspell \"**/*.*\"",
     "test": "mocha --timeout 10000",
     "jsdoc": "jsdoc --configure jsdoc.json -r app.js lib/ public/ test/ tools/",
     "coverage": "nyc npm test",
-    "build": "npm run lint && npm run hint && npm run test && npm run jsdoc",
+    "build": "npm run lint && npm run test && npm run jsdoc",
     "live": "nodemon --use_strict app",
     "start": "node --use_strict app"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run hint && npm run cspell"
+      "pre-commit": "npm run lint && npm run cspell"
     }
   },
   "engines": {
