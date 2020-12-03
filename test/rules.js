@@ -193,9 +193,9 @@ var tests = {
         ,   { doc: "headers/h1-title.html", errors: ["headers.h1-title.title"] }
         ]
     ,   dl:  [
-            { doc: "headers/simple.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
-        ,   { doc: "headers/fails.html", config: {status: "REC" }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.implelink-not-found"] }
-        ,   { doc: "headers/fails.html", config: {status: "REC", previousVersion: true }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.previous-version", "headers.dl.implelink-not-found"] }
+            { doc: "headers/simple.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve", "headers.dl.editor-missing-id"] }
+        ,   { doc: "headers/fails.html", config: {status: "REC" }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.implelink-not-found", "headers.dl.editor-not-found"] }
+        ,   { doc: "headers/fails.html", config: {status: "REC", previousVersion: true }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.previous-version", "headers.dl.implelink-not-found", "headers.dl.editor-not-found"] }
         ,   { doc: "headers/dl-order.html", errors: ["headers.dl.this-latest-order", "headers.dl.latest-previous-order", "headers.dl.cant-retrieve", "headers.dl.implelink-should-be-https", "headers.dl.editors-draft-should-be-https"], warnings: ["headers.dl.previous-not-needed"] }
         ,   { doc: "headers/dl-mismatch.html", config: { status: "REC" }
             , errors: ["headers.dl.this-link", "headers.dl.this-syntax", "headers.dl.latest-link", "headers.dl.latest-syntax", "headers.dl.previous-link", "headers.dl.previous-syntax", "headers.dl.implelink-not-found"]
