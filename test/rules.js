@@ -159,11 +159,7 @@ var tests = {
         ]
     }
 ,   echidna:  {
-        "editor-ids":  [
-            { doc: "echidna/automated-wg.html" }
-        ,   { doc: "echidna/fails-missing-editorsid.html", errors: ["echidna.editor-ids.no-editor-id"] }
-        ]
-    ,   "todays-date":  [
+        "todays-date":  [
             { doc: "echidna/fails-future-date.html", errors: ["echidna.todays-date.wrong-date"] }
         ]
     }
