@@ -20,7 +20,7 @@
     "node-w3capi": "1.9.0",
     "promise": "8.1.0",
     "request": "2.88.2",
-    "socket.io": "3.0.3",
+    "socket.io": "3.0.4",
     "superagent": "6.1.0"
   },
   "devDependencies": {
