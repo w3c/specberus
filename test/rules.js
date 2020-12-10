@@ -369,6 +369,7 @@ var tests = {
         ,   { doc: "sotd/pp-bad.html", config: { recTrackStatus: true, patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "sotd/pp-cpp2002.html", options: { patentPolicy: "pp2002" } }
         ,   { doc: "sotd/joint-publication.html", config: { recTrackStatus: true, patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"], warnings: ["sotd.pp.joint-publication"] }
+        ,   { doc: "sotd/joint-publication-good.html", config: { recTrackStatus: true, noRecTrack: true, patentPolicy: "pp2004" }, warnings: ["sotd.pp.joint-publication"] }
         ,   { doc: "sotd/joint-publication-tag.html", config: { recTrackStatus: true, patentPolicy: "pp2004" } }
         ,   { doc: "sotd/joint-publication-fail.html", config: { recTrackStatus: true, patentPolicy: "pp2004" }, errors: ["sotd.pp.no-pp"] }
         ,   { doc: "headers/wg-note.html", config: { longStatus: "Working Group Note", patentPolicy: "pp2004" } }
