@@ -190,11 +190,11 @@ var tests = {
         ]
     ,   dl:  [
             { doc: "headers/simple.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve", "headers.dl.editor-missing-id"] }
-        ,   { doc: "headers/fails.html", config: {status: "REC" }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.implelink-not-found", "headers.dl.editor-not-found"] }
-        ,   { doc: "headers/fails.html", config: {status: "REC", previousVersion: true }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.previous-version", "headers.dl.implelink-not-found", "headers.dl.editor-not-found"] }
+        ,   { doc: "headers/fails.html", config: {status: "REC" }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.not-found", "headers.dl.editor-not-found"] }
+        ,   { doc: "headers/fails.html", config: {status: "REC", previousVersion: true }, errors: ["headers.dl.this-version", "headers.dl.latest-version", "headers.dl.previous-version", "headers.dl.not-found", "headers.dl.editor-not-found"] }
         ,   { doc: "headers/dl-order.html", errors: ["headers.dl.this-latest-order", "headers.dl.latest-previous-order", "headers.dl.cant-retrieve", "headers.dl.implelink-should-be-https", "headers.dl.editors-draft-should-be-https"], warnings: ["headers.dl.previous-not-needed"] }
         ,   { doc: "headers/dl-mismatch.html", config: { status: "REC" }
-            , errors: ["headers.dl.this-link", "headers.dl.this-syntax", "headers.dl.latest-link", "headers.dl.latest-syntax", "headers.dl.previous-link", "headers.dl.previous-syntax", "headers.dl.implelink-not-found", "headers.dl.editor-not-found"]
+            , errors: ["headers.dl.link-diff", "headers.dl.this-syntax", "headers.dl.link-diff", "headers.dl.latest-syntax", "headers.dl.link-diff", "headers.dl.previous-syntax", "headers.dl.not-found", "headers.dl.editor-not-found"]
             , warnings: ["headers.dl.previous-not-needed"] }
         ,   { doc: "headers/wrong-urls.html", errors: ["headers.dl.previous-syntax", "headers.dl.cant-retrieve"], config: { previousVersion: true, status: "WD" } }
         ,   { doc: "headers/dl-trailing-whitespace.html", config: { previousVersion: true, status: "WD" }, errors: ["headers.dl.cant-retrieve"] }
