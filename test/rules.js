@@ -325,9 +325,10 @@ var tests = {
             { doc: "sotd/cr-end.html", config: { status: "CR", crType: "Snapshot"}}
         ,   { doc: "sotd/cr-end-27days.html", config: { status: "CRD", crType: "Draft" } }
         ,   { doc: "sotd/cr-end.html", config: { status: "CR", crType: "Draft" }, errors: ["sotd.publish.not-found"] }
-        ,   { doc: "sotd/rec-obsl.html", config: { status: "REC", longStatus: "Recommendation" } }
+        ,   { doc: "sotd/rec-obsl.html", config: { status: "REC", longStatus: "Recommendation" }, errors: ["sotd.publish.not-found"]}
         ,   { doc: "sotd/rec-rescind.html", config: { status: "REC", longStatus: "Recommendation" }, errors: ["sotd.publish.url-not-match"] }
         ,   {doc: "sotd/rec-superseded.html", config: { status: "REC", longStatus: "Recommendation"}, errors: ["sotd.publish.url-text-not-found"]}
+        ,   { doc: "sotd/rec-addition-2020.html", config: { status: "REC", longStatus: "Recommendation"} }
         ]
     ,   "new-features": [
             { doc: "sotd/rec-addition-2020.html", config: { status: "REC" } }
