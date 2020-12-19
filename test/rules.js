@@ -680,6 +680,7 @@ const tests = {
             {
                 doc: 'sotd/rec-obsl.html',
                 config: { status: 'REC', longStatus: 'Recommendation' },
+                errors: ['sotd.publish.not-found'],
             },
             {
                 doc: 'sotd/rec-rescind.html',
@@ -704,6 +705,10 @@ const tests = {
                 doc: 'sotd/rec-publish-corrections-fail2.html',
                 config: { status: 'REC', longStatus: 'Recommendation' },
                 errors: ['sotd.publish.url-text-not-found'],
+            },
+            {
+                doc: 'sotd/rec-addition-2020.html',
+                config: { status: 'REC', longStatus: 'Recommendation' },
             },
         ],
         'new-features': [
