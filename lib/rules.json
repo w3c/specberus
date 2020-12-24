@@ -76,7 +76,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -185,7 +184,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -292,7 +290,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -395,7 +392,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -502,7 +498,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -609,7 +604,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -713,7 +707,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true,
@@ -819,7 +812,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true,
@@ -926,7 +918,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true,
@@ -1032,7 +1023,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true,
@@ -1142,7 +1132,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true,
@@ -1248,7 +1237,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true,
@@ -1357,7 +1345,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -1456,7 +1443,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -1553,7 +1539,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -1657,7 +1642,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -1761,7 +1745,6 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -1858,7 +1841,6 @@
                 "rules": {
                     "headingWithoutID": "<span class=\"subset\">recursive</span> Every marked-up section and subsection of the document <span class=\"rfc2119\">must</span> have a target anchor. A section is identified by a heading element (<code>h1</code>-<code>h6</code>). The anchor may be specified using an <code>id</code> (or <code>name</code> if an <code>a</code> element is used) attribute on any of the following: the heading element itself, the parent <code>div</code> or <code>section</code> element of the heading element (where the heading element is the first child of the <code>div</code> or <code>section</code>), a descendant of the heading element, or an <code>a</code> immediately preceding the heading element.",
                     "brokenLink": "The document <span class=\"rfc2119\">must not</span> have any broken internal links or broken links to other resources at w3.org. The document <span class=\"rfc2119\">should not</span> have any other broken links.",
-                    "cssValide": "<span class=\"subset\">recursive</span> The document <span class=\"rfc2119\">must not</span> have any style sheet errors.",
                     "namespaces": "<span class=\"subset\">recursive</span> All proposed <a href=\"https://www.w3.org/TR/xml-names11/\">XML namespaces</a> created by the publication of the document <span class=\"rfc2119\">must</span> follow <cite> <a href=\"http://www.w3.org/2005/07/13-nsuri\">URIs for W3C Namespaces</a> </cite>.",
                     "wcag": "The document(s) <span class=\"rfc2119\">must</span> conform to the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines 2.1</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"https://www.w3.org/WAI/WCAG21/quickref/\">customizable quick reference to Web Content Accessibility Guidelines 2.1</a>.",
                     "securityAndPrivacy": "The document <span class=\"rfc2119\">should</span> have a <a href=\"http://www.w3.org/TR/security-privacy-questionnaire/\">security and privacy considerations</a> section.",
