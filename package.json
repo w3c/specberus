@@ -1,6 +1,6 @@
 {
   "name": "specberus",
-  "version": "5.4.2",
+  "version": "5.5.1",
   "description": "Specberus is a checker used at W3C to validate the compliance of Technical Reports with publication rules.",
   "license": "MIT",
   "main": "lib/validator",
@@ -20,15 +20,15 @@
     "node-w3capi": "1.9.0",
     "promise": "8.1.0",
     "request": "2.88.2",
-    "socket.io": "3.0.3",
+    "socket.io": "3.0.4",
     "superagent": "6.1.0"
   },
   "devDependencies": {
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "cspell": "4.2.5",
-    "eslint": "7.14.0",
-    "eslint-plugin-jsdoc": "30.7.8",
+    "eslint": "7.16.0",
+    "eslint-plugin-jsdoc": "30.7.9",
     "eslint-plugin-node": "11.1.0",
     "expect.js": "0.3",
     "husky": "^4.2.5",
