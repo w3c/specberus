@@ -10,11 +10,6 @@
  */
 
 if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
-    exports.css = [
-        {doc: 'validation/simple.html', ignoreWarnings: true}
-    ,   {doc: 'validation/css.html', ignoreWarnings: true}
-    ,   {doc: 'validation/bad-css.html', errors: ['validation.css.error', 'validation.css.error'], ignoreWarnings: true}
-    ];
     exports.html = [
         {doc: 'validation/simple.html'}
     ,   {doc: 'validation/invalid.html', errors: ['validation.html.error']}
