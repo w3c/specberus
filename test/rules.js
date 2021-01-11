@@ -280,7 +280,23 @@ var tests = {
         ,   { doc: "links/internal-fails.html", errors: ["links.internal.anchor", "links.internal.anchor"] }
         ]
     ,   reliability:  [
-            { doc: "links/internal-fails.html", warnings: ["links.reliability.unreliable-link"] }
+            { doc: "links/internal-fails.html", warnings: [
+                // w3c-test.org is not reliable
+                "links.reliability.unreliable-link",
+                "links.reliability.unreliable-link",
+                "links.reliability.unreliable-link",
+                "links.reliability.unreliable-link",
+                // w3.org/Bugs is not reliable
+                "links.reliability.unreliable-link",
+                "links.reliability.unreliable-link",
+                "links.reliability.unreliable-link",
+                "links.reliability.unreliable-link",
+                // dev.w3.org, dvcs.w3.org are not reliable
+                "links.reliability.unreliable-link",
+                "links.reliability.unreliable-link",
+                "links.reliability.unreliable-link",
+                "links.reliability.unreliable-link",
+            ] }
         ]
     }
 ,   structure:   {
