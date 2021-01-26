@@ -4,7 +4,7 @@
 
 // Settings:
 const DEBUG = false
-,   DEFAULT_PORT = 8000
+,   DEFAULT_PORT = 8001
 ,   PORT = process.env.PORT || DEFAULT_PORT
 ,   ENDPOINT = 'http://localhost:' + PORT
 ;
