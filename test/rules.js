@@ -511,84 +511,85 @@ var tests = {
 // start an server to host doc, response to sr.url requests
 const app = express();
 app.use('/docs', express.static(__dirname + '/docs'));
-app.listen(PORT, () => {
-    console.log(`\ntest/rule.js test server listening at ${ENDPOINT}`);
-});
+const expressServer = app.listen(PORT, () => {});
 
-Object.keys(tests).forEach(function (category) {
-    describe("Category " + category, function () {
-        Object.keys(tests[category]).forEach(function (rule) {
-            describe("Rule " + rule, function () {
-                tests[category][rule].forEach(function (test) {
-                    var passTest = test.errors ? false : true;
-                    it("should " + (passTest ? "pass" : "fail") + " for " + (test.doc || test.url), function (done) {
-                        var r = require("../lib/rules/" + category + "/" + rule)
-                        ,   handler = new sink.Sink()
-                        ;
-                        handler.on("err", function (type, data) {
-                            if (DEBUG)
-                                console.log(type, data);
-                            handler.errors.push(type.name + '.' + data.key);
-                        });
-                        handler.on("warning", function (type, data) {
-                            if (DEBUG)
-                                console.log("[W]", data);
-                            handler.warnings.push(type.name + '.' + data.key);
-                        });
-                        handler.on("done", function () {
-                            if (DEBUG)
-                                console.log("---done---");
-                            handler.done++;
-                        });
-                        handler.on("exception", function (data) {
-                            console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
-                        });
-                        handler.on("end-all", function () {
-                            try {
-                                var i
-                                , n;
-                                if (passTest) {
-                                    expect(handler.errors).to.be.empty();
-                                }
-                                else {
-                                    expect(handler.errors.length).to.eql(test.errors.length);
-                                    for (i = 0, n = test.errors.length; i < n; i++) {
-                                        expect(handler.errors).to.contain(test.errors[i]);
-                                    }
-                                }
-                                if (!test.ignoreWarnings) {
-                                    if (test.warnings) {
-                                        expect(handler.warnings.length).to.eql(test.warnings.length);
-                                        for (i = 0, n = test.warnings.length; i < n; i++) {
-                                            expect(handler.warnings).to.contain(test.warnings[i]);
-                                        }
+describe("Making sure Specberus is not broken...", function () {
+    after(function () { expressServer.close(); });
+    Object.keys(tests).forEach(function (category) {
+        describe("Category " + category, function () {
+            Object.keys(tests[category]).forEach(function (rule) {
+                describe("Rule " + rule, function () {
+                    tests[category][rule].forEach(function (test) {
+                        var passTest = test.errors ? false : true;
+                        it("should " + (passTest ? "pass" : "fail") + " for " + (test.doc || test.url), function (done) {
+                            var r = require("../lib/rules/" + category + "/" + rule)
+                            ,   handler = new sink.Sink()
+                            ;
+                            handler.on("err", function (type, data) {
+                                if (DEBUG)
+                                    console.log(type, data);
+                                handler.errors.push(type.name + '.' + data.key);
+                            });
+                            handler.on("warning", function (type, data) {
+                                if (DEBUG)
+                                    console.log("[W]", data);
+                                handler.warnings.push(type.name + '.' + data.key);
+                            });
+                            handler.on("done", function () {
+                                if (DEBUG)
+                                    console.log("---done---");
+                                handler.done++;
+                            });
+                            handler.on("exception", function (data) {
+                                console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
+                            });
+                            handler.on("end-all", function () {
+                                try {
+                                    var i
+                                    , n;
+                                    if (passTest) {
+                                        expect(handler.errors).to.be.empty();
                                     }
                                     else {
-                                        expect(handler.warnings).to.be.empty();
+                                        expect(handler.errors.length).to.eql(test.errors.length);
+                                        for (i = 0, n = test.errors.length; i < n; i++) {
+                                            expect(handler.errors).to.contain(test.errors[i]);
+                                        }
                                     }
+                                    if (!test.ignoreWarnings) {
+                                        if (test.warnings) {
+                                            expect(handler.warnings.length).to.eql(test.warnings.length);
+                                            for (i = 0, n = test.warnings.length; i < n; i++) {
+                                                expect(handler.warnings).to.contain(test.warnings[i]);
+                                            }
+                                        }
+                                        else {
+                                            expect(handler.warnings).to.be.empty();
+                                        }
+                                    }
+                                    done();
+                                } catch (e) {
+                                    return done(e);
                                 }
-                                done();
-                            } catch (e) {
-                                return done(e);
-                            }
+                            });
+                            var profile = {
+                                name:   "Synthetic " + category + "/" + rule
+                            ,   rules:  [r]
+                            };
+                            profile.config = test.config;
+                            var options = {
+                                profile: profile
+                            ,   events: handler
+                            };
+
+                            // support both external urls and local files
+                            if (test.url) options.url = `${ENDPOINT}/docs/${test.url}`;
+                            else options.file = pth.join(__dirname, "docs", test.doc);
+
+                            for (var o in test.options)
+                                options[o] = test.options[o];
+                            new validator.Specberus().validate(options);
                         });
-                        var profile = {
-                            name:   "Synthetic " + category + "/" + rule
-                        ,   rules:  [r]
-                        };
-                        profile.config = test.config;
-                        var options = {
-                            profile: profile
-                        ,   events: handler
-                        };
-
-                        // support both external urls and local files
-                        if (test.url) options.url = `${ENDPOINT}/docs/${test.url}`;
-                        else options.file = pth.join(__dirname, "docs", test.doc);
-
-                        for (var o in test.options)
-                            options[o] = test.options[o];
-                        new validator.Specberus().validate(options);
                     });
                 });
             });
