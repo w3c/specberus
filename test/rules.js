@@ -3,13 +3,18 @@
  */
 
 // Settings:
-const DEBUG = false;
+const DEBUG = false
+,   DEFAULT_PORT = 8000
+,   PORT = process.env.PORT || DEFAULT_PORT
+,   ENDPOINT = 'http://localhost:' + PORT
+;
 
 // Native packages:
 const pth = require('path');
 
 // External packages:
-const expect = require('expect.js')
+const express = require('express')
+,   expect = require('expect.js')
 ,   chai = require('chai').expect
 ;
 
@@ -282,6 +287,10 @@ var tests = {
     ,   reliability:  [
             { doc: "links/internal-fails.html", warnings: ["links.reliability.unreliable-link"] }
         ]
+    ,   linkchecker: [
+            { url: "links/external-resources.html", errors: ["links.linkchecker.not-same-folder", "links.linkchecker.not-same-folder"], warnings: ["links.linkchecker.display"] }
+        ,   { url: "links/broken-resources.html", errors: ["links.linkchecker.response-error"], warnings: ["links.linkchecker.display"] }
+        ]
     }
 ,   structure:   {
         h2:  [
@@ -499,13 +508,20 @@ var tests = {
 ,   validation: validation
 };
 
+// start an server to host doc, response to sr.url requests
+const app = express();
+app.use('/docs', express.static(__dirname + '/docs'));
+app.listen(PORT, () => {
+    console.log(`\ntest/rule.js test server listening at ${ENDPOINT}`);
+});
+
 Object.keys(tests).forEach(function (category) {
     describe("Category " + category, function () {
         Object.keys(tests[category]).forEach(function (rule) {
             describe("Rule " + rule, function () {
                 tests[category][rule].forEach(function (test) {
                     var passTest = test.errors ? false : true;
-                    it("should " + (passTest ? "pass" : "fail") + " for " + test.doc, function (done) {
+                    it("should " + (passTest ? "pass" : "fail") + " for " + (test.doc || test.url), function (done) {
                         var r = require("../lib/rules/" + category + "/" + rule)
                         ,   handler = new sink.Sink()
                         ;
@@ -562,10 +578,14 @@ Object.keys(tests).forEach(function (category) {
                         };
                         profile.config = test.config;
                         var options = {
-                            file:       pth.join(__dirname, "docs", test.doc)
-                        ,   profile:    profile
-                        ,   events:     handler
+                            profile: profile
+                        ,   events: handler
                         };
+
+                        // support both external urls and local files
+                        if (test.url) options.url = `${ENDPOINT}/docs/${test.url}`;
+                        else options.file = pth.join(__dirname, "docs", test.doc);
+
                         for (var o in test.options)
                             options[o] = test.options[o];
                         new validator.Specberus().validate(options);
