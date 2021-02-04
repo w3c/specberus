@@ -3,13 +3,18 @@
  */
 
 // Settings:
-const DEBUG = false;
+const DEBUG = false
+,   DEFAULT_PORT = 8001
+,   PORT = process.env.PORT || DEFAULT_PORT
+,   ENDPOINT = 'http://localhost:' + PORT
+;
 
 // Native packages:
 const pth = require('path');
 
 // External packages:
-const expect = require('expect.js')
+const express = require('express')
+,   expect = require('expect.js')
 ,   chai = require('chai').expect
 ;
 
@@ -298,6 +303,10 @@ var tests = {
                 "links.reliability.unreliable-link",
             ] }
         ]
+    ,   linkchecker: [
+            { url: "links/external-resources.html", errors: ["links.linkchecker.not-same-folder", "links.linkchecker.not-same-folder"], warnings: ["links.linkchecker.display"] }
+        ,   { url: "links/broken-resources.html", errors: ["links.linkchecker.response-error"], warnings: ["links.linkchecker.display"] }
+        ]
     }
 ,   structure:   {
         h2:  [
@@ -515,76 +524,88 @@ var tests = {
 ,   validation: validation
 };
 
-Object.keys(tests).forEach(function (category) {
-    describe("Category " + category, function () {
-        Object.keys(tests[category]).forEach(function (rule) {
-            describe("Rule " + rule, function () {
-                tests[category][rule].forEach(function (test) {
-                    var passTest = test.errors ? false : true;
-                    it("should " + (passTest ? "pass" : "fail") + " for " + test.doc, function (done) {
-                        var r = require("../lib/rules/" + category + "/" + rule)
-                        ,   handler = new sink.Sink()
-                        ;
-                        handler.on("err", function (type, data) {
-                            if (DEBUG)
-                                console.log(type, data);
-                            handler.errors.push(type.name + '.' + data.key);
-                        });
-                        handler.on("warning", function (type, data) {
-                            if (DEBUG)
-                                console.log("[W]", data);
-                            handler.warnings.push(type.name + '.' + data.key);
-                        });
-                        handler.on("done", function () {
-                            if (DEBUG)
-                                console.log("---done---");
-                            handler.done++;
-                        });
-                        handler.on("exception", function (data) {
-                            console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
-                        });
-                        handler.on("end-all", function () {
-                            try {
-                                var i
-                                , n;
-                                if (passTest) {
-                                    expect(handler.errors).to.be.empty();
-                                }
-                                else {
-                                    expect(handler.errors.length).to.eql(test.errors.length);
-                                    for (i = 0, n = test.errors.length; i < n; i++) {
-                                        expect(handler.errors).to.contain(test.errors[i]);
-                                    }
-                                }
-                                if (!test.ignoreWarnings) {
-                                    if (test.warnings) {
-                                        expect(handler.warnings.length).to.eql(test.warnings.length);
-                                        for (i = 0, n = test.warnings.length; i < n; i++) {
-                                            expect(handler.warnings).to.contain(test.warnings[i]);
-                                        }
+// start an server to host doc, response to sr.url requests
+const app = express();
+app.use('/docs', express.static(__dirname + '/docs'));
+const expressServer = app.listen(PORT, () => {});
+
+describe("Making sure Specberus is not broken...", function () {
+    after(function () { expressServer.close(); });
+    Object.keys(tests).forEach(function (category) {
+        describe("Category " + category, function () {
+            Object.keys(tests[category]).forEach(function (rule) {
+                describe("Rule " + rule, function () {
+                    tests[category][rule].forEach(function (test) {
+                        var passTest = test.errors ? false : true;
+                        it("should " + (passTest ? "pass" : "fail") + " for " + (test.doc || test.url), function (done) {
+                            var r = require("../lib/rules/" + category + "/" + rule)
+                            ,   handler = new sink.Sink()
+                            ;
+                            handler.on("err", function (type, data) {
+                                if (DEBUG)
+                                    console.log(type, data);
+                                handler.errors.push(type.name + '.' + data.key);
+                            });
+                            handler.on("warning", function (type, data) {
+                                if (DEBUG)
+                                    console.log("[W]", data);
+                                handler.warnings.push(type.name + '.' + data.key);
+                            });
+                            handler.on("done", function () {
+                                if (DEBUG)
+                                    console.log("---done---");
+                                handler.done++;
+                            });
+                            handler.on("exception", function (data) {
+                                console.error("[EXCEPTION] Validator had a massive failure: " + data.message);
+                            });
+                            handler.on("end-all", function () {
+                                try {
+                                    var i
+                                    , n;
+                                    if (passTest) {
+                                        expect(handler.errors).to.be.empty();
                                     }
                                     else {
-                                        expect(handler.warnings).to.be.empty();
+                                        expect(handler.errors.length).to.eql(test.errors.length);
+                                        for (i = 0, n = test.errors.length; i < n; i++) {
+                                            expect(handler.errors).to.contain(test.errors[i]);
+                                        }
                                     }
+                                    if (!test.ignoreWarnings) {
+                                        if (test.warnings) {
+                                            expect(handler.warnings.length).to.eql(test.warnings.length);
+                                            for (i = 0, n = test.warnings.length; i < n; i++) {
+                                                expect(handler.warnings).to.contain(test.warnings[i]);
+                                            }
+                                        }
+                                        else {
+                                            expect(handler.warnings).to.be.empty();
+                                        }
+                                    }
+                                    done();
+                                } catch (e) {
+                                    return done(e);
                                 }
-                                done();
-                            } catch (e) {
-                                return done(e);
-                            }
+                            });
+                            var profile = {
+                                name:   "Synthetic " + category + "/" + rule
+                            ,   rules:  [r]
+                            };
+                            profile.config = test.config;
+                            var options = {
+                                profile: profile
+                            ,   events: handler
+                            };
+
+                            // support both external urls and local files
+                            if (test.url) options.url = `${ENDPOINT}/docs/${test.url}`;
+                            else options.file = pth.join(__dirname, "docs", test.doc);
+
+                            for (var o in test.options)
+                                options[o] = test.options[o];
+                            new validator.Specberus().validate(options);
                         });
-                        var profile = {
-                            name:   "Synthetic " + category + "/" + rule
-                        ,   rules:  [r]
-                        };
-                        profile.config = test.config;
-                        var options = {
-                            file:       pth.join(__dirname, "docs", test.doc)
-                        ,   profile:    profile
-                        ,   events:     handler
-                        };
-                        for (var o in test.options)
-                            options[o] = test.options[o];
-                        new validator.Specberus().validate(options);
                     });
                 });
             });

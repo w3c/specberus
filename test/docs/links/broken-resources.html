@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Document</title>
+</head>
+
+<body>
+    <div class='head'>
+        <dl>
+            <dt>This Version:</dt>
+            <dd><a href='http://localhost:8001/docs/links/'>http://localhost:8001/docs/links/</a></dd>
+        </dl>
+    </div>
+
+    <p class='explain'>Test for broken image</p>
+    <!-- check for links.linkchecker, error: response-error -->
+    <img src="./image/logo-broken.png" />
+
+    <p class='explain'>This is a good image</p>
+    <!-- This is the right image, shouldn't cause error -->
+    <img src="./image/logo.png" />
+
+</body>
+
+</html>
