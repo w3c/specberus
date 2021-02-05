@@ -1080,7 +1080,7 @@ var tests = {
 
 // start an server to host doc, response to sr.url requests
 const app = express();
-app.use('/docs', express.static(pth.resolve(__dirname, './docs')));
+app.use('/docs', express.static(pth.join(__dirname, 'docs')));
 const expressServer = app.listen(PORT, () => {});
 
 describe('Making sure Specberus is not broken...', function () {
@@ -1099,7 +1099,7 @@ describe('Making sure Specberus is not broken...', function () {
                                 ' for ' +
                                 (test.doc || test.url),
                             function (done) {
-                                var r = require(`../test.doc/${category}/${rule}`);
+                                var r = require(`../lib/rules/${category}/${rule}`);
                                 var handler = new sink.Sink();
                                 handler.on('err', function (type, data) {
                                     if (DEBUG) console.log(type, data);

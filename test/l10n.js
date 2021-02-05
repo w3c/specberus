@@ -212,10 +212,10 @@ describe('L10n', function () {
 
     describe('Consistency between rules and L10n messages', function () {
         it('All L10n messages should be used by some rule', function () {
-            return findHoles(files, strings, 'files', 'strings');
+            return findHoles(files, strings, 'files', 'l10n strings');
         });
         it('All message IDs used by rules should exist as L10n messages', function () {
-            return findHoles(strings, files, 'strings', 'files');
+            return findHoles(strings, files, 'l10n strings', 'files');
         });
     });
 });
