@@ -13,20 +13,22 @@
 // 1. Visit http://kwz.me/8p. Copy the JSON into groups-sparql.json
 // 2. Run this script
 
-var src = require("./groups-sparql")
-,   fs = require("fs")
-,   pth = require("path")
-,   res = {}
-;
+'use strict';
 
+var src = require('./groups-sparql');
+var fs = require('fs');
+var pth = require('path');
+var res = {};
 for (var i = 0, n = src.results.bindings.length; i < n; i++) {
-    var group = src.results.bindings[i]
-    ,   key = group.mailbox.value.replace("mailto:", "")
-    ;
+    var group = src.results.bindings[i];
+    var key = group.mailbox.value.replace('mailto:', '');
     res[key] = {
-        url:    group.homepage.value
-    ,   name:   group.name.value
+        url: group.homepage.value,
+        name: group.name.value,
     };
 }
 
-fs.writeFileSync(pth.join(__dirname, "../lib/groups-db.json"), JSON.stringify(res, null, 4));
+fs.writeFileSync(
+    pth.join(__dirname, '../lib/groups-db.json'),
+    JSON.stringify(res, null, 4)
+);

@@ -9,9 +9,13 @@
  * <a href="http://docs.travis-ci.com/user/ci-environment/#Environment-variables">Travis documentation</a>.
  */
 
-if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
+if (
+    !process ||
+    !process.env ||
+    (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)
+) {
     exports.html = [
-        {doc: 'validation/simple.html'}
-    ,   {doc: 'validation/invalid.html', errors: ['validation.html.error']}
+        { doc: 'validation/simple.html' },
+        { doc: 'validation/invalid.html', errors: ['validation.html.error'] },
     ];
 }
