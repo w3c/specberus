@@ -1,6 +1,6 @@
 {
   "name": "specberus",
-  "version": "5.5.2",
+  "version": "5.5.3",
   "description": "Specberus is a checker used at W3C to validate the compliance of Technical Reports with publication rules.",
   "license": "MIT",
   "main": "lib/validator",
@@ -12,37 +12,38 @@
     "compression": "1.7.4",
     "cors": "2.8.5",
     "express": "4.17.1",
-    "express-handlebars": "5.2.0",
+    "express-handlebars": "5.2.1",
     "insafe": "0.5.0",
     "jsdom": "16.4.0",
     "metaviewport-parser": "0.2.0",
     "morgan": "1.10.0",
     "node-w3capi": "1.9.0",
     "promise": "8.1.0",
-    "puppeteer": "5.5.0",
+    "puppeteer": "7.1.0",
     "request": "2.88.2",
-    "socket.io": "3.1.0",
+    "socket.io": "3.1.1",
     "superagent": "6.1.0"
   },
   "devDependencies": {
-    "chai": "4.2.0",
+    "chai": "4.3.0",
     "chai-as-promised": "7.1.1",
     "cspell": "5.2.4",
-    "eslint": "7.19.0",
+    "eslint": "7.20.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "7.2.0",
     "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-jsdoc": "31.6.0",
+    "eslint-plugin-jsdoc": "32.2.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "expect.js": "0.3",
-    "husky": "^4.2.5",
+    "husky": "5.1.1",
     "jsdoc": "3.6.6",
     "minami": "1.2.3",
-    "mocha": "8.2.1",
+    "mocha": "8.3.0",
     "nodemon": "2.0.7",
     "nyc": "15.1.0",
     "prettier": "2.2.1"
+    "pinst": "2.1.6"
   },
   "scripts": {
     "audit": "npm audit | grep -oE 'https?\\:\\/\\/(www\\.)?(nodesecurity\\.io|npmjs\\.com)\\/advisories\\/[[:digit:]]+' | rev | cut -d '/' -f 1 | rev | diff known-vulns.txt -",
@@ -54,12 +55,10 @@
     "coverage": "nyc npm test",
     "build": "npm run lint && npm run test && npm run jsdoc",
     "live": "nodemon --use_strict app",
-    "start": "node --use_strict app"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm run cspell"
-    }
+    "start": "node --use_strict app",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
   },
   "engines": {
     "node": "14",
