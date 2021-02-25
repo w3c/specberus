@@ -17,7 +17,6 @@
     "guard-for-in":"warn",
     "no-continue":"warn",
     "no-underscore-dangle":"warn",
-    "no-nested-ternary":"warn",
     "no-extend-native":"warn"
   },
   "overrides": [
