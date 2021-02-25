@@ -164,5 +164,9 @@
         "package-lock.json",
         "node_modules/**"
     ],
-    "allowCompoundWords": true
+    "allowCompoundWords": true,
+    "ignoreWords": [
+        "en",
+        "gb"
+    ]
 }

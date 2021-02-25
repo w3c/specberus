@@ -30,6 +30,4 @@ jobs:
 
     - run: npm run lint
 
-    - run: npm run hint
-
     - run: npm run jsdoc

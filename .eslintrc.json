@@ -1,7 +1,25 @@
 {
   "extends": [
-    "eslint:recommended"
+    "airbnb-base/legacy", "prettier"
   ],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-shadow": "off",
+    "func-names": "off",
+    "vars-on-top": "off",
+    "consistent-return":"warn",
+    "no-param-reassign":"off",
+    "no-plusplus":"off",
+    "strict": "off",
+    "global-require":"off",
+    "no-restricted-syntax":"warn",
+    "guard-for-in":"warn",
+    "no-continue":"warn",
+    "no-underscore-dangle":"warn",
+    "no-nested-ternary":"warn",
+    "no-extend-native":"warn"
+  },
   "overrides": [
     {
       "files": [
@@ -11,6 +29,11 @@
         "browser": true,
         "jquery": true,
         "es6": true
+      },
+      "rules": {
+          "no-restricted-globals": "warn",
+          "no-return-assign": "warn",
+          "no-use-before-define":"warn"
       }
     },
     {
@@ -19,10 +42,9 @@
         "lib/**/*.js",
         "tools/**/*.js"
       ],
-      "plugins": ["node", "jsdoc"],
+      "plugins": ["node"],
       "extends": [
-        "plugin:node/recommended",
-        "plugin:jsdoc/recommended"
+        "plugin:node/recommended"
       ]
     },
     {
