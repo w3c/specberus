@@ -30,7 +30,6 @@
         "es6": true
       },
       "rules": {
-          "no-restricted-globals": "warn",
           "no-return-assign": "warn"
       }
     },

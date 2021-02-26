@@ -54,10 +54,13 @@ jQuery.extend({
     var $progressContainer = $('#progressBar');
     var $progress = $progressContainer.find('.progress-bar');
     var $progressStyler = $progress.parent();
-    var baseURI = (location.pathname + '/').replace(/\/+$/, '/');
-    var socket = io(location.protocol + '//' + location.host, {
-        path: baseURI + 'socket.io',
-    });
+    var baseURI = (document.location.pathname + '/').replace(/\/+$/, '/');
+    var socket = io(
+        document.location.protocol + '//' + document.location.host,
+        {
+            path: baseURI + 'socket.io',
+        }
+    );
     var done = 0;
     var result = { exceptions: [], errors: [], warnings: [], infos: [] };
     var total = 0;
@@ -331,7 +334,7 @@ jQuery.extend({
             };
             validate(options);
             var newurl = document.URL.split('?')[0] + '?' + $.param(options);
-            history.pushState(options, url + ' - ' + profile, newurl);
+            window.history.pushState(options, url + ' - ' + profile, newurl);
         } else {
             // Deal with all possible errors:
             if (!data)
@@ -391,7 +394,7 @@ jQuery.extend({
             };
             validate(options);
             var newurl = document.URL.split('?')[0] + '?' + $.param(options);
-            history.pushState(options, url + ' - ' + profile, newurl);
+            window.history.pushState(options, url + ' - ' + profile, newurl);
         }
         return false;
     });
