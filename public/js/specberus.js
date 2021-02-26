@@ -170,6 +170,81 @@ jQuery.extend({
         $profileContainer.toggleClass('col-sm-5 col-md-5 col-lg-5', toggle);
     }
 
+    function countNicely(term, no) {
+        if (no === 0) return 'No ' + term + 's';
+        if (no === 1) return 'One ' + term;
+        return no + ' ' + term + 's';
+    }
+
+    function showResults() {
+        toggleForm(true);
+        running = false;
+        $results.fadeIn();
+        $progressStyler.removeClass('active progress-striped');
+        $progressContainer.hide();
+        $progress.text('');
+        $progress.attr('style', '0');
+        var message;
+        var metadataURL = `${baseURI}api/metadata?url=${encodeURIComponent(
+            url.value
+        )}`;
+        if (result.errors.length > 0 || result.exceptions.length > 0) {
+            message = `<span class="icon red pull-left">&#10007;</span>`;
+            if (result.warnings.length > 0)
+                message += `<h4>${countNicely(
+                    'error',
+                    result.exceptions.length + result.errors.length
+                )}
+                    (and ${countNicely(
+                        'warning',
+                        result.warnings.length
+                    )})</h4>`;
+            else
+                message += `<h4>${countNicely(
+                    'error',
+                    result.exceptions.length + result.errors.length
+                )}</h4>`;
+        } else if (result.warnings.length > 0)
+            message = `<span class="icon amber pull-left">&#10003;</span>
+                    <h4>All tests passed, but you are strongly encouraged to address
+                    ${countNicely(
+                        'warning',
+                        result.warnings.length
+                    ).toLowerCase()} before publishing.</h4>`;
+        else
+            message = `<span class="icon green pull-left">&#10003;</span>
+                    <h4>OK!</h4>`;
+        message += `<p class="details">`;
+        if (total > 0 && profile)
+            message += `<a href="doc/rules?profile=${profile}">${total} rules</a> were checked. `;
+        message += `Hover over the rows below for options.<br />`;
+        message += `Tip: review the <a href="${metadataURL}">metadata that was inferred from the document</a> to make sure that there are no errors.`;
+        message += '</p>';
+        $resultsBody.html(message);
+        message = '';
+        if (
+            result.exceptions.length > 0 ||
+            result.errors.length > 0 ||
+            result.warnings.length > 0 ||
+            result.infos.length > 0
+        ) {
+            var i;
+            for (i in result.exceptions) {
+                message += result.exceptions[i];
+            }
+            for (i in result.errors) {
+                message += result.errors[i];
+            }
+            for (i in result.warnings) {
+                message += result.warnings[i];
+            }
+            for (i in result.infos) {
+                message += result.infos[i];
+            }
+        }
+        $resultsList.html(message);
+    }
+
     socket.on('exception', function (data) {
         var message = data.message ? data.message : data;
         addMessage(MSG_EXCEPTION, {
@@ -368,81 +443,6 @@ jQuery.extend({
                 .find('label#' + options.patentPolicy)
                 .addClass('active');
         }
-    }
-
-    var countNicely = function (term, no) {
-        if (no === 0) return 'No ' + term + 's';
-        if (no === 1) return 'One ' + term;
-        return no + ' ' + term + 's';
-    };
-
-    function showResults() {
-        toggleForm(true);
-        running = false;
-        $results.fadeIn();
-        $progressStyler.removeClass('active progress-striped');
-        $progressContainer.hide();
-        $progress.text('');
-        $progress.attr('style', '0');
-        var message;
-        var metadataURL = `${baseURI}api/metadata?url=${encodeURIComponent(
-            url.value
-        )}`;
-        if (result.errors.length > 0 || result.exceptions.length > 0) {
-            message = `<span class="icon red pull-left">&#10007;</span>`;
-            if (result.warnings.length > 0)
-                message += `<h4>${countNicely(
-                    'error',
-                    result.exceptions.length + result.errors.length
-                )}
-                    (and ${countNicely(
-                        'warning',
-                        result.warnings.length
-                    )})</h4>`;
-            else
-                message += `<h4>${countNicely(
-                    'error',
-                    result.exceptions.length + result.errors.length
-                )}</h4>`;
-        } else if (result.warnings.length > 0)
-            message = `<span class="icon amber pull-left">&#10003;</span>
-                    <h4>All tests passed, but you are strongly encouraged to address
-                    ${countNicely(
-                        'warning',
-                        result.warnings.length
-                    ).toLowerCase()} before publishing.</h4>`;
-        else
-            message = `<span class="icon green pull-left">&#10003;</span>
-                    <h4>OK!</h4>`;
-        message += `<p class="details">`;
-        if (total > 0 && profile)
-            message += `<a href="doc/rules?profile=${profile}">${total} rules</a> were checked. `;
-        message += `Hover over the rows below for options.<br />`;
-        message += `Tip: review the <a href="${metadataURL}">metadata that was inferred from the document</a> to make sure that there are no errors.`;
-        message += '</p>';
-        $resultsBody.html(message);
-        message = '';
-        if (
-            result.exceptions.length > 0 ||
-            result.errors.length > 0 ||
-            result.warnings.length > 0 ||
-            result.infos.length > 0
-        ) {
-            var i;
-            for (i in result.exceptions) {
-                message += result.exceptions[i];
-            }
-            for (i in result.errors) {
-                message += result.errors[i];
-            }
-            for (i in result.warnings) {
-                message += result.warnings[i];
-            }
-            for (i in result.infos) {
-                message += result.infos[i];
-            }
-        }
-        $resultsList.html(message);
     }
 
     window.addEventListener('popstate', function (event) {
