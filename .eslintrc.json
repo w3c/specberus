@@ -30,7 +30,6 @@
         "es6": true
       },
       "rules": {
-          "no-return-assign": "warn"
       }
     },
     {

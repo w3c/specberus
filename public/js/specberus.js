@@ -18,6 +18,7 @@ jQuery.extend({
             .split('&')
             .map(
                 function (n) {
+                    // eslint-disable-next-line no-return-assign
                     return (
                         (n = n.split('=')),
                         (this[n[0]] =
