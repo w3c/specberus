@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Document</title>
+</head>
+
+<body>
+    <div class='head'>
+        <dl>
+            <dt>This Version:</dt>
+            <dd><a href='http://localhost:8001/docs/links/'>http://localhost:8001/docs/links/</a></dd>
+        </dl>
+    </div>
+
+    <p class='explain'>Test for redirect image</p>
+    <!-- pass check for links.linkchecker -->
+    <img src="/docs/links/image/logo" />
+
+    <p class='explain'>Test for multiple redirect image</p>
+    <!-- pass check for links.linkchecker -->
+    <img src="/docs/links/image/logo-redirection-1" />
+
+    <p class='explain'>This is a failure redirection</p>
+    <!-- check for links.linkchecker, error: response-error-with-redirect -->
+    <img src="/docs/links/image/logo-fail" />
+
+</body>
+
+</html>
