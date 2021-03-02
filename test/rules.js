@@ -226,11 +226,15 @@ var tests = {
         ],
         'h1-title': [
             { doc: 'headers/simple.html' },
-            { doc: 'headers/fails.html', errors: ['headers.h1-title.title'] },
+            {
+                doc: 'headers/fails.html',
+                errors: ['headers.h1-title.not-found'],
+            },
             {
                 doc: 'headers/h1-title.html',
-                errors: ['headers.h1-title.title'],
+                errors: ['headers.h1-title.not-match'],
             },
+            { doc: 'headers/h1-title-complex.html' },
         ],
         dl: [
             {
