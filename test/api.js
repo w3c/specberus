@@ -7,7 +7,7 @@
 // Settings:
 const DEFAULT_PORT = 8000;
 const PORT = process.env.PORT || DEFAULT_PORT;
-const ENDPOINT = 'http://localhost:' + PORT + '/api/';
+const ENDPOINT = `http://localhost:${PORT}/api/`;
 const TIMEOUT = 30000;
 // Native packages:
 const http = require('http');
@@ -20,7 +20,8 @@ const superagent = require('superagent');
 // Internal packages:
 const meta = require('../package');
 const api = require('../lib/api');
-var server;
+
+let server;
 
 /**
  * Launch an HTTP server for tests.
@@ -30,7 +31,7 @@ const launchServer = function () {
     const app = express();
     server = http.createServer(app);
     api.setUp(app);
-    server.listen(PORT).on('error', function (err) {
+    server.listen(PORT).on('error', (err) => {
         throw new Error(err);
     });
 };
@@ -50,8 +51,8 @@ const setUp = function () {
 
 const get = function (suffix, post) {
     const method = post ? superagent.post : superagent.get;
-    return new Promise(function (resolve, reject) {
-        method(ENDPOINT + suffix, function (error, response, body) {
+    return new Promise((resolve, reject) => {
+        method(ENDPOINT + suffix, (error, response, body) => {
             if (error) {
                 if (
                     error.response &&
@@ -62,21 +63,13 @@ const get = function (suffix, post) {
                 else
                     reject(
                         new Error(
-                            'Fetching “' +
-                                ENDPOINT +
-                                suffix +
-                                '” triggered a network error: ' +
-                                error.message
+                            `Fetching “${ENDPOINT}${suffix}” triggered a network error: ${error.message}`
                         )
                     );
             } else if (response.statusCode !== 200)
                 reject(
                     new Error(
-                        'Fetching “' +
-                            ENDPOINT +
-                            suffix +
-                            '” triggered an HTTP error: code ' +
-                            response.statusCode
+                        `Fetching “${ENDPOINT}${suffix}” triggered an HTTP error: code ${response.statusCode}`
                     )
                 );
             else if (response.res && response.res.text) {
@@ -90,36 +83,36 @@ const get = function (suffix, post) {
     });
 };
 
-describe('API', function () {
-    var query;
+describe('API', () => {
+    let query;
 
-    before(function () {
+    before(() => {
         launchServer();
         setUp();
     });
 
-    describe('Endpoint', function () {
-        it('Should exist and listen to GET requests', function () {
+    describe('Endpoint', () => {
+        it('Should exist and listen to GET requests', () => {
             query = get('');
             return expect(query).to.eventually.be.rejectedWith(
                 /wrong api method/i
             );
         });
-        it('Should not accept POST requests', function () {
+        it('Should not accept POST requests', () => {
             query = get('', true);
             return expect(query).to.eventually.be.rejectedWith(/cannot post/i);
         });
     });
 
-    describe('Method “version”', function () {
-        it('Should return the right version string', function () {
+    describe('Method “version”', () => {
+        it('Should return the right version string', () => {
             query = get('version');
             return expect(query).to.eventually.become(meta.version);
         });
     });
 
-    describe('Method “metadata”', function () {
-        it('Should accept the parameter “file”, and return the right profile and date', function () {
+    describe('Method “metadata”', () => {
+        it('Should accept the parameter “file”, and return the right profile and date', () => {
             query = get('metadata?file=test/docs/metadata/ttml-imsc1.html');
             // @TODO: parse result as an Object (it's JSON) instead of a String.
             return expect(query)
@@ -128,8 +121,8 @@ describe('API', function () {
         });
     });
 
-    describe('Method “validate”', function () {
-        it('Should 404 and return an array of errors when validation fails', function () {
+    describe('Method “validate”', () => {
+        it('Should 404 and return an array of errors when validation fails', () => {
             query = get(
                 'validate?file=test/docs/metadata/ttml-imsc1.html&profile=REC&validation=simple-validation&processDocument=2047'
             );
@@ -153,14 +146,14 @@ describe('API', function () {
         // });
     });
 
-    describe('Parameter restrictions', function () {
-        it('Should reject the parameter “document”', function () {
+    describe('Parameter restrictions', () => {
+        it('Should reject the parameter “document”', () => {
             query = get('metadata?document=foo');
             return expect(query).to.eventually.be.rejectedWith(
                 'Parameter “document” is not allowed in this context'
             );
         });
-        it('Should reject the parameter “source”', function () {
+        it('Should reject the parameter “source”', () => {
             query = get('metadata?source=foo');
             return expect(query).to.eventually.be.rejectedWith(
                 'Parameter “source” is not allowed in this context'
@@ -168,7 +161,7 @@ describe('API', function () {
         });
     });
 
-    after(function () {
+    after(() => {
         server.close();
     });
 });

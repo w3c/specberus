@@ -16,7 +16,7 @@ const rules = require('../lib/rules');
 const l10n = require('../lib/l10n-en_GB');
 
 // Constants:
-const messages = l10n.messages;
+const { messages } = l10n;
 const baseDir = './lib/rules/';
 const extensionRemover = /\.[^.]+$/;
 const messageFinder = /\.(info|warning|error)\s*\(.+,\s*["']([^()"'{}]+)["']/g;
@@ -39,8 +39,8 @@ const setUp = function () {
 
 const scanStrings = function () {
     const result = {};
-    for (var i in messages) {
-        var c = i.split('.');
+    for (const i in messages) {
+        const c = i.split('.');
         if (!c || c.length < 1 || c.length > 3)
             throw new Error(
                 `message key “${i}” doesn't follow the pattern “x[.y[.z]]”`
@@ -108,17 +108,17 @@ const scanStrings = function () {
  */
 
 const scanFileSystem = function () {
-    return new Promise(function (fulfill, reject) {
+    return new Promise((fulfill, reject) => {
         const result = {};
-        fs.readdir(baseDir, function (err, dirs) {
+        fs.readdir(baseDir, (err, dirs) => {
             if (err)
                 // eslint-disable-next-line
                 reject(
                     `Error: could not read directory “${baseDir}”: “${err}”`
                 );
             else {
-                var total = 0;
-                var n = 0;
+                let total = 0;
+                let n = 0;
                 const readDir = function (dir) {
                     result[dir] = {};
                     return function (bar, filenames) {
@@ -135,7 +135,7 @@ const scanFileSystem = function () {
                                         extensionRemover,
                                         ''
                                     );
-                                    var match;
+                                    let match;
                                     result[dir][name] = {};
                                     match = messageFinder.exec(data);
                                     while (match) {
@@ -152,11 +152,11 @@ const scanFileSystem = function () {
                                 }
                             };
                         };
-                        for (var i of filenames)
+                        for (const i of filenames)
                             fs.readFile(`${baseDir}${dir}/${i}`, readFile(i));
                     };
                 };
-                for (var i of dirs) fs.readdir(`${baseDir}${i}`, readDir(i));
+                for (const i of dirs) fs.readdir(`${baseDir}${i}`, readDir(i));
             }
         });
     });
@@ -167,16 +167,16 @@ const scanFileSystem = function () {
  */
 
 const findHoles = function (source, expected, labelSource, labelExpected) {
-    var errors = '';
-    for (var i in expected)
+    let errors = '';
+    for (const i in expected)
         if (!Object.prototype.hasOwnProperty.call(source, i))
             errors += `Section “${i}” exists in ${labelExpected} but is missing in ${labelSource}.\n`;
         else if (source[i] !== false)
-            for (var j in expected[i])
+            for (const j in expected[i])
                 if (!Object.prototype.hasOwnProperty.call(source[i], j))
                     errors += `Rule “${i}/${j}” exists in ${labelExpected} but is missing in ${labelSource}.\n`;
                 else if (source[i][j] !== false)
-                    for (var k in expected[i][j])
+                    for (const k in expected[i][j])
                         if (
                             !Object.prototype.hasOwnProperty.call(
                                 source[i][j],
@@ -184,38 +184,34 @@ const findHoles = function (source, expected, labelSource, labelExpected) {
                             )
                         )
                             errors += `Message ID “${i}/${j}/${k}” exists in ${labelExpected} but is missing in ${labelSource}.\n`;
-    if (errors) throw new Error(errors.slice(0, -2) + '.');
+    if (errors) throw new Error(`${errors.slice(0, -2)}.`);
 };
 
-describe('L10n', function () {
-    var strings;
-    var files;
+describe('L10n', () => {
+    let strings;
+    let files;
 
-    before(function () {
+    before(() => {
         setUp();
         strings = scanStrings();
-        var p = scanFileSystem();
-        p.then(function (value) {
+        const p = scanFileSystem();
+        p.then((value) => {
             files = value;
         });
         return expect(p).to.be.fulfilled;
     });
 
-    describe('UI messages module', function () {
-        it('“lib/rules-wrapper” should be a valid object', function () {
-            return expect(rules).to.be.an('object');
-        });
-        it('“lib/l10n-en_GB” should be a valid object', function () {
-            return expect(l10n).to.be.an('object');
-        });
+    describe('UI messages module', () => {
+        it('“lib/rules-wrapper” should be a valid object', () =>
+            expect(rules).to.be.an('object'));
+        it('“lib/l10n-en_GB” should be a valid object', () =>
+            expect(l10n).to.be.an('object'));
     });
 
-    describe('Consistency between rules and L10n messages', function () {
-        it('All L10n messages should be used by some rule', function () {
-            return findHoles(files, strings, 'files', 'l10n strings');
-        });
-        it('All message IDs used by rules should exist as L10n messages', function () {
-            return findHoles(strings, files, 'l10n strings', 'files');
-        });
+    describe('Consistency between rules and L10n messages', () => {
+        it('All L10n messages should be used by some rule', () =>
+            findHoles(files, strings, 'files', 'l10n strings'));
+        it('All message IDs used by rules should exist as L10n messages', () =>
+            findHoles(strings, files, 'l10n strings', 'files'));
     });
 });

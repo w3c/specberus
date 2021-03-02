@@ -1,14 +1,14 @@
 'use strict';
 
-$(document).ready(function () {
-    var scrolled = 0;
+$(document).ready(() => {
+    let scrolled = 0;
 
-    var scrollTo = function (selector) {
-        var elem = $(selector);
+    const scrollTo = function (selector) {
+        const elem = $(selector);
         if (elem) {
-            var elemOffset = elem[0].offsetTop;
-            var elemHeight = elem.outerHeight(true);
-            var windowHeight = $(window).height();
+            const elemOffset = elem[0].offsetTop;
+            const elemHeight = elem.outerHeight(true);
+            const windowHeight = $(window).height();
             window.scrollTo(
                 window.pageXOffset,
                 elemOffset - (windowHeight - elemHeight) / 2
@@ -16,11 +16,11 @@ $(document).ready(function () {
         }
     };
 
-    $(window).scroll(function () {
+    $(window).scroll(() => {
         scrolled++;
     });
 
-    $('a[href^="#"]').click(function (e) {
+    $('a[href^="#"]').click((e) => {
         e.stopImmediatePropagation();
         e.preventDefault();
         document.location.hash = e.target.hash;
@@ -28,7 +28,7 @@ $(document).ready(function () {
     });
 
     if (document.location && document.location.hash) {
-        window.setTimeout(function () {
+        window.setTimeout(() => {
             $(window).off('scroll');
             if (scrolled < 3)
                 // Merely loading a page may trigger one or two scroll events.

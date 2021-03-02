@@ -6,7 +6,7 @@
 const DEBUG = false;
 const DEFAULT_PORT = 8001;
 const PORT = process.env.PORT || DEFAULT_PORT;
-const ENDPOINT = 'http://localhost:' + PORT;
+const ENDPOINT = `http://localhost:${PORT}`;
 // Native packages:
 const pth = require('path');
 
@@ -30,9 +30,9 @@ const sink = require('../lib/sink');
 
 const equivalentArray = function (a1, a2) {
     if (a1 && a2 && a1.length === a2.length) {
-        var found = 0;
-        for (var i = 0; i < a1.length; i++) {
-            for (var j = 0; j < a2.length && found === i; j++) {
+        let found = 0;
+        for (let i = 0; i < a1.length; i++) {
+            for (let j = 0; j < a2.length && found === i; j++) {
                 if (a1[i] === a2[j]) {
                     found++;
                 }
@@ -54,16 +54,16 @@ const equivalentArray = function (a1, a2) {
 
 const compareMetadata = function (url, file, expectedObject) {
     const specberus = new validator.Specberus();
-    const handler = new sink.Sink(function (data) {
+    const handler = new sink.Sink((data) => {
         throw new Error(data);
     });
-    const thisFile = file ? 'test/docs/metadata/' + file + '.html' : null;
+    const thisFile = file ? `test/docs/metadata/${file}.html` : null;
     // const opts = {events: handler, url: url, file: thisFile};
     // test only local fixtures
     const opts = { events: handler, file: thisFile };
 
-    it('Should detect metadata for ' + expectedObject.url, function (done) {
-        handler.on('end-all', function () {
+    it(`Should detect metadata for ${expectedObject.url}`, (done) => {
+        handler.on('end-all', () => {
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('profile')
@@ -91,21 +91,21 @@ const compareMetadata = function (url, file, expectedObject) {
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('editorNames');
-            chai(specberus.meta.editorNames).to.satisfy(function (found) {
-                return equivalentArray(found, expectedObject.editorNames);
-            });
+            chai(specberus.meta.editorNames).to.satisfy((found) =>
+                equivalentArray(found, expectedObject.editorNames)
+            );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('delivererIDs');
-            chai(specberus.meta.delivererIDs).to.satisfy(function (found) {
-                return equivalentArray(found, expectedObject.delivererIDs);
-            });
+            chai(specberus.meta.delivererIDs).to.satisfy((found) =>
+                equivalentArray(found, expectedObject.delivererIDs)
+            );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('editorIDs');
-            chai(specberus.meta.editorIDs).to.satisfy(function (found) {
-                return equivalentArray(found, expectedObject.editorIDs);
-            });
+            chai(specberus.meta.editorIDs).to.satisfy((found) =>
+                equivalentArray(found, expectedObject.editorIDs)
+            );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('informative')
@@ -114,7 +114,7 @@ const compareMetadata = function (url, file, expectedObject) {
                 .to.have.property('meta')
                 .to.have.property('rectrack')
                 .equal(expectedObject.rectrack);
-            var optionalProperties = [
+            const optionalProperties = [
                 'process',
                 'editorsDraft',
                 'implementationFeedbackDue',
@@ -122,7 +122,7 @@ const compareMetadata = function (url, file, expectedObject) {
                 'implementationReport',
                 'errata',
             ];
-            optionalProperties.forEach(function (p) {
+            optionalProperties.forEach((p) => {
                 if (Object.prototype.hasOwnProperty.call(expectedObject, p)) {
                     chai(specberus)
                         .to.have.property('meta')
@@ -136,13 +136,13 @@ const compareMetadata = function (url, file, expectedObject) {
     });
 };
 
-describe('Basics', function () {
+describe('Basics', () => {
     const specberus = new validator.Specberus();
 
-    describe('Method "extractMetadata"', function () {
-        var i;
+    describe('Method "extractMetadata"', () => {
+        let i;
 
-        it('Should exist and be a function', function (done) {
+        it('Should exist and be a function', (done) => {
             chai(specberus)
                 .to.have.property('extractMetadata')
                 .that.is.a('function');
@@ -164,15 +164,15 @@ describe('Basics', function () {
         }
     });
 
-    describe('Method "validate"', function () {
-        it('Should exist and be a function', function (done) {
+    describe('Method "validate"', () => {
+        it('Should exist and be a function', (done) => {
             chai(specberus).to.have.property('validate').that.is.a('function');
             done();
         });
     });
 });
 
-var tests = {
+const tests = {
     // Categories
     dummy: {
         // Rules
@@ -1079,7 +1079,7 @@ var tests = {
             { doc: 'headers/diff-latest-version.html' },
         ],
     },
-    validation: validation,
+    validation,
 };
 
 // start an server to host doc, response to sr.url requests
@@ -1087,123 +1087,110 @@ const app = express();
 app.use('/docs', express.static(pth.join(__dirname, 'docs')));
 const expressServer = app.listen(PORT, () => {});
 
-describe('Making sure Specberus is not broken...', function () {
-    after(function () {
+describe('Making sure Specberus is not broken...', () => {
+    after(() => {
         expressServer.close();
     });
-    Object.keys(tests).forEach(function (category) {
-        describe('Category ' + category, function () {
-            Object.keys(tests[category]).forEach(function (rule) {
-                describe('Rule ' + rule, function () {
-                    tests[category][rule].forEach(function (test) {
-                        var passTest = !test.errors;
-                        it(
-                            'should ' +
-                                (passTest ? 'pass' : 'fail') +
-                                ' for ' +
-                                (test.doc || test.url),
-                            function (done) {
-                                var r = require(`../lib/rules/${category}/${rule}`);
-                                var handler = new sink.Sink();
-                                handler.on('err', function (type, data) {
-                                    if (DEBUG) console.log(type, data);
-                                    handler.errors.push(
-                                        type.name + '.' + data.key
-                                    );
-                                });
-                                handler.on('warning', function (type, data) {
-                                    if (DEBUG) console.log('[W]', data);
-                                    handler.warnings.push(
-                                        type.name + '.' + data.key
-                                    );
-                                });
-                                handler.on('done', function () {
-                                    if (DEBUG) console.log('---done---');
-                                    handler.done++;
-                                });
-                                handler.on('exception', function (data) {
-                                    console.error(
-                                        '[EXCEPTION] Validator had a massive failure: ' +
-                                            data.message
-                                    );
-                                });
-                                handler.on('end-all', function () {
-                                    try {
-                                        var i;
-                                        var n;
-                                        if (passTest) {
+    Object.keys(tests).forEach((category) => {
+        describe(`Category ${category}`, () => {
+            Object.keys(tests[category]).forEach((rule) => {
+                describe(`Rule ${rule}`, () => {
+                    tests[category][rule].forEach((test) => {
+                        const passTest = !test.errors;
+                        it(`should ${passTest ? 'pass' : 'fail'} for ${
+                            test.doc || test.url
+                        }`, (done) => {
+                            // eslint-disable-next-line import/no-dynamic-require
+                            const r = require(`../lib/rules/${category}/${rule}`);
+                            const handler = new sink.Sink();
+                            handler.on('err', (type, data) => {
+                                if (DEBUG) console.log(type, data);
+                                handler.errors.push(`${type.name}.${data.key}`);
+                            });
+                            handler.on('warning', (type, data) => {
+                                if (DEBUG) console.log('[W]', data);
+                                handler.warnings.push(
+                                    `${type.name}.${data.key}`
+                                );
+                            });
+                            handler.on('done', () => {
+                                if (DEBUG) console.log('---done---');
+                                handler.done++;
+                            });
+                            handler.on('exception', (data) => {
+                                console.error(
+                                    `[EXCEPTION] Validator had a massive failure: ${data.message}`
+                                );
+                            });
+                            handler.on('end-all', () => {
+                                try {
+                                    let i;
+                                    let n;
+                                    if (passTest) {
+                                        expect(handler.errors).to.be.empty();
+                                    } else {
+                                        expect(handler.errors.length).to.eql(
+                                            test.errors.length
+                                        );
+                                        for (
+                                            i = 0, n = test.errors.length;
+                                            i < n;
+                                            i++
+                                        ) {
+                                            expect(handler.errors).to.contain(
+                                                test.errors[i]
+                                            );
+                                        }
+                                    }
+                                    if (!test.ignoreWarnings) {
+                                        if (test.warnings) {
                                             expect(
-                                                handler.errors
-                                            ).to.be.empty();
-                                        } else {
-                                            expect(
-                                                handler.errors.length
-                                            ).to.eql(test.errors.length);
+                                                handler.warnings.length
+                                            ).to.eql(test.warnings.length);
                                             for (
-                                                i = 0, n = test.errors.length;
+                                                i = 0, n = test.warnings.length;
                                                 i < n;
                                                 i++
                                             ) {
                                                 expect(
-                                                    handler.errors
-                                                ).to.contain(test.errors[i]);
-                                            }
-                                        }
-                                        if (!test.ignoreWarnings) {
-                                            if (test.warnings) {
-                                                expect(
-                                                    handler.warnings.length
-                                                ).to.eql(test.warnings.length);
-                                                for (
-                                                    i = 0,
-                                                        n =
-                                                            test.warnings
-                                                                .length;
-                                                    i < n;
-                                                    i++
-                                                ) {
-                                                    expect(
-                                                        handler.warnings
-                                                    ).to.contain(
-                                                        test.warnings[i]
-                                                    );
-                                                }
-                                            } else {
-                                                expect(
                                                     handler.warnings
-                                                ).to.be.empty();
+                                                ).to.contain(test.warnings[i]);
                                             }
+                                        } else {
+                                            expect(
+                                                handler.warnings
+                                            ).to.be.empty();
                                         }
-                                        done();
-                                    } catch (e) {
-                                        return done(e);
                                     }
-                                });
-                                var profile = {
-                                    name: 'Synthetic ' + category + '/' + rule,
-                                    rules: [r],
-                                };
-                                profile.config = test.config;
-                                var options = {
-                                    profile: profile,
-                                    events: handler,
-                                };
+                                    done();
+                                } catch (e) {
+                                    return done(e);
+                                }
+                            });
+                            const profile = {
+                                name: `Synthetic ${category}/${rule}`,
+                                rules: [r],
+                            };
+                            profile.config = test.config;
+                            const options = {
+                                profile,
+                                events: handler,
+                            };
 
-                                // support both external urls and local files
-                                if (test.url)
-                                    options.url = `${ENDPOINT}/docs/${test.url}`;
-                                else
-                                    options.file = pth.join(
-                                        __dirname,
-                                        'docs',
-                                        test.doc
-                                    );
+                            // support both external urls and local files
+                            if (test.url)
+                                options.url = `${ENDPOINT}/docs/${test.url}`;
+                            else
+                                options.file = pth.join(
+                                    __dirname,
+                                    'docs',
+                                    test.doc
+                                );
 
-                                for (var o in test.options)
-                                    options[o] = test.options[o];
-                                new validator.Specberus().validate(options);
-                            }
-                        );
+                            for (const o in test.options)
+                                options[o] = test.options[o];
+                            new validator.Specberus().validate(options);
+                        });
                     });
                 });
             });

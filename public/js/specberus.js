@@ -12,7 +12,7 @@
 //  show errors
 
 jQuery.extend({
-    getQueryParameters: function (str) {
+    getQueryParameters(str) {
         return (str || document.location.search)
             .replace(/(^\?)/, '')
             .split('&')
@@ -33,50 +33,50 @@ jQuery.extend({
 });
 
 (function ($) {
-    var MSG_EXCEPTION = { ui: 'Bug', bootstrap: 'danger' };
-    var MSG_ERROR = { ui: 'Error', bootstrap: 'danger' };
-    var MSG_WARN = { ui: 'Warning', bootstrap: 'warning' };
-    var MSG_INFO = { ui: 'Advice', bootstrap: 'info' };
-    var $form = $('form#options');
-    var $urlContainer = $('#urlContainer');
-    var $url = $('#url');
-    var profile;
-    var $profileContainer = $('#profileContainer');
-    var $profile = $('#profile');
-    var $profileOptions = $('#profile option');
-    var $validation = $('#validation');
-    var $noRecTrack = $('#noRecTrack');
-    var $informativeOnly = $('#informativeOnly');
-    var $echidnaReady = $('#echidnaReady');
-    var $patentPolicy = $('#patentPolicy');
-    var $results = $('#results');
-    var $resultsBody = $results.find('.panel-body');
-    var $resultsList = $results.find('.list-group');
-    var $progressContainer = $('#progressBar');
-    var $progress = $progressContainer.find('.progress-bar');
-    var $progressStyler = $progress.parent();
-    var baseURI = (document.location.pathname + '/').replace(/\/+$/, '/');
-    var socket = io(
-        document.location.protocol + '//' + document.location.host,
+    const MSG_EXCEPTION = { ui: 'Bug', bootstrap: 'danger' };
+    const MSG_ERROR = { ui: 'Error', bootstrap: 'danger' };
+    const MSG_WARN = { ui: 'Warning', bootstrap: 'warning' };
+    const MSG_INFO = { ui: 'Advice', bootstrap: 'info' };
+    const $form = $('form#options');
+    const $urlContainer = $('#urlContainer');
+    const $url = $('#url');
+    let profile;
+    const $profileContainer = $('#profileContainer');
+    const $profile = $('#profile');
+    let $profileOptions = $('#profile option');
+    const $validation = $('#validation');
+    const $noRecTrack = $('#noRecTrack');
+    const $informativeOnly = $('#informativeOnly');
+    const $echidnaReady = $('#echidnaReady');
+    const $patentPolicy = $('#patentPolicy');
+    const $results = $('#results');
+    const $resultsBody = $results.find('.panel-body');
+    const $resultsList = $results.find('.list-group');
+    const $progressContainer = $('#progressBar');
+    const $progress = $progressContainer.find('.progress-bar');
+    const $progressStyler = $progress.parent();
+    const baseURI = `${document.location.pathname}/`.replace(/\/+$/, '/');
+    const socket = io(
+        `${document.location.protocol}//${document.location.host}`,
         {
-            path: baseURI + 'socket.io',
+            path: `${baseURI}socket.io`,
         }
     );
-    var done = 0;
-    var result = { exceptions: [], errors: [], warnings: [], infos: [] };
-    var total = 0;
-    var running = false;
+    let done = 0;
+    let result = { exceptions: [], errors: [], warnings: [], infos: [] };
+    let total = 0;
+    let running = false;
     // handshake
-    socket.on('handshake', function (data) {
+    socket.on('handshake', (data) => {
         console.log(`Handshake; using version “${data.version}”.`);
 
-        socket.on('disconnect', function () {
+        socket.on('disconnect', () => {
             socket.close();
             toggleForm(false); // eslint-disable-line no-use-before-define
         });
     });
 
-    var toggleForm = function (bool) {
+    function toggleForm(bool) {
         if (bool) {
             $('form').css('opacity', 1);
             $('form input, form select, form label')
@@ -90,7 +90,7 @@ jQuery.extend({
                 .attr('disabled', 'disabled');
             $('button[type=submit]').hide();
         }
-    };
+    }
 
     // validate
     function validate(options) {
@@ -99,7 +99,7 @@ jQuery.extend({
         profile = options.profile;
         socket.emit('validate', {
             url: decodeURIComponent(options.url),
-            profile: profile,
+            profile,
             validation: options.validation,
             noRecTrack: options.noRecTrack === true,
             informativeOnly: options.informativeOnly === true,
@@ -116,13 +116,15 @@ jQuery.extend({
     }
 
     function addMessage(type, data) {
-        var url = $url.val();
-        var inContext = '';
-        var issue;
-        var exc = data && data.exception ? ' exception' : '';
+        const url = $url.val();
+        let inContext = '';
+        let issue;
+        const exc = data && data.exception ? ' exception' : '';
         if (data && data.id) {
             // Corner case: if the profile is unknown, let's assume 'WD' (most common).
-            var newProfile = profile ? profile.replace(/-echidna$/i, '') : 'WD';
+            const newProfile = profile
+                ? profile.replace(/-echidna$/i, '')
+                : 'WD';
             inContext = `<a href="doc/rules?profile=${newProfile}#${data.id}">See rule in context</a> <br>`;
         }
         if (data && data.name)
@@ -155,7 +157,7 @@ jQuery.extend({
                 `(${encodeURIComponent(window.location)}).&` +
                 `labels=from-template` +
                 `">Report a bug</a>`;
-        var item = `<li class="list-group-item alert alert-${type.bootstrap}${exc}">
+        const item = `<li class="list-group-item alert alert-${type.bootstrap}${exc}">
             <label class="pull-left label label-${type.bootstrap}">${type.ui}</label>
             <div class="detailed pull-right"><small> ${inContext} ${issue} </small></div>
             ${data.message}
@@ -175,9 +177,9 @@ jQuery.extend({
     }
 
     function countNicely(term, no) {
-        if (no === 0) return 'No ' + term + 's';
-        if (no === 1) return 'One ' + term;
-        return no + ' ' + term + 's';
+        if (no === 0) return `No ${term}s`;
+        if (no === 1) return `One ${term}`;
+        return `${no} ${term}s`;
     }
 
     function showResults() {
@@ -188,8 +190,8 @@ jQuery.extend({
         $progressContainer.hide();
         $progress.text('');
         $progress.attr('style', '0');
-        var message;
-        var metadataURL = `${baseURI}api/metadata?url=${encodeURIComponent(
+        let message;
+        const metadataURL = `${baseURI}api/metadata?url=${encodeURIComponent(
             url.value
         )}`;
         if (result.errors.length > 0 || result.exceptions.length > 0) {
@@ -232,7 +234,7 @@ jQuery.extend({
             result.warnings.length > 0 ||
             result.infos.length > 0
         ) {
-            var i;
+            let i;
             for (i in result.exceptions) {
                 message += result.exceptions[i];
             }
@@ -249,8 +251,8 @@ jQuery.extend({
         $resultsList.html(message);
     }
 
-    socket.on('exception', function (data) {
-        var message = data.message ? data.message : data;
+    socket.on('exception', (data) => {
+        const message = data.message ? data.message : data;
         addMessage(MSG_EXCEPTION, {
             message: `<div class="message">${message}</div>`,
             exception: true,
@@ -258,35 +260,35 @@ jQuery.extend({
         window.setTimeout(showResults, 1000);
     });
 
-    socket.on('start', function (data) {
+    socket.on('start', (data) => {
         done = 0;
         total = data.rules.length;
         $progressStyler.addClass('active progress-striped');
         $progressContainer.fadeIn();
         $results.hide();
     });
-    socket.on('err', function (data) {
+    socket.on('err', (data) => {
         addMessage(MSG_ERROR, data);
     });
-    socket.on('warning', function (data) {
+    socket.on('warning', (data) => {
         addMessage(MSG_WARN, data);
     });
-    socket.on('info', function (data) {
+    socket.on('info', (data) => {
         addMessage(MSG_INFO, data);
     });
-    socket.on('done', function () {
+    socket.on('done', () => {
         done++;
         $progress.attr({
             'aria-valuenow': done,
             'aria-valuemax': total,
-            style: 'width: ' + (total ? (done / total) * 100 : 0) + '%',
+            style: `width: ${total ? (done / total) * 100 : 0}%`,
         });
-        $progress.text(done + '/' + total);
+        $progress.text(`${done}/${total}`);
     });
-    socket.on('finished', function () {
+    socket.on('finished', () => {
         showResults();
     });
-    socket.on('finishedExtraction', function (data) {
+    socket.on('finishedExtraction', (data) => {
         if (
             data &&
             data.success &&
@@ -296,12 +298,12 @@ jQuery.extend({
             data.metadata.profile
         ) {
             if (data.warnings && data.warnings.length > 0)
-                for (var w in data.warnings) addMessage(MSG_WARN, w);
+                for (const w in data.warnings) addMessage(MSG_WARN, w);
             toggleManual(true);
 
             profile = !data.metadata.amended
                 ? data.metadata.profile
-                : data.metadata.profile + '-AMENDED';
+                : `${data.metadata.profile}-AMENDED`;
             $profile.val(profile);
             $noRecTrack.prop('checked', !data.metadata.rectrack);
             $informativeOnly.prop('checked', data.metadata.informative);
@@ -322,20 +324,20 @@ jQuery.extend({
                 }
             }
             $patentPolicy.find('label').removeClass('active');
-            $patentPolicy.find('label#' + patentPolicy).addClass('active');
+            $patentPolicy.find(`label#${patentPolicy}`).addClass('active');
 
-            var options = {
+            const options = {
                 url: data.url,
-                profile: profile,
+                profile,
                 validation: 'simple-validation',
                 noRecTrack: !data.metadata.rectrack || false,
                 informativeOnly: data.metadata.informative || false,
                 echidnaReady: false,
-                patentPolicy: patentPolicy,
+                patentPolicy,
             };
             validate(options);
-            var newurl = document.URL.split('?')[0] + '?' + $.param(options);
-            window.history.pushState(options, url + ' - ' + profile, newurl);
+            const newurl = `${document.URL.split('?')[0]}?${$.param(options)}`;
+            window.history.pushState(options, `${url} - ${profile}`, newurl);
         } else {
             // Deal with all possible errors:
             if (!data)
@@ -357,7 +359,7 @@ jQuery.extend({
         }
     });
 
-    $form.submit(function (event) {
+    $form.submit((event) => {
         if (running) {
             if (event) event.preventDefault();
             return;
@@ -370,12 +372,12 @@ jQuery.extend({
         if ($profile.val() === 'auto') {
             extractMetadata($url.val());
         } else {
-            var url = $url.val();
-            var validation = $validation.find('label.active').attr('id');
-            var noRecTrack = $noRecTrack.is(':checked') || false;
-            var informativeOnly = $informativeOnly.is(':checked') || false;
-            var echidnaReady = $echidnaReady.is(':checked') || false;
-            var patentPolicy = $patentPolicy.find('label.active').attr('id');
+            const url = $url.val();
+            const validation = $validation.find('label.active').attr('id');
+            const noRecTrack = $noRecTrack.is(':checked') || false;
+            const informativeOnly = $informativeOnly.is(':checked') || false;
+            const echidnaReady = $echidnaReady.is(':checked') || false;
+            const patentPolicy = $patentPolicy.find('label.active').attr('id');
             profile = $profile.val();
             if (!url)
                 addMessage(MSG_ERROR, { message: 'Missing “URL” parameter' });
@@ -384,25 +386,25 @@ jQuery.extend({
                     message: 'Missing “profile” parameter',
                 });
             if (echidnaReady) profile += '-Echidna';
-            var options = {
-                url: url,
-                profile: profile,
-                validation: validation,
-                noRecTrack: noRecTrack,
-                informativeOnly: informativeOnly,
-                echidnaReady: echidnaReady,
-                patentPolicy: patentPolicy,
+            const options = {
+                url,
+                profile,
+                validation,
+                noRecTrack,
+                informativeOnly,
+                echidnaReady,
+                patentPolicy,
             };
             validate(options);
-            var newurl = document.URL.split('?')[0] + '?' + $.param(options);
-            window.history.pushState(options, url + ' - ' + profile, newurl);
+            const newurl = `${document.URL.split('?')[0]}?${$.param(options)}`;
+            window.history.pushState(options, `${url} - ${profile}`, newurl);
         }
         return false;
     });
 
     function disableProfilesIfNeeded(checkbox) {
         if (checkbox.prop('checked')) {
-            $profileOptions.each(function (_, el) {
+            $profileOptions.each((_, el) => {
                 if (
                     !['WD', 'WG-NOTE', 'IG-NOTE', 'CR', 'CRD'].includes(
                         $(el).val()
@@ -417,7 +419,7 @@ jQuery.extend({
             )
                 $profile.val('');
         } else
-            $profileOptions.each(function (_, el) {
+            $profileOptions.each((_, el) => {
                 if ($(el).val() !== '') $(el).prop('disabled', false);
             });
     }
@@ -428,15 +430,13 @@ jQuery.extend({
         if (options.url) $url.val(decodeURIComponent(options.url));
         // "profile" might be eg "WD-Echidna". Normalise.
         if (options.profile) {
-            var newProfile = options.profile.replace(/-echidna$/i, '');
-            $profile
-                .find('option[value=' + newProfile + ']')
-                .prop('selected', true);
+            const newProfile = options.profile.replace(/-echidna$/i, '');
+            $profile.find(`option[value=${newProfile}]`).prop('selected', true);
         }
         if (options.validation) {
-            $validation.find('label#' + options.validation).addClass('active');
+            $validation.find(`label#${options.validation}`).addClass('active');
             $validation
-                .find(':not(label#' + options.validation + ')')
+                .find(`:not(label#${options.validation})`)
                 .removeClass('active');
         }
         $noRecTrack.prop('checked', options.noRecTrack);
@@ -444,20 +444,20 @@ jQuery.extend({
         $patentPolicy.find('label').removeClass('active');
         if (options.patentPolicy) {
             $patentPolicy
-                .find('label#' + options.patentPolicy)
+                .find(`label#${options.patentPolicy}`)
                 .addClass('active');
         }
     }
 
-    window.addEventListener('popstate', function (event) {
-        var options = event.state;
+    window.addEventListener('popstate', (event) => {
+        const options = event.state;
         if (options === null) return;
         setFormParams(options);
         validate(options);
     });
 
     $patentPolicy.find('label').on('click', function () {
-        var isPP2002 = $(this).attr('id') === 'pp2002';
+        const isPP2002 = $(this).attr('id') === 'pp2002';
         $noRecTrack.prop('disabled', isPP2002);
         $informativeOnly.prop('disabled', isPP2002);
     });
@@ -466,13 +466,13 @@ jQuery.extend({
         toggleManual($(this).val() !== 'auto');
     });
 
-    $echidnaReady.change(function () {
+    $echidnaReady.change(() => {
         disableProfilesIfNeeded($echidnaReady);
     });
 
-    $(document).ready(function () {
+    $(document).ready(() => {
         $profileOptions = $('#profile option');
-        var options = $.getQueryParameters();
+        const options = $.getQueryParameters();
         setFormParams(options);
         toggleManual($profile.val() !== 'auto');
         if (options.url && options.profile) $('form').submit();
