@@ -25,7 +25,7 @@
     "superagent": "6.1.0"
   },
   "devDependencies": {
-    "chai": "4.3.0",
+    "chai": "4.3.1",
     "chai-as-promised": "7.1.1",
     "cspell": "5.3.3",
     "eslint": "7.21.0",
