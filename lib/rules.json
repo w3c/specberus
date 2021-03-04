@@ -1420,7 +1420,7 @@
                             "altRepresentations": [
                                 "REC"
                             ],
-                            "mailingListName": "It <span class=\"rfc2119\">must</span> include a link to a GitHub repository issues list in header (&lt;div class=\"head\"&gt;) of the document.",
+                            "mailingListName": "It <span class=\"rfc2119\">must</span> include a link to a GitHub repository issues list in the headers (&lt;div class=\"head\"&gt;) of the document.",
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
