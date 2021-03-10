@@ -16,7 +16,7 @@
     "no-restricted-syntax":"warn",
     "guard-for-in":"warn",
     "no-continue":"warn",
-    "no-underscore-dangle":"warn",
+    "no-underscore-dangle":"warn"
   },
   "overrides": [
     {
