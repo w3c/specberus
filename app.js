@@ -24,15 +24,17 @@ const validator = require('./lib/validator');
 const views = require('./lib/views');
 const util = require('./lib/util');
 const api = require('./lib/api');
+
 const app = express();
 const server = http.createServer(app);
 const io = socket(server);
-const Sink = sink.Sink;
-const version = self.version;
+const { Sink } = sink;
+const { version } = self;
 // Middleware:
 app.use(morgan('combined'));
 app.use(compression());
 app.use('/badterms.json', require('cors')());
+
 app.use(express.static('public'));
 api.setUp(app);
 views.setUp(app);
@@ -42,14 +44,14 @@ l10n.setLanguage('en_GB');
 
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
 
-io.on('connection', function (socket) {
-    socket.emit('handshake', { version: version });
-    socket.on('extractMetadata', function (data) {
+io.on('connection', (socket) => {
+    socket.emit('handshake', { version });
+    socket.on('extractMetadata', (data) => {
         if (!data.url)
             return socket.emit('exception', { message: 'URL not provided.' });
-        var vali = new validator.Specberus();
-        var handler = new Sink();
-        handler.on('err', function (type, data) {
+        const vali = new validator.Specberus();
+        const handler = new Sink();
+        handler.on('err', (type, data) => {
             try {
                 socket.emit(
                     'err',
@@ -59,7 +61,7 @@ io.on('connection', function (socket) {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('warning', function (type, data) {
+        handler.on('warning', (type, data) => {
             try {
                 socket.emit(
                     'warning',
@@ -69,7 +71,7 @@ io.on('connection', function (socket) {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('info', function (type, data) {
+        handler.on('info', (type, data) => {
             try {
                 socket.emit(
                     'info',
@@ -79,11 +81,11 @@ io.on('connection', function (socket) {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('end-all', function (metadata) {
+        handler.on('end-all', (metadata) => {
             metadata.url = data.url;
             socket.emit('finishedExtraction', metadata);
         });
-        handler.on('exception', function (data) {
+        handler.on('exception', (data) => {
             socket.emit('exception', data);
         });
         vali.extractMetadata({
@@ -91,7 +93,7 @@ io.on('connection', function (socket) {
             events: handler,
         });
     });
-    socket.on('validate', function (data) {
+    socket.on('validate', (data) => {
         if (!data.url)
             return socket.emit('exception', { message: 'URL not provided.' });
         if (!data.profile)
@@ -102,16 +104,14 @@ io.on('connection', function (socket) {
             return socket.emit('exception', {
                 message: 'Profile does not exist.',
             });
-        var vali = new validator.Specberus();
-        var handler = new Sink();
-        var profile = util.profiles[data.profile];
-        var profileCode = profile.name;
+        const vali = new validator.Specberus();
+        const handler = new Sink();
+        const profile = util.profiles[data.profile];
+        const profileCode = profile.name;
         socket.emit('start', {
-            rules: (profile.rules || []).map(function (rule) {
-                return rule.name;
-            }),
+            rules: (profile.rules || []).map((rule) => rule.name),
         });
-        handler.on('err', function (type, data) {
+        handler.on('err', (type, data) => {
             try {
                 socket.emit(
                     'err',
@@ -121,7 +121,7 @@ io.on('connection', function (socket) {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('warning', function (type, data) {
+        handler.on('warning', (type, data) => {
             try {
                 socket.emit(
                     'warning',
@@ -131,7 +131,7 @@ io.on('connection', function (socket) {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('info', function (type, data) {
+        handler.on('info', (type, data) => {
             try {
                 socket.emit(
                     'info',
@@ -141,13 +141,13 @@ io.on('connection', function (socket) {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('done', function (name) {
-            socket.emit('done', { name: name });
+        handler.on('done', (name) => {
+            socket.emit('done', { name });
         });
-        handler.on('end-all', function () {
+        handler.on('end-all', () => {
             socket.emit('finished');
         });
-        handler.on('exception', function (data) {
+        handler.on('exception', (data) => {
             socket.emit('exception', data);
         });
         insafe
@@ -155,12 +155,12 @@ io.on('connection', function (socket) {
                 url: data.url,
                 statusCodesAccepted: ['301', '406'],
             })
-            .then(function (res) {
+            .then((res) => {
                 if (res.status) {
                     try {
                         vali.validate({
                             url: data.url,
-                            profile: profile,
+                            profile,
                             events: handler,
                             validation: data.validation,
                             noRecTrack: data.noRecTrack,
@@ -170,7 +170,7 @@ io.on('connection', function (socket) {
                         });
                     } catch (e) {
                         socket.emit('exception', {
-                            message: 'Validation blew up: ' + e,
+                            message: `Validation blew up: ${e}`,
                         });
                         socket.emit('finished');
                     }
@@ -178,12 +178,12 @@ io.on('connection', function (socket) {
                     const message = `Error while resolving <a href="${data.url}"><code>${data.url}</code></a>;
                     check the spelling of the host, the protocol (<code>HTTP</code>, <code>HTTPS</code>)
                     and ensure that the page is accessible from the public internet.`;
-                    socket.emit('exception', { message: message });
+                    socket.emit('exception', { message });
                 }
             })
-            .catch(function (e) {
+            .catch((e) => {
                 socket.emit('exception', {
-                    message: 'Insafe check blew up: ' + e,
+                    message: `Insafe check blew up: ${e}`,
                 });
                 socket.emit('finished');
             });

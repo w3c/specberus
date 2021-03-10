@@ -15,13 +15,14 @@
 
 'use strict';
 
-var src = require('./groups-sparql');
-var fs = require('fs');
-var pth = require('path');
-var res = {};
-for (var i = 0, n = src.results.bindings.length; i < n; i++) {
-    var group = src.results.bindings[i];
-    var key = group.mailbox.value.replace('mailto:', '');
+const fs = require('fs');
+const pth = require('path');
+const src = require('./groups-sparql');
+
+const res = {};
+for (let i = 0, n = src.results.bindings.length; i < n; i++) {
+    const group = src.results.bindings[i];
+    const key = group.mailbox.value.replace('mailto:', '');
     res[key] = {
         url: group.homepage.value,
         name: group.name.value,

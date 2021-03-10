@@ -3,13 +3,14 @@
 
 // XXX also look at https://cvs.w3.org/Team/WWW/2000/04/mem-news/groups.rdf
 
-var fs = require('fs');
-var pth = require('path');
-var ua = require('superagent');
-var { JSDOM } = require('jsdom');
-var user = process.argv[2];
-var pass = process.argv[3];
-var results = {};
+const fs = require('fs');
+const pth = require('path');
+const ua = require('superagent');
+const { JSDOM } = require('jsdom');
+
+const user = process.argv[2];
+const pass = process.argv[3];
+const results = {};
 if (!user || !pass) {
     throw new Error(
         'Please pass in your W3C username and password to fetch from the groups page.'
@@ -21,33 +22,35 @@ function norm(str) {
 }
 
 function munge(err, res) {
-    var jsdom = new JSDOM(res.text);
-    var jsDocument = jsdom.window.document;
+    const jsdom = new JSDOM(res.text);
+    const jsDocument = jsdom.window.document;
 
-    jsDocument.querySelectorAll('tr.WG, tr.IG, tr.CG').forEach(function (tr) {
-        var tds = tr.querySelectorAll('td');
-        var td1 = tds && tds[0];
-        var td4 = tds && tds[3];
-        var name = td1 && norm(td1.textContent);
-        var href =
+    jsDocument.querySelectorAll('tr.WG, tr.IG, tr.CG').forEach((tr) => {
+        const tds = tr.querySelectorAll('td');
+        const td1 = tds && tds[0];
+        const td4 = tds && tds[3];
+        const name = td1 && norm(td1.textContent);
+        let href =
             td1 &&
             td1.querySelector('a') &&
             td1.querySelector('a').getAttribute('href');
         if (td4) {
-            td4.querySelectorAll('a').forEach(function (element) {
-                var list = element.textContent;
+            td4.querySelectorAll('a').forEach((element) => {
+                let list = element.textContent;
                 if (!/@w3\.org$/.test(list)) list += '@w3.org';
                 if (href.indexOf('http') === 0) true; // eslint-disable-line
                 else if (href.indexOf('/') === 0)
-                    href = 'http://www.w3.org' + href;
+                    href = `http://www.w3.org${href}`;
                 else if (/^(\.\.\/){2}\w/.test(href))
-                    href =
-                        'http://www.w3.org/' + href.replace(/^(\.\.\/){2}/, '');
+                    href = `http://www.w3.org/${href.replace(
+                        /^(\.\.\/){2}/,
+                        ''
+                    )}`;
                 else
                     console.error(
                         '--------------- UNKNOWN URL FORM -------------------'
                     );
-                results[list] = { name: name, href: href };
+                results[list] = { name, href };
             });
         }
     });
