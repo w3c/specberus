@@ -1,6 +1,6 @@
 {
   "extends": [
-    "airbnb-base/legacy", "prettier"
+    "airbnb-base", "prettier"
   ],
   "plugins": ["prettier"],
   "rules": {
@@ -17,6 +17,7 @@
     "guard-for-in":"warn",
     "no-continue":"warn",
     "no-underscore-dangle":"warn",
+    "prefer-destructuring": "warn",
     "no-extend-native":"warn"
   },
   "overrides": [
