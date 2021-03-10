@@ -3,7 +3,7 @@
  */
 
 // Settings:
-const DEBUG = false;
+const DEBUG = process.env.DEBUG || false;
 const DEFAULT_PORT = 8001;
 const PORT = process.env.PORT || DEFAULT_PORT;
 const ENDPOINT = `http://localhost:${PORT}`;
@@ -522,6 +522,11 @@ const tests = {
             {
                 url: 'links/broken-resources.html',
                 errors: ['links.linkchecker.response-error'],
+                warnings: ['links.linkchecker.display'],
+            },
+            {
+                url: 'links/redirect-resources.html',
+                errors: ['links.linkchecker.response-error-with-redirect'],
                 warnings: ['links.linkchecker.display'],
             },
         ],
@@ -1086,6 +1091,25 @@ const tests = {
 const app = express();
 app.use('/docs', express.static(pth.join(__dirname, 'docs')));
 const expressServer = app.listen(PORT, () => {});
+
+// config single redirection
+app.get('/docs/links/image/logo', function (req, res) {
+    res.redirect('/docs/links/image/logo.png');
+});
+// config single redirection to no where (404)
+app.get('/docs/links/image/logo-fail', function (req, res) {
+    res.redirect('/docs/links/image/logo-fail.png');
+});
+// config multiple redirection
+app.get('/docs/links/image/logo-redirection-1', function (req, res) {
+    res.redirect(301, '/docs/links/image/logo-redirection-2');
+});
+app.get('/docs/links/image/logo-redirection-2', function (req, res) {
+    res.redirect(307, '/docs/links/image/logo-redirection-3');
+});
+app.get('/docs/links/image/logo-redirection-3', function (req, res) {
+    res.redirect('/docs/links/image/logo.png');
+});
 
 describe('Making sure Specberus is not broken...', () => {
     after(() => {
