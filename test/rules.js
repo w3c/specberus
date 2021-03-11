@@ -513,21 +513,25 @@ const tests = {
         linkchecker: [
             {
                 url: 'links/external-resources.html',
-                errors: [
+                warnings: [
                     'links.linkchecker.not-same-folder',
                     'links.linkchecker.not-same-folder',
+                    'links.linkchecker.display',
                 ],
-                warnings: ['links.linkchecker.display'],
             },
             {
                 url: 'links/broken-resources.html',
-                errors: ['links.linkchecker.response-error'],
-                warnings: ['links.linkchecker.display'],
+                warnings: [
+                    'links.linkchecker.display',
+                    'links.linkchecker.response-error',
+                ],
             },
             {
                 url: 'links/redirect-resources.html',
-                errors: ['links.linkchecker.response-error-with-redirect'],
-                warnings: ['links.linkchecker.display'],
+                warnings: [
+                    'links.linkchecker.display',
+                    'links.linkchecker.response-error-with-redirect',
+                ],
             },
         ],
     },
