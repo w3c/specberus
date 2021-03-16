@@ -1868,7 +1868,7 @@
             "compound": {
                 "name": "8. Compound Documents",
                 "rules": {
-                    "compoundFilesLocation": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">must</span> be under a directory /TR/YYYY/@{param1}-shortname-YYYYMMDD/",
+                    "compoundFilesLocation": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">must</span> be under a directory /TR/YYYY/@{param1}-shortname-YYYYMMDD/. Exceptions are resources under these paths:<ol><li>https://www.w3.org/StyleSheets/TR/</li><li>https://www.w3.org/scripts/TR/</li></ol>",
                     "compoundOverview": "The main page <span class=\"rfc2119\">should</span> be called Overview.html.",
                     "compound": "All other files <span class=\"rfc2119\">must</span> be reachable by links from the document."
                 }
