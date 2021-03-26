@@ -1798,7 +1798,7 @@
                     "lastStylesheet": "<span class=\"subset\">recursive</span> Any internal style sheets <span class=\"rfc2119\">must</span> be cascaded before this link; i.e., the internal style sheets <span class=\"rfc2119\">must not</span> override the W3C tech report styles.",
                     "viewport": "<span class=\"subset\">recursive</span> The viewport meta tag is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"&gt;</code></p>",
                     "canonical": "<span class=\"subset\">recursive</span> The canonical link is required.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;link rel=\"canonical\" href=\"@@URL@@\"&gt;</code></p>",
-                    "delivererID": "The Working Group(s) id(s) <span class=\"rfc2119\">must</span> be listed in a <code>data-deliverer</code> attribute in the section \"Status of This Document\".<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p data-deliverer=\"@@ID1@@,@@ID2@@,...\"&gt;</code></p>"
+                    "delivererID": "The Working Group(s) id(s) <span class=\"rfc2119\">must</span> be listed in a <code>data-deliverer</code> attribute in the section \"Status of This Document\".<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p data-deliverer=\"@@ID1@@ @@ID2@@,...\"&gt;</code></p>"
                 }
             },
             "front-matter": {
