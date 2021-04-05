@@ -27,7 +27,7 @@
   "devDependencies": {
     "chai": "4.3.4",
     "chai-as-promised": "7.1.1",
-    "cspell": "5.3.9",
+    "cspell": "5.3.11",
     "eslint": "7.23.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "8.1.0",
