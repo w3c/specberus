@@ -69,7 +69,7 @@ If Specberus is *not* going to be served from the root directory of a domain, or
 set also `BASE_URI` pointing to the public root URI of Specberus; eg
 
 ```bash
-$ BASE_URI=https://spec-store.com/check/ W3C_API_KEY=deadbeef npm start
+$ BASE_URI=https://spec-store.com/check/ W3C_API_KEY=deadbeef npm start 
 $ BASE_URI=/hostname/can/be/omitted/ W3C_API_KEY=deadbeef npm start 88
 ```
 
@@ -132,7 +132,7 @@ Once the [event `end-all`](#validation-events) is emitted, the metadata should b
 
 The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
 goals of this method).
-
+ 
 `this.meta` will be an `Object` and may include up to 16 properties described below:
 
 * `profile`
