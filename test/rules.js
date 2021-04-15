@@ -507,6 +507,9 @@ const tests = {
                     'links.reliability.unreliable-link',
                     'links.reliability.unreliable-link',
                     'links.reliability.unreliable-link',
+                    // tools.ietf.org is not reliable
+                    'links.reliability.unreliable-link',
+                    'links.reliability.unreliable-link',
                 ],
             },
         ],
