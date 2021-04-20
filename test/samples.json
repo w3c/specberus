@@ -1,209 +1,176 @@
 [
-   {
-        "url": "https://www.w3.org/TR/2016/CR-WebIDL-1-20160308/"
-    ,   "file": "WebIDL-1"
-    ,   "profile": "CR"
-    ,   "latestVersion": "https://www.w3.org/TR/WebIDL-1/"
-    ,   "previousVersion": "https://www.w3.org/TR/2015/WD-WebIDL-1-20150804/"
-    ,   "editorsDraft": "https://heycam.github.io/webidl/"
-    ,   "deliverers": [
+    {
+        "url": "https://www.w3.org/TR/2016/CR-WebIDL-1-20160308/",
+        "file": "WebIDL-1",
+        "profile": "CR",
+        "latestVersion": "https://www.w3.org/TR/WebIDL-1/",
+        "previousVersion": "https://www.w3.org/TR/2015/WD-WebIDL-1-20150804/",
+        "editorsDraft": "https://heycam.github.io/webidl/",
+        "deliverers": [
             {
-                "name": "Web Platform Working Group"
-            ,   "homepage": "https://www.w3.org/WebPlatform/WG/"
+                "name": "Web Platform Working Group",
+                "homepage": "https://www.w3.org/WebPlatform/WG/"
             }
-        ]
-    ,   "title": "WebIDL Level 1"
-    ,   "docDate": "2016-3-8"
-    ,   "delivererIDs": [83482]
-    ,   "editorIDs": []
-    ,   "editorNames": [
-            "Cameron McCormack"
-        ,   "Boris Zbarsky"
-    ]
-    ,   "informative": false
-    ,   "rectrack": true
-    ,   "process": "https://www.w3.org/2015/Process-20150901/"
-    ,   "implementationReport": "http://www.w3.org/2016/03/webidl/report.html"
-    }
-,   {
-        "url": "https://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/"
-    ,   "file": "ttml-imsc1"
-    ,   "profile": "PR"
-    ,   "latestVersion": "https://www.w3.org/TR/ttml-imsc1/"
-    ,   "previousVersion": "https://www.w3.org/TR/2016/CR-ttml-imsc1-20160128/"
-    ,   "editorsDraft": "https://rawgit.com/w3c/imsc1/master/spec/ttml-ww-profiles.html"
-    ,   "deliverers": [
+        ],
+        "title": "WebIDL Level 1",
+        "docDate": "2016-3-8",
+        "delivererIDs": [83482],
+        "editorIDs": [],
+        "editorNames": ["Cameron McCormack", "Boris Zbarsky"],
+        "informative": false,
+        "rectrack": true,
+        "process": "https://www.w3.org/2015/Process-20150901/",
+        "implementationReport": "http://www.w3.org/2016/03/webidl/report.html"
+    },
+    {
+        "url": "https://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/",
+        "file": "ttml-imsc1",
+        "profile": "PR",
+        "latestVersion": "https://www.w3.org/TR/ttml-imsc1/",
+        "previousVersion": "https://www.w3.org/TR/2016/CR-ttml-imsc1-20160128/",
+        "editorsDraft": "https://rawgit.com/w3c/imsc1/master/spec/ttml-ww-profiles.html",
+        "deliverers": [
             {
-                "name": "Timed Text Working Group"
-            ,   "homepage": "https://www.w3.org/AudioVideo/TT/"
+                "name": "Timed Text Working Group",
+                "homepage": "https://www.w3.org/AudioVideo/TT/"
             }
-        ]
-    ,   "title": "TTML Profiles for Internet Media Subtitles and Captions 1.0 (IMSC1)"
-    ,   "docDate": "2016-3-8"
-    ,   "delivererIDs": [34314]
-    ,   "editorIDs": []
-    ,   "editorNames": [
-            "Pierre Lemieux"
-    ]
-    ,   "informative": false
-    ,   "rectrack": true
-    ,   "process": "https://www.w3.org/2015/Process-20150901/"
-    ,   "implementationReport": "https://www.w3.org/wiki/TimedText/IMSC1_Implementation_Report"
-    }
-,   {
-        "url": "https://www.w3.org/TR/2016/NOTE-csvw-ucr-20160225/"
-    ,   "file": "csvw-ucr"
-    ,   "profile": "WG-NOTE"
-    ,   "latestVersion": "https://www.w3.org/TR/csvw-ucr/"
-    ,   "previousVersion": "https://www.w3.org/TR/2014/WD-csvw-ucr-20140701/"
-    ,   "editorsDraft": "http://w3c.github.io/csvw/use-cases-and-requirements/"
-    ,   "deliverers": [
+        ],
+        "title": "TTML Profiles for Internet Media Subtitles and Captions 1.0 (IMSC1)",
+        "docDate": "2016-3-8",
+        "delivererIDs": [34314],
+        "editorIDs": [],
+        "editorNames": ["Pierre Lemieux"],
+        "informative": false,
+        "rectrack": true,
+        "process": "https://www.w3.org/2015/Process-20150901/",
+        "implementationReport": "https://www.w3.org/wiki/TimedText/IMSC1_Implementation_Report"
+    },
+    {
+        "url": "https://www.w3.org/TR/2016/NOTE-csvw-ucr-20160225/",
+        "file": "csvw-ucr",
+        "profile": "WG-NOTE",
+        "latestVersion": "https://www.w3.org/TR/csvw-ucr/",
+        "previousVersion": "https://www.w3.org/TR/2014/WD-csvw-ucr-20140701/",
+        "editorsDraft": "http://w3c.github.io/csvw/use-cases-and-requirements/",
+        "deliverers": [
             {
-                "name": "CSV on the Web Working Group"
-            ,   "homepage": "https://www.w3.org/2013/csvw/"
+                "name": "CSV on the Web Working Group",
+                "homepage": "https://www.w3.org/2013/csvw/"
             }
-        ]
-    ,   "title": "CSV on the Web: Use Cases and Requirements"
-    ,   "docDate": "2016-2-25"
-    ,   "delivererIDs": [68238]
-    ,   "editorIDs": []
-    ,   "editorNames": [
-            "Jeremy Tandy"
-        ,   "Davide Ceolin"
-        ,   "Eric Stephan"
-    ]
-    ,   "informative": true
-    ,   "rectrack": false
-    ,   "process": "https://www.w3.org/2015/Process-20150901/"
-    }
-,   {
-        "url": "https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/"
-    ,   "file": "tabular-data-model"
-    ,   "profile": "REC"
-    ,   "latestVersion": "https://www.w3.org/TR/tabular-data-model/"
-    ,   "previousVersion": "https://www.w3.org/TR/2015/PR-tabular-data-model-20151117/"
-    ,   "editorsDraft": "http://w3c.github.io/csvw/syntax/"
-    ,   "deliverers": [
+        ],
+        "title": "CSV on the Web: Use Cases and Requirements",
+        "docDate": "2016-2-25",
+        "delivererIDs": [68238],
+        "editorIDs": [],
+        "editorNames": ["Jeremy Tandy", "Davide Ceolin", "Eric Stephan"],
+        "informative": true,
+        "rectrack": false,
+        "process": "https://www.w3.org/2015/Process-20150901/"
+    },
+    {
+        "url": "https://www.w3.org/TR/2015/REC-tabular-data-model-20151217/",
+        "file": "tabular-data-model",
+        "profile": "REC",
+        "latestVersion": "https://www.w3.org/TR/tabular-data-model/",
+        "previousVersion": "https://www.w3.org/TR/2015/PR-tabular-data-model-20151117/",
+        "editorsDraft": "http://w3c.github.io/csvw/syntax/",
+        "deliverers": [
             {
-                "name": "CSV on the Web Working Group"
-            ,   "homepage": "https://www.w3.org/2013/csvw"
+                "name": "CSV on the Web Working Group",
+                "homepage": "https://www.w3.org/2013/csvw"
             }
-        ]
-    ,   "title": "Model for Tabular Data and Metadata on the Web"
-    ,   "docDate": "2015-12-17"
-    ,   "delivererIDs": [68238]
-    ,   "editorIDs": [33715,44770,7382]
-    ,   "editorNames": [
-            "Jeni Tennison"
-        ,   "Gregg Kellogg"
-    ]
-    ,   "informative": false
-    ,   "rectrack": true
-    ,   "process": "https://www.w3.org/2015/Process-20150901/"
-    ,   "implementationReport": "http://www.w3.org/2013/csvw/implementation_report.html"
-    }
-,   {
-        "url": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/"
-    ,   "file": "mediacapture-depth"
-    ,   "profile": "WD"
-    ,   "latestVersion": "https://www.w3.org/TR/mediacapture-depth/"
-    ,   "previousVersion": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160202/"
-    ,   "editorsDraft": "https://w3c.github.io/mediacapture-depth/"
-    ,   "deliverers": [
+        ],
+        "title": "Model for Tabular Data and Metadata on the Web",
+        "docDate": "2015-12-17",
+        "delivererIDs": [68238],
+        "editorIDs": [33715, 44770, 7382],
+        "editorNames": ["Jeni Tennison", "Gregg Kellogg"],
+        "informative": false,
+        "rectrack": true,
+        "process": "https://www.w3.org/2015/Process-20150901/",
+        "implementationReport": "http://www.w3.org/2013/csvw/implementation_report.html"
+    },
+    {
+        "url": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/",
+        "file": "mediacapture-depth",
+        "profile": "WD",
+        "latestVersion": "https://www.w3.org/TR/mediacapture-depth/",
+        "previousVersion": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160202/",
+        "editorsDraft": "https://w3c.github.io/mediacapture-depth/",
+        "deliverers": [
             {
-                "name": "Device APIs Working Group"
-            ,   "homepage":"https://www.w3.org/2009/dap/"
-            }
-        ,   {
-                "name": "Web Real-Time Communications Working Group"
-            ,   "homepage": "https://www.w3.org/2011/04/webrtc/"
-            }
-        ]
-    ,   "title": "Media Capture Depth Stream Extensions"
-    ,   "docDate": "2016-2-26"
-    ,   "delivererIDs": [47318, 43696]
-    ,   "editorIDs": [41974,68202,76096]
-    ,   "editorNames": [
-            "Anssi Kostiainen"
-        ,   "Ningxin Hu"
-        ,   "Rob Manson"
-    ]
-    ,   "informative": false
-    ,   "rectrack": true
-    ,   "process": "https://www.w3.org/2015/Process-20150901/"
-    }
-,   {
-        "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
-    ,   "file": "charmod-norm"
-    ,   "profile": "WD"
-    ,   "latestVersion": "https://www.w3.org/TR/charmod-norm/"
-    ,   "previousVersion": "https://www.w3.org/TR/2015/WD-charmod-norm-20151119/"
-    ,   "editorsDraft": "http://w3c.github.io/charmod-norm/"
-    ,   "deliverers": [
+                "name": "Device APIs Working Group",
+                "homepage": "https://www.w3.org/2009/dap/"
+            },
             {
-                "name": "Internationalization Working Group"
-            ,   "homepage":"https://www.w3.org/International/core/"
+                "name": "Web Real-Time Communications Working Group",
+                "homepage": "https://www.w3.org/2011/04/webrtc/"
             }
-        ]
-    ,   "title": "Character Model for the World Wide Web: String Matching and Searching"
-    ,   "docDate": "2016-4-7"
-    ,   "delivererIDs": [32113]
-    ,   "editorIDs": [33573]
-    ,   "editorNames": [
-            "Addison Phillips"
-    ]
-    ,   "informative": false
-    ,   "rectrack": false
-    ,   "process": "https://www.w3.org/2015/Process-20150901/"
-    }
-,   {
-        "url": "https://www.w3.org/TR/2013/WD-components-intro-20130606/"
-    ,   "file": "components-intro"
-    ,   "profile": "WD"
-    ,   "latestVersion": "https://www.w3.org/TR/components-intro/"
-    ,   "previousVersion": "https://www.w3.org/TR/2012/WD-components-intro-20120522/"
-    ,   "editorsDraft": "https://dvcs.w3.org/hg/webcomponents/raw-file/tip/explainer/index.html"
-    ,   "deliverers": [
+        ],
+        "title": "Media Capture Depth Stream Extensions",
+        "docDate": "2016-2-26",
+        "delivererIDs": [47318, 43696],
+        "editorIDs": [41974, 68202, 76096],
+        "editorNames": ["Anssi Kostiainen", "Ningxin Hu", "Rob Manson"],
+        "informative": false,
+        "rectrack": true,
+        "process": "https://www.w3.org/2015/Process-20150901/"
+    },
+    {
+        "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/",
+        "file": "charmod-norm",
+        "profile": "WD",
+        "latestVersion": "https://www.w3.org/TR/charmod-norm/",
+        "previousVersion": "https://www.w3.org/TR/2015/WD-charmod-norm-20151119/",
+        "editorsDraft": "http://w3c.github.io/charmod-norm/",
+        "deliverers": [
             {
-                "name": "Web Applications Working Group"
-            ,   "homepage":"https://www.w3.org/2008/webapps/"
+                "name": "Internationalization Working Group",
+                "homepage": "https://www.w3.org/International/core/"
             }
-        ]
-    ,   "title": "Introduction to Web Components"
-    ,   "docDate": "2013-6-6"
-    ,   "delivererIDs": [42538]
-    ,   "editorIDs": []
-    ,   "editorNames": [
-            "Dominic Cooney"
-        ,   "Dimitri Glazkov"
-    ]
-    ,   "informative": true
-    ,   "rectrack": true
-    ,   "process": "https://www.w3.org/2015/Process-20150901/"
-    }
-,   {
-        "url": "https://www.w3.org/TR/2021/CR-did-core-20210318/"
-    ,   "file": "did-core",
+        ],
+        "title": "Character Model for the World Wide Web: String Matching and Searching",
+        "docDate": "2016-4-7",
+        "delivererIDs": [32113],
+        "editorIDs": [33573],
+        "editorNames": ["Addison Phillips"],
+        "informative": false,
+        "rectrack": false,
+        "process": "https://www.w3.org/2015/Process-20150901/"
+    },
+    {
+        "url": "https://www.w3.org/TR/2013/WD-components-intro-20130606/",
+        "file": "components-intro",
+        "profile": "WD",
+        "latestVersion": "https://www.w3.org/TR/components-intro/",
+        "previousVersion": "https://www.w3.org/TR/2012/WD-components-intro-20120522/",
+        "editorsDraft": "https://dvcs.w3.org/hg/webcomponents/raw-file/tip/explainer/index.html",
+        "deliverers": [
+            {
+                "name": "Web Applications Working Group",
+                "homepage": "https://www.w3.org/2008/webapps/"
+            }
+        ],
+        "title": "Introduction to Web Components",
+        "docDate": "2013-6-6",
+        "delivererIDs": [42538],
+        "editorIDs": [],
+        "editorNames": ["Dominic Cooney", "Dimitri Glazkov"],
+        "informative": true,
+        "rectrack": true,
+        "process": "https://www.w3.org/2015/Process-20150901/"
+    },
+    {
+        "url": "https://www.w3.org/TR/2021/CR-did-core-20210318/",
+        "file": "did-core",
         "profile": "CR",
         "implementationFeedbackDue": "2021-4-18",
         "implementationReport": "https://w3c.github.io/did-test-suite/",
         "title": "Decentralized Identifiers (DIDs) v1.0",
         "docDate": "2021-3-18",
-        "delivererIDs": [
-        117488
-        ],
-        "editorIDs": [
-        3096,
-        41758,
-        46729,
-        48025,
-        85560
-        ],
-        "editorNames": [
-        "Drummond Reed",
-        "Manu Sporny",
-        "Markus Sabadello"
-        ],
+        "delivererIDs": [117488],
+        "editorIDs": [3096, 41758, 46729, 48025, 85560],
+        "editorNames": ["Drummond Reed", "Manu Sporny", "Markus Sabadello"],
         "rectrack": true,
         "informative": false,
         "process": "https://www.w3.org/2020/Process-20200915/",
@@ -213,60 +180,51 @@
         "previousVersion": "https://www.w3.org/TR/2021/WD-did-core-20210309/",
         "editorsDraft": "https://w3c.github.io/did-core/",
         "updated": true
-    }
-,   {
-        "url": "http://www.w3.org/TR/2016/CR-mediacapture-streams-20160519/"
-    ,   "file": "cr-mediacapture-streams"
-    ,   "profile": "CR"
-    ,   "latestVersion": "http://www.w3.org/TR/mediacapture-streams/"
-    ,   "previousVersion": "http://www.w3.org/TR/2015/WD-mediacapture-streams-20150414/"
-    ,   "editorsDraft": "https://w3c.github.io/mediacapture-main/"
-    ,   "delivererIDs": [
-            47318,
-            43696
-        ]
-    ,   "title": "Media Capture and Streams"
-    ,   "docDate": "2016-5-19"
-    ,   "editorIDs": [
-            85118,
-            45507,
-            25254,
-            47326,
-            65611
-        ]
-    ,   "editorNames": [
+    },
+    {
+        "url": "http://www.w3.org/TR/2016/CR-mediacapture-streams-20160519/",
+        "file": "cr-mediacapture-streams",
+        "profile": "CR",
+        "latestVersion": "http://www.w3.org/TR/mediacapture-streams/",
+        "previousVersion": "http://www.w3.org/TR/2015/WD-mediacapture-streams-20150414/",
+        "editorsDraft": "https://w3c.github.io/mediacapture-main/",
+        "delivererIDs": [47318, 43696],
+        "title": "Media Capture and Streams",
+        "docDate": "2016-5-19",
+        "editorIDs": [85118, 45507, 25254, 47326, 65611],
+        "editorNames": [
             "Daniel C. Burnett",
             "Adam Bergkvist",
             "Cullen Jennings",
             "Anant Narayanan",
             "Bernard Aboba"
-        ]
-    ,   "informative": false
-    ,   "rectrack": true
-    ,   "implementationFeedbackDue": "2016-6-15"
-    ,   "process": "http://www.w3.org/2015/Process-20150901/"
-    }
-,   {
-        "url": "https://www.w3.org/TR/2016/PR-media-source-20161004/"
-    ,   "file": "pr-media-source"
-    ,   "profile": "PR"
-    ,   "latestVersion": "https://www.w3.org/TR/media-source/"
-    ,   "previousVersion": "https://www.w3.org/TR/2016/CR-media-source-20160705/"
-    ,   "editorsDraft": "http://w3c.github.io/media-source/"
-    ,   "delivererIDs": [40318]
-    ,   "title": "Media Source Extensions™"
-    ,   "docDate": "2016-10-4"
-    ,   "editorIDs": []
-    ,   "editorNames": [
+        ],
+        "informative": false,
+        "rectrack": true,
+        "implementationFeedbackDue": "2016-6-15",
+        "process": "http://www.w3.org/2015/Process-20150901/"
+    },
+    {
+        "url": "https://www.w3.org/TR/2016/PR-media-source-20161004/",
+        "file": "pr-media-source",
+        "profile": "PR",
+        "latestVersion": "https://www.w3.org/TR/media-source/",
+        "previousVersion": "https://www.w3.org/TR/2016/CR-media-source-20160705/",
+        "editorsDraft": "http://w3c.github.io/media-source/",
+        "delivererIDs": [40318],
+        "title": "Media Source Extensions™",
+        "docDate": "2016-10-4",
+        "editorIDs": [],
+        "editorNames": [
             "Matthew Wolenetz",
             "Jerry Smith",
             "Mark Watson",
             "Aaron Colwell",
             "Adrian Bateman"
-        ]
-    ,   "informative": false
-    ,   "rectrack": true
-    ,   "prReviewsDue": "2016-11-1"
-    ,   "process": "https://www.w3.org/2015/Process-20150901/"
+        ],
+        "informative": false,
+        "rectrack": true,
+        "prReviewsDue": "2016-11-1",
+        "process": "https://www.w3.org/2015/Process-20150901/"
     }
 ]
