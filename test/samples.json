@@ -182,31 +182,37 @@
     ,   "process": "https://www.w3.org/2015/Process-20150901/"
     }
 ,   {
-        "url": "https://www.w3.org/TR/2016/WD-html51-20160602/"
-    ,   "file": "html51"
-    ,   "profile": "WD"
-    ,   "latestVersion": "https://www.w3.org/TR/html51/"
-    ,   "previousVersion": "https://www.w3.org/TR/2016/WD-html51-20160503/"
-    ,   "editorsDraft": "https://w3c.github.io/html/"
-    ,   "deliverers": [
-            {
-                "name": "Web Platform Working Group"
-            ,   "homepage":"https://www.w3.org/WebPlatform/WG/"
-            }
-        ]
-    ,   "title": "HTML 5.1"
-    ,   "docDate": "2016-6-2"
-    ,   "delivererIDs": [83482]
-    ,   "editorIDs": []
-    ,   "editorNames": [
-            "Steve Faulkner"
-        ,   "Arron Eicholz"
-        ,   "Travis Leithead"
-        ,   "Alex Danilo"
-    ]
-    ,   "informative": false
-    ,   "rectrack": true
-    ,   "process": "https://www.w3.org/2015/Process-20150901/"
+        "url": "https://www.w3.org/TR/2021/CR-did-core-20210318/"
+    ,   "file": "did-core",
+        "profile": "CR",
+        "implementationFeedbackDue": "2021-4-18",
+        "implementationReport": "https://w3c.github.io/did-test-suite/",
+        "title": "Decentralized Identifiers (DIDs) v1.0",
+        "docDate": "2021-3-18",
+        "delivererIDs": [
+        117488
+        ],
+        "editorIDs": [
+        3096,
+        41758,
+        46729,
+        48025,
+        85560
+        ],
+        "editorNames": [
+        "Drummond Reed",
+        "Manu Sporny",
+        "Markus Sabadello"
+        ],
+        "rectrack": true,
+        "informative": false,
+        "process": "https://www.w3.org/2020/Process-20200915/",
+        "patentPolicy": "https://www.w3.org/Consortium/Patent-Policy-20200915/",
+        "thisVersion": "https://www.w3.org/TR/2021/CR-did-core-20210318/",
+        "latestVersion": "https://www.w3.org/TR/did-core/",
+        "previousVersion": "https://www.w3.org/TR/2021/WD-did-core-20210309/",
+        "editorsDraft": "https://w3c.github.io/did-core/",
+        "updated": true
     }
 ,   {
         "url": "http://www.w3.org/TR/2016/CR-mediacapture-streams-20160519/"
