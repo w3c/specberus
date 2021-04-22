@@ -377,6 +377,11 @@ const tests = {
                 errors: ['headers.h2-status.bad-h2'],
             },
             {
+                doc: 'headers/h2-not-found.html',
+                errors: ['headers.h2-status.no-h2'],
+                config: { longStatus: 'Working Draft' },
+            },
+            {
                 doc: 'sotd/cr-end.html',
                 config: {
                     longStatus: 'Candidate Recommendation',
