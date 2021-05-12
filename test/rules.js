@@ -843,6 +843,10 @@ const tests = {
                 config: { recTrackStatus: true },
                 errors: ['sotd.pp.undefined'],
             },
+            {
+                doc: 'sotd/pp-20200915-iprlink.html',
+                config: { recTrackStatus: true, patentPolicy: 'pp2020' },
+            },
             { doc: 'headers/wd.html' },
             {
                 doc: 'sotd/wg-note-IG-good.html',
