@@ -18,7 +18,7 @@ const chaiAsPromised = require('chai-as-promised');
 const express = require('express');
 const superagent = require('superagent');
 // Internal packages:
-const meta = require('../package');
+const meta = require('../package.json');
 const api = require('../lib/api');
 
 let server;

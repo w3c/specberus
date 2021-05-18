@@ -17,7 +17,7 @@ const insafe = require('insafe');
 const morgan = require('morgan');
 const socket = require('socket.io');
 // Internal packages:
-const self = require('./package');
+const self = require('./package.json');
 const l10n = require('./lib/l10n');
 const sink = require('./lib/sink');
 const validator = require('./lib/validator');
