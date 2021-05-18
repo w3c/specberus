@@ -17,7 +17,7 @@ const chai = require('chai').expect;
 
 // Internal packages:
 const validation = require('./validation');
-const samples = require('./samples');
+const samples = require('./samples.json');
 const validator = require('../lib/validator');
 const sink = require('../lib/sink');
 /**

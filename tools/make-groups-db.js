@@ -17,7 +17,7 @@
 
 const fs = require('fs');
 const pth = require('path');
-const src = require('./groups-sparql');
+const src = require('./groups-sparql.json');
 
 const res = {};
 for (let i = 0, n = src.results.bindings.length; i < n; i++) {

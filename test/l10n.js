@@ -12,7 +12,7 @@ const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 
 // Internal packages:
-const rules = require('../lib/rules');
+const rules = require('../lib/rules.json');
 const l10n = require('../lib/l10n-en_GB');
 
 // Constants:
