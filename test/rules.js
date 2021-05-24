@@ -1094,6 +1094,15 @@ const tests = {
         shortname: [
             { doc: 'headers/simple.html' },
             { doc: 'headers/diff-latest-version.html' },
+            {
+                doc: 'headers/diff-latest-version.html',
+                config: { longStatus: 'First Public Working Draft' },
+            },
+            {
+                doc: 'metadata/tracking-compliance.html',
+                config: { longStatus: 'First Public Working Draft' },
+                errors: ['heuristic.shortname.shortname-duplicate'],
+            },
         ],
     },
     validation,
