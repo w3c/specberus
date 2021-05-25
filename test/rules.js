@@ -1096,11 +1096,11 @@ const tests = {
             { doc: 'headers/diff-latest-version.html' },
             {
                 doc: 'headers/diff-latest-version.html',
-                config: { longStatus: 'First Public Working Draft' },
+                config: { previousVersion: false },
             },
             {
                 doc: 'metadata/tracking-compliance.html',
-                config: { longStatus: 'First Public Working Draft' },
+                config: { previousVersion: false },
                 errors: ['heuristic.shortname.shortname-duplicate'],
             },
         ],
