@@ -446,6 +446,8 @@ jQuery.extend({
             $patentPolicy
                 .find(`label#${options.patentPolicy}`)
                 .addClass('active');
+        } else {
+            $patentPolicy.find(`label#pp2020`).addClass('active');
         }
     }
 
