@@ -1606,7 +1606,7 @@
                         }
                     },
                     "rec-edit-sotd": {
-                        "name": "6. Change \"status of this document\" section",
+                        "name": "6. Change the \"Status of this Document\" section",
                         "rules": {
                             "sotd": true,
                             "sotd1": ["Obsoleted"],
@@ -1630,7 +1630,7 @@
                         }
                     },
                     "rec-edit-stylesheet": {
-                        "name": "2. Use corresponding stylesheet",
+                        "name": "2. Use the corresponding stylesheet",
                         "rules": {
                             "stylesheet" : ["SPSD"]
                         }
@@ -1642,19 +1642,19 @@
                         }
                     },
                      "rec-edit-version": {
-                        "name": "4. Set This version link",
+                        "name": "4. Set the \"This version\" link",
                         "rules": {
                             "version": ["SPSD"]
                         }
                     },
                      "rec-edit-previous": {
-                        "name": "5. Set Previous version link",
+                        "name": "5. Set the \"Previous version\" link",
                         "rules": {
                             "previous": ["superseded"]
                         }
                     },
                     "rec-edit-sotd": {
-                        "name": "6. Change \"status of this document\" section",
+                        "name": "6. Change the \"Status of this Document\" section",
                         "rules": {
                             "sotd": true,
                             "sotd1": ["Superseded"],
@@ -1768,9 +1768,9 @@
                 }
             },
             "rec-edit-stylesheet": {
-                "name": "2. Use corresponding stylesheet",
+                "name": "2. Use the corresponding stylesheet",
                 "rules": {
-                    "stylesheet":"For the W3C style sheet, use the @{param1} version of the W3C style sheet in use in the REC (old, or 2016). So, it's one of:<ol><li>https://www.w3.org/StyleSheets/TR/W3C-@{param1}.css</li><li>https://www.w3.org/StyleSheets/TR/2016/W3C-@{param1}.css</li><li>or reuse the (some?) content from https://www.w3.org/TR/html50/superseded.css as needed</li></ol>"
+                    "stylesheet":"For the W3C stylesheet, use the @{param1} version of the W3C stylesheet in use in the REC (old, or 2016). So, it's one of:<ol><li>https://www.w3.org/StyleSheets/TR/W3C-@{param1}.css</li><li>https://www.w3.org/StyleSheets/TR/2016/W3C-@{param1}.css</li><li>or reuse the (some?) content from https://www.w3.org/TR/html50/superseded.css as needed</li></ol>"
                 }
             },
             "rec-edit-h2": {
@@ -1780,19 +1780,19 @@
                 }
             },
             "rec-edit-version": {
-                "name": "4. Set This version link",
+                "name": "4. Set the \"This version\" link",
                 "rules": {
                     "version":"(if new dated version) This version link gets the form https://www.w3.org/TR/YYYY/@{param1}-&lt;shortname-with-version&gt;-&lt;newdate&gt;/"
                 }
             },
             "rec-edit-previous": {
-                "name": "5. Set Previous version link",
+                "name": "5. Set the \"Previous version\" link",
                 "rules": {
                     "previous": "(if new dated version) Previous version becomes the dated link of the REC being @{param1}"
                 }
             },
             "rec-edit-sotd": {
-                "name": "6. Change \"status of this document\" section",
+                "name": "6. Change the \"status of this document\" section",
                 "rules": {
                     "sotd": "The SOTD gets updated as follows:",
                     "sotd1":"6.1. add the following markup (update link to proper Process version if needed):<pre><code>&lt;p&gt;This specification is a &lt;a href=\"https://www.w3.org/2020/Process-20200915/#rec-rescind\"&gt;@{param1} Recommendation&lt;/a&gt;. A newer specification exists that is recommended for new adoption in place of this specification. &lt;/p&gt;</code></pre>",
