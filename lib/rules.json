@@ -1575,102 +1575,40 @@
                 "order": 8,
                 "name": "Obsolete Recommendation",
                 "sections": {
-                    "format": {
-                        "name": "1. Normative Document Representation",
+                    "rec-edit-install": {
+                        "name": "1. Install the document.",
                         "rules": {
-                            "normativeVersion": true,
-                            "valideHTML": true,
-                            "visualStyle": true
+                            "install" : true
                         }
                     },
-                    "metadata": {
-                        "name": "2. Document Metadata",
+                    "rec-edit-stylesheet": {
+                        "name": "2. Use corresponding stylesheet",
                         "rules": {
-                            "goodStylesheet": [
-                                "OBSL"
-                            ],
-                            "lastStylesheet": true,
-                            "viewport": true,
-                            "canonical": true
+                            "stylesheet" : ["OBSL"]
                         }
                     },
-                    "front-matter": {
-                        "name": "3. Front Matter",
+                    "rec-edit-h2": {
+                        "name": "3. Change the title of the document",
                         "rules": {
-                            "divClassHead": true,
-                            "logo": true,
-                            "title": true,
-                            "versionNumber": [
-                                "<li class=\"rec-in-place\">If a Recommendation modified in place, see the Comm Team's policy regarding <a href=\"http://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>, otherwise</li> "
-                            ],
-                            "dateTitleH2": [
-                                "Obsolete Recommendation",
-                                ""
-                            ],
-                            "docIDFormat": true,
-                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li>This version URI.</li> <li>Latest version URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> <li class=\"prevrecuri\">\"Obsoletes this Recommendation\" URI</li> </ul>",
-                            "docIDThisVersion": [
-                                "OBSL"
-                            ],
-                            "docIDLatestVersion": true,
-                            "docIDDate": true,
-                            "editorSection": true,
-                            "errata": true,
-                            "altRepresentations": [
-                                "OBSL"
-                            ],
-                            "mailingListName": true,
-                            "copyright": true,
-                            "hrAfterCopyright": true
+                            "h2": ["obsoleted"]
                         }
                     },
-                    "navigation": {
-                        "name": "6. Table of Contents",
+                     "rec-edit-version": {
+                        "name": "4. Set This version link",
                         "rules": {
-                            "toc": true,
-                            "tocNav": true
+                            "version": ["OBSL"]
                         }
                     },
-                    "document-status": {
-                        "name": "5. Document Status Section",
+                     "rec-edit-previous": {
+                        "name": "5. Set Previous version link",
                         "rules": {
-                            "sotd": true,
-                            "boilerplateTRDoc": true,
-                            "datesFormat": true,
-                            "WGLink": true,
-                            "recRelation": true,
-                            "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to obsolete the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to obsolete the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting, Rescinding or Superseding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
-                            "altTechno": true,
-                            "customParagraph": true,
-                            "changesList": [
-                                "must",
-                                ""
-                            ],
-                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></div>",
-                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy<sup>*</sup> requirements (with suitable links inserted; see <a href=\"http://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. </p> </blockquote><strong><sup>*</sup>If the Working Group is operating under the Patent Policy 2017, the link to the Patent Policy should be <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">https://www.w3.org/Consortium/Patent-Policy-20170801/</a></strong>.<div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
-                            "knownDisclosureNumber": true,
-                            "whichProcess": true
+                            "previous": ["obsoleted"]
                         }
                     },
-                    "document-body": {
-                        "name": "7. Document Body",
+                    "rec-edit-sotd": {
+                        "name": "6. Change the \"Status of this Document\" section",
                         "rules": {
-                            "headingWithoutID": true,
-                            "brokenLink": true,
-                            "cssValide": true,
-                            "namespaces": true,
-                            "wcag": true,
-                            "fixupJs": true
-                        }
-                    },
-                    "compound": {
-                        "name": "8. Compound Documents",
-                        "rules": {
-                            "compoundFilesLocation": [
-                                "OBSL"
-                            ],
-                            "compoundOverview": true,
-                            "compound": true
+                            "sotd": ["Obsoleted", "obsoleted", "obsoleting", ""]
                         }
                     }
                 }
@@ -1679,102 +1617,40 @@
                 "order": 8,
                 "name": "Superseded Recommendation",
                 "sections": {
-                    "format": {
-                        "name": "1. Normative Document Representation",
+                    "rec-edit-install": {
+                        "name": "1. Install the document.",
                         "rules": {
-                            "normativeVersion": true,
-                            "valideHTML": true,
-                            "visualStyle": true
+                            "install" : true
                         }
                     },
-                    "metadata": {
-                        "name": "2. Document Metadata",
+                    "rec-edit-stylesheet": {
+                        "name": "2. Use the corresponding stylesheet",
                         "rules": {
-                            "goodStylesheet": [
-                                "SPSD"
-                            ],
-                            "lastStylesheet": true,
-                            "viewport": true,
-                            "canonical": true
+                            "stylesheet" : ["SPSD"]
                         }
                     },
-                    "front-matter": {
-                        "name": "3. Front Matter",
+                    "rec-edit-h2": {
+                        "name": "3. Change the title of the document",
                         "rules": {
-                            "divClassHead": true,
-                            "logo": true,
-                            "title": true,
-                            "versionNumber": [
-                                "<li class=\"rec-in-place\">If a Recommendation modified in place, see the Comm Team's policy regarding <a href=\"http://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>, otherwise</li> "
-                            ],
-                            "dateTitleH2": [
-                                "Superseded Recommendation",
-                                ""
-                            ],
-                            "docIDFormat": true,
-                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li>This version URI.</li> <li>Latest version URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> <li class=\"prevrecuri\">\"Supersedes this Recommendation\" URI</li> </ul>",
-                            "docIDThisVersion": [
-                                "SPSD"
-                            ],
-                            "docIDLatestVersion": true,
-                            "docIDDate": true,
-                            "editorSection": true,
-                            "errata": true,
-                            "altRepresentations": [
-                                "SPSD"
-                            ],
-                            "mailingListName": true,
-                            "copyright": true,
-                            "hrAfterCopyright": true
+                            "h2": ["superseded"]
                         }
                     },
-                    "navigation": {
-                        "name": "6. Table of Contents",
+                     "rec-edit-version": {
+                        "name": "4. Set the \"This version\" link",
                         "rules": {
-                            "toc": true,
-                            "tocNav": true
+                            "version": ["SPSD"]
                         }
                     },
-                    "document-status": {
-                        "name": "5. Document Status Section",
+                     "rec-edit-previous": {
+                        "name": "5. Set the \"Previous version\" link",
                         "rules": {
-                            "sotd": true,
-                            "boilerplateTRDoc": true,
-                            "datesFormat": true,
-                            "WGLink": true,
-                            "recRelation": true,
-                            "rescindsRationale": "It <span class=\"rfc2119\">must</span> include rationale for the decision to supersede the Recommendation.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;p&gt;W3C has chosen to obsolete the &lt;a href=\"@@PREVIOUS REC URI@@\"&gt;@@TITLE@@ Recommendation&lt;/a&gt; for the following reasons: [...list of reasons...]. For additional information about replacement or alternative technologies, please refer to the &lt;a href=\"https://www.w3.org/2016/11/obsoleting-rescinding/\"&gt;explanation of Obsoleting, Rescinding or Superseding W3C Specifications&lt;/a&gt;.&lt;/p&gt;</code></p>",
-                            "altTechno": true,
-                            "customParagraph": true,
-                            "changesList": [
-                                "must",
-                                ""
-                            ],
-                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></div>",
-                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy<sup>*</sup> requirements (with suitable links inserted; see <a href=\"http://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. </p> </blockquote><strong><sup>*</sup>If the Working Group is operating under the Patent Policy 2017, the link to the Patent Policy should be <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">https://www.w3.org/Consortium/Patent-Policy-20170801/</a></strong>.<div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. &lt;/p&gt;</code></div> <p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p>",
-                            "knownDisclosureNumber": true,
-                            "whichProcess": true
+                            "previous": ["superseded"]
                         }
                     },
-                    "document-body": {
-                        "name": "7. Document Body",
+                    "rec-edit-sotd": {
+                        "name": "6. Change the \"Status of this Document\" section",
                         "rules": {
-                            "headingWithoutID": true,
-                            "brokenLink": true,
-                            "cssValide": true,
-                            "namespaces": true,
-                            "wcag": true,
-                            "fixupJs": true
-                        }
-                    },
-                    "compound": {
-                        "name": "8. Compound Documents",
-                        "rules": {
-                            "compoundFilesLocation": [
-                                "SPSD"
-                            ],
-                            "compoundOverview": true,
-                            "compound": true
+                            "sotd": ["Superseded", "superseded", "superseding", "<br><br>For an example, see the diff between the REC and the superseded document of <a href=\"https://services.w3.org/htmldiff?doc2=https://www.w3.org/TR/2019/SPSD-hr-time-1-20191121/\">High Resolution Time Level 1</a>."]
                         }
                     }
                 }
@@ -1871,6 +1747,42 @@
                     "compoundFilesLocation": "If the document is compound (i.e., if it consists of more than one file), all the files <span class=\"rfc2119\">must</span> be under a directory /TR/YYYY/@{param1}-shortname-YYYYMMDD/. Exceptions are resources under these paths:<ol><li>https://www.w3.org/StyleSheets/</li><li>https://www.w3.org/scripts/</li></ol>",
                     "compoundOverview": "The main page <span class=\"rfc2119\">should</span> be called Overview.html.",
                     "compound": "All other files <span class=\"rfc2119\">must</span> be reachable by links from the document."
+                }
+            },
+            "rec-edit-install": {
+                "name": "1. Install the document.",
+                "rules": {
+                    "install":"(if new dated version) Copy the original REC in /TR into a new dated <code>&lt;new date&gt;</code> directory in /TR"
+                }
+            },
+            "rec-edit-stylesheet": {
+                "name": "2. Use the corresponding stylesheet",
+                "rules": {
+                    "stylesheet":"For the W3C stylesheet, use the @{param1} version of the W3C stylesheet in use in the REC (old, or 2016). So, it's one of:<ol><li>https://www.w3.org/StyleSheets/TR/W3C-@{param1}.css</li><li>https://www.w3.org/StyleSheets/TR/2016/W3C-@{param1}.css</li><li>or reuse the (some?) content from https://www.w3.org/TR/html50/superseded.css as needed</li></ol>"
+                }
+            },
+            "rec-edit-h2": {
+                "name": "3. Change the title of the document",
+                "rules": {
+                    "h2":"In the <code>&lt;h2&gt;</code> element containing the state and date (\"W3C Recommendation DD MMMMMM YYYY\"), add:<ol><li id='testtest'>a <code>&lt;br&gt;</code> element after the original date</li><li>and \"@{param1} <code>&lt;new date&gt;</code>\" when the @{param1} document gets published by the webmaster</li></ol>"
+                }
+            },
+            "rec-edit-version": {
+                "name": "4. Set the \"This version\" link",
+                "rules": {
+                    "version":"(if new dated version) This version link gets the form https://www.w3.org/TR/YYYY/@{param1}-&lt;shortname-with-version&gt;-&lt;newdate&gt;/"
+                }
+            },
+            "rec-edit-previous": {
+                "name": "5. Set the \"Previous version\" link",
+                "rules": {
+                    "previous": "(if new dated version) Previous version becomes the dated link of the REC being @{param1}"
+                }
+            },
+            "rec-edit-sotd": {
+                "name": "6. Change the \"status of this document\" section",
+                "rules": {
+                    "sotd": "The SOTD gets updated as follows:<ul><li>6.1. add the following markup (update link to proper Process version if needed):<pre><code>&lt;p&gt;This specification is a &lt;a href=\"https://www.w3.org/2020/Process-20200915/#rec-rescind\"&gt;@{param1} Recommendation&lt;/a&gt;. A newer specification exists that is recommended for new adoption in place of this specification. &lt;/p&gt;</code></pre></li><li>6.2. Make sure to update or remove the sentence indicating that the document \"is a Recommendation\" if one appears.</li><li>6.3. Remove the following paragraph:<pre><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></pre></li><li>6.4. ... and replace it with (update the @@ as needed):<br><pre><code>&lt;p&gt;For purposes of the W3C Patent Policy, this @{param1} Recommendation  has the same status as an active Recommendation; it retains licensing  commitments and remains available as a reference for old -- and  possibly still deployed -- implementations, but is not recommended for future implementation. New implementations should follow the <code>&lt;a href='@@'&gt;</code>latest version<code>&lt;/a&gt;</code> of the @@ specification.&lt;/p&gt;</code></pre></li><li>6.5. <strong>DO NOT TOUCH THE PATENT POLICY PARAGRAPH.</strong> The document is still governed by IP commitments even if it is @{param2} (as described in the paragraph you added in the previous step).</li><li>6.6. Look at the resulting SOTD, make sure it makes sense and \"modify as needed\". In other words, if you need to add more explanations about why the document was @{param2}, feel free to do so by adding to the first paragraph introduced by 6.1. The Director may ask to add or modify specific wordings as well. Just remember to keep the time spent as minimal since our goal is to minimize the time spent @{param3} documents, so don't overdo it.@{param4}</li></li></ul>"
                 }
             }
         }
