@@ -1608,13 +1608,7 @@
                     "rec-edit-sotd": {
                         "name": "6. Change the \"Status of this Document\" section",
                         "rules": {
-                            "sotd": true,
-                            "sotd1": ["Obsoleted"],
-                            "sotd2": true,
-                            "sotd3": true,
-                            "sotd4": ["Obsoleted"],
-                            "sotd5": ["obsoleted"],
-                            "sotd6": ["Obsoleted", "obsoleted"]
+                            "sotd": ["Obsoleted", "obsoleted", "obsoleting", ""]
                         }
                     }
                 }
@@ -1656,13 +1650,7 @@
                     "rec-edit-sotd": {
                         "name": "6. Change the \"Status of this Document\" section",
                         "rules": {
-                            "sotd": true,
-                            "sotd1": ["Superseded"],
-                            "sotd2": true,
-                            "sotd3": true,
-                            "sotd4": ["Superseded"],
-                            "sotd5": ["superseded"],
-                            "sotd6": ["Superseded", "superseded"]
+                            "sotd": ["Superseded", "superseded", "superseding", "<br><br>For an example, see the diff between the REC and the superseded document of <a href=\"https://services.w3.org/htmldiff?doc2=https://www.w3.org/TR/2019/SPSD-hr-time-1-20191121/\">High Resolution Time Level 1</a>."]
                         }
                     }
                 }
@@ -1776,7 +1764,7 @@
             "rec-edit-h2": {
                 "name": "3. Change the title of the document",
                 "rules": {
-                    "h2":"In the <code>&lt;h2&gt;</code> element containing the state and date (\"W3C Recommendation DD MMMMMM YYYY\"), add:<ol><li>a <code>&lt;br&gt;</code> element after the original date</li><li>and \"@{param1} <code>&lt;new date&gt;</code>\" when the @{param1} document gets published by the webmaster</li></ol>"
+                    "h2":"In the <code>&lt;h2&gt;</code> element containing the state and date (\"W3C Recommendation DD MMMMMM YYYY\"), add:<ol><li id='testtest'>a <code>&lt;br&gt;</code> element after the original date</li><li>and \"@{param1} <code>&lt;new date&gt;</code>\" when the @{param1} document gets published by the webmaster</li></ol>"
                 }
             },
             "rec-edit-version": {
@@ -1794,13 +1782,7 @@
             "rec-edit-sotd": {
                 "name": "6. Change the \"status of this document\" section",
                 "rules": {
-                    "sotd": "The SOTD gets updated as follows:",
-                    "sotd1":"6.1. add the following markup (update link to proper Process version if needed):<pre><code>&lt;p&gt;This specification is a &lt;a href=\"https://www.w3.org/2020/Process-20200915/#rec-rescind\"&gt;@{param1} Recommendation&lt;/a&gt;. A newer specification exists that is recommended for new adoption in place of this specification. &lt;/p&gt;</code></pre>",
-                    "sotd2": "6.2. Make sure to update or remove the sentence indicating that the document \"is a Recommendation\" if one appears.",
-                    "sotd3": "6.3. Remove the following paragraph:<pre><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></pre>",
-                    "sotd4": "6.4. ... and replace it with (update the @@ as needed):<br><pre><code>&lt;p&gt;For purposes of the W3C Patent Policy, this @{param1} Recommendation  has the same status as an active Recommendation; it retains licensing  commitments and remains available as a reference for old -- and  possibly still deployed -- implementations, but is not recommended for future implementation. New implementations should follow the <code>&lt;a href='@@'&gt;</code>latest version<code>&lt;/a&gt;</code> of the @@ specification.&lt;/p&gt;</code></pre>",
-                    "sotd5": "6.5. <strong>DO NOT TOUCH THE PATENT POLICY PARAGRAPH.</strong> The document is still governed by IP commitments even if it is @{param1} (as described in the paragraph you added in the previous step).",
-                    "sotd6": "6.6. Look at the resulting SOTD, make sure it makes sense and \"modify as needed\". In other words, if you need to add more explanations about why the document was @{param2}, feel free to do so by adding to the first paragraph introduced by 6.1. The Director may ask to add or modify specific wordings as well. Just remember to keep the time spent as minimal since our goal is to minimize the time spent superseding documents, so don't overdo it.<br><br>For an example, see the diff between the REC and the @{param1} document of <a href=\"https://services.w3.org/htmldiff?doc2=https://www.w3.org/TR/2019/SPSD-hr-time-1-20191121/\">High Resolution Time Level 1</a></li><ol>"
+                    "sotd": "The SOTD gets updated as follows:<ul><li>6.1. add the following markup (update link to proper Process version if needed):<pre><code>&lt;p&gt;This specification is a &lt;a href=\"https://www.w3.org/2020/Process-20200915/#rec-rescind\"&gt;@{param1} Recommendation&lt;/a&gt;. A newer specification exists that is recommended for new adoption in place of this specification. &lt;/p&gt;</code></pre></li><li>6.2. Make sure to update or remove the sentence indicating that the document \"is a Recommendation\" if one appears.</li><li>6.3. Remove the following paragraph:<pre><code>&lt;p&gt;This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.&lt;/p&gt;</code></pre></li><li>6.4. ... and replace it with (update the @@ as needed):<br><pre><code>&lt;p&gt;For purposes of the W3C Patent Policy, this @{param1} Recommendation  has the same status as an active Recommendation; it retains licensing  commitments and remains available as a reference for old -- and  possibly still deployed -- implementations, but is not recommended for future implementation. New implementations should follow the <code>&lt;a href='@@'&gt;</code>latest version<code>&lt;/a&gt;</code> of the @@ specification.&lt;/p&gt;</code></pre></li><li>6.5. <strong>DO NOT TOUCH THE PATENT POLICY PARAGRAPH.</strong> The document is still governed by IP commitments even if it is @{param2} (as described in the paragraph you added in the previous step).</li><li>6.6. Look at the resulting SOTD, make sure it makes sense and \"modify as needed\". In other words, if you need to add more explanations about why the document was @{param2}, feel free to do so by adding to the first paragraph introduced by 6.1. The Director may ask to add or modify specific wordings as well. Just remember to keep the time spent as minimal since our goal is to minimize the time spent @{param3} documents, so don't overdo it.@{param4}</li></li></ul>"
                 }
             }
         }
