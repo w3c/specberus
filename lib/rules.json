@@ -49,6 +49,7 @@
                             "altRepresentations": [
                                 "SUBM"
                             ],
+                            "gitRepo": true,
                             "copyright": "<b>Copyright</b>: The document <span class=\"rfc2119\">must</span> include a link to the W3C document notice (https://www.w3.org/Consortium/Legal/copyright-documents). The copyright may be held by the Submitters.",
                             "hrAfterCopyright": true
                         }
@@ -149,6 +150,7 @@
                                 "NOTE"
                             ],
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -252,6 +254,7 @@
                                 "WD"
                             ],
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -359,6 +362,7 @@
                                 "NOTE"
                             ],
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -462,6 +466,7 @@
                                 "NOTE"
                             ],
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -574,6 +579,7 @@
                                 "WD"
                             ],
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -675,6 +681,7 @@
                                 "WD"
                             ],
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -781,6 +788,7 @@
                             ],
                             "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report, or a statement that no such report exists.",
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -887,6 +895,7 @@
                             ],
                             "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report, or a statement that no such report exists.",
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -991,6 +1000,7 @@
                             ],
                             "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report, or a statement that no such report exists.",
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1100,6 +1110,7 @@
                             ],
                             "implReport": true,
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1207,6 +1218,7 @@
                             ],
                             "implReport": true,
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1317,6 +1329,7 @@
                             ],
                             "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report.",
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1336,7 +1349,7 @@
                             "datesFormat": true,
                             "WGLink": true,
                             "publish": "W3C Recommendation <span class=\"rfc2119\">must</span> include one of the four paragraphs below in the \"Status Of This Document\" depending on the type of Recommendations:<blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation.</blockquote>Recommendation with proposed changes:<blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2020/Process-20200915/#proposed-corrections\">proposed corrections</a></blockquote>Recommendation with new features: <blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2020/Process-20200915/#proposed-addition\">proposed addition</a>, introducing new features since the Previous Recommendation.</blockquote>Recommendation with proposed changes and new features: <blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2020/Process-20200915/#proposed-changes\">proposed changes</a>, introducing substantive changes and new features since the Previous Recommendation.</blockquote><p> <span style=\"font-style: italic\">Include one of these source codes:</span><br> <code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation.&lt;/p&gt;</code> <br> <code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2020/Process-20200915/#proposed-corrections\"&gt;proposed corrections&lt;/a&gt;.&lt;/p&gt;</code> <br> <code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2020/Process-20200915/#proposed-addition\"&gt;proposed addition&lt;/a&gt;, introducing new features since the Previous Recommendation.&lt;/p&gt;</code> <br> <code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2020/Process-20200915/#proposed-changes\"&gt;proposed changes&lt;/a&gt;, introducing substantive changes and new features since the Previous Recommendation.&lt;/p&gt;</code></p>",
-                            "mailingListName": "It <span class=\"rfc2119\">must</span> include a link to a GitHub repository issues list (of the form <code>https://github.com/&lt;USER_OR_ORG&gt;/&lt;REPO_NAME&gt;/[issues|labels][/&hellip;]</code>) in the headers (&lt;div class=\"head\"&gt;) of the document.",
+                            "mailingListName": true,
                             "recRelation": "It <span class=\"rfc2119\">must</span> indicate its relationship to previous related Recommendations (e.g., an indication that a Recommendation supersedes, obsoletes, or subsumes another, or that a Recommendation is an editorial revision) and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number. The document thus links to two important resources: the previous edition of the Recommendation via the status section, and the previous draft (the Proposed Recommendation) via the \"Previous version\" link.",
                             "customParagraph": true,
                             "changesList": [
@@ -1420,7 +1433,8 @@
                             "altRepresentations": [
                                 "REC"
                             ],
-                            "mailingListName": "It <span class=\"rfc2119\">must</span> include a link to a GitHub repository issues list in the headers (&lt;div class=\"head\"&gt;) of the document.",
+                            "mailingListName": "true",
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1522,6 +1536,7 @@
                                 "RSCND"
                             ],
                             "mailingListName": true,
+                            "gitRepo": true,
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1692,7 +1707,8 @@
                     "editorSection": "The editors'/authors' names <span class=\"rfc2119\">must</span> be listed, with attribute <code>data-editor-id=\"@@\"</code>. Affiliations and email addresses are <span class=\"rfc2119\">optional</span>; email addresses are <span class=\"rfc2119\">not recommended</span>. If an editor/author is acknowledged in an earlier version of this document and the individual's affiliation has since changed, list the individual using the notation \"&lt;name&gt;, &lt;affiliation&gt; (until DD Month YYYY)\". If the list of authors is very long (e.g., the entire Working Group), identify the authors in the acknowledgments section, linked from the head of the document. Distinguish any contributors from authors in the acknowledgments section.",
                     "altRepresentations": "Authors <span class=\"rfc2119\">may</span> provide links to alternative (non-normative) representations or packages for the document. For instance: <p> <code> <small>&lt;p&gt;This document is also available in these non-normative formats: &lt;a href=\"@{param1}-shortname-20180101.html\"&gt;single HTML file&lt;/a&gt;, &lt;a href=\"@{param1}-shortname-20180101.tgz\"&gt;gzipped tar file of HTML&lt;/a&gt;.&lt;/p&gt; </small> </code> </p>",
                     "implReport": "It <span class=\"rfc2119\">must</span> include either: <ul> <li>a link to an interoperability or implementation report if the Director used such a report as part of the decision to advance the specification, or</li> <li>a statement that the Director's decision did not involve such a report.</li> </ul>",
-                    "mailingListName": "It <span class=\"rfc2119\">must</span> include a public archived place to send comments to in the headers (&lt;div class=\"head\"&gt;) of the document. (GitHub repository issue links are expected to be of the form <code>https://github.com/&lt;USER_OR_ORG&gt;/&lt;REPO_NAME&gt;/[issues|labels][/&hellip;]</code>.)",
+                    "mailingListName": "It <span class=\"rfc2119\">must</span> include a public archived place to send comments to in the headers (&lt;div class=\"head\"&gt;) of the document.",
+                    "gitRepo": "GitHub repository issue links are required in the headers (&lt;div class=\"head\"&gt;) of the document. Links are expected to be of the form <code>https://github.com/&lt;USER_OR_ORG&gt;/&lt;REPO_NAME&gt;/[issues|labels][/&hellip;]</code>.)",
                     "copyright": "The copyright <span class=\"rfc2119\">must</span> use the following markup (fill in with the appropriate year, years, or year range). <div class=\"boilerplate\"> <p class=\"copyright\"> <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Copyright\">Copyright</a> © @{year} <a href=\"https://www.w3.org/\"> <abbr title=\"World Wide Web Consortium\">W3C</abbr> </a> <sup>®</sup> (<a href=\"https://www.csail.mit.edu/\"> <abbr title=\"Massachusetts Institute of Technology\">MIT</abbr> </a>, <a href=\"https://www.ercim.eu/\"> <abbr title=\"European Research Consortium for Informatics and Mathematics\">ERCIM</abbr> </a>, <a href=\"https://www.keio.ac.jp/\">Keio</a>, <a href=\"https://ev.buaa.edu.cn/\">Beihang</a>). W3C <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer\">liability</a>, <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks\">trademark</a> and <a href=\"https://www.w3.org/Consortium/Legal/copyright-documents\">document use</a> rules apply.</p> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p class=\"copyright\"&gt;&lt;a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Copyright\"&gt;Copyright&lt;/a&gt; © @{year} &lt;a href=\"https://www.w3.org/\"&gt;&lt;abbr title=\"World Wide Web Consortium\"&gt;W3C&lt;/abbr&gt;&lt;/a&gt;&lt;sup&gt;®&lt;/sup&gt; (&lt;a href=\"https://www.csail.mit.edu/\"&gt;&lt;abbr title=\"Massachusetts Institute of Technology\"&gt;MIT&lt;/abbr&gt;&lt;/a&gt;, &lt;a href=\"https://www.ercim.eu/\"&gt;&lt;abbr title=\"European Research Consortium for Informatics and Mathematics\"&gt;ERCIM&lt;/abbr&gt;&lt;/a&gt;, &lt;a href=\"https://www.keio.ac.jp/\"&gt;Keio&lt;/a&gt;, &lt;a href=\"https://ev.buaa.edu.cn/\"&gt;Beihang&lt;/a&gt;). W3C &lt;a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer\"&gt;liability&lt;/a&gt;, &lt;a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks\"&gt;trademark&lt;/a&gt; and &lt;a href=\"https://www.w3.org/Consortium/Legal/copyright-documents\"&gt;document use&lt;/a&gt; rules apply.&lt;/p&gt;</code></div>",
                     "hrAfterCopyright": "A horizontal rule (<code>hr</code>) <span class=\"rfc2119\">must</span> follow the copyright.",
                     "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li>This version URI.</li> <li>Latest version URI(s). See also the (non-normative) <cite> <a href=\"http://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> <li class=\"prevversionuri\">Previous version URI</li> </ul>",
