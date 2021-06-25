@@ -30,14 +30,8 @@ jobs:
       - run: npm install
 
       - run: npm run coverage
-        if: env.W3C_API_KEY != ''
         env:
           W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
-
-      - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v1.1.2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Notify failure
         uses: rectalogic/notify-irc@v1
