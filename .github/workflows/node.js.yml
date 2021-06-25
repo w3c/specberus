@@ -35,7 +35,7 @@ jobs:
           W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
 
       - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v1
+        uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
