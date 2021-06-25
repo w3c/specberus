@@ -1,7 +1,6 @@
 name: Specberus tests
 
-on:
-  push:
+on: [push, pull_request_target]
 
 jobs:
   test:
@@ -9,37 +8,45 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 16.x]
-    env:
-      W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
+    if: |
+      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
+      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
     steps:
-    - uses: actions/checkout@v2.3.4
+      - name: Checkout
+        if: ${{ github.event_name != 'pull_request_target' }}
+        uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2.1.5
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Checkout PR from dependabot
+        if: ${{ github.event_name == 'pull_request_target' }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
-    - run: npm install
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - run: npm run coverage
-      if: env.W3C_API_KEY != ''
-      env:
-        SKIP_NETWORK: true
+      - run: npm install
 
-    - name: Coveralls GitHub Action
-      uses: coverallsapp/github-action@v1.1.2
-      if: env.W3C_API_KEY != ''
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm run coverage
+        if: env.W3C_API_KEY != ''
+        env:
+          W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
 
-    - name: Notify failure
-      uses: rectalogic/notify-irc@v1
-      if: failure()
-      with:
-        server: "irc.w3.org"
-        port: 6679
-        channel: "#pubrules"
-        nickname: gh-action-notifier
-        tls: true
-        message: |
-          ${{ github.actor }} pushed to ${{ github.repository }}. https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} FAILED with node ${{ matrix.node-version}} (PR: ${{ github.event.pull_request.html_url }})
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify failure
+        uses: rectalogic/notify-irc@v1
+        if: failure()
+        with:
+          server: "irc.w3.org"
+          port: 6679
+          channel: "#pubrules"
+          nickname: gh-action-notifier
+          tls: true
+          message: |
+            ${{ github.actor }} pushed to ${{ github.repository }}. https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} FAILED with node ${{ matrix.node-version}} (PR: ${{ github.event.pull_request.html_url }})
