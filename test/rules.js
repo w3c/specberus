@@ -335,10 +335,7 @@ const tests = {
             {
                 doc: 'sotd/ml-bad.html',
                 errors: ['headers.mailing-list.no-repo'],
-                warnings: [
-                    'headers.mailing-list.no-list',
-                    'headers.mailing-list.no-arch',
-                ],
+                warnings: [],
             },
             { doc: 'sotd/ml-missing.html' },
         ],
