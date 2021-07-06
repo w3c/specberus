@@ -335,7 +335,6 @@ const tests = {
             {
                 doc: 'sotd/ml-bad.html',
                 errors: ['headers.github-repo.no-repo'],
-                warnings: [],
             },
             { doc: 'sotd/ml-missing.html' },
         ],
