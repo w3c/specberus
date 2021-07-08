@@ -337,7 +337,7 @@ const tests = {
                 errors: ['headers.github-repo.no-repo'],
             },
             { doc: 'sotd/github-good.html' },
-            { doc: 'sotd/github-good1.html' },
+            { doc: 'sotd/github-good2.html' },
         ],
         errata: [
             {
