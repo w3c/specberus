@@ -327,20 +327,17 @@ const tests = {
                 errors: ['headers.dl.cant-retrieve'],
             },
         ],
-        'mailing-list': [
+        'github-repo': [
             {
                 doc: 'headers/simple.html',
-                errors: ['headers.mailing-list.no-repo'],
+                errors: ['headers.github-repo.no-repo'],
             },
             {
-                doc: 'sotd/ml-bad.html',
-                errors: ['headers.mailing-list.no-repo'],
-                warnings: [
-                    'headers.mailing-list.no-list',
-                    'headers.mailing-list.no-arch',
-                ],
+                doc: 'sotd/github-bad.html',
+                errors: ['headers.github-repo.no-repo'],
             },
-            { doc: 'sotd/ml-missing.html' },
+            { doc: 'sotd/github-good.html' },
+            { doc: 'sotd/github-good2.html' },
         ],
         errata: [
             {
