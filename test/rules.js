@@ -333,10 +333,11 @@ const tests = {
                 errors: ['headers.github-repo.no-repo'],
             },
             {
-                doc: 'sotd/ml-bad.html',
+                doc: 'sotd/github-bad.html',
                 errors: ['headers.github-repo.no-repo'],
             },
-            { doc: 'sotd/ml-missing.html' },
+            { doc: 'sotd/github-good.html' },
+            { doc: 'sotd/github-good1.html' },
         ],
         errata: [
             {
