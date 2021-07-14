@@ -195,7 +195,7 @@ describe('L10n', () => {
         setUp();
         strings = scanStrings();
         const p = scanFileSystem();
-        p.then((value) => {
+        p.then(value => {
             files = value;
         });
         return expect(p).to.be.fulfilled;

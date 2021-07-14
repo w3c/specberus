@@ -44,9 +44,9 @@ l10n.setLanguage('en_GB');
 
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
 
-io.on('connection', (socket) => {
+io.on('connection', socket => {
     socket.emit('handshake', { version });
-    socket.on('extractMetadata', (data) => {
+    socket.on('extractMetadata', data => {
         if (!data.url)
             return socket.emit('exception', { message: 'URL not provided.' });
         const vali = new validator.Specberus();
@@ -81,11 +81,11 @@ io.on('connection', (socket) => {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('end-all', (metadata) => {
+        handler.on('end-all', metadata => {
             metadata.url = data.url;
             socket.emit('finishedExtraction', metadata);
         });
-        handler.on('exception', (data) => {
+        handler.on('exception', data => {
             socket.emit('exception', data);
         });
         vali.extractMetadata({
@@ -93,7 +93,7 @@ io.on('connection', (socket) => {
             events: handler,
         });
     });
-    socket.on('validate', (data) => {
+    socket.on('validate', data => {
         if (!data.url)
             return socket.emit('exception', { message: 'URL not provided.' });
         if (!data.profile)
@@ -109,7 +109,7 @@ io.on('connection', (socket) => {
         const profile = util.profiles[data.profile];
         const profileCode = profile.name;
         socket.emit('start', {
-            rules: (profile.rules || []).map((rule) => rule.name),
+            rules: (profile.rules || []).map(rule => rule.name),
         });
         handler.on('err', (type, data) => {
             try {
@@ -141,13 +141,13 @@ io.on('connection', (socket) => {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('done', (name) => {
+        handler.on('done', name => {
             socket.emit('done', { name });
         });
         handler.on('end-all', () => {
             socket.emit('finished');
         });
-        handler.on('exception', (data) => {
+        handler.on('exception', data => {
             socket.emit('exception', data);
         });
         insafe
@@ -155,7 +155,7 @@ io.on('connection', (socket) => {
                 url: data.url,
                 statusCodesAccepted: ['301', '406'],
             })
-            .then((res) => {
+            .then(res => {
                 if (res.status) {
                     try {
                         vali.validate({
@@ -181,7 +181,7 @@ io.on('connection', (socket) => {
                     socket.emit('exception', { message });
                 }
             })
-            .catch((e) => {
+            .catch(e => {
                 socket.emit('exception', {
                     message: `Insafe check blew up: ${e}`,
                 });
