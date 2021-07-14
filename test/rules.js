@@ -54,7 +54,7 @@ const equivalentArray = function (a1, a2) {
 
 const compareMetadata = function (url, file, expectedObject) {
     const specberus = new validator.Specberus();
-    const handler = new sink.Sink((data) => {
+    const handler = new sink.Sink(data => {
         throw new Error(data);
     });
     const thisFile = file ? `test/docs/metadata/${file}.html` : null;
@@ -62,7 +62,7 @@ const compareMetadata = function (url, file, expectedObject) {
     // test only local fixtures
     const opts = { events: handler, file: thisFile };
 
-    it(`Should detect metadata for ${expectedObject.url}`, (done) => {
+    it(`Should detect metadata for ${expectedObject.url}`, done => {
         handler.on('end-all', () => {
             chai(specberus)
                 .to.have.property('meta')
@@ -91,19 +91,19 @@ const compareMetadata = function (url, file, expectedObject) {
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('editorNames');
-            chai(specberus.meta.editorNames).to.satisfy((found) =>
+            chai(specberus.meta.editorNames).to.satisfy(found =>
                 equivalentArray(found, expectedObject.editorNames)
             );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('delivererIDs');
-            chai(specberus.meta.delivererIDs).to.satisfy((found) =>
+            chai(specberus.meta.delivererIDs).to.satisfy(found =>
                 equivalentArray(found, expectedObject.delivererIDs)
             );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('editorIDs');
-            chai(specberus.meta.editorIDs).to.satisfy((found) =>
+            chai(specberus.meta.editorIDs).to.satisfy(found =>
                 equivalentArray(found, expectedObject.editorIDs)
             );
             chai(specberus)
@@ -122,7 +122,7 @@ const compareMetadata = function (url, file, expectedObject) {
                 'implementationReport',
                 'errata',
             ];
-            optionalProperties.forEach((p) => {
+            optionalProperties.forEach(p => {
                 if (Object.prototype.hasOwnProperty.call(expectedObject, p)) {
                     chai(specberus)
                         .to.have.property('meta')
@@ -142,7 +142,7 @@ describe('Basics', () => {
     describe('Method "extractMetadata"', () => {
         let i;
 
-        it('Should exist and be a function', (done) => {
+        it('Should exist and be a function', done => {
             chai(specberus)
                 .to.have.property('extractMetadata')
                 .that.is.a('function');
@@ -165,7 +165,7 @@ describe('Basics', () => {
     });
 
     describe('Method "validate"', () => {
-        it('Should exist and be a function', (done) => {
+        it('Should exist and be a function', done => {
             chai(specberus).to.have.property('validate').that.is.a('function');
             done();
         });
@@ -1156,15 +1156,15 @@ describe('Making sure Specberus is not broken...', () => {
     after(() => {
         expressServer.close();
     });
-    Object.keys(tests).forEach((category) => {
+    Object.keys(tests).forEach(category => {
         describe(`Category ${category}`, () => {
-            Object.keys(tests[category]).forEach((rule) => {
+            Object.keys(tests[category]).forEach(rule => {
                 describe(`Rule ${rule}`, () => {
-                    tests[category][rule].forEach((test) => {
+                    tests[category][rule].forEach(test => {
                         const passTest = !test.errors;
                         it(`should ${passTest ? 'pass' : 'fail'} for ${
                             test.doc || test.url
-                        }`, (done) => {
+                        }`, done => {
                             // eslint-disable-next-line import/no-dynamic-require
                             const r = require(`../lib/rules/${category}/${rule}`);
                             const handler = new sink.Sink();
@@ -1182,7 +1182,7 @@ describe('Making sure Specberus is not broken...', () => {
                                 if (DEBUG) console.log('---done---');
                                 handler.done++;
                             });
-                            handler.on('exception', (data) => {
+                            handler.on('exception', data => {
                                 console.error(
                                     `[EXCEPTION] Validator had a massive failure: ${data.message}`
                                 );
