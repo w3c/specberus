@@ -310,14 +310,17 @@ jQuery.extend({
             $validation.find('label').removeClass('active');
             $validation.find('label#simple-validation').addClass('active');
             let patentPolicy;
-            if (data.metadata.patentPolicy) {
+            if (
+                data.metadata.patentPolicy &&
+                data.metadata.patentPolicy.length > 0
+            ) {
                 if (
-                    data.metadata.patentPolicy ===
+                    data.metadata.patentPolicy[0] ===
                     'https://www.w3.org/Consortium/Patent-Policy-20170801/'
                 ) {
                     patentPolicy = 'pp2004';
                 } else if (
-                    data.metadata.patentPolicy ===
+                    data.metadata.patentPolicy[0] ===
                     'https://www.w3.org/Consortium/Patent-Policy-20200915/'
                 ) {
                     patentPolicy = 'pp2020';

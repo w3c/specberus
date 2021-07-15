@@ -757,10 +757,6 @@ const tests = {
                 errors: ['sotd.pp.no-pp'],
             },
             {
-                doc: 'sotd/pp-cpp2002.html',
-                options: { patentPolicy: 'pp2002' },
-            },
-            {
                 doc: 'sotd/joint-publication-bad-pp-version.html',
                 config: {
                     recTrackStatus: true,
@@ -769,6 +765,15 @@ const tests = {
                 },
                 errors: ['sotd.pp.no-pp'],
                 warnings: ['sotd.pp.joint-publication'],
+            },
+            {
+                doc: 'sotd/wrong-pp-from-charter.html',
+                config: {
+                    recTrackStatus: true,
+                    noRecTrack: false,
+                    patentPolicy: 'pp2020',
+                },
+                errors: ['sotd.pp.wrong-pp-from-charter'],
             },
             {
                 doc: 'sotd/joint-publication-diff-pp-version.html',
