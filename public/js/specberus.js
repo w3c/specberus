@@ -67,7 +67,7 @@ jQuery.extend({
     let total = 0;
     let running = false;
     // handshake
-    socket.on('handshake', (data) => {
+    socket.on('handshake', data => {
         console.log(`Handshake; using version “${data.version}”.`);
 
         socket.on('disconnect', () => {
@@ -251,7 +251,7 @@ jQuery.extend({
         $resultsList.html(message);
     }
 
-    socket.on('exception', (data) => {
+    socket.on('exception', data => {
         const message = data.message ? data.message : data;
         addMessage(MSG_EXCEPTION, {
             message: `<div class="message">${message}</div>`,
@@ -260,20 +260,20 @@ jQuery.extend({
         window.setTimeout(showResults, 1000);
     });
 
-    socket.on('start', (data) => {
+    socket.on('start', data => {
         done = 0;
         total = data.rules.length;
         $progressStyler.addClass('active progress-striped');
         $progressContainer.fadeIn();
         $results.hide();
     });
-    socket.on('err', (data) => {
+    socket.on('err', data => {
         addMessage(MSG_ERROR, data);
     });
-    socket.on('warning', (data) => {
+    socket.on('warning', data => {
         addMessage(MSG_WARN, data);
     });
-    socket.on('info', (data) => {
+    socket.on('info', data => {
         addMessage(MSG_INFO, data);
     });
     socket.on('done', () => {
@@ -288,7 +288,7 @@ jQuery.extend({
     socket.on('finished', () => {
         showResults();
     });
-    socket.on('finishedExtraction', (data) => {
+    socket.on('finishedExtraction', data => {
         if (
             data &&
             data.success &&
@@ -310,14 +310,17 @@ jQuery.extend({
             $validation.find('label').removeClass('active');
             $validation.find('label#simple-validation').addClass('active');
             let patentPolicy;
-            if (data.metadata.patentPolicy) {
+            if (
+                data.metadata.patentPolicy &&
+                data.metadata.patentPolicy.length > 0
+            ) {
                 if (
-                    data.metadata.patentPolicy ===
+                    data.metadata.patentPolicy[0] ===
                     'https://www.w3.org/Consortium/Patent-Policy-20170801/'
                 ) {
                     patentPolicy = 'pp2004';
                 } else if (
-                    data.metadata.patentPolicy ===
+                    data.metadata.patentPolicy[0] ===
                     'https://www.w3.org/Consortium/Patent-Policy-20200915/'
                 ) {
                     patentPolicy = 'pp2020';
@@ -359,7 +362,7 @@ jQuery.extend({
         }
     });
 
-    $form.submit((event) => {
+    $form.submit(event => {
         if (running) {
             if (event) event.preventDefault();
             return;
@@ -451,7 +454,7 @@ jQuery.extend({
         }
     }
 
-    window.addEventListener('popstate', (event) => {
+    window.addEventListener('popstate', event => {
         const options = event.state;
         if (options === null) return;
         setFormParams(options);

@@ -31,7 +31,7 @@ const launchServer = function () {
     const app = express();
     server = http.createServer(app);
     api.setUp(app);
-    server.listen(PORT).on('error', (err) => {
+    server.listen(PORT).on('error', err => {
         throw new Error(err);
     });
 };

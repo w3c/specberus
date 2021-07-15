@@ -20,7 +20,7 @@ $(document).ready(() => {
         scrolled++;
     });
 
-    $('a[href^="#"]').click((e) => {
+    $('a[href^="#"]').click(e => {
         e.stopImmediatePropagation();
         e.preventDefault();
         document.location.hash = e.target.hash;
