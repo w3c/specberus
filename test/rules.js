@@ -771,6 +771,15 @@ const tests = {
                 warnings: ['sotd.pp.joint-publication'],
             },
             {
+                doc: 'sotd/joint-publication-diff-pp-version.html',
+                config: {
+                    recTrackStatus: true,
+                    noRecTrack: false,
+                    patentPolicy: 'pp2020',
+                },
+                errors: ['sotd.pp.joint-different-pp'],
+            },
+            {
                 doc: 'sotd/joint-publication-good.html',
                 config: {
                     recTrackStatus: true,
@@ -861,7 +870,7 @@ const tests = {
                 errors: ['sotd.pp.no-pp'],
             },
         ],
-        'charter-disclosure': [
+        charter: [
             {
                 doc: 'headers/ig-note.html',
                 config: {
@@ -873,21 +882,21 @@ const tests = {
                 config: {
                     longStatus: 'Interest Group Note',
                 },
-                errors: ['sotd.charter-disclosure.wrong-link'],
+                errors: ['sotd.charter.wrong-link'],
             },
             {
                 doc: 'headers/ig-note2.html',
                 config: {
                     longStatus: 'Interest Group Note',
                 },
-                errors: ['sotd.charter-disclosure.no-group'],
+                errors: ['sotd.charter.no-group'],
             },
             {
                 doc: 'headers/ig-note3.html',
                 config: {
                     longStatus: 'Interest Group Note',
                 },
-                errors: ['sotd.charter-disclosure.text-not-found'],
+                errors: ['sotd.charter.text-not-found'],
             },
             {
                 doc: 'headers/wg-note.html',
@@ -900,7 +909,7 @@ const tests = {
                 config: {
                     longStatus: 'Working Group Note',
                 },
-                errors: ['sotd.charter-disclosure.no-charter'],
+                errors: ['sotd.charter.no-charter'],
             },
         ],
         stability: [
