@@ -454,10 +454,7 @@ const tests = {
             },
             {
                 doc: 'headers/copyright-bad-text.html',
-                errors: [
-                    'headers.copyright.no-match',
-                    'headers.copyright.no-link',
-                ],
+                errors: ['headers.copyright.no-match'],
             },
             {
                 doc: 'headers/copyright-bad-href.html',
