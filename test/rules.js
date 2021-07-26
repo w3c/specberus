@@ -431,17 +431,42 @@ const tests = {
             },
         ],
         copyright: [
-            { doc: 'headers/simple.html' },
-            { doc: 'headers/simple-oxford.html' },
             {
-                doc: 'headers/copyright-freedom.html',
-                warnings: ['headers.copyright.kitten-friendly'],
+                doc: 'headers/simple.html',
+                errors: ['headers.copyright.no-license-found'],
+            },
+            {
+                doc: 'headers/copyright-no-charter.html',
+                errors: ['headers.copyright.no-data-from-API'],
+            },
+            {
+                doc: 'headers/copyright-joint-no-union.html',
+                errors: ['headers.copyright.no-license-found-joint'],
+            },
+            {
+                doc: 'headers/copyright-good.html',
+            },
+            {
+                doc: 'headers/copyright-good-datedlink.html',
+            },
+            {
+                doc: 'headers/copyright-good-allow-both.html',
+            },
+            {
+                doc: 'headers/copyright-bad-text.html',
+                errors: ['headers.copyright.no-match'],
+            },
+            {
+                doc: 'headers/copyright-bad-href.html',
+                errors: [
+                    'headers.copyright.href-not-match',
+                    'headers.copyright.href-not-match',
+                ],
             },
             {
                 doc: 'headers/fails.html',
                 errors: ['headers.copyright.not-found'],
             },
-            { doc: 'headers/permissive-doc-license.html' },
         ],
     },
     style: {
