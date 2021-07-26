@@ -25,7 +25,7 @@ function munge(err, res) {
     const jsdom = new JSDOM(res.text);
     const jsDocument = jsdom.window.document;
 
-    jsDocument.querySelectorAll('tr.WG, tr.IG, tr.CG').forEach((tr) => {
+    jsDocument.querySelectorAll('tr.WG, tr.IG, tr.CG').forEach(tr => {
         const tds = tr.querySelectorAll('td');
         const td1 = tds && tds[0];
         const td4 = tds && tds[3];
@@ -35,7 +35,7 @@ function munge(err, res) {
             td1.querySelector('a') &&
             td1.querySelector('a').getAttribute('href');
         if (td4) {
-            td4.querySelectorAll('a').forEach((element) => {
+            td4.querySelectorAll('a').forEach(element => {
                 let list = element.textContent;
                 if (!/@w3\.org$/.test(list)) list += '@w3.org';
                 if (href.indexOf('http') === 0) true; // eslint-disable-line
