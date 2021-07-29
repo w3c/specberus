@@ -203,11 +203,19 @@ Many of [the options understood by the JS method `validate`](#validateoptions) a
 The special profile `auto` is also available.
 
 ### Examples
-
+#### Use browser to make request
 * `https://www.w3.org/pubrules/api/version`
 * `https://www.w3.org/pubrules/api/metadata?url=https://example.com/doc.html`
 * `https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=auto`
 * `https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=WD&validation=simple-validation`
+
+#### Use `curl` to make request
+* `curl "https://www.w3.org/pubrules/api/version"`
+* `curl "https://www.w3.org/pubrules/api/metadata?url=https://example.com/doc.html"`
+* `curl "https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=auto"`
+* `curl "https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=WD&validation=simple-validation"`
+
+e.g. `curl "https://www.w3.org/pubrules/api/validate?url=https://www.w3.org/TR/2021/WD-i18n-glossary-20210708/&profile=WD&validation=simple-validation"`
 
 ### Return values
 
