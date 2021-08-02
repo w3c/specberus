@@ -205,17 +205,13 @@ The special profile `auto` is also available.
 ### Examples
 #### 1. Get API version of Pubrules
 
-```
-https://www.w3.org/pubrules/api/version
-```
+`https://www.w3.org/pubrules/api/version`
 
-https://www.w3.org/pubrules/api/version
+e.g. https://www.w3.org/pubrules/api/version
 
 #### 2. Get metadata of one document.
 
-```
-https://www.w3.org/pubrules/api/metadata?url=https://example.com/doc.html
-```
+`https://www.w3.org/pubrules/api/metadata?url=https://example.com/doc.html`
 
 Metadata is a bunch of data extracted from the document. It includes type (profile) of the document, publish date, editor(s)' name(s), Patent Policy version the document is under, etc...
 
@@ -223,9 +219,7 @@ e.g. https://www.w3.org/pubrules/api/metadata?url=https://www.w3.org/TR/2021/WD-
 
 #### 3. Validate the document using profile: auto
 
-```
-https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=auto
-```
+`https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=auto`
 
 `auto` profile is the easiest way to validate an document. The validation relays on the automatically extracted data.
 
@@ -235,9 +229,8 @@ e.g. https://www.w3.org/pubrules/api/validate?url=https://www.w3.org/TR/2021/WD-
 
 #### 4. Validate the document using manual configs
 
-```
-https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=WD&validation=simple-validation&patentPolicy=pp2020
-```
+
+`https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=WD&validation=simple-validation&patentPolicy=pp2020`
 
 Pubrules support advanced configs to make the validation more accurate.
 
