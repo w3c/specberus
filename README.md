@@ -203,19 +203,37 @@ Many of [the options understood by the JS method `validate`](#validateoptions) a
 The special profile `auto` is also available.
 
 ### Examples
-#### Use browser to make request
+#### Get API version of Pubrules
 * `https://www.w3.org/pubrules/api/version`
+
+#### Get metadata of one document.
+Metadata is a bunch of data extracted from the document. It includes type (profile) of the document, publish date, editor(s)' name(s), Patent Policy version the document is under, etc...
 * `https://www.w3.org/pubrules/api/metadata?url=https://example.com/doc.html`
+
+e.g. `https://www.w3.org/pubrules/api/metadata?url=https://www.w3.org/TR/2021/WD-i18n-glossary-20210708/`
+
+#### Validate the document using profile: auto
+`auto` profile is the easiest way to validate an document. The validation relays on the automatically extracted data.
+
+The validation result contains both the **metadata** and the **errors** and **warnings** regarding the document.
 * `https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=auto`
-* `https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=WD&validation=simple-validation`
 
-#### Use `curl` to make request
-* `curl "https://www.w3.org/pubrules/api/version"`
-* `curl "https://www.w3.org/pubrules/api/metadata?url=https://example.com/doc.html"`
-* `curl "https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=auto"`
-* `curl "https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=WD&validation=simple-validation"`
+e.g. `https://www.w3.org/pubrules/api/validate?url=https://www.w3.org/TR/2021/WD-i18n-glossary-20210708/&profile=auto`
 
-e.g. `curl "https://www.w3.org/pubrules/api/validate?url=https://www.w3.org/TR/2021/WD-i18n-glossary-20210708/&profile=WD&validation=simple-validation"`
+#### Validate the document using manual configs
+Pubrules support advanced configs to make the validation more accurate.
+
+| Config | Explanation |Supported value |
+| ---- | ---- | ---- |
+| validation | Recursively validate multipart documents | no-validation, simple-validation, recursive |
+| noRecTrack | If the document is not on rec-track | true, false |
+| informativeOnly | If the document is informative | true, false |
+| echidnaReady |Check that the document is valid for automatic publication with Echidna | true, false|
+| patentPolicy | Patent Policy version | pp2020, pp2004, pp2002 |
+
+* `https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=WD&validation=simple-validation&patentPolicy=pp2020`
+
+e.g. `https://www.w3.org/pubrules/api/validate?url=https://www.w3.org/TR/2021/WD-i18n-glossary-20210708/&profile=WD&validation=simple-validation`
 
 ### Return values
 
@@ -340,7 +358,6 @@ they're done.
 
 The Specberus object exposes the following API that's useful for validation:
 
-* `$`. A jQuery-like interface to the document being checked.
 * `loader`. The loader object that loaded the content, which exposes the content's `url` and
   `source` if they are known.
 * `sink`. The event target on which to fire validation events.
