@@ -326,6 +326,12 @@ const tests = {
                 config: { previousVersion: true, status: 'WD' },
                 errors: ['headers.dl.cant-retrieve'],
             },
+            {
+                doc: 'headers/dl-no-implelink.html',
+                config: { previousVersion: true, status: 'CR' },
+                warnings: ['headers.dl.implelink-comfirm-no'],
+                errors: ['headers.dl.cant-retrieve'],
+            },
         ],
         'github-repo': [
             {
