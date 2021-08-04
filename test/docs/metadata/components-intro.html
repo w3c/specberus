@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <link rel="stylesheet" href="spec.css" type="text/css">
 <link rel="stylesheet" href="prettify.css" type="text/css">
-<link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/W3C-WD" type="text/css">
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-WD" type="text/css">
 </head>
 <body>
 
@@ -12,7 +12,7 @@
 
 
 <div class="logo">
-    <a href="http://www.w3.org/"><img width="72" height="48" src="http://www.w3.org/Icons/w3c_home" alt="W3C"></a>
+    <a href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/Icons/w3c_home" alt="W3C"></a>
 </div>
 
 <h1>Introduction to Web Components</h1>
@@ -29,14 +29,14 @@
 <dt>Revision history</dt>
     <dd><a id="log" href="https://dvcs.w3.org/hg/webcomponents/log/tip/explainer/index.html">https://dvcs.w3.org/hg/webcomponents/log/tip/explainer/index.html</a></dd>
 <dt>Participate</dt>
-    <dd>Discuss on <a href="http://lists.w3.org/Archives/Public/public-webapps/">public-webapps@w3.org</a> (<a href="http://www.w3.org/2008/webapps/">Web Applications Working Group</a>)</dd>
+    <dd>Discuss on <a href="https://lists.w3.org/Archives/Public/public-webapps/">public-webapps@w3.org</a> (<a href="https://www.w3.org/2008/webapps/">Web Applications Working Group</a>)</dd>
     <dd><a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?comment=&amp;blocked=14949&amp;short_desc=%5BExplainer%5D%3A%20&amp;product=WebAppsWG&amp;component=Component%20Model">File bugs</a> (w3.org's <a href="https://www.w3.org/Bugs/Public/">Bugzilla</a>)</dd>
 <dt>Editors</dt>
     <dd class="vcard"><span class="fn">Dominic Cooney</span>, <span class="org">Google</span>, &lt;<a class="email" href="mailto:dglazkov@chromium.org">dominicc@google.com</a>&gt;</dd>
     <dd class="vcard"><span class="fn">Dimitri Glazkov</span>, <span class="org">Google</span>, &lt;<a class="email" href="mailto:dglazkov@chromium.org">dglazkov@chromium.org</a>&gt;</dd>
 </dl>
 
-<p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2013 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
+<p class="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2013 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved. W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
 
 <hr>
 
@@ -47,13 +47,13 @@
 
 <h2 id="status">Status of this Document</h2>
 
-<p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at http://www.w3.org/TR/.</em></p>
+<p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em></p>
 
-<p>This document was published by the <a href="http://www.w3.org/2008/webapps/">Web Applications Working Group</a> as a First Public Working Draft. If you wish to make comments regarding this document, please send them to <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="http://lists.w3.org/Archives/Public/public-webapps/">archives</a>). All feedback is welcome.</p>
+<p>This document was published by the <a href="https://www.w3.org/2008/webapps/">Web Applications Working Group</a> as a First Public Working Draft. If you wish to make comments regarding this document, please send them to <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="https://lists.w3.org/Archives/Public/public-webapps/">archives</a>). All feedback is welcome.</p>
 
 <p>Publication as a Working Draft does not imply endorsement by the W3C Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p>
 
-<p> This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>. This document is informative only. W3C maintains a <a rel="disclosure" href="http://www.w3.org/2004/01/pp-impl/42538/status">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
+<p> This document was produced by a group operating under the <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>. This document is informative only. W3C maintains a <a rel="disclosure" href="https://www.w3.org/2004/01/pp-impl/42538/status">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>. </p>
 
 </div>
 
@@ -198,7 +198,7 @@ details</span><span class="pun">[</span><span class="pln">open</span><span class
   </li><li>Wristwatch
 </li></ul>
 
-<p>Even though the <code>decorator</code> CSS property can point to any resource on the Web, the decorator will not be applied unless its definition is loaded by this document. The markup that generates the presentation is limited to be purely presentational: it may never run script (including inline event handlers) and it cannot be <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#editing-0">editable</a>.</p>
+<p>Even though the <code>decorator</code> CSS property can point to any resource on the Web, the decorator will not be applied unless its definition is loaded by this document. The markup that generates the presentation is limited to be purely presentational: it may never run script (including inline event handlers) and it cannot be <a href="https://www.whatwg.org/specs/web-apps/current-work/multipage/editing.html#editing-0">editable</a>.</p>
 
 <h3 id="events-in-decorators"><span class="section">4.1</span> Events in Decorators</h3>
 
@@ -323,7 +323,7 @@ details</span><span class="pun">[</span><span class="pln">open</span><span class
 
 <p>Because not all user agents support custom elements, authors should extend the HTML element that has the closest meaning to their new kind of element. For example, if they are defining a custom element that is interactive and responds to clicks by doing some action, they should extend button.</p>
 
-<p>When there isn't a HTML element that is semantically close to their custom element, authors can omit the <code>extends</code> attribute. These elements will use the value of the <code>name</code> attribute as a tag name. For this reason, these kinds of elements are called <i>custom tags.</i> A user agent that does not support custom elements will treat this as the semantically undifferentiated <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/elements.html#htmlunknownelement">HTMLUnknownElement</a>.</p>
+<p>When there isn't a HTML element that is semantically close to their custom element, authors can omit the <code>extends</code> attribute. These elements will use the value of the <code>name</code> attribute as a tag name. For this reason, these kinds of elements are called <i>custom tags.</i> A user agent that does not support custom elements will treat this as the semantically undifferentiated <a href="https://www.whatwg.org/specs/web-apps/current-work/multipage/elements.html#htmlunknownelement">HTMLUnknownElement</a>.</p>
 
 <h3 id="methods-and-properties"><span class="section">5.2</span> Methods and Properties</h3>
 
@@ -627,11 +627,11 @@ s</span><span class="pun">.</span><span class="pln">appendChild</span><span clas
 
 <p>When building a custom element it is natural to think about its markup (attributes and content) and script interface. It is often just as important to think about how it interacts with the styles in the page. Shadow DOM gives authors a lot of control over how content in shadow DOM interacts with styles.</p>
 
-<p>The shadow DOM subtree is surrounded by an invisible <a href="https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#dfn-shadow-boundary">boundary</a>, which by default applies user agent styles but not author styles. However inheritance still works as usual. This is usually what you want: In the <a href="#example-sailing-watch"><code>&lt;sailing-watch&gt;</code> example</a> above, if the page is styled so that the surrounding text is a beautiful sea green, in keeping with a nautical theme, the text inside the shadow DOM (for example the "N" of the direction indicator) will be sea green too because <a href="http://www.w3.org/TR/2011/REC-css3-color-20110607/#foreground"><code>color</code></a> is an inherited property. But if the author has styled all <code>&lt;div&gt;</code> elements to have orange borders, the direction indicator will <em>not</em> have an orange border because the <a href="http://www.w3.org/TR/css3-background/#borders">border properties</a> are not inherited properties.</p>
+<p>The shadow DOM subtree is surrounded by an invisible <a href="https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#dfn-shadow-boundary">boundary</a>, which by default applies user agent styles but not author styles. However inheritance still works as usual. This is usually what you want: In the <a href="#example-sailing-watch"><code>&lt;sailing-watch&gt;</code> example</a> above, if the page is styled so that the surrounding text is a beautiful sea green, in keeping with a nautical theme, the text inside the shadow DOM (for example the "N" of the direction indicator) will be sea green too because <a href="https://www.w3.org/TR/2011/REC-css3-color-20110607/#foreground"><code>color</code></a> is an inherited property. But if the author has styled all <code>&lt;div&gt;</code> elements to have orange borders, the direction indicator will <em>not</em> have an orange border because the <a href="https://www.w3.org/TR/css3-background/#borders">border properties</a> are not inherited properties.</p>
 
 <p>A shadow root has two properties to control this behavior. The first, <a href="https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#api-shadow-root-apply-author-styles"><code>applyAuthorStyles</code></a>, will apply the author stylesheet. Setting this property is appropriate when writing shadow DOM that should match the appearance of the surrounding content as closely as possible. There is one caveat: CSS selectors are matched against the shadow DOM subtree, not the flattened tree. Pay attention to child, descendant, sibling and "nth-of-x" selectors when using this property.</p>
 
-<p>The second shadow root property which controls the effect of surrounding styles on content in a shadow DOM subtree is <a href="https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#api-shadow-root-reset-style-inheritance"><code>resetStyleInheritance</code></a>. If this property is set to <code>true</code> <em>all</em> properties are reset to <a href="http://www.w3.org/TR/CSS21/about.html#initial-value">initial</a> values at the shadow boundary.</p>
+<p>The second shadow root property which controls the effect of surrounding styles on content in a shadow DOM subtree is <a href="https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#api-shadow-root-reset-style-inheritance"><code>resetStyleInheritance</code></a>. If this property is set to <code>true</code> <em>all</em> properties are reset to <a href="https://www.w3.org/TR/CSS21/about.html#initial-value">initial</a> values at the shadow boundary.</p>
 
 <p>If <code>applyAuthorStyles</code> is <code>false</code> and set <code>resetStyleInheritance</code> is <code>true</code>, you're back to a clean slate. Your element is insulated from the styles in the page—even inherited properties—and you can use a browser reset stylesheet to build up the exact style you want.</p>
 

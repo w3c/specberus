@@ -5,7 +5,7 @@
 
 # Specberus
 
-Specberus is a checker used at [W3C](http://www.w3.org/) to validate the compliance of [Technical Reports](http://www.w3.org/TR/) with publication rules.
+Specberus is a checker used at [W3C](https://www.w3.org/) to validate the compliance of [Technical Reports](https://www.w3.org/TR/) with publication rules.
 
 1. [Installation](#1-installation)
 1. [Running](#2-running)
@@ -39,7 +39,7 @@ on the same core library.
 $ W3C_API_KEY="<YOUR W3C API KEY>" npm start [PORT]
 ```
 
-Specberus relies on the [W3C API](http://w3c.github.io/w3c-api/) to run a few checks. You will need to provide [your key](http://w3c.github.io/w3c-api/#apikeys) in an environment variable `W3C_API_KEY`
+Specberus relies on the [W3C API](https://w3c.github.io/w3c-api/) to run a few checks. You will need to provide [your key](https://w3c.github.io/w3c-api/#apikeys) in an environment variable `W3C_API_KEY`
 
 Meaning of positional parameters:
 
@@ -164,15 +164,15 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
   "profile": "WD",
   "title": "Title of the spec",
   "docDate": "2016-2-3",
-  "thisVersion": "http://www.w3.org/TR/2016/WD-foobar-20160203/",
-  "latestVersion": "http://www.w3.org/TR/foobar/",
-  "previousVersion": "http://www.w3.org/TR/2015/WD-foobar-20150101/",
-  "editorsDraft": "http://w3c.github.io/foobar/",
+  "thisVersion": "https://www.w3.org/TR/2016/WD-foobar-20160203/",
+  "latestVersion": "https://www.w3.org/TR/foobar/",
+  "previousVersion": "https://www.w3.org/TR/2015/WD-foobar-20150101/",
+  "editorsDraft": "https://w3c.github.io/foobar/",
   "delivererIDs": [123, 456],
   "editorIDs": [ 12345 ],
   "informative": false,
   "rectrack": true,
-  "process": "http://www.w3.org/2015/Process-20150901/" }
+  "process": "https://www.w3.org/2015/Process-20150901/" }
 }
 ```
 
@@ -242,15 +242,15 @@ This is an example of a successful validation of a document, with profile `auto`
    { "profile": "WD",
      "title": "Character Model for the World Wide Web: String Matching and Searching",
      "docDate": "2016-4-7",
-     "thisVersion": "http://www.w3.org/TR/2016/WD-charmod-norm-20160407/",
-     "latestVersion": "http://www.w3.org/TR/charmod-norm/",
-     "previousVersion": "http://www.w3.org/TR/2015/WD-charmod-norm-20151119/",
-     "editorsDraft": "http://w3c.github.io/charmod-norm/",
+     "thisVersion": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/",
+     "latestVersion": "https://www.w3.org/TR/charmod-norm/",
+     "previousVersion": "https://www.w3.org/TR/2015/WD-charmod-norm-20151119/",
+     "editorsDraft": "https://w3c.github.io/charmod-norm/",
      "delivererIDs": [ 32113 ],
      "editorIDs": [ 33573 ],
      "rectrack": false,
      "informative": false,
-     "process": "http://www.w3.org/2015/Process-20150901/",
+     "process": "https://www.w3.org/2015/Process-20150901/",
      "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
   }
 }

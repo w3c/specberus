@@ -9,202 +9,202 @@
       {
         "name" : { "type": "literal", "value": "Audio Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-audio@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2011/audio/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2011/audio/" }
       },
       {
         "name" : { "type": "literal", "value": "Authoring Tool Accessibility Guidelines Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:w3c-wai-au@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/WAI/AU/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/WAI/AU/" }
       },
       {
         "name" : { "type": "literal", "value": "Browser Testing and Tools Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-browser-tools-testing@w3.org@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/testing/browser/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/testing/browser/" }
       },
       {
         "name" : { "type": "literal", "value": "CSV on the Web Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-csv-wg@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2013/csvw/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2013/csvw/" }
       },
       {
         "name" : { "type": "literal", "value": "Data on the Web Best Practices Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-dwbp-wg@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2013/dwbp/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2013/dwbp/" }
       },
       {
         "name" : { "type": "literal", "value": "Device APIs Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-device-apis@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2009/dap/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2009/dap/" }
       },
       {
         "name" : { "type": "literal", "value": "Education and Outreach Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:w3c-wai-eo@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/WAI/EO/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/WAI/EO/" }
       },
       {
         "name" : { "type": "literal", "value": "Efficient XML Interchange Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-exi@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/XML/EXI/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/XML/EXI/" }
       },
       {
         "name" : { "type": "literal", "value": "Evaluation and Repair Tools Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-wai-ert@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/WAI/ER/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/WAI/ER/" }
       },
       {
         "name" : { "type": "literal", "value": "Forms Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-forms@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/MarkUp/Forms/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/MarkUp/Forms/" }
       },
       {
         "name" : { "type": "literal", "value": "Geolocation Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-geolocation@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2008/geolocation/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2008/geolocation/" }
       },
       {
         "name" : { "type": "literal", "value": "Government Linked Data Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-gld-wg@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2011/gld/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2011/gld/" }
       },
       {
         "name" : { "type": "literal", "value": "HTML Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-html@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/html/wg/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/html/wg/" }
       },
       {
         "name" : { "type": "literal", "value": "Independent User Interface (Indie UI) Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-indie-ui@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/WAI/IndieUI/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/WAI/IndieUI/" }
       },
       {
         "name" : { "type": "literal", "value": "Linked Data Platform (LDP) Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-ldp-wg@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2012/ldp/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2012/ldp/" }
       },
       {
         "name" : { "type": "literal", "value": "Media Annotations Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-media-annotation@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2008/WebVideo/Annotations/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2008/WebVideo/Annotations/" }
       },
       {
         "name" : { "type": "literal", "value": "Model-Based User Interfaces Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-mbui@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2011/mbui/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2011/mbui/" }
       },
       {
         "name" : { "type": "literal", "value": "Multimodal Interaction Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:www-multimodal@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2002/mmi/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2002/mmi/" }
       },
       {
         "name" : { "type": "literal", "value": "Near Field Communications Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-nfc@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2012/nfc/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2012/nfc/" }
       },
       {
         "name" : { "type": "literal", "value": "Pointer Events Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-pointer-events@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2012/pointerevents/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2012/pointerevents/" }
       },
       {
         "name" : { "type": "literal", "value": "RDF Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-rdf-wg@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2011/rdf-wg/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2011/rdf-wg/" }
       },
       {
         "name" : { "type": "literal", "value": "RDFa Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-rdfa@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2010/02/rdfa/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2010/02/rdfa/" }
       },
       {
         "name" : { "type": "literal", "value": "Research and Development Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-wai-rd@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/WAI/RD/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/WAI/RD/" }
       },
       {
         "name" : { "type": "literal", "value": "SVG Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-svg-wg@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/Graphics/SVG/WG/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/Graphics/SVG/WG/" }
       },
       {
         "name" : { "type": "literal", "value": "System Applications Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-sysapps@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2012/sysapps/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2012/sysapps/" }
       },
       {
         "name" : { "type": "literal", "value": "Technical Architecture Group" },
         "mailbox" : { "type": "uri", "value": "mailto:www-tag@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2001/tag/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2001/tag/" }
       },
       {
         "name" : { "type": "literal", "value": "Timed Text Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-tt@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/AudioVideo/TT/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/AudioVideo/TT/" }
       },
       {
         "name" : { "type": "literal", "value": "Tracking Protection Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-tracking@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2011/tracking-protection/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2011/tracking-protection/" }
       },
       {
         "name" : { "type": "literal", "value": "User Agent Accessibility Guidelines Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:w3c-wai-ua@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/WAI/UA/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/WAI/UA/" }
       },
       {
         "name" : { "type": "literal", "value": "Web Application Security Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-webappsec@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2011/webappsec/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2011/webappsec/" }
       },
       {
         "name" : { "type": "literal", "value": "Web Applications Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-webapps@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2008/webapps/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2008/webapps/" }
       },
       {
         "name" : { "type": "literal", "value": "Web Content Accessibility Guidelines Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:w3c-wai-gl@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/WAI/GL/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/WAI/GL/" }
       },
       {
         "name" : { "type": "literal", "value": "Web Cryptography Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-webcrypto@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2012/webcrypto/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2012/webcrypto/" }
       },
       {
         "name" : { "type": "literal", "value": "Web Notification Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-web-notification@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2010/web-notifications/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2010/web-notifications/" }
       },
       {
         "name" : { "type": "literal", "value": "Web Performance Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-web-perf@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2010/webperf/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2010/webperf/" }
       },
       {
         "name" : { "type": "literal", "value": "Web Real-Time Communications Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-webrtc@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2011/04/webrtc/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2011/04/webrtc/" }
       },
       {
         "name" : { "type": "literal", "value": "WebFonts Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-webfonts-wg@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/Fonts/WG/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/Fonts/WG/" }
       },
       {
         "name" : { "type": "literal", "value": "XML Core Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-xml-core-wg@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/XML/Core/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/XML/Core/" }
       },
       {
         "name" : { "type": "literal", "value": "XML Processing Model Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-xml-processing-model-wg@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/XML/Processing/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/XML/Processing/" }
       },
       {
         "name" : { "type": "literal", "value": "XML Security Working Group" },
         "mailbox" : { "type": "uri", "value": "mailto:public-xmlsec@w3.org" },
-        "homepage" : { "type": "uri", "value": "http://www.w3.org/2008/xmlsec/" }
+        "homepage" : { "type": "uri", "value": "https://www.w3.org/2008/xmlsec/" }
       }
     ]
   }

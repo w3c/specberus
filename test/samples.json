@@ -20,7 +20,7 @@
         "informative": false,
         "rectrack": true,
         "process": "https://www.w3.org/2015/Process-20150901/",
-        "implementationReport": "http://www.w3.org/2016/03/webidl/report.html"
+        "implementationReport": "https://www.w3.org/2016/03/webidl/report.html"
     },
     {
         "url": "https://www.w3.org/TR/2016/PR-ttml-imsc1-20160308/",
@@ -51,7 +51,7 @@
         "profile": "WG-NOTE",
         "latestVersion": "https://www.w3.org/TR/csvw-ucr/",
         "previousVersion": "https://www.w3.org/TR/2014/WD-csvw-ucr-20140701/",
-        "editorsDraft": "http://w3c.github.io/csvw/use-cases-and-requirements/",
+        "editorsDraft": "https://w3c.github.io/csvw/use-cases-and-requirements/",
         "deliverers": [
             {
                 "name": "CSV on the Web Working Group",
@@ -73,7 +73,7 @@
         "profile": "REC",
         "latestVersion": "https://www.w3.org/TR/tabular-data-model/",
         "previousVersion": "https://www.w3.org/TR/2015/PR-tabular-data-model-20151117/",
-        "editorsDraft": "http://w3c.github.io/csvw/syntax/",
+        "editorsDraft": "https://w3c.github.io/csvw/syntax/",
         "deliverers": [
             {
                 "name": "CSV on the Web Working Group",
@@ -88,7 +88,7 @@
         "informative": false,
         "rectrack": true,
         "process": "https://www.w3.org/2015/Process-20150901/",
-        "implementationReport": "http://www.w3.org/2013/csvw/implementation_report.html"
+        "implementationReport": "https://www.w3.org/2013/csvw/implementation_report.html"
     },
     {
         "url": "https://www.w3.org/TR/2016/WD-mediacapture-depth-20160226/",
@@ -122,7 +122,7 @@
         "profile": "WD",
         "latestVersion": "https://www.w3.org/TR/charmod-norm/",
         "previousVersion": "https://www.w3.org/TR/2015/WD-charmod-norm-20151119/",
-        "editorsDraft": "http://w3c.github.io/charmod-norm/",
+        "editorsDraft": "https://w3c.github.io/charmod-norm/",
         "deliverers": [
             {
                 "name": "Internationalization Working Group",
@@ -182,11 +182,11 @@
         "updated": true
     },
     {
-        "url": "http://www.w3.org/TR/2016/CR-mediacapture-streams-20160519/",
+        "url": "https://www.w3.org/TR/2016/CR-mediacapture-streams-20160519/",
         "file": "cr-mediacapture-streams",
         "profile": "CR",
-        "latestVersion": "http://www.w3.org/TR/mediacapture-streams/",
-        "previousVersion": "http://www.w3.org/TR/2015/WD-mediacapture-streams-20150414/",
+        "latestVersion": "https://www.w3.org/TR/mediacapture-streams/",
+        "previousVersion": "https://www.w3.org/TR/2015/WD-mediacapture-streams-20150414/",
         "editorsDraft": "https://w3c.github.io/mediacapture-main/",
         "delivererIDs": [47318, 43696],
         "title": "Media Capture and Streams",
@@ -202,7 +202,7 @@
         "informative": false,
         "rectrack": true,
         "implementationFeedbackDue": "2016-6-15",
-        "process": "http://www.w3.org/2015/Process-20150901/"
+        "process": "https://www.w3.org/2015/Process-20150901/"
     },
     {
         "url": "https://www.w3.org/TR/2016/PR-media-source-20161004/",
@@ -210,7 +210,7 @@
         "profile": "PR",
         "latestVersion": "https://www.w3.org/TR/media-source/",
         "previousVersion": "https://www.w3.org/TR/2016/CR-media-source-20160705/",
-        "editorsDraft": "http://w3c.github.io/media-source/",
+        "editorsDraft": "https://w3c.github.io/media-source/",
         "delivererIDs": [40318],
         "title": "Media Source Extensions™",
         "docDate": "2016-10-4",
