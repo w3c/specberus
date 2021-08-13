@@ -680,7 +680,6 @@ const tests = {
             {
                 doc: 'sotd/rec-obsl.html',
                 config: { status: 'REC', longStatus: 'Recommendation' },
-                errors: ['sotd.publish.not-found'],
             },
             {
                 doc: 'sotd/rec-rescind.html',
@@ -693,16 +692,16 @@ const tests = {
                 errors: ['sotd.publish.url-text-not-found'],
             },
             {
-                doc: 'sotd/rec-publish-corrections-pass.html',
+                doc: 'sotd/rec-publish-p-corrections-pass.html',
                 config: { status: 'REC', longStatus: 'Recommendation' },
             },
             {
-                doc: 'sotd/rec-publish-corrections-fail.html',
+                doc: 'sotd/rec-publish-p-corrections-fail.html',
                 config: { status: 'REC', longStatus: 'Recommendation' },
                 errors: ['sotd.publish.url-not-match'],
             },
             {
-                doc: 'sotd/rec-publish-corrections-fail2.html',
+                doc: 'sotd/rec-publish-p-corrections-fail2.html',
                 config: { status: 'REC', longStatus: 'Recommendation' },
                 errors: ['sotd.publish.url-text-not-found'],
             },
