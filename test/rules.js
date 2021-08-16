@@ -706,6 +706,18 @@ const tests = {
                 errors: ['sotd.publish.url-text-not-found'],
             },
             {
+                doc: 'sotd/rec-publish-c-corrections-pass.html',
+                config: { status: 'REC', longStatus: 'Recommendation' },
+            },
+            {
+                doc: 'sotd/rec-publish-c-additions-pass.html',
+                config: { status: 'REC', longStatus: 'Recommendation' },
+            },
+            {
+                doc: 'sotd/rec-publish-c-changes-pass.html',
+                config: { status: 'REC', longStatus: 'Recommendation' },
+            },
+            {
                 doc: 'sotd/rec-addition-2020.html',
                 config: { status: 'REC', longStatus: 'Recommendation' },
             },
