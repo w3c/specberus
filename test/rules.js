@@ -633,8 +633,8 @@ const tests = {
             {
                 doc: 'sotd/rec-obsl.html',
                 errors: [
-                    'sotd.rec-addition.no-addition',
-                    'sotd.rec-addition.no-correction',
+                    'sotd.rec-addition.no-section',
+                    'sotd.rec-addition.no-section',
                 ],
             },
             {
@@ -647,9 +647,18 @@ const tests = {
             {
                 doc: 'sotd/cr-end.html',
                 errors: [
-                    'sotd.rec-addition.unnecessary-correction',
-                    'sotd.rec-addition.unnecessary-addition',
+                    'sotd.rec-addition.unnecessary-section',
+                    'sotd.rec-addition.unnecessary-section',
                 ],
+            },
+            {
+                doc: 'sotd/rec-publish-c-corrections-pass.html',
+            },
+            {
+                doc: 'sotd/rec-publish-c-additions-pass.html',
+            },
+            {
+                doc: 'sotd/rec-publish-c-changes-pass.html',
             },
         ],
         'rec-comment-end': [
