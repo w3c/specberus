@@ -294,10 +294,7 @@ const tests = {
             },
             {
                 doc: 'headers/wrong-urls.html',
-                errors: [
-                    'headers.dl.previous-syntax',
-                    'headers.dl.cant-retrieve',
-                ],
+                errors: ['headers.dl.previous-syntax'],
                 config: { previousVersion: true, status: 'WD' },
             },
             {

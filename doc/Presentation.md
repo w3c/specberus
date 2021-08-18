@@ -11,13 +11,13 @@ class: center, middle
 
 Specberus (ˈspɛk bər əs) *n. new* pubrules *automatic checker and documentation tool.*
 
-*Specberus* is expected to replace the [current pubrules tool](http://www.w3.org/2005/07/pubrules) in the near future.
+*Specberus* is expected to replace the [current pubrules tool](https://www.w3.org/2005/07/pubrules) in the near future.
 
 ---
 
 # Why
 
-[`http://www.w3.org/2005/07/pubrules`](http://www.w3.org/2005/07/pubrules) has been around for nine years. While it has served us well, there is room for improvement:
+[`https://www.w3.org/2005/07/pubrules`](https://www.w3.org/2005/07/pubrules) has been around for nine years. While it has served us well, there is room for improvement:
 
 --
 
@@ -30,7 +30,7 @@ Specberus (ˈspɛk bər əs) *n. new* pubrules *automatic checker and documentat
 
 # How
 
-In JavaScript, on [Node.js](http://nodejs.org/); with [Bootstrap](http://getbootstrap.com/), [jQuery](http://jquery.com/) and [Mocha](http://mochajs.org/).
+In JavaScript, on [Node.js](https://nodejs.org/); with [Bootstrap](https://getbootstrap.com/), [jQuery](https://jquery.com/) and [Mocha](https://mochajs.org/).
 
 ---
 
@@ -134,7 +134,7 @@ The tests are all written in `test/all-rules.js` and fixtures are available in `
 
 # How: automated builds
 
-Using [Jenkins](http://jenkins-ci.org/).
+Using [Jenkins](https://jenkins-ci.org/).
 
     $ mocha
 
@@ -143,8 +143,8 @@ Using [Jenkins](http://jenkins-ci.org/).
 # How: dependencies
 
 `# apt-get install`:
-* [`nodejs`](http://nodejs.org/)
-* [`npm`](http://github.com/isaacs/npm)
+* [`nodejs`](https://nodejs.org/)
+* [`npm`](https://github.com/isaacs/npm)
 
 --
 
@@ -194,7 +194,7 @@ Nice to have for debugging:
 
 # When: pending tasks
 
-`0.5.0`?  
+`0.5.0`?
 `1.0.0`?
 
 1. *[Offer help descriptions for all rules and all errors](https://github.com/w3c/specberus/issues/22)* and *[Reproduce documentation from pubrules](https://github.com/w3c/specberus/issues/25)* (related).
@@ -225,14 +225,14 @@ You are encouraged to try this new checker, and especially to submit bug reports
 
 There are currently 22 [open issues](https://github.com/w3c/specberus/issues).
 
-The `#pubrules` channel on [irc.w3.org](http://irc.w3.org/) is a good place if you have any questions regarding the project.
+The `#pubrules` channel on [irc.w3.org](https://irc.w3.org/) is a good place if you have any questions regarding the project.
 
 --
 
 ## Deployments for testing
 
-* Up to `v0.3.3-1`: [`http://pubrules.jit.su/`](http://pubrules.jit.su/).
-* From: `V0.4.0` onwards: [`http://www.w3.org/2014/10/pubrules/`](http://www.w3.org/2014/10/pubrules).
+* Up to `v0.3.3-1`: [`https://pubrules.jit.su/`](https://pubrules.jit.su/).
+* From: `V0.4.0` onwards: [`https://www.w3.org/2014/10/pubrules/`](https://www.w3.org/2014/10/pubrules).
 
 ---
 

@@ -148,14 +148,14 @@ dfn {
   max-height: 30vh;
 }
 </style>
-		
+
 		<title>Lightweight Packaging Format (LPF)</title>
-		
-		
-		
-		
+
+
+
+
 		<link href="common/css/common.css" rel="stylesheet" type="text/css">
-		
+
 	<style id="respec-mainstyle">/*****************************************************************
  * ReSpec specific CSS
  *****************************************************************/
@@ -637,7 +637,7 @@ var[data-type]:hover::before {
         },
         {
             "type": "LinkedResource",
-            "url": "http://www.w3.org/Consortium/Legal/ipr-notice#Copyright",
+            "url": "https://www.w3.org/Consortium/Legal/ipr-notice#Copyright",
             "encodingFormat": "text/html",
             "rel": "copyright"
         }
@@ -682,7 +682,7 @@ var[data-type]:hover::before {
   "includePermalinks": true,
   "permalinkEdge": true,
   "permalinkHide": false,
-  "diffTool": "http://www.aptest.com/standards/htmldiff/htmldiff.pl",
+  "diffTool": "https://www.aptest.com/standards/htmldiff/htmldiff.pl",
   "github": {
     "repoURL": "https://github.com/w3c/lpf",
     "branch": "master"
@@ -704,7 +704,7 @@ var[data-type]:hover::before {
 }</script><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-WG-NOTE.css"></head>
 	<body class="h-entry"><div class="head">
       <a class="logo" href="https://www.w3.org/"><img alt="W3C" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48"></a> <h1 id="title" class="title">Lightweight Packaging Format (LPF)</h1>
-      
+
       <h2>
         W3C Working Group Note
         <time class="dt-published" datetime="2020-03-19">19 March 2020</time>
@@ -718,17 +718,17 @@ var[data-type]:hover::before {
               <dt>Previous Versions:</dt>
               <dd><a href="https://www.w3.org/TR/2019/NOTE-lpf-20191205/">https://www.w3.org/TR/2019/NOTE-lpf-20191205/</a></dd>
         <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/lpf/">https://w3c.github.io/lpf/</a></dd>
-        
-        
-        
-        
-        
+
+
+
+
+
         <dt>Editor:</dt>
         <dd class="p-author h-card vcard" data-editor-id="91888"><span class="p-name fn">Laurent Le Meur</span>
             (<a class="p-org org h-org h-card" href="https://www.edrlab.org">EDRLab</a>)
           </dd>
-        
-        
+
+
         <dt>Participate:</dt><dd>
       <a href="https://github.com/w3c/lpf/">GitHub w3c/lpf</a>
     </dd><dd>
@@ -739,17 +739,17 @@ var[data-type]:hover::before {
       <a href="https://github.com/w3c/lpf/pulls/">Pull requests</a>
     </dd>
       </dl>
-      
-      
-      
+
+
+
       <p class="copyright">
       <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
       ©
       2018-2020
-      
+
       <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
       <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>,
-      <a href="https://ev.buaa.edu.cn/">Beihang</a>). 
+      <a href="https://ev.buaa.edu.cn/">Beihang</a>).
       W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
       <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a> rules
       apply.
@@ -758,8 +758,8 @@ var[data-type]:hover::before {
     </div>
 
 		<section class="informative introductory" id="abstract"><h2>Abstract</h2><p><em>This section is non-normative.</em></p>
-			<p>This specification defines a file format and processing model 
-				for packaging into a single-file container the set of related resources 
+			<p>This specification defines a file format and processing model
+				for packaging into a single-file container the set of related resources
 				and associated metadata that comprise a <a href="#dfn-publication" class="internalDFN" data-link-type="dfn">digital publication</a>.</p>
 		</section>
 
@@ -767,29 +767,29 @@ var[data-type]:hover::before {
 		<p>
       This document was published by the <a href="https://www.w3.org/publishing/groups/publ-wg/">Publishing Working Group</a> as a
       Working Group Note.
-      
+
     </p><p>
       <a href="https://github.com/w3c/lpf/issues/">GitHub Issues</a> are preferred for
             discussion of this specification.
-          
+
       Alternatively, you can send comments to our mailing list.
             Please send them to
             <a href="mailto:public-publ-wg@w3.org">public-publ-wg@w3.org</a>
             (<a href="https://lists.w3.org/Archives/Public/public-publ-wg/">archives</a>).
-          
+
     </p><p>
       Publication as a Working Group Note does not imply endorsement by the
       <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or
       obsoleted by other documents at any time. It is inappropriate to cite this
       document as other than work in progress.
     </p><p data-deliverer="100074">
-      
+
         This document was produced by a group
         operating under the
         <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.</p>
     <p>The group does not expect this document to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
-      
-      
+
+
     </p><p>
                   This document is governed by the
                   <a id="w3c_process_revision" href="https://www.w3.org/2019/Process-20190301/">1 March 2019 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
@@ -805,7 +805,7 @@ var[data-type]:hover::before {
 							different organizations;</p>
 					</li>
 					<li>
-						<p>To provide finalized packaged publications from a publisher or conversion house 
+						<p>To provide finalized packaged publications from a publisher or conversion house
 						to different distribution or sales channels; and</p>
 					</li>
 					<li>
@@ -813,7 +813,7 @@ var[data-type]:hover::before {
 					</li>
 				</ul>
 
-				<p>This specification is based on proven technologies and allows digital publications 
+				<p>This specification is based on proven technologies and allows digital publications
 				to be packaged in an easy way, hence the term "lightweight" used in its name.</p>
 
 		</section>
@@ -828,28 +828,28 @@ var[data-type]:hover::before {
 			<dl class="termlist">
 				<dt><dfn id="dfn-codec" data-dfn-type="dfn">Codec content types</dfn></dt>
 				<dd>
-					<p>Content types that have intrinsic binary format qualities, such as video and audio 
-						media types which are already designed for optimum compression, 
+					<p>Content types that have intrinsic binary format qualities, such as video and audio
+						media types which are already designed for optimum compression,
 						or which provide optimized streaming capabilities.</p>
 				</dd>
 				<dt><dfn id="dfn-non-codec" data-dfn-type="dfn">Non-Codec content types</dfn></dt>
 				<dd>
-					<p>Content types that benefit from compression due to the nature of their internal 
+					<p>Content types that benefit from compression due to the nature of their internal
 						data structure, such as file formats based on character strings (for example, HTML, CSS, etc.).</p>
 				</dd>
 				<dt><dfn id="dfn-package" data-lt="Packages|Package" data-dfn-type="dfn">Package</dfn></dt>
 				<dd>
-					<p>Single-file container for the set of constituent	resources and associated metadata 
+					<p>Single-file container for the set of constituent	resources and associated metadata
 						that comprise a digital publication.</p>
 				</dd>
 				<dt><dfn id="dfn-primary-entry-page" data-dfn-type="dfn">Primary Entry Page</dfn></dt>
 				<dd>
-					<p>Preferred starting resource for a digital publication, 
+					<p>Preferred starting resource for a digital publication,
 						enabling in some cases the discovery of its Publication Manifest.</p>
 				</dd>
 				<dt><dfn id="dfn-publication" data-lt="Digital Publications|Digital Publication" data-dfn-type="dfn">Digital Publication</dfn></dt>
 				<dd>
-					<p>Set of constituent resources and associated metadata, organized together 
+					<p>Set of constituent resources and associated metadata, organized together
 						in a uniquely identifiable grouping.</p>
 				</dd>
 				<dt><dfn id="dfn-web-publication-manifest" data-lt="Publication Manifests|Publication Manifest" data-dfn-type="dfn" data-plurals="publication manifests">Publication Manifest</dfn></dt>
@@ -875,21 +875,21 @@ var[data-type]:hover::before {
           [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>] [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8174" title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">RFC8174</a></cite>]
           when, and only when, they appear in all capitals, as shown here.
         </p>
-			
+
 		</section>
 
 		<section class="informative" id="sec-zip">
 
 				<h2 id="x4-packaging-format"><bdi class="secno">4. </bdi>Packaging format<a class="self-link" aria-label="§" href="#sec-zip"></a></h2><p><em>This section is non-normative.</em></p>
 
-				<p>For packaging the set of constituent	resources and associated metadata 
-				that comprise a digital publication, this specification uses the ZIP format 
+				<p>For packaging the set of constituent	resources and associated metadata
+				that comprise a digital publication, this specification uses the ZIP format
 				as specified in ISO/IEC 21320-1:2015 ([<cite><a class="bibref" data-link-type="biblio" href="#bib-iso21320" title="Document Container File - ISO/IEC 21320">ISO21320</a></cite>] and [<cite><a class="bibref" data-link-type="biblio" href="#bib-zip" title=".ZIP File Format Specification">zip</a></cite>]).</p>
 
 		</section>
 
 		<section class="informative" id="sec-compression">
-	
+
 				<h2 id="x5-compression-of-resources"><bdi class="secno">5. </bdi>Compression of resources<a class="self-link" aria-label="§" href="#sec-compression"></a></h2><p><em>This section is non-normative.</em></p>
 
 				<p>When stored in a Package, resources with <a href="#dfn-non-codec" class="internalDFN" data-link-type="dfn">Non-Codec content types</a> <em class="rfc2119" title="SHOULD">SHOULD</em> be compressed and the Deflate compression algorithm <em class="rfc2119" title="MUST">MUST</em> be used. This practice ensures that file entries stored in the Package have a smaller size.</p>
@@ -897,45 +897,45 @@ var[data-type]:hover::before {
 				<p>Resources with <a href="#dfn-codec" class="internalDFN" data-link-type="dfn">Codec content types</a> <em class="rfc2119" title="SHOULD">SHOULD</em> be stored without compression. In such case, compression would introduce unnecessary processing overhead at production time (especially with large resource files) and would impact audio/video playback performance at consumption time.</p>
 
 				<div class="note" role="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note" aria-level="3"><span>Note</span></div><div class="">
-						<p>In some cases, the combination of compression with some encryption schemes might 
-							even hinder the ability of user agents to handle partial content requests 
-							(e.g. HTTP byte ranges), due to the technical	difficulty to determine the length 
+						<p>In some cases, the combination of compression with some encryption schemes might
+							even hinder the ability of user agents to handle partial content requests
+							(e.g. HTTP byte ranges), due to the technical	difficulty to determine the length
 							of the full resource ahead of media playback (e.g. HTTP Content-Length header).</p>
 				</div></div>
 
 		</section>
 
 		<section class="informative" id="sec-structure">
-	
+
 				<h2 id="x6-file-and-directory-structure"><bdi class="secno">6. </bdi>File and Directory Structure<a class="self-link" aria-label="§" href="#sec-structure"></a></h2><p><em>This section is non-normative.</em></p>
 
 				<p>A <a href="#dfn-package" class="internalDFN" data-link-type="dfn">Package</a> <em class="rfc2119" title="MUST">MUST</em> include at least one of the following files in its <a href="#dfn-root-directory" class="internalDFN" data-link-type="dfn">Root Directory</a>:</p>
-					
+
 				<ul>
-						<li>A file named <code>publication.json</code>, 
+						<li>A file named <code>publication.json</code>,
 							which <em class="rfc2119" title="MUST">MUST</em> be in the format defined for <a href="#dfn-web-publication-manifest" class="internalDFN" data-link-type="dfn">Publication Manifests</a>.</li>
-					<li>A file named <code>index.html</code> which <em class="rfc2119" title="MUST">MUST</em> follow the requirements of the 
+					<li>A file named <code>index.html</code> which <em class="rfc2119" title="MUST">MUST</em> follow the requirements of the
 						<a href="#dfn-primary-entry-page" class="internalDFN" data-link-type="dfn">Primary Entry Page</a> of a digital publication.</li>
 					</ul>
 
-				<p>The Root Directory is virtual in nature: a user agent might or might 
-						not generate a physical root directory for the contents of the 
+				<p>The Root Directory is virtual in nature: a user agent might or might
+						not generate a physical root directory for the contents of the
 						Package if such contents are unpackaged.</p>
 
 				<p>The contents of both files <em class="rfc2119" title="MUST">MUST</em> not be encrypted.</p>
 
-				<p>A Package <em class="rfc2119" title="MUST">MUST</em> also include all resources within the bounds of the digital publication, 
-				i.e. the finite set of resources obtained from the union of resources listed 
+				<p>A Package <em class="rfc2119" title="MUST">MUST</em> also include all resources within the bounds of the digital publication,
+				i.e. the finite set of resources obtained from the union of resources listed
 				in the default reading order and resource list of the Publication Manifest.</p>
 
 				<p>These resource files <em class="rfc2119" title="MAY">MAY</em> be in any location descendant from the Root Directory, or in the Root Directory itself.</p>
 
 				<p>Contents within the Package <em class="rfc2119" title="MUST">MUST</em> reference these resources via relative-URL strings [<cite><a class="bibref" data-link-type="biblio" href="#bib-url" title="URL Standard">url</a></cite>].</p>
-	
+
 				<div class="note" role="note" id="issue-container-generatedID-0"><div role="heading" class="note-title marker" id="h-note-0" aria-level="3"><span>Note</span></div><div class="">
-						<p>The [<cite><a class="bibref" data-link-type="biblio" href="#bib-zip" title=".ZIP File Format Specification">zip</a></cite>] specification has few constraints on the characters allowed 
-							for file and directory names. 
-							When crafting such names, authors must be careful to use characters which 
+						<p>The [<cite><a class="bibref" data-link-type="biblio" href="#bib-zip" title=".ZIP File Format Specification">zip</a></cite>] specification has few constraints on the characters allowed
+							for file and directory names.
+							When crafting such names, authors must be careful to use characters which
 							allow a broad interoperability among operating systems.</p>
 				</div></div>
 
@@ -943,24 +943,24 @@ var[data-type]:hover::before {
 
 		<section class="informative" id="sec-obtaining-manifest">
 
-			<h2 id="x7-obtaining-a-publication-manifest"><bdi class="secno">7. </bdi>Obtaining a Publication Manifest<a class="self-link" aria-label="§" href="#sec-obtaining-manifest"></a></h2><p><em>This section is non-normative.</em></p>		
+			<h2 id="x7-obtaining-a-publication-manifest"><bdi class="secno">7. </bdi>Obtaining a Publication Manifest<a class="self-link" aria-label="§" href="#sec-obtaining-manifest"></a></h2><p><em>This section is non-normative.</em></p>
 
-			<p>If the Package contains a <code>publication.json</code> file 
-				located in the Root Directory, 
+			<p>If the Package contains a <code>publication.json</code> file
+				located in the Root Directory,
 				the Publication Manifest is obtained by	opening and parsing this file.</p>
 
 			<p>Otherwise, if the Package contains an <code>index.html</code> file
-				located in the Root Directory, 
+				located in the Root Directory,
 				the Publication Manifest is obtained through the following steps:</p>
 
 			<ol>
-					<li>Let <code>document</code> be the result of the extraction of the <code>index.html</code> 
+					<li>Let <code>document</code> be the result of the extraction of the <code>index.html</code>
 					file from the Package.</li>
 
 					<li>If it does not have the media type <code>text/html</code> or
 							<code>application/xhtml+xml</code>, terminate this algorithm.</li>
 
-					<li>Let <var>manifest link</var> be the first <code>link</code> element 
+					<li>Let <var>manifest link</var> be the first <code>link</code> element
 						in tree order in <code>document</code> whose
 						<code>rel</code> attribute contains the <code>publication</code> token. </li>
 
@@ -982,7 +982,7 @@ var[data-type]:hover::before {
 								algorithm.</li>
 
 							<li>Let <var>manifest text</var> be the
-									<a href="https://dom.spec.whatwg.org/#concept-child-text-content">child text content</a> 
+									<a href="https://dom.spec.whatwg.org/#concept-child-text-content">child text content</a>
 									of <var>embedded manifest script</var></li>
 						</ol>
 						<details>
@@ -1004,33 +1004,33 @@ var[data-type]:hover::before {
 						</details>
 					</li>
 			</ol>
-	
-			<p>If both <code>index.html</code> and <code>publication.json</code> are present in the Package, 
-			then the Primary Entry Page <em class="rfc2119" title="SHOULD">SHOULD</em> contain a reference to the <code>publication.json</code> file, 
+
+			<p>If both <code>index.html</code> and <code>publication.json</code> are present in the Package,
+			then the Primary Entry Page <em class="rfc2119" title="SHOULD">SHOULD</em> contain a reference to the <code>publication.json</code> file,
 			following the rules defined in this section.</p>
 
 			<aside class="example" id="example-1"><div class="marker">
       <a class="self-link" href="#example-1">Example<bdi> 1</bdi></a>
     </div>
-				<p>Here, the Publication Manifest, located into the Root Directory, 
-					is simply referenced from the Primary Entry Page via 
+				<p>Here, the Publication Manifest, located into the Root Directory,
+					is simply referenced from the Primary Entry Page via
 					an [<cite><a class="bibref" data-link-type="biblio" href="#bib-html" title="HTML Standard">HTML</a></cite>] <code>link</code> element.</p>
 				<pre aria-busy="false"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"publication.json"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"publication"</span>/&gt;</span></code></pre>
 				<p>An example of a Primary Entry Page embedding a Publication Manifest is given in [<cite><a class="bibref" data-link-type="biblio" href="#bib-audiobooks" title="Audiobooks">audiobooks</a></cite>].
 			</p></aside>
 
 		</section>
-	
+
 		<section class="appendix informative" id="app-media-type">
 			<h2 id="a-the-application-lpf-zip-media-type"><bdi class="secno">A. </bdi>The <code>application/lpf+zip</code> Media Type<a class="self-link" aria-label="§" href="#app-media-type"></a></h2><p><em>This section is non-normative.</em></p>
 
-			<p>This appendix registers the media type <code>application/lpf+zip</code> 
+			<p>This appendix registers the media type <code>application/lpf+zip</code>
 				for the Lightweight Packaging Format (LPF).</p>
 
-			<p>Lightweight Packaging Format (or LPF) is a container technology 
-				based on the [<cite><a class="bibref" data-link-type="biblio" href="#bib-zip" title=".ZIP File Format Specification">zip</a></cite>] archive format, 
-				used for packaging into a single-file container the set of related resources 
-				and associated metadata that comprise a digital publication . 
+			<p>Lightweight Packaging Format (or LPF) is a container technology
+				based on the [<cite><a class="bibref" data-link-type="biblio" href="#bib-zip" title=".ZIP File Format Specification">zip</a></cite>] archive format,
+				used for packaging into a single-file container the set of related resources
+				and associated metadata that comprise a digital publication .
 				LPF and its related standards are maintained and defined by the World Wide Web Consortium (<abbr title="World Wide Web Consortium">W3C</abbr>).</p>
 
 			<dl class="variablelist">
@@ -1056,27 +1056,27 @@ var[data-type]:hover::before {
 				</dd>
 				<dt>Security considerations:</dt>
 				<dd>
-					<p>Security considerations that apply to <code>application/zip</code> also apply to LPF files. 
-						For instance, an archive could contain compressed files that expand 
-						to fill all available disk space on a hard drive. 
-						In consequence, user agents that read LPF files should rigorously check the size 
+					<p>Security considerations that apply to <code>application/zip</code> also apply to LPF files.
+						For instance, an archive could contain compressed files that expand
+						to fill all available disk space on a hard drive.
+						In consequence, user agents that read LPF files should rigorously check the size
 						and validity of data retrieved.</p>
-					<p>In addition, because of the various content types that can be embedded in LPF files, 
+					<p>In addition, because of the various content types that can be embedded in LPF files,
 						<code>application/lpf+zip</code> may describe content that poses security issues,
-						e.g. malicious executable content deliberately included in the package. 
-						However, only in cases where the user agent recognizes and processes the additional content, 
-						or where further processing of that content is dispatched to other user agents, 
-						would security issues potentially arise. 
+						e.g. malicious executable content deliberately included in the package.
+						However, only in cases where the user agent recognizes and processes the additional content,
+						or where further processing of that content is dispatched to other user agents,
+						would security issues potentially arise.
 						In such cases, matters of security would fall outside the domain of this registration document.</p>
 				</dd>
 				<dt>Interoperability considerations:</dt>
 				<dd>
-					<p>Any format based on LPF, if using content encryption, <em class="rfc2119" title="MUST">MUST</em> choose a different  
+					<p>Any format based on LPF, if using content encryption, <em class="rfc2119" title="MUST">MUST</em> choose a different
 							MIME media type and file extension than those defined in this specification.</p>
 				</dd>
 				<dt>Published specification:</dt>
 				<dd>
-					<p>This media type registration is for the Lightweight Packaging Format (LPF), 
+					<p>This media type registration is for the Lightweight Packaging Format (LPF),
 						as described by the	Lightweight Packaging Format (LPF) specification located at <a href="https://www.w3.org/TR/lpf"><code>https://www.w3.org/TR/lpf</code></a>.</p>
 				</dd>
 				<dt>Applications that use this media type:</dt>
@@ -1218,7 +1218,7 @@ var[data-type]:hover::before {
 
 
 
-	
+
 
 <section id="references" class="appendix"><h2 id="c-references"><bdi class="secno">C. </bdi>References<a class="self-link" aria-label="§" href="#references"></a></h2><section id="normative-references">
         <h3 id="c-1-normative-references"><bdi class="secno">C.1 </bdi>Normative references<a class="self-link" aria-label="§" href="#normative-references"></a></h3>

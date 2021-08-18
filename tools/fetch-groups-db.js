@@ -40,9 +40,9 @@ function munge(err, res) {
                 if (!/@w3\.org$/.test(list)) list += '@w3.org';
                 if (href.indexOf('http') === 0) true; // eslint-disable-line
                 else if (href.indexOf('/') === 0)
-                    href = `http://www.w3.org${href}`;
+                    href = `https://www.w3.org${href}`;
                 else if (/^(\.\.\/){2}\w/.test(href))
-                    href = `http://www.w3.org/${href.replace(
+                    href = `https://www.w3.org/${href.replace(
                         /^(\.\.\/){2}/,
                         ''
                     )}`;
