@@ -636,8 +636,8 @@ const tests = {
             {
                 doc: 'sotd/rec-obsl.html',
                 errors: [
-                    'sotd.rec-addition.no-addition',
-                    'sotd.rec-addition.no-correction',
+                    'sotd.rec-addition.no-section',
+                    'sotd.rec-addition.no-section',
                 ],
             },
             {
@@ -650,9 +650,18 @@ const tests = {
             {
                 doc: 'sotd/cr-end.html',
                 errors: [
-                    'sotd.rec-addition.unnecessary-correction',
-                    'sotd.rec-addition.unnecessary-addition',
+                    'sotd.rec-addition.unnecessary-section',
+                    'sotd.rec-addition.unnecessary-section',
                 ],
+            },
+            {
+                doc: 'sotd/rec-publish-c-corrections-pass.html',
+            },
+            {
+                doc: 'sotd/rec-publish-c-additions-pass.html',
+            },
+            {
+                doc: 'sotd/rec-publish-c-changes-pass.html',
             },
         ],
         'rec-comment-end': [
@@ -695,18 +704,34 @@ const tests = {
                 errors: ['sotd.publish.url-text-not-found'],
             },
             {
-                doc: 'sotd/rec-publish-corrections-pass.html',
+                doc: 'sotd/rec-publish-p-corrections-pass.html',
                 config: { status: 'REC', longStatus: 'Recommendation' },
             },
             {
-                doc: 'sotd/rec-publish-corrections-fail.html',
+                doc: 'sotd/rec-publish-p-corrections-fail.html',
                 config: { status: 'REC', longStatus: 'Recommendation' },
                 errors: ['sotd.publish.url-not-match'],
             },
             {
-                doc: 'sotd/rec-publish-corrections-fail2.html',
+                doc: 'sotd/rec-publish-p-corrections-fail2.html',
                 config: { status: 'REC', longStatus: 'Recommendation' },
                 errors: ['sotd.publish.url-text-not-found'],
+            },
+            {
+                doc: 'sotd/rec-publish-c-corrections-pass.html',
+                config: { status: 'REC', longStatus: 'Recommendation' },
+            },
+            {
+                doc: 'sotd/rec-publish-c-additions-pass.html',
+                config: { status: 'REC', longStatus: 'Recommendation' },
+            },
+            {
+                doc: 'sotd/rec-publish-c-changes-pass.html',
+                config: { status: 'REC', longStatus: 'Recommendation' },
+            },
+            {
+                doc: 'sotd/rec-addition-2020.html',
+                config: { status: 'REC', longStatus: 'Recommendation' },
             },
         ],
         'new-features': [
