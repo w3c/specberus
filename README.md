@@ -229,7 +229,6 @@ e.g. https://www.w3.org/pubrules/api/validate?url=https://www.w3.org/TR/2021/WD-
 
 #### 4. Validate the document using manual configs
 
-
 `https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=WD&validation=simple-validation&patentPolicy=pp2020`
 
 Pubrules supports advanced configs to make the validation more accurate.
