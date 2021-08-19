@@ -221,7 +221,7 @@ e.g. https://www.w3.org/pubrules/api/metadata?url=https://www.w3.org/TR/2021/WD-
 
 `https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=auto`
 
-`auto` profile is the easiest way to validate an document. The validation relays on the automatically extracted data.
+`auto` profile is the easiest way to validate a document. The validation relies on the automatically extracted data.
 
 The validation result contains both the **metadata** and the **errors**/**warnings** regarding the document.
 
