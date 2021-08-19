@@ -213,7 +213,7 @@ e.g. https://www.w3.org/pubrules/api/version
 
 `https://www.w3.org/pubrules/api/metadata?url=https://example.com/doc.html`
 
-Metadata is a bunch of data extracted from the document. It includes type (profile) of the document, publish date, editor(s)' name(s), Patent Policy version the document is under, etc...
+Metadata is a bunch of data extracted from the document. It includes the type (profile) of the document, publish date, editors' names, Patent Policy version the document is under, etc...
 
 e.g. https://www.w3.org/pubrules/api/metadata?url=https://www.w3.org/TR/2021/WD-i18n-glossary-20210708/
 
