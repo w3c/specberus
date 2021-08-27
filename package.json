@@ -1,6 +1,6 @@
 {
   "name": "specberus",
-  "version": "5.7.6",
+  "version": "5.8.0",
   "description": "Specberus is a checker used at W3C to validate the compliance of Technical Reports with publication rules.",
   "license": "MIT",
   "main": "lib/validator",
