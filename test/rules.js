@@ -238,6 +238,33 @@ const tests = {
         ],
         dl: [
             {
+                doc: 'headers/dl-fpwd-good.html',
+                config: { previousVersion: false, status: 'WD' },
+            },
+            {
+                doc: 'headers/dl-history-error1.html',
+                config: { previousVersion: false, status: 'WD' },
+                errors: ['headers.dl.history-syntax'],
+            },
+            {
+                doc: 'headers/dl-fpwd-new-level-bad.html',
+                config: { previousVersion: true, status: 'WD' },
+            },
+            {
+                doc: 'headers/dl-wd-good.html',
+                config: { previousVersion: true, status: 'WD' },
+            },
+            {
+                doc: 'headers/dl-wd-shortname-change-good.html',
+                config: { previousVersion: true, status: 'WD' },
+            },
+            {
+                doc: 'headers/dl-wd-shortname-change-bad.html',
+                config: { previousVersion: true, status: 'WD' },
+                errors: ['headers.dl.history-404-none-FP'],
+            },
+            // old tests, may fail
+            {
                 doc: 'headers/simple.html',
                 config: { previousVersion: true, status: 'WD' },
                 errors: [
