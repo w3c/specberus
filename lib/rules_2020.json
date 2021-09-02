@@ -1,7 +1,7 @@
 {
     "SUBM": {
         "name": "Submissions",
-        "order": 4,
+        "order": 3,
         "profiles": {
             "MEM-SUBM": {
                 "order": 2,
@@ -97,55 +97,434 @@
             }
         }
     },
-    "REGISTRY": {
-        "name" : "Registry Track",
-        "order": 3,
-        "profiles": {
-            "DRY": {
-                "order": 1,
-                "name": "Draft Registry",
-                "sections": {}
-            },
-            "CRYD": {
-                "order": 2,
-                "name": "Candidate Registry Draft",
-                "sections": {}
-            },
-            "CRY": {
-                "order": 3,
-                "name": "Candidate Registry",
-                "sections": {}
-            },
-            "RY": {
-                "order": 4,
-                "name": "Registry",
-                "sections": {}
-            }
-        }
-    },
     "NOTE": {
-        "name": "Note Track",
+        "name": "Notes",
         "order": 2,
         "profiles": {
-            "DNOTE": {
+            "FPIG-NOTE": {
                 "order": 1,
-                "name": "Draft Note",
-                "sections": {}
+                "name": "First Public Interest Group Note",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "IG-NOTE"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true,
+                            "canonical": true,
+                            "delivererID": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Interest Group Note",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li>This version URI.</li> <li>Latest version URI(s). See also the (non-normative) <cite> <a href=\"https://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> </ul>",
+                            "docIDThisVersion": [
+                                "NOTE"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "NOTE"
+                            ],
+                            "gitRepo": true,
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "discontinue": true,
+                            "expectations": true,
+                            "customParagraph": true,
+                            "stability": [
+                                "an Interest Group Note",
+                                "(see also ideas for status sections regarding the <a href=\"https://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
+                            ],
+                            "draftStability": "It <span class=\"rfc2119\">must</span> include following sentence in the \"Status Of This Document\": <blockquote class=\"boilerplate\">This is a draft document and may be updated, replaced or obsoleted by other documents at any time.</blockquote>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to disclosure requirements (with a link to the disclosure section of the group charter). <blockquote class=\"boilerplate\"> <p>The disclosure obligations of the Participants of this group are described in the <a href=\"@@URI to disclosure section of charter@@\">charter</a>. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;The disclosure obligations of the Participants of this group are described in the &lt;a href=\"@@URI to disclosure section of charter@@\"&gt;charter&lt;/a&gt;. &lt;/p&gt;</code></div>",
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true,
+                            "fixupJs": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "NOTE"
+                            ],
+                            "compoundOverview": true,
+                            "compound": true
+                        }
+                    }
+                }
             },
-            "NOTE": {
+            "IG-NOTE": {
                 "order": 2,
-                "name": "Note",
-                "sections": {}
+                "name": "Interest Group Note",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "IG-NOTE"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true,
+                            "canonical": true,
+                            "delivererID": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Interest Group Note",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": true,
+                            "docIDThisVersion": [
+                                "NOTE"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "WD"
+                            ],
+                            "gitRepo": true,
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "discontinue": true,
+                            "expectations": true,
+                            "customParagraph": true,
+                            "changesList": [
+                                "should",
+                                ""
+                            ],
+                            "stability": [
+                                "an Interest Group Note",
+                                "(see also ideas for status sections regarding the <a href=\"https://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
+                            ],
+                            "draftStability": "It <span class=\"rfc2119\">must</span> include following sentence in the \"Status Of This Document\": <blockquote class=\"boilerplate\">This is a draft document and may be updated, replaced or obsoleted by other documents at any time.</blockquote>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to disclosure requirements (with a link to the disclosure section of the group charter). <blockquote class=\"boilerplate\"> <p>The disclosure obligations of the Participants of this group are described in the <a href=\"@@URI to disclosure section of charter@@\">charter</a>. </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;The disclosure obligations of the Participants of this group are described in the &lt;a href=\"@@URI to disclosure section of charter@@\"&gt;charter&lt;/a&gt;. &lt;/p&gt;</code></div>",
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true,
+                            "fixupJs": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "WD"
+                            ],
+                            "compoundOverview": true,
+                            "compound": true
+                        }
+                    }
+                }
             },
-            "STMT": {
+            "FPWG-NOTE": {
                 "order": 3,
-                "name": "Statement",
-                "sections": {}
+                "name": "First Public Group Note",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "WG-NOTE"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true,
+                            "canonical": true,
+                            "delivererID": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Group Note",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li>This version URI.</li> <li>Latest version URI(s). See also the (non-normative) <cite> <a href=\"https://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> </ul> <strong>Note:</strong> Because this is a first draft, there <span class=\"rfc2119\">should not</span> be a Previous version URI. Use the status section to identify the relationship(s) to previous work (e.g., previous Recommendations). In some cases (e.g., mere change of short name or when a monolithic specification has been split into multiple parts) a Previous version URI <span class=\"rfc2119\">may</span> appear. Ask the Comm Team if you have questions.",
+                            "docIDThisVersion": [
+                                "NOTE"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "NOTE"
+                            ],
+                            "gitRepo": true,
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "discontinue": true,
+                            "expectations": true,
+                            "customParagraph": true,
+                            "stability": [
+                                "a Group Note",
+                                "(see also ideas for status sections regarding the <a href=\"https://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
+                            ],
+                            "draftStability": "It <span class=\"rfc2119\">must</span> include following sentence in the \"Status Of This Document\": <blockquote class=\"boilerplate\">This is a draft document and may be updated, replaced or obsoleted by other documents at any time.</blockquote>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy<sup>*</sup> requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>.</p></blockquote><strong><sup>*</sup>If the Working Group is operating under the Patent Policy 2017, the link to the Patent Policy should be <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">https://www.w3.org/Consortium/Patent-Policy-20170801/</a></strong>.<div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. </code></div>",
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true,
+                            "fixupJs": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "NOTE"
+                            ],
+                            "compoundOverview": true,
+                            "compound": true
+                        }
+                    }
+                }
+            },
+            "WG-NOTE": {
+                "order": 4,
+                "name": "Group Note",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "WG-NOTE"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true,
+                            "canonical": true,
+                            "delivererID": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateTitleH2": [
+                                "Group Note",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": true,
+                            "docIDThisVersion": [
+                                "NOTE"
+                            ],
+                            "docIDLatestVersion": true,
+                            "docIDDate": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "NOTE"
+                            ],
+                            "gitRepo": true,
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "WGLink": true,
+                            "discontinue": true,
+                            "expectations": true,
+                            "customParagraph": true,
+                            "changesList": [
+                                "should",
+                                ""
+                            ],
+                            "stability": [
+                                "a Group Note",
+                                "(see also ideas for status sections regarding the <a href=\"https://www.w3.org/2005/07/13-pubrules-about#notestability\">stability of group notes</a>) "
+                            ],
+                            "draftStability": "It <span class=\"rfc2119\">must</span> include following sentence in the \"Status Of This Document\": <blockquote class=\"boilerplate\">This is a draft document and may be updated, replaced or obsoleted by other documents at any time.</blockquote>",
+                            "patPolReq": "It <span class=\"rfc2119\">must</span> include this text related to patent policy<sup>*</sup> requirements (with suitable links inserted; see <a href=\"https://www.w3.org/2005/07/13-pubrules-disclosure\">guidelines for linking to disclosure pages</a>): <blockquote class=\"boilerplate\"> <p> This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>.</p></blockquote><strong><sup>*</sup>If the Working Group is operating under the Patent Policy 2017, the link to the Patent Policy should be <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">https://www.w3.org/Consortium/Patent-Policy-20170801/</a></strong>.<div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt; This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. </code></div>",
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true,
+                            "fixupJs": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "NOTE"
+                            ],
+                            "compoundOverview": true,
+                            "compound": true
+                        }
+                    }
+                }
             }
         }
     },
     "REC": {
-        "name": "Recommendation Track",
+        "name": "Recommendations",
         "order": 1,
         "profiles": {
             "FPWD": {
