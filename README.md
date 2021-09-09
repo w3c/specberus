@@ -307,7 +307,6 @@ A profile is basically a configuration of what to check. You can load a specific
 Here follows the current hierarchy of profiles. Each profile inherits all rules from its parent profile.
 Profiles that are identical to its parent profile, ie that do not add any new rules, are marked too.
 
-* `dummy`
 * `base`
   * `TR`
     * `WG-NOTE`
@@ -375,5 +374,5 @@ The Specberus object exposes the following API that's useful for validation:
   and its callback, and Specberus will conveniently take care of all the rest.
 * `norm(text)`. Returns a whitespace-normalised version of the text.
 * `getDocumentDate()`. Returns a Date object that matches the document's date as specified in the
-  headers' h2.
+  headers' `stateElement` (id="w3c-state").
 * `getDocumentStateElement()`. Returns the element that contains the document's date.

@@ -178,25 +178,6 @@ describe('Basics', () => {
 
 const tests = {
     // Categories
-    dummy: {
-        // Rules
-        dahut: [
-            // Tests
-            { doc: 'dummy/simple.html' }, // pass test
-            { doc: 'dummy/dahut.html', errors: ['dummy.dahut.not-found'] }, // fail test
-            { doc: 'dummy/all.html', errors: ['dummy.dahut.not-found'] },
-        ],
-        h1: [
-            { doc: 'dummy/simple.html' },
-            { doc: 'dummy/h1.html', errors: ['dummy.h1.not-found'] },
-            { doc: 'dummy/all.html', errors: ['dummy.h1.not-found'] },
-        ],
-        'h2-foo': [
-            { doc: 'dummy/simple.html' },
-            { doc: 'dummy/h2-foo.html', errors: ['dummy.h2-foo.not-found'] },
-            { doc: 'dummy/all.html', errors: ['dummy.h2-foo.not-found'] },
-        ],
-    },
     echidna: {
         'todays-date': [
             {
@@ -263,16 +244,10 @@ const tests = {
                 config: { previousVersion: true, status: 'WD' },
             },
             {
-                doc: 'headers/dl-wd-shortname-change-bad.html',
-                config: { previousVersion: true, status: 'WD' },
-                errors: ['headers.dl.history-404-none-FP'],
-            },
-            // old tests, may fail
-            {
                 doc: 'headers/simple.html',
                 config: { previousVersion: true, status: 'WD' },
                 errors: [
-                    'headers.dl.cant-retrieve',
+                    'headers.dl.no-history',
                     'headers.dl.editor-missing-id',
                 ],
             },
@@ -280,6 +255,7 @@ const tests = {
                 doc: 'headers/fails.html',
                 config: { status: 'REC' },
                 errors: [
+                    'headers.dl.no-history',
                     'headers.dl.this-version',
                     'headers.dl.latest-version',
                     'headers.dl.not-found',
@@ -290,9 +266,9 @@ const tests = {
                 doc: 'headers/fails.html',
                 config: { status: 'REC', previousVersion: true },
                 errors: [
+                    'headers.dl.no-history',
                     'headers.dl.this-version',
                     'headers.dl.latest-version',
-                    'headers.dl.previous-version',
                     'headers.dl.not-found',
                     'headers.dl.editor-not-found',
                 ],
@@ -301,12 +277,9 @@ const tests = {
                 doc: 'headers/dl-order.html',
                 errors: [
                     'headers.dl.this-latest-order',
-                    'headers.dl.latest-previous-order',
-                    'headers.dl.cant-retrieve',
                     'headers.dl.implelink-should-be-https',
                     'headers.dl.editors-draft-should-be-https',
                 ],
-                warnings: ['headers.dl.previous-not-needed'],
             },
             {
                 doc: 'headers/dl-mismatch.html',
@@ -317,48 +290,42 @@ const tests = {
                     'headers.dl.link-diff',
                     'headers.dl.latest-syntax',
                     'headers.dl.link-diff',
-                    'headers.dl.previous-syntax',
                     'headers.dl.not-found',
                     'headers.dl.editor-not-found',
                 ],
-                warnings: ['headers.dl.previous-not-needed'],
             },
             {
                 doc: 'headers/wrong-urls.html',
-                errors: ['headers.dl.previous-syntax'],
                 config: { previousVersion: true, status: 'WD' },
             },
             {
                 doc: 'headers/dl-trailing-whitespace.html',
                 config: { previousVersion: true, status: 'WD' },
-                errors: ['headers.dl.cant-retrieve'],
             },
             {
                 doc: 'headers/dl-untrimmed-text.html',
                 config: { previousVersion: true, status: 'WD' },
-                errors: ['headers.dl.cant-retrieve'],
             },
             {
                 doc: 'headers/shortnameChange.html',
                 config: { previousVersion: true, status: 'WD' },
                 warnings: ['headers.dl.this-previous-shortname'],
+                errors: ['headers.dl.history-bad-previous'],
             },
             {
                 doc: 'headers/wg-note.html',
                 config: { previousVersion: true, status: 'NOTE' },
-                errors: ['headers.dl.previous-version'],
             },
             { doc: 'headers/wg-note.html', config: { status: 'NOTE' } },
             {
                 doc: 'headers/seriesShortlink.html',
                 config: { previousVersion: true, status: 'WD' },
-                errors: ['headers.dl.cant-retrieve'],
+                errors: ['headers.dl.no-history'],
             },
             {
                 doc: 'headers/dl-no-implelink.html',
                 config: { previousVersion: true, status: 'CR' },
                 warnings: ['headers.dl.implelink-comfirm-no'],
-                errors: ['headers.dl.cant-retrieve'],
             },
         ],
         'github-repo': [
@@ -518,7 +485,6 @@ const tests = {
             },
         ],
         meta: [
-            { doc: 'dummy/simple.html', errors: ['style.meta.not-found'] },
             { doc: 'style/simple.html' },
             { doc: 'style/wrong-meta.html', errors: ['style.meta.not-found'] },
         ],

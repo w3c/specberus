@@ -60,7 +60,6 @@ In JavaScript, on [Node.js](https://nodejs.org/); with [Bootstrap](https://getbo
     ├── lib
     │   ├── profiles
     │   └── rules
-    │       ├── dummy
     │       ├── headers
     │       ├── heuristic
     │       ├── links
@@ -100,7 +99,6 @@ In JavaScript, on [Node.js](https://nodejs.org/); with [Bootstrap](https://getbo
         "FPLC"
         "REC"
         "LC"
-    "dummy"
 
 ---
 
@@ -119,7 +117,6 @@ In JavaScript, on [Node.js](https://nodejs.org/); with [Bootstrap](https://getbo
     │   └── js
     ├── test
     │   └── docs
-    │       ├── dummy
     │       ├── headers
     │       ├── links
     │       ├── sotd

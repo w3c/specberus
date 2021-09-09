@@ -106,14 +106,14 @@
                 "name": "Draft Registry",
                 "sections": {}
             },
-            "CRYD": {
+            "CRY": {
                 "order": 2,
-                "name": "Candidate Registry Draft",
+                "name": "Candidate Registry",
                 "sections": {}
             },
-            "CRY": {
+            "CRYD": {
                 "order": 3,
-                "name": "Candidate Registry",
+                "name": "Candidate Registry Draft",
                 "sections": {}
             },
             "RY": {
