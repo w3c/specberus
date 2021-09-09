@@ -405,18 +405,10 @@ jQuery.extend({
     function disableProfilesIfNeeded(checkbox) {
         if (checkbox.prop('checked')) {
             $profileOptions.each((_, el) => {
-                if (
-                    !['WD', 'WG-NOTE', 'IG-NOTE', 'CR', 'CRD'].includes(
-                        $(el).val()
-                    )
-                )
+                if (!['WD', 'NOTE', 'DNOTE', 'CR', 'CRD'].includes($(el).val()))
                     $(el).prop('disabled', true);
             });
-            if (
-                !['WD', 'WG-NOTE', 'IG-NOTE', 'CR', 'CRD'].includes(
-                    $profile.val()
-                )
-            )
+            if (!['WD', 'NOTE', 'DNOTE', 'CR', 'CRD'].includes($profile.val()))
                 $profile.val('');
         } else
             $profileOptions.each((_, el) => {
