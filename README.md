@@ -145,7 +145,6 @@ goals of this method).
 * `delivererIDs`: ID(s) of the deliverer(s); an `Array` of `Number`s.
 * `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
 * `informative`: Whether the document in informative or not.
-* `rectrack`: Whether the document in on REC track or not.
 * `process`: The process rules link.
 * `sameWorkAs`: The previous shortlink if any.
 * `implementationFeedbackDue`: The implementation review date for CRs.
@@ -171,7 +170,6 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
   "delivererIDs": [123, 456],
   "editorIDs": [ 12345 ],
   "informative": false,
-  "rectrack": true,
   "process": "https://www.w3.org/2015/Process-20150901/" }
 }
 ```
@@ -236,7 +234,6 @@ Pubrules supports advanced configs to make the validation more accurate.
 | Config | Explanation |Supported value |
 | ---- | ---- | ---- |
 | validation | Recursively validate multipart documents | no-validation, simple-validation, recursive |
-| noRecTrack | If the document is not on rec-track | true, false |
 | informativeOnly | If the document is informative | true, false |
 | echidnaReady |Check that the document is valid for automatic publication with Echidna | true, false|
 | patentPolicy | Patent Policy version | pp2020, pp2004, pp2002 |
@@ -282,7 +279,6 @@ This is an example of a successful validation of a document, with profile `auto`
      "editorsDraft": "https://w3c.github.io/charmod-norm/",
      "delivererIDs": [ 32113 ],
      "editorIDs": [ 33573 ],
-     "rectrack": false,
      "informative": false,
      "process": "https://www.w3.org/2015/Process-20150901/",
      "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
@@ -309,11 +305,8 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
 
 * `base`
   * `TR`
-    * `WG-NOTE`
-      * `FPWG-NOTE` (identical)
-    * `WG-NOTE-Echidna`
-    * `IG-NOTE`
-      * `FPIG-NOTE` (identical)
+    * `NOTE`
+    * `NOTE-Echidna`
     * `WD`
       * `WD-Echidna`
     * `FPWD` (identical)

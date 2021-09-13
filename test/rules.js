@@ -224,28 +224,28 @@ const tests = {
         dl: [
             {
                 doc: 'headers/dl-fpwd-good.html',
-                config: { previousVersion: false, status: 'WD' },
+                config: { status: 'WD' },
             },
             {
                 doc: 'headers/dl-history-error1.html',
-                config: { previousVersion: false, status: 'WD' },
+                config: { status: 'WD' },
                 errors: ['headers.dl.history-syntax'],
             },
             {
                 doc: 'headers/dl-fpwd-new-level-bad.html',
-                config: { previousVersion: true, status: 'WD' },
+                config: { status: 'WD' },
             },
             {
                 doc: 'headers/dl-wd-good.html',
-                config: { previousVersion: true, status: 'WD' },
+                config: { status: 'WD' },
             },
             {
                 doc: 'headers/dl-wd-shortname-change-good.html',
-                config: { previousVersion: true, status: 'WD' },
+                config: { status: 'WD' },
             },
             {
                 doc: 'headers/simple.html',
-                config: { previousVersion: true, status: 'WD' },
+                config: { status: 'WD' },
                 errors: [
                     'headers.dl.no-history',
                     'headers.dl.editor-missing-id',
@@ -264,7 +264,7 @@ const tests = {
             },
             {
                 doc: 'headers/fails.html',
-                config: { status: 'REC', previousVersion: true },
+                config: { status: 'REC' },
                 errors: [
                     'headers.dl.no-history',
                     'headers.dl.this-version',
@@ -296,35 +296,35 @@ const tests = {
             },
             {
                 doc: 'headers/wrong-urls.html',
-                config: { previousVersion: true, status: 'WD' },
+                config: { status: 'WD' },
             },
             {
                 doc: 'headers/dl-trailing-whitespace.html',
-                config: { previousVersion: true, status: 'WD' },
+                config: { status: 'WD' },
             },
             {
                 doc: 'headers/dl-untrimmed-text.html',
-                config: { previousVersion: true, status: 'WD' },
+                config: { status: 'WD' },
             },
             {
                 doc: 'headers/shortnameChange.html',
-                config: { previousVersion: true, status: 'WD' },
+                config: { status: 'WD' },
                 warnings: ['headers.dl.this-previous-shortname'],
                 errors: ['headers.dl.history-bad-previous'],
             },
             {
                 doc: 'headers/wg-note.html',
-                config: { previousVersion: true, status: 'NOTE' },
+                config: { status: 'NOTE' },
             },
             { doc: 'headers/wg-note.html', config: { status: 'NOTE' } },
             {
                 doc: 'headers/seriesShortlink.html',
-                config: { previousVersion: true, status: 'WD' },
+                config: { status: 'WD' },
                 errors: ['headers.dl.no-history'],
             },
             {
                 doc: 'headers/dl-no-implelink.html',
-                config: { previousVersion: true, status: 'CR' },
+                config: { status: 'CR' },
                 warnings: ['headers.dl.implelink-comfirm-no'],
             },
         ],
@@ -798,19 +798,18 @@ const tests = {
         pp: [
             {
                 doc: 'headers/simple.html',
-                config: { recTrackStatus: true },
+                config: { track: 'REC' },
                 errors: ['sotd.pp.undefined'],
             },
             {
                 doc: 'sotd/pp-bad.html',
-                config: { recTrackStatus: true, patentPolicy: 'pp2004' },
+                config: { track: 'REC', patentPolicy: 'pp2004' },
                 errors: ['sotd.pp.no-pp'],
             },
             {
                 doc: 'sotd/joint-publication-bad-pp-version.html',
                 config: {
-                    recTrackStatus: true,
-                    noRecTrack: false,
+                    track: 'REC',
                     patentPolicy: 'pp2004',
                 },
                 errors: ['sotd.pp.no-pp'],
@@ -819,8 +818,7 @@ const tests = {
             {
                 doc: 'sotd/wrong-pp-from-charter.html',
                 config: {
-                    recTrackStatus: true,
-                    noRecTrack: false,
+                    track: 'REC',
                     patentPolicy: 'pp2020',
                 },
                 errors: ['sotd.pp.wrong-pp-from-charter'],
@@ -828,8 +826,7 @@ const tests = {
             {
                 doc: 'sotd/joint-publication-diff-pp-version.html',
                 config: {
-                    recTrackStatus: true,
-                    noRecTrack: false,
+                    track: 'REC',
                     patentPolicy: 'pp2020',
                 },
                 errors: ['sotd.pp.joint-different-pp'],
@@ -837,19 +834,18 @@ const tests = {
             {
                 doc: 'sotd/joint-publication-good.html',
                 config: {
-                    recTrackStatus: true,
-                    noRecTrack: false,
+                    track: 'REC',
                     patentPolicy: 'pp2004',
                 },
                 warnings: ['sotd.pp.joint-publication'],
             },
             {
                 doc: 'sotd/joint-publication-tag.html',
-                config: { recTrackStatus: true, patentPolicy: 'pp2004' },
+                config: { track: 'REC', patentPolicy: 'pp2004' },
             },
             {
                 doc: 'sotd/joint-publication-fail.html',
-                config: { recTrackStatus: true, patentPolicy: 'pp2004' },
+                config: { track: 'REC', patentPolicy: 'pp2004' },
                 errors: ['sotd.pp.no-pp'],
             },
             {
@@ -876,7 +872,7 @@ const tests = {
             {
                 doc: 'sotd/pp-20170801.html',
                 config: {
-                    recTrackStatus: true,
+                    track: 'REC',
                     patentPolicy: 'pp2004',
                     amended: true,
                 },
@@ -884,29 +880,29 @@ const tests = {
             },
             {
                 doc: 'sotd/pp-20170801-amended.html',
-                config: { recTrackStatus: true, patentPolicy: 'pp2004' },
+                config: { track: 'REC', patentPolicy: 'pp2004' },
                 errors: ['sotd.pp.no-pp'],
             },
             {
                 doc: 'sotd/pp-20170801-amended.html',
                 config: {
-                    recTrackStatus: true,
+                    track: 'REC',
                     patentPolicy: 'pp2004',
                     amended: true,
                 },
             },
             {
                 doc: 'sotd/pp-20200915.html',
-                config: { recTrackStatus: true, patentPolicy: 'pp2020' },
+                config: { track: 'REC', patentPolicy: 'pp2020' },
             },
             {
                 doc: 'sotd/pp-20200915.html',
-                config: { recTrackStatus: true },
+                config: { track: 'REC' },
                 errors: ['sotd.pp.undefined'],
             },
             {
                 doc: 'sotd/pp-20200915-iprlink.html',
-                config: { recTrackStatus: true, patentPolicy: 'pp2020' },
+                config: { track: 'REC', patentPolicy: 'pp2020' },
             },
             { doc: 'headers/wd.html' },
             {
@@ -1180,11 +1176,9 @@ const tests = {
             { doc: 'headers/diff-latest-version.html' },
             {
                 doc: 'headers/diff-latest-version.html',
-                config: { previousVersion: false },
             },
             {
                 doc: 'metadata/tracking-compliance.html',
-                config: { previousVersion: false },
                 errors: ['heuristic.shortname.shortname-duplicate'],
             },
         ],

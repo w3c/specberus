@@ -163,7 +163,6 @@ io.on('connection', socket => {
                             profile,
                             events: handler,
                             validation: data.validation,
-                            noRecTrack: data.noRecTrack,
                             informativeOnly: data.informativeOnly,
                             echidnaReady: data.echidnaReady,
                             patentPolicy: data.patentPolicy,

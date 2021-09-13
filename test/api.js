@@ -134,7 +134,7 @@ describe('API', () => {
         //        and that version is pre-https switch
         // it('Should accept the parameter “file”, and succeed when the document is valid', function() {
         //     query = get('validate?file=test/docs/metadata/charmod-norm.html&' +
-        //         'profile=WD&validation=simple-validation&processDocument=2015&noRecTrack=true');
+        //         'profile=WD&validation=simple-validation&processDocument=2015');
         //     // @TODO: parse result as an Object (it's JSON) instead of a String.
         //     return expect(query).to.eventually.match(/"success":\s*true/i);
         // });

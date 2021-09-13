@@ -45,7 +45,6 @@ jQuery.extend({
     const $profile = $('#profile');
     let $profileOptions = $('#profile option');
     const $validation = $('#validation');
-    const $noRecTrack = $('#noRecTrack');
     const $informativeOnly = $('#informativeOnly');
     const $echidnaReady = $('#echidnaReady');
     const $patentPolicy = $('#patentPolicy');
@@ -101,7 +100,6 @@ jQuery.extend({
             url: decodeURIComponent(options.url),
             profile,
             validation: options.validation,
-            noRecTrack: options.noRecTrack === true,
             informativeOnly: options.informativeOnly === true,
             echidnaReady: options.echidnaReady === true,
             patentPolicy: options.patentPolicy,
@@ -305,7 +303,6 @@ jQuery.extend({
                 ? data.metadata.profile
                 : `${data.metadata.profile}-AMENDED`;
             $profile.val(profile);
-            $noRecTrack.prop('checked', !data.metadata.rectrack);
             $informativeOnly.prop('checked', data.metadata.informative);
             $validation.find('label').removeClass('active');
             $validation.find('label#simple-validation').addClass('active');
@@ -330,7 +327,6 @@ jQuery.extend({
                 url: data.url,
                 profile,
                 validation: 'simple-validation',
-                noRecTrack: !data.metadata.rectrack || false,
                 informativeOnly: data.metadata.informative || false,
                 echidnaReady: false,
                 patentPolicy,
@@ -374,7 +370,6 @@ jQuery.extend({
         } else {
             const url = $url.val();
             const validation = $validation.find('label.active').attr('id');
-            const noRecTrack = $noRecTrack.is(':checked') || false;
             const informativeOnly = $informativeOnly.is(':checked') || false;
             const echidnaReady = $echidnaReady.is(':checked') || false;
             const patentPolicy = $patentPolicy.find('label.active').attr('id');
@@ -390,7 +385,6 @@ jQuery.extend({
                 url,
                 profile,
                 validation,
-                noRecTrack,
                 informativeOnly,
                 echidnaReady,
                 patentPolicy,
@@ -431,7 +425,6 @@ jQuery.extend({
                 .find(`:not(label#${options.validation})`)
                 .removeClass('active');
         }
-        $noRecTrack.prop('checked', options.noRecTrack);
         $informativeOnly.prop('checked', options.informativeOnly);
         $patentPolicy.find('label').removeClass('active');
         if (options.patentPolicy) {
@@ -452,7 +445,6 @@ jQuery.extend({
 
     $patentPolicy.find('label').on('click', function () {
         const isPP2002 = $(this).attr('id') === 'pp2002';
-        $noRecTrack.prop('disabled', isPP2002);
         $informativeOnly.prop('disabled', isPP2002);
     });
 
