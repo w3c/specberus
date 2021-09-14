@@ -798,18 +798,18 @@ const tests = {
         pp: [
             {
                 doc: 'headers/simple.html',
-                config: { track: 'REC' },
+                config: { track: 'Recommendation' },
                 errors: ['sotd.pp.undefined'],
             },
             {
                 doc: 'sotd/pp-bad.html',
-                config: { track: 'REC', patentPolicy: 'pp2004' },
+                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
                 errors: ['sotd.pp.no-pp'],
             },
             {
                 doc: 'sotd/joint-publication-bad-pp-version.html',
                 config: {
-                    track: 'REC',
+                    track: 'Recommendation',
                     patentPolicy: 'pp2004',
                 },
                 errors: ['sotd.pp.no-pp'],
@@ -818,7 +818,7 @@ const tests = {
             {
                 doc: 'sotd/wrong-pp-from-charter.html',
                 config: {
-                    track: 'REC',
+                    track: 'Recommendation',
                     patentPolicy: 'pp2020',
                 },
                 errors: ['sotd.pp.wrong-pp-from-charter'],
@@ -826,7 +826,7 @@ const tests = {
             {
                 doc: 'sotd/joint-publication-diff-pp-version.html',
                 config: {
-                    track: 'REC',
+                    track: 'Recommendation',
                     patentPolicy: 'pp2020',
                 },
                 errors: ['sotd.pp.joint-different-pp'],
@@ -834,18 +834,18 @@ const tests = {
             {
                 doc: 'sotd/joint-publication-good.html',
                 config: {
-                    track: 'REC',
+                    track: 'Recommendation',
                     patentPolicy: 'pp2004',
                 },
                 warnings: ['sotd.pp.joint-publication'],
             },
             {
                 doc: 'sotd/joint-publication-tag.html',
-                config: { track: 'REC', patentPolicy: 'pp2004' },
+                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
             },
             {
                 doc: 'sotd/joint-publication-fail.html',
-                config: { track: 'REC', patentPolicy: 'pp2004' },
+                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
                 errors: ['sotd.pp.no-pp'],
             },
             {
@@ -872,7 +872,7 @@ const tests = {
             {
                 doc: 'sotd/pp-20170801.html',
                 config: {
-                    track: 'REC',
+                    track: 'Recommendation',
                     patentPolicy: 'pp2004',
                     amended: true,
                 },
@@ -880,29 +880,29 @@ const tests = {
             },
             {
                 doc: 'sotd/pp-20170801-amended.html',
-                config: { track: 'REC', patentPolicy: 'pp2004' },
+                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
                 errors: ['sotd.pp.no-pp'],
             },
             {
                 doc: 'sotd/pp-20170801-amended.html',
                 config: {
-                    track: 'REC',
+                    track: 'Recommendation',
                     patentPolicy: 'pp2004',
                     amended: true,
                 },
             },
             {
                 doc: 'sotd/pp-20200915.html',
-                config: { track: 'REC', patentPolicy: 'pp2020' },
+                config: { track: 'Recommendation', patentPolicy: 'pp2020' },
             },
             {
                 doc: 'sotd/pp-20200915.html',
-                config: { track: 'REC' },
+                config: { track: 'Recommendation' },
                 errors: ['sotd.pp.undefined'],
             },
             {
                 doc: 'sotd/pp-20200915-iprlink.html',
-                config: { track: 'REC', patentPolicy: 'pp2020' },
+                config: { track: 'Recommendation', patentPolicy: 'pp2020' },
             },
             { doc: 'headers/wd.html' },
             {
