@@ -1247,21 +1247,18 @@ const tests1 = {
 const tests = {
     sotd: {
         pp: [
-            // {
-            //     doc: 'sotd/wrong-pp-from-charter.html',
-            //     config: {
-            //         track: 'Recommendation',
-            //         patentPolicy: 'pp2020',
-            //     },
-            //     errors: ['sotd.pp.wrong-pp-from-charter'],
-            // },
-
             {
-                doc: 'headers/wg-note.html',
+                doc: 'sotd/joint-publication-diff-pp-version.html',
                 config: {
-                    longStatus: 'Working Group Note',
-                    patentPolicy: 'pp2004',
+                    track: 'Recommendation',
+                    patentPolicy: 'pp2020',
                 },
+                errors: ['sotd.pp.no-pp'],
+            },
+            {
+                doc: 'sotd/pp-bad.html',
+                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
+                errors: ['sotd.pp.no-pp-from-charter'],
             },
         ],
     },
