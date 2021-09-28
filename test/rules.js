@@ -882,6 +882,7 @@ const tests1 = {
                     patentPolicy: 'pp2020',
                 },
                 errors: ['sotd.pp.no-pp'],
+                warnings: ['sotd.pp.joint-publication'],
             },
             {
                 doc: 'sotd/joint-publication-good.html',
@@ -1244,25 +1245,7 @@ const tests1 = {
     validation,
 };
 
-const tests = {
-    sotd: {
-        pp: [
-            {
-                doc: 'sotd/joint-publication-diff-pp-version.html',
-                config: {
-                    track: 'Recommendation',
-                    patentPolicy: 'pp2020',
-                },
-                errors: ['sotd.pp.no-pp'],
-            },
-            {
-                doc: 'sotd/pp-bad.html',
-                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
-                errors: ['sotd.pp.no-pp-from-charter'],
-            },
-        ],
-    },
-};
+const tests = tests1;
 
 // start an server to host doc, response to sr.url requests
 const app = express();
