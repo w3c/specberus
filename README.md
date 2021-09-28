@@ -151,7 +151,7 @@ goals of this method).
 * `prReviewsDue`: The review date for PRs.
 * `implementationReport`: Implementation report link for CRs, PRs and RECs.
 * `errata`: The errata link of the document.
-* `substantiveChanges`: Whether the document is a REC and has proposed changes
+* `substantiveChanges`: Whether the document is a REC and has proposed amendments
 * `newFeatures`: Whether the document is a REC and has proposed additions
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
@@ -264,8 +264,7 @@ This is an example of a successful validation of a document, with profile `auto`
      "links.compound",
      "headers.dl" ],
   "info":
-   [ "sotd.diff",
-     "structure.display-only",
+   [ "structure.display-only",
      "structure.display-only",
      "structure.display-only",
      "validation.wcag" ],

@@ -331,7 +331,7 @@ const tests = {
         'github-repo': [
             {
                 doc: 'headers/simple.html',
-                errors: ['headers.github-repo.no-repo'],
+                errors: ['headers.github-repo.no-feedback'],
             },
             {
                 doc: 'sotd/github-bad.html',
@@ -343,15 +343,13 @@ const tests = {
         errata: [
             {
                 doc: 'headers/simple.html',
-                config: { longStatus: 'Recommendation' },
             },
             {
                 doc: 'headers/simple-oxford.html',
-                config: { longStatus: 'Recommendation' },
-                errors: ['headers.errata.link-should-be-https'],
+                errors: ['headers.errata.no-errata'],
             },
         ],
-        'h2-status': [
+        'w3c-state': [
             {
                 doc: 'headers/simple.html',
                 config: { longStatus: 'Working Draft' },
@@ -363,7 +361,7 @@ const tests = {
             {
                 doc: 'headers/simple.html',
                 config: { longStatus: 'Recommendation' },
-                errors: ['headers.h2-status.bad-h2'],
+                errors: ['headers.w3c-state.bad-w3c-state'],
             },
             {
                 doc: 'headers/h2-amended.html',
@@ -372,11 +370,11 @@ const tests = {
             {
                 doc: 'headers/simple.html',
                 config: { longStatus: 'Working Draft', amended: true },
-                errors: ['headers.h2-status.bad-h2'],
+                errors: ['headers.w3c-state.bad-w3c-state'],
             },
             {
                 doc: 'headers/h2-not-found.html',
-                errors: ['headers.h2-status.no-h2'],
+                errors: ['headers.w3c-state.no-w3c-state'],
                 config: { longStatus: 'Working Draft' },
             },
             {
@@ -399,7 +397,7 @@ const tests = {
                     longStatus: 'Candidate Recommendation',
                     crType: 'Snapshot',
                 },
-                errors: ['headers.h2-status.bad-h2'],
+                errors: ['headers.w3c-state.bad-w3c-state'],
             },
             {
                 doc: 'sotd/cr-end-multiple.html',
@@ -408,8 +406,8 @@ const tests = {
                     crType: 'Snapshot',
                 },
                 errors: [
-                    'headers.h2-status.bad-h2',
-                    'headers.h2-status.bad-h2',
+                    'headers.w3c-state.bad-w3c-state',
+                    'headers.w3c-state.bad-w3c-state',
                 ],
             },
         ],
@@ -629,7 +627,7 @@ const tests = {
     },
     sotd: {
         'rec-addition': [
-            { doc: 'sotd/rec-addition-2020.html' },
+            { doc: 'sotd/rec-addition-2021.html' },
             {
                 doc: 'sotd/rec-obsl.html',
                 errors: [
@@ -662,7 +660,7 @@ const tests = {
             },
         ],
         'rec-comment-end': [
-            { doc: 'sotd/rec-addition-2020.html' },
+            { doc: 'sotd/rec-addition-2021.html' },
             {
                 doc: 'sotd/rec-obsl.html',
                 errors: ['sotd.rec-comment-end.not-found'],
@@ -675,66 +673,117 @@ const tests = {
         publish: [
             {
                 doc: 'sotd/cr-end.html',
-                config: { status: 'CR', crType: 'Snapshot' },
+                config: {
+                    status: 'CR',
+                    track: 'Recommendation',
+                    crType: 'Snapshot',
+                },
             },
             {
                 doc: 'sotd/cr-end-27days.html',
-                config: { status: 'CRD', crType: 'Draft' },
+                config: {
+                    status: 'CRD',
+                    crType: 'Draft',
+                    track: 'Recommendation',
+                },
             },
             {
                 doc: 'sotd/cr-end.html',
-                config: { status: 'CR', crType: 'Draft' },
+                config: {
+                    status: 'CR',
+                    track: 'Recommendation',
+                    crType: 'Draft',
+                },
                 errors: ['sotd.publish.not-found'],
             },
             {
                 doc: 'sotd/rec-obsl.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
             },
             {
                 doc: 'sotd/rec-rescind.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
-                errors: ['sotd.publish.url-not-match'],
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
             },
             {
                 doc: 'sotd/rec-superseded.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
                 errors: ['sotd.publish.url-text-not-found'],
             },
             {
                 doc: 'sotd/rec-publish-p-corrections-pass.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
             },
             {
                 doc: 'sotd/rec-publish-p-corrections-fail.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
                 errors: ['sotd.publish.url-not-match'],
             },
             {
                 doc: 'sotd/rec-publish-p-corrections-fail2.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
                 errors: ['sotd.publish.url-text-not-found'],
             },
             {
                 doc: 'sotd/rec-publish-c-corrections-pass.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
             },
             {
                 doc: 'sotd/rec-publish-c-additions-pass.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
             },
             {
                 doc: 'sotd/rec-publish-c-changes-pass.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
             },
             {
-                doc: 'sotd/rec-addition-2020.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                doc: 'sotd/rec-addition-2021.html',
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
             },
         ],
         'new-features': [
-            { doc: 'sotd/rec-addition-2020.html', config: { status: 'REC' } },
+            { doc: 'sotd/rec-addition-2021.html', config: { status: 'REC' } },
             {
-                doc: 'sotd/rec-addition-2020.html',
+                doc: 'sotd/rec-addition-2021.html',
                 config: { status: 'PR' },
                 warnings: ['sotd.new-features.no-warning'],
             },
@@ -761,7 +810,7 @@ const tests = {
                 },
             },
             {
-                doc: 'sotd/rec-addition-2020.html',
+                doc: 'sotd/rec-addition-2021.html',
                 config: { stabilityWarning: 'REC' },
             },
             { doc: 'sotd/rec-obsl.html', config: { stabilityWarning: 'REC' } },
@@ -1027,7 +1076,7 @@ const tests = {
                 errors: ['sotd.stability.no-stability'],
             },
             {
-                doc: 'sotd/rec-addition-2020.html',
+                doc: 'sotd/rec-addition-2021.html',
                 config: { stabilityWarning: 'REC' },
             },
             {
@@ -1077,8 +1126,14 @@ const tests = {
             { doc: 'sotd/pp-bad.html', errors: ['sotd.ac-review.not-found'] },
         ],
         'process-document': [
-            { doc: 'sotd/process2019.html' },
-            { doc: 'sotd/rec-addition-2020.html' },
+            {
+                doc: 'sotd/process2019.html',
+                errors: [
+                    'sotd.process-document.wrong-process',
+                    'sotd.process-document.not-found',
+                ],
+            },
+            { doc: 'sotd/rec-addition-2021.html' },
             {
                 doc: 'sotd/process2019-not-allowed.html',
                 errors: [
@@ -1131,7 +1186,7 @@ const tests = {
                 errors: ['sotd.deliverer-note.not-found'],
             },
         ],
-        'cr-end': [
+        'candidate-review-end': [
             {
                 doc: 'metadata/cr-mediacapture-streams.html',
                 config: { status: 'CR' },
@@ -1139,23 +1194,23 @@ const tests = {
             {
                 doc: 'metadata/cr-mediacapture-streams.html',
                 config: { status: 'CR', editorial: true },
-                warnings: ['sotd.cr-end.editorial'],
+                warnings: ['sotd.candidate-review-end.editorial'],
             },
             { doc: 'sotd/cr-end.html', config: { status: 'CR' } },
             {
                 doc: 'sotd/cr-end-27days.html',
                 config: { status: 'CR' },
-                errors: ['sotd.cr-end.not-found'],
+                errors: ['sotd.candidate-review-end.not-found'],
             },
             {
                 doc: 'sotd/cr-end-multiple.html',
                 config: { status: 'CR' },
-                warnings: ['sotd.cr-end.multiple-found'],
+                warnings: ['sotd.candidate-review-end.multiple-found'],
             },
             {
                 doc: 'sotd/cr-end-nodate.html',
                 config: { status: 'CR' },
-                errors: ['sotd.cr-end.found-not-valid'],
+                errors: ['sotd.candidate-review-end.found-not-valid'],
             },
         ],
     },
