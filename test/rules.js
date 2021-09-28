@@ -140,6 +140,7 @@ const compareMetadata = function (url, file, expectedObject) {
 
 // metadata will fail, for no online document using the new id="w3c-state" instead of title.
 describe('Basics', () => {
+    // TODO: add test cases when there's online P2021 documents
     return;
     const specberus = new validator.Specberus();
 
@@ -711,6 +712,7 @@ const tests = {
                     track: 'Recommendation',
                     longStatus: 'Recommendation',
                 },
+                errors: ['sotd.publish.url-not-match'],
             },
             {
                 doc: 'sotd/rec-superseded.html',
@@ -853,7 +855,7 @@ const tests = {
             {
                 doc: 'sotd/pp-bad.html',
                 config: { track: 'Recommendation', patentPolicy: 'pp2004' },
-                errors: ['sotd.pp.no-pp'],
+                errors: ['sotd.pp.no-pp-from-charter'],
             },
             {
                 doc: 'sotd/joint-publication-bad-pp-version.html',
