@@ -1,5 +1,4 @@
 /* eslint-disable no-unreachable */
-/* TODO delete eslint-disable */
 /**
  * Test the rules.
  */
@@ -178,7 +177,7 @@ describe('Basics', () => {
 });
 
 // eslint-disable-next-line
-const tests1 = {
+const tests = {
     // Categories
     echidna: {
         'todays-date': [
@@ -906,6 +905,7 @@ const tests1 = {
                 config: {
                     longStatus: 'Working Group Note',
                     patentPolicy: 'pp2004',
+                    track: 'Note',
                 },
             },
             {
@@ -913,13 +913,7 @@ const tests1 = {
                 config: {
                     longStatus: 'Working Group Note',
                     patentPolicy: 'pp2004',
-                },
-            },
-            {
-                doc: 'headers/wg-note2.html',
-                config: {
-                    longStatus: 'Working Group Note',
-                    patentPolicy: 'pp2004',
+                    track: 'Note',
                 },
             },
             {
@@ -947,11 +941,7 @@ const tests1 = {
             {
                 doc: 'sotd/pp-20200915.html',
                 config: { track: 'Recommendation', patentPolicy: 'pp2020' },
-            },
-            {
-                doc: 'sotd/pp-20200915.html',
-                config: { track: 'Recommendation' },
-                errors: ['sotd.pp.undefined'],
+                errors: ['sotd.pp.no-pp-from-charter'],
             },
             {
                 doc: 'sotd/pp-20200915-iprlink.html',
@@ -1244,8 +1234,6 @@ const tests1 = {
     },
     validation,
 };
-
-const tests = tests1;
 
 // start an server to host doc, response to sr.url requests
 const app = express();
