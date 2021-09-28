@@ -915,6 +915,7 @@ const tests = {
                     patentPolicy: 'pp2004',
                     track: 'Note',
                 },
+                errors: ['no-pp-from-charter'],
             },
             {
                 doc: 'sotd/pp-20170801.html',
@@ -941,11 +942,12 @@ const tests = {
             {
                 doc: 'sotd/pp-20200915.html',
                 config: { track: 'Recommendation', patentPolicy: 'pp2020' },
-                errors: ['sotd.pp.no-pp-from-charter'],
+                errors: ['sotd.pp.wrong-pp-from-charter'],
             },
             {
                 doc: 'sotd/pp-20200915-iprlink.html',
                 config: { track: 'Recommendation', patentPolicy: 'pp2020' },
+                errors: ['sotd.pp.no-pp-from-charter'],
             },
             { doc: 'headers/wd.html' },
             {
