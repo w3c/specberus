@@ -177,7 +177,8 @@ describe('Basics', () => {
     });
 });
 
-const tests = {
+// eslint-disable-next-line
+const tests1 = {
     // Categories
     echidna: {
         'todays-date': [
@@ -880,7 +881,7 @@ const tests = {
                     track: 'Recommendation',
                     patentPolicy: 'pp2020',
                 },
-                errors: ['sotd.pp.joint-different-pp'],
+                errors: ['sotd.pp.no-pp'],
             },
             {
                 doc: 'sotd/joint-publication-good.html',
@@ -1241,6 +1242,29 @@ const tests = {
         ],
     },
     validation,
+};
+
+const tests = {
+    sotd: {
+        pp: [
+            // {
+            //     doc: 'sotd/wrong-pp-from-charter.html',
+            //     config: {
+            //         track: 'Recommendation',
+            //         patentPolicy: 'pp2020',
+            //     },
+            //     errors: ['sotd.pp.wrong-pp-from-charter'],
+            // },
+
+            {
+                doc: 'headers/wg-note.html',
+                config: {
+                    longStatus: 'Working Group Note',
+                    patentPolicy: 'pp2004',
+                },
+            },
+        ],
+    },
 };
 
 // start an server to host doc, response to sr.url requests
