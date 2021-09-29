@@ -915,7 +915,7 @@ const tests = {
                     patentPolicy: 'pp2004',
                     track: 'Note',
                 },
-                errors: ['no-pp-from-charter'],
+                errors: ['sotd.pp.no-pp-from-charter'],
             },
             {
                 doc: 'sotd/pp-20170801.html',
@@ -1230,7 +1230,6 @@ const tests = {
             },
             {
                 doc: 'metadata/tracking-compliance.html',
-                errors: ['heuristic.shortname.shortname-duplicate'],
             },
         ],
     },
