@@ -473,6 +473,10 @@ const tests = {
         sheet: [
             { doc: 'headers/simple.html', config: { styleSheet: 'W3C-WD' } },
             {
+                doc: 'headers/simple-dark-mode.html',
+                config: { styleSheet: 'W3C-WD' },
+            },
+            {
                 doc: 'headers/fails.html',
                 config: { styleSheet: 'W3C-WD' },
                 errors: ['style.sheet.not-found'],
