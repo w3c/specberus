@@ -55,10 +55,7 @@
     "coverage": "nyc npm test",
     "build": "npm run lint && npm run test && npm run jsdoc",
     "live": "nodemon --use_strict app",
-    "start": "node --use_strict app",
-    "postinstall": "husky install",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "start": "node --use_strict app"
   },
   "engines": {
     "node": "^14 || ^16",
