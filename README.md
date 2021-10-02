@@ -112,6 +112,15 @@ The interface you get when you `require("specberus")` is that from `lib/validato
 
 (See also [the REST API](#5-rest-api).)
 
+## Creating a Validator instance
+
+```js
+const { Specberus } = require("specberus");
+const specberus = new Specberus(apiKey);
+// specberus.validate(...)
+// specberus.extractMetadata(...)
+```
+
 ### `validate(options)`
 
 This method takes an object with the following fields:
