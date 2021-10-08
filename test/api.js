@@ -30,7 +30,7 @@ let server;
 const launchServer = function () {
     const app = express();
     server = http.createServer(app);
-    api.setUp(app);
+    api.setUp(app, process.env.W3C_API_KEY);
     server.listen(PORT).on('error', err => {
         throw new Error(err);
     });

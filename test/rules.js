@@ -54,7 +54,7 @@ const equivalentArray = function (a1, a2) {
  */
 
 const compareMetadata = function (url, file, expectedObject) {
-    const specberus = new validator.Specberus();
+    const specberus = new validator.Specberus(process.env.W3C_API_KEY);
     const handler = new sink.Sink(data => {
         throw new Error(data);
     });
@@ -141,7 +141,7 @@ const compareMetadata = function (url, file, expectedObject) {
 describe('Basics', () => {
     // TODO: add test cases when there's online P2021 documents
     return;
-    const specberus = new validator.Specberus();
+    const specberus = new validator.Specberus(process.env.W3C_API_KEY);
 
     describe('Method "extractMetadata"', () => {
         let i;
@@ -1366,7 +1366,9 @@ describe('Making sure Specberus is not broken...', () => {
 
                             for (const o in test.options)
                                 options[o] = test.options[o];
-                            new validator.Specberus().validate(options);
+                            new validator.Specberus(
+                                process.env.W3C_API_KEY
+                            ).validate(options);
                         });
                     });
                 });
