@@ -117,7 +117,7 @@ exports.samples = [
         charters: ['https://www.w3.org/2021/02/webperf.html'],
         patentPolicy: 'https://www.w3.org/Consortium/Patent-Policy-20200915/',
         thisVersion: 'https://www.w3.org/TR/2021/REC-hr-time-2-20210915/',
-        latestVersion: 'https://www.w3.org/TR/hr-time/',
+        latestVersion: 'https://www.w3.org/TR/hr-time-2/',
         history: 'https://www.w3.org/standards/history/hr-time-2',
         previousVersion: 'https://www.w3.org/TR/2019/REC-hr-time-2-20191121/',
         rectrack: 'Recommendation',

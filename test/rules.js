@@ -140,7 +140,6 @@ const compareMetadata = function (url, file, expectedObject) {
     });
 };
 
-// metadata will fail, for no online document using the new id="w3c-state" instead of title.
 describe('Basics', () => {
     const specberus = new validator.Specberus(process.env.W3C_API_KEY);
 
