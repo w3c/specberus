@@ -18,7 +18,7 @@ const chai = require('chai').expect;
 
 // Internal packages:
 const validation = require('./validation');
-const samples = require('./samples.json');
+const { samples } = require('./samples');
 const validator = require('../lib/validator');
 const sink = require('../lib/sink');
 /**
@@ -58,12 +58,11 @@ const compareMetadata = function (url, file, expectedObject) {
     const handler = new sink.Sink(data => {
         throw new Error(data);
     });
-    const thisFile = file ? `test/docs/metadata/${file}.html` : null;
-    // const opts = {events: handler, url: url, file: thisFile};
+    const thisFile = file ? `test/docs/${file}.html` : null;
     // test only local fixtures
     const opts = { events: handler, file: thisFile };
 
-    it(`Should detect metadata for ${expectedObject.url}`, done => {
+    it(`Should detect metadata for ${thisFile}`, done => {
         handler.on('end-all', () => {
             chai(specberus)
                 .to.have.property('meta')
@@ -80,7 +79,7 @@ const compareMetadata = function (url, file, expectedObject) {
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('thisVersion')
-                .equal(expectedObject.url);
+                .equal(expectedObject.thisVersion);
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('latestVersion')
@@ -115,6 +114,10 @@ const compareMetadata = function (url, file, expectedObject) {
                 .to.have.property('meta')
                 .to.have.property('rectrack')
                 .equal(expectedObject.rectrack);
+            chai(specberus)
+                .to.have.property('meta')
+                .to.have.property('history')
+                .equal(expectedObject.history);
             const optionalProperties = [
                 'process',
                 'editorsDraft',
@@ -139,8 +142,6 @@ const compareMetadata = function (url, file, expectedObject) {
 
 // metadata will fail, for no online document using the new id="w3c-state" instead of title.
 describe('Basics', () => {
-    // TODO: add test cases when there's online P2021 documents
-    return;
     const specberus = new validator.Specberus(process.env.W3C_API_KEY);
 
     describe('Method "extractMetadata"', () => {
@@ -176,7 +177,6 @@ describe('Basics', () => {
     });
 });
 
-// eslint-disable-next-line
 const tests = {
     // Categories
     echidna: {
@@ -1225,16 +1225,6 @@ const tests = {
                 ],
             },
             { doc: 'heuristic/dated-url.html' },
-        ],
-        shortname: [
-            { doc: 'headers/simple.html' },
-            { doc: 'headers/diff-latest-version.html' },
-            {
-                doc: 'headers/diff-latest-version.html',
-            },
-            {
-                doc: 'metadata/tracking-compliance.html',
-            },
         ],
     },
     validation,
