@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="canonical" href="https://www.w3.org/TR/hr-time-2/">
+  <link rel="canonical" href="https://www.w3.org/TR/hr-time/">
   <link rel="stylesheet" href="style/WD.css">
   <title>Foo Time</title> <!-- matches div.head h1 -->
   <style>
@@ -15,20 +16,25 @@
       <h1 id="title" class="title p-name">Foo Time</h1>
 
       <p id='w3c-state'>
-        <a href='https://www.w3.org/standards/types'>W3C First Public Working Draft</a>
+        <a href='https://www.w3.org/standards/types'>W3C Working Draft</a>
         <time class="dt-published" datetime="2021-11-03">03 November 2021</time>
       </p>
       <details>
         <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2021/WD-hr-time-2-20210915/">https://www.w3.org/TR/2021/WD-hr-time-2-20210915/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2021/WD-new-name-3-20210915/">https://www.w3.org/TR/2021/WD-new-name-3-20210915/</a>
         </dd><dt>Latest published version: (@@note that version is not required in the latest version)</dt><dd>
-        <a href="https://www.w3.org/TR/hr-time/">https://www.w3.org/TR/hr-time/</a>
+        <a href="https://www.w3.org/TR/new-name/">https://www.w3.org/TR/new-name/</a>
         </dd>
-        <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/hr-time/">https://w3c.github.io/hr-time/</a></dd>
+        <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/new-name/">https://w3c.github.io/new-name/</a></dd>
 
-        <dt>History:</dt><dd><a href="https://www.w3.org/standards/history/hr-time-2">https://www.w3.org/standards/history/hr-time-2</a></dd>
+        <dt>History:</dt>
+
+        <!-- CASE: shortname change from 'hr-time-3' to 'new-name-3'-->
+        <dd><a data-previous-shortname='hr-time-3'
+            href="https://www.w3.org/standards/history/new-name-3">https://www.w3.org/standards/history/new-name-3</a>
+        </dd>
 
         <dt>Editor:</dt>
         <dd class="p-author h-card vcard" data-editor-id="56102">George Herald
@@ -42,8 +48,8 @@
            (Until February 2014)</dd>
 
         <dt>Feedback:</dt>
-        <dd><a href="https://github.com/w3c/hr-time-2/issues">https://github.com/w3c/hr-time/issues</a></dd>
-        <dd><a href="mailto:public-foo@w3.org?subject=%5Bhr-time-2%5D%20YOUR%20TOPIC%20HERE">public-foo@w3.org</a> with subject line “<kbd>[hr-time-2] <var>… message topic …</var></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-foo/" rel="discussion">archives</a>)</dd>
+        <dd><a href="https://github.com/w3c/hr-time/issues">https://github.com/w3c/hr-time/issues</a></dd>
+        <dd><a href="mailto:public-foo@w3.org?subject=%5Bhr-time%5D%20YOUR%20TOPIC%20HERE">public-foo@w3.org</a> with subject line “<kbd>[hr-time] <var>… message topic …</var></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-foo/" rel="discussion">archives</a>)</dd>
       </dl>
       </details>
 
@@ -77,21 +83,20 @@
       <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical
         reports index</a> at https://www.w3.org/TR/.</em></p>
 
-  <p>
-      This document was published by the <a href="https://www.w3.org/webperf/">Web Performance Working Group</a>
-      as a First Public Working Draft using the <a
-      href='https://www.w3.org/2021/Process-20211102/#recs-and-notes'>Recommendation
-      track</a>.
-    </p>
-    <p style='padding: 0.5ex; border: 2px solid red; background: red; color: white; font-weight: bold; text-align: center'>
+        <p>
+          This document was published by the <a href="https://www.w3.org/webperf/">Web Performance Working Group</a>
+          as a Working Draft using the <a
+          href='https://www.w3.org/2021/Process-20211102/#recs-and-notes'>Recommendation
+          track</a>.
+        </p>
+        <p style='padding: 0.5ex; border: 2px solid red; background: red; color: white; font-weight: bold; text-align: center'>
       This document is NOT an official W3C technical report.<br>It is a a sample document meant to illustrate the style for Process 2021.
   </p>
-  <p>Publication as a First Public Working Draft does not imply endorsement by the
+  <p>Publication as a Working Draft does not imply endorsement by the
     <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This
     is a draft document and may
     be updated, replaced or obsoleted by other documents at any time. It is
     inappropriate to cite this document as other than work in progress.</p>
-
     <p>
         This document was produced by a group
         operating under the
@@ -410,7 +415,7 @@ interface <a class="internalDFN idlID" data-link-for="" data-link-type="interfac
       <div class="note" role="note" id="issue-container-generatedID-2"><div role="heading" class="note-title marker" id="h-note-2" aria-level="4"><span>Note</span></div><div class="">
         Clock resolution is an unsolved and evolving area of research, with no
         existing industry consensus or definitive set of recommendations that
-        applies to all browsers. To track the discussion, refer to <a href="https://github.com/w3c/hr-time-2/issues/79">Issue 79</a>.
+        applies to all browsers. To track the discussion, refer to <a href="https://github.com/w3c/hr-time/issues/79">Issue 79</a>.
       </div></div>
     </section>
     <section id="clock-drift">

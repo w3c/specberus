@@ -242,6 +242,7 @@ const tests = {
             {
                 doc: 'headers/dl-wd-shortname-change-good.html',
                 config: { status: 'WD' },
+                warnings: ['headers.dl.this-previous-shortname'],
             },
             {
                 doc: 'headers/simple.html',

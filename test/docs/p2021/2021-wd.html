@@ -3,7 +3,7 @@
 <html lang="en">
   <head><meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="canonical" href="https://www.w3.org/TR/foo-time/">
+  <link rel="canonical" href="https://www.w3.org/TR/hr-time/">
   <link rel="stylesheet" href="style/WD.css">
   <title>Foo Time</title> <!-- matches div.head h1 -->
   <style>
@@ -17,19 +17,19 @@
 
       <p id='w3c-state'>
         <a href='https://www.w3.org/standards/types'>W3C Working Draft</a>
-        <time class="dt-published" datetime="2020-09-15">15 September 2021</time>
+        <time class="dt-published" datetime="2021-11-03">03 November 2021</time>
       </p>
       <details>
         <summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt><dd>
-                <a class="u-url" href="https://www.w3.org/TR/2021/WD-foo-time-2-20210915/">https://www.w3.org/TR/2021/WD-foo-time-2-20210915/</a>
+                <a class="u-url" href="https://www.w3.org/TR/2021/WD-hr-time-2-20210915/">https://www.w3.org/TR/2021/WD-hr-time-2-20210915/</a>
         </dd><dt>Latest published version: (@@note that version is not required in the latest version)</dt><dd>
-        <a href="https://www.w3.org/TR/foo-time/">https://www.w3.org/TR/foo-time/</a>
+        <a href="https://www.w3.org/TR/hr-time/">https://www.w3.org/TR/hr-time/</a>
         </dd>
-        <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/foo-time/">https://w3c.github.io/foo-time/</a></dd>
+        <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/hr-time/">https://w3c.github.io/hr-time/</a></dd>
 
-        <dt>History:</dt><dd><a href="https://www.w3.org/standards/history/foo-time-2">https://www.w3.org/standards/history/foo-time-2</a></dd>
+        <dt>History:</dt><dd><a href="https://www.w3.org/standards/history/hr-time-2">https://www.w3.org/standards/history/hr-time-2</a></dd>
 
         <dt>Editor:</dt>
         <dd class="p-author h-card vcard" data-editor-id="56102">George Herald
@@ -43,8 +43,8 @@
            (Until February 2014)</dd>
 
         <dt>Feedback:</dt>
-        <dd><a href="https://github.com/w3c/foo-time/issues">https://github.com/w3c/foo-time/issues</a></dd>
-        <dd><a href="mailto:public-foo@w3.org?subject=%5Bfoo-time%5D%20YOUR%20TOPIC%20HERE">public-foo@w3.org</a> with subject line “<kbd>[foo-time] <var>… message topic …</var></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-foo/" rel="discussion">archives</a>)</dd>
+        <dd><a href="https://github.com/w3c/hr-time/issues">https://github.com/w3c/hr-time/issues</a></dd>
+        <dd><a href="mailto:public-foo@w3.org?subject=%5Bhr-time%5D%20YOUR%20TOPIC%20HERE">public-foo@w3.org</a> with subject line “<kbd>[hr-time] <var>… message topic …</var></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-foo/" rel="discussion">archives</a>)</dd>
       </dl>
       </details>
 
@@ -81,7 +81,7 @@
         <p>
           This document was published by the <a href="https://www.w3.org/webperf/">Web Performance Working Group</a>
           as a Working Draft using the <a
-          href='https://www.w3.org/2021/Process-20210923/#recs-and-notes'>Recommendation
+          href='https://www.w3.org/2021/Process-20211102/#recs-and-notes'>Recommendation
           track</a>.
         </p>
         <p style='padding: 0.5ex; border: 2px solid red; background: red; color: white; font-weight: bold; text-align: center'>
@@ -110,7 +110,7 @@
 
     </p><p>
                   This document is governed by the
-                  <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20210923/">23 September 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+                  <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">02 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
                 </p>
               </section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#examples"><bdi class="secno">1.1 </bdi>Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sec-time-origin"><bdi class="secno">2. </bdi>Time Origin</a></li><li class="tocline"><a class="tocxref" href="#sec-domhighrestimestamp"><bdi class="secno">3. </bdi>The <span data-dfn-type="typedef" data-export="" data-idl="typedef" data-title="DOMHighResTimeStamp" data-dfn-for=""><code>DOMHighResTimeStamp</code></span> typedef</a></li><li class="tocline"><a class="tocxref" href="#sec-performance"><bdi class="secno">4. </bdi>The <span data-dfn-type="interface" data-export="" data-idl="interface" data-title="Performance" data-dfn-for=""><code>Performance</code></span> interface</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#now-method"><bdi class="secno">4.1 </bdi><code>now()</code> method</a></li><li class="tocline"><a class="tocxref" href="#timeorigin-attribute"><bdi class="secno">4.2 </bdi><code>timeOrigin</code> attribute</a></li><li class="tocline"><a class="tocxref" href="#tojson-method"><bdi class="secno">4.3 </bdi><code>toJSON()</code> method</a></li></ol></li><li class="tocline"><a class="tocxref" href="#extensions-to-windoworworkerglobalscope-mixin"><bdi class="secno">5. </bdi>Extensions to <code>WindowOrWorkerGlobalScope</code> mixin</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#the-performance-attribute"><bdi class="secno">5.1 </bdi>The <code>performance</code> attribute</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sec-monotonic-clock"><bdi class="secno">6. </bdi>Monotonic Clock</a></li><li class="tocline"><a class="tocxref" href="#sec-privacy-security"><bdi class="secno">7. </bdi>Privacy and Security</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#clock-resolution"><bdi class="secno">7.1 </bdi>Clock resolution</a></li><li class="tocline"><a class="tocxref" href="#clock-drift"><bdi class="secno">7.2 </bdi>Clock drift</a></li></ol></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">8. </bdi>Conformance</a></li><li class="tocline"><a class="tocxref" href="#idl-index"><bdi class="secno">9. </bdi>IDL Index</a></li><li class="tocline"><a class="tocxref" href="#acknowledgments"><bdi class="secno">A. </bdi>Acknowledgments</a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">B. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">B.1 </bdi>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">B.2 </bdi>Informative references</a></li></ol></li></ol></nav>
   <section id="introduction" class="informative">
@@ -410,7 +410,7 @@ interface <a class="internalDFN idlID" data-link-for="" data-link-type="interfac
       <div class="note" role="note" id="issue-container-generatedID-2"><div role="heading" class="note-title marker" id="h-note-2" aria-level="4"><span>Note</span></div><div class="">
         Clock resolution is an unsolved and evolving area of research, with no
         existing industry consensus or definitive set of recommendations that
-        applies to all browsers. To track the discussion, refer to <a href="https://github.com/w3c/foo-time/issues/79">Issue 79</a>.
+        applies to all browsers. To track the discussion, refer to <a href="https://github.com/w3c/hr-time/issues/79">Issue 79</a>.
       </div></div>
     </section>
     <section id="clock-drift">
