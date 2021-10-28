@@ -200,10 +200,6 @@ const tests = {
             { doc: 'headers/fails.html', errors: ['headers.hr.not-found'] },
             { doc: 'headers/fails-too.html', errors: ['headers.hr.not-found'] },
         ],
-        title: [
-            { doc: 'headers/simple.html' },
-            { doc: 'headers/fails.html', errors: ['headers.title.not-found'] },
-        ],
         logo: [
             { doc: 'headers/simple.html' },
             { doc: 'headers/logo.html' },

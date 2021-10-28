@@ -166,8 +166,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Draft Registry",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Registry track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Registry track&lt;/a&gt;"
@@ -269,8 +268,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Candidate Registry",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Registry track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Registry track&lt;/a&gt;"
@@ -372,8 +370,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Candidate Registry Draft",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Registry track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Registry track&lt;/a&gt;"
@@ -475,8 +472,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Registry",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Registry track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Registry track&lt;/a&gt;"
@@ -584,7 +580,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": "It <span class=\"rfc2119\">must</span> begin with the following boilerplate text: <blockquote class=\"boilerplate\"> <p> <em>This section describes the status of this document at the time of its publication. A list of current W3C publications can be found in the <a href=\"https://www.w3.org/TR/\">W3C technical reports index</a> at https://www.w3.org/TR/.</em> </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;&lt;em&gt;This section describes the status of this document at the time of its publication. A list of current W3C publications can be found in the &lt;a href=\"https://www.w3.org/TR/\"&gt;W3C technical reports index&lt;/a&gt; at https://www.w3.org/TR/.&lt;/em&gt;&lt;/p&gt;</code></div>",
                             "boilerplateSUBM": "It <span class=\"rfc2119\">must</span> include this boilerplate text (with links to the published Submission and Team Comment): <blockquote class=\"boilerplate\"> By publishing this document, W3C acknowledges that the <a href=\"https://www.w3.org/Submission/@@@submissiondoc@@@\">Submitting Members</a> have made a formal Submission request to W3C for discussion. Publication of this document by W3C indicates no endorsement of its content by W3C, nor that W3C has, is, or will be allocating any resources to the issues addressed by it. This document is not the product of a chartered W3C group, but is published as potential input to the <a href=\"https://www.w3.org/Consortium/Process\">W3C Process</a>. A <a href=\"https://www.w3.org/Submission/@@@teamcomment@@@\">W3C Team Comment</a> has been published in conjunction with this Member Submission. Publication of acknowledged Member Submissions at the W3C site is one of the benefits of <a href=\"https://www.w3.org/Consortium/Prospectus/Joining\">W3C Membership</a>. Please consult the requirements associated with Member Submissions of <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-submissions\">section 3.3 of the W3C Patent Policy</a>. Please consult the complete <a href=\"https://www.w3.org/Submission\">list of acknowledged W3C Member Submissions</a>.</blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;By publishing this document, W3C acknowledges that the &lt;a href=\"https://www.w3.org/Submission/@@@submissiondoc@@@\"&gt;Submitting Members&lt;/a&gt; have made a formal Submission request to W3C for discussion. Publication of this document by W3C indicates no endorsement of its content by W3C, nor that W3C has, is, or will be allocating any resources to the issues addressed by it. This document is not the product of a chartered W3C group, but is published as potential input to the &lt;a href=\"https://www.w3.org/Consortium/Process\"&gt;W3C Process&lt;/a&gt;. A &lt;a href=\"https://www.w3.org/Submission/@@@teamcomment@@@\"&gt;W3C Team Comment&lt;/a&gt; has been published in conjunction with this Member Submission. Publication of acknowledged Member Submissions at the W3C site is one of the benefits of &lt;a href=\"https://www.w3.org/Consortium/Prospectus/Joining\"&gt;W3C Membership&lt;/a&gt;. Please consult the requirements associated with Member Submissions of &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-submissions\"&gt;section 3.3 of the W3C Patent Policy&lt;/a&gt;. Please consult the complete &lt;a href=\"https://www.w3.org/Submission\"&gt;list of acknowledged W3C Member Submissions&lt;/a&gt;.&lt;/p&gt;</code></div>",
-                            "WGLink": [
+                            "publish": [
                                 "Group Draft Note",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Note track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Note track&lt;/a&gt;"
@@ -685,8 +681,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Group Note",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Note track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Note track&lt;/a&gt;"
@@ -787,8 +782,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Statement",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Note track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Note track&lt;/a&gt;"
@@ -894,8 +888,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "First Public Working Draft",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
@@ -999,8 +992,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Working Draft",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
@@ -1110,8 +1102,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Candidate Recommendation Snapshot",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
@@ -1220,8 +1211,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Candidate Recommendation Draft",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
@@ -1328,8 +1318,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Candidate Recommendation",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
@@ -1442,8 +1431,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Proposed Recommendation",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
@@ -1554,8 +1542,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Proposed Recommendation",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
@@ -1670,11 +1657,6 @@
                             "datesFormat": true,
                             "deployment": true,
                             "publish": "W3C Recommendation <span class=\"rfc2119\">must</span> include one of the following paragraphs in the \"Status of This Document\" depending on the type of Recommendations:<ol><li><strong>Recommendation without modifications:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation.</blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation.&lt;/p&gt;</code></li><li><strong>Recommendation with candidate corrections:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2021/Process-20211102/#candidate-correction\">candidate corrections.</a></blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2021/Process-20211102/#candidate-correction\"&gt;candidate corrections.&lt;/a&gt;.&lt;/p&gt;</code></li><li><strong>Recommendation with candidate additions:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2021/Process-20211102/#candidate-addition\">candidate additions</a>, introducing new features since the Previous Recommendation.</blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2021/Process-20211102/#candidate-addition\"&gt;candidate additions&lt;/a&gt;, introducing new features since the Previous Recommendation.&lt;/p&gt;</code></li><li><strong>Recommendation with candidate amendments:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2021/Process-20211102/#candidate-amendments\">candidate amendments</a>, introducing substantive changes and new features since the Previous Recommendation.</blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2021/Process-20211102/#candidate-amendments\"&gt;candidate amendments&lt;/a&gt;, introducing substantive changes and new features since the Previous Recommendation.&lt;/p&gt;</code></li><li><strong>Recommendation with proposed corrections:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2021/Process-20211102/#proposed-corrections\">proposed corrections.</a></blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2021/Process-20211102/#proposed-corrections\"&gt;proposed corrections.&lt;/a&gt;.&lt;/p&gt;</code></li><li><strong>Recommendation with proposed additions:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2021/Process-20211102/#proposed-addition\">proposed additions</a>, introducing new features since the Previous Recommendation.</blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2021/Process-20211102/#proposed-addition\"&gt;proposed additions&lt;/a&gt;, introducing new features since the Previous Recommendation.&lt;/p&gt;</code></li><li><strong>Recommendation with proposed amendments:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2021/Process-20211102/#proposed-amendments\">proposed amendments</a>, introducing substantive changes and new features since the Previous Recommendation.</blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2021/Process-20211102/#proposed-amendments\"&gt;proposed amendments&lt;/a&gt;, introducing substantive changes and new features since the Previous Recommendation.&lt;/p&gt;</li></ol></code>",
-                            "WGLink": [
-                                "Recommendation",
-                                "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
-                                "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
-                            ],
                             "recRelation": "It <span class=\"rfc2119\">must</span> indicate its relationship to previous related Recommendations (e.g., an indication that a Recommendation supersedes, obsoletes, or subsumes another, or that a Recommendation is an editorial revision) and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number. The document thus links to two important resources: the previous edition of the Recommendation via the status section, and the previous draft (the Proposed Recommendation) via the \"Previous version\" link.",
                             "customParagraph": true,
                             "changesList": [
@@ -1775,9 +1757,8 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
                             "deployment": true,
-                            "WGLink": [
+                            "publish": [
                                 "Recommendation",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
@@ -1882,8 +1863,7 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
-                            "publish": true,
-                            "WGLink": [
+                            "publish": [
                                 "Recommendation",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
@@ -2059,8 +2039,7 @@
                     "sotd": "There <span class=\"rfc2119\">must</span> be a status section that follows the abstract, labeled with an <code>h2</code> element with content \"Status of This Document\". The Team maintains the status section of a document.",
                     "boilerplateTRDoc": "It <span class=\"rfc2119\">must</span> begin with the following boilerplate text: <blockquote class=\"boilerplate\"> <p> <em>This section describes the status of this document at the time of its publication. A list of current W3C publications and the latest revision of this technical report can be found in the <a href=\"https://www.w3.org/TR/\">W3C technical reports index</a> at https://www.w3.org/TR/.</em> </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;&lt;em&gt;This section describes the status of this document at the time of its publication. A list of current W3C publications and the latest revision of this technical report can be found in the &lt;a href=\"https://www.w3.org/TR/\"&gt;W3C technical reports index&lt;/a&gt; at https://www.w3.org/TR/.&lt;/em&gt;&lt;/p&gt;</code></div>",
                     "datesFormat": "All dates <span class=\"rfc2119\">must</span> have the form DD Month YYYY. A leading zero in the day is <span class=\"rfc2119\">optional</span>.",
-                    "publish": "This document was published by the @@ Group as a @@ using the @@ track.",
-                    "WGLink": "It <span class=\"rfc2119\">must</span> include the name of the W3C group that produced the document, the type of document and its track. The name <span class=\"rfc2119\">must</span> be a link to a public page for the group.<blockquote><p>This document was published by the @@@ Working Group as a @{param1} using the @{param2}.</p> </blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document was published by the @@@ Working Group as a @{param1} using the @{param3}.&lt;/p&gt;</code></div>",
+                    "publish": "It <span class=\"rfc2119\">must</span> include the name of the W3C group that produced the document, the type of document and its track. The name <span class=\"rfc2119\">must</span> be a link to a public page for the group.<blockquote><p>This document was published by the @@@ Working/Interest Group as a @{param1} using the @{param2}.</p> </blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document was published by the @@@ Working/Interest Group as a @{param1} using the @{param3}.&lt;/p&gt;</code></div>",
                     "customParagraph": "It <span class=\"rfc2119\">must</span> include at least one customized paragraph. This section <span class=\"rfc2119\">should</span> include the title page date (i.e., the one next to the maturity level at the top of the document). These paragraphs <span class=\"rfc2119\">should</span> explain the publication context, including rationale and relationships to other work. See <a href=\"https://www.w3.org/2001/06/manual/#Status\">examples and more discussion in the Manual of Style</a>.",
                     "changesList": "It <span class=\"rfc2119\">@{param1}</span> include a link to changes since the previous draft (e.g., a list of changes or a diff document or both; see the <a href=\"https://www.w3.org/2007/10/htmldiff\">online HTML diff tool</a>).@{param2}",
                     "deployment": "It <span class=\"rfc2119\">must</span> include the expections in terms of deployment. The recommended text is: <blockquote>W3C recommends the wide deployment of this specification as a standard for the Web.</blockquote>",
