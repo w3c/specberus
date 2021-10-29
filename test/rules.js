@@ -349,42 +349,54 @@ const tests = {
         'w3c-state': [
             {
                 doc: 'headers/simple.html',
-                config: { longStatus: 'Working Draft' },
+                config: { longStatus: 'Working Draft', status: 'WD' },
             },
             {
                 doc: 'headers/h2-comma.html',
-                config: { longStatus: 'Working Draft' },
+                config: { longStatus: 'Working Draft', status: 'WD' },
             },
             {
                 doc: 'headers/simple.html',
-                config: { longStatus: 'Recommendation' },
+                config: { longStatus: 'Recommendation', status: 'REC' },
                 errors: ['headers.w3c-state.bad-w3c-state'],
             },
             {
                 doc: 'headers/h2-amended.html',
-                config: { longStatus: 'Recommendation', amended: true },
+                config: {
+                    longStatus: 'Recommendation',
+                    status: 'REC',
+                    amended: true,
+                },
+                errors: ['headers.w3c-state.wrong-w3c-state-link'],
             },
             {
                 doc: 'headers/simple.html',
-                config: { longStatus: 'Working Draft', amended: true },
+                config: {
+                    longStatus: 'Working Draft',
+                    status: 'WD',
+                    amended: true,
+                },
                 errors: ['headers.w3c-state.bad-w3c-state'],
             },
             {
                 doc: 'headers/h2-not-found.html',
                 errors: ['headers.w3c-state.no-w3c-state'],
-                config: { longStatus: 'Working Draft' },
+                config: { longStatus: 'Working Draft', status: 'WD' },
             },
             {
                 doc: 'sotd/cr-end.html',
                 config: {
                     longStatus: 'Candidate Recommendation',
+                    status: 'CR',
                     crType: 'Snapshot',
                 },
+                errors: ['headers.w3c-state.no-w3c-state-link'],
             },
             {
                 doc: 'sotd/cr-end-27days.html',
                 config: {
                     longStatus: 'Candidate Recommendation',
+                    status: 'CR',
                     crType: 'Draft',
                 },
             },
@@ -392,6 +404,7 @@ const tests = {
                 doc: 'sotd/cr-end-27days.html',
                 config: {
                     longStatus: 'Candidate Recommendation',
+                    status: 'CR',
                     crType: 'Snapshot',
                 },
                 errors: ['headers.w3c-state.bad-w3c-state'],
@@ -400,6 +413,7 @@ const tests = {
                 doc: 'sotd/cr-end-multiple.html',
                 config: {
                     longStatus: 'Candidate Recommendation',
+                    status: 'CR',
                     crType: 'Snapshot',
                 },
                 errors: [
