@@ -358,7 +358,10 @@ const tests = {
             {
                 doc: 'headers/simple.html',
                 config: { longStatus: 'Recommendation', status: 'REC' },
-                errors: ['headers.w3c-state.bad-w3c-state'],
+                errors: [
+                    'headers.w3c-state.bad-w3c-state',
+                    'headers.w3c-state.wrong-w3c-state-link',
+                ],
             },
             {
                 doc: 'headers/h2-amended.html',
@@ -407,7 +410,10 @@ const tests = {
                     status: 'CR',
                     crType: 'Snapshot',
                 },
-                errors: ['headers.w3c-state.bad-w3c-state'],
+                errors: [
+                    'headers.w3c-state.bad-w3c-state',
+                    'headers.w3c-state.wrong-w3c-state-link',
+                ],
             },
             {
                 doc: 'sotd/cr-end-multiple.html',
