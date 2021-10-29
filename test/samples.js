@@ -53,7 +53,7 @@ exports.samples = [
         thisVersion: 'https://www.w3.org/TR/2021/WD-new-name-3-20210915/',
         latestVersion: 'https://www.w3.org/TR/new-name-3/',
         history: 'https://www.w3.org/standards/history/new-name-3',
-        previousVersion: 0,
+        previousVersion: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
         editorsDraft: 'https://w3c.github.io/new-name/',
         sameWorkAs: 'https://www.w3.org/TR/hr-time-3/',
         updated: false,
