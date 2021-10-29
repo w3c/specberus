@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 /**
  * Test the rules.
  */
@@ -17,7 +18,7 @@ const chai = require('chai').expect;
 
 // Internal packages:
 const validation = require('./validation');
-const samples = require('./samples.json');
+const { samples } = require('./samples');
 const validator = require('../lib/validator');
 const sink = require('../lib/sink');
 /**
@@ -57,12 +58,11 @@ const compareMetadata = function (url, file, expectedObject) {
     const handler = new sink.Sink(data => {
         throw new Error(data);
     });
-    const thisFile = file ? `test/docs/metadata/${file}.html` : null;
-    // const opts = {events: handler, url: url, file: thisFile};
+    const thisFile = file ? `test/docs/${file}.html` : null;
     // test only local fixtures
     const opts = { events: handler, file: thisFile };
 
-    it(`Should detect metadata for ${expectedObject.url}`, done => {
+    it(`Should detect metadata for ${thisFile}`, done => {
         handler.on('end-all', () => {
             chai(specberus)
                 .to.have.property('meta')
@@ -79,7 +79,7 @@ const compareMetadata = function (url, file, expectedObject) {
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('thisVersion')
-                .equal(expectedObject.url);
+                .equal(expectedObject.thisVersion);
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('latestVersion')
@@ -114,6 +114,10 @@ const compareMetadata = function (url, file, expectedObject) {
                 .to.have.property('meta')
                 .to.have.property('rectrack')
                 .equal(expectedObject.rectrack);
+            chai(specberus)
+                .to.have.property('meta')
+                .to.have.property('history')
+                .equal(expectedObject.history);
             const optionalProperties = [
                 'process',
                 'editorsDraft',
@@ -174,25 +178,6 @@ describe('Basics', () => {
 
 const tests = {
     // Categories
-    dummy: {
-        // Rules
-        dahut: [
-            // Tests
-            { doc: 'dummy/simple.html' }, // pass test
-            { doc: 'dummy/dahut.html', errors: ['dummy.dahut.not-found'] }, // fail test
-            { doc: 'dummy/all.html', errors: ['dummy.dahut.not-found'] },
-        ],
-        h1: [
-            { doc: 'dummy/simple.html' },
-            { doc: 'dummy/h1.html', errors: ['dummy.h1.not-found'] },
-            { doc: 'dummy/all.html', errors: ['dummy.h1.not-found'] },
-        ],
-        'h2-foo': [
-            { doc: 'dummy/simple.html' },
-            { doc: 'dummy/h2-foo.html', errors: ['dummy.h2-foo.not-found'] },
-            { doc: 'dummy/all.html', errors: ['dummy.h2-foo.not-found'] },
-        ],
-    },
     echidna: {
         'todays-date': [
             {
@@ -215,10 +200,6 @@ const tests = {
             { doc: 'headers/fails.html', errors: ['headers.hr.not-found'] },
             { doc: 'headers/fails-too.html', errors: ['headers.hr.not-found'] },
         ],
-        title: [
-            { doc: 'headers/simple.html' },
-            { doc: 'headers/fails.html', errors: ['headers.title.not-found'] },
-        ],
         logo: [
             { doc: 'headers/simple.html' },
             { doc: 'headers/logo.html' },
@@ -238,10 +219,32 @@ const tests = {
         ],
         dl: [
             {
+                doc: 'headers/dl-fpwd-good.html',
+                config: { status: 'WD' },
+            },
+            {
+                doc: 'headers/dl-history-error1.html',
+                config: { status: 'WD' },
+                errors: ['headers.dl.history-syntax'],
+            },
+            {
+                doc: 'headers/dl-fpwd-new-level-bad.html',
+                config: { status: 'WD' },
+            },
+            {
+                doc: 'headers/dl-wd-good.html',
+                config: { status: 'WD' },
+            },
+            {
+                doc: 'headers/dl-wd-shortname-change-good.html',
+                config: { status: 'WD' },
+                warnings: ['headers.dl.this-previous-shortname'],
+            },
+            {
                 doc: 'headers/simple.html',
-                config: { previousVersion: true, status: 'WD' },
+                config: { status: 'WD' },
                 errors: [
-                    'headers.dl.cant-retrieve',
+                    'headers.dl.no-history',
                     'headers.dl.editor-missing-id',
                 ],
             },
@@ -249,6 +252,7 @@ const tests = {
                 doc: 'headers/fails.html',
                 config: { status: 'REC' },
                 errors: [
+                    'headers.dl.no-history',
                     'headers.dl.this-version',
                     'headers.dl.latest-version',
                     'headers.dl.not-found',
@@ -257,11 +261,11 @@ const tests = {
             },
             {
                 doc: 'headers/fails.html',
-                config: { status: 'REC', previousVersion: true },
+                config: { status: 'REC' },
                 errors: [
+                    'headers.dl.no-history',
                     'headers.dl.this-version',
                     'headers.dl.latest-version',
-                    'headers.dl.previous-version',
                     'headers.dl.not-found',
                     'headers.dl.editor-not-found',
                 ],
@@ -270,12 +274,9 @@ const tests = {
                 doc: 'headers/dl-order.html',
                 errors: [
                     'headers.dl.this-latest-order',
-                    'headers.dl.latest-previous-order',
-                    'headers.dl.cant-retrieve',
                     'headers.dl.implelink-should-be-https',
                     'headers.dl.editors-draft-should-be-https',
                 ],
-                warnings: ['headers.dl.previous-not-needed'],
             },
             {
                 doc: 'headers/dl-mismatch.html',
@@ -286,54 +287,48 @@ const tests = {
                     'headers.dl.link-diff',
                     'headers.dl.latest-syntax',
                     'headers.dl.link-diff',
-                    'headers.dl.previous-syntax',
                     'headers.dl.not-found',
                     'headers.dl.editor-not-found',
                 ],
-                warnings: ['headers.dl.previous-not-needed'],
             },
             {
                 doc: 'headers/wrong-urls.html',
-                errors: ['headers.dl.previous-syntax'],
-                config: { previousVersion: true, status: 'WD' },
+                config: { status: 'WD' },
             },
             {
                 doc: 'headers/dl-trailing-whitespace.html',
-                config: { previousVersion: true, status: 'WD' },
-                errors: ['headers.dl.cant-retrieve'],
+                config: { status: 'WD' },
             },
             {
                 doc: 'headers/dl-untrimmed-text.html',
-                config: { previousVersion: true, status: 'WD' },
-                errors: ['headers.dl.cant-retrieve'],
+                config: { status: 'WD' },
             },
             {
                 doc: 'headers/shortnameChange.html',
-                config: { previousVersion: true, status: 'WD' },
+                config: { status: 'WD' },
                 warnings: ['headers.dl.this-previous-shortname'],
+                errors: ['headers.dl.history-bad-previous'],
             },
             {
                 doc: 'headers/wg-note.html',
-                config: { previousVersion: true, status: 'NOTE' },
-                errors: ['headers.dl.previous-version'],
+                config: { status: 'NOTE' },
             },
             { doc: 'headers/wg-note.html', config: { status: 'NOTE' } },
             {
                 doc: 'headers/seriesShortlink.html',
-                config: { previousVersion: true, status: 'WD' },
-                errors: ['headers.dl.cant-retrieve'],
+                config: { status: 'WD' },
+                errors: ['headers.dl.no-history'],
             },
             {
                 doc: 'headers/dl-no-implelink.html',
-                config: { previousVersion: true, status: 'CR' },
+                config: { status: 'CR' },
                 warnings: ['headers.dl.implelink-comfirm-no'],
-                errors: ['headers.dl.cant-retrieve'],
             },
         ],
         'github-repo': [
             {
                 doc: 'headers/simple.html',
-                errors: ['headers.github-repo.no-repo'],
+                errors: ['headers.github-repo.no-feedback'],
             },
             {
                 doc: 'sotd/github-bad.html',
@@ -345,53 +340,66 @@ const tests = {
         errata: [
             {
                 doc: 'headers/simple.html',
-                config: { longStatus: 'Recommendation' },
             },
             {
                 doc: 'headers/simple-oxford.html',
-                config: { longStatus: 'Recommendation' },
-                errors: ['headers.errata.link-should-be-https'],
+                errors: ['headers.errata.no-errata'],
             },
         ],
-        'h2-status': [
+        'w3c-state': [
             {
                 doc: 'headers/simple.html',
-                config: { longStatus: 'Working Draft' },
+                config: { longStatus: 'Working Draft', status: 'WD' },
             },
             {
                 doc: 'headers/h2-comma.html',
-                config: { longStatus: 'Working Draft' },
+                config: { longStatus: 'Working Draft', status: 'WD' },
             },
             {
                 doc: 'headers/simple.html',
-                config: { longStatus: 'Recommendation' },
-                errors: ['headers.h2-status.bad-h2'],
+                config: { longStatus: 'Recommendation', status: 'REC' },
+                errors: [
+                    'headers.w3c-state.bad-w3c-state',
+                    'headers.w3c-state.wrong-w3c-state-link',
+                ],
             },
             {
                 doc: 'headers/h2-amended.html',
-                config: { longStatus: 'Recommendation', amended: true },
+                config: {
+                    longStatus: 'Recommendation',
+                    status: 'REC',
+                    amended: true,
+                },
+                errors: ['headers.w3c-state.wrong-w3c-state-link'],
             },
             {
                 doc: 'headers/simple.html',
-                config: { longStatus: 'Working Draft', amended: true },
-                errors: ['headers.h2-status.bad-h2'],
+                config: {
+                    longStatus: 'Working Draft',
+                    status: 'WD',
+                    amended: true,
+                },
+                errors: ['headers.w3c-state.bad-w3c-state'],
             },
             {
                 doc: 'headers/h2-not-found.html',
-                errors: ['headers.h2-status.no-h2'],
-                config: { longStatus: 'Working Draft' },
+                errors: ['headers.w3c-state.no-w3c-state'],
+                config: { longStatus: 'Working Draft', status: 'WD' },
             },
             {
                 doc: 'sotd/cr-end.html',
                 config: {
                     longStatus: 'Candidate Recommendation',
+                    status: 'CR',
                     crType: 'Snapshot',
                 },
+                errors: ['headers.w3c-state.no-w3c-state-link'],
             },
             {
                 doc: 'sotd/cr-end-27days.html',
                 config: {
                     longStatus: 'Candidate Recommendation',
+                    status: 'CR',
                     crType: 'Draft',
                 },
             },
@@ -399,19 +407,24 @@ const tests = {
                 doc: 'sotd/cr-end-27days.html',
                 config: {
                     longStatus: 'Candidate Recommendation',
+                    status: 'CR',
                     crType: 'Snapshot',
                 },
-                errors: ['headers.h2-status.bad-h2'],
+                errors: [
+                    'headers.w3c-state.bad-w3c-state',
+                    'headers.w3c-state.wrong-w3c-state-link',
+                ],
             },
             {
                 doc: 'sotd/cr-end-multiple.html',
                 config: {
                     longStatus: 'Candidate Recommendation',
+                    status: 'CR',
                     crType: 'Snapshot',
                 },
                 errors: [
-                    'headers.h2-status.bad-h2',
-                    'headers.h2-status.bad-h2',
+                    'headers.w3c-state.bad-w3c-state',
+                    'headers.w3c-state.bad-w3c-state',
                 ],
             },
         ],
@@ -491,7 +504,6 @@ const tests = {
             },
         ],
         meta: [
-            { doc: 'dummy/simple.html', errors: ['style.meta.not-found'] },
             { doc: 'style/simple.html' },
             { doc: 'style/wrong-meta.html', errors: ['style.meta.not-found'] },
         ],
@@ -636,7 +648,7 @@ const tests = {
     },
     sotd: {
         'rec-addition': [
-            { doc: 'sotd/rec-addition-2020.html' },
+            { doc: 'sotd/rec-addition-2021.html' },
             {
                 doc: 'sotd/rec-obsl.html',
                 errors: [
@@ -669,7 +681,7 @@ const tests = {
             },
         ],
         'rec-comment-end': [
-            { doc: 'sotd/rec-addition-2020.html' },
+            { doc: 'sotd/rec-addition-2021.html' },
             {
                 doc: 'sotd/rec-obsl.html',
                 errors: ['sotd.rec-comment-end.not-found'],
@@ -682,66 +694,135 @@ const tests = {
         publish: [
             {
                 doc: 'sotd/cr-end.html',
-                config: { status: 'CR', crType: 'Snapshot' },
+                config: {
+                    status: 'CR',
+                    track: 'Recommendation',
+                    crType: 'Snapshot',
+                },
             },
             {
                 doc: 'sotd/cr-end-27days.html',
-                config: { status: 'CRD', crType: 'Draft' },
+                config: {
+                    status: 'CRD',
+                    crType: 'Draft',
+                    track: 'Recommendation',
+                },
             },
             {
                 doc: 'sotd/cr-end.html',
-                config: { status: 'CR', crType: 'Draft' },
+                config: {
+                    status: 'CR',
+                    track: 'Recommendation',
+                    crType: 'Draft',
+                },
                 errors: ['sotd.publish.not-found'],
             },
             {
                 doc: 'sotd/rec-obsl.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
             },
             {
                 doc: 'sotd/rec-rescind.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
                 errors: ['sotd.publish.url-not-match'],
             },
             {
                 doc: 'sotd/rec-superseded.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
                 errors: ['sotd.publish.url-text-not-found'],
             },
             {
                 doc: 'sotd/rec-publish-p-corrections-pass.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
             },
             {
                 doc: 'sotd/rec-publish-p-corrections-fail.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
                 errors: ['sotd.publish.url-not-match'],
             },
             {
                 doc: 'sotd/rec-publish-p-corrections-fail2.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
                 errors: ['sotd.publish.url-text-not-found'],
             },
             {
                 doc: 'sotd/rec-publish-c-corrections-pass.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
             },
             {
                 doc: 'sotd/rec-publish-c-additions-pass.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
             },
             {
                 doc: 'sotd/rec-publish-c-changes-pass.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
             },
             {
-                doc: 'sotd/rec-addition-2020.html',
-                config: { status: 'REC', longStatus: 'Recommendation' },
+                doc: 'sotd/rec-addition-2021.html',
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
+            },
+            {
+                doc: 'sotd/group-homepage.html',
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
+            },
+            {
+                doc: 'sotd/group-homepage-wrong.html',
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
+                errors: ['sotd.publish.no-homepage-link'],
             },
         ],
         'new-features': [
-            { doc: 'sotd/rec-addition-2020.html', config: { status: 'REC' } },
+            { doc: 'sotd/rec-addition-2021.html', config: { status: 'REC' } },
             {
-                doc: 'sotd/rec-addition-2020.html',
+                doc: 'sotd/rec-addition-2021.html',
                 config: { status: 'PR' },
                 warnings: ['sotd.new-features.no-warning'],
             },
@@ -768,7 +849,7 @@ const tests = {
                 },
             },
             {
-                doc: 'sotd/rec-addition-2020.html',
+                doc: 'sotd/rec-addition-2021.html',
                 config: { stabilityWarning: 'REC' },
             },
             { doc: 'sotd/rec-obsl.html', config: { stabilityWarning: 'REC' } },
@@ -805,19 +886,18 @@ const tests = {
         pp: [
             {
                 doc: 'headers/simple.html',
-                config: { recTrackStatus: true },
+                config: { track: 'Recommendation' },
                 errors: ['sotd.pp.undefined'],
             },
             {
                 doc: 'sotd/pp-bad.html',
-                config: { recTrackStatus: true, patentPolicy: 'pp2004' },
-                errors: ['sotd.pp.no-pp'],
+                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
+                errors: ['sotd.pp.no-pp-from-charter'],
             },
             {
                 doc: 'sotd/joint-publication-bad-pp-version.html',
                 config: {
-                    recTrackStatus: true,
-                    noRecTrack: false,
+                    track: 'Recommendation',
                     patentPolicy: 'pp2004',
                 },
                 errors: ['sotd.pp.no-pp'],
@@ -826,8 +906,7 @@ const tests = {
             {
                 doc: 'sotd/wrong-pp-from-charter.html',
                 config: {
-                    recTrackStatus: true,
-                    noRecTrack: false,
+                    track: 'Recommendation',
                     patentPolicy: 'pp2020',
                 },
                 errors: ['sotd.pp.wrong-pp-from-charter'],
@@ -835,28 +914,27 @@ const tests = {
             {
                 doc: 'sotd/joint-publication-diff-pp-version.html',
                 config: {
-                    recTrackStatus: true,
-                    noRecTrack: false,
+                    track: 'Recommendation',
                     patentPolicy: 'pp2020',
                 },
-                errors: ['sotd.pp.joint-different-pp'],
+                errors: ['sotd.pp.no-pp'],
+                warnings: ['sotd.pp.joint-publication'],
             },
             {
                 doc: 'sotd/joint-publication-good.html',
                 config: {
-                    recTrackStatus: true,
-                    noRecTrack: false,
+                    track: 'Recommendation',
                     patentPolicy: 'pp2004',
                 },
                 warnings: ['sotd.pp.joint-publication'],
             },
             {
                 doc: 'sotd/joint-publication-tag.html',
-                config: { recTrackStatus: true, patentPolicy: 'pp2004' },
+                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
             },
             {
                 doc: 'sotd/joint-publication-fail.html',
-                config: { recTrackStatus: true, patentPolicy: 'pp2004' },
+                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
                 errors: ['sotd.pp.no-pp'],
             },
             {
@@ -864,6 +942,7 @@ const tests = {
                 config: {
                     longStatus: 'Working Group Note',
                     patentPolicy: 'pp2004',
+                    track: 'Note',
                 },
             },
             {
@@ -871,19 +950,14 @@ const tests = {
                 config: {
                     longStatus: 'Working Group Note',
                     patentPolicy: 'pp2004',
+                    track: 'Note',
                 },
-            },
-            {
-                doc: 'headers/wg-note2.html',
-                config: {
-                    longStatus: 'Working Group Note',
-                    patentPolicy: 'pp2004',
-                },
+                errors: ['sotd.pp.no-pp-from-charter'],
             },
             {
                 doc: 'sotd/pp-20170801.html',
                 config: {
-                    recTrackStatus: true,
+                    track: 'Recommendation',
                     patentPolicy: 'pp2004',
                     amended: true,
                 },
@@ -891,29 +965,26 @@ const tests = {
             },
             {
                 doc: 'sotd/pp-20170801-amended.html',
-                config: { recTrackStatus: true, patentPolicy: 'pp2004' },
+                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
                 errors: ['sotd.pp.no-pp'],
             },
             {
                 doc: 'sotd/pp-20170801-amended.html',
                 config: {
-                    recTrackStatus: true,
+                    track: 'Recommendation',
                     patentPolicy: 'pp2004',
                     amended: true,
                 },
             },
             {
                 doc: 'sotd/pp-20200915.html',
-                config: { recTrackStatus: true, patentPolicy: 'pp2020' },
-            },
-            {
-                doc: 'sotd/pp-20200915.html',
-                config: { recTrackStatus: true },
-                errors: ['sotd.pp.undefined'],
+                config: { track: 'Recommendation', patentPolicy: 'pp2020' },
+                errors: ['sotd.pp.wrong-pp-from-charter'],
             },
             {
                 doc: 'sotd/pp-20200915-iprlink.html',
-                config: { recTrackStatus: true, patentPolicy: 'pp2020' },
+                config: { track: 'Recommendation', patentPolicy: 'pp2020' },
+                errors: ['sotd.pp.no-pp-from-charter'],
             },
             { doc: 'headers/wd.html' },
             {
@@ -1038,7 +1109,7 @@ const tests = {
                 errors: ['sotd.stability.no-stability'],
             },
             {
-                doc: 'sotd/rec-addition-2020.html',
+                doc: 'sotd/rec-addition-2021.html',
                 config: { stabilityWarning: 'REC' },
             },
             {
@@ -1088,8 +1159,14 @@ const tests = {
             { doc: 'sotd/pp-bad.html', errors: ['sotd.ac-review.not-found'] },
         ],
         'process-document': [
-            { doc: 'sotd/process2019.html' },
-            { doc: 'sotd/rec-addition-2020.html' },
+            {
+                doc: 'sotd/process2019.html',
+                errors: [
+                    'sotd.process-document.wrong-process',
+                    'sotd.process-document.not-found',
+                ],
+            },
+            { doc: 'sotd/rec-addition-2021.html' },
             {
                 doc: 'sotd/process2019-not-allowed.html',
                 errors: [
@@ -1104,15 +1181,6 @@ const tests = {
                     'sotd.process-document.not-found',
                 ],
             },
-        ],
-        'group-homepage': [
-            { doc: 'sotd/group-homepage.html' },
-            { doc: 'sotd/group-homepage-https.html' },
-            {
-                doc: 'sotd/group-homepage-wrong.html',
-                errors: ['sotd.group-homepage.no-homepage'],
-            },
-            { doc: 'headers/ig-note.html' },
         ],
         'obsl-rescind': [
             { doc: 'sotd/rec-obsl.html', config: { obsoletes: true } },
@@ -1142,7 +1210,7 @@ const tests = {
                 errors: ['sotd.deliverer-note.not-found'],
             },
         ],
-        'cr-end': [
+        'candidate-review-end': [
             {
                 doc: 'metadata/cr-mediacapture-streams.html',
                 config: { status: 'CR' },
@@ -1150,23 +1218,23 @@ const tests = {
             {
                 doc: 'metadata/cr-mediacapture-streams.html',
                 config: { status: 'CR', editorial: true },
-                warnings: ['sotd.cr-end.editorial'],
+                warnings: ['sotd.candidate-review-end.editorial'],
             },
             { doc: 'sotd/cr-end.html', config: { status: 'CR' } },
             {
                 doc: 'sotd/cr-end-27days.html',
                 config: { status: 'CR' },
-                errors: ['sotd.cr-end.not-found'],
+                errors: ['sotd.candidate-review-end.not-found'],
             },
             {
                 doc: 'sotd/cr-end-multiple.html',
                 config: { status: 'CR' },
-                warnings: ['sotd.cr-end.multiple-found'],
+                warnings: ['sotd.candidate-review-end.multiple-found'],
             },
             {
                 doc: 'sotd/cr-end-nodate.html',
                 config: { status: 'CR' },
-                errors: ['sotd.cr-end.found-not-valid'],
+                errors: ['sotd.candidate-review-end.found-not-valid'],
             },
         ],
     },
@@ -1181,19 +1249,6 @@ const tests = {
                 ],
             },
             { doc: 'heuristic/dated-url.html' },
-        ],
-        shortname: [
-            { doc: 'headers/simple.html' },
-            { doc: 'headers/diff-latest-version.html' },
-            {
-                doc: 'headers/diff-latest-version.html',
-                config: { previousVersion: false },
-            },
-            {
-                doc: 'metadata/tracking-compliance.html',
-                config: { previousVersion: false },
-                errors: ['heuristic.shortname.shortname-duplicate'],
-            },
         ],
     },
     validation,

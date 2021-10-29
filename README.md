@@ -154,14 +154,13 @@ goals of this method).
 * `delivererIDs`: ID(s) of the deliverer(s); an `Array` of `Number`s.
 * `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
 * `informative`: Whether the document in informative or not.
-* `rectrack`: Whether the document in on REC track or not.
 * `process`: The process rules link.
 * `sameWorkAs`: The previous shortlink if any.
 * `implementationFeedbackDue`: The implementation review date for CRs.
 * `prReviewsDue`: The review date for PRs.
 * `implementationReport`: Implementation report link for CRs, PRs and RECs.
 * `errata`: The errata link of the document.
-* `substantiveChanges`: Whether the document is a REC and has proposed changes
+* `substantiveChanges`: Whether the document is a REC and has proposed amendments
 * `newFeatures`: Whether the document is a REC and has proposed additions
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
@@ -180,7 +179,6 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
   "delivererIDs": [123, 456],
   "editorIDs": [ 12345 ],
   "informative": false,
-  "rectrack": true,
   "process": "https://www.w3.org/2015/Process-20150901/" }
 }
 ```
@@ -245,7 +243,6 @@ Pubrules supports advanced configs to make the validation more accurate.
 | Config | Explanation |Supported value |
 | ---- | ---- | ---- |
 | validation | Recursively validate multipart documents | no-validation, simple-validation, recursive |
-| noRecTrack | If the document is not on rec-track | true, false |
 | informativeOnly | If the document is informative | true, false |
 | echidnaReady |Check that the document is valid for automatic publication with Echidna | true, false|
 | patentPolicy | Patent Policy version | pp2020, pp2004, pp2002 |
@@ -276,8 +273,7 @@ This is an example of a successful validation of a document, with profile `auto`
      "links.compound",
      "headers.dl" ],
   "info":
-   [ "sotd.diff",
-     "structure.display-only",
+   [ "structure.display-only",
      "structure.display-only",
      "structure.display-only",
      "validation.wcag" ],
@@ -291,7 +287,6 @@ This is an example of a successful validation of a document, with profile `auto`
      "editorsDraft": "https://w3c.github.io/charmod-norm/",
      "delivererIDs": [ 32113 ],
      "editorIDs": [ 33573 ],
-     "rectrack": false,
      "informative": false,
      "process": "https://www.w3.org/2015/Process-20150901/",
      "url": "https://www.w3.org/TR/2016/WD-charmod-norm-20160407/"
@@ -316,14 +311,8 @@ A profile is basically a configuration of what to check. You can load a specific
 Here follows the current hierarchy of profiles. Each profile inherits all rules from its parent profile.
 Profiles that are identical to its parent profile, ie that do not add any new rules, are marked too.
 
-* `dummy`
 * `base`
   * `TR`
-    * `WG-NOTE`
-      * `FPWG-NOTE` (identical)
-    * `WG-NOTE-Echidna`
-    * `IG-NOTE`
-      * `FPIG-NOTE` (identical)
     * `WD`
       * `WD-Echidna`
     * `FPWD` (identical)
@@ -339,6 +328,15 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
     * `REC-OBSOLETE`
     * `REC-RSCND`
     * `REC-SUPERSEDED`
+    * `DNOTE`
+    * `DNOTE-Echidna`
+    * `NOTE`
+    * `NOTE-Echidna`
+    * `STMT`
+    * `DRY`
+    * `CRY`
+    * `CRYD`
+    * `RY`
   * `Submission`
     * `SUBM`
     * `MEM-SUBM`
@@ -384,5 +382,5 @@ The Specberus object exposes the following API that's useful for validation:
   and its callback, and Specberus will conveniently take care of all the rest.
 * `norm(text)`. Returns a whitespace-normalised version of the text.
 * `getDocumentDate()`. Returns a Date object that matches the document's date as specified in the
-  headers' h2.
-* `getDocumentDateElement()`. Returns the element that contains the document's date.
+  headers' `stateElement` (id="w3c-state").
+* `getDocumentStateElement()`. Returns the element that contains the document's date.

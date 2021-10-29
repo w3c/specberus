@@ -22,12 +22,12 @@
   ],
   "^audiobooks$": [
     {
-      "rule": "sotd.cr-end"
+      "rule": "sotd.candidate-review-end"
     }
   ],
   "^pub-manifest$": [
     {
-      "rule": "sotd.cr-end"
+      "rule": "sotd.candidate-review-end"
     }
   ],
   "^did-core$": [
