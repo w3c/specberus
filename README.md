@@ -313,8 +313,6 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
 
 * `base`
   * `TR`
-    * `NOTE`
-    * `NOTE-Echidna`
     * `WD`
       * `WD-Echidna`
     * `FPWD` (identical)
@@ -330,6 +328,15 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
     * `REC-OBSOLETE`
     * `REC-RSCND`
     * `REC-SUPERSEDED`
+    * `DNOTE`
+    * `DNOTE-Echidna`
+    * `NOTE`
+    * `NOTE-Echidna`
+    * `STMT`
+    * `DRY`
+    * `CRY`
+    * `CRYD`
+    * `RY`
   * `Submission`
     * `SUBM`
     * `MEM-SUBM`
