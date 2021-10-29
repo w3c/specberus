@@ -781,6 +781,23 @@ const tests = {
                     longStatus: 'Recommendation',
                 },
             },
+            {
+                doc: 'sotd/group-homepage.html',
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
+            },
+            {
+                doc: 'sotd/group-homepage-wrong.html',
+                config: {
+                    status: 'REC',
+                    track: 'Recommendation',
+                    longStatus: 'Recommendation',
+                },
+                errors: ['sotd.publish.no-homepage-link'],
+            },
         ],
         'new-features': [
             { doc: 'sotd/rec-addition-2021.html', config: { status: 'REC' } },
@@ -1144,15 +1161,6 @@ const tests = {
                     'sotd.process-document.not-found',
                 ],
             },
-        ],
-        'group-homepage': [
-            { doc: 'sotd/group-homepage.html' },
-            { doc: 'sotd/group-homepage-https.html' },
-            {
-                doc: 'sotd/group-homepage-wrong.html',
-                errors: ['sotd.group-homepage.no-homepage'],
-            },
-            { doc: 'headers/ig-note.html' },
         ],
         'obsl-rescind': [
             { doc: 'sotd/rec-obsl.html', config: { obsoletes: true } },
