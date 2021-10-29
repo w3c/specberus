@@ -269,7 +269,7 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "publish": [
-                                "Candidate Registry",
+                                "Candidate Registry Snapshot",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Registry track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Registry track&lt;/a&gt;"
                             ],
