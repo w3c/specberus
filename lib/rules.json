@@ -2053,13 +2053,6 @@
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
                             ],
-                            "implEstimation": "It <span class=\"rfc2119\">should</span> include an estimated date by which time the Working Group expects to have sufficient implementation experience.",
-                            "featAtRisk": "It <span class=\"rfc2119\">must</span> identify any \"features at risk\" declared by the Working Group (as defined in section <a href=\"https://www.w3.org/Consortium/Process/#candidate-rec\">6.4 of the W3C Process Document</a>).",
-                            "customParagraph": true,
-                            "changesList": [
-                                "must",
-                                ""
-                            ],
                              "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Publication as a Discontinued Draft imply that this document no longer intended to advance or to be maintained. It is inappropriate to cite this document as other than abandoned work.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;Publication as a Discontinued Draft imply that this document no longer intended to advance or to be maintained. It is inappropriate to cite this document as other than abandoned work.&lt;/p&gt;</code></div>",
                             "patPolReq": true,
                             "knownDisclosureNumber": true,
