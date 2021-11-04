@@ -944,6 +944,7 @@ const tests = {
                     patentPolicy: 'pp2004',
                     track: 'Note',
                 },
+                errors: ['sotd.pp.no-pp'],
             },
             {
                 doc: 'headers/wg-note1.html',
