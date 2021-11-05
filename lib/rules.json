@@ -2067,8 +2067,7 @@
                             "cssValide": true,
                             "namespaces": true,
                             "wcag": true,
-                            "fixupJs": true,
-                            "securityAndPrivacy": true
+                            "fixupJs": true
                         }
                     },
                     "compound": {
