@@ -1982,6 +1982,105 @@
                         }
                     }
                 }
+            },
+            "DISC": {
+                "order": 9,
+                "name": "Discontinued Draft",
+                "sections": {
+                    "format": {
+                        "name": "1. Normative Document Representation",
+                        "rules": {
+                            "normativeVersion": true,
+                            "valideHTML": true,
+                            "visualStyle": true
+                        }
+                    },
+                    "metadata": {
+                        "name": "2. Document Metadata",
+                        "rules": {
+                            "goodStylesheet": [
+                                "DISC"
+                            ],
+                            "lastStylesheet": true,
+                            "viewport": true,
+                            "canonical": true
+                        }
+                    },
+                    "front-matter": {
+                        "name": "3. Front Matter",
+                        "rules": {
+                            "divClassHead": true,
+                            "logo": true,
+                            "title": true,
+                            "versionNumber": [
+                                ""
+                            ],
+                            "dateState": [
+                                "Discontinued Draft",
+                                ""
+                            ],
+                            "docIDFormat": true,
+                            "docIDOrder": true,
+                            "docIDThisVersion": [
+                                "DISC"
+                            ],
+                            "docIDDate": true,
+                            "docIDLatestVersion": true,
+                            "docIDHistory": true,
+                            "editorSection": true,
+                            "altRepresentations": [
+                                "DISC"
+                            ],
+                            "copyright": true,
+                            "hrAfterCopyright": true
+                        }
+                    },
+                    "navigation": {
+                        "name": "6. Table of Contents",
+                        "rules": {
+                            "toc": true,
+                            "tocNav": true
+                        }
+                    },
+                    "document-status": {
+                        "name": "5. Document Status Section",
+                        "rules": {
+                            "sotd": true,
+                            "boilerplateTRDoc": true,
+                            "datesFormat": true,
+                            "publish": [
+                                "Discontinued Draft",
+                                "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
+                                "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
+                            ],
+                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Publication as a Discontinued Draft imply that this document no longer intended to advance or to be maintained. It is inappropriate to cite this document as other than abandoned work.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;Publication as a Discontinued Draft imply that this document no longer intended to advance or to be maintained. It is inappropriate to cite this document as other than abandoned work.&lt;/p&gt;</code></div>",
+                            "patPolReq": true,
+                            "knownDisclosureNumber": true,
+                            "whichProcess": true
+                        }
+                    },
+                    "document-body": {
+                        "name": "7. Document Body",
+                        "rules": {
+                            "headingWithoutID": true,
+                            "brokenLink": true,
+                            "cssValide": true,
+                            "namespaces": true,
+                            "wcag": true,
+                            "fixupJs": true
+                        }
+                    },
+                    "compound": {
+                        "name": "8. Compound Documents",
+                        "rules": {
+                            "compoundFilesLocation": [
+                                "DISC"
+                            ],
+                            "compoundOverview": true,
+                            "compound": true
+                        }
+                    }
+                }
             }
         }
     },
