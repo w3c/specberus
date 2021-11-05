@@ -1106,11 +1106,18 @@ const tests = {
                     longStatus: 'Candidate Recommendation',
                     stabilityWarning: true,
                 },
-                errors: ['sotd.stability.no-stability'],
+                errors: [
+                    'sotd.stability.no-stability',
+                    'sotd.stability.no-licensing-link',
+                ],
             },
             {
                 doc: 'sotd/rec-addition-2021.html',
-                config: { stabilityWarning: 'REC' },
+                config: {
+                    stabilityWarning: 'REC',
+                    status: 'REC',
+                    longStatus: 'Recommendation',
+                },
             },
             {
                 doc: 'sotd/rec-obsl.html',
