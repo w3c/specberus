@@ -1125,7 +1125,7 @@ const tests = {
             {
                 doc: 'sotd/rec-obsl.html',
                 config: { stabilityWarning: true, status: 'REC' },
-                errors: ['sotd.stability.no-rec-review'],
+                errors: ['sotd.stability.no-licensing-link'],
             },
             {
                 doc: 'sotd/cr-end-27days.html',
