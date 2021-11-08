@@ -850,9 +850,12 @@ const tests = {
             },
             {
                 doc: 'sotd/rec-addition-2021.html',
-                config: { stabilityWarning: 'REC' },
+                config: { stabilityWarning: true, status: 'REC' },
             },
-            { doc: 'sotd/rec-obsl.html', config: { stabilityWarning: 'REC' } },
+            {
+                doc: 'sotd/rec-obsl.html',
+                config: { stabilityWarning: true, status: 'REC' },
+            },
             {
                 doc: 'sotd/cr-end-27days.html',
                 config: {
@@ -1114,14 +1117,14 @@ const tests = {
             {
                 doc: 'sotd/rec-addition-2021.html',
                 config: {
-                    stabilityWarning: 'REC',
+                    stabilityWarning: true,
                     status: 'REC',
                     longStatus: 'Recommendation',
                 },
             },
             {
                 doc: 'sotd/rec-obsl.html',
-                config: { stabilityWarning: 'REC' },
+                config: { stabilityWarning: true, status: 'REC' },
                 errors: ['sotd.stability.no-rec-review'],
             },
             {
