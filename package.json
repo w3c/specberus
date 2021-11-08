@@ -20,7 +20,7 @@
     "morgan": "1.10.0",
     "node-w3capi": "1.10.2",
     "promise": "8.1.0",
-    "puppeteer": "10.4.0",
+    "puppeteer": "11.0.0",
     "request": "2.88.2",
     "socket.io": "4.3.1",
     "superagent": "6.1.0"
