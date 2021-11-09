@@ -850,11 +850,11 @@ const tests = {
             },
             {
                 doc: 'sotd/rec-addition-2021.html',
-                config: { status: 'REC' },
+                config: { status: 'REC', longStatus: 'Recommendation' },
             },
             {
                 doc: 'sotd/rec-obsl.html',
-                config: { status: 'REC' },
+                config: { status: 'REC', longStatus: 'Recommendation' },
             },
             {
                 doc: 'sotd/cr-end-27days.html',
