@@ -399,7 +399,7 @@ const tests = {
                 doc: 'sotd/cr-end-27days.html',
                 config: {
                     longStatus: 'Candidate Recommendation',
-                    status: 'CR',
+                    status: 'CRD',
                     crType: 'Draft',
                 },
             },
@@ -711,7 +711,7 @@ const tests = {
             {
                 doc: 'sotd/cr-end.html',
                 config: {
-                    status: 'CR',
+                    status: 'CRD',
                     track: 'Recommendation',
                     crType: 'Draft',
                 },
@@ -849,11 +849,6 @@ const tests = {
                 },
             },
             {
-                doc: 'sotd/rec-addition-2021.html',
-                config: { stabilityWarning: 'REC' },
-            },
-            { doc: 'sotd/rec-obsl.html', config: { stabilityWarning: 'REC' } },
-            {
                 doc: 'sotd/cr-end-27days.html',
                 config: {
                     crType: 'Snapshot',
@@ -863,15 +858,21 @@ const tests = {
             {
                 doc: 'sotd/cr-end-multiple.html',
                 config: {
-                    crType: 'Snapshot',
+                    crType: 'Draft',
                     longStatus: 'Candidate Recommendation',
                 },
             },
             {
                 doc: 'online/WD-screen-orientation.html',
-                config: { longStatus: 'Working Draft', stabilityWarning: true },
+                config: { longStatus: 'Working Draft' },
             },
-            { doc: 'sotd/cr-end.html' },
+            {
+                doc: 'sotd/cr-end.html',
+                config: {
+                    crType: 'Snapshot',
+                    longStatus: 'Candidate Recommendation',
+                },
+            },
         ],
         supersedable: [
             { doc: 'headers/simple.html' },
@@ -1048,32 +1049,30 @@ const tests = {
         stability: [
             {
                 doc: 'headers/simple.html',
-                config: { longStatus: 'Working Draft', stabilityWarning: true },
+                config: { longStatus: 'Working Draft' },
             },
             {
                 doc: 'headers/simple.html',
-                config: { longStatus: 'Rock And Roll', stabilityWarning: true },
+                config: { longStatus: 'Rock And Roll' },
                 errors: ['sotd.stability.no-stability'],
             },
             {
                 doc: 'sotd/supersedable.html',
                 config: {
                     longStatus: 'Rock And Roll',
-                    stabilityWarning: false,
                 },
+                errors: ['sotd.stability.no-stability'],
             },
             {
                 doc: 'headers/ig-note.html',
                 config: {
                     longStatus: 'Interest Group Note',
-                    stabilityWarning: true,
                 },
             },
             {
                 doc: 'headers/wg-note.html',
                 config: {
                     longStatus: 'Working Group Note',
-                    stabilityWarning: true,
                 },
                 errors: ['sotd.stability.no-stability'],
             },
@@ -1081,14 +1080,12 @@ const tests = {
                 doc: 'headers/wg-note1.html',
                 config: {
                     longStatus: 'Working Group Note',
-                    stabilityWarning: true,
                 },
             },
             {
                 doc: 'headers/wg-note2.html',
                 config: {
                     longStatus: 'Working Group Note',
-                    stabilityWarning: true,
                 },
             },
             {
@@ -1096,7 +1093,6 @@ const tests = {
                 config: {
                     status: 'WD',
                     longStatus: 'Working Draft',
-                    stabilityWarning: true,
                 },
             },
             {
@@ -1104,7 +1100,6 @@ const tests = {
                 config: {
                     status: 'CR',
                     longStatus: 'Candidate Recommendation',
-                    stabilityWarning: true,
                 },
                 errors: [
                     'sotd.stability.no-stability',
@@ -1114,21 +1109,19 @@ const tests = {
             {
                 doc: 'sotd/rec-addition-2021.html',
                 config: {
-                    stabilityWarning: 'REC',
                     status: 'REC',
                     longStatus: 'Recommendation',
                 },
             },
             {
                 doc: 'sotd/rec-obsl.html',
-                config: { stabilityWarning: 'REC' },
-                errors: ['sotd.stability.no-rec-review'],
+                config: { status: 'REC' },
+                errors: ['sotd.stability.no-licensing-link'],
             },
             {
                 doc: 'sotd/cr-end-27days.html',
                 config: {
                     crType: 'Snapshot',
-                    stabilityWarning: true,
                     longStatus: 'Candidate Recommendation',
                 },
                 errors: ['sotd.stability.no-cr-review'],
@@ -1137,7 +1130,6 @@ const tests = {
                 doc: 'sotd/cr-end-multiple.html',
                 config: {
                     crType: 'Snapshot',
-                    stabilityWarning: true,
                     longStatus: 'Candidate Recommendation',
                 },
                 errors: ['sotd.stability.wrong-cr-review-link'],
@@ -1146,18 +1138,16 @@ const tests = {
                 doc: 'online/WG-NOTE-lpf.html',
                 config: {
                     longStatus: 'Working Group Note',
-                    stabilityWarning: true,
                 },
             },
             {
                 doc: 'online/WD-screen-orientation.html',
-                config: { longStatus: 'Working Draft', stabilityWarning: true },
+                config: { longStatus: 'Working Draft' },
             },
             {
                 doc: 'online/IG-NOTE-media-timed-events.html',
                 config: {
                     longStatus: 'Interest Group Note',
-                    stabilityWarning: true,
                 },
             },
         ],
