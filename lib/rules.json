@@ -1287,7 +1287,7 @@
                             "versionNumber": [
                                 ""
                             ],
-                            "dateState": "The document's status and date <span class=\"rfc2119\">must</span> be in an <code>p id=\"w3c-state\"</code> element as follows (see also <a href=\"#datesFormat\">date syntax</a>): <pre xml:space=\"preserve\">&lt;p id=\"w3c-state\"&gt;<a href=\"https://www.w3.org/standards/types#@@Profile\">W3C Candidate Recommendation</a> DD Month YYYY (Amended by W3C)&lt;/p&gt;</pre>",
+                            "dateState": "The document's status and date <span class=\"rfc2119\">must</span> be in an <code>p id=\"w3c-state\"</code> element as follows (see also <a href=\"#datesFormat\">date syntax</a>): <pre xml:space=\"preserve\">&lt;p id=\"w3c-state\"&gt;<a href=\"https://www.w3.org/standards/types#CR\">W3C Candidate Recommendation</a> DD Month YYYY (Amended by W3C)&lt;/p&gt;</pre>",
                             "docIDFormat": true,
                             "docIDOrder": true,
                             "docIDThisVersion": [
