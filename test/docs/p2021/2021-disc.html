@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="canonical" href="https://www.w3.org/TR/foo-time/">
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-DISC">
+    <title>Foo Time</title> <!-- matches div.head h1 -->
+    <style>
+        .dim {
+            opacity: 0.7;
+            font-size: 80%
+        }
+    </style>
+</head>
+<body class="h-entry" data-cite="WebIDL html dom webidl ecma-262">
+    <div class="head">
+        <a class="logo" href="https://www.w3.org/"><img alt="W3C" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C"
+                width="72" height="48"></a>
+        <h1 id="title" class="title p-name">Foo Time</h1>
+
+        <p id='w3c-state'>
+            <a href='https://www.w3.org/standards/types#DISC'>W3C Discontinued Draft</a>
+            <time class="dt-published" datetime="2021-11-04">04 November 2021</time>
+        </p>
+        <details open>
+            <summary>More details about this document</summary>
+            <dl>
+                <dt>This version:</dt>
+                <dd>
+                    <a class="u-url"
+                        href="https://www.w3.org/TR/2021/DISC-foo-time-2-20211104/">https://www.w3.org/TR/2021/DISC-foo-time-2-20211104/</a>
+                </dd>
+                <dt>Latest published version: (@@note that version is not required in the latest version)</dt>
+                <dd>
+                    <a href="https://www.w3.org/TR/foo-time/">https://www.w3.org/TR/foo-time/</a>
+                </dd>
+                <dt>Latest editor's draft:</dt>
+                <dd><a href="https://w3c.github.io/foo-time/">https://w3c.github.io/foo-time/</a></dd>
+
+                <dt>History:</dt>
+                <dd><a
+                        href="https://www.w3.org/standards/history/foo-time-2">https://www.w3.org/standards/history/foo-time-2</a>
+                </dd>
+
+                <dt>Editor:</dt>
+                <dd class="p-author h-card vcard" data-editor-id="56102">George Herald
+                    (WebFoo)
+                </dd>
+                <dt>
+                    Former editors:
+                </dt>
+                <dd class="p-author h-card vcard" data-editor-id="45726">James Hector
+                    (BAR Inc.)
+                    (Until January 2015)</dd>
+                <dd class="p-author h-card vcard" data-editor-id="44357">Joe Smith (Iron Corp.)
+                    (Until February 2014)</dd>
+
+                <dt>Feedback:</dt>
+                <dd><a href="https://github.com/w3c/foo-time/issues">https://github.com/w3c/foo-time/issues</a></dd>
+                <dd><a
+                        href="mailto:public-foo@w3.org?subject=%5Bfoo-time%5D%20YOUR%20TOPIC%20HERE">public-foo@w3.org</a>
+                    with subject line “<kbd>[foo-time] <var>… message topic …</var></kbd>” (<a
+                        href="http://lists.w3.org/Archives/Public/public-foo/" rel="discussion">archives</a>)</dd>
+            </dl>
+        </details>
+
+        <p class="copyright">
+            <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+            ©
+            2021
+            <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a
+                href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+            <a href="https://www.ercim.eu/"><abbr
+                    title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a
+                href="https://www.keio.ac.jp/">Keio</a>,
+            <a href="https://ev.buaa.edu.cn/">Beihang</a>).
+            W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+            <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a rel="license"
+                href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document
+                license</a> rules
+            apply.
+        </p>
+        <hr title="Separator for header">
+    </div>
+
+    <section id="abstract" class="introductory">
+        <h2>Abstract</h2>
+        <p>This specification defines an API that provides the time origin, and current time in sub-millisecond resolution, such that it is not subject to system clock skew or adjustments.</p>
+    </section>
+
+    <section id="sotd" data-link-for="Performance" class="introductory">
+        <h2>Status of This Document</h2>
+
+        <p>
+            <em>This section describes the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>
+        </p>
+
+        <p>
+            This document was published by the <a href="https://www.w3.org/groups/wg/webperf">Web Performance Working Group</a> as a Discontinued Draft using the <a href='https://www.w3.org/2021/Process-20211102/#recs-and-notes'>Recommendation track</a>.
+        </p>
+
+        <p>
+            Publication as a Discontinued Draft implies that this document is no longer intended to advance or to be maintained. It is inappropriate to cite this document as other than abandoned work.
+        </p>
+        <p>
+            This document was produced by a group operating under the <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a rel="disclosure" href="https://www.w3.org/groups/wg/webperf/ipr">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+        </p>
+        <p>
+            This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+        </p>
+    </section>
+    <nav id="toc">
+        <h2 class="introductory" id="table-of-contents">Table of Contents</h2>
+        <ol class="toc">
+            <li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a>
+                <ol class="toc">
+                    <li class="tocline"><a class="tocxref" href="#examples"><bdi class="secno">1.1 </bdi>Examples</a>
+                    </li>
+                </ol>
+            </li>
+            <li class="tocline"><a class="tocxref" href="#sec-time-origin"><bdi class="secno">2. </bdi>Time Origin</a>
+            </li>
+            <li class="tocline"><a class="tocxref" href="#sec-domhighrestimestamp"><bdi class="secno">3. </bdi>The <span
+                        data-dfn-type="typedef" data-export="" data-idl="typedef" data-title="DOMHighResTimeStamp"
+                        data-dfn-for=""><code>DOMHighResTimeStamp</code></span> typedef</a></li>
+            <li class="tocline"><a class="tocxref" href="#sec-performance"><bdi class="secno">4. </bdi>The <span
+                        data-dfn-type="interface" data-export="" data-idl="interface" data-title="Performance"
+                        data-dfn-for=""><code>Performance</code></span> interface</a>
+                <ol class="toc">
+                    <li class="tocline"><a class="tocxref" href="#now-method"><bdi class="secno">4.1
+                            </bdi><code>now()</code> method</a></li>
+                    <li class="tocline"><a class="tocxref" href="#timeorigin-attribute"><bdi class="secno">4.2
+                            </bdi><code>timeOrigin</code> attribute</a></li>
+                    <li class="tocline"><a class="tocxref" href="#tojson-method"><bdi class="secno">4.3
+                            </bdi><code>toJSON()</code> method</a></li>
+                </ol>
+            </li>
+            <li class="tocline"><a class="tocxref" href="#extensions-to-windoworworkerglobalscope-mixin"><bdi
+                        class="secno">5. </bdi>Extensions to <code>WindowOrWorkerGlobalScope</code> mixin</a>
+                <ol class="toc">
+                    <li class="tocline"><a class="tocxref" href="#the-performance-attribute"><bdi class="secno">5.1
+                            </bdi>The <code>performance</code> attribute</a></li>
+                </ol>
+            </li>
+            <li class="tocline"><a class="tocxref" href="#sec-monotonic-clock"><bdi class="secno">6. </bdi>Monotonic
+                    Clock</a></li>
+            <li class="tocline"><a class="tocxref" href="#sec-privacy-security"><bdi class="secno">7. </bdi>Privacy and
+                    Security</a>
+                <ol class="toc">
+                    <li class="tocline"><a class="tocxref" href="#clock-resolution"><bdi class="secno">7.1 </bdi>Clock
+                            resolution</a></li>
+                    <li class="tocline"><a class="tocxref" href="#clock-drift"><bdi class="secno">7.2 </bdi>Clock
+                            drift</a></li>
+                </ol>
+            </li>
+            <li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">8. </bdi>Conformance</a></li>
+            <li class="tocline"><a class="tocxref" href="#idl-index"><bdi class="secno">9. </bdi>IDL Index</a></li>
+            <li class="tocline"><a class="tocxref" href="#acknowledgments"><bdi class="secno">A.
+                    </bdi>Acknowledgments</a></li>
+            <li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">B. </bdi>References</a>
+                <ol class="toc">
+                    <li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">B.1
+                            </bdi>Normative references</a></li>
+                    <li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">B.2
+                            </bdi>Informative references</a></li>
+                </ol>
+            </li>
+        </ol>
+    </nav>
+    <section id="introduction" class="informative">
+        <h2 id="x1-introduction"><bdi class="secno">1. </bdi>Introduction<a class="self-link" aria-label="§"
+                href="#introduction"></a></h2>
+        <p><em>This section is non-normative.</em></p>
+        <p>The ECMAScript Language specification [<cite><a class="bibref" data-link-type="biblio" href="#bib-ecma-262"
+                    title="ECMAScript Language Specification">ECMA-262</a></cite>] defines the
+            <code><dfn data-no-export="" data-dfn-type="dfn" id="dfn-date"><a href="https://tc39.es/ecma262/#sec-date-objects">Date</a></dfn></code>
+            object as a time value
+            representing time in milliseconds since 01 January, 1970 UTC. For most
+            purposes, this definition of time is sufficient as these values represent
+            time to millisecond precision for any instant that is within approximately
+            285,616 years from 01 January, 1970 UTC. The <a data-xref-type="_IDL_" data-cite-path="" data-type="typedef"
+                href="https://heycam.github.io/webidl/#DOMTimeStamp"><code>DOMTimeStamp</code></a> is defined
+            similarly [<cite><a class="bibref" data-link-type="biblio" href="#bib-webidl"
+                    title="Web IDL">WEBIDL</a></cite>].
+        </p>
+        <p>In practice, these definitions of time are subject to both clock skew
+            and adjustment of the system clock. The value of time may not always be
+            monotonically increasing and subsequent values may either decrease or
+            remain the same.</p>
+        <p>For example, the following script may record a positive number, negative
+            number, or zero for computed <code>duration</code>:</p>
+        <div class="example" id="example-1">
+            <div class="marker">
+                <a class="self-link" href="#example-1">Example<bdi> 1</bdi></a>
+            </div>
+            <pre
+                aria-busy="false"><code class="hljs js"><span class="hljs-keyword">var</span> mark_start = <span class="hljs-built_in">Date</span>.now();
+doTask(); <span class="hljs-comment">// Some task</span>
+<span class="hljs-keyword">var</span> duration = <span class="hljs-built_in">Date</span>.now() - mark_start;</code></pre>
+        </div>
+        <p>For certain tasks this definition of time may not be sufficient as it
+            does not allow for sub-millisecond resolution and is subject to system
+            clock skew. For example:</p>
+        <ul>
+            <li>When attempting to accurately measure the elapsed time of navigating
+                to a Document, fetching of resources or execution of script, a
+                monotonically increasing clock with sub-millisecond resolution is
+                desired.</li>
+            <li>When calculating the animation state from script, developers will
+                need to accurately know the amount of time that has elapsed in the
+                animation in order to properly update the next scene of the
+                animation.</li>
+            <li>When calculating the frame rate of a script based animation,
+                developers will need sub-millisecond resolution in order to determine if
+                an animation is drawing at 60 FPS. Without sub-millisecond resolution, a
+                developer can only determine if an animation is drawing at 58.8 FPS or
+                62.5 FPS.</li>
+            <li>When attempting to cue audio to a specific point in an animation or
+                ensure that the audio is synchronized with the animation, developers will
+                need to accurately know the amount of time elapsed in the animation and
+                audio.</li>
+            <li>When multiple contexts need to synchronize work with sub-millisecond
+                resolution (e.g. when using <a data-xref-type="_IDL_" data-cite-path="workers.html"
+                    data-type="interface"
+                    href="https://html.spec.whatwg.org/multipage/workers.html#worker"><code>Worker</code></a> or <a
+                    data-xref-type="_IDL_" data-cite-path="workers.html" data-type="interface"
+                    href="https://html.spec.whatwg.org/multipage/workers.html#sharedworker"><code>SharedWorker</code></a>
+                workers to
+                drive animation, audio, etc., in a renderer context), or to create a
+                unified view of the event timeline.</li>
+        </ul>
+        <p data-link-for="Performance">This specification does not propose changing the behavior of
+            <code><dfn data-no-export="" data-dfn-type="dfn" id="dfn-date-now"><a href="https://tc39.es/ecma262/#sec-date.now">Date.now()</a></dfn></code>
+            [<cite><a class="bibref" data-link-type="biblio" href="#bib-ecma-262"
+                    title="ECMAScript Language Specification">ECMA-262</a></cite>] as it is
+            genuinely useful in determining the current value of the calendar time and
+            has a long history of usage. The <a data-xref-type="_IDL_" href="#dom-domhighrestimestamp"
+                class="internalDFN" data-link-type="idl"><code><code>DOMHighResTimeStamp</code></code></a> type,
+            <code>performance.</code><a data-xref-type="_IDL_" href="#dom-performance-now" class="internalDFN"
+                data-link-type="idl"><code><code>now</code></code></a> method, and <code>performance.</code><a
+                data-xref-type="_IDL_" href="#dom-performance-timeorigin" class="internalDFN"
+                data-link-type="idl"><code><code>timeOrigin</code></code></a> attributes of
+            the <a data-xref-type="_IDL_" href="#dom-performance" class="internalDFN"
+                data-link-type="idl"><code><code>Performance</code></code></a> interface resolve the above issues by
+            providing
+            monotonically increasing time values with sub-millisecond resolution.
+        </p>
+        <section id="examples" class="informative">
+            <h3 id="x1-1-examples"><bdi class="secno">1.1 </bdi>Examples<a class="self-link" aria-label="§"
+                    href="#examples"></a></h3>
+            <p><em>This section is non-normative.</em></p>
+            <p data-link-for="Performance">A developer may wish to construct a timeline of their entire
+                application, including events from <a data-xref-type="_IDL_" data-cite-path="workers.html"
+                    data-type="interface"
+                    href="https://html.spec.whatwg.org/multipage/workers.html#worker"><code>Worker</code></a> or <a
+                    data-xref-type="_IDL_" data-cite-path="workers.html" data-type="interface"
+                    href="https://html.spec.whatwg.org/multipage/workers.html#sharedworker"><code>SharedWorker</code></a>,
+                which
+                have different <a href="#dfn-time-origin" class="internalDFN" data-link-type="dfn">time origin</a>s. To
+                display such events on the same
+                timeline, the application can translate the <a data-xref-type="_IDL_" href="#dom-domhighrestimestamp"
+                    class="internalDFN" data-link-type="idl"><code><code>DOMHighResTimeStamp</code></code></a>s
+                with the help of the <code>performance.</code><a data-xref-type="_IDL_"
+                    href="#dom-performance-timeorigin" class="internalDFN"
+                    data-link-type="idl"><code><code>timeOrigin</code></code></a> attribute.</p>
+
+            <div class="example" id="example-2">
+                <div class="marker">
+                    <a class="self-link" href="#example-2">Example<bdi> 2</bdi></a>
+                </div>
+                <pre aria-busy="false"><code class="hljs js"><span class="hljs-comment">// ---- worker.js -----------------------------</span>
+<span class="hljs-comment">// Shared worker script</span>
+onconnect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">var</span> port = e.ports[<span class="hljs-number">0</span>];
+  port.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+    <span class="hljs-comment">// Time execution in worker</span>
+    <span class="hljs-keyword">var</span> task_start = performance.now();
+    result = runSomeWorkerTask();
+    <span class="hljs-keyword">var</span> task_end = performance.now();
+  }
+
+  <span class="hljs-comment">// Send results and epoch-relative timestamps to another context</span>
+  port.postMessage({
+    <span class="hljs-string">'task'</span>: <span class="hljs-string">'Some worker task'</span>,
+    <span class="hljs-string">'start_time'</span>: task_start + performance.timeOrigin,
+    <span class="hljs-string">'end_time'</span>: task_end + performance.timeOrigin,
+    <span class="hljs-string">'result'</span>: result
+  });
+}
+
+<span class="hljs-comment">// ---- application.js ------------------------</span>
+<span class="hljs-comment">// Timing tasks in the document</span>
+<span class="hljs-keyword">var</span> task_start = performance.now();
+runSomeApplicationTask();
+<span class="hljs-keyword">var</span> task_end = performance.now();
+
+<span class="hljs-comment">// developer provided method to upload runtime performance data</span>
+reportEventToAnalytics({
+  <span class="hljs-string">'task'</span>: <span class="hljs-string">'Some document task'</span>,
+  <span class="hljs-string">'start_time'</span>: task_start,
+  <span class="hljs-string">'duration'</span>: task_end - task_start
+});
+
+<span class="hljs-comment">// Translating worker timestamps into document's time origin</span>
+<span class="hljs-keyword">var</span> worker = <span class="hljs-keyword">new</span> SharedWorker(<span class="hljs-string">'worker.js'</span>);
+worker.port.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>{
+  <span class="hljs-keyword">var</span> msg = event.data;
+
+  <span class="hljs-comment">// translate epoch-relative timestamps into document's time origin</span>
+  msg.start_time = msg.start_time - performance.timeOrigin;
+  msg.end_time = msg.end_time - performance.timeOrigin;
+
+  reportEventToAnalytics(msg);
+}</code></pre>
+            </div>
+        </section>
+    </section>
+    <section id="sec-time-origin">
+        <h2 id="x2-time-origin"><bdi class="secno">2. </bdi>Time Origin<a class="self-link" aria-label="§"
+                href="#sec-time-origin"></a></h2>
+        <p>The <dfn data-export="" data-dfn-type="dfn" id="dfn-time-origin">time origin</dfn> is the time value from
+            which
+            time is measured:</p>
+        <ul>
+            <li>If the <a data-link-for="Realm" data-xref-for="Realm" data-cite-path="webappapis.html" data-type="dfn"
+                    href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-realm-global">global object</a>
+                is a <a data-xref-type="_IDL_" data-cite-path="window-object.html" data-type="interface"
+                    href="https://html.spec.whatwg.org/multipage/window-object.html#window"><code>Window</code></a>
+                object, the <a href="#dfn-time-origin" class="internalDFN" data-link-type="dfn">time
+                    origin</a> <em class="rfc2119" title="MUST">MUST</em> be equal to:
+                <ul>
+                    <li>the time when the <a
+                            href="https://html.spec.whatwg.org/multipage/browsers.html#creating-a-new-browsing-context">browsing
+                            context
+                            is first created</a> if there is no previous document;
+                    </li>
+                    <li>otherwise, the time of the user confirming the navigation during
+                        the previous document's <a
+                            href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#prompt-to-unload-a-document">prompt
+                            to
+                            unload algorithm</a>, if a previous document exists and if the
+                        confirmation dialog was displayed;
+                    </li>
+                    <li>otherwise, the time of starting the <a data-lt="navigate" data-cite-path="browsing-the-web.html"
+                            data-type="dfn"
+                            href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#navigate">navigation</a>
+                        responsible for loading the <a data-lt="associated document" data-cite-path="window-object.html"
+                            data-type="dfn"
+                            href="https://html.spec.whatwg.org/multipage/window-object.html#concept-document-window">Window
+                            object's newest Document object</a>.
+                    </li>
+                </ul>
+            </li>
+            <li>If the <a data-link-for="Realm" data-xref-for="Realm" data-cite-path="webappapis.html" data-type="dfn"
+                    href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-realm-global">global object</a>
+                is a <a data-xref-type="_IDL_" data-cite-path="workers.html" data-type="interface"
+                    href="https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope"><code>WorkerGlobalScope</code></a>
+                object, the
+                <a href="#dfn-time-origin" class="internalDFN" data-link-type="dfn">time origin</a> <em class="rfc2119"
+                    title="MUST">MUST</em> be equal to the <a data-cite-path="workers.html" data-type="dfn"
+                    href="https://html.spec.whatwg.org/multipage/workers.html#official-moment-of-creation">official
+                    moment of
+                    creation</a> of the worker.
+            </li>
+            <li>Otherwise, the <a href="#dfn-time-origin" class="internalDFN" data-link-type="dfn">time origin</a> is
+                undefined.
+            </li>
+        </ul>
+        <p>The <dfn data-export="" data-dfn-type="dfn" id="dfn-time-origin-timestamp">time origin timestamp</dfn> is the
+            high
+            resolution time value at which <a href="#dfn-time-origin" class="internalDFN" data-link-type="dfn">time
+                origin</a> is zero. To obtain the
+            <a href="#dfn-time-origin-timestamp" class="internalDFN" data-link-type="dfn">time origin timestamp</a>
+            given a <a data-link-for="Realm" data-xref-for="Realm" data-cite-path="webappapis.html" data-type="dfn"
+                href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-realm-global">global object</a>
+            (<var>global</var>):
+        </p>
+        <ul>
+            <li>Assert that <var>global</var>'s <a href="#dfn-time-origin" class="internalDFN" data-link-type="dfn">time
+                    origin</a> is not undefined.
+            </li>
+            <li>Let <var>t1</var> be the <a data-xref-type="_IDL_" href="#dom-domhighrestimestamp" class="internalDFN"
+                    data-link-type="idl"><code><code>DOMHighResTimeStamp</code></code></a> representing the
+                high resolution time at which the <a href="#dfn-global-monotonic-clock" class="internalDFN"
+                    data-link-type="dfn">global monotonic clock</a> is zero.
+            </li>
+            <li>Let <var>t2</var> be the <a data-xref-type="_IDL_" href="#dom-domhighrestimestamp" class="internalDFN"
+                    data-link-type="idl"><code><code>DOMHighResTimeStamp</code></code></a> representing the
+                high resolution time value of the <a href="#dfn-global-monotonic-clock" class="internalDFN"
+                    data-link-type="dfn">global monotonic clock</a> at <var>
+                    global</var>'s <a href="#dfn-time-origin" class="internalDFN" data-link-type="dfn">time origin</a>.
+            </li>
+            <li>Return the sum of <var>t1</var> and <var>t2</var>.</li>
+        </ul>
+        <div class="note" role="note" id="issue-container-generatedID">
+            <div role="heading" class="note-title marker" id="h-note" aria-level="3"><span>Note</span></div>
+            <p class="">The <a href="#dfn-time-origin-timestamp" class="internalDFN" data-link-type="dfn">time origin
+                    timestamp</a> and the value returned by
+                <a data-link-type="dfn" href="https://tc39.es/ecma262/#sec-date.now"><code>Date.now()</code></a>
+                executed at "zero time" can differ because the former is
+                recorded with respect to a global monotonic clock that is not subject to
+                system and user clock adjustments, clock skew, and so on—see <a href="#sec-monotonic-clock"
+                    class="sec-ref">§&nbsp;<bdi class="secno">6. </bdi>Monotonic Clock</a>.
+            </p>
+        </div>
+        <p>The <dfn data-export="" data-dfn-type="dfn" id="dfn-current-high-resolution-time">current high resolution
+                time</dfn> is the high
+            resolution time from the <a href="#dfn-time-origin" class="internalDFN" data-link-type="dfn">time origin</a>
+            to the present time (typically
+            called "now").</p>
+    </section>
+    <section id="sec-domhighrestimestamp">
+        <h2 id="x3-the-domhighrestimestamp-typedef"><bdi class="secno">3. </bdi>The <dfn data-dfn-type="typedef"
+                data-export="" id="dom-domhighrestimestamp" data-idl="typedef" data-title="DOMHighResTimeStamp"
+                data-dfn-for=""><code>DOMHighResTimeStamp</code></dfn> typedef<a class="self-link" aria-label="§"
+                href="#sec-domhighrestimestamp"></a></h2>
+        <p>The <a data-xref-type="_IDL_" href="#dom-domhighrestimestamp" class="internalDFN"
+                data-link-type="idl"><code><code>DOMHighResTimeStamp</code></code></a> type is used to store a time
+            value in
+            milliseconds, measured relative from the <a href="#dfn-time-origin" class="internalDFN"
+                data-link-type="dfn">time origin</a>, <a href="#dfn-global-monotonic-clock" class="internalDFN"
+                data-link-type="dfn">global
+                monotonic clock</a>, or a time value that represents a duration between two
+            <a data-xref-type="_IDL_" href="#dom-domhighrestimestamp" class="internalDFN"
+                data-link-type="idl"><code><code>DOMHighResTimeStamp</code></code></a>s.
+        </p>
+        <pre class="idl def"
+            id="webidl-x2125136869"><span class="idlHeader"><a class="self-link" href="#webidl-x2125136869">WebIDL</a></span><span data-idl="" class="idlTypedef" id="idl-def-domhighrestimestamp" data-title="DOMHighResTimeStamp">typedef<span class="idlType"> <a data-xref-type="_IDL_" data-cite-path="" data-type="interface" href="https://heycam.github.io/webidl/#idl-double">double</a></span> <a class="internalDFN idlID" data-link-for="" data-link-type="typedef" href="#dom-domhighrestimestamp"><code>DOMHighResTimeStamp</code></a>;</span></pre>
+        <p>A <a data-xref-type="_IDL_" href="#dom-domhighrestimestamp" class="internalDFN"
+                data-link-type="idl"><code><code>DOMHighResTimeStamp</code></code></a> <em class="rfc2119"
+                title="SHOULD">SHOULD</em> represent a time in milliseconds
+            accurate enough to allow measurement while preventing timing attacks - see
+            <a href="#clock-resolution" class="sec-ref">§&nbsp;<bdi class="secno">7.1 </bdi>Clock resolution</a> for
+            additional considerations.
+        </p>
+    </section>
+    <section id="sec-performance" data-dfn-for="Performance" data-link-for="Performance">
+        <h2 id="x4-the-performance-interface"><bdi class="secno">4. </bdi>The <dfn data-dfn-type="interface"
+                data-export="" id="dom-performance" data-idl="interface" data-title="Performance"
+                data-dfn-for=""><code>Performance</code></dfn> interface<a class="self-link" aria-label="§"
+                href="#sec-performance"></a></h2>
+        <pre class="idl def" data-cite="WebIDL DOM" id="webidl-x934063708"><span class="idlHeader"><a class="self-link" href="#webidl-x934063708">WebIDL</a></span><span data-idl="" class="idlInterface" id="idl-def-performance" data-title="Performance">[<span class="extAttr"><a data-xref-type="extended-attribute" data-cite-path="" data-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<a data-xref-type="interface" data-cite-path="window-object.html" data-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window">Window</a>,<a data-xref-type="interface" data-lt="WorkerGlobalScope" data-cite-path="workers.html" data-type="interface" href="https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope">Worker</a>)</span>]
+interface <a class="internalDFN idlID" data-link-for="" data-link-type="interface" href="#dom-performance"><code>Performance</code></a> : <span class="idlSuperclass"><a data-xref-type="_IDL_" data-cite-path="" data-type="interface" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a></span> {<span data-idl="" class="idlMethod" id="idl-def-performance-now" data-title="now" data-dfn-for="Performance"><span class="idlType">
+    <a data-xref-type="_IDL_" href="#dom-domhighrestimestamp" class="internalDFN" data-link-type="idl"><code>DOMHighResTimeStamp</code></a></span> <a class="internalDFN idlName" data-link-for="Performance" data-link-type="method" href="#dom-performance-now"><code>now</code></a>();</span><span data-idl="" class="idlAttribute" id="idl-def-performance-timeorigin" data-title="timeOrigin" data-dfn-for="Performance">
+    readonly attribute<span class="idlType"> <a data-xref-type="_IDL_" href="#dom-domhighrestimestamp" class="internalDFN" data-link-type="idl"><code>DOMHighResTimeStamp</code></a></span> <a class="internalDFN idlName" data-link-for="Performance" data-link-type="attribute" href="#dom-performance-timeorigin"><code>timeOrigin</code></a>;</span><span data-idl="" class="idlMethod" id="idl-def-performance-tojson" data-title="toJSON" data-dfn-for="Performance">
+    [<span class="extAttr"><a data-xref-type="extended-attribute" data-cite-path="" data-type="extended-attribute" href="https://heycam.github.io/webidl/#Default">Default</a></span>]<span class="idlType"> <a data-xref-type="interface" data-cite-path="" data-type="interface" href="https://heycam.github.io/webidl/#idl-object">object</a></span> <a class="internalDFN idlName" data-link-for="Performance" data-link-type="method" href="#dom-performance-tojson"><code>toJSON</code></a>();</span>
+};</span></pre>
+        <section id="now-method">
+            <h3 id="x4-1-now-method"><bdi class="secno">4.1 </bdi><code>now()</code> method<a class="self-link"
+                    aria-label="§" href="#now-method"></a></h3>
+            <p data-tests="basic.any.html, basic.any.worker.html">The
+                <dfn data-dfn-type="method" data-export="" id="dom-performance-now" data-idl="operation"
+                    data-title="now()" data-dfn-for="Performance" data-type="DOMHighResTimeStamp" data-lt="now()"
+                    data-local-lt="Performance.now|Performance.now()|now"><code>now()</code></dfn> method <em
+                    class="rfc2119" title="MUST">MUST</em> return the <a href="#dfn-current-high-resolution-time"
+                    class="internalDFN" data-link-type="dfn">current high resolution
+                    time</a>.
+            </p>
+        </section>
+        <section id="timeorigin-attribute">
+            <h3 id="x4-2-timeorigin-attribute"><bdi class="secno">4.2 </bdi><code>timeOrigin</code> attribute<a
+                    class="self-link" aria-label="§" href="#timeorigin-attribute"></a></h3>
+            <p data-tests="timeOrigin.html, window-worker-timeOrigin.window.html">The
+                <dfn data-dfn-type="attribute" data-export="" id="dom-performance-timeorigin" data-idl="attribute"
+                    data-title="timeOrigin" data-dfn-for="Performance" data-type="DOMHighResTimeStamp"
+                    data-lt="timeOrigin" data-local-lt="Performance.timeOrigin"><code>timeOrigin</code></dfn> attribute
+                <em class="rfc2119" title="MUST">MUST</em> return a <a data-xref-type="_IDL_"
+                    href="#dom-domhighrestimestamp" class="internalDFN"
+                    data-link-type="idl"><code><code>DOMHighResTimeStamp</code></code></a>
+                representing the high resolution time of the <a href="#dfn-time-origin-timestamp" class="internalDFN"
+                    data-link-type="dfn">time origin timestamp</a>
+                for the <a data-cite-path="webappapis.html" data-type="dfn"
+                    href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">relevant
+                    global object</a> of the <a data-xref-type="_IDL_" href="#dom-performance" class="internalDFN"
+                    data-link-type="idl"><code><code>Performance</code></code></a> object.
+            </p>
+        </section>
+        <section id="tojson-method">
+            <h3 id="x4-3-tojson-method"><bdi class="secno">4.3 </bdi><code>toJSON()</code> method<a class="self-link"
+                    aria-label="§" href="#tojson-method"></a></h3>
+            <p data-tests="performance-tojson.html">When <dfn data-dfn-type="method" data-export=""
+                    id="dom-performance-tojson" data-idl="operation" data-title="toJSON()" data-dfn-for="Performance"
+                    data-type="object" data-lt="toJSON()"
+                    data-local-lt="Performance.toJSON|Performance.toJSON()|toJSON"><code>toJSON()</code></dfn> is
+                called, run [<cite><a class="bibref" data-link-type="biblio" href="#bib-webidl"
+                        title="Web IDL">WEBIDL</a></cite>]'s <a data-cite-path="" data-type="dfn"
+                    href="https://heycam.github.io/webidl/#default-tojson-operation">default toJSON operation</a>.</p>
+        </section>
+    </section>
+    <section id="extensions-to-windoworworkerglobalscope-mixin">
+        <h2 id="x5-extensions-to-windoworworkerglobalscope-mixin"><bdi class="secno">5. </bdi>Extensions to
+            <code>WindowOrWorkerGlobalScope</code> mixin<a class="self-link" aria-label="§"
+                href="#extensions-to-windoworworkerglobalscope-mixin"></a></h2>
+        <section data-dfn-for="WindowOrWorkerGlobalScope" data-link-for="WindowOrWorkerGlobalScope"
+            id="the-performance-attribute">
+            <h3 id="x5-1-the-performance-attribute"><bdi class="secno">5.1 </bdi>The <code>performance</code>
+                attribute<a class="self-link" aria-label="§" href="#the-performance-attribute"></a></h3>
+            <p>The <dfn data-dfn-type="attribute" data-export="" id="dom-windoworworkerglobalscope-performance"
+                    data-idl="attribute" data-title="performance" data-dfn-for="WindowOrWorkerGlobalScope"
+                    data-type="Performance" data-lt="performance"
+                    data-local-lt="WindowOrWorkerGlobalScope.performance"><code>performance</code></dfn> attribute on
+                the interface mixin
+                <a data-xref-type="_IDL_" href="#dfn-windoworworkerglobalscope" class="internalDFN"
+                    data-link-type="idl"><code><code>WindowOrWorkerGlobalScope</code></code></a> allows access to
+                performance related
+                attributes and methods from the <a data-link-for="Realm" data-xref-for="Realm"
+                    data-cite-path="webappapis.html" data-type="dfn"
+                    href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-realm-global">global
+                    object</a>.
+            </p>
+            <pre class="idl def" data-cite="WebIDL HTML" id="webidl-x2037739231"><span class="idlHeader"><a class="self-link" href="#webidl-x2037739231">WebIDL</a></span><span data-idl="" class="idlInterface mixin" id="idl-def-windoworworkerglobalscope-partial-1" data-title="WindowOrWorkerGlobalScope">partial interface mixin <a data-idl="partial" data-link-type="interface" data-title="WindowOrWorkerGlobalScope" data-xref-type="interface" class="idlID" data-dfn-for="WindowOrWorkerGlobalScope" id="dfn-windoworworkerglobalscope" data-cite-path="webappapis.html" data-type="interface" href="https://html.spec.whatwg.org/multipage/webappapis.html#windoworworkerglobalscope">WindowOrWorkerGlobalScope</a> {<span data-idl="" class="idlAttribute" id="idl-def-windoworworkerglobalscope-performance" data-title="performance" data-dfn-for="WindowOrWorkerGlobalScope">
+  [<span class="extAttr"><a data-xref-type="extended-attribute" data-cite-path="" data-type="extended-attribute" href="https://heycam.github.io/webidl/#Replaceable">Replaceable</a></span>] readonly attribute<span class="idlType"> <a data-xref-type="_IDL_" href="#dom-windoworworkerglobalscope-performance" class="internalDFN" data-link-type="idl">Performance</a></span> <a class="internalDFN idlName" data-link-for="WindowOrWorkerGlobalScope" data-link-type="attribute" href="#dom-windoworworkerglobalscope-performance"><code>performance</code></a>;</span>
+};</span></pre>
+        </section>
+    </section>
+    <section id="sec-monotonic-clock" data-link-for="Performance">
+        <h2 id="x6-monotonic-clock"><bdi class="secno">6. </bdi>Monotonic Clock<a class="self-link" aria-label="§"
+                href="#sec-monotonic-clock"></a></h2>
+        <p data-tests="monotonic-clock.any.html, monotonic-clock.any.worker.html">
+            The time values returned when calling the <a data-xref-type="method" data-link-for="Performance"
+                data-xref-for="Performance" data-lt="now()" href="#dom-performance-now" class="internalDFN"
+                data-link-type="idl"><code><code>now</code></code></a><code>()</code> method on
+            <a data-xref-type="_IDL_" href="#dom-performance" class="internalDFN"
+                data-link-type="idl"><code><code>Performance</code></code></a> objects with the same <a
+                href="#dfn-time-origin" class="internalDFN" data-link-type="dfn">time origin</a> <em class="rfc2119"
+                title="MUST">MUST</em> use the same
+            <dfn data-export="" data-dfn-type="dfn" id="dfn-monotonic-clock">monotonic clock</dfn> that is monotonically
+            increasing
+            and not subject to system clock adjustments or system clock skew. The
+            difference between any two chronologically recorded time values returned
+            from the <a data-xref-type="_IDL_" href="#dom-performance" class="internalDFN"
+                data-link-type="idl"><code><code>Performance</code></code></a>.<a data-xref-type="method"
+                data-link-for="Performance" data-xref-for="Performance" data-lt="now()" href="#dom-performance-now"
+                class="internalDFN" data-link-type="idl"><code><code>now</code></code></a><code>()</code> method <em
+                class="rfc2119" title="MUST">MUST</em> never be negative if the two
+            time values have the same <a href="#dfn-time-origin" class="internalDFN" data-link-type="dfn">time
+                origin</a>.
+        </p>
+        <p data-link-for="Performance" data-tests="test_cross_frame_start.html">The time values returned when
+            getting <code>performance.</code><a data-xref-type="_IDL_" href="#dom-performance-timeorigin"
+                class="internalDFN" data-link-type="idl"><code><code>timeOrigin</code></code></a> <em class="rfc2119"
+                title="MUST">MUST</em> use the same <dfn data-export="" data-dfn-type="dfn"
+                id="dfn-global-monotonic-clock">global monotonic clock</dfn> that is shared by <a
+                href="#dfn-time-origin" class="internalDFN" data-link-type="dfn">time origin</a>s, is
+            monotonically increasing and not subject to system clock adjustments or
+            system clock skew, and whose reference point is the [<cite><a class="bibref" data-link-type="biblio"
+                    href="#bib-ecma-262" title="ECMAScript Language Specification">ECMA-262</a></cite>]
+            <dfn data-no-export="" data-dfn-type="dfn" id="dfn-time"><a
+                    href="https://tc39.es/ecma262/#sec-time-values-and-time-range">time</a></dfn> definition - see
+            <a href="#sec-privacy-security" class="sec-ref">§&nbsp;<bdi class="secno">7. </bdi>Privacy and Security</a>.
+        </p>
+        <div class="note" role="note" id="issue-container-generatedID-0">
+            <div role="heading" class="note-title marker" id="h-note-0" aria-level="3"><span>Note</span></div>
+            <p class="">The user agent can reset its global monotonic clock across
+                browser restarts, or whenever starting an isolated browsing session—e.g.
+                incognito or similar browsing mode. As a result, developers should not use
+                global timestamps as absolute time that holds its monotonic properties
+                across all past, present, and future contexts; in practice, the monotonic
+                properties only apply for contexts that can reach each other by exchanging
+                messages via one of the provided messaging mechanisms - e.g. <code>postMessage</code>,
+                <code>BroadcastChannel</code>, etc.
+            </p>
+        </div>
+        <div class="note" role="note" id="issue-container-generatedID-1">
+            <div role="heading" class="note-title marker" id="h-note-1" aria-level="3"><span>Note</span></div>
+            <p class="">In certain scenarios (e.g. when a tab is backgrounded), the
+                user agent may choose to throttle timers and periodic callbacks run in that
+                context or even freeze them entirely. Any such throttling should not affect
+                the resolution or accuracy of the time returned by the monotonic clock.</p>
+        </div>
+    </section>
+    <section id="sec-privacy-security" data-link-for="Performance">
+        <h2 id="x7-privacy-and-security"><bdi class="secno">7. </bdi>Privacy and Security<a class="self-link"
+                aria-label="§" href="#sec-privacy-security"></a></h2>
+        <section id="clock-resolution">
+            <h3 id="x7-1-clock-resolution"><bdi class="secno">7.1 </bdi>Clock resolution<a class="self-link"
+                    aria-label="§" href="#clock-resolution"></a></h3>
+            <p>Access to accurate timing information, both for measurement and
+                scheduling purposes, is a common requirement for many applications. For
+                example, coordinating animations, sound, and other activity on the page
+                requires access to high-resolution time to provide a good user
+                experience. Similarly, measurement enables developers to track the
+                performance of critical code components, detect regressions, and so
+                on.</p>
+            <p>However, access to the same accurate timing information can sometimes
+                be also used for malicious purposes by an attacker to guess and infer
+                data that they can't see or access otherwise. For example, cache attacks,
+                statistical fingerprinting and microarchitectural attacks are a privacy
+                and security concern where a malicious web site may use high resolution
+                timing data of various browser or application-initiated operations to
+                differentiate between subset of users, identify a particular user or
+                reveal unrelated but same-process user data - see [<cite><a class="bibref" data-link-type="biblio"
+                        href="#bib-cache-attacks"
+                        title="The Spy in the Sandbox - Practical Cache Attacks in Javascript">CACHE-ATTACKS</a></cite>]
+                and
+                [<cite><a class="bibref" data-link-type="biblio" href="#bib-spectre"
+                        title="Spectre Attacks: Exploiting Speculative Execution">SPECTRE</a></cite>] for more
+                background.</p>
+            <p data-tests="timing-attack.html">This specification defines an API that
+                provides sub-millisecond time resolution, which is more accurate than the
+                previously available millisecond resolution exposed by <a data-xref-type="_IDL_" data-cite-path=""
+                    data-type="typedef"
+                    href="https://heycam.github.io/webidl/#DOMTimeStamp"><code>DOMTimeStamp</code></a>.
+                However, even without this new API an attacker may be able to obtain
+                high-resolution estimates through repeat execution and statistical
+                analysis. To ensure that the new API does not significantly improve the
+                accuracy or speed of such attacks, the minimum resolution of the
+                <a data-xref-type="_IDL_" href="#dom-domhighrestimestamp" class="internalDFN"
+                    data-link-type="idl"><code><code>DOMHighResTimeStamp</code></code></a> type should be inaccurate
+                enough to prevent
+                attacks: the current minimum recommended resolution is no less than 5
+                microseconds and, where necessary, should be set higher by the User
+                Agent to address privacy and security concerns due to architecture or
+                software constraints, or other considerations.
+            </p>
+            <p>In order to mitigate such attacks user agents may deploy any technique
+                they deem necessary. Deployment of those techniques may vary based on the
+                browser's architecture, the user's device, the content and its ability to
+                maliciously read cross-origin data, or other practical
+                considerations.</p>
+            <p>These techniques may include:</p>
+            <ul>
+                <li>Resolution reduction.</li>
+                <li>Added jitter.</li>
+                <li>Abuse detection and/or API call throttling.</li>
+            </ul>
+            <p>Mitigating such timing side-channel attacks entirely is practically
+                impossible: either all operations would have to execute in a time that
+                does not vary based on the value of any confidential information, or the
+                application would need to be isolated from any time-related primitives
+                (clock, timers, counters, etc). Neither is practical due to the
+                associated complexity for the browser and application developers and the
+                associated negative effects on performance and responsiveness of
+                applications.</p>
+            <div class="note" role="note" id="issue-container-generatedID-2">
+                <div role="heading" class="note-title marker" id="h-note-2" aria-level="4"><span>Note</span></div>
+                <div class="">
+                    Clock resolution is an unsolved and evolving area of research, with no
+                    existing industry consensus or definitive set of recommendations that
+                    applies to all browsers. To track the discussion, refer to <a
+                        href="https://github.com/w3c/foo-time/issues/79">Issue 79</a>.
+                </div>
+            </div>
+        </section>
+        <section id="clock-drift">
+            <h3 id="x7-2-clock-drift"><bdi class="secno">7.2 </bdi>Clock drift<a class="self-link" aria-label="§"
+                    href="#clock-drift"></a></h3>
+            <p>This specification also defines an API that provides sub-millisecond
+                time resolution of the zero time of the time origin, which requires and
+                exposes a <a href="#dfn-global-monotonic-clock" class="internalDFN" data-link-type="dfn">global
+                    monotonic clock</a> to the application, and that must
+                be shared across all the browser contexts. The <a href="#dfn-global-monotonic-clock" class="internalDFN"
+                    data-link-type="dfn">global monotonic
+                    clock</a> does not need to be tied to physical time, but is recommended
+                to be set with respect to the [<cite><a class="bibref" data-link-type="biblio" href="#bib-ecma-262"
+                        title="ECMAScript Language Specification">ECMA-262</a></cite>] definition of <a
+                    data-link-type="dfn" href="https://tc39.es/ecma262/#sec-time-values-and-time-range">time</a> to
+                avoid exposing new fingerprint entropy about the user — e.g. this time
+                can already be easily obtained by the application, whereas exposing a new
+                logical clock provides new information.</p>
+            <p>However, even with the above mechanism in place, the <a href="#dfn-global-monotonic-clock"
+                    class="internalDFN" data-link-type="dfn">global
+                    monotonic clock</a> may provide additional <a href="https://en.wikipedia.org/wiki/Clock_drift">clock
+                    drift</a> resolution.
+                Today, the application can timestamp the time-of-day and monotonic time
+                values (via <a data-link-type="dfn"
+                    href="https://tc39.es/ecma262/#sec-date.now"><code>Date.now()</code></a> and <a
+                    data-xref-type="_IDL_" href="#dom-performance" class="internalDFN"
+                    data-link-type="idl"><code><code>Performance</code></code></a>.<a data-xref-type="method"
+                    data-link-for="Performance" data-xref-for="Performance" data-lt="now()" href="#dom-performance-now"
+                    class="internalDFN" data-link-type="idl"><code><code>now</code></code></a><code>()</code>) at
+                multiple
+                points within the same context and observe drift between them—e.g. due to
+                automatic or user clock adjustments. With the <a data-xref-type="_IDL_" href="#dom-performance"
+                    class="internalDFN" data-link-type="idl"><code><code>Performance</code></code></a>.<a
+                    data-xref-type="attribute|dict-member" data-link-for="Performance" data-xref-for="Performance"
+                    href="#dom-performance-timeorigin" class="internalDFN"
+                    data-link-type="idl"><code><code>timeOrigin</code></code></a>
+                attribute, the attacker can also compare the time at which <a href="#dfn-time-origin"
+                    class="internalDFN" data-link-type="dfn">time
+                    origin</a> is zero, as reported by the <a href="#dfn-global-monotonic-clock" class="internalDFN"
+                    data-link-type="dfn">global monotonic clock</a>,
+                against the current time-of-day estimate of when it is zero (i.e. the
+                difference between <code>Date.now()-performance.now()</code> and
+                <code>performance.timeOrigin</code>) and potentially observe clock drift between
+                these clocks over a longer time period.
+            </p>
+            <p>In practice, the same time drift can be observed by an application
+                across multiple navigations: the application can record the logical time
+                in each context and use a client or server time synchronization mechanism
+                to infer changes in the user's clock. Similarly, lower-layer mechanisms
+                such as TCP timestamps may reveal the same high-resolution information to
+                the server without the need for multiple visits. As such, the information
+                provided by this API should not expose any significant or previously
+                unavailable entropy about the user.</p>
+        </section>
+    </section>
+    <section id="conformance">
+        <h2 id="x8-conformance"><bdi class="secno">8. </bdi>Conformance<a class="self-link" aria-label="§"
+                href="#conformance"></a></h2>
+        <p>
+            As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this
+            specification are non-normative. Everything else in this specification is normative.
+        </p>
+        <p>
+            The key words <em class="rfc2119">MUST</em> and <em class="rfc2119">SHOULD</em> in this document
+            are to be interpreted as described in
+            <a href="https://www.rfc-editor.org/info/bcp14">BCP 14</a>
+            [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119"
+                    title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>] [<cite><a
+                    class="bibref" data-link-type="biblio" href="#bib-rfc8174"
+                    title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">RFC8174</a></cite>]
+            when, and only when, they appear in all capitals, as shown here.
+        </p>
+        <p>Some conformance requirements are phrased as requirements on attributes,
+            methods or objects. Such requirements are to be interpreted as requirements
+            on user agents.</p>
+    </section>
+    <section id="idl-index">
+        <h2 id="x9-idl-index"><bdi class="secno">9. </bdi>IDL Index<a class="self-link" aria-label="§"
+                href="#idl-index"></a></h2>
+        <pre class="idl def" id="actual-idl-index"><span class="idlHeader"><a class="self-link" href="#actual-idl-index">WebIDL</a></span><span data-idl="" class="idlTypedef" data-title="DOMHighResTimeStamp">typedef<span class="idlType"> <a data-xref-type="_IDL_" data-cite-path="" data-type="interface" href="https://heycam.github.io/webidl/#idl-double">double</a></span> <a class="internalDFN idlID" data-link-for="" data-link-type="typedef" href="#dom-domhighrestimestamp"><code>DOMHighResTimeStamp</code></a>;</span>
+
+<span data-idl="" class="idlInterface" data-title="Performance">[<span class="extAttr"><a data-xref-type="extended-attribute" data-cite-path="" data-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<a data-xref-type="interface" data-cite-path="window-object.html" data-type="interface" href="https://html.spec.whatwg.org/multipage/window-object.html#window">Window</a>,<a data-xref-type="interface" data-lt="WorkerGlobalScope" data-cite-path="workers.html" data-type="interface" href="https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope">Worker</a>)</span>]
+interface <a class="internalDFN idlID" data-link-for="" data-link-type="interface" href="#dom-performance"><code>Performance</code></a> : <span class="idlSuperclass"><a data-xref-type="_IDL_" data-cite-path="" data-type="interface" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a></span> {<span data-idl="" class="idlMethod" data-title="now" data-dfn-for="Performance"><span class="idlType">
+    <a data-xref-type="_IDL_" href="#dom-domhighrestimestamp" class="internalDFN" data-link-type="idl"><code>DOMHighResTimeStamp</code></a></span> <a class="internalDFN idlName" data-link-for="Performance" data-link-type="method" href="#dom-performance-now"><code>now</code></a>();</span><span data-idl="" class="idlAttribute" data-title="timeOrigin" data-dfn-for="Performance">
+    readonly attribute<span class="idlType"> <a data-xref-type="_IDL_" href="#dom-domhighrestimestamp" class="internalDFN" data-link-type="idl"><code>DOMHighResTimeStamp</code></a></span> <a class="internalDFN idlName" data-link-for="Performance" data-link-type="attribute" href="#dom-performance-timeorigin"><code>timeOrigin</code></a>;</span><span data-idl="" class="idlMethod" data-title="toJSON" data-dfn-for="Performance">
+    [<span class="extAttr"><a data-xref-type="extended-attribute" data-cite-path="" data-type="extended-attribute" href="https://heycam.github.io/webidl/#Default">Default</a></span>]<span class="idlType"> <a data-xref-type="interface" data-cite-path="" data-type="interface" href="https://heycam.github.io/webidl/#idl-object">object</a></span> <a class="internalDFN idlName" data-link-for="Performance" data-link-type="method" href="#dom-performance-tojson"><code>toJSON</code></a>();</span>
+};</span>
+
+<span data-idl="" class="idlInterface mixin" data-title="WindowOrWorkerGlobalScope">partial interface mixin <a data-idl="partial" data-link-type="interface" data-title="WindowOrWorkerGlobalScope" data-xref-type="interface" class="idlID" data-dfn-for="WindowOrWorkerGlobalScope" data-cite-path="webappapis.html" data-type="interface" href="https://html.spec.whatwg.org/multipage/webappapis.html#windoworworkerglobalscope"><code>WindowOrWorkerGlobalScope</code></a> {<span data-idl="" class="idlAttribute" data-title="performance" data-dfn-for="WindowOrWorkerGlobalScope">
+  [<span class="extAttr"><a data-xref-type="extended-attribute" data-cite-path="" data-type="extended-attribute" href="https://heycam.github.io/webidl/#Replaceable">Replaceable</a></span>] readonly attribute<span class="idlType"> <a data-xref-type="_IDL_" href="#dom-performance" class="internalDFN" data-link-type="idl"><code>Performance</code></a></span> <a class="internalDFN idlName" data-link-for="WindowOrWorkerGlobalScope" data-link-type="attribute" href="#dom-windoworworkerglobalscope-performance"><code>performance</code></a>;</span>
+};</span></pre>
+    </section>
+    <section class="appendix" id="acknowledgments">
+        <h2 id="a-acknowledgments"><bdi class="secno">A. </bdi>Acknowledgments<a class="self-link" aria-label="§"
+                href="#acknowledgments"></a></h2>
+        <p>Thanks to Arvind Jain, Angelos D. Keromytis, Boris Zbarsky, Jason Weber,
+            Karen Anderson, Nat Duca, Philippe Le Hegaret, Ryosuke Niwa, Simha
+            Sethumadhavan, Todd Reifsteck, Tony Gentilcore, Vasileios P. Kemerlis, Yoav
+            Weiss, and Yossef Oren for their contributions to this work.</p>
+    </section>
+
+
+    <section id="references" class="appendix">
+        <h2 id="b-references"><bdi class="secno">B. </bdi>References<a class="self-link" aria-label="§"
+                href="#references"></a></h2>
+        <section id="normative-references">
+            <h3 id="b-1-normative-references"><bdi class="secno">B.1 </bdi>Normative references<a class="self-link"
+                    aria-label="§" href="#normative-references"></a></h3>
+            <dl class="bibliography">
+                <dt id="bib-dom">[dom]</dt>
+                <dd><a href="https://dom.spec.whatwg.org/"><cite>DOM Standard</cite></a>. Anne van Kesteren. WHATWG.
+                    Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a></dd>
+                <dt id="bib-ecma-262">[ECMA-262]</dt>
+                <dd><a href="https://tc39.es/ecma262/"><cite>ECMAScript Language Specification</cite></a>. Ecma
+                    International. URL: <a href="https://tc39.es/ecma262/">https://tc39.es/ecma262/</a></dd>
+                <dt id="bib-html">[HTML]</dt>
+                <dd><a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren;
+                    Domenic Denicola; Ian Hickson; Philip Jägenstedt; Simon Pieters. WHATWG. Living Standard. URL: <a
+                        href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a></dd>
+                <dt id="bib-rfc2119">[RFC2119]</dt>
+                <dd><a href="https://www.rfc-editor.org/info/rfc2119"><cite>Key words for use in RFCs to Indicate
+                            Requirement Levels</cite></a>. S. Bradner. IETF. March 1997. Best Current Practice. URL: <a
+                        href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a></dd>
+                <dt id="bib-rfc8174">[RFC8174]</dt>
+                <dd><a href="https://www.rfc-editor.org/info/rfc8174"><cite>Ambiguity of Uppercase vs Lowercase in RFC
+                            2119 Key Words</cite></a>. B. Leiba. IETF. May 2017. Best Current Practice. URL: <a
+                        href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a></dd>
+                <dt id="bib-spectre">[SPECTRE]</dt>
+                <dd><a href="https://spectreattack.com/spectre.pdf"><cite>Spectre Attacks: Exploiting Speculative
+                            Execution</cite></a>. Paul Kocher; Jann Horn; Anders Fogh; Daniel Genkin; Daniel Gruss;
+                    Werner Haas; Mike Hamburg; Moritz Lipp; Stefan Mangard; Thomas Prescher; Michael Schwarz; Yuval
+                    Yarom. January 2018. URL: <a
+                        href="https://spectreattack.com/spectre.pdf">https://spectreattack.com/spectre.pdf</a></dd>
+                <dt id="bib-webidl">[WEBIDL]</dt>
+                <dd><a href="https://heycam.github.io/webidl/"><cite>Web IDL</cite></a>. Boris Zbarsky. W3C. 15 December
+                    2016. W3C Editor's Draft. URL: <a
+                        href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a></dd>
+            </dl>
+        </section>
+        <section id="informative-references">
+            <h3 id="b-2-informative-references"><bdi class="secno">B.2 </bdi>Informative references<a class="self-link"
+                    aria-label="§" href="#informative-references"></a></h3>
+            <dl class="bibliography">
+                <dt id="bib-cache-attacks">[CACHE-ATTACKS]</dt>
+                <dd><a href="https://arxiv.org/abs/1502.07373"><cite>The Spy in the Sandbox - Practical Cache Attacks in
+                            Javascript</cite></a>. Yossef Oren; Vasileios P. Kemerlis; Simha Sethumadhavan; Angelos D.
+                    Keromytis. March 2015. URL: <a
+                        href="https://arxiv.org/abs/1502.07373">https://arxiv.org/abs/1502.07373</a></dd>
+            </dl>
+        </section>
+    </section>
+    <p role="navigation" id="back-to-top"><a href="#title"><abbr title="Back to Top">↑</abbr></a></p>
+    <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
+</body>
+</html>
