@@ -832,6 +832,21 @@ const tests = {
                 errors: ['sotd.new-features.no-link'],
             },
         ],
+        usage: [
+            {
+                doc: 'p2021/2021-ry.html',
+                config: {
+                    longStatus: 'Registry',
+                },
+            },
+            {
+                doc: 'p2021/2021-rec.html',
+                config: {
+                    longStatus: 'Registry',
+                },
+                errors: ['sotd.usage.not-found'],
+            },
+        ],
         'draft-stability': [
             {
                 doc: 'headers/simple.html',
@@ -1148,6 +1163,18 @@ const tests = {
                 doc: 'online/IG-NOTE-media-timed-events.html',
                 config: {
                     longStatus: 'Interest Group Note',
+                },
+            },
+            {
+                doc: 'p2021/2021-ry.html',
+                config: {
+                    longStatus: 'Registry',
+                },
+            },
+            {
+                doc: 'p2021/2021-stmt.html',
+                config: {
+                    longStatus: 'Statement',
                 },
             },
         ],
