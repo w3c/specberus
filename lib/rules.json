@@ -478,7 +478,7 @@
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Registry track&lt;/a&gt;"
                             ],
                             "customParagraph": true,
-                            "usage": "It <span class=\"rfc2119\">must</span> include the usage of Registry. The SOTD should include a paragrpah: <blockquote>W3C recommends the wide usage of this registry.</blockquote>",
+                            "usage": "It <span class=\"rfc2119\">must</span> include the expectations if terms of usage of this registry. The SOTD should include the paragraph: <blockquote>W3C recommends the wide usage of this registry.</blockquote>",
                             "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"><p>A W3C Registry is a specification that, after extensive consensus-building, is endorsed by W3C and its Members.</p>",
                             "patentPolicy2017": true,
                             "knownDisclosureNumber": true,
