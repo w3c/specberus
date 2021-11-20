@@ -922,7 +922,7 @@ const tests = {
             },
             {
                 doc: 'sotd/joint-publication-tag.html',
-                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
+                config: { track: 'Note' },
                 warnings: ['sotd.pp.joint-publication'],
             },
             {
