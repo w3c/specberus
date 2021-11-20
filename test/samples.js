@@ -54,7 +54,7 @@ exports.samples = [
         latestVersion: 'https://www.w3.org/TR/new-name-3/',
         history: 'https://www.w3.org/standards/history/new-name-3',
         previousVersion: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
-        editorsDraft: 'https://w3c.github.io/new-name/',
+        editorsDraft: 'https://w3c.github.io/foo-time/',
         sameWorkAs: 'https://www.w3.org/TR/hr-time-3/',
         updated: false,
         patentPolicy: 'https://www.w3.org/Consortium/Patent-Policy-20200915/',
@@ -137,10 +137,10 @@ exports.samples = [
         delivererIDs: [45211],
         charters: ['https://www.w3.org/2021/02/webperf.html'],
         patentPolicy: 'https://www.w3.org/Consortium/Patent-Policy-20200915/',
-        thisVersion: 'https://www.w3.org/TR/2021/REC-hr-time-2-20211104/',
-        latestVersion: 'https://www.w3.org/TR/hr-time-2/',
-        history: 'https://www.w3.org/standards/history/hr-time-2',
-        previousVersion: 'https://www.w3.org/TR/2019/REC-hr-time-2-20191121/',
+        thisVersion: 'https://www.w3.org/TR/2021/REC-hr-time-20211104/',
+        latestVersion: 'https://www.w3.org/TR/hr-time/',
+        history: 'https://www.w3.org/standards/history/hr-time',
+        previousVersion: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
         rectrack: 'Recommendation',
         editorsDraft: 'https://w3c.github.io/hr-time/',
         updated: false,
@@ -160,12 +160,12 @@ exports.samples = [
             'https://www.w3.org/International/groups/wg/charter-2019-2021.html',
         ],
         thisVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20211104/',
+            'https://www.w3.org/TR/2021/DNOTE-predefined-counter-styles-20211104/',
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
         previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210606/',
+            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Note',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
@@ -190,7 +190,7 @@ exports.samples = [
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
         previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210606/',
+            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Note',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
@@ -210,12 +210,12 @@ exports.samples = [
             'https://www.w3.org/International/groups/wg/charter-2019-2021.html',
         ],
         thisVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20211104/',
+            'https://www.w3.org/TR/2021/STMT-predefined-counter-styles-20211104/',
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
         previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210606/',
+            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Note',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
@@ -240,7 +240,7 @@ exports.samples = [
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
         previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20211104/',
+            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Registry',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
@@ -265,7 +265,7 @@ exports.samples = [
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
         previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20211104/',
+            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Registry',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
@@ -290,7 +290,7 @@ exports.samples = [
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
         previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20211104/',
+            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Registry',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
@@ -315,7 +315,7 @@ exports.samples = [
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
         previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20211104/',
+            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Registry',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
