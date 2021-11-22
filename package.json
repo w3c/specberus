@@ -22,7 +22,7 @@
     "promise": "8.1.0",
     "puppeteer": "11.0.0",
     "request": "2.88.2",
-    "socket.io": "4.3.2",
+    "socket.io": "4.4.0",
     "superagent": "6.1.0"
   },
   "devDependencies": {
