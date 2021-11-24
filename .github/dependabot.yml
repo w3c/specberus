@@ -7,7 +7,7 @@ updates:
     time: "00:00"
   open-pull-requests-limit: 10
   ignore:
-      - dependency-name: *
+      - dependency-name: "*"
         update-types: ["version-update:semver-patch"]
 - package-ecosystem: github-actions
   directory: "/"
