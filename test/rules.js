@@ -343,7 +343,6 @@ const tests = {
             },
             {
                 doc: 'headers/simple-oxford.html',
-                errors: ['headers.errata.no-errata'],
             },
         ],
         'w3c-state': [
