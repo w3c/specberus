@@ -20,7 +20,7 @@
     <div class="head">
         <a class="logo" href="https://www.w3.org/"><img alt="W3C" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C"
                 width="72" height="48"></a>
-        <h1 id="title" class="title p-name">Test document for <span class="handlebars-data">{{config.profile}}</span> - Specberus</h1>
+        <h1 id="title" class="title p-name">Test document for <span class="handlebars-data">{{config.profile}}</span> - {{#if config.titleSuffix}}<span class="handlebars-data">{{config.titleSuffix}}</span>{{else}}Specberus{{/if}}</h1>
 
         <p id='w3c-state'>
             <a href='https://www.w3.org/standards/types#{{config.status}}'>W3C <span class="handlebars-data">{{config.profile}}</span></a>

@@ -1236,6 +1236,10 @@ const tests = {
             {
                 url: 'doc-views/FPWD',
             },
+            {
+                url: 'doc-views/FPWD-bad',
+                errors: ['headers.h1-title.not-match']
+            },
         ],
     }
 }
