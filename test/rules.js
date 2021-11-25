@@ -14,6 +14,7 @@ const pth = require('path');
 const express = require('express');
 const expect = require('expect.js');
 const chai = require('chai').expect;
+const { engine } = require('express-handlebars');
 
 // Internal packages:
 const validation = require('./validation');
@@ -48,7 +49,7 @@ const equivalentArray = function (a1, a2) {
  * Assert that metadata detected in a spec is equal to the expected values.
  *
  * @param {String} url - public URL of a spec.
- * @param {String} file - name of local file containing a spec (without path and without ".html" suffix).
+ * @param {String} file - name of local file containing a spec (without pth and without ".html" suffix).
  * @param {Object} expectedObject - values that are expected to be found.
  */
 
@@ -139,43 +140,43 @@ const compareMetadata = function (url, file, expectedObject) {
     });
 };
 
-describe('Basics', () => {
-    const specberus = new validator.Specberus(process.env.W3C_API_KEY);
+// describe('Basics', () => {
+//     const specberus = new validator.Specberus(process.env.W3C_API_KEY);
 
-    describe('Method "extractMetadata"', () => {
-        let i;
+//     describe('Method "extractMetadata"', () => {
+//         let i;
 
-        it('Should exist and be a function', done => {
-            chai(specberus)
-                .to.have.property('extractMetadata')
-                .that.is.a('function');
-            done();
-        });
+//         it('Should exist and be a function', done => {
+//             chai(specberus)
+//                 .to.have.property('extractMetadata')
+//                 .that.is.a('function');
+//             done();
+//         });
 
-        // if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
-        //     for(i in samples) {
-        //         compareMetadata(samples[i].url, null, samples[i]);
-        //     }
-        // }
-        // else {
-        //     for(i in samples) {
-        //         compareMetadata(null, samples[i].file, samples[i]);
-        //     }
-        // }
-        for (i in samples) {
-            compareMetadata(null, samples[i].file, samples[i]);
-        }
-    });
+//         // if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
+//         //     for(i in samples) {
+//         //         compareMetadata(samples[i].url, null, samples[i]);
+//         //     }
+//         // }
+//         // else {
+//         //     for(i in samples) {
+//         //         compareMetadata(null, samples[i].file, samples[i]);
+//         //     }
+//         // }
+//         for (i in samples) {
+//             compareMetadata(null, samples[i].file, samples[i]);
+//         }
+//     });
 
-    describe('Method "validate"', () => {
-        it('Should exist and be a function', done => {
-            chai(specberus).to.have.property('validate').that.is.a('function');
-            done();
-        });
-    });
-});
+//     describe('Method "validate"', () => {
+//         it('Should exist and be a function', done => {
+//             chai(specberus).to.have.property('validate').that.is.a('function');
+//             done();
+//         });
+//     });
+// });
 
-const tests = {
+const tests1 = {
     // Categories
     echidna: {
         'todays-date': [
@@ -1229,9 +1230,46 @@ const tests = {
     validation,
 };
 
+const tests = {
+    headers: {
+        'h1-title': [
+            {
+                url: 'doc-views/FPWD',
+            },
+        ],
+    }
+}
+
 // start an server to host doc, response to sr.url requests
 const app = express();
 app.use('/docs', express.static(pth.join(__dirname, 'docs')));
+
+// use express-handlebars
+app.engine(
+    'handlebars',
+    engine({
+        defaultLayout: pth.join(__dirname, './doc-views/layout/TR'),
+        layoutsDir: pth.join(__dirname, './doc-views'),
+    })
+);
+app.set('view engine', 'handlebars');
+app.set('views', pth.join(__dirname, './doc-views'));
+// app.get('/doc-views/', (req, res) => {
+//     res.render('FPWD');
+// });
+
+app.get('/doc-views/:type', (req, res) => {
+    // get data for template from json (.js)
+    const { data } = require(pth.join(
+        __dirname,
+        `./doc-views/${req.params.type}.js`
+    ));
+
+    console.log('Data to render in template: \n', data, '\n');
+    // res.render(`${req.params.type}`, data);
+
+    res.render(pth.join(__dirname, './doc-views/layout/TR'), data);
+});
 const expressServer = app.listen(PORT, () => {});
 
 // config single redirection
@@ -1344,8 +1382,12 @@ describe('Making sure Specberus is not broken...', () => {
                             };
 
                             // support both external urls and local files
-                            if (test.url)
-                                options.url = `${ENDPOINT}/docs/${test.url}`;
+                            if (test.url) {
+                                console.log(`loading: ${ENDPOINT}/${test.url}`);
+                                options.url = `${ENDPOINT}/${test.url}`;
+                            }
+                                // options.url = `${ENDPOINT}/docs/${test.url}`;
+
                             else
                                 options.file = pth.join(
                                     __dirname,
