@@ -443,11 +443,6 @@ jQuery.extend({
         validate(options);
     });
 
-    $patentPolicy.find('label').on('click', function () {
-        const isPP2002 = $(this).attr('id') === 'pp2002';
-        $informativeOnly.prop('disabled', isPP2002);
-    });
-
     $profile.change(function () {
         toggleManual($(this).val() !== 'auto');
     });
