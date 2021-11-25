@@ -857,36 +857,12 @@ const tests = {
                 config: { status: 'WD', longStatus: 'Working Draft' },
             },
             {
-                doc: 'headers/wd.html',
-                config: {
-                    status: 'CR',
-                    longStatus: 'Candidate Recommendation',
-                },
-            },
-            {
-                doc: 'sotd/cr-end-27days.html',
-                config: {
-                    crType: 'Snapshot',
-                    longStatus: 'Candidate Recommendation',
-                },
-            },
-            {
-                doc: 'sotd/cr-end-multiple.html',
-                config: {
-                    crType: 'Draft',
-                    longStatus: 'Candidate Recommendation',
-                },
-            },
-            {
                 doc: 'online/WD-screen-orientation.html',
                 config: { longStatus: 'Working Draft' },
             },
             {
-                doc: 'sotd/cr-end.html',
-                config: {
-                    crType: 'Snapshot',
-                    longStatus: 'Candidate Recommendation',
-                },
+                doc: 'p2021/2021-dnote.html',
+                config: { status: 'DNOTE', longStatus: 'Draft Note' },
             },
         ],
         supersedable: [
@@ -946,7 +922,8 @@ const tests = {
             },
             {
                 doc: 'sotd/joint-publication-tag.html',
-                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
+                config: { track: 'Note' },
+                warnings: ['sotd.pp.joint-publication'],
             },
             {
                 doc: 'sotd/joint-publication-fail.html',

@@ -236,7 +236,7 @@
                                 ""
                             ],
                             "dateState": [
-                                "Candidate Registry",
+                                "Candidate Registry Snapshot",
                                 ""
                             ],
                             "docIDFormat": true,
@@ -1107,7 +1107,7 @@
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
                             ],
-                            "reviewEndDateCR": "It <span class=\"rfc2119\">must</span> include a minimal duration (before which the group will not request the next transition). The duration <span class=\"rfc2119\">must</span> be expressed as an estimated date.",
+                            "reviewEndDate": "It <span class=\"rfc2119\">must</span> include a minimal duration (before which the group will not request the next transition). The duration <span class=\"rfc2119\">must</span> be expressed as an estimated date.",
                             "implEstimation": "It <span class=\"rfc2119\">should</span> include an estimated date by which time the Working Group expects to have sufficient implementation experience.",
                             "featAtRisk": "It <span class=\"rfc2119\">must</span> identify any \"features at risk\" declared by the Working Group (as defined in section <a href=\"https://www.w3.org/Consortium/Process/#candidate-rec\">6.4 of the W3C Process Document</a>).",
                             "customParagraph": true,
@@ -1216,7 +1216,7 @@
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
                             ],
-                            "reviewEndDateCR": "It <span class=\"rfc2119\">must</span> include a minimal duration (before which the group will not request the next transition). The duration <span class=\"rfc2119\">must</span> be expressed as an estimated date.",
+                            "reviewEndDate": "It <span class=\"rfc2119\">must</span> include a minimal duration (before which the group will not request the next transition). The duration <span class=\"rfc2119\">must</span> be expressed as an estimated date.",
                             "implEstimation": "It <span class=\"rfc2119\">should</span> include an estimated date by which time the Working Group expects to have sufficient implementation experience.",
                             "featAtRisk": "It <span class=\"rfc2119\">must</span> identify any \"features at risk\" declared by the Working Group (as defined in section <a href=\"https://www.w3.org/Consortium/Process/#candidate-rec\">6.4 of the W3C Process Document</a>).",
                             "customParagraph": true,
@@ -1323,7 +1323,7 @@
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Recommendation track</a>",
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
                             ],
-                            "reviewEndDateCR": "It <span class=\"rfc2119\">must</span> include a minimal duration (before which the group will not request the next transition). The duration <span class=\"rfc2119\">must</span> be expressed as an estimated date.",
+                            "reviewEndDate": "It <span class=\"rfc2119\">must</span> include a minimal duration (before which the group will not request the next transition). The duration <span class=\"rfc2119\">must</span> be expressed as an estimated date.",
                             "implEstimation": "It <span class=\"rfc2119\">should</span> include an estimated date by which time the Working Group expects to have sufficient implementation experience.",
                             "featAtRisk": "It <span class=\"rfc2119\">must</span> identify any \"features at risk\" declared by the Working Group (as defined in section <a href=\"https://www.w3.org/Consortium/Process/#candidate-rec\">6.4 of the W3C Process Document</a>).",
                             "customParagraph": true,
