@@ -299,9 +299,7 @@ jQuery.extend({
                 for (const w in data.warnings) addMessage(MSG_WARN, w);
             toggleManual(true);
 
-            profile = !data.metadata.amended
-                ? data.metadata.profile
-                : `${data.metadata.profile}-AMENDED`;
+            profile = data.metadata.profile;
             $profile.val(profile);
             $informativeOnly.prop('checked', data.metadata.informative);
             $validation.find('label').removeClass('active');

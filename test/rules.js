@@ -343,7 +343,6 @@ const tests = {
             },
             {
                 doc: 'headers/simple-oxford.html',
-                errors: ['headers.errata.no-errata'],
             },
         ],
         'w3c-state': [
@@ -362,24 +361,6 @@ const tests = {
                     'headers.w3c-state.bad-w3c-state',
                     'headers.w3c-state.wrong-w3c-state-link',
                 ],
-            },
-            {
-                doc: 'headers/h2-amended.html',
-                config: {
-                    longStatus: 'Recommendation',
-                    status: 'REC',
-                    amended: true,
-                },
-                errors: ['headers.w3c-state.wrong-w3c-state-link'],
-            },
-            {
-                doc: 'headers/simple.html',
-                config: {
-                    longStatus: 'Working Draft',
-                    status: 'WD',
-                    amended: true,
-                },
-                errors: ['headers.w3c-state.bad-w3c-state'],
             },
             {
                 doc: 'headers/h2-not-found.html',
@@ -952,22 +933,8 @@ const tests = {
                 config: {
                     track: 'Recommendation',
                     patentPolicy: 'pp2004',
-                    amended: true,
                 },
                 errors: ['sotd.pp.no-pp'],
-            },
-            {
-                doc: 'sotd/pp-20170801-amended.html',
-                config: { track: 'Recommendation', patentPolicy: 'pp2004' },
-                errors: ['sotd.pp.no-pp'],
-            },
-            {
-                doc: 'sotd/pp-20170801-amended.html',
-                config: {
-                    track: 'Recommendation',
-                    patentPolicy: 'pp2004',
-                    amended: true,
-                },
             },
             {
                 doc: 'sotd/pp-20200915.html',

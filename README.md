@@ -317,14 +317,11 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
       * `WD-Echidna`
     * `FPWD` (identical)
     * `PR`
-      * `PR-AMENDED` (identical)
     * `CR`
-      * `CR-AMENDED` (identical)
       * `CR-Echidna`
     * `CRD`
       * `CRD-Echidna`
     * `REC`
-      * `REC-AMENDED` (identical)
     * `REC-OBSOLETE`
     * `REC-RSCND`
     * `REC-SUPERSEDED`
