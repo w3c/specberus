@@ -343,6 +343,7 @@ const tests = {
             },
             {
                 doc: 'headers/simple-oxford.html',
+                errors: ['headers.errata.no-errata'],
             },
         ],
         'w3c-state': [
@@ -934,7 +935,6 @@ const tests = {
                     track: 'Recommendation',
                     patentPolicy: 'pp2004',
                 },
-                errors: ['sotd.pp.no-pp'],
             },
             {
                 doc: 'sotd/pp-20200915.html',
