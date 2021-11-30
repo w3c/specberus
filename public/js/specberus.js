@@ -299,9 +299,7 @@ jQuery.extend({
                 for (const w in data.warnings) addMessage(MSG_WARN, w);
             toggleManual(true);
 
-            profile = !data.metadata.amended
-                ? data.metadata.profile
-                : `${data.metadata.profile}-AMENDED`;
+            profile = data.metadata.profile;
             $profile.val(profile);
             $informativeOnly.prop('checked', data.metadata.informative);
             $validation.find('label').removeClass('active');
@@ -441,11 +439,6 @@ jQuery.extend({
         if (options === null) return;
         setFormParams(options);
         validate(options);
-    });
-
-    $patentPolicy.find('label').on('click', function () {
-        const isPP2002 = $(this).attr('id') === 'pp2002';
-        $informativeOnly.prop('disabled', isPP2002);
     });
 
     $profile.change(function () {

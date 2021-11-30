@@ -245,7 +245,7 @@ Pubrules supports advanced configs to make the validation more accurate.
 | validation | Recursively validate multipart documents | no-validation, simple-validation, recursive |
 | informativeOnly | If the document is informative | true, false |
 | echidnaReady |Check that the document is valid for automatic publication with Echidna | true, false|
-| patentPolicy | Patent Policy version | pp2020, pp2004, pp2002 |
+| patentPolicy | Patent Policy version | pp2020, pp2004 |
 
 e.g. https://www.w3.org/pubrules/api/validate?url=https://www.w3.org/TR/2021/WD-i18n-glossary-20210708/&profile=WD&validation=simple-validation
 
@@ -317,14 +317,11 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
       * `WD-Echidna`
     * `FPWD` (identical)
     * `PR`
-      * `PR-AMENDED` (identical)
     * `CR`
-      * `CR-AMENDED` (identical)
       * `CR-Echidna`
     * `CRD`
       * `CRD-Echidna`
     * `REC`
-      * `REC-AMENDED` (identical)
     * `REC-OBSOLETE`
     * `REC-RSCND`
     * `REC-SUPERSEDED`
