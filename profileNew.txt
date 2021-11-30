@@ -1,0 +1,2629 @@
+
+> specberus@6.1.0 live
+> nodemon --use_strict app "2020"
+
+[33m[nodemon] 2.0.15[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,json[39m
+[32m[nodemon] starting `node --use_strict app 2020 lib/validator.js`[39m
+dnote rules:  [
+  'headers.div-head',
+  'headers.hr',
+  'headers.logo',
+  'headers.h1-title',
+  'headers.details-summary',
+  'headers.dl',
+  'headers.github-repo',
+  'headers.copyright',
+  'headers.w3c-state',
+  'headers.h2-toc',
+  'headers.ol-toc',
+  'headers.secno',
+  'style.sheet',
+  'style.meta',
+  'style.body-toc-sidebar',
+  'style.script',
+  'style.back-to-top',
+  'sotd.stability',
+  'sotd.publish',
+  'sotd.draft-stability',
+  'sotd.deliverer-note',
+  'sotd.pp',
+  'sotd.charter',
+  'sotd.process-document',
+  'sotd.draft-stability',
+  'sotd.supersedable',
+  'structure.name',
+  'structure.h2',
+  'structure.canonical',
+  'structure.section-ids',
+  'structure.display-only',
+  'structure.neutral',
+  'links.linkchecker',
+  'links.compound',
+  'links.reliability',
+  'validation.html',
+  'validation.wcag',
+  'heuristic.date-format'
+]
+{
+    "DNOTE-Echidna": {
+        "name": "DNOTE-Echidna",
+        "config": {
+            "status": "DNOTE",
+            "longStatus": "Group Draft Note",
+            "styleSheet": "W3C-DNOTE",
+            "track": "Note"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.draft-stability"
+            },
+            {
+                "name": "sotd.deliverer-note"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "echidna.todays-date"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.draft-stability"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "DNOTE": {
+        "name": "DNOTE",
+        "config": {
+            "status": "DNOTE",
+            "longStatus": "Group Draft Note",
+            "styleSheet": "W3C-DNOTE",
+            "track": "Note"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.draft-stability"
+            },
+            {
+                "name": "sotd.deliverer-note"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.draft-stability"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "NOTE-Echidna": {
+        "name": "NOTE-Echidna",
+        "config": {
+            "status": "NOTE",
+            "longStatus": "Group Note",
+            "styleSheet": "W3C-NOTE",
+            "track": "Note"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.deliverer-note"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "echidna.todays-date"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "NOTE": {
+        "name": "NOTE",
+        "config": {
+            "status": "NOTE",
+            "longStatus": "Group Note",
+            "styleSheet": "W3C-NOTE",
+            "track": "Note"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.deliverer-note"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "STMT": {
+        "name": "STMT",
+        "config": {
+            "status": "STMT",
+            "longStatus": "Statement",
+            "styleSheet": "W3C-STMT",
+            "track": "Note"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.deliverer-note"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "CR-Echidna": {
+        "name": "CR-Echidna",
+        "config": {
+            "status": "CR",
+            "longStatus": "Candidate Recommendation",
+            "crType": "Snapshot",
+            "styleSheet": "W3C-CR",
+            "track": "Recommendation"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.candidate-review-end"
+            },
+            {
+                "name": "echidna.todays-date"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.diff"
+            },
+            {
+                "name": "structure.security-privacy"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "CR": {
+        "name": "CR",
+        "config": {
+            "status": "CR",
+            "longStatus": "Candidate Recommendation",
+            "crType": "Snapshot",
+            "styleSheet": "W3C-CR",
+            "track": "Recommendation"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.candidate-review-end"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.diff"
+            },
+            {
+                "name": "structure.security-privacy"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "CRD-Echidna": {
+        "name": "CRD-Echidna",
+        "config": {
+            "status": "CRD",
+            "longStatus": "Candidate Recommendation",
+            "crType": "Draft",
+            "styleSheet": "W3C-CRD",
+            "track": "Recommendation"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "echidna.todays-date"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.diff"
+            },
+            {
+                "name": "structure.security-privacy"
+            },
+            {
+                "name": "sotd.draft-stability"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "CRD": {
+        "name": "CRD",
+        "config": {
+            "status": "CRD",
+            "longStatus": "Candidate Recommendation",
+            "crType": "Draft",
+            "styleSheet": "W3C-CRD",
+            "track": "Recommendation"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.diff"
+            },
+            {
+                "name": "structure.security-privacy"
+            },
+            {
+                "name": "sotd.draft-stability"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "DISC": {
+        "name": "DISC",
+        "config": {
+            "status": "DISC",
+            "longStatus": "Discontinued Draft",
+            "styleSheet": "W3C-DISC",
+            "track": "Recommendation"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "FPWD": {
+        "name": "FPWD",
+        "config": {
+            "status": "WD",
+            "longStatus": "First Public Working Draft",
+            "styleSheet": "W3C-WD",
+            "sotdStatus": true,
+            "track": "Recommendation"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.draft-stability"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "PR": {
+        "name": "PR",
+        "config": {
+            "status": "PR",
+            "longStatus": "Proposed Recommendation",
+            "styleSheet": "W3C-PR",
+            "track": "Recommendation"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.draft-stability"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.ac-review"
+            },
+            {
+                "name": "sotd.review-end"
+            },
+            {
+                "name": "sotd.new-features"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.diff"
+            },
+            {
+                "name": "structure.security-privacy"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "REC-RSCND": {
+        "name": "REC-RSCND",
+        "config": {
+            "status": "REC",
+            "longStatus": "Rescinded Recommendation",
+            "rescinds": true,
+            "styleSheet": "W3C-RSCND"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.obsl-rescind"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "REC": {
+        "name": "REC",
+        "config": {
+            "status": "REC",
+            "longStatus": "Recommendation",
+            "styleSheet": "W3C-REC",
+            "track": "Recommendation"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.errata"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.diff"
+            },
+            {
+                "name": "sotd.rec-addition"
+            },
+            {
+                "name": "sotd.rec-comment-end"
+            },
+            {
+                "name": "sotd.new-features"
+            },
+            {
+                "name": "sotd.deployment"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "WD-Echidna": {
+        "name": "WD-Echidna",
+        "config": {
+            "status": "WD",
+            "longStatus": "Working Draft",
+            "styleSheet": "W3C-WD",
+            "track": "Recommendation"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.draft-stability"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "echidna.todays-date"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.diff"
+            },
+            {
+                "name": "structure.security-privacy"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "WD": {
+        "name": "WD",
+        "config": {
+            "status": "WD",
+            "longStatus": "Working Draft",
+            "styleSheet": "W3C-WD",
+            "track": "Recommendation"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.draft-stability"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.diff"
+            },
+            {
+                "name": "structure.security-privacy"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "CRY": {
+        "name": "CRY",
+        "config": {
+            "status": "CRY",
+            "longStatus": "Candidate Registry",
+            "cryType": "Snapshot",
+            "styleSheet": "W3C-CRY",
+            "track": "Registry"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.candidate-review-end"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.usage"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "CRYD": {
+        "name": "CRYD",
+        "config": {
+            "status": "CRYD",
+            "longStatus": "Candidate Registry",
+            "cryType": "Draft",
+            "styleSheet": "W3C-CRYD",
+            "track": "Registry"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.usage"
+            },
+            {
+                "name": "sotd.draft-stability"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "DRY": {
+        "name": "DRY",
+        "config": {
+            "status": "DRY",
+            "longStatus": "Draft Registry",
+            "styleSheet": "W3C-DRY",
+            "track": "Registry"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.usage"
+            },
+            {
+                "name": "sotd.draft-stability"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "RY": {
+        "name": "RY",
+        "config": {
+            "status": "RY",
+            "longStatus": "Registry",
+            "styleSheet": "W3C-RY",
+            "track": "Registry"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.github-repo"
+            },
+            {
+                "name": "headers.copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.stability"
+            },
+            {
+                "name": "sotd.publish"
+            },
+            {
+                "name": "sotd.pp"
+            },
+            {
+                "name": "sotd.charter"
+            },
+            {
+                "name": "sotd.process-document"
+            },
+            {
+                "name": "sotd.usage"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    },
+    "MEM-SUBM": {
+        "name": "MEM-SUBM",
+        "config": {
+            "status": "SUBM",
+            "longStatus": "Member Submission",
+            "styleSheet": "W3C-Member-SUBM",
+            "submissionType": "member"
+        },
+        "rules": [
+            {
+                "name": "headers.div-head"
+            },
+            {
+                "name": "headers.hr"
+            },
+            {
+                "name": "headers.subm-logo"
+            },
+            {
+                "name": "headers.logo"
+            },
+            {
+                "name": "headers.h1-title"
+            },
+            {
+                "name": "headers.details-summary"
+            },
+            {
+                "name": "headers.dl"
+            },
+            {
+                "name": "headers.memsub-copyright"
+            },
+            {
+                "name": "headers.w3c-state"
+            },
+            {
+                "name": "headers.h2-toc"
+            },
+            {
+                "name": "headers.ol-toc"
+            },
+            {
+                "name": "headers.secno"
+            },
+            {
+                "name": "style.sheet"
+            },
+            {
+                "name": "style.meta"
+            },
+            {
+                "name": "style.body-toc-sidebar"
+            },
+            {
+                "name": "style.script"
+            },
+            {
+                "name": "style.back-to-top"
+            },
+            {
+                "name": "sotd.submission"
+            },
+            {
+                "name": "sotd.supersedable"
+            },
+            {
+                "name": "structure.name"
+            },
+            {
+                "name": "structure.h2"
+            },
+            {
+                "name": "structure.canonical"
+            },
+            {
+                "name": "structure.section-ids"
+            },
+            {
+                "name": "structure.display-only"
+            },
+            {
+                "name": "structure.neutral"
+            },
+            {
+                "name": "links.linkchecker"
+            },
+            {
+                "name": "links.compound"
+            },
+            {
+                "name": "links.reliability"
+            },
+            {
+                "name": "validation.html"
+            },
+            {
+                "name": "validation.wcag"
+            },
+            {
+                "name": "heuristic.date-format"
+            }
+        ]
+    }
+}
