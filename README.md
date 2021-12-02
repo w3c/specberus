@@ -3,7 +3,7 @@
 [![Dependency Status](https://david-dm.org/w3c/specberus.svg)](https://david-dm.org/w3c/specberus)
 [![devDependency Status](https://david-dm.org/w3c/specberus/dev-status.svg)](https://david-dm.org/w3c/specberus#info=devDependencies)
 
-# Specberus
+# Specberus 
 
 Specberus is a checker used at [W3C](https://www.w3.org/) to validate the compliance of [Technical Reports](https://www.w3.org/TR/) with publication rules.
 
