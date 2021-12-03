@@ -1,4 +1,3 @@
-/* eslint-disable no-unreachable */
 /**
  * Test the rules.
  */
