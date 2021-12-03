@@ -12,7 +12,6 @@ pids
 logs
 results
 
-package-lock.json
 yarn.lock
 npm-debug.log
 node_modules
