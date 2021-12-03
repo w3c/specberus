@@ -846,6 +846,14 @@ const tests = {
                 doc: 'p2021/2021-dnote.html',
                 config: { status: 'DNOTE', longStatus: 'Draft Note' },
             },
+            {
+                doc: 'p2021/2021-crd.html',
+                config: {
+                    status: 'CRD',
+                    longStatus: 'Candidate Recommendation',
+                    crType: 'Draft',
+                },
+            },
         ],
         supersedable: [
             { doc: 'headers/simple.html' },
