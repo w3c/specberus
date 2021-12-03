@@ -10,7 +10,7 @@
     <h3 id="publication"><a href="#publication">Publication rules</a></h3>
 
     {{#each tracks}}
-      <h4 id="{{this.abbr}}"><a href="#{{this.abbr}}">{{this.name}}</a></h3>
+      <h4 id="{{this.abbr}}"><a href="#{{this.abbr}}">{{this.name}}</a></h4>
       <ul>
       {{#each this.profiles}}
         <li><a href="{{../../BASE_URI}}doc/rules/?profile={{this.abbr}}"><span class="profile-abbr">{{this.abbr}}</span> {{this.name}}</a></li>
