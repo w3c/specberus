@@ -15,7 +15,7 @@
     "express": "4.17.1",
     "express-handlebars": "6.0.1",
     "insafe": "0.5.0",
-    "jsdom": "18.1.1",
+    "jsdom": "19.0.0",
     "metaviewport-parser": "0.2.0",
     "morgan": "1.10.0",
     "node-w3capi": "1.10.2",
