@@ -38,7 +38,8 @@ function munge(err, res) {
             td4.querySelectorAll('a').forEach(element => {
                 let list = element.textContent;
                 if (!/@w3\.org$/.test(list)) list += '@w3.org';
-                if (href.indexOf('http') === 0) true; // eslint-disable-line
+                // eslint-disable-next-line no-unused-expressions
+                if (href.indexOf('http') === 0) true;
                 else if (href.indexOf('/') === 0)
                     href = `https://www.w3.org${href}`;
                 else if (/^(\.\.\/){2}\w/.test(href))

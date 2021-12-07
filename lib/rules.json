@@ -18,9 +18,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "Member-SUBM"
-                            ],
+                            "goodStylesheet": ["Member-SUBM"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true
@@ -33,22 +31,15 @@
                             "logo": true,
                             "submlogo": "In addition to the W3C logo, use this logo:<div class=\"boilerplate\"> <a href=\"https://www.w3.org/Submission/\"> <img alt=\"W3C Member Submission\" src=\"https://www.w3.org/Icons/member_subm\" height=\"48\" width=\"211\"> </a> </div> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;a href=\"https://www.w3.org/Submission/\"&gt;&lt;img height=\"48\" width=\"211\" alt=\"W3C Member Submission\" src=\"https://www.w3.org/Icons/member_subm\"/&gt;&lt;/a&gt;</code></div>",
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "Member Submission",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["Member Submission", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
                             "docIDThisVersion": "The syntax of a “This Version” URI <span class=\"rfc2119\">must</span> be <code>https://www.w3.org/Submission/YYYY/SUBM-shortname-YYYYMMDD/</code>.",
                             "docIDLatestVersion": "The syntax of a “Latest Version” URI <span class=\"rfc2119\">must</span> be <code>https://www.w3.org/Submission/shortname/</code>.",
                             "docIDDate": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "SUBM"
-                            ],
+                            "altRepresentations": ["SUBM"],
                             "copyright": "<b>Copyright</b>: The document <span class=\"rfc2119\">must</span> include a link to the W3C document notice (https://www.w3.org/Consortium/Legal/copyright-documents). The copyright may be held by the Submitters.",
                             "hrAfterCopyright": true
                         }
@@ -85,9 +76,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "SUBM"
-                            ],
+                            "compoundFilesLocation": ["SUBM"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -97,7 +86,7 @@
         }
     },
     "REGISTRY": {
-        "name" : "Registry Track",
+        "name": "Registry Track",
         "order": 3,
         "profiles": {
             "DRY": {
@@ -115,9 +104,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "DRY"
-                            ],
+                            "goodStylesheet": ["DRY"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true,
@@ -130,25 +117,16 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "Draft Registry",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["Draft Registry", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "DRY"
-                            ],
+                            "docIDThisVersion": ["DRY"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "DRY"
-                            ],
+                            "altRepresentations": ["DRY"],
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -193,9 +171,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "DRY"
-                            ],
+                            "compoundFilesLocation": ["DRY"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -217,9 +193,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "CRY"
-                            ],
+                            "goodStylesheet": ["CRY"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true,
@@ -232,25 +206,16 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "Candidate Registry Snapshot",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["Candidate Registry Snapshot", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "CRY"
-                            ],
+                            "docIDThisVersion": ["CRY"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "CRY"
-                            ],
+                            "altRepresentations": ["CRY"],
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -295,9 +260,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "CRY"
-                            ],
+                            "compoundFilesLocation": ["CRY"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -319,9 +282,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "CRYD"
-                            ],
+                            "goodStylesheet": ["CRYD"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true,
@@ -334,25 +295,16 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "Candidate Registry Draft",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["Candidate Registry Draft", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "CRYD"
-                            ],
+                            "docIDThisVersion": ["CRYD"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "CRYD"
-                            ],
+                            "altRepresentations": ["CRYD"],
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -397,9 +349,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "CRYD"
-                            ],
+                            "compoundFilesLocation": ["CRYD"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -421,9 +371,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "RY"
-                            ],
+                            "goodStylesheet": ["RY"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true,
@@ -436,25 +384,16 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "Registry",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["Registry", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "RY"
-                            ],
+                            "docIDThisVersion": ["RY"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "RY"
-                            ],
+                            "altRepresentations": ["RY"],
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -499,9 +438,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "RY"
-                            ],
+                            "compoundFilesLocation": ["RY"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -529,9 +466,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "DNOTE"
-                            ],
+                            "goodStylesheet": ["DNOTE"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true,
@@ -544,25 +479,16 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "Group Draft Note",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["Group Draft Note", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "DNOTE"
-                            ],
+                            "docIDThisVersion": ["DNOTE"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "DNOTE"
-                            ],
+                            "altRepresentations": ["DNOTE"],
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -606,9 +532,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "DNOTE"
-                            ],
+                            "compoundFilesLocation": ["DNOTE"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -630,9 +554,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "NOTE"
-                            ],
+                            "goodStylesheet": ["NOTE"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true,
@@ -645,25 +567,16 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "Group Note",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["Group Note", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "NOTE"
-                            ],
+                            "docIDThisVersion": ["NOTE"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "NOTE"
-                            ],
+                            "altRepresentations": ["NOTE"],
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -707,9 +620,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "NOTE"
-                            ],
+                            "compoundFilesLocation": ["NOTE"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -731,9 +642,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "STMT"
-                            ],
+                            "goodStylesheet": ["STMT"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true,
@@ -746,25 +655,16 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "Statement",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["Statement", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "STMT"
-                            ],
+                            "docIDThisVersion": ["STMT"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "STMT"
-                            ],
+                            "altRepresentations": ["STMT"],
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -808,9 +708,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "STMT"
-                            ],
+                            "compoundFilesLocation": ["STMT"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -838,9 +736,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "WD"
-                            ],
+                            "goodStylesheet": ["WD"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true
@@ -852,25 +748,16 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "First Public Working Draft",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["First Public Working Draft", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "WD"
-                            ],
+                            "docIDThisVersion": ["WD"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "WD"
-                            ],
+                            "altRepresentations": ["WD"],
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -894,10 +781,7 @@
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
                             ],
                             "customParagraph": true,
-                            "stability": [
-                                "a First Public Working Draft",
-                                ""
-                            ],
+                            "stability": ["a First Public Working Draft", ""],
                             "draftStability": true,
                             "patPolReq": true,
                             "knownDisclosureNumber": true,
@@ -918,9 +802,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "WD"
-                            ],
+                            "compoundFilesLocation": ["WD"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -942,9 +824,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "WD"
-                            ],
+                            "goodStylesheet": ["WD"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true
@@ -956,25 +836,16 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "Working Draft",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["Working Draft", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "WD"
-                            ],
+                            "docIDThisVersion": ["WD"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "WD"
-                            ],
+                            "altRepresentations": ["WD"],
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -998,14 +869,8 @@
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
                             ],
                             "customParagraph": true,
-                            "changesList": [
-                                "should",
-                                ""
-                            ],
-                            "stability": [
-                                "a Working Draft",
-                                ""
-                            ],
+                            "changesList": ["should", ""],
+                            "stability": ["a Working Draft", ""],
                             "draftStability": true,
                             "patPolReq": true,
                             "knownDisclosureNumber": true,
@@ -1027,9 +892,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "WD"
-                            ],
+                            "compoundFilesLocation": ["WD"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -1051,9 +914,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "CR"
-                            ],
+                            "goodStylesheet": ["CR"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true
@@ -1065,25 +926,19 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
+                            "versionNumber": [""],
                             "dateState": [
                                 "Candidate Recommendation Snapshot",
                                 ""
                             ],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "CR"
-                            ],
+                            "docIDThisVersion": ["CR"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "CR"
-                            ],
+                            "altRepresentations": ["CR"],
                             "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report, or a statement that no such report exists.",
                             "copyright": true,
                             "hrAfterCopyright": true
@@ -1111,10 +966,7 @@
                             "implEstimation": "It <span class=\"rfc2119\">should</span> include an estimated date by which time the Working Group expects to have sufficient implementation experience.",
                             "featAtRisk": "It <span class=\"rfc2119\">must</span> identify any \"features at risk\" declared by the Working Group (as defined in section <a href=\"https://www.w3.org/Consortium/Process/#candidate-rec\">6.4 of the W3C Process Document</a>).",
                             "customParagraph": true,
-                            "changesList": [
-                                "must",
-                                ""
-                            ],
+                            "changesList": ["must", ""],
                             "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Publication as a Candidate Recommendation does not imply endorsement by W3C and its Members. A Candidate Recommendation Snapshot has received <a href=\"https://www.w3.org/2021/Process-20211102/#dfn-wide-review\">wide review</a>, is intended to gather implementation experience, and has commitments from Working Group members to <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements\">royalty-free licensing</a> for implementations.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;Publication as a Candidate Recommendation does not imply endorsement by W3C and its Members. A Candidate Recommendation Snapshot has received &lt;a href=\"https://www.w3.org/2021/Process-20211102/#dfn-wide-review\"&gt;wide review&lt;/a&gt;, is intended to gather implementation experience,  and has commitments from Working Group members to &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements\"&gt;royalty-free licensing&lt;/a&gt; for implementations.&lt;/p&gt;</code></div>",
                             "patPolReq": true,
                             "knownDisclosureNumber": true,
@@ -1136,9 +988,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "CR"
-                            ],
+                            "compoundFilesLocation": ["CR"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -1160,9 +1010,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "CRD"
-                            ],
+                            "goodStylesheet": ["CRD"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true
@@ -1174,25 +1022,16 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "Candidate Recommendation Draft",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["Candidate Recommendation Draft", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "CRD"
-                            ],
+                            "docIDThisVersion": ["CRD"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "CRD"
-                            ],
+                            "altRepresentations": ["CRD"],
                             "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report, or a statement that no such report exists.",
                             "copyright": true,
                             "hrAfterCopyright": true
@@ -1220,10 +1059,7 @@
                             "implEstimation": "It <span class=\"rfc2119\">should</span> include an estimated date by which time the Working Group expects to have sufficient implementation experience.",
                             "featAtRisk": "It <span class=\"rfc2119\">must</span> identify any \"features at risk\" declared by the Working Group (as defined in section <a href=\"https://www.w3.org/Consortium/Process/#candidate-rec\">6.4 of the W3C Process Document</a>).",
                             "customParagraph": true,
-                            "changesList": [
-                                "must",
-                                ""
-                            ],
+                            "changesList": ["must", ""],
                             "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Publication as a Candidate Recommendation does not imply endorsement by W3C and its Members. A Candidate Recommendation Draft integrates changes from the previous Candidate Recommendation that the Working Group intends to include in a subsequent Candidate Recommendation Snapshot.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;Publication as a Candidate Recommendation does not imply endorsement by W3C and its Members. A Candidate Recommendation Draft integrates changes from the previous Candidate Recommendation that the Working Group intends to include in a subsequent Candidate Recommendation Snapshot.&lt;/p&gt;</code></div>",
                             "draftStability": "W3C Candidate Recommendation Draft <span class=\"rfc2119\">must</span> include one of the following two paragraphs in the \"Status Of This Document\": <blockquote class=\"boilerplate\">This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</blockquote><blockquote class=\"boilerplate\">This document is maintained and updated at any time. Some parts of this document are work in progress.</blockquote>",
                             "patPolReq": true,
@@ -1246,9 +1082,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "CRD"
-                            ],
+                            "compoundFilesLocation": ["CRD"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -1270,9 +1104,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "PR"
-                            ],
+                            "goodStylesheet": ["PR"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true
@@ -1284,25 +1116,16 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "Proposed Recommendation",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["Proposed Recommendation", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "PR"
-                            ],
+                            "docIDThisVersion": ["PR"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "PR"
-                            ],
+                            "altRepresentations": ["PR"],
                             "implReport": true,
                             "copyright": true,
                             "hrAfterCopyright": true
@@ -1334,10 +1157,7 @@
                                 "must",
                                 " The group <span class=\"rfc2119\">must</span> indicate which changes may affect conformance."
                             ],
-                            "stability": [
-                                "a Proposed Recommendation",
-                                ""
-                            ],
+                            "stability": ["a Proposed Recommendation", ""],
                             "draftStability": true,
                             "patPolReq": true,
                             "knownDisclosureNumber": true,
@@ -1360,9 +1180,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "PR"
-                            ],
+                            "compoundFilesLocation": ["PR"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -1384,9 +1202,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "REC"
-                            ],
+                            "goodStylesheet": ["REC"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true
@@ -1407,16 +1223,12 @@
                             ],
                             "docIDFormat": true,
                             "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul><li>'This version' - URI to that version</li><li>'Latest version' - URI to the latest version. See also the (non-normative) <cite> <a href=\"https://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li><li class=\"historyuri\">'History' - URI to the history of the specification</li><li>Editor(s)</li><li>Feedback - GitHub repository issue links are required in the &lt;dl&gt;after &lt;dt&gt;Feedback:&lt;/dt&gt; in the headers (&lt;div class=\"head\"&gt;) of the document. Links are expected to be of the form <code>https://github.com/&lt;USER_OR_ORG&gt;/&lt;REPO_NAME&gt;/[issues|labels][/&hellip;]</code>.)</li><li>Errata - URI to an errata document for any errors or issues reported since publication. See also suggestions on <a href=\"https://www.w3.org/2001/06/manual/#Errata\">errata page structure</a> in the Manual of Style. <strong>Note:</strong> Do not put the errata document in TR space as the expectation is that we will not modify document in TR space after publication; see the policy for <a href=\"https://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>.</li></ul>",
-                            "docIDThisVersion": [
-                                "REC"
-                            ],
+                            "docIDThisVersion": ["REC"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "REC"
-                            ],
+                            "altRepresentations": ["REC"],
                             "implReport": "It <span class=\"rfc2119\">must</span> include a link to a preliminary interoperability or implementation report.",
                             "copyright": true,
                             "hrAfterCopyright": true
@@ -1437,12 +1249,9 @@
                             "datesFormat": true,
                             "deployment": true,
                             "publish": "W3C Recommendation <span class=\"rfc2119\">must</span> include one of the following paragraphs in the \"Status of This Document\" depending on the type of Recommendations:<ol><li><strong>Recommendation without modifications:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation.</blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation.&lt;/p&gt;</code></li><li><strong>Recommendation with candidate corrections:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2021/Process-20211102/#candidate-correction\">candidate corrections.</a></blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2021/Process-20211102/#candidate-correction\"&gt;candidate corrections.&lt;/a&gt;.&lt;/p&gt;</code></li><li><strong>Recommendation with candidate additions:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2021/Process-20211102/#candidate-addition\">candidate additions</a>, introducing new features since the Previous Recommendation.</blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2021/Process-20211102/#candidate-addition\"&gt;candidate additions&lt;/a&gt;, introducing new features since the Previous Recommendation.&lt;/p&gt;</code></li><li><strong>Recommendation with candidate amendments:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2021/Process-20211102/#candidate-amendments\">candidate amendments</a>, introducing substantive changes and new features since the Previous Recommendation.</blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2021/Process-20211102/#candidate-amendments\"&gt;candidate amendments&lt;/a&gt;, introducing substantive changes and new features since the Previous Recommendation.&lt;/p&gt;</code></li><li><strong>Recommendation with proposed corrections:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2021/Process-20211102/#proposed-corrections\">proposed corrections.</a></blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2021/Process-20211102/#proposed-corrections\"&gt;proposed corrections.&lt;/a&gt;.&lt;/p&gt;</code></li><li><strong>Recommendation with proposed additions:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2021/Process-20211102/#proposed-addition\">proposed additions</a>, introducing new features since the Previous Recommendation.</blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2021/Process-20211102/#proposed-addition\"&gt;proposed additions&lt;/a&gt;, introducing new features since the Previous Recommendation.&lt;/p&gt;</code></li><li><strong>Recommendation with proposed amendments:</strong><br><blockquote class=\"boilerplate\">This document was published by the @@ Working Group as a Recommendation. It includes <a href=\"https://www.w3.org/2021/Process-20211102/#proposed-amendments\">proposed amendments</a>, introducing substantive changes and new features since the Previous Recommendation.</blockquote><span style=\"font-style: italic\">Include this source code:</span><br><code>&lt;p&gt;This document was published by the @@ Working Group as a Recommendation. This document was published by the @@ Working Group as a Recommendation. It includes &lt;a href=\"https://www.w3.org/2021/Process-20211102/#proposed-amendments\"&gt;proposed amendments&lt;/a&gt;, introducing substantive changes and new features since the Previous Recommendation.&lt;/p&gt;</li></ol></code>",
-                        "recRelation": "It <span class=\"rfc2119\">must</span> indicate its relationship to previous related Recommendations (e.g., an indication that a Recommendation supersedes, obsoletes, or subsumes another, or that a Recommendation is an editorial revision) and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number. The document thus links to two important resources: the previous edition of the Recommendation via the status section, and the previous draft (the Proposed Recommendation) via the \"Previous version\" link.",
+                            "recRelation": "It <span class=\"rfc2119\">must</span> indicate its relationship to previous related Recommendations (e.g., an indication that a Recommendation supersedes, obsoletes, or subsumes another, or that a Recommendation is an editorial revision) and <span class=\"rfc2119\">must</span> link to the most recent Recommendation (if any) having the same major revision number. The document thus links to two important resources: the previous edition of the Recommendation via the status section, and the previous draft (the Proposed Recommendation) via the \"Previous version\" link.",
                             "customParagraph": true,
-                            "changesList": [
-                                "must",
-                                ""
-                            ],
+                            "changesList": ["must", ""],
                             "stability": "It <span class=\"rfc2119\">must</span> set expectations about the stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>A W3C Recommendation is a specification that, after extensive consensus-building, is endorsed by <abbr title=\"World Wide Web Consortium\">W3C</abbr> and its Members, and has commitments from Working Group members to <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements\">royalty-free licensing</a> for implementations.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;A W3C Recommendation is a specification that, after extensive consensus-building, is endorsed by &lt;abbr title=\"World Wide Web Consortium\"&gt;W3C&lt;/abbr&gt; and its Members, and has commitments from Working Group members to &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements\"&gt;royalty-free licensing&lt;/a&gt; for implementations.&lt;/p&gt;</code></div>",
                             "patPolReq": true,
                             "knownDisclosureNumber": true,
@@ -1466,9 +1275,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "REC"
-                            ],
+                            "compoundFilesLocation": ["REC"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -1490,9 +1297,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "RSCND"
-                            ],
+                            "goodStylesheet": ["RSCND"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true
@@ -1507,22 +1312,15 @@
                             "versionNumber": [
                                 "<li class=\"rec-in-place\">If a Recommendation modified in place, see the Comm Team's policy regarding <a href=\"https://www.w3.org/2003/01/republishing/\">in-place modification of W3C Technical Reports</a>, otherwise</li> "
                             ],
-                            "dateState": [
-                                "Rescinded Recommendation",
-                                ""
-                            ],
+                            "dateState": ["Rescinded Recommendation", ""],
                             "docIDFormat": true,
                             "docIDOrder": "Document identifier information <span class=\"rfc2119\">must</span> be present in this order: <ul> <li>This version URI.</li> <li>Latest version URI(s). See also the (non-normative) <cite> <a href=\"https://www.w3.org/2005/05/tr-versions\">Version Management in W3C Technical Reports</a> </cite> for information about \"latest version\" URI and version management.</li> <li class=\"prevrecuri\">\"Rescinds this Recommendation\" URI</li> </ul>",
-                            "docIDThisVersion": [
-                                "RSCND"
-                            ],
+                            "docIDThisVersion": ["RSCND"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "RSCND"
-                            ],
+                            "altRepresentations": ["RSCND"],
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1567,9 +1365,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "RSCND"
-                            ],
+                            "compoundFilesLocation": ["RSCND"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -1583,13 +1379,13 @@
                     "rec-edit-install": {
                         "name": "1. Install the document.",
                         "rules": {
-                            "install" : true
+                            "install": true
                         }
                     },
                     "rec-edit-stylesheet": {
                         "name": "2. Use corresponding stylesheet",
                         "rules": {
-                            "stylesheet" : ["OBSL"]
+                            "stylesheet": ["OBSL"]
                         }
                     },
                     "rec-edit-w3c-state": {
@@ -1598,13 +1394,13 @@
                             "w3c-state": ["obsoleted"]
                         }
                     },
-                     "rec-edit-version": {
+                    "rec-edit-version": {
                         "name": "4. Set This version link",
                         "rules": {
                             "version": ["OBSL"]
                         }
                     },
-                     "rec-edit-previous": {
+                    "rec-edit-previous": {
                         "name": "5. Set Previous version link",
                         "rules": {
                             "previous": ["obsoleted"]
@@ -1625,13 +1421,13 @@
                     "rec-edit-install": {
                         "name": "1. Install the document.",
                         "rules": {
-                            "install" : true
+                            "install": true
                         }
                     },
                     "rec-edit-stylesheet": {
                         "name": "2. Use the corresponding stylesheet",
                         "rules": {
-                            "stylesheet" : ["SPSD"]
+                            "stylesheet": ["SPSD"]
                         }
                     },
                     "rec-edit-w3c-state": {
@@ -1640,13 +1436,13 @@
                             "w3c-state": ["superseded"]
                         }
                     },
-                     "rec-edit-version": {
+                    "rec-edit-version": {
                         "name": "4. Set the \"This version\" link",
                         "rules": {
                             "version": ["SPSD"]
                         }
                     },
-                     "rec-edit-previous": {
+                    "rec-edit-previous": {
                         "name": "5. Set the \"Previous version\" link",
                         "rules": {
                             "previous": ["superseded"]
@@ -1655,7 +1451,12 @@
                     "rec-edit-sotd": {
                         "name": "6. Change the \"Status of this Document\" section",
                         "rules": {
-                            "sotd": ["Superseded", "superseded", "superseding", "<br><br>For an example, see the diff between the REC and the superseded document of <a href=\"https://services.w3.org/htmldiff?doc2=https://www.w3.org/TR/2019/SPSD-hr-time-1-20191121/\">High Resolution Time Level 1</a>."]
+                            "sotd": [
+                                "Superseded",
+                                "superseded",
+                                "superseding",
+                                "<br><br>For an example, see the diff between the REC and the superseded document of <a href=\"https://services.w3.org/htmldiff?doc2=https://www.w3.org/TR/2019/SPSD-hr-time-1-20191121/\">High Resolution Time Level 1</a>."
+                            ]
                         }
                     }
                 }
@@ -1675,9 +1476,7 @@
                     "metadata": {
                         "name": "2. Document Metadata",
                         "rules": {
-                            "goodStylesheet": [
-                                "DISC"
-                            ],
+                            "goodStylesheet": ["DISC"],
                             "lastStylesheet": true,
                             "viewport": true,
                             "canonical": true
@@ -1689,25 +1488,16 @@
                             "divClassHead": true,
                             "logo": true,
                             "title": true,
-                            "versionNumber": [
-                                ""
-                            ],
-                            "dateState": [
-                                "Discontinued Draft",
-                                ""
-                            ],
+                            "versionNumber": [""],
+                            "dateState": ["Discontinued Draft", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": [
-                                "DISC"
-                            ],
+                            "docIDThisVersion": ["DISC"],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
                             "editorSection": true,
-                            "altRepresentations": [
-                                "DISC"
-                            ],
+                            "altRepresentations": ["DISC"],
                             "copyright": true,
                             "hrAfterCopyright": true
                         }
@@ -1750,9 +1540,7 @@
                     "compound": {
                         "name": "8. Compound Documents",
                         "rules": {
-                            "compoundFilesLocation": [
-                                "DISC"
-                            ],
+                            "compoundFilesLocation": ["DISC"],
                             "compoundOverview": true,
                             "compound": true
                         }
@@ -1842,7 +1630,7 @@
                     "namespaces": "<span class=\"subset\">recursive</span> All proposed <a href=\"https://www.w3.org/TR/xml-names11/\">XML namespaces</a> created by the publication of the document <span class=\"rfc2119\">must</span> follow <cite> <a href=\"https://www.w3.org/2005/07/13-nsuri\">URIs for W3C Namespaces</a> </cite>.",
                     "wcag": "The document(s) <span class=\"rfc2119\">must</span> conform to the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines 2.1</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"https://www.w3.org/WAI/WCAG21/quickref/\">customizable quick reference to Web Content Accessibility Guidelines 2.1</a>.",
                     "securityAndPrivacy": "The document <span class=\"rfc2119\">should</span> have a <a href=\"https://www.w3.org/TR/security-privacy-questionnaire/\">security and privacy considerations</a> section.",
-                    "fixupJs": "The document <span class=\"rfc2119\">must</span> include the script <code><a href=\"https://www.w3.org/scripts/TR/2021/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2021/fixup.js\" type=\"application\/javascript\"&gt;&lt;/script&gt;</code></p>"
+                    "fixupJs": "The document <span class=\"rfc2119\">must</span> include the script <code><a href=\"https://www.w3.org/scripts/TR/2021/fixup.js\">fixup.js</a></code>.<p><span style=\"font-style: italic\">Include this source code:</span><br/><code>&lt;script src=\"//www.w3.org/scripts/TR/2021/fixup.js\" type=\"application/javascript\"&gt;&lt;/script&gt;</code></p>"
                 }
             },
             "compound": {
@@ -1856,25 +1644,25 @@
             "rec-edit-install": {
                 "name": "1. Install the document.",
                 "rules": {
-                    "install":"(if new dated version) Copy the original REC in /TR into a new dated <code>&lt;new date&gt;</code> directory in /TR"
+                    "install": "(if new dated version) Copy the original REC in /TR into a new dated <code>&lt;new date&gt;</code> directory in /TR"
                 }
             },
             "rec-edit-stylesheet": {
                 "name": "2. Use the corresponding stylesheet",
                 "rules": {
-                    "stylesheet":"For the W3C stylesheet, use the @{param1} version of the W3C stylesheet in use in the REC (old, or 2021). So, it's one of:<ol><li>https://www.w3.org/StyleSheets/TR/W3C-@{param1}.css</li><li>https://www.w3.org/StyleSheets/TR/2021/W3C-@{param1}.css</li><li>or reuse the (some?) content from https://www.w3.org/TR/html50/superseded.css as needed</li></ol>"
+                    "stylesheet": "For the W3C stylesheet, use the @{param1} version of the W3C stylesheet in use in the REC (old, or 2021). So, it's one of:<ol><li>https://www.w3.org/StyleSheets/TR/W3C-@{param1}.css</li><li>https://www.w3.org/StyleSheets/TR/2021/W3C-@{param1}.css</li><li>or reuse the (some?) content from https://www.w3.org/TR/html50/superseded.css as needed</li></ol>"
                 }
             },
             "rec-edit-w3c-state": {
                 "name": "3. Change the title of the document",
                 "rules": {
-                    "w3c-state":"In the <code>&lt;p id=\"w3c-state\"&gt;</code> element containing the state and date (\"W3C Recommendation DD MMMMMM YYYY\"), add:<ol><li id='testtest'>a <code>&lt;br&gt;</code> element after the original date</li><li>and \"@{param1} <code>&lt;new date&gt;</code>\" when the @{param1} document gets published by the webmaster</li></ol>"
+                    "w3c-state": "In the <code>&lt;p id=\"w3c-state\"&gt;</code> element containing the state and date (\"W3C Recommendation DD MMMMMM YYYY\"), add:<ol><li id='testtest'>a <code>&lt;br&gt;</code> element after the original date</li><li>and \"@{param1} <code>&lt;new date&gt;</code>\" when the @{param1} document gets published by the webmaster</li></ol>"
                 }
             },
             "rec-edit-version": {
                 "name": "4. Set the \"This version\" link",
                 "rules": {
-                    "version":"(if new dated version) This version link gets the form https://www.w3.org/TR/YYYY/@{param1}-&lt;shortname-with-version&gt;-&lt;newdate&gt;/"
+                    "version": "(if new dated version) This version link gets the form https://www.w3.org/TR/YYYY/@{param1}-&lt;shortname-with-version&gt;-&lt;newdate&gt;/"
                 }
             },
             "rec-edit-previous": {
