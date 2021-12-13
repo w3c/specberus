@@ -1,0 +1,3 @@
+*.html
+*.handlebars
+lib/rules/structure/display-only.js

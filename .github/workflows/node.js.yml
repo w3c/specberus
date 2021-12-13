@@ -38,9 +38,9 @@ jobs:
         uses: rectalogic/notify-irc@v1
         if: failure() && github.event.pull_request.draft == false
         with:
-          server: "irc.w3.org"
+          server: 'irc.w3.org'
           port: 6679
-          channel: "#pubrules"
+          channel: '#pubrules'
           nickname: gh-action-notifier
           tls: true
           message: |

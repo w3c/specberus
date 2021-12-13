@@ -149,13 +149,7 @@
         "widl",
         "YYYYMMDD"
     ],
-    "dictionaries": [
-        "html",
-        "js",
-        "css",
-        "npm",
-        "en-gb"
-    ],
+    "dictionaries": ["html", "js", "css", "npm", "en-gb"],
     "ignorePaths": [
         "**/*.eot",
         "**/*.ttf",
@@ -168,8 +162,5 @@
         "node_modules/**"
     ],
     "allowCompoundWords": true,
-    "ignoreWords": [
-        "en",
-        "gb"
-    ]
+    "ignoreWords": ["en", "gb"]
 }
