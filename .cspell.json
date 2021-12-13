@@ -1,5 +1,5 @@
 {
-    "version": "0.1",
+    "version": "0.2",
     "words": [
         "ˈspɛk",
         "aboba",
@@ -159,7 +159,8 @@
         "coverage/**",
         "test/**",
         "package-lock.json",
-        "node_modules/**"
+        "node_modules/**",
+        "design/**"
     ],
     "allowCompoundWords": true,
     "ignoreWords": ["en", "gb"]

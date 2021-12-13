@@ -51,7 +51,7 @@
     "audit": "npm audit | grep -oE 'https?\\:\\/\\/(www\\.)?(nodesecurity\\.io|npmjs\\.com)\\/advisories\\/[[:digit:]]+' | rev | cut -d '/' -f 1 | rev | diff known-vulns.txt -",
     "cspell": "cspell **/*.css **/*.js",
     "lint": "eslint . --report-unused-disable-directives && prettier -c .",
-    "spelling": "cspell \"**/*.*\"",
+    "spelling": "cspell \"**/*\"",
     "test": "mocha --timeout 20000",
     "jsdoc": "jsdoc --configure jsdoc.json -r app.js lib/ public/ test/ tools/",
     "coverage": "nyc npm test",
