@@ -1,13 +1,15 @@
-exports.config = {
-    track: 'Note',
+const { data } = require('../TR');
+
+// data.config.titleSuffix = 'Pubrules-note-base';
+// data.config.profile = 'Pubrules';
+
+const customData = {
+    config: {
+        profile: 'NOTE',
+        status: 'NOTE',
+    },
 };
-
-// customize rules
-const base = require('../../TR');
-const profileUtil = require('../../profileUtil');
-
-const rules = profileUtil.insertAfter(base.rules, 'sotd.pp', [
-    require('../../../rules/sotd/deliverer-note'),
-]);
-
-exports.rules = rules;
+exports.data = {
+    ...data,
+    ...customData,
+};

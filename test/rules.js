@@ -1,3 +1,4 @@
+/* eslint-disable import/no-dynamic-require */
 /**
  * Test the rules.
  */
@@ -1258,22 +1259,43 @@ app.engine(
 );
 app.set('view engine', 'handlebars');
 app.set('views', pth.join(__dirname, './doc-views'));
-// app.get('/doc-views/', (req, res) => {
-//     res.render('FPWD');
-// });
 
-app.get('/doc-views/:type', (req, res) => {
+// app.get('/doc-views/:type', (req, res) => {
+app.get('/doc-views/:categary/:track/:profile', (req, res) => {
+
+    // console.log('params: ', req)
+
+    const dataType = req.query.type;
+    console.log('type: ', dataType);
     // get data for template from json (.js)
-    const { data } = require(pth.join(
+    const data = require(pth.join(
         __dirname,
-        `./doc-views/${req.params.type}.js`
+        `./doc-views/${req.params.categary}/${req.params.track}/${req.params.profile}.js`
     ));
+    // const goodData = {};
+    console.log('data from file: ', data);
+    const finalData = data[dataType];
 
-    console.log('Data to render in template: \n', data, '\n');
+    console.log('Data to render in template: \n', finalData, '\n');
     // res.render(`${req.params.type}`, data);
 
-    res.render(pth.join(__dirname, './doc-views/layout/TR'), data);
+    res.render(pth.join(__dirname, './doc-views/layout/TR'), finalData);
 });
+
+app.get('/doc-views/SUBM/MEM-SUBM', (req, res) => {
+
+    // get data for template from json (.js)
+    const { goodData } = require(pth.join(
+        __dirname,
+        `./doc-views/SUBM/MEM-SUBM.js`
+    ));
+
+    console.log('Data to render in SUBM template: \n', goodData, '\n');
+    // res.render(`${req.params.type}`, data);
+
+    res.render(pth.join(__dirname, './doc-views/layout/TR'), goodData);
+});
+
 const expressServer = app.listen(PORT, () => {});
 
 // config single redirection
@@ -1295,119 +1317,119 @@ app.get('/docs/links/image/logo-redirection-3', (req, res) => {
     res.redirect('/docs/links/image/logo.png');
 });
 
-describe('Making sure Specberus is not broken...', () => {
-    after(() => {
-        expressServer.close();
-    });
-    Object.keys(tests).forEach(category => {
-        describe(`Category ${category}`, () => {
-            Object.keys(tests[category]).forEach(rule => {
-                describe(`Rule ${rule}`, () => {
-                    tests[category][rule].forEach(test => {
-                        const passTest = !test.errors;
-                        it(`should ${passTest ? 'pass' : 'fail'} for ${
-                            test.doc || test.url
-                        }`, done => {
-                            // eslint-disable-next-line import/no-dynamic-require
-                            const r = require(`../lib/rules/${category}/${rule}`);
-                            const handler = new sink.Sink();
-                            handler.on('err', (type, data) => {
-                                if (DEBUG) console.log(type, data);
-                                handler.errors.push(`${type.name}.${data.key}`);
-                            });
-                            handler.on('warning', (type, data) => {
-                                if (DEBUG) console.log('[W]', data);
-                                handler.warnings.push(
-                                    `${type.name}.${data.key}`
-                                );
-                            });
-                            handler.on('done', () => {
-                                if (DEBUG) console.log('---done---');
-                                handler.done++;
-                            });
-                            handler.on('exception', data => {
-                                console.error(
-                                    `[EXCEPTION] Validator had a massive failure: ${data.message}`
-                                );
-                            });
-                            handler.on('end-all', () => {
-                                try {
-                                    let i;
-                                    let n;
-                                    if (passTest) {
-                                        expect(handler.errors).to.be.empty();
-                                    } else {
-                                        expect(handler.errors.length).to.eql(
-                                            test.errors.length
-                                        );
-                                        for (
-                                            i = 0, n = test.errors.length;
-                                            i < n;
-                                            i++
-                                        ) {
-                                            expect(handler.errors).to.contain(
-                                                test.errors[i]
-                                            );
-                                        }
-                                    }
-                                    if (!test.ignoreWarnings) {
-                                        if (test.warnings) {
-                                            expect(
-                                                handler.warnings.length
-                                            ).to.eql(test.warnings.length);
-                                            for (
-                                                i = 0, n = test.warnings.length;
-                                                i < n;
-                                                i++
-                                            ) {
-                                                expect(
-                                                    handler.warnings
-                                                ).to.contain(test.warnings[i]);
-                                            }
-                                        } else {
-                                            expect(
-                                                handler.warnings
-                                            ).to.be.empty();
-                                        }
-                                    }
-                                    done();
-                                } catch (e) {
-                                    return done(e);
-                                }
-                            });
-                            const profile = {
-                                name: `Synthetic ${category}/${rule}`,
-                                rules: [r],
-                            };
-                            profile.config = test.config;
-                            const options = {
-                                profile,
-                                events: handler,
-                            };
+// describe('Making sure Specberus is not broken...', () => {
+//     after(() => {
+//         expressServer.close();
+//     });
+//     Object.keys(tests).forEach(category => {
+//         describe(`Category ${category}`, () => {
+//             Object.keys(tests[category]).forEach(rule => {
+//                 describe(`Rule ${rule}`, () => {
+//                     tests[category][rule].forEach(test => {
+//                         const passTest = !test.errors;
+//                         it(`should ${passTest ? 'pass' : 'fail'} for ${
+//                             test.doc || test.url
+//                         }`, done => {
+//                             // eslint-disable-next-line import/no-dynamic-require
+//                             const r = require(`../lib/rules/${category}/${rule}`);
+//                             const handler = new sink.Sink();
+//                             handler.on('err', (type, data) => {
+//                                 if (DEBUG) console.log(type, data);
+//                                 handler.errors.push(`${type.name}.${data.key}`);
+//                             });
+//                             handler.on('warning', (type, data) => {
+//                                 if (DEBUG) console.log('[W]', data);
+//                                 handler.warnings.push(
+//                                     `${type.name}.${data.key}`
+//                                 );
+//                             });
+//                             handler.on('done', () => {
+//                                 if (DEBUG) console.log('---done---');
+//                                 handler.done++;
+//                             });
+//                             handler.on('exception', data => {
+//                                 console.error(
+//                                     `[EXCEPTION] Validator had a massive failure: ${data.message}`
+//                                 );
+//                             });
+//                             handler.on('end-all', () => {
+//                                 try {
+//                                     let i;
+//                                     let n;
+//                                     if (passTest) {
+//                                         expect(handler.errors).to.be.empty();
+//                                     } else {
+//                                         expect(handler.errors.length).to.eql(
+//                                             test.errors.length
+//                                         );
+//                                         for (
+//                                             i = 0, n = test.errors.length;
+//                                             i < n;
+//                                             i++
+//                                         ) {
+//                                             expect(handler.errors).to.contain(
+//                                                 test.errors[i]
+//                                             );
+//                                         }
+//                                     }
+//                                     if (!test.ignoreWarnings) {
+//                                         if (test.warnings) {
+//                                             expect(
+//                                                 handler.warnings.length
+//                                             ).to.eql(test.warnings.length);
+//                                             for (
+//                                                 i = 0, n = test.warnings.length;
+//                                                 i < n;
+//                                                 i++
+//                                             ) {
+//                                                 expect(
+//                                                     handler.warnings
+//                                                 ).to.contain(test.warnings[i]);
+//                                             }
+//                                         } else {
+//                                             expect(
+//                                                 handler.warnings
+//                                             ).to.be.empty();
+//                                         }
+//                                     }
+//                                     done();
+//                                 } catch (e) {
+//                                     return done(e);
+//                                 }
+//                             });
+//                             const profile = {
+//                                 name: `Synthetic ${category}/${rule}`,
+//                                 rules: [r],
+//                             };
+//                             profile.config = test.config;
+//                             const options = {
+//                                 profile,
+//                                 events: handler,
+//                             };
 
-                            // support both external urls and local files
-                            if (test.url) {
-                                console.log(`loading: ${ENDPOINT}/${test.url}`);
-                                options.url = `${ENDPOINT}/${test.url}`;
-                            }
-                                // options.url = `${ENDPOINT}/docs/${test.url}`;
+//                             // support both external urls and local files
+//                             if (test.url) {
+//                                 console.log(`loading: ${ENDPOINT}/${test.url}`);
+//                                 options.url = `${ENDPOINT}/${test.url}`;
+//                             }
+//                                 // options.url = `${ENDPOINT}/docs/${test.url}`;
 
-                            else
-                                options.file = pth.join(
-                                    __dirname,
-                                    'docs',
-                                    test.doc
-                                );
+//                             else
+//                                 options.file = pth.join(
+//                                     __dirname,
+//                                     'docs',
+//                                     test.doc
+//                                 );
 
-                            for (const o in test.options)
-                                options[o] = test.options[o];
-                            new validator.Specberus(
-                                process.env.W3C_API_KEY
-                            ).validate(options);
-                        });
-                    });
-                });
-            });
-        });
-    });
-});
+//                             for (const o in test.options)
+//                                 options[o] = test.options[o];
+//                             new validator.Specberus(
+//                                 process.env.W3C_API_KEY
+//                             ).validate(options);
+//                         });
+//                     });
+//                 });
+//             });
+//         });
+//     });
+// });
