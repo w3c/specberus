@@ -5,14 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="canonical" href="https://www.w3.org/TR/{{dl.shortName}}/">
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-{{config.status}}.css">
-    <title>Test document for {{config.profile}} - Specberus</title> <!-- matches div.head h1 -->
+    <title>{{config.profile}}: test document - Specberus</title> <!-- matches div.head h1 -->
     <style>
-        .dim {
-            opacity: 0.7;
-            font-size: 80%
-        }
         .handlebars-data {
-            background: rgba(255, 0, 0, 0.42)
+            background: rgba(255, 0, 0, 0.2)
         }
     </style>
 </head>
@@ -22,24 +18,24 @@
         <h1 id="title" class="title p-name">Test document for <span class="handlebars-data">{{config.profile}}</span> - {{#if config.titleSuffix}}<span class="handlebars-data">{{config.titleSuffix}}</span>{{else}}Specberus{{/if}}</h1>
 
         <p id='w3c-state'>
-            <a href='https://www.w3.org/standards/types#{{config.status}}'>W3C <span class="handlebars-data">{{config.profile}}</span></a>
+            <a href='https://www.w3.org/standards/types#{{config.status}}'>W3C <span class="handlebars-data">{{config.longStatus}}</span></a>
             <time class="dt-published" datetime="2021-11-04">04 November 2021</time>
         </p>
         <details open>
             <summary>More details about this document</summary>
-            <dl> <dt>This version:</dt> <dd> <a class="u-url" href="https://www.w3.org/TR/2021/{{config.status}}-{{dl.shortName}}-20211104/">https://www.w3.org/TR/2021/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data"><span class="handlebars-data">{{dl.shortName}}</span>-20211104/</a>
+            <dl> <dt>This version:</dt> <dd> <a class="u-url" href="https://www.w3.org/TR/2021/{{config.status}}-{{dl.shortName}}-20211104/">https://www.w3.org/TR/2021/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data">{{dl.shortName}}</span>-20211104/</a>
                 </dd>
 
                 <dt>Latest published version: (@@note that version is not required in the latest version)</dt>
-                <dd> <a href="https://www.w3.org/TR/{{dl.seriesShortName}}/">https://www.w3.org/TR/<span class="handlebars-data"><span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
+                <dd> <a href="https://www.w3.org/TR/{{dl.seriesShortName}}/">https://www.w3.org/TR/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
                 </dd>
 
                 <dt>Latest editor's draft:</dt>
-                <dd> <a href="https://w3c.github.io/{{dl.seriesShortName}}/">https://w3c.github.io/<span class="handlebars-data"><span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
+                <dd> <a href="https://w3c.github.io/{{dl.seriesShortName}}/">https://w3c.github.io/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
                 </dd>
 
                 <dt><span class="handlebars-data">{{dl.historyText}}</span>:</dt>
-                <dd> <a href="https://www.w3.org/standards/history/{{dl.shortName}}">https://www.w3.org/standards/history/<span class="handlebars-data"><span class="handlebars-data">{{dl.shortName}}</span></a>
+                <dd> <a href="https://www.w3.org/standards/history/{{dl.shortName}}">https://www.w3.org/standards/history/<span class="handlebars-data">{{dl.shortName}}</span></a>
                 </dd>
 
                 <dt>{{dl.editorText}}:</dt>
@@ -51,8 +47,8 @@
                 <dd class="p-author h-card vcard" data-editor-id="44357">Joe Smith (Iron Corp.) (Until February 2014)</dd>
 
                 <dt>Feedback:</dt>
-                <dd><a href="{{dl.feedbackPrefix}}{{dl.shortName}}/issues"><span class="handlebars-data">{{dl.feedbackPrefix}}</span><span class="handlebars-data"><span class="handlebars-data">{{dl.seriesShortName}}</span></span>/issues</a></dd>
-                <dd><a href="mailto:public-foo@w3.org?subject=%5B{{dl.shortName}}%5D%20YOUR%20TOPIC%20HERE">public-foo@w3.org</a> with subject line “<kbd>[<span class="handlebars-data"><span class="handlebars-data">{{dl.shortName}}</span></span>] <var>… message topic …</var></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-foo/" rel="discussion">archives</a>)</dd>
+                <dd><a href="{{dl.feedbackPrefix}}{{dl.shortName}}/issues"><span class="handlebars-data">{{dl.feedbackPrefix}}</span><span class="handlebars-data">{{dl.seriesShortName}}</span>/issues</a></dd>
+                <dd><a href="mailto:public-foo@w3.org?subject=%5B{{dl.shortName}}%5D%20YOUR%20TOPIC%20HERE">public-foo@w3.org</a> with subject line “<kbd>[<span class="handlebars-data">{{dl.shortName}}</span>] <var>… message topic …</var></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-foo/" rel="discussion">archives</a>)</dd>
             </dl>
         </details>
 
@@ -74,19 +70,36 @@
         <p><span class="handlebars-data">{{{sotd.emHTML}}}</span></p>
 
         <p>
-            This document <span class="handlebars-data">{{sotd.extra1}}</span>was published by the <a href="{{sotd.WGLink}}">Web Performance Working Group</a> as a <span class="handlebars-data">{{config.longStatus}}</span> using the <a href='{{sotd.trackLink}}'><span class="handlebars-data">{{config.track}}</span> track</a>.
+            This document <span class="handlebars-data">{{sotd.extra1}}</span>was published by the <a href="{{sotd.WGLink}}">{{sotd.group}}{{!Web Performance Working Group}}</a> as a <span class="handlebars-data">{{config.longStatus}}</span> using the <a href='{{sotd.trackLink}}'><span class="handlebars-data">{{config.track}}</span> track</a>.
         </p>
 
-        <p>
-            Publication as a <span class="handlebars-data">{{config.longStatus}}</span> <span class="handlebars-data">{{{sotd.noEndorsementHTML}}}.</span> <span class="handlebars-data">{{sotd.draftText1}}</span> <span class="handlebars-data">{{sotd.draftText2}}</span>
-        </p>
 
         <p>
-            This document was produced by a group operating under the <a href="{{sotd.ppLink}}">{{{sotd.ppHTML}}}. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a rel="disclosure" href="{{sotd.iprLink}}">{{sotd.iprText}}</a> made in connection with the deliverables of {{sotd.pageIncludeText}} instructions for disclosing a patent. {{sotd.individualText}} actual knowledge of a patent which the individual believes contains <a href="{{sotd.essentialLink}}">{{sotd.essentialText}}</a> must disclose the information in accordance with <a href="{{sotd.disclosureLink}}">{{{sotd.disclosureHTML}}}</a>.
-        </p>
+            {{! checked by rule sotd.stablity }}
+            {{#config.isDNOTE}}
+                Group Draft Notes are not endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> nor its Members. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+            {{/config.isDNOTE}}
+            {{#config.isNOTE}}
+                Group Notes are not endorsed by W3C nor its Members.
+            {{/config.isNOTE}}
+            {{!-- {{#sotd.endorsed}}
+                A W3C Recommendation is a specification that, after extensive consensus-building, is endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members, and has commitments from Working Group members to <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements">royalty-free licensing</a> for implementations.
+            {{/sotd.endorsed}} --}}
+            {{!-- Publication as a <span class="handlebars-data">{{config.longStatus}}</span> <span class="handlebars-data">{{{sotd.noEndorsementHTML}}}.</span> <span class="handlebars-data">{{sotd.draftText1}}</span> <span class="handlebars-data">{{sotd.draftText2}}</span> --}}
+
+        {{#underPP}}
+            <p>
+                This document was produced by a group operating under the <a href="{{sotd.ppLink}}"><span class="handlebars-data">{{{sotd.ppHTML}}}{{! W3C Patent Policy }}</span></a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a rel="disclosure" href="{{sotd.iprLink}}"><span class="handlebars-data">{{sotd.iprText}}{{! public list of any patent disclosures }}</span></a> made in connection with the deliverables of <span class="handlebars-data">{{sotd.pageIncludeText}}{{! the group; that page also includes }}</span> instructions for disclosing a patent. <span class="handlebars-data">{{sotd.individualText}}{{! An individual who has }}</span> actual knowledge of a patent which the individual believes contains <a href="{{sotd.essentialLink}}"><span class="handlebars-data">{{sotd.essentialText}}{{! Essential Claim(s) }}</span></a> must disclose the information in accordance with <a href="{{sotd.disclosureLink}}"><span class="handlebars-data">{{{sotd.disclosureHTML}}}</span></a>.
+            </p>
+        {{/underPP}}
+        {{^underPP}}
+            <p data-deliverer="32113">
+                The <a href="{{sotd.ppLink}}"><span class="handlebars-data">{{{sotd.ppHTML}}}{{! W3C Patent Policy }}</span></a> does not carry any <span class="handlebars-data">{{sotd.noPPText}}{{! licensing requirements or commitments }}</span> on this document.
+            </p>
+        {{/underPP}}
 
         <p>
-            This document {{sotd.processTextPrefix}}{{! is governed by the}} <a id="w3c_process_revision" href="{{sotd.processLink}}">{{{sotd.processHTML}}}</a>.
+            This document <span class="handlebars-data">{{sotd.processTextPrefix}}</span>{{! is governed by the}} <a id="w3c_process_revision" href="{{sotd.processLink}}"><span class="handlebars-data">{{{sotd.processHTML}}}{{! 2 November 2021 W3C Process Document }}</span></a>.
         </p>
     </section>
     <nav id="toc">

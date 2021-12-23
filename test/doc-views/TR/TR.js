@@ -29,6 +29,8 @@ exports.data = {
         title: 'Status of This Document',
         emHTML: '<em>This section describes the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>',
 
+        group: 'Web Performance Working Group',
+
         WGLink: 'https://www.w3.org/groups/wg/webperf',
         trackLink: 'https://www.w3.org/2021/Process-20211102/#recs-and-notes',
         extra1: '',
@@ -42,6 +44,7 @@ exports.data = {
 
         ppLink: 'https://www.w3.org/Consortium/Patent-Policy/',
         ppHTML: '<abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>',
+        noPPText: 'licensing requirements or commitments',
 
         iprLink: 'https://www.w3.org/groups/wg/webperf/ipr',
         iprText: 'public list of any patent disclosures',

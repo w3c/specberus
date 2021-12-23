@@ -1,12 +1,16 @@
-exports.name = 'NOTE';
-const base = require('./note-base');
+/* eslint-disable import/no-dynamic-require */
+const { data } = require('./note-base');
 
-// customize config
-const config = {
-    status: 'NOTE',
-    longStatus: 'Group Note',
-    styleSheet: 'W3C-NOTE',
+const profile = 'NOTE';
+const { config } = require(`../../../../lib/profiles/TR/Note/${profile}`);
+const customData = {
+    config: {
+        ...config,
+        profile,
+        isNOTE: true,
+    },
 };
-exports.config = { ...base.config, ...config };
 
-exports.rules = base.rules;
+// Used in http://localhost:8001/doc-views/TR/Note/DNOTE?type=good
+const good = { ...data, ...customData };
+exports.good = good;

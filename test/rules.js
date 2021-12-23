@@ -22,6 +22,7 @@ const validation = require('./validation');
 const { samples } = require('./samples');
 const validator = require('../lib/validator');
 const sink = require('../lib/sink');
+const util = require('../lib/util');
 /**
  * Compare two arrays of "deliverer IDs" and check that they're equivalent.
  *
@@ -1239,11 +1240,19 @@ const tests = {
             },
             {
                 url: 'doc-views/FPWD-bad',
-                errors: ['headers.h1-title.not-match']
+                errors: ['headers.h1-title.not-match'],
             },
         ],
-    }
-}
+    },
+};
+
+// A list of good documents to be tested, using all rules configed in the profiles.
+// Shouldn't cause any error.
+const testsGoodDoc = {
+    DNOTE: 'doc-views/TR/Note/DNOTE?type=good',
+    // NOTE: 'doc-views/TR/Note/NOTE?type=good',
+    // STMT: 'doc-views/TR/Note/STMT?type=good',
+};
 
 // start an server to host doc, response to sr.url requests
 const app = express();
@@ -1262,35 +1271,46 @@ app.set('views', pth.join(__dirname, './doc-views'));
 
 // app.get('/doc-views/:type', (req, res) => {
 app.get('/doc-views/:categary/:track/:profile', (req, res) => {
-
     // console.log('params: ', req)
 
-    const dataType = req.query.type;
-    console.log('type: ', dataType);
+    const { rule, type } = req.query;
+    // console.log('rule: ', rule, ', type: ', type);
     // get data for template from json (.js)
     const data = require(pth.join(
         __dirname,
         `./doc-views/${req.params.categary}/${req.params.track}/${req.params.profile}.js`
     ));
-    // const goodData = {};
-    console.log('data from file: ', data);
-    const finalData = data[dataType];
 
-    console.log('Data to render in template: \n', finalData, '\n');
+    let finalData;
+    if (type === 'good') {
+        finalData = data.good;
+    } else {
+        if (!rule)
+            res.send(
+                '<h1>Error: please add the parameter "rule" in the URL </h1>'
+            );
+        if (!type)
+            res.send(
+                '<h1>Error: please add the parameter "type" in the URL </h1>'
+            );
+        // for data causes error, make rule and the type of error specific.
+        finalData = data[rule][type];
+    }
+
+    // console.log('Data to render in template: \n', finalData, '\n');
     // res.render(`${req.params.type}`, data);
 
     res.render(pth.join(__dirname, './doc-views/layout/TR'), finalData);
 });
 
 app.get('/doc-views/SUBM/MEM-SUBM', (req, res) => {
-
     // get data for template from json (.js)
     const { goodData } = require(pth.join(
         __dirname,
         `./doc-views/SUBM/MEM-SUBM.js`
     ));
 
-    console.log('Data to render in SUBM template: \n', goodData, '\n');
+    // console.log('Data to render in SUBM template: \n', goodData, '\n');
     // res.render(`${req.params.type}`, data);
 
     res.render(pth.join(__dirname, './doc-views/layout/TR'), goodData);
@@ -1316,6 +1336,56 @@ app.get('/docs/links/image/logo-redirection-2', (req, res) => {
 app.get('/docs/links/image/logo-redirection-3', (req, res) => {
     res.redirect('/docs/links/image/logo.png');
 });
+
+// describe('Making sure good documents pass Specberus...', () => {
+//     after(() => {
+//         expressServer.close();
+//     });
+//     Object.keys(testsGoodDoc).forEach(docProfile => {
+//         const url = `${ENDPOINT}/${testsGoodDoc[docProfile]}`;
+//         it(`should pass for ${docProfile} doc with ${url}`, done => {
+//             const profile = util.profiles[docProfile];
+
+//             const handler = new sink.Sink();
+//             handler.on('err', (type, data) => {
+//                 if (DEBUG) console.log(type, data);
+//                 handler.errors.push(`${type.name}.${data.key}`);
+//             });
+//             handler.on('warning', (type, data) => {
+//                 if (DEBUG) console.log('[W]', data);
+//                 handler.warnings.push(`${type.name}.${data.key}`);
+//             });
+//             handler.on('done', () => {
+//                 handler.done++;
+//             });
+//             handler.on('exception', data => {
+//                 console.error(
+//                     `[EXCEPTION] Validator had a massive failure: ${data.message}`
+//                 );
+//             });
+//             handler.on('end-all', () => {
+//                 if (DEBUG) console.log('--- end all ---');
+//                 console.log(`It has ${handler.errors.length} errors`);
+//                 console.log(`It has ${handler.warnings.length} warnings`);
+//                 try {
+//                     expect(handler.errors).to.be.empty();
+//                     return done();
+//                 } catch (e) {
+//                     return done(e);
+//                 }
+//             });
+
+//             const options = {
+//                 profile,
+//                 events: handler,
+//                 url,
+//             };
+
+//             // for (const o in test.options) options[o] = test.options[o];
+//             new validator.Specberus(process.env.W3C_API_KEY).validate(options);
+//         });
+//     });
+// });
 
 // describe('Making sure Specberus is not broken...', () => {
 //     after(() => {
@@ -1412,8 +1482,7 @@ app.get('/docs/links/image/logo-redirection-3', (req, res) => {
 //                                 console.log(`loading: ${ENDPOINT}/${test.url}`);
 //                                 options.url = `${ENDPOINT}/${test.url}`;
 //                             }
-//                                 // options.url = `${ENDPOINT}/docs/${test.url}`;
-
+//                             // options.url = `${ENDPOINT}/docs/${test.url}`;
 //                             else
 //                                 options.file = pth.join(
 //                                     __dirname,
