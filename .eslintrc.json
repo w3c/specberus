@@ -4,8 +4,6 @@
     "rules": {
         "prettier/prettier": "error",
         "no-shadow": "off",
-        "func-names": "off",
-        "vars-on-top": "off",
         "consistent-return": "warn",
         "no-param-reassign": "off",
         "no-plusplus": "off",
