@@ -117,7 +117,7 @@ describe('API', () => {
             // @TODO: parse result as an Object (it's JSON) instead of a String.
             return expect(query)
                 .to.eventually.match(/"profile":\s*"pr"/i)
-                .and.to.eventually.match(/"docdate":\s*"2016-3-8"/i);
+                .and.to.eventually.match(/"docDate":\s*"2016-3-8"/i);
         });
     });
 
