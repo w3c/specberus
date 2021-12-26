@@ -1,6 +1,13 @@
 name: Specberus tests
 
-on: [push, pull_request_target]
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+  pull_request_target:
+
+permissions:
+  contents: read
 
 jobs:
   test:
@@ -8,19 +15,17 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 16.x]
-    if: |
-      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
-      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
     steps:
       - name: Checkout
         if: ${{ github.event_name != 'pull_request_target' }}
         uses: actions/checkout@v2
 
-      - name: Checkout PR from dependabot
+      - name: Checkout PR
         if: ${{ github.event_name == 'pull_request_target' }}
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
