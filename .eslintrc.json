@@ -29,7 +29,7 @@
         {
             "files": ["app.js", "lib/**/*.js", "tools/**/*.js"],
             "plugins": ["node"],
-            "extends": ["plugin:node/recommended"]
+            "extends": ["plugin:node/recommended", "plugin:jsdoc/recommended"]
         },
         {
             "files": ["test/**/*.js"],
