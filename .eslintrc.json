@@ -11,7 +11,6 @@
         "global-require": "off",
         "no-restricted-syntax": "warn",
         "guard-for-in": "warn",
-        "no-underscore-dangle": "warn",
         "prefer-destructuring": "warn"
     },
     "overrides": [
