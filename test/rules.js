@@ -321,7 +321,7 @@ const tests = {
             {
                 doc: 'headers/dl-no-implelink.html',
                 config: { status: 'CR' },
-                warnings: ['headers.dl.implelink-comfirm-no'],
+                warnings: ['headers.dl.implelink-confirm-no'],
             },
         ],
         'github-repo': [

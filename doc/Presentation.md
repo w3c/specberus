@@ -22,7 +22,7 @@ _Specberus_ is expected to replace the [current pubrules tool](https://www.w3.or
 
 -   Complex maintenance.
 -   XSLT is not flexible enough.
--   There is no clear separation beetween the documentation (_human-readable publication rules_) and the automatic checker (_the software_).
+-   There is no clear separation between the documentation (_human-readable publication rules_) and the automatic checker (_the software_).
 -   Difficult to integrate within the broader publication workflow.
 
 ---
