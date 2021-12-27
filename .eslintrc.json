@@ -6,7 +6,6 @@
         "no-shadow": "off",
         "consistent-return": "warn",
         "no-param-reassign": "off",
-        "no-plusplus": "off",
         "strict": "off",
         "global-require": "off",
         "no-restricted-syntax": "warn",

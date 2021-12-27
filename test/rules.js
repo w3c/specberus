@@ -31,10 +31,10 @@ const sink = require('../lib/sink');
 const equivalentArray = function (a1, a2) {
     if (a1 && a2 && a1.length === a2.length) {
         let found = 0;
-        for (let i = 0; i < a1.length; i++) {
-            for (let j = 0; j < a2.length && found === i; j++) {
+        for (let i = 0; i < a1.length; i += 1) {
+            for (let j = 0; j < a2.length && found === i; j += 1) {
                 if (a1[i] === a2[j]) {
-                    found++;
+                    found += 1;
                 }
             }
         }
@@ -1281,7 +1281,7 @@ describe('Making sure Specberus is not broken...', () => {
                             });
                             handler.on('done', () => {
                                 if (DEBUG) console.log('---done---');
-                                handler.done++;
+                                handler.done += 1;
                             });
                             handler.on('exception', data => {
                                 console.error(
@@ -1301,7 +1301,7 @@ describe('Making sure Specberus is not broken...', () => {
                                         for (
                                             i = 0, n = test.errors.length;
                                             i < n;
-                                            i++
+                                            i += 1
                                         ) {
                                             expect(handler.errors).to.contain(
                                                 test.errors[i]
@@ -1316,7 +1316,7 @@ describe('Making sure Specberus is not broken...', () => {
                                             for (
                                                 i = 0, n = test.warnings.length;
                                                 i < n;
-                                                i++
+                                                i += 1
                                             ) {
                                                 expect(
                                                     handler.warnings
