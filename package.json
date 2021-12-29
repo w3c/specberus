@@ -47,7 +47,6 @@
     "prettier": "2.5.0"
   },
   "scripts": {
-    "audit": "npm audit | grep -oE 'https?\\:\\/\\/(www\\.)?(nodesecurity\\.io|npmjs\\.com)\\/advisories\\/[[:digit:]]+' | rev | cut -d '/' -f 1 | rev | diff known-vulns.txt -",
     "build": "npm run lint && npm run test && npm run jsdoc",
     "coverage": "nyc npm test",
     "cspell": "cspell \"**/*\"",
