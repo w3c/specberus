@@ -275,7 +275,7 @@ jQuery.extend({
         addMessage(MSG_INFO, data);
     });
     socket.on('done', () => {
-        done++;
+        done += 1;
         $progress.attr({
             'aria-valuenow': done,
             'aria-valuemax': total,

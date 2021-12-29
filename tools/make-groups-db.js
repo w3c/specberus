@@ -20,7 +20,7 @@ const pth = require('path');
 const src = require('./groups-sparql.json');
 
 const res = {};
-for (let i = 0, n = src.results.bindings.length; i < n; i++) {
+for (let i = 0, n = src.results.bindings.length; i < n; i += 1) {
     const group = src.results.bindings[i];
     const key = group.mailbox.value.replace('mailto:', '');
     res[key] = {
