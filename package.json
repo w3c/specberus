@@ -57,7 +57,7 @@
     "prepare": "husky install",
     "spelling": "cspell \"**/*\"",
     "start": "node --use_strict app",
-    "test": "mocha --timeout 20000"
+    "test": "mocha"
   },
   "engines": {
     "node": "^14 || ^16",
@@ -69,5 +69,10 @@
       "cspell",
       "prettier --write --ignore-unknown"
     ]
+  },
+  "mocha": {
+    "colors": true,
+    "reporter": "spec",
+    "timeout": 20000
   }
 }
