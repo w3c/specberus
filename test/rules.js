@@ -1313,153 +1313,79 @@ app.get('/docs/links/image/logo-redirection-3', (req, res) => {
 
 // A list of good documents to be tested, using all rules configed in the profiles.
 // Shouldn't cause any error.
-// const testsGoodDoc = {
-//     // Note track
-//     DNOTE: {
-//         url: 'doc-views/TR/Note/DNOTE?type=good',
-//         config: {
-//            // patentPolicy: 'pp2020',
-//         },
-//     },
-//     'DNOTE-Echidna': {
-//         url: 'doc-views/TR/Note/DNOTE-Echidna?type=good',
-//     },
-//     NOTE: { url: 'doc-views/TR/Note/NOTE?type=good' },
-//     'NOTE-Echidna': {
-//         url: 'doc-views/TR/Note/NOTE-Echidna?type=good',
-//     },
-//     STMT: {
-//         url: 'doc-views/TR/Note/STMT?type=good',
-//     },
+const { goodDocuments } = require('./data/goodDocuments');
 
-//     // Recommendation track
-//     CR: {
-//         url: 'doc-views/TR/Recommendation/CR?type=good',
-//     },
-//     'CR-Echidna': {
-//         url: 'doc-views/TR/Recommendation/CR-Echidna?type=good',
-//     },
-//     CRD: {
-//         url: 'doc-views/TR/Recommendation/CRD?type=good',
-//     },
-//     'CRD-2': {
-//         profile: 'CRD',
-//         url: 'doc-views/TR/Recommendation/CRD?type=good2',
-//     },
-//     'CRD-Echidna': {
-//         url: 'doc-views/TR/Recommendation/CRD-Echidna?type=good',
-//     },
-//     DISC: {
-//         url: 'doc-views/TR/Recommendation/DISC?type=good',
-//     },
-//     FPWD: {
-//         url: 'doc-views/TR/Recommendation/FPWD?type=good',
-//     },
-//     PR: {
-//         url: 'doc-views/TR/Recommendation/PR?type=good',
-//     },
-//     REC: {
-//         url: 'doc-views/TR/Recommendation/REC?type=good',
-//     },
-//     'REC-RSCND': {
-//         url: 'doc-views/TR/Recommendation/REC-RSCND?type=good',
-//     },
-//     WD: {
-//         url: 'doc-views/TR/Recommendation/WD?type=good',
-//     },
-//     'WD-Echidna': {
-//         url: 'doc-views/TR/Recommendation/WD-Echidna?type=good',
-//     },
-
-//     // Registry track
-//     CRY: {
-//         url: 'doc-views/TR/Registry/CRY?type=good',
-//     },
-//     CRYD: {
-//         url: 'doc-views/TR/Registry/CRYD?type=good',
-//     },
-//     'CRYD-2': {
-//         profile: 'CRYD',
-//         url: 'doc-views/TR/Recommendation/CRYD?type=good2',
-//     },
-//     DRY: {
-//         url: 'doc-views/TR/Registry/DRY?type=good',
-//     },
-//     RY: {
-//         url: 'doc-views/TR/Registry/RY?type=good',
-//     },
-// };
-
+const testsGoodDoc = goodDocuments;
 
 // The next check is runing each profile using the rules configured.
-// describe('Making sure good documents pass Specberus...', () => {
-//     after(() => {
-//         expressServer.close();
-//     });
-//     Object.keys(testsGoodDoc).forEach(docProfile => {
-//         // testsGoodDoc[docProfile].profile is used to distinguish multiple cases for same profile.
-//         docProfile = testsGoodDoc[docProfile].profile || docProfile;
+describe('Making sure good documents pass Specberus...', () => {
+    after(() => {
+        // expressServer.close();
+    });
+    Object.keys(testsGoodDoc).forEach(docProfile => {
+        // testsGoodDoc[docProfile].profile is used to distinguish multiple cases for same profile.
+        docProfile = testsGoodDoc[docProfile].profile || docProfile;
 
-//         const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
-//         it(`should pass for ${docProfile} doc with ${url}`, done => {
-//             const profile = util.profiles[docProfile];
+        const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
+        it(`should pass for ${docProfile} doc with ${url}`, done => {
+            const profile = util.profiles[docProfile];
 
-//             // add custom config to test
-//             profile.config = {
-//                 patentPolicy: 'pp2020', // default config for all docs.
-//                 ...profile.config,
-//                 ...testsGoodDoc[docProfile].config,
-//             };
+            // add custom config to test
+            profile.config = {
+                patentPolicy: 'pp2020', // default config for all docs.
+                ...profile.config,
+                ...testsGoodDoc[docProfile].config,
+            };
 
-//             // remove unnecessary rules from test
-//             const { removeRules } = require('../lib/profiles/profileUtil');
-//             const rules = removeRules(profile.rules, [
-//                 'validation.html',
-//                 'validation.wcag',
-//                 'links.linkchecker', // too slow. will check separately.
-//             ]);
+            // remove unnecessary rules from test
+            const { removeRules } = require('../lib/profiles/profileUtil');
+            const rules = removeRules(profile.rules, [
+                'validation.html',
+                'validation.wcag',
+                'links.linkchecker', // too slow. will check separately.
+            ]);
 
-//             const handler = new sink.Sink();
-//             handler.on('err', (type, data) => {
-//                 if (DEBUG) console.log('\nerror: ', type, data);
-//                 handler.errors.push(`${type.name}.${data.key}`);
-//             });
-//             handler.on('warning', (type, data) => {
-//                 if (DEBUG) console.log('\nwarning: ', type, data);
-//                 handler.warnings.push(`${type.name}.${data.key}`);
-//             });
-//             handler.on('done', () => {
-//                 handler.done++;
-//             });
-//             handler.on('exception', data => {
-//                 console.error(
-//                     `[EXCEPTION] Validator had a massive failure: ${data.message}`
-//                 );
-//             });
-//             handler.on('end-all', () => {
-//                 if (DEBUG) console.log('--- end all ---');
-//                 try {
-//                     expect(handler.errors).to.be.empty();
-//                     return done();
-//                 } catch (e) {
-//                     return done(e);
-//                 }
-//             });
+            const handler = new sink.Sink();
+            handler.on('err', (type, data) => {
+                if (DEBUG) console.log('\nerror: ', type, data);
+                handler.errors.push(`${type.name}.${data.key}`);
+            });
+            handler.on('warning', (type, data) => {
+                // if (DEBUG) console.log('\nwarning: ', type, data);
+                handler.warnings.push(`${type.name}.${data.key}`);
+            });
+            handler.on('done', () => {
+                handler.done++;
+            });
+            handler.on('exception', data => {
+                console.error(
+                    `[EXCEPTION] Validator had a massive failure: ${data.message}`
+                );
+            });
+            handler.on('end-all', () => {
+                if (DEBUG) console.log('--- end all ---');
+                try {
+                    expect(handler.errors).to.be.empty();
+                    return done();
+                } catch (e) {
+                    return done(e);
+                }
+            });
 
-//             const options = {
-//                 profile: {
-//                     ...profile,
-//                     rules, // do not change profile.rules
-//                 },
-//                 events: handler,
-//                 url,
-//             };
+            const options = {
+                profile: {
+                    ...profile,
+                    rules, // do not change profile.rules
+                },
+                events: handler,
+                url,
+            };
 
-//             // for (const o in test.options) options[o] = test.options[o];
-//             new validator.Specberus(process.env.W3C_API_KEY).validate(options);
-//         });
-//     });
-// });
+            // for (const o in test.options) options[o] = test.options[o];
+            new validator.Specberus(process.env.W3C_API_KEY).validate(options);
+        });
+    });
+});
 
 // const tests = {
 //     headers: {
@@ -1479,7 +1405,8 @@ const baseChecks = require('./data/base').base;
 
 const tests = {
     // Note track
-    DNOTE: baseChecks,
+    DNOTE: dnoteChecks,
+    NOTE: noteChecks,
 };
 
 // The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warning in lib/l10n-en_GB.js
@@ -1487,110 +1414,118 @@ const tests = {
 //     after(() => {
 //         expressServer.close();
 //     });
-//     Object.keys(tests).forEach(category => {
-//         describe(`Category ${category}`, () => {
-//             Object.keys(tests[category]).forEach(rule => {
-//                 describe(`Rule ${rule}`, () => {
-//                     tests[category][rule].forEach(test => {
-//                         const passTest = !test.errors;
-//                         it(`should ${passTest ? 'pass' : 'fail'} for ${
-//                             test.doc || test.url
-//                         }`, done => {
-//                             // eslint-disable-next-line import/no-dynamic-require
-//                             const r = require(`../lib/rules/${category}/${rule}`);
-//                             const handler = new sink.Sink();
-//                             handler.on('err', (type, data) => {
-//                                 if (DEBUG) console.log(type, data);
-//                                 handler.errors.push(`${type.name}.${data.key}`);
-//                             });
-//                             handler.on('warning', (type, data) => {
-//                                 if (DEBUG) console.log('[W]', data);
-//                                 handler.warnings.push(
-//                                     `${type.name}.${data.key}`
-//                                 );
-//                             });
-//                             handler.on('done', () => {
-//                                 if (DEBUG) console.log('---done---');
-//                                 handler.done++;
-//                             });
-//                             handler.on('exception', data => {
-//                                 console.error(
-//                                     `[EXCEPTION] Validator had a massive failure: ${data.message}`
-//                                 );
-//                             });
-//                             handler.on('end-all', () => {
-//                                 try {
-//                                     let i;
-//                                     let n;
-//                                     if (passTest) {
-//                                         expect(handler.errors).to.be.empty();
-//                                     } else {
-//                                         expect(handler.errors.length).to.eql(
-//                                             test.errors.length
-//                                         );
-//                                         for (
-//                                             i = 0, n = test.errors.length;
-//                                             i < n;
-//                                             i++
-//                                         ) {
-//                                             expect(handler.errors).to.contain(
-//                                                 test.errors[i]
-//                                             );
-//                                         }
-//                                     }
-//                                     if (!test.ignoreWarnings) {
-//                                         if (test.warnings) {
+//     Object.keys(tests).forEach(profile => {
+//         console.log('\n\nprofile: ', profile);
+//         const checks = tests[profile];
+
+//         Object.keys(checks).forEach(category => {
+//             console.log('category: ', category);
+//             describe(`Category ${category}`, () => {
+//                 Object.keys(tests[category]).forEach(rule => {
+//                     describe(`Rule ${rule}`, () => {
+//                         tests[category][rule].forEach(test => {
+//                             const passTest = !test.errors;
+//                             it(`should ${passTest ? 'pass' : 'fail'} for ${
+//                                 test.doc || test.url
+//                             }`, done => {
+//                                 // eslint-disable-next-line import/no-dynamic-require
+//                                 const r = require(`../lib/rules/${category}/${rule}`);
+//                                 const handler = new sink.Sink();
+//                                 handler.on('err', (type, data) => {
+//                                     if (DEBUG) console.log(type, data);
+//                                     handler.errors.push(
+//                                         `${type.name}.${data.key}`
+//                                     );
+//                                 });
+//                                 handler.on('warning', (type, data) => {
+//                                     if (DEBUG) console.log('[W]', data);
+//                                     handler.warnings.push(
+//                                         `${type.name}.${data.key}`
+//                                     );
+//                                 });
+//                                 handler.on('done', () => {
+//                                     if (DEBUG) console.log('---done---');
+//                                     handler.done++;
+//                                 });
+//                                 handler.on('exception', data => {
+//                                     console.error(
+//                                         `[EXCEPTION] Validator had a massive failure: ${data.message}`
+//                                     );
+//                                 });
+//                                 handler.on('end-all', () => {
+//                                     try {
+//                                         let i;
+//                                         let n;
+//                                         if (passTest) {
 //                                             expect(
-//                                                 handler.warnings.length
-//                                             ).to.eql(test.warnings.length);
+//                                                 handler.errors
+//                                             ).to.be.empty();
+//                                         } else {
+//                                             expect(
+//                                                 handler.errors.length
+//                                             ).to.eql(test.errors.length);
 //                                             for (
-//                                                 i = 0, n = test.warnings.length;
+//                                                 i = 0, n = test.errors.length;
 //                                                 i < n;
 //                                                 i++
 //                                             ) {
 //                                                 expect(
-//                                                     handler.warnings
-//                                                 ).to.contain(test.warnings[i]);
+//                                                     handler.errors
+//                                                 ).to.contain(test.errors[i]);
 //                                             }
-//                                         } else {
-//                                             expect(
-//                                                 handler.warnings
-//                                             ).to.be.empty();
 //                                         }
+//                                         if (!test.ignoreWarnings) {
+//                                             if (test.warnings) {
+//                                                 expect(
+//                                                     handler.warnings.length
+//                                                 ).to.eql(test.warnings.length);
+//                                                 for (
+//                                                     i = 0,
+//                                                         n =
+//                                                             test.warnings
+//                                                                 .length;
+//                                                     i < n;
+//                                                     i++
+//                                                 ) {
+//                                                     expect(
+//                                                         handler.warnings
+//                                                     ).to.contain(
+//                                                         test.warnings[i]
+//                                                     );
+//                                                 }
+//                                             } else {
+//                                                 expect(
+//                                                     handler.warnings
+//                                                 ).to.be.empty();
+//                                             }
+//                                         }
+//                                         done();
+//                                     } catch (e) {
+//                                         return done(e);
 //                                     }
-//                                     done();
-//                                 } catch (e) {
-//                                     return done(e);
+//                                 });
+//                                 const profile = {
+//                                     name: `Synthetic ${category}/${rule}`,
+//                                     rules: [r],
+//                                 };
+//                                 profile.config = test.config;
+//                                 const options = {
+//                                     profile,
+//                                     events: handler,
+//                                 };
+
+//                                 // support both external urls and local files
+//                                 if (test.data) {
+//                                     options.url = `${ENDPOINT}/${test.url}`;
 //                                 }
+//                                 // options.url = `${ENDPOINT}/docs/${test.url}`;
+
+//                                 for (const o in test.options)
+//                                     options[o] = test.options[o];
+//                                 new validator.Specberus(
+//                                     process.env.W3C_API_KEY
+//                                 ).validate(options);
 //                             });
-//                             const profile = {
-//                                 name: `Synthetic ${category}/${rule}`,
-//                                 rules: [r],
-//                             };
-//                             profile.config = test.config;
-//                             const options = {
-//                                 profile,
-//                                 events: handler,
-//                             };
-
-//                             // support both external urls and local files
-//                             if (test.url) {
-//                                 console.log(`loading: ${ENDPOINT}/${test.url}`);
-//                                 options.url = `${ENDPOINT}/${test.url}`;
-//                             }
-//                             // options.url = `${ENDPOINT}/docs/${test.url}`;
-//                             else
-//                                 options.file = pth.join(
-//                                     __dirname,
-//                                     'docs',
-//                                     test.doc
-//                                 );
-
-//                             for (const o in test.options)
-//                                 options[o] = test.options[o];
-//                             new validator.Specberus(
-//                                 process.env.W3C_API_KEY
-//                             ).validate(options);
 //                         });
 //                     });
 //                 });
