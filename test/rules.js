@@ -15,7 +15,7 @@ const pth = require('path');
 const express = require('express');
 const expect = require('expect.js');
 const chai = require('chai').expect;
-const { engine } = require('express-handlebars');
+const exphbs = require('express-handlebars');
 
 // Internal packages:
 const validation = require('./validation');
@@ -1232,28 +1232,6 @@ const tests1 = {
     validation,
 };
 
-const tests = {
-    headers: {
-        'h1-title': [
-            {
-                url: 'doc-views/FPWD',
-            },
-            {
-                url: 'doc-views/FPWD-bad',
-                errors: ['headers.h1-title.not-match'],
-            },
-        ],
-    },
-};
-
-// A list of good documents to be tested, using all rules configed in the profiles.
-// Shouldn't cause any error.
-const testsGoodDoc = {
-    DNOTE: 'doc-views/TR/Note/DNOTE?type=good',
-    // NOTE: 'doc-views/TR/Note/NOTE?type=good',
-    // STMT: 'doc-views/TR/Note/STMT?type=good',
-};
-
 // start an server to host doc, response to sr.url requests
 const app = express();
 app.use('/docs', express.static(pth.join(__dirname, 'docs')));
@@ -1261,20 +1239,19 @@ app.use('/docs', express.static(pth.join(__dirname, 'docs')));
 // use express-handlebars
 app.engine(
     'handlebars',
-    engine({
+    exphbs.engine({
         defaultLayout: pth.join(__dirname, './doc-views/layout/TR'),
         layoutsDir: pth.join(__dirname, './doc-views'),
+        partialsDir: pth.join(__dirname, './doc-views/particals/'),
     })
 );
 app.set('view engine', 'handlebars');
 app.set('views', pth.join(__dirname, './doc-views'));
 
-// app.get('/doc-views/:type', (req, res) => {
 app.get('/doc-views/:categary/:track/:profile', (req, res) => {
     // console.log('params: ', req)
 
     const { rule, type } = req.query;
-    // console.log('rule: ', rule, ', type: ', type);
     // get data for template from json (.js)
     const data = require(pth.join(
         __dirname,
@@ -1282,8 +1259,8 @@ app.get('/doc-views/:categary/:track/:profile', (req, res) => {
     ));
 
     let finalData;
-    if (type === 'good') {
-        finalData = data.good;
+    if (type.startsWith('good')) {
+        finalData = data[type];
     } else {
         if (!rule)
             res.send(
@@ -1296,9 +1273,6 @@ app.get('/doc-views/:categary/:track/:profile', (req, res) => {
         // for data causes error, make rule and the type of error specific.
         finalData = data[rule][type];
     }
-
-    // console.log('Data to render in template: \n', finalData, '\n');
-    // res.render(`${req.params.type}`, data);
 
     res.render(pth.join(__dirname, './doc-views/layout/TR'), finalData);
 });
@@ -1337,22 +1311,121 @@ app.get('/docs/links/image/logo-redirection-3', (req, res) => {
     res.redirect('/docs/links/image/logo.png');
 });
 
+// A list of good documents to be tested, using all rules configed in the profiles.
+// Shouldn't cause any error.
+// const testsGoodDoc = {
+//     // Note track
+//     DNOTE: {
+//         url: 'doc-views/TR/Note/DNOTE?type=good',
+//         config: {
+//            // patentPolicy: 'pp2020',
+//         },
+//     },
+//     'DNOTE-Echidna': {
+//         url: 'doc-views/TR/Note/DNOTE-Echidna?type=good',
+//     },
+//     NOTE: { url: 'doc-views/TR/Note/NOTE?type=good' },
+//     'NOTE-Echidna': {
+//         url: 'doc-views/TR/Note/NOTE-Echidna?type=good',
+//     },
+//     STMT: {
+//         url: 'doc-views/TR/Note/STMT?type=good',
+//     },
+
+//     // Recommendation track
+//     CR: {
+//         url: 'doc-views/TR/Recommendation/CR?type=good',
+//     },
+//     'CR-Echidna': {
+//         url: 'doc-views/TR/Recommendation/CR-Echidna?type=good',
+//     },
+//     CRD: {
+//         url: 'doc-views/TR/Recommendation/CRD?type=good',
+//     },
+//     'CRD-2': {
+//         profile: 'CRD',
+//         url: 'doc-views/TR/Recommendation/CRD?type=good2',
+//     },
+//     'CRD-Echidna': {
+//         url: 'doc-views/TR/Recommendation/CRD-Echidna?type=good',
+//     },
+//     DISC: {
+//         url: 'doc-views/TR/Recommendation/DISC?type=good',
+//     },
+//     FPWD: {
+//         url: 'doc-views/TR/Recommendation/FPWD?type=good',
+//     },
+//     PR: {
+//         url: 'doc-views/TR/Recommendation/PR?type=good',
+//     },
+//     REC: {
+//         url: 'doc-views/TR/Recommendation/REC?type=good',
+//     },
+//     'REC-RSCND': {
+//         url: 'doc-views/TR/Recommendation/REC-RSCND?type=good',
+//     },
+//     WD: {
+//         url: 'doc-views/TR/Recommendation/WD?type=good',
+//     },
+//     'WD-Echidna': {
+//         url: 'doc-views/TR/Recommendation/WD-Echidna?type=good',
+//     },
+
+//     // Registry track
+//     CRY: {
+//         url: 'doc-views/TR/Registry/CRY?type=good',
+//     },
+//     CRYD: {
+//         url: 'doc-views/TR/Registry/CRYD?type=good',
+//     },
+//     'CRYD-2': {
+//         profile: 'CRYD',
+//         url: 'doc-views/TR/Recommendation/CRYD?type=good2',
+//     },
+//     DRY: {
+//         url: 'doc-views/TR/Registry/DRY?type=good',
+//     },
+//     RY: {
+//         url: 'doc-views/TR/Registry/RY?type=good',
+//     },
+// };
+
+
+// The next check is runing each profile using the rules configured.
 // describe('Making sure good documents pass Specberus...', () => {
 //     after(() => {
 //         expressServer.close();
 //     });
 //     Object.keys(testsGoodDoc).forEach(docProfile => {
-//         const url = `${ENDPOINT}/${testsGoodDoc[docProfile]}`;
+//         // testsGoodDoc[docProfile].profile is used to distinguish multiple cases for same profile.
+//         docProfile = testsGoodDoc[docProfile].profile || docProfile;
+
+//         const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
 //         it(`should pass for ${docProfile} doc with ${url}`, done => {
 //             const profile = util.profiles[docProfile];
 
+//             // add custom config to test
+//             profile.config = {
+//                 patentPolicy: 'pp2020', // default config for all docs.
+//                 ...profile.config,
+//                 ...testsGoodDoc[docProfile].config,
+//             };
+
+//             // remove unnecessary rules from test
+//             const { removeRules } = require('../lib/profiles/profileUtil');
+//             const rules = removeRules(profile.rules, [
+//                 'validation.html',
+//                 'validation.wcag',
+//                 'links.linkchecker', // too slow. will check separately.
+//             ]);
+
 //             const handler = new sink.Sink();
 //             handler.on('err', (type, data) => {
-//                 if (DEBUG) console.log(type, data);
+//                 if (DEBUG) console.log('\nerror: ', type, data);
 //                 handler.errors.push(`${type.name}.${data.key}`);
 //             });
 //             handler.on('warning', (type, data) => {
-//                 if (DEBUG) console.log('[W]', data);
+//                 if (DEBUG) console.log('\nwarning: ', type, data);
 //                 handler.warnings.push(`${type.name}.${data.key}`);
 //             });
 //             handler.on('done', () => {
@@ -1365,8 +1438,6 @@ app.get('/docs/links/image/logo-redirection-3', (req, res) => {
 //             });
 //             handler.on('end-all', () => {
 //                 if (DEBUG) console.log('--- end all ---');
-//                 console.log(`It has ${handler.errors.length} errors`);
-//                 console.log(`It has ${handler.warnings.length} warnings`);
 //                 try {
 //                     expect(handler.errors).to.be.empty();
 //                     return done();
@@ -1376,7 +1447,10 @@ app.get('/docs/links/image/logo-redirection-3', (req, res) => {
 //             });
 
 //             const options = {
-//                 profile,
+//                 profile: {
+//                     ...profile,
+//                     rules, // do not change profile.rules
+//                 },
 //                 events: handler,
 //                 url,
 //             };
@@ -1387,6 +1461,28 @@ app.get('/docs/links/image/logo-redirection-3', (req, res) => {
 //     });
 // });
 
+// const tests = {
+//     headers: {
+//         'h1-title': [
+//             {
+//                 url: 'doc-views/FPWD',
+//             },
+//             {
+//                 url: 'doc-views/FPWD-bad',
+//                 errors: ['headers.h1-title.not-match'],
+//             },
+//         ],
+//     },
+// };
+
+const baseChecks = require('./data/base').base;
+
+const tests = {
+    // Note track
+    DNOTE: baseChecks,
+};
+
+// The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warning in lib/l10n-en_GB.js
 // describe('Making sure Specberus is not broken...', () => {
 //     after(() => {
 //         expressServer.close();

@@ -1,21 +1,22 @@
-exports.name = 'PR';
-const base = require('./recommendation-base');
+/* eslint-disable import/no-dynamic-require */
+const { data } = require('./recommendation-base');
 
-// customize config
-const config = {
-    status: 'PR',
-    longStatus: 'Proposed Recommendation',
-    styleSheet: 'W3C-PR',
+const profile = 'PR';
+const {
+    config,
+} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
+const customData = {
+    config: {
+        ...config,
+        ...data.config,
+        profile,
+        notEndorsed: true,
+        maybeUpdated: true,
+        needImple: true,
+        isPR: true,
+    },
 };
-exports.config = { ...base.config, ...config };
 
-// customize rules
-const profileUtil = require('../../profileUtil');
-const rules = profileUtil.insertAfter(base.rules, 'sotd.process-document', [
-    require('../../../rules/sotd/ac-review'),
-    require('../../../rules/sotd/review-end'),
-    require('../../../rules/sotd/new-features'),
-    require('../../../rules/sotd/draft-stability'),
-]);
-
-exports.rules = rules;
+// Used in http://localhost:8001/doc-views/TR/Recommendation/PR?type=good
+const good = { ...data, ...customData };
+exports.good = good;

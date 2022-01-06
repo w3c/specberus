@@ -1,20 +1,20 @@
-exports.name = 'DISC';
-const base = require('./recommendation-base');
+/* eslint-disable import/no-dynamic-require */
+const { data } = require('./recommendation-base');
 
-// customize config
-const config = {
-    status: 'DISC',
-    longStatus: 'Discontinued Draft',
-    styleSheet: 'W3C-DISC',
+const profile = 'DISC';
+const {
+    config,
+} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
+const customData = {
+    config: {
+        ...config,
+        ...data.config,
+        profile,
+        isDISC: true,
+        notEndorsed: false,
+    },
 };
-exports.config = { ...base.config, ...config };
 
-// customize rules
-const profileUtil = require('../../profileUtil');
-
-const rules = profileUtil.removeRules(base.rules, [
-    'structure.security-privacy',
-    'sotd.diff',
-]);
-
-exports.rules = rules;
+// Used in http://localhost:8001/doc-views/TR/Recommendation/DISC?type=good
+const good = { ...data, ...customData };
+exports.good = good;

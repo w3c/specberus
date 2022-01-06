@@ -1,24 +1,21 @@
-const goodData = {
+/* eslint-disable import/no-dynamic-require */
+const { data } = require('./recommendation-base');
+
+const profile = 'FPWD';
+const {
+    config,
+} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
+const customData = {
     config: {
-        profile: 'First Public Working Draft',
-        status: 'WD',
-    },
-    dl: {
-        shortName: 'hr-foo-time-2',
-        seriesShortName: 'hr-foo-time',
+        ...config,
+        ...data.config,
+        profile,
+        notEndorsed: true,
+        maybeUpdated: true,
+        isFPWD: true,
     },
 };
 
-
-
-const badData = goodData;
-badData.config.titleSuffix = 'Pubrules';
-// data.config.profile = 'Pubrules';
-
-// exports.data = Object.assign({}, data, {
-//     config: {
-//         profile2: ""
-//     }
-// })
-
-exports.data = { goodData, badData };
+// Used in http://localhost:8001/doc-views/TR/Recommendation/FPWD?type=good
+const good = { ...data, ...customData };
+exports.good = good;

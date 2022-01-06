@@ -1,32 +1,22 @@
-exports.name = 'REC-RSCND';
-const base = require('./REC');
+/* eslint-disable import/no-dynamic-require */
+const { data } = require('./REC').good;
 
-// customize config
-const config = {
-    status: 'REC',
-    longStatus: 'Rescinded Recommendation',
-    rescinds: true,
-    styleSheet: 'W3C-RSCND',
+const profile = 'REC-RSCND';
+const {
+    config,
+} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
+const customData = {
+    config: {
+        ...data.config,
+        ...config,
+        profile,
+        isRescinded: true,
+        needImple: true,
+    },
 };
-exports.config = { ...base.config, ...config };
 
-// customize rules
-const profileUtil = require('../../profileUtil');
-let rules = profileUtil.insertAfter(base.rules, 'sotd.process-document', [
-    require('../../../rules/sotd/obsl-rescind'),
-]);
+// Used in http://localhost:8001/doc-views/TR/Recommendation/REC-RSCND?type=good
+const good = { ...data, ...customData };
+exports.good = good;
 
-rules = profileUtil.removeRules(rules, [
-    'headers.errata',
-    'sotd.stability',
-    'sotd.publish',
-    'sotd.pp',
-    'sotd.charter',
-    'sotd.diff',
-    'sotd.rec-addition',
-    'sotd.rec-comment-end',
-    'sotd.new-features',
-    'sotd.deployment',
-]);
-
-exports.rules = rules;
+// TODO?

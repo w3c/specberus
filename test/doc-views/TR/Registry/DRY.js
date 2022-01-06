@@ -1,18 +1,19 @@
-exports.name = 'DRY';
-const base = require('./registry-base');
+/* eslint-disable import/no-dynamic-require */
+const { data } = require('./registry-base');
 
-// customize config
-const config = {
-    status: 'DRY',
-    longStatus: 'Draft Registry',
-    styleSheet: 'W3C-DRY',
+const profile = 'DRY';
+const { config } = require(`../../../../lib/profiles/TR/Registry/${profile}`);
+const customData = {
+    config: {
+        ...config,
+        ...data.config,
+        profile,
+        notEndorsed: true,
+        isDRY: true,
+        maybeUpdated: true,
+    },
 };
-exports.config = { ...base.config, ...config };
 
-// customize rules
-const profileUtil = require('../../profileUtil');
-const rules = profileUtil.insertAfter(base.rules, 'sotd.supersedable', [
-    require('../../../rules/sotd/draft-stability'),
-]);
-
-exports.rules = rules;
+// Used in http://localhost:8001/doc-views/TR/Registry/DRY?type=good
+const good = { ...data, ...customData };
+exports.good = good;

@@ -1,19 +1,19 @@
-exports.name = 'CRY';
-const base = require('./registry-base');
+/* eslint-disable import/no-dynamic-require */
+const { data } = require('./registry-base');
 
-// customize config
-const config = {
-    status: 'CRY',
-    longStatus: 'Candidate Registry',
-    cryType: 'Snapshot',
-    styleSheet: 'W3C-CRY',
+const profile = 'CRY';
+const { config } = require(`../../../../lib/profiles/TR/Registry/${profile}`);
+const customData = {
+    config: {
+        ...config,
+        ...data.config,
+        profile,
+        notEndorsed: true,
+        isCRY: true,
+        maybeUpdated: true,
+    },
 };
-exports.config = { ...base.config, ...config };
 
-// customize rules
-const profileUtil = require('../../profileUtil');
-const rules = profileUtil.insertAfter(base.rules, 'sotd.process-document', [
-    require('../../../rules/sotd/candidate-review-end'),
-]);
-
-exports.rules = rules;
+// Used in http://localhost:8001/doc-views/TR/Registry/CRY?type=good
+const good = { ...data, ...customData };
+exports.good = good;

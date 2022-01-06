@@ -1,20 +1,20 @@
-// Working Draft profile
+/* eslint-disable import/no-dynamic-require */
+const { data } = require('./recommendation-base');
 
-exports.name = 'WD';
-const base = require('./recommendation-base');
-
-// customize config
-const config = {
-    status: 'WD',
-    longStatus: 'Working Draft',
-    styleSheet: 'W3C-WD',
+const profile = 'WD';
+const {
+    config,
+} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
+const customData = {
+    config: {
+        ...config,
+        ...data.config,
+        profile,
+        notEndorsed: true,
+        maybeUpdated: true,
+    },
 };
-exports.config = { ...base.config, ...config };
 
-// customize rules
-const profileUtil = require('../../profileUtil');
-const rules = profileUtil.insertAfter(base.rules, 'sotd.supersedable', [
-    require('../../../rules/sotd/draft-stability'),
-]);
-
-exports.rules = rules;
+// Used in http://localhost:8001/doc-views/TR/Recommendation/WD?type=good
+const good = { ...data, ...customData };
+exports.good = good;

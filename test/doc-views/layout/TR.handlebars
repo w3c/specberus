@@ -4,26 +4,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="canonical" href="https://www.w3.org/TR/{{dl.shortName}}/">
-    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-{{config.status}}.css">
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/{{config.styleSheet}}.css">
     <title>{{config.profile}}: test document - Specberus</title> <!-- matches div.head h1 -->
     <style>
         .handlebars-data {
-            background: rgba(255, 0, 0, 0.2)
+            background: rgba(255, 0, 0, 0.15)
         }
     </style>
 </head>
 <body class="h-entry" data-cite="WebIDL html dom webidl ecma-262">
     <div class="head">
         <a class="logo" href="https://www.w3.org/"><img alt="W3C" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72" height="48"></a>
-        <h1 id="title" class="title p-name">Test document for <span class="handlebars-data">{{config.profile}}</span> - {{#if config.titleSuffix}}<span class="handlebars-data">{{config.titleSuffix}}</span>{{else}}Specberus{{/if}}</h1>
+        <h1 id="title" class="title p-name"><span class="handlebars-data">{{config.profile}}: test document - {{#config.titleSuffix}}<span class="handlebars-data">{{config.titleSuffix}}</span>{{/config.titleSuffix}}Specberus</h1>
 
         <p id='w3c-state'>
-            <a href='https://www.w3.org/standards/types#{{config.status}}'>W3C <span class="handlebars-data">{{config.longStatus}}</span></a>
-            <time class="dt-published" datetime="2021-11-04">04 November 2021</time>
+            <a href='https://www.w3.org/standards/types#{{#if config.isFPWD}}FPWD{{else}}{{config.status}}{{/if}}'>W3C <span class="handlebars-data">{{config.longStatus}} {{config.crType}} {{config.cryType}}</span></a>
+            {{! if document is Echidna, use current date. else, use default date}}
+            <time class="dt-published" datetime="2021-11-04">
+                {{#if config.isEchidna}}
+                    <span class="handlebars-data">{{now}}</span>
+                {{else}}
+                    04 November 2021
+                {{/if}}
+            </time>
         </p>
         <details open>
             <summary>More details about this document</summary>
-            <dl> <dt>This version:</dt> <dd> <a class="u-url" href="https://www.w3.org/TR/2021/{{config.status}}-{{dl.shortName}}-20211104/">https://www.w3.org/TR/2021/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data">{{dl.shortName}}</span>-20211104/</a>
+            <dl>
+                <dt>This version:</dt>
+                <dd>
+                    <a class="u-url" href="https://www.w3.org/TR/{{#if config.isEchidna}}{{nowYear}}{{else}}2021{{/if}}/{{config.status}}-{{dl.shortName}}-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}{{nowDigit8}}{{else}}20211104{{/if}}/">https://www.w3.org/TR/{{#if config.isEchidna}}<span class="handlebars-data">{{nowYear}}</span>{{else}}2021{{/if}}/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data">{{dl.shortName}}</span>-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}<span class="handlebars-data">{{nowDigit8}}</span>{{else}}20211104{{/if}}/</a>
                 </dd>
 
                 <dt>Latest published version: (@@note that version is not required in the latest version)</dt>
@@ -38,13 +48,33 @@
                 <dd> <a href="https://www.w3.org/standards/history/{{dl.shortName}}">https://www.w3.org/standards/history/<span class="handlebars-data">{{dl.shortName}}</span></a>
                 </dd>
 
-                <dt>{{dl.editorText}}:</dt>
+                {{#config.needImple}}
+                <dt>Implementation report:</dt>
+                <dd>
+                    <a href="https://wpt.fyi/hr-time/">https://wpt.fyi/hr-time/</a>
+                </dd>
+                {{/config.needImple}}
+
+                <dt><span class="handlebars-data">{{dl.editorText}}</span>:</dt>
                 <dd class="p-author h-card vcard" data-editor-id="56102">George Herald (WebFoo)
                 </dd>
+
+                {{#config.isRescinded}}
+                <dt><span class="handlebars-data">{{dl.rescindText}}</span>{{! Rescinds this Recommendation}}:</dt>
+                <dd>
+                    <a rel="dcterms:replaces" href="{{dl.rescindLink}}"><span class="handlebars-data">{{dl.rescindLink}}</span></a>
+                </dd>
+                {{/config.isRescinded}}
 
                 <dt>Former editors:</dt>
                 <dd class="p-author h-card vcard" data-editor-id="45726">James Hector (BAR Inc.) (Until January 2015)</dd>
                 <dd class="p-author h-card vcard" data-editor-id="44357">Joe Smith (Iron Corp.) (Until February 2014)</dd>
+
+                {{#config.needErrata}}
+                <dt>Errata:</dt>
+                    <dd><a href="{{dl.errataLink}}"><span class="handlebars-data">{{dl.errataLink}}</span></a><br>
+                </dd>
+                {{/config.needErrata}}
 
                 <dt>Feedback:</dt>
                 <dd><a href="{{dl.feedbackPrefix}}{{dl.shortName}}/issues"><span class="handlebars-data">{{dl.feedbackPrefix}}</span><span class="handlebars-data">{{dl.seriesShortName}}</span>/issues</a></dd>
@@ -53,7 +83,7 @@
         </details>
 
         <p class="copyright">
-            <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright"><span class="handlebars-data">{{copyright.startText}}</span></a> © 2021 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="{{copyright.MITLink}}"><abbr title="Massachusetts Institute of Technology"><span class="handlebars-data">{{copyright.MIT}}</span></abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <span class="handlebars-data">{{{copyright.beihangHTML}}}</span>). <span class="handlebars-data">{{{copyright.licenseHTML}}}</span>
+            <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright"><span class="handlebars-data">{{copyright.startText}}</span></a> © {{#if config.isEchidna}}<span class="handlebars-data">{{nowYear}}</span>{{else}}2021{{/if}} <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="{{copyright.MITLink}}"><abbr title="Massachusetts Institute of Technology"><span class="handlebars-data">{{copyright.MIT}}</span></abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <span class="handlebars-data">{{{copyright.beihangHTML}}}</span>). <span class="handlebars-data">{{{copyright.licenseHTML}}}</span>
         </p>
         <hr title="Separator for header">
     </div>
@@ -64,39 +94,56 @@
     </section>
 
     <section id="{{sotd.id}}" data-link-for="Performance" class="introductory">
-        <h2><span class="handlebars-data">{{sotd.title}}</span></h2>
+        <h2><span class="handlebars-data">{{sotd.title}}{{! Status of This Document }}</span></h2>
 
+        <p><span class="handlebars-data">{{{sotd.emHTML}}}{{! This section describes the status of this document... }}</span></p>
 
-        <p><span class="handlebars-data">{{{sotd.emHTML}}}</span></p>
+        {{#config.isRescinded}}
+        <p>
+            W3C has <span class="handlebars-data">{{sotd.rescindText1}}{{! chosen to rescind}}</span> the <a href="https://www.w3.org/TR/2017/REC-samplespec-20170101/">Sample Specification Recommendation</a> for the following reasons: [...list of reasons...]. For additional information <span class="handlebars-data">{{sotd.rescindText2}}{{! about replacement or alternative technologies}}</span>, please refer to the <a href="{{sotd.rescindLink}}">explanation of Obsoleting, Rescinding or Superseding W3C Specifications</a>.
+        </p>
+        {{/config.isRescinded}}
 
         <p>
-            This document <span class="handlebars-data">{{sotd.extra1}}</span>was published by the <a href="{{sotd.WGLink}}">{{sotd.group}}{{!Web Performance Working Group}}</a> as a <span class="handlebars-data">{{config.longStatus}}</span> using the <a href='{{sotd.trackLink}}'><span class="handlebars-data">{{config.track}}</span> track</a>.
+            This document <span class="handlebars-data">{{sotd.extra1}}</span>was published by the <a href="{{sotd.WGLink}}"><span class="handlebars-data">{{sotd.group}}{{!Web Performance Working Group}}</span></a> as a <span class="handlebars-data">{{config.longStatus}} {{config.crType}}{{config.cryType}}</span> using the <a href='{{sotd.trackLink}}'><span class="handlebars-data">{{config.track}}</span> track</a>.
         </p>
 
+        {{#config.isREC}}
+        <p>
+            W3C recommends the wide deployment of this specification as a standard for the Web.
+        </p>
+        {{/config.isREC}}
 
         <p>
-            {{! checked by rule sotd.stablity }}
-            {{#config.isDNOTE}}
-                Group Draft Notes are not endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> nor its Members. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
-            {{/config.isDNOTE}}
-            {{#config.isNOTE}}
-                Group Notes are not endorsed by W3C nor its Members.
-            {{/config.isNOTE}}
-            {{!-- {{#sotd.endorsed}}
-                A W3C Recommendation is a specification that, after extensive consensus-building, is endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members, and has commitments from Working Group members to <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements">royalty-free licensing</a> for implementations.
-            {{/sotd.endorsed}} --}}
-            {{!-- Publication as a <span class="handlebars-data">{{config.longStatus}}</span> <span class="handlebars-data">{{{sotd.noEndorsementHTML}}}.</span> <span class="handlebars-data">{{sotd.draftText1}}</span> <span class="handlebars-data">{{sotd.draftText2}}</span> --}}
+            {{! checked by rule sotd.stablity & sotd.draft-stability}}
+            <span class="handlebars-data">
+                {{! Publication as a xxx does not imply endorsement ... It is inappropriate to cite ...}}
+                {{> stability}}
+            </span>
+        </p>
 
-        {{#underPP}}
+        {{#config.isCR}}
+            <p>This Candidate Recommendation is not expected to advance to Proposed Recommendation any earlier than
+                {{#if config.isEchidna}}
+                    <span class="handlebars-data">{{sixMonthLater}}.</span>
+                {{else}}
+                    04 October 2022.</p>
+                {{/if}}
+        {{/config.isCR}}
+
+        {{#config.isCRY}}
             <p>
-                This document was produced by a group operating under the <a href="{{sotd.ppLink}}"><span class="handlebars-data">{{{sotd.ppHTML}}}{{! W3C Patent Policy }}</span></a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a rel="disclosure" href="{{sotd.iprLink}}"><span class="handlebars-data">{{sotd.iprText}}{{! public list of any patent disclosures }}</span></a> made in connection with the deliverables of <span class="handlebars-data">{{sotd.pageIncludeText}}{{! the group; that page also includes }}</span> instructions for disclosing a patent. <span class="handlebars-data">{{sotd.individualText}}{{! An individual who has }}</span> actual knowledge of a patent which the individual believes contains <a href="{{sotd.essentialLink}}"><span class="handlebars-data">{{sotd.essentialText}}{{! Essential Claim(s) }}</span></a> must disclose the information in accordance with <a href="{{sotd.disclosureLink}}"><span class="handlebars-data">{{{sotd.disclosureHTML}}}</span></a>.
+                This Candidate Registry is not expected to advance to Registry any earlier than 6 June 2022.
             </p>
-        {{/underPP}}
-        {{^underPP}}
-            <p data-deliverer="32113">
-                The <a href="{{sotd.ppLink}}"><span class="handlebars-data">{{{sotd.ppHTML}}}{{! W3C Patent Policy }}</span></a> does not carry any <span class="handlebars-data">{{sotd.noPPText}}{{! licensing requirements or commitments }}</span> on this document.
+        {{/config.isCRY}}
+
+        {{#config.isPR}}
+            <p>
+                <abbr title="World Wide Web Consortium">W3C</abbr> Members and other interested parties are invited to review the document and send comments through 15 October 2021. Advisory Committee Representatives should consult their <a href="{{sotd.acReviewLink}}">questionnaires</a>. Note that substantive technical comments were expected during the Candidate Recommendation review period that ended 13 July 2021.
             </p>
-        {{/underPP}}
+        {{/config.isPR}}
+
+        {{> patent-policy}}
 
         <p>
             This document <span class="handlebars-data">{{sotd.processTextPrefix}}</span>{{! is governed by the}} <a id="w3c_process_revision" href="{{sotd.processLink}}"><span class="handlebars-data">{{{sotd.processHTML}}}{{! 2 November 2021 W3C Process Document }}</span></a>.

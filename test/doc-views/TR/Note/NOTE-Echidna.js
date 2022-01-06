@@ -1,9 +1,17 @@
-exports.name = 'NOTE-Echidna';
-const base = require('./NOTE');
+/* eslint-disable import/no-dynamic-require */
+const data = require('./NOTE').good;
 
-exports.config = base.config;
+const profile = 'NOTE-Echidna';
+const { config } = require(`../../../../lib/profiles/TR/Note/${profile}`);
+const customData = {
+    config: {
+        ...config,
+        ...data.config,
+        profile,
+        isEchidna: true,
+    },
+};
 
-const profileUtil = require('../../profileUtil');
-exports.rules = profileUtil.insertAfter(base.rules, 'sotd.process-document', [
-    require('../../../rules/echidna/todays-date'),
-]);
+// Used in http://localhost:8001/doc-views/TR/Note/NOTE-Echidna?type=good
+const good = { ...data, ...customData };
+exports.good = good;

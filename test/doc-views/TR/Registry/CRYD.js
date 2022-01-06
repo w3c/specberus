@@ -1,20 +1,32 @@
-exports.name = 'CRYD';
-const base = require('./registry-base');
+/* eslint-disable import/no-dynamic-require */
+const { data } = require('./registry-base');
 
-// customize config
-const config = {
-    status: 'CRYD',
-    longStatus: 'Candidate Registry',
-    cryType: 'Draft',
-    styleSheet: 'W3C-CRYD',
+const profile = 'CRYD';
+const { config } = require(`../../../../lib/profiles/TR/Registry/${profile}`);
+const customData = {
+    config: {
+        ...config,
+        ...data.config,
+        profile,
+        notEndorsed: true,
+        isCRYD: true,
+        maybeUpdated: true,
+    },
 };
-exports.config = { ...base.config, ...config };
 
-// customize rules
-const profileUtil = require('../../profileUtil');
+// Used in http://localhost:8001/doc-views/TR/Registry/CRYD?type=good
+const good = { ...data, ...customData };
+exports.good = good;
 
-const rules = profileUtil.insertAfter(base.rules, 'sotd.supersedable', [
-    require('../../../rules/sotd/draft-stability'),
-]);
+// Used in http://localhost:8001/doc-views/TR/Recommendation/CRYD?type=good2
+exports.good2 = {
+    config: {
+        ...good.config,
+    },
+    sotd: {
+        ...good.sotd,
+        draftText:
+            'This document is maintained and updated at any time. Some parts of this document are work in progress.',
+    },
+};
 
-exports.rules = rules;

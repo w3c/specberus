@@ -6,6 +6,7 @@ const { config } = require(`../../../../lib/profiles/TR/Note/${profile}`);
 const customData = {
     config: {
         ...config,
+        ...data.config,
         profile,
         isNOTE: true,
     },

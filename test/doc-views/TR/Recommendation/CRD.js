@@ -1,19 +1,34 @@
-exports.name = 'CRD';
-const base = require('./recommendation-base');
+/* eslint-disable import/no-dynamic-require */
+const { data } = require('./recommendation-base');
 
-// customize config
-const config = {
-    status: 'CRD',
-    longStatus: 'Candidate Recommendation',
-    crType: 'Draft',
-    styleSheet: 'W3C-CRD',
+const profile = 'CRD';
+const {
+    config,
+} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
+const customData = {
+    config: {
+        ...config,
+        ...data.config,
+        profile,
+        isCRD: true,
+        notEndorsed: true,
+        maybeUpdated: true,
+        needImple: true,
+    },
 };
-exports.config = { ...base.config, ...config };
 
-// customize rules
-const profileUtil = require('../../profileUtil');
-const rules = profileUtil.insertAfter(base.rules, 'sotd.pp', [
-    require('../../../rules/sotd/draft-stability'),
-]);
+// Used in http://localhost:8001/doc-views/TR/Recommendation/CRD?type=good
+const good = { ...data, ...customData };
+exports.good = good;
 
-exports.rules = rules;
+// Used in http://localhost:8001/doc-views/TR/Recommendation/CRD?type=good2
+exports.good2 = {
+    config: {
+        ...good.config,
+    },
+    sotd: {
+        ...good.sotd,
+        draftText:
+            'This document is maintained and updated at any time. Some parts of this document are work in progress.',
+    },
+};

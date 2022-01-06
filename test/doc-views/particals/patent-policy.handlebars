@@ -1,0 +1,10 @@
+{{#config.underPP}}
+    <p>
+        This document was produced by a group operating under the <a href="{{sotd.ppLink}}"><span class="handlebars-data">{{{sotd.ppHTML}}}{{! W3C Patent Policy }}</span></a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a rel="disclosure" href="{{sotd.iprLink}}"><span class="handlebars-data">{{sotd.iprText}}{{! public list of any patent disclosures }}</span></a> made in connection with the deliverables of <span class="handlebars-data">{{sotd.pageIncludeText}}{{! the group; that page also includes }}</span> instructions for disclosing a patent. <span class="handlebars-data">{{sotd.individualText}}{{! An individual who has }}</span> actual knowledge of a patent which the individual believes contains <a href="{{sotd.essentialLink}}"><span class="handlebars-data">{{sotd.essentialText}}{{! Essential Claim(s) }}</span></a> must disclose the information in accordance with <a href="{{sotd.disclosureLink}}"><span class="handlebars-data">{{{sotd.disclosureHTML}}}</span></a>.
+    </p>
+{{/config.underPP}}
+{{^config.underPP}}
+    <p data-deliverer="32113">
+        The <a href="{{sotd.ppLink}}"><span class="handlebars-data">{{{sotd.ppHTML}}}{{! W3C Patent Policy }}</span></a> does not carry any <span class="handlebars-data">{{sotd.noPPText}}{{! licensing requirements or commitments }}</span> on this document.
+    </p>
+{{/config.underPP}}

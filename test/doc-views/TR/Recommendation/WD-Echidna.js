@@ -1,11 +1,19 @@
-// Working Draft profile
+/* eslint-disable import/no-dynamic-require */
+const data = require('./WD').good;
 
-exports.name = 'WD-Echidna';
-const base = require('./WD');
+const profile = 'WD-Echidna';
+const {
+    config,
+} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
+const customData = {
+    config: {
+        ...config,
+        ...data.config,
+        profile,
+        isEchidna: true,
+    },
+};
 
-exports.config = base.config;
-
-const profileUtil = require('../../profileUtil');
-exports.rules = profileUtil.insertAfter(base.rules, 'sotd.process-document', [
-    require('../../../rules/echidna/todays-date'),
-]);
+// Used in http://localhost:8001/doc-views/TR/Recommendation/WD-Echidna?type=good
+const good = { ...data, ...customData };
+exports.good = good;

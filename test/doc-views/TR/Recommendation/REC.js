@@ -1,26 +1,23 @@
-exports.name = 'REC';
-const base = require('./recommendation-base');
+/* eslint-disable import/no-dynamic-require */
+const data = require('./recommendation-base');
 
-// customize config
-const config = {
-    status: 'REC',
-    longStatus: 'Recommendation',
-    styleSheet: 'W3C-REC',
+const profile = 'REC';
+const {
+    config,
+} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
+const customData = {
+    config: {
+        ...config,
+        ...data.config,
+        profile,
+        isREC: true,
+        notEndorsed: false,
+        hasLicensing: true,
+        needImple: true,
+        needErrata: true,
+    },
 };
-exports.config = { ...base.config, ...config };
 
-// customize rules
-const profileUtil = require('../../profileUtil');
-let rules = profileUtil.insertAfter(base.rules, 'headers.dl', [
-    require('../../../rules/headers/errata'),
-]);
-rules = profileUtil.insertAfter(rules, 'sotd.supersedable', [
-    require('../../../rules/sotd/rec-addition'),
-    require('../../../rules/sotd/rec-comment-end'),
-    require('../../../rules/sotd/new-features'),
-    require('../../../rules/sotd/deployment'),
-]);
-
-rules = profileUtil.removeRules(rules, ['structure.security-privacy']);
-
-exports.rules = rules;
+// Used in http://localhost:8001/doc-views/TR/Recommendation/REC?type=good
+const good = { ...data, ...customData };
+exports.good = good;

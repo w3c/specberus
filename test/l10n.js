@@ -138,10 +138,14 @@ const scanFileSystem = function () {
                                     let match;
                                     result[dir][name] = {};
                                     match = messageFinder.exec(data);
+                                    console.log(`'${name}': [`);
                                     while (match) {
+                                        // console.log(`${match[1]}: ${dir}.${name}.${match[2]}`);
+                                        console.log(`    { data: 'todo', ${match[1]}s: ['${match[2]}'] },`);
                                         result[dir][name][match[2]] = true;
                                         match = messageFinder.exec(data);
                                     }
+                                    console.log(`],`)
                                     match = exceptionFinder.exec(data);
                                     while (match) {
                                         result[dir][name][match[1]] = true;
@@ -197,6 +201,7 @@ describe('L10n', () => {
         const p = scanFileSystem();
         p.then(value => {
             files = value;
+            console.log('\n\n', value);
         });
         return expect(p).to.be.fulfilled;
     });
