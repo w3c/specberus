@@ -23,7 +23,7 @@
     "puppeteer": "13.0.0",
     "request": "2.88.2",
     "socket.io": "4.4.0",
-    "superagent": "6.1.0"
+    "superagent": "7.0.1"
   },
   "devDependencies": {
     "chai": "4.3.4",
