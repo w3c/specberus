@@ -7,7 +7,7 @@ exports.data = {
         profile: '(_TODO_)',
     },
     dl: {
-        shortName: 'hr-time',
+        shortName: 'hr2222-time',
         seriesShortName: 'hr-time',
         feedbackPrefix: 'https://github.com/w3c/',
         historyText: 'History',

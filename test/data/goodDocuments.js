@@ -1,21 +1,21 @@
 exports.goodDocuments = {
     // Note track
-    // DNOTE: {
-    //     url: 'doc-views/TR/Note/DNOTE?type=good',
-    //     config: {
-    //        // patentPolicy: 'pp2020',
-    //     },
-    // },
-    // 'DNOTE-Echidna': {
-    //     url: 'doc-views/TR/Note/DNOTE-Echidna?type=good',
-    // },
-    // NOTE: { url: 'doc-views/TR/Note/NOTE?type=good' },
-    // 'NOTE-Echidna': {
-    //     url: 'doc-views/TR/Note/NOTE-Echidna?type=good',
-    // },
-    // STMT: {
-    //     url: 'doc-views/TR/Note/STMT?type=good',
-    // },
+    DNOTE: {
+        url: 'doc-views/TR/Note/DNOTE?type=good',
+        config: {
+           // patentPolicy: 'pp2020',
+        },
+    },
+    'DNOTE-Echidna': {
+        url: 'doc-views/TR/Note/DNOTE-Echidna?type=good',
+    },
+    NOTE: { url: 'doc-views/TR/Note/NOTE?type=good' },
+    'NOTE-Echidna': {
+        url: 'doc-views/TR/Note/NOTE-Echidna?type=good',
+    },
+    STMT: {
+        url: 'doc-views/TR/Note/STMT?type=good',
+    },
 
     // Recommendation track
     CR: {

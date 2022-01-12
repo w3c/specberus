@@ -1318,74 +1318,74 @@ const { goodDocuments } = require('./data/goodDocuments');
 const testsGoodDoc = goodDocuments;
 
 // The next check is runing each profile using the rules configured.
-describe('Making sure good documents pass Specberus...', () => {
-    after(() => {
-        // expressServer.close();
-    });
-    Object.keys(testsGoodDoc).forEach(docProfile => {
-        // testsGoodDoc[docProfile].profile is used to distinguish multiple cases for same profile.
-        docProfile = testsGoodDoc[docProfile].profile || docProfile;
+// describe('Making sure good documents pass Specberus...', () => {
+//     after(() => {
+//         // expressServer.close();
+//     });
+//     Object.keys(testsGoodDoc).forEach(docProfile => {
+//         // testsGoodDoc[docProfile].profile is used to distinguish multiple cases for same profile.
+//         docProfile = testsGoodDoc[docProfile].profile || docProfile;
 
-        const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
-        it(`should pass for ${docProfile} doc with ${url}`, done => {
-            const profile = util.profiles[docProfile];
+//         const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
+//         it(`should pass for ${docProfile} doc with ${url}`, done => {
+//             const profile = util.profiles[docProfile];
 
-            // add custom config to test
-            profile.config = {
-                patentPolicy: 'pp2020', // default config for all docs.
-                ...profile.config,
-                ...testsGoodDoc[docProfile].config,
-            };
+//             // add custom config to test
+//             profile.config = {
+//                 patentPolicy: 'pp2020', // default config for all docs.
+//                 ...profile.config,
+//                 ...testsGoodDoc[docProfile].config,
+//             };
 
-            // remove unnecessary rules from test
-            const { removeRules } = require('../lib/profiles/profileUtil');
-            const rules = removeRules(profile.rules, [
-                'validation.html',
-                'validation.wcag',
-                'links.linkchecker', // too slow. will check separately.
-            ]);
+//             // remove unnecessary rules from test
+//             const { removeRules } = require('../lib/profiles/profileUtil');
+//             const rules = removeRules(profile.rules, [
+//                 'validation.html',
+//                 'validation.wcag',
+//                 'links.linkchecker', // too slow. will check separately.
+//             ]);
 
-            const handler = new sink.Sink();
-            handler.on('err', (type, data) => {
-                if (DEBUG) console.log('\nerror: ', type, data);
-                handler.errors.push(`${type.name}.${data.key}`);
-            });
-            handler.on('warning', (type, data) => {
-                // if (DEBUG) console.log('\nwarning: ', type, data);
-                handler.warnings.push(`${type.name}.${data.key}`);
-            });
-            handler.on('done', () => {
-                handler.done++;
-            });
-            handler.on('exception', data => {
-                console.error(
-                    `[EXCEPTION] Validator had a massive failure: ${data.message}`
-                );
-            });
-            handler.on('end-all', () => {
-                if (DEBUG) console.log('--- end all ---');
-                try {
-                    expect(handler.errors).to.be.empty();
-                    return done();
-                } catch (e) {
-                    return done(e);
-                }
-            });
+//             const handler = new sink.Sink();
+//             handler.on('err', (type, data) => {
+//                 if (DEBUG) console.log('\nerror: ', type, data);
+//                 handler.errors.push(`${type.name}.${data.key}`);
+//             });
+//             handler.on('warning', (type, data) => {
+//                 // if (DEBUG) console.log('\nwarning: ', type, data);
+//                 handler.warnings.push(`${type.name}.${data.key}`);
+//             });
+//             handler.on('done', () => {
+//                 handler.done++;
+//             });
+//             handler.on('exception', data => {
+//                 console.error(
+//                     `[EXCEPTION] Validator had a massive failure: ${data.message}`
+//                 );
+//             });
+//             handler.on('end-all', () => {
+//                 if (DEBUG) console.log('--- end all ---');
+//                 try {
+//                     expect(handler.errors).to.be.empty();
+//                     return done();
+//                 } catch (e) {
+//                     return done(e);
+//                 }
+//             });
 
-            const options = {
-                profile: {
-                    ...profile,
-                    rules, // do not change profile.rules
-                },
-                events: handler,
-                url,
-            };
+//             const options = {
+//                 profile: {
+//                     ...profile,
+//                     rules, // do not change profile.rules
+//                 },
+//                 events: handler,
+//                 url,
+//             };
 
-            // for (const o in test.options) options[o] = test.options[o];
-            new validator.Specberus(process.env.W3C_API_KEY).validate(options);
-        });
-    });
-});
+//             // for (const o in test.options) options[o] = test.options[o];
+//             new validator.Specberus(process.env.W3C_API_KEY).validate(options);
+//         });
+//     });
+// });
 
 // const tests = {
 //     headers: {
@@ -1401,15 +1401,415 @@ describe('Making sure good documents pass Specberus...', () => {
 //     },
 // };
 
-const baseChecks = require('./data/base').base;
+// const baseChecks = require('./data/base').base;
 
+// const tests = {
+//     // Note track
+//     FPWD: fpwdChecks,
+//     WD: wdChecks,
+// };
 const tests = {
-    // Note track
-    DNOTE: dnoteChecks,
-    NOTE: noteChecks,
+    TR: {
+        Reconmmendation: {
+            FPWD: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            WD: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            'WD-Echidna': {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            CR: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            'CR-Echidna': {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            CRD: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            'CRD-Echidna': {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            DISC: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            PR: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            REC: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            'REC-RSCND': {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+        },
+        Note: {
+            DNOTE: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            'DNOTE-Echidna': {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            NOTE: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            'NOTE-Echidna': {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            STMT: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+        },
+        Registry: {
+            DRY: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            CRY: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            CRYD: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+            RY: {
+                heuristic: {
+                    'date-format': [
+                        {
+                            data: 'date-format',
+                            errors: ['wrong'],
+                            warnings: [],
+                            config: {},
+                        },
+                    ],
+                },
+            },
+        },
+    },
+    SUBM: {
+        'MEM-SUBM': {
+            heuristic: {
+                'date-format': [
+                    {
+                        data: 'date-format',
+                        errors: ['wrong'],
+                        warnings: [],
+                        config: {},
+                    },
+                ],
+            },
+        },
+    },
 };
 
-// The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warning in lib/l10n-en_GB.js
+// The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warnings in lib/l10n-en_GB.js
+
+describe('Making sure Specberus is not broken...', () => {
+    // after(() => {
+    //     expressServer.close();
+    // });
+    Object.keys(tests).forEach(track => {
+        console.log(track);
+        describe(`Track ${track}:`, () => {
+            const profiles = tests[track];
+            Object.keys(profiles).forEach(profile => {
+                console.log('   ', profile);
+                describe(`Profile ${profile}:`, () => {
+                    const categories = profiles[profile];
+                    Object.keys(categories).forEach(category => {
+                        console.log('       ', category);
+                        describe(`Category ${category}`, () => {
+                            const rules = categories[category];
+                            Object.keys(rules).forEach(ruleName => {
+                                console.log('           ', ruleName);
+                                describe(`Rule ${ruleName}`, () => {
+                                    const requirement = rules.ruleName;
+                                    console.log('\n')
+                                    // const testUrl = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
+                                    // tests[category][rule].forEach(test => {
+                                    //     const passTest = !test.errors;
+                                    //     it(`should ${passTest ? 'pass' : 'fail'} for ${test.doc || test.url
+                                    //         }`, done => {
+                                    //             // eslint-disable-next-line import/no-dynamic-require
+                                    //             const r = require(`../lib/rules/${category}/${rule}`);
+                                    //             const handler = new sink.Sink();
+                                    //             handler.on('err', (type, data) => {
+                                    //                 if (DEBUG) console.log(type, data);
+                                    //                 handler.errors.push(
+                                    //                     `${type.name}.${data.key}`
+                                    //                 );
+                                    //             });
+                                    //             handler.on('warning', (type, data) => {
+                                    //                 if (DEBUG) console.log('[W]', data);
+                                    //                 handler.warnings.push(
+                                    //                     `${type.name}.${data.key}`
+                                    //                 );
+                                    //             });
+                                    //             handler.on('done', () => {
+                                    //                 if (DEBUG) console.log('---done---');
+                                    //                 handler.done++;
+                                    //             });
+                                    //             handler.on('exception', data => {
+                                    //                 console.error(
+                                    //                     `[EXCEPTION] Validator had a massive failure: ${data.message}`
+                                    //                 );
+                                    //             });
+                                    //             handler.on('end-all', () => {
+                                    //                 try {
+                                    //                     let i;
+                                    //                     let n;
+                                    //                     if (passTest) {
+                                    //                         expect(
+                                    //                             handler.errors
+                                    //                         ).to.be.empty();
+                                    //                     } else {
+                                    //                         expect(
+                                    //                             handler.errors.length
+                                    //                         ).to.eql(test.errors.length);
+                                    //                         for (
+                                    //                             i = 0, n = test.errors.length;
+                                    //                             i < n;
+                                    //                             i++
+                                    //                         ) {
+                                    //                             expect(
+                                    //                                 handler.errors
+                                    //                             ).to.contain(test.errors[i]);
+                                    //                         }
+                                    //                     }
+                                    //                     if (!test.ignoreWarnings) {
+                                    //                         if (test.warnings) {
+                                    //                             expect(
+                                    //                                 handler.warnings.length
+                                    //                             ).to.eql(test.warnings.length);
+                                    //                             for (
+                                    //                                 i = 0,
+                                    //                                 n =
+                                    //                                 test.warnings
+                                    //                                     .length;
+                                    //                                 i < n;
+                                    //                                 i++
+                                    //                             ) {
+                                    //                                 expect(
+                                    //                                     handler.warnings
+                                    //                                 ).to.contain(
+                                    //                                     test.warnings[i]
+                                    //                                 );
+                                    //                             }
+                                    //                         } else {
+                                    //                             expect(
+                                    //                                 handler.warnings
+                                    //                             ).to.be.empty();
+                                    //                         }
+                                    //                     }
+                                    //                     done();
+                                    //                 } catch (e) {
+                                    //                     return done(e);
+                                    //                 }
+                                    //             });
+                                    //             const profile = {
+                                    //                 name: `Synthetic ${category}/${rule}`,
+                                    //                 rules: [r],
+                                    //             };
+                                    //             profile.config = test.config;
+                                    //             const options = {
+                                    //                 profile,
+                                    //                 events: handler,
+                                    //             };
+
+                                    //             // support both external urls and local files
+                                    //             if (test.data) {
+                                    //                 options.url = `${ENDPOINT}/${test.url}`;
+                                    //             }
+                                    //             // options.url = `${ENDPOINT}/docs/${test.url}`;
+
+                                    //             for (const o in test.options)
+                                    //                 options[o] = test.options[o];
+                                    //             new validator.Specberus(
+                                    //                 process.env.W3C_API_KEY
+                                    //             ).validate(options);
+                                    //         });
+                                    // });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+});
+
 // describe('Making sure Specberus is not broken...', () => {
 //     after(() => {
 //         expressServer.close();
