@@ -64,7 +64,7 @@
     "npm": ">=6"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix",
+    "*.js": "eslint --cache",
     "*": [
       "cspell",
       "prettier --write --ignore-unknown"
@@ -73,6 +73,6 @@
   "mocha": {
     "colors": true,
     "reporter": "spec",
-    "timeout": 20000
+    "timeout": 40000
   }
 }

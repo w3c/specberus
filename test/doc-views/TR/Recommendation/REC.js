@@ -1,5 +1,5 @@
 /* eslint-disable import/no-dynamic-require */
-const data = require('./recommendation-base');
+const { data } = require('./recommendation-base');
 
 const profile = 'REC';
 const {

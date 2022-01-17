@@ -216,7 +216,6 @@ app.get('/doc-views/:docType/:profile/:track', (req, res) => {
         // for data causes error, make rule and the type of error specific.
         finalData = data[rule][type];
     }
-
     res.render(pth.join(__dirname, './doc-views/layout/TR'), finalData);
 });
 
@@ -261,12 +260,6 @@ after(done => {
     }
 });
 
-// A list of good documents to be tested, using all rules configured in the profiles.
-// Shouldn't cause any error.
-const { goodDocuments } = require('./data/goodDocuments');
-
-const testsGoodDoc = goodDocuments;
-
 function buildHandler(test, done) {
     const handler = new Sink();
     handler.on('err', (type, data) => {
@@ -278,8 +271,8 @@ function buildHandler(test, done) {
         handler.warnings.push(`${type.name}.${data.key}`);
     });
     handler.on('done', () => {
-        if (DEBUG) console.log('---done---');
         handler.done += 1;
+        if (DEBUG) console.log(`---done, ${handler.done}---`);
     });
     handler.on('exception', data => {
         console.error(
@@ -317,6 +310,12 @@ function buildHandler(test, done) {
 
     return handler;
 }
+
+// A list of good documents to be tested, using all rules configured in the profiles.
+// Shouldn't cause any error.
+const { goodDocuments } = require('./data/goodDocuments');
+
+const testsGoodDoc = goodDocuments;
 
 // The next check is running each profile using the rules configured.
 describe('Making sure good documents pass Specberus...', () => {
