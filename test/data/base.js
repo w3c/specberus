@@ -55,7 +55,7 @@ exports.base = {
     //         { data: 'todo', warnings: ['obsoletes-not-needed'] },
     //         { data: 'todo', warnings: ['supersedes-not-needed'] },
     //         { data: 'todo', warnings: ['no-date'] },
-    //         { data: 'todo', warnings: ['implelink-comfirm-no'] },
+    //         { data: 'todo', warnings: ['implelink-confirm-no'] },
     //     ],
     //     'h1-title': [
     //         { data: 'todo', errors: ['not-found'] },

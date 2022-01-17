@@ -187,7 +187,7 @@ app.engine(
     exphbs.engine({
         defaultLayout: pth.join(__dirname, './doc-views/layout/TR'),
         layoutsDir: pth.join(__dirname, './doc-views'),
-        partialsDir: pth.join(__dirname, './doc-views/particals/'),
+        partialsDir: pth.join(__dirname, './doc-views/partials/'),
     })
 );
 app.set('view engine', 'handlebars');
@@ -261,7 +261,7 @@ after(done => {
     }
 });
 
-// A list of good documents to be tested, using all rules configed in the profiles.
+// A list of good documents to be tested, using all rules configured in the profiles.
 // Shouldn't cause any error.
 const { goodDocuments } = require('./data/goodDocuments');
 
@@ -279,7 +279,7 @@ function buildHandler(test, done) {
     });
     handler.on('done', () => {
         if (DEBUG) console.log('---done---');
-        handler.done++;
+        handler.done += 1;
     });
     handler.on('exception', data => {
         console.error(
@@ -318,7 +318,7 @@ function buildHandler(test, done) {
     return handler;
 }
 
-// The next check is runing each profile using the rules configured.
+// The next check is running each profile using the rules configured.
 describe('Making sure good documents pass Specberus...', () => {
     Object.keys(testsGoodDoc).forEach(docProfile => {
         // testsGoodDoc[docProfile].profile is used to distinguish multiple cases for same profile.
