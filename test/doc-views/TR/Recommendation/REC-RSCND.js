@@ -1,5 +1,5 @@
 /* eslint-disable import/no-dynamic-require */
-const { data } = require('./REC').good;
+const data = require('./REC').good;
 
 const profile = 'REC-RSCND';
 const {
