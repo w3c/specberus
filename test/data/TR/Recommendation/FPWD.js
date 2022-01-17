@@ -1,266 +1,235 @@
 exports.rules = {
-    heuristic: {
-        'date-format': [
+    headers: {
+        'div-head': [
             {
-                data: 'date-format',
-                errors: ['wrong'],
-                warnings: [],
-                config: {},
+                data: 'noHead',
+                errors: ['headers.div-head.not-found'],
+            },
+        ],
+        hr: [
+            {
+                data: 'noHr',
+                errors: ['headers.hr.not-found'],
+            },
+            {
+                data: 'duplicatedHr',
+                errors: ['headers.hr.duplicate'],
+            },
+        ],
+        logo: [
+            {
+                data: 'noLogo',
+                errors: ['headers.logo.not-found'],
+            },
+            {
+                data: 'invalidSrc',
+                errors: ['headers.logo.not-found'],
+            },
+            {
+                data: 'invalidHref',
+                errors: ['headers.logo.not-found'],
+            },
+        ],
+        'h1-title': [
+            {
+                data: 'noHeadTitle',
+                errors: ['headers.h1-title.not-found'],
+            },
+            {
+                data: 'noH1Title',
+                errors: ['headers.h1-title.not-found'],
+            },
+            {
+                data: 'noH1AndHeadTitle',
+                errors: ['headers.h1-title.not-found'],
+            },
+            {
+                data: 'titlesNotMatch',
+                errors: ['headers.h1-title.not-match'],
+            },
+        ],
+        'details-summary': [
+            {
+                data: 'noDetails',
+                errors: ['headers.details-summary.no-details'],
+            },
+            {
+                data: 'noDetailsOpen',
+                errors: ['headers.details-summary.no-details-open'],
+            },
+            {
+                data: 'noDetailsDl',
+                errors: ['headers.details-summary.no-details-dl'],
+            },
+            {
+                data: 'noDetailsSummary',
+                errors: ['headers.details-summary.no-details-summary'],
+            },
+            {
+                data: 'wrongDetailsSummary',
+                errors: ['headers.details-summary.wrong-summary-text'],
+            },
+        ],
+        dl: [
+            {
+                data: 'wrongThisVersionHead',
+                errors: [
+                    'headers.dl.this-version',
+                    'headers.dl.this-latest-shortname',
+                    'headers.dl.history-syntax',
+                ],
+            },
+            {
+                data: 'wrongLatestVersionHead',
+                errors: ['headers.dl.latest-version'],
+            },
+            {
+                data: 'wrongHistoryHead',
+                errors: ['headers.dl.no-history'],
+            },
+        ],
+        'github-repo': [
+            {
+                data: 'noFeedback',
+                errors: ['headers.github-repo.no-feedback'],
+            },
+            {
+                data: 'noRepo',
+                errors: ['headers.github-repo.no-repo'],
+            },
+        ],
+        secno: [
+            {
+                data: 'noSecno',
+                warnings: ['headers.secno.not-found'],
+            },
+        ],
+        'ol-toc': [
+            {
+                data: 'noToc',
+                warnings: ['headers.ol-toc.not-found'],
+            },
+        ],
+        'h2-toc': [
+            { data: 'mixedTocs', errors: ['headers.h2-toc.mixed'] },
+            { data: 'noTocs', errors: ['headers.h2-toc.not-found'] },
+            { data: 'duplicatedTitle', errors: ['headers.h2-toc.too-many'] },
+            { data: 'noTitles', errors: ['headers.h2-toc.not-found'] },
+            { data: 'notHtml5', warnings: ['headers.h2-toc.not-html5'] },
+        ],
+        copyright: [
+            {
+                data: 'noCopyright',
+                errors: ['headers.copyright.not-found'],
             },
         ],
     },
-    headers: {
-        'details-summary': [
-            { data: 'copyright-no-data', errors: ['no-details'] },
-            { data: 'details-summary2', errors: ['no-details-open'] },
-            { data: 'details-summary3', errors: ['no-details-dl'] },
-            { data: 'details-summary4', errors: ['no-details-summary'] },
-            { data: 'details-summary5', errors: ['wrong-summary-text'] },
+    style: {
+        sheet: [
+            {
+                data: 'noSheet',
+                errors: ['style.sheet.not-found'],
+                config: {
+                    styleSheet: 'W3C-WD',
+                },
+            },
+            {
+                data: 'notLast',
+                errors: ['style.sheet.last'],
+                config: {
+                    styleSheet: 'W3C-WD',
+                },
+            },
         ],
-        copyright: [
-            { data: 'no-data', errors: ['no-data-from-API'] },
-            { data: 'o-license-joint', errors: ['no-license-found-joint'] },
-            { data: 'badDl', errors: ['no-license-found'] },
-            { data: 'todo', errors: ['no-match'] },
-            { data: 'todo', errors: ['no-link'] },
-            { data: 'todo', errors: ['href-not-match'] },
-            { data: 'todo', errors: ['not-found'] },
+        meta: [
+            {
+                data: 'noMeta',
+                errors: ['style.meta.not-found'],
+            },
+            {
+                data: 'noWidth',
+                errors: ['style.meta.not-found'],
+            },
         ],
-        errata: [{ data: 'todo', errors: ['no-errata'] }],
-        dl: [
-            { data: 'todo', errors: ['not-found'] },
-            { data: 'todo', errors: ['link-diff'] },
-            { data: 'todo', errors: ['this-version'] },
-            { data: 'todo', errors: ['latest-version'] },
-            { data: 'todo', errors: ['no-history'] },
-            { data: 'todo', errors: ['rescinds'] },
-            { data: 'todo', errors: ['obsoletes'] },
-            { data: 'todo', errors: ['supersedes'] },
-            { data: 'todo', errors: ['this-latest-order'] },
-            { data: 'todo', errors: ['latest-rescinds-order'] },
-            { data: 'todo', errors: ['latest-obsoletes-order'] },
-            { data: 'todo', errors: ['latest-supersedes-order'] },
-            { data: 'todo', errors: ['this-date'] },
-            { data: 'todo', errors: ['this-syntax'] },
-            { data: 'todo', errors: ['this-latest-shortname'] },
-            { data: 'todo', errors: ['latest-syntax'] },
-            { data: 'todo', errors: ['history-syntax'] },
-            { data: 'todo', errors: ['history-bad-previous'] },
-            { data: 'todo', errors: ['this-rescinds-shortname'] },
-            { data: 'todo', errors: ['rescinds-syntax'] },
-            { data: 'todo', errors: ['this-obsoletes-shortname'] },
-            { data: 'todo', errors: ['obsoletes-syntax'] },
-            { data: 'todo', errors: ['this-supersedes-shortname'] },
-            { data: 'todo', errors: ['supersedes-syntax'] },
-            { data: 'todo', errors: ['implelink-should-be-https'] },
-            { data: 'todo', errors: ['editors-draft-should-be-https'] },
-            { data: 'todo', errors: ['editor-missing-id'] },
-            { data: 'todo', errors: ['editor-not-found'] },
-            { data: 'todo', warnings: ['rescinds-not-needed'] },
-            { data: 'todo', warnings: ['obsoletes-not-needed'] },
-            { data: 'todo', warnings: ['supersedes-not-needed'] },
-            { data: 'todo', warnings: ['no-date'] },
-            { data: 'todo', warnings: ['implelink-comfirm-no'] },
+        'body-toc-sidebar': [
+            // TODO: conflict with fixup.js
+            // {
+            //     data: 'noSidebar',
+            //     errors: ['style.body-toc-sidebar.class-found'],
+            // },
         ],
-        'h1-title': [
-            { data: 'todo', errors: ['not-found'] },
-            { data: 'todo', errors: ['not-match'] },
+        script: [
+            {
+                data: 'noScript',
+                errors: ['style.script.not-found'],
+            },
         ],
-        'github-repo': [
-            { data: 'todo', errors: ['no-feedback'] },
-            { data: 'todo', errors: ['no-repo'] },
+        'back-to-top': [
+            {
+                data: 'noBackToTop',
+                warnings: ['style.back-to-top.not-found'],
+            },
         ],
-        'h2-toc': [
-            { data: 'todo', errors: ['mixed'] },
-            { data: 'todo', warnings: ['not-html5'] },
-            { data: 'todo', errors: ['not-found'] }, // 2 places?
-            { data: 'todo', errors: ['too-many'] },
-        ],
-        hr: [
-            { data: 'todo', errors: ['duplicate'] },
-            { data: 'todo', errors: ['not-found'] },
-        ],
-        'memsub-copyright': [
-            // not for every profiles
-            { data: 'todo', errors: ['not-found'] }, // 2 places?
-        ],
-        secno: [{ data: 'todo', warnings: ['not-found'] }],
-        logo: [{ data: 'todo', errors: ['not-found'] }],
-        'ol-toc': [{ data: 'todo', warnings: ['not-found'] }],
-        'subm-logo': [
-            // not for every profiles
-            { data: 'todo', errors: ['not-found'] },
-        ],
-        'w3c-state': [
-            { data: 'todo', errors: ['no-w3c-state'] },
-            { data: 'todo', errors: ['bad-w3c-state'] },
-            { data: 'todo', errors: ['bad-w3c-state'] },
-            { data: 'todo', errors: ['no-w3c-state-link'] },
-            { data: 'todo', errors: ['wrong-w3c-state-link'] },
+    },
+    heuristic: {
+        'date-format': [
+            {
+                data: 'wrongDateFormat',
+                errors: ['heuristic.date-format.wrong'],
+            },
         ],
     },
     links: {
-        compound: [
-            { data: 'todo', warnings: ['skipped'] },
-            { data: 'todo', errors: ['error'] },
-            { data: 'todo', warnings: ['html-timeout'] },
-            { data: 'todo', infos: ['link'] },
-            { data: 'todo', errors: ['link'] },
-            { data: 'todo', infos: ['no-validation'] },
+        reliability: [
+            {
+                data: 'hasUnreliableLinks',
+                warnings: ['links.reliability.unreliable-link'],
+            },
         ],
-        linkchecker: [
-            { data: 'todo', warnings: ['display'] },
-            { data: 'todo', errors: ['not-same-folder'] },
-            { data: 'todo', errors: ['response-error-with-redirect'] },
-            { data: 'todo', errors: ['response-error'] },
-        ],
-        reliability: [{ data: 'todo', warnings: ['unreliable-link'] }],
-        internal: [{ data: 'todo', errors: ['anchor'] }],
     },
     structure: {
-        canonical: [{ data: 'todo', errors: ['not-found'] }],
+        'section-ids': [
+            {
+                data: 'noSectionId',
+                errors: ['structure.section-ids.no-id'],
+            },
+        ],
         h2: [
-            { data: 'todo', errors: ['abstract'] },
-            { data: 'todo', errors: ['sotd'] },
-            { data: 'todo', errors: ['toc'] },
+            {
+                data: 'wrongAbstractH2',
+                errors: ['structure.h2.abstract'],
+            },
+            {
+                data: 'wrongSotdH2',
+                errors: ['structure.h2.sotd'],
+            },
+            {
+                data: 'wrongTocH2',
+                errors: ['structure.h2.toc'],
+            },
         ],
-        name: [
-            { data: 'todo', warnings: ['wrong'] }, // 3 times
-        ],
-        neutral: [{ data: 'todo', warnings: ['neutral'] }],
-        'section-ids': [{ data: 'todo', errors: ['no-id'] }],
     },
     sotd: {
-        'ac-review': [
-            // not for every profiles
-            { data: 'todo', errors: ['not-found'] },
-        ],
-        charter: [
-            { data: 'todo', errors: ['no-group'] },
-            { data: 'todo', errors: ['no-charter'] },
-            { data: 'todo', errors: ['text-not-found'] },
-            { data: 'todo', errors: ['no-group'] },
-            { data: 'todo', errors: ['link-not-found'] },
-            { data: 'todo', errors: ['wrong-link'] },
-        ],
-        'deliverer-note': [
-            // not for every profiles
-            { data: 'todo', errors: ['not-found'] },
-        ],
-        'candidate-review-end': [
-            { data: 'todo', warnings: ['editorial'] },
-            { data: 'todo', errors: ['not-found'] },
-            { data: 'todo', infos: ['date-found'] },
-            { data: 'todo', warnings: ['multiple-found'] },
-            { data: 'todo', infos: ['date-found'] },
-            { data: 'todo', errors: ['found-not-valid'] },
-        ],
-        'obsl-rescind': [
-            { data: 'todo', errors: ['no-rationale'] },
-            { data: 'todo', errors: ['no-explanation-link'] },
-        ],
-        pp: [
-            { data: 'todo', warnings: ['joint-publication'] },
-            { data: 'todo', errors: ['no-pp-from-charter'] },
-            { data: 'joint-data', errors: ['joint-different-pp'] },
-            { data: 'todo', errors: ['wrong-pp-from-charter'] },
-            { data: 'todo', errors: ['undefined'] },
-            { data: 'todo', errors: ['no-pp'] },
-            { data: 'todo', errors: ['no-pp2017'] },
-            { data: 'todo', errors: ['no-pp2020'] },
-            { data: 'todo', errors: ['no-pp-link'] },
-            { data: 'todo', errors: ['no-disclosures'] },
-            { data: 'todo', errors: ['no-claims'] },
-            { data: 'todo', errors: ['no-section6'] },
-        ],
-        'draft-stability': [
-            { data: 'todo', errors: ['not-found-either'] },
-            { data: 'todo', errors: ['not-found'] },
+        supersedable: [
+            { data: 'noIntro', errors: ['sotd.supersedable.no-sotd-intro'] },
+            { data: 'noTr', errors: ['sotd.supersedable.no-sotd-tr'] },
         ],
         'process-document': [
-            { data: 'todo', errors: ['multiple-times'] },
-            { data: 'todo', errors: ['wrong-process'] },
-            { data: 'todo', errors: ['wrong-link'] },
-            { data: 'todo', errors: ['not-found'] },
+            {
+                data: 'noProcess',
+                errors: ['sotd.process-document.not-found'],
+            },
+            {
+                data: 'wrongLink',
+                errors: [
+                    'sotd.process-document.wrong-link',
+                    'sotd.process-document.not-found',
+                ],
+            },
+            {
+                data: 'duplicatedProcess',
+                errors: ['sotd.process-document.multiple-times'],
+            },
         ],
-        'new-features': [
-            { data: 'todo', errors: ['no-link'] },
-            { data: 'todo', warnings: ['no-warning'] },
-        ],
-        publish: [
-            { data: 'todo', errors: ['not-found'] },
-            { data: 'todo', errors: ['url-not-match'] },
-            { data: 'todo', errors: ['no-homepage-link'] },
-            { data: 'todo', errors: ['url-not-match'] },
-            { data: 'todo', errors: ['url-text-not-found'] },
-        ],
-        deployment: [{ data: 'todo', errors: ['not-found'] }],
-        'rec-comment-end': [
-            { data: 'todo', errors: ['not-found'] },
-            { data: 'todo', warnings: ['multi-found'] },
-            { data: 'todo', errors: ['not-found'] },
-        ],
-        stability: [
-            { data: 'todo', errors: ['no-rec-review'] },
-            { data: 'todo', errors: ['no-stability'] },
-            { data: 'todo', errors: ['no-cr-review'] },
-            { data: 'todo', errors: ['wrong-cr-review-link'] },
-            { data: 'todo', errors: ['no-licensing-link'] },
-        ],
-        'review-end': [
-            { data: 'todo', warnings: ['not-found'] },
-            { data: 'todo', infos: ['found'] },
-            { data: 'todo', warnings: ['not-found'] },
-        ],
-        submission: [
-            { data: 'todo', errors: ['no-submission-text'] },
-            { data: 'todo', errors: ['link-text'] },
-            { data: 'todo', errors: ['link-text'] },
-            { data: 'todo', errors: ['link-text'] },
-            { data: 'todo', errors: ['link-text'] },
-            { data: 'todo', errors: ['no-sm-link'] },
-            { data: 'todo', errors: ['no-tc-link'] },
-        ],
-        'rec-addition': [
-            { data: 'todo', errors: ['wrong-text'] },
-            { data: 'todo', errors: ['no-section'] },
-            { data: 'todo', errors: ['unnecessary-section'] },
-        ],
-        supersedable: [
-            { data: 'todo', errors: ['no-sotd-intro'] },
-            { data: 'todo', errors: ['no-sotd-tr'] },
-        ],
-        usage: [{ data: 'todo', errors: ['not-found'] }],
-    },
-    style: {
-        'back-to-top': [{ data: 'todo', warnings: ['not-found'] }],
-        'body-toc-sidebar': [
-            { data: 'todo', errors: ['class-found'] },
-            { data: 'todo', errors: ['selector-fail'] },
-        ],
-        meta: [
-            { data: 'todo', errors: ['not-found'] },
-            { data: 'todo', errors: ['not-found'] },
-        ],
-        script: [{ data: 'todo', errors: ['not-found'] }],
-        sheet: [
-            { data: 'todo', errors: ['not-found'] },
-            { data: 'todo', errors: ['last'] },
-        ],
-    },
-    validation: {
-        html: [
-            { data: 'todo', warnings: ['skipped'] },
-            { data: 'todo', warnings: ['no-source'] },
-            { data: 'todo', warnings: ['timeout'] },
-            { data: 'todo', errors: ['no-response'] },
-            { data: 'todo', errors: ['failure'] },
-            { data: 'todo', errors: ['error'] },
-            { data: 'todo', warnings: ['warning'] },
-            { data: 'todo', errors: ['non-document-error'] },
-        ],
-    },
-    metadata: {
-        dl: [{ data: 'todo', errors: ['latest-not-found'] }],
     },
 };

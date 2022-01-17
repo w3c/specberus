@@ -6,17 +6,81 @@ exports.data = {
         styleSheet: 'W3C-(_TODO_)',
         profile: '(_TODO_)',
     },
+    body: {
+        classes: 'h-entry toc-sidebar',
+    },
+    scripts: ['https://www.w3.org/scripts/TR/2021/fixup.js'],
+    head: {
+        meta: {
+            show: true,
+            width: 'width=device-width,',
+        },
+        title: {
+            show: true,
+            suffix: 'test document - Specberus',
+        },
+        styleSheet: {
+            show: true,
+            showAnother: false,
+        },
+    },
+    header: {
+        headClassName: 'head',
+        hr: {
+            show: true,
+        },
+        logo: {
+            show: true,
+            src: 'https://www.w3.org/StyleSheets/TR/2021/logos/W3C',
+            href: 'https://www.w3.org/',
+        },
+        title: {
+            show: true,
+        },
+        details: {
+            show: true,
+            open: 'open',
+            summary: {
+                show: true,
+                text: 'More details about this document',
+            },
+        },
+        defaultDate: '04 November 2021',
+    },
+    secno: 'secno',
+    hr: {
+        show: false,
+    },
     dl: {
-        shortName: 'hr2222-time',
+        show: true,
+        thisVersion: {
+            show: true,
+            text: 'This Version',
+        },
+        latestVersion: {
+            show: true,
+            text: 'Latest published version: (@@note that version is not required in the latest version)',
+        },
+        latestEditor: {
+            show: true,
+        },
+        history: {
+            show: true,
+        },
+        feedback: {
+            show: true,
+        },
+        historyText: 'History',
+        shortName: 'hr-time',
         seriesShortName: 'hr-time',
         feedbackPrefix: 'https://github.com/w3c/',
-        historyText: 'History',
         editorText: 'Editor',
         errataLink: 'https://github.com/w3c/display_errata/',
         rescindText: 'Rescinds this Recommendation',
         rescindLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/',
     },
     copyright: {
+        show: true,
         startText: 'Copyright',
         MIT: 'MIT',
         MITLink: 'https://www.csail.mit.edu/',
@@ -27,6 +91,10 @@ exports.data = {
     abstract: {
         abstractText: 'Abstract',
     },
+    backToTop: {
+        show: true,
+    },
+    showWrongDateFormat: false,
     sotd: {
         id: 'sotd',
         title: 'Status of This Document',
@@ -80,15 +148,19 @@ exports.data = {
         disclosureHTML:
             'section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy',
 
+        duplicateProcess: false,
         processTextPrefix: 'is governed by the',
         processLink: 'https://www.w3.org/2021/Process-20211102/',
         processHTML:
             '2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
     },
-    toc: {
-        title: 'Table of Contents',
-        class: 'toc',
-    },
+    tocs: [
+        {
+            titles: ['Table of Contents'],
+            class: 'toc',
+            tag: 'nav',
+        },
+    ],
     // bold() {
     //     return function (text, render) {
     //         return `<b>-----${render(text)}-----</b>`;
