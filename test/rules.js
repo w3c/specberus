@@ -194,8 +194,6 @@ app.set('view engine', 'handlebars');
 app.set('views', pth.join(__dirname, './doc-views'));
 
 app.get('/doc-views/:docType/:profile/:track', (req, res) => {
-    // console.log('params: ', req)
-
     const { rule, type } = req.query;
     // get data for template from json (.js)
     const data = require(pth.join(
@@ -228,9 +226,6 @@ app.get('/doc-views/SUBM/MEM-SUBM', (req, res) => {
         __dirname,
         `./doc-views/SUBM/MEM-SUBM.js`
     ));
-
-    // console.log('Data to render in SUBM template: \n', goodData, '\n');
-    // res.render(`${req.params.type}`, data);
 
     res.render(pth.join(__dirname, './doc-views/layout/TR'), goodData);
 });
