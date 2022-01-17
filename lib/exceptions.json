@@ -15,6 +15,11 @@
             "rule": "headers.copyright"
         }
     ],
+    "^security-privacy-questionnaire$": [
+        {
+            "rule": "headers.copyright"
+        }
+    ],
     "^mediacapture-streams$": [
         {
             "rule": "headers.copyright"

@@ -147,7 +147,7 @@ const scanFileSystem = function () {
                                         result[dir][name][match[1]] = true;
                                         match = exceptionFinder.exec(data);
                                     }
-                                    n++;
+                                    n += 1;
                                     if (total === n) fulfill(result);
                                 }
                             };
