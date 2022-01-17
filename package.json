@@ -18,7 +18,7 @@
     "jsdom": "19.0.0",
     "metaviewport-parser": "0.2.0",
     "morgan": "1.10.0",
-    "node-w3capi": "1.10.2",
+    "node-w3capi": "1.11.0",
     "promise": "8.1.0",
     "puppeteer": "13.0.0",
     "request": "2.88.2",
