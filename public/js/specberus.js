@@ -275,7 +275,7 @@ jQuery.extend({
         addMessage(MSG_INFO, data);
     });
     socket.on('done', () => {
-        done++;
+        done += 1;
         $progress.attr({
             'aria-valuenow': done,
             'aria-valuemax': total,
@@ -330,8 +330,8 @@ jQuery.extend({
                 patentPolicy,
             };
             validate(options);
-            const newurl = `${document.URL.split('?')[0]}?${$.param(options)}`;
-            window.history.pushState(options, `${url} - ${profile}`, newurl);
+            const newUrl = `${document.URL.split('?')[0]}?${$.param(options)}`;
+            window.history.pushState(options, `${url} - ${profile}`, newUrl);
         } else {
             // Deal with all possible errors:
             if (!data)
@@ -388,8 +388,8 @@ jQuery.extend({
                 patentPolicy,
             };
             validate(options);
-            const newurl = `${document.URL.split('?')[0]}?${$.param(options)}`;
-            window.history.pushState(options, `${url} - ${profile}`, newurl);
+            const newUrl = `${document.URL.split('?')[0]}?${$.param(options)}`;
+            window.history.pushState(options, `${url} - ${profile}`, newUrl);
         }
         return false;
     });

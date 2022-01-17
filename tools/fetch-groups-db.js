@@ -17,10 +17,18 @@ if (!user || !pass) {
     );
 }
 
+/**
+ * @param str source string to normalize
+ * @returns {string} whitespace normalized string
+ */
 function norm(str) {
     return str.replace(/^\s+/, '').replace(/\s+$/, '').replace(/\s+/g, ' ');
 }
 
+/**
+ * @param err
+ * @param res
+ */
 function munge(err, res) {
     const jsdom = new JSDOM(res.text);
     const jsDocument = jsdom.window.document;

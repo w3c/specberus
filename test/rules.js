@@ -35,10 +35,10 @@ const { samples } = require('./samples');
 const equivalentArray = function (a1, a2) {
     if (a1 && a2 && a1.length === a2.length) {
         let found = 0;
-        for (let i = 0; i < a1.length; i++) {
-            for (let j = 0; j < a2.length && found === i; j++) {
+        for (let i = 0; i < a1.length; i += 1) {
+            for (let j = 0; j < a2.length && found === i; j += 1) {
                 if (a1[i] === a2[j]) {
-                    found++;
+                    found += 1;
                 }
             }
         }

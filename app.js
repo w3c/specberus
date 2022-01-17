@@ -51,7 +51,7 @@ app.use(express.static('public'));
 api.setUp(app, process.env.W3C_API_KEY);
 views.setUp(app);
 
-// @TODO Localise this properly when messages are translated; hard-coded British English for now.
+// @TODO Localize this properly when messages are translated; hard-coded British English for now.
 l10n.setLanguage('en_GB');
 
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
@@ -61,7 +61,7 @@ io.on('connection', socket => {
     socket.on('extractMetadata', data => {
         if (!data.url)
             return socket.emit('exception', { message: 'URL not provided.' });
-        const vali = new validator.Specberus(process.env.W3C_API_KEY);
+        const specberus = new validator.Specberus(process.env.W3C_API_KEY);
         const handler = new Sink();
         handler.on('err', (type, data) => {
             try {
@@ -100,7 +100,7 @@ io.on('connection', socket => {
         handler.on('exception', data => {
             socket.emit('exception', data);
         });
-        vali.extractMetadata({
+        specberus.extractMetadata({
             url: data.url,
             events: handler,
         });
@@ -116,7 +116,7 @@ io.on('connection', socket => {
             return socket.emit('exception', {
                 message: 'Profile does not exist.',
             });
-        const vali = new validator.Specberus(process.env.W3C_API_KEY);
+        const specberus = new validator.Specberus(process.env.W3C_API_KEY);
         const handler = new Sink();
         const profile = util.profiles[data.profile];
         const profileCode = profile.name;
@@ -170,7 +170,7 @@ io.on('connection', socket => {
             .then(res => {
                 if (res.status) {
                     try {
-                        vali.validate({
+                        specberus.validate({
                             url: data.url,
                             profile,
                             events: handler,

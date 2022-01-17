@@ -4,16 +4,12 @@
     "rules": {
         "prettier/prettier": "error",
         "no-shadow": "off",
-        "func-names": "off",
-        "vars-on-top": "off",
         "consistent-return": "warn",
         "no-param-reassign": "off",
-        "no-plusplus": "off",
         "strict": "off",
         "global-require": "off",
         "no-restricted-syntax": "warn",
         "guard-for-in": "warn",
-        "no-underscore-dangle": "warn",
         "prefer-destructuring": "warn"
     },
     "overrides": [
@@ -29,7 +25,7 @@
         {
             "files": ["app.js", "lib/**/*.js", "tools/**/*.js"],
             "plugins": ["node"],
-            "extends": ["plugin:node/recommended"]
+            "extends": ["plugin:node/recommended", "plugin:jsdoc/recommended"]
         },
         {
             "files": ["test/**/*.js"],

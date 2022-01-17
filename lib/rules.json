@@ -11,7 +11,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -55,7 +55,7 @@
                         "name": "5. Document Status Section",
                         "rules": {
                             "sotd": true,
-                            "boilerplateTRDoc": "It <span class=\"rfc2119\">must</span> begin with the following boilerplate text: <blockquote class=\"boilerplate\"> <p> <em>This section describes the status of this document at the time of its publication. A list of current W3C publications can be found in the <a href=\"https://www.w3.org/TR/\">W3C technical reports index</a> at https://www.w3.org/TR/.</em> </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;&lt;em&gt;This section describes the status of this document at the time of its publication. A list of current W3C publications can be found in the &lt;a href=\"https://www.w3.org/TR/\"&gt;W3C technical reports index&lt;/a&gt; at https://www.w3.org/TR/.&lt;/em&gt;&lt;/p&gt;</code></div>",
+                            "boilerplateTRDoc": true,
                             "boilerplateSUBM": "It <span class=\"rfc2119\">must</span> include this boilerplate text (with links to the published Submission and Team Comment): <blockquote class=\"boilerplate\"> By publishing this document, W3C acknowledges that the <a href=\"https://www.w3.org/Submission/@@@submissiondoc@@@\">Submitting Members</a> have made a formal Submission request to W3C for discussion. Publication of this document by W3C indicates no endorsement of its content by W3C, nor that W3C has, is, or will be allocating any resources to the issues addressed by it. This document is not the product of a chartered W3C group, but is published as potential input to the <a href=\"https://www.w3.org/Consortium/Process\">W3C Process</a>. A <a href=\"https://www.w3.org/Submission/@@@teamcomment@@@\">W3C Team Comment</a> has been published in conjunction with this Member Submission. Publication of acknowledged Member Submissions at the W3C site is one of the benefits of <a href=\"https://www.w3.org/Consortium/Prospectus/Joining\">W3C Membership</a>. Please consult the requirements associated with Member Submissions of <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-submissions\">section 3.3 of the W3C Patent Policy</a>. Please consult the complete <a href=\"https://www.w3.org/Submission\">list of acknowledged W3C Member Submissions</a>.</blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;By publishing this document, W3C acknowledges that the &lt;a href=\"https://www.w3.org/Submission/@@@submissiondoc@@@\"&gt;Submitting Members&lt;/a&gt; have made a formal Submission request to W3C for discussion. Publication of this document by W3C indicates no endorsement of its content by W3C, nor that W3C has, is, or will be allocating any resources to the issues addressed by it. This document is not the product of a chartered W3C group, but is published as potential input to the &lt;a href=\"https://www.w3.org/Consortium/Process\"&gt;W3C Process&lt;/a&gt;. A &lt;a href=\"https://www.w3.org/Submission/@@@teamcomment@@@\"&gt;W3C Team Comment&lt;/a&gt; has been published in conjunction with this Member Submission. Publication of acknowledged Member Submissions at the W3C site is one of the benefits of &lt;a href=\"https://www.w3.org/Consortium/Prospectus/Joining\"&gt;W3C Membership&lt;/a&gt;. Please consult the requirements associated with Member Submissions of &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-submissions\"&gt;section 3.3 of the W3C Patent Policy&lt;/a&gt;. Please consult the complete &lt;a href=\"https://www.w3.org/Submission\"&gt;list of acknowledged W3C Member Submissions&lt;/a&gt;.&lt;/p&gt;</code></div>",
                             "customParagraph": true,
                             "knownDisclosureNumber": true,
@@ -67,7 +67,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -97,7 +97,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -162,7 +162,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -186,7 +186,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -251,7 +251,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -275,7 +275,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -340,7 +340,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -364,7 +364,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -429,7 +429,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -459,7 +459,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -504,7 +504,7 @@
                         "name": "5. Document Status Section",
                         "rules": {
                             "sotd": true,
-                            "boilerplateTRDoc": "It <span class=\"rfc2119\">must</span> begin with the following boilerplate text: <blockquote class=\"boilerplate\"> <p> <em>This section describes the status of this document at the time of its publication. A list of current W3C publications can be found in the <a href=\"https://www.w3.org/TR/\">W3C technical reports index</a> at https://www.w3.org/TR/.</em> </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;&lt;em&gt;This section describes the status of this document at the time of its publication. A list of current W3C publications can be found in the &lt;a href=\"https://www.w3.org/TR/\"&gt;W3C technical reports index&lt;/a&gt; at https://www.w3.org/TR/.&lt;/em&gt;&lt;/p&gt;</code></div>",
+                            "boilerplateTRDoc": true,
                             "publish": [
                                 "Group Draft Note",
                                 "<a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\">Note track</a>",
@@ -523,7 +523,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -547,7 +547,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -612,7 +612,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -636,7 +636,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -700,7 +700,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -730,7 +730,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -794,7 +794,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -818,7 +818,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -883,7 +883,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true,
@@ -908,7 +908,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -979,7 +979,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true,
@@ -1004,7 +1004,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -1073,7 +1073,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true,
@@ -1098,7 +1098,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -1171,7 +1171,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true,
@@ -1196,7 +1196,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -1267,7 +1267,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -1291,7 +1291,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -1357,7 +1357,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -1470,7 +1470,7 @@
                         "name": "1. Normative Document Representation",
                         "rules": {
                             "normativeVersion": true,
-                            "valideHTML": true,
+                            "validHTML": true,
                             "visualStyle": true
                         }
                     },
@@ -1532,7 +1532,7 @@
                         "rules": {
                             "headingWithoutID": true,
                             "brokenLink": true,
-                            "cssValide": true,
+                            "cssValid": true,
                             "namespaces": true,
                             "wcag": true,
                             "fixupJs": true
@@ -1556,7 +1556,7 @@
                 "name": "1. Normative Document Representation",
                 "rules": {
                     "normativeVersion": "At least one normative representation <span class=\"rfc2119\">must</span> be available for requests that use the \"This Version\" URI. More than one normative representation <span class=\"rfc2119\">may</span> be delivered in response to such requests. A \"This Version\" URI <span class=\"rfc2119\">must not</span> be used to identify a non-normative representation.",
-                    "valideHTML": "<span class=\"subset\">recursive</span> All normative representations <span class=\"rfc2119\">must</span> validate as HTML5 with the following limitations: <ul> <li>Inline markup for MathML is permitted but should use a (fallback) alternative.</li> <li>If the HTML5 validator issues content warnings, the publication request must include rationale why the warning is not problematic.</li> </ul>",
+                    "validHTML": "<span class=\"subset\">recursive</span> All normative representations <span class=\"rfc2119\">must</span> validate as HTML5 with the following limitations: <ul> <li>Inline markup for MathML is permitted but should use a (fallback) alternative.</li> <li>If the HTML5 validator issues content warnings, the publication request must include rationale why the warning is not problematic.</li> </ul>",
                     "visualStyle": "Visual styles <span class=\"rfc2119\">should not</span> vary significantly among normative alternatives."
                 }
             },
@@ -1583,7 +1583,7 @@
                     "docIDThisVersion": "The syntax of a “this version” URI <span class=\"rfc2119\">must</span> be <code>https://www.w3.org/TR/YYYY/@{param1}-shortname-YYYYMMDD/</code>.",
                     "docIDDate": "The title page date and the date at the end of the \"This Version\" URI <span class=\"rfc2119\">must</span> match.",
                     "docIDLatestVersion": "The syntax of a “latest version” URI <span class=\"rfc2119\">must</span> be <code>https://www.w3.org/TR/shortname/</code>.",
-                    "docIDHistory": "The syntax of a “history” URI <span class=\"rfc2119\">must</span> be <code>https://www.w3.org/standards/history/shortname/</code>, and consistant with the shortname mentioned in 'Latest Version'. <em>Note</em>: If there's a shortname change it <span class=\"rfc2119\">must</span> be specified using the following data attribute <code>data-previous-shortname='previous-shortname'</code> on the <code>&lt;a&gt;</code> element.",
+                    "docIDHistory": "The syntax of a “history” URI <span class=\"rfc2119\">must</span> be <code>https://www.w3.org/standards/history/shortname/</code>, and consistent with the shortname mentioned in 'Latest Version'. <em>Note</em>: If there's a shortname change it <span class=\"rfc2119\">must</span> be specified using the following data attribute <code>data-previous-shortname='previous-shortname'</code> on the <code>&lt;a&gt;</code> element.",
                     "editorSection": "The editors'/authors' names <span class=\"rfc2119\">must</span> be listed, with attribute <code>data-editor-id=\"@@\"</code>. Affiliations and email addresses are <span class=\"rfc2119\">optional</span>; email addresses are <span class=\"rfc2119\">not recommended</span>. If an editor/author is acknowledged in an earlier version of this document and the individual's affiliation has since changed, list the individual using the notation \"&lt;name&gt;, &lt;affiliation&gt; (until DD Month YYYY)\". If the list of authors is very long (e.g., the entire Working Group), identify the authors in the acknowledgments section, linked from the head of the document. Distinguish any contributors from authors in the acknowledgments section.",
                     "altRepresentations": "Authors <span class=\"rfc2119\">may</span> provide links to alternative (non-normative) representations or packages for the document. For instance: <p> <code> <small>&lt;p&gt;This document is also available in these non-normative formats: &lt;a href=\"@{param1}-shortname-20180101.html\"&gt;single HTML file&lt;/a&gt;, &lt;a href=\"@{param1}-shortname-20180101.tgz\"&gt;gzipped tar file of HTML&lt;/a&gt;.&lt;/p&gt; </small> </code> </p>",
                     "implReport": "It <span class=\"rfc2119\">must</span> include either: <ul> <li>a link to an interoperability or implementation report if the Director used such a report as part of the decision to advance the specification, or</li> <li>a statement that the Director's decision did not involve such a report.</li> </ul>",
@@ -1604,10 +1604,10 @@
                     "sotd": "There <span class=\"rfc2119\">must</span> be a status section that follows the abstract, labeled with an <code>h2</code> element with content \"Status of This Document\". The Team maintains the status section of a document.",
                     "boilerplateTRDoc": "It <span class=\"rfc2119\">must</span> begin with the following boilerplate text: <blockquote class=\"boilerplate\"> <p> <em>This section describes the status of this document at the time of its publication. A list of current W3C publications and the latest revision of this technical report can be found in the <a href=\"https://www.w3.org/TR/\">W3C technical reports index</a> at https://www.w3.org/TR/.</em> </p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;&lt;em&gt;This section describes the status of this document at the time of its publication. A list of current W3C publications and the latest revision of this technical report can be found in the &lt;a href=\"https://www.w3.org/TR/\"&gt;W3C technical reports index&lt;/a&gt; at https://www.w3.org/TR/.&lt;/em&gt;&lt;/p&gt;</code></div>",
                     "datesFormat": "All dates <span class=\"rfc2119\">must</span> have the form DD Month YYYY. A leading zero in the day is <span class=\"rfc2119\">optional</span>.",
-                    "publish": "It <span class=\"rfc2119\">must</span> include the name of the W3C group that produced the document, the type of document and its track. The name <span class=\"rfc2119\">must</span> be a link to a public page for the group.<blockquote><p>This document was published by the @@@ Working/Interest Group as a @{param1} using the @{param2}.</p> </blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document was published by the @@@ Working/Interest Group as a @{param1} using the @{param3}.&lt;/p&gt;</code></div>",
+                    "publish": "It <span class=\"rfc2119\">must</span> include the name of the W3C group that produced the document, the type of document and its track. The name <span class=\"rfc2119\">must</span> be a link to a public page for the group.<blockquote><p>This document was published by the <a href=\"https://www.w3.org/groups/(wg|ig)/@@\">@@@ Working/Interest Group</a> as a @{param1} using the @{param2}.</p> </blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document was published by the &lt;a href=\"https://www.w3.org/groups/(wg|ig)/@@\"&gt;@@@ Working/Interest Group&lt;/a&gt; as a @{param1} using the @{param3}.&lt;/p&gt;</code></div>",
                     "customParagraph": "It <span class=\"rfc2119\">must</span> include at least one customized paragraph. This section <span class=\"rfc2119\">should</span> include the title page date (i.e., the one next to the maturity level at the top of the document). These paragraphs <span class=\"rfc2119\">should</span> explain the publication context, including rationale and relationships to other work. See <a href=\"https://www.w3.org/2001/06/manual/#Status\">examples and more discussion in the Manual of Style</a>.",
                     "changesList": "It <span class=\"rfc2119\">@{param1}</span> include a link to changes since the previous draft (e.g., a list of changes or a diff document or both; see the <a href=\"https://www.w3.org/2007/10/htmldiff\">online HTML diff tool</a>).@{param2}",
-                    "deployment": "It <span class=\"rfc2119\">must</span> include the expections in terms of deployment. The recommended text is: <blockquote>W3C recommends the wide deployment of this specification as a standard for the Web.</blockquote>",
+                    "deployment": "It <span class=\"rfc2119\">must</span> include the expectations in terms of deployment. The recommended text is: <blockquote>W3C recommends the wide deployment of this specification as a standard for the Web.</blockquote>",
                     "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text @{param2} is: <blockquote class=\"boilerplate\"> <p>Publication as @{param1} does not imply endorsement by W3C and its Members.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;Publication as @{param1} does not imply endorsement by W3C and its Members.&lt;/p&gt;</code></div>",
                     "draftStability": "It <span class=\"rfc2119\">must</span> include the following sentences in the \"Status Of This Document\": <blockquote class=\"boilerplate\">This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</blockquote>",
                     "patPolReq": "It <span class=\"rfc2119\">must</span> include a text related to the patent policy:<ul><li>if the Working Group is operating under the <strong>Patent Policy 2020</strong>, the text is:<blockquote class=\"boilerplate\"><p>This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\">Essential Claim(s)</a> must disclose the information in accordance with <a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\">section 6 of the W3C Patent Policy</a>.</p></blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#def-essential\"&gt;Essential Claim(s)&lt;/a&gt; must disclose the information in accordance with &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure\"&gt;section 6 of the W3C Patent Policy&lt;/a&gt;.&lt;/p&gt;</code></div></li><li>if the Working Group is operating under the <strong>Patent Policy 2017</strong>, the text is:<blockquote class=\"boilerplate\"><p>This document was produced by a group operating under the <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">1 August 2017 W3C Patent Policy</a>. W3C maintains a <a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/#def-essential\">Essential Claim(s)</a> must disclose the information in accordance with <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/#sec-Disclosure\">section 6 of the W3C Patent Policy</a>.</p></blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;This document was produced by a group operating under the &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\"&gt;1 August 2017 W3C Patent Policy&lt;/a&gt;. W3C maintains a &lt;a rel=\"disclosure\" href=\"@@URI to IPP status or other page@@\"&gt;public list of any patent disclosures&lt;/a&gt; made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/#def-essential\"&gt;Essential Claim(s)&lt;/a&gt; must disclose the information in accordance with &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/#sec-Disclosure\"&gt;section 6 of the W3C Patent Policy&lt;/a&gt;.&lt;/p&gt;</code></div></li><li>if the document is under Note track or Registry track, it <span class=\"rfc2119\">must</span> set the licensing requirements related to the Patent Policy. The text is: <blockquote class=\"boilerplate\"><p>The <a href=\"https://www.w3.org/Consortium/Patent-Policy/\">W3C Patent Policy</a> does not carry any licensing requirements or commitments on this document.</p></blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;The &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy/\"&gt;W3C Patent Policy&lt;/a&gt; does not carry any licensing requirements or commitments on this document.&lt;/p&gt;</code></p></li><li>if the Note track or Registry track document is published by a Working Group operating under the <strong>2017 W3C Patent Policy</strong>, the text is: <blockquote class=\"boilerplate\"><p>The <a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\">1 August 2017 W3C Patent Policy</a> does not carry any licensing requirements or commitments on this document.</p></blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;The &lt;a href=\"https://www.w3.org/Consortium/Patent-Policy-20170801/\"&gt;1 August 2017 W3C Patent Policy&lt;/a&gt; does not carry any licensing requirements or commitments on this document.&lt;/p&gt;</code></div></ul><p>Note: Contact the Communications Team for suitable adaptations in the case where a document has been published jointly by more than one group. In the adaptation, be sure that the text for informative-only specs or specs not going to Rec is the same as the standard text. </p></li></ul>",
@@ -1626,7 +1626,7 @@
                 "rules": {
                     "headingWithoutID": "<span class=\"subset\">recursive</span> Every marked-up section and subsection of the document <span class=\"rfc2119\">must</span> have a target anchor. A section is identified by a heading element (<code>h1</code>-<code>h6</code>). The anchor may be specified using an <code>id</code> (or <code>name</code> if an <code>a</code> element is used) attribute on any of the following: the heading element itself, the parent <code>div</code> or <code>section</code> element of the heading element (where the heading element is the first child of the <code>div</code> or <code>section</code>), a descendant of the heading element, or an <code>a</code> immediately preceding the heading element.",
                     "brokenLink": "The document <span class=\"rfc2119\">must not</span> have any broken internal links or broken links to other resources at w3.org. The document <span class=\"rfc2119\">should not</span> have any other broken links.",
-                    "cssValide": "<span class=\"subset\">recursive</span> The document <span class=\"rfc2119\">must not</span> have any style sheet errors.",
+                    "cssValid": "<span class=\"subset\">recursive</span> The document <span class=\"rfc2119\">must not</span> have any style sheet errors.",
                     "namespaces": "<span class=\"subset\">recursive</span> All proposed <a href=\"https://www.w3.org/TR/xml-names11/\">XML namespaces</a> created by the publication of the document <span class=\"rfc2119\">must</span> follow <cite> <a href=\"https://www.w3.org/2005/07/13-nsuri\">URIs for W3C Namespaces</a> </cite>.",
                     "wcag": "The document(s) <span class=\"rfc2119\">must</span> conform to the <a href=\"https://www.w3.org/TR/WCAG21/\">Web Content Accessibility Guidelines 2.1</a>, Level AA. <strong>Note:</strong> You may wish to consult the <a href=\"https://www.w3.org/WAI/WCAG21/quickref/\">customizable quick reference to Web Content Accessibility Guidelines 2.1</a>.",
                     "securityAndPrivacy": "The document <span class=\"rfc2119\">should</span> have a <a href=\"https://www.w3.org/TR/security-privacy-questionnaire/\">security and privacy considerations</a> section.",

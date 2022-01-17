@@ -17,7 +17,7 @@ $(document).ready(() => {
     };
 
     $(window).scroll(() => {
-        scrolled++;
+        scrolled += 1;
     });
 
     $('a[href^="#"]').click(e => {
