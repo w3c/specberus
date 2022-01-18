@@ -1,11 +1,4 @@
 exports.data = {
-    config: {
-        track: '(_TODO_)',
-        status: '(_TODO_)',
-        longStatus: '(_TODO_)',
-        styleSheet: 'W3C-(_TODO_)',
-        profile: '(_TODO_)',
-    },
     body: {
         classes: 'h-entry toc-sidebar',
     },

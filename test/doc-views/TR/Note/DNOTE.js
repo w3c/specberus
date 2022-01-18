@@ -4,6 +4,7 @@ const { data } = require('./note-base');
 const profile = 'DNOTE';
 const { config } = require(`../../../../lib/profiles/TR/Note/${profile}`);
 const customData = {
+    ...data,
     config: {
         ...config,
         ...data.config,
@@ -14,6 +15,7 @@ const customData = {
 
 // Used in http://localhost:8001/doc-views/TR/Note/DNOTE?type=good
 const good = { ...data, ...customData };
+
 exports.good = good;
 
 // Used in http://localhost:8001/doc-views/TR/Note/DNOTE?rule=dl&type=badDl

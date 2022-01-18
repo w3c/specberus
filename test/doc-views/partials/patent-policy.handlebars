@@ -4,8 +4,8 @@
     </p>
 {{/config.underPP}}
 {{^config.underPP}}
-    <p data-deliverer="32113">
-    {{!-- <p {{sotd.deliverer}}></p> --}}
+
+    <p {{{sotd.deliverer}}} {{! data-deliverer="32113"}}></p>
         The <a href="{{sotd.ppLink}}"><span class="handlebars-data">{{{sotd.ppHTML}}}{{! W3C Patent Policy }}</span></a> does not carry any <span class="handlebars-data">{{sotd.noPPText}}{{! licensing requirements or commitments }}</span> on this document.
     </p>
 {{/config.underPP}}
