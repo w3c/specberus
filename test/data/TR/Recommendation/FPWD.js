@@ -129,9 +129,6 @@ exports.rules = {
             {
                 data: 'noSheet',
                 errors: ['style.sheet.not-found'],
-                config: {
-                    styleSheet: 'W3C-WD',
-                },
             },
             {
                 data: 'notLast',
@@ -208,6 +205,12 @@ exports.rules = {
                 errors: ['structure.h2.toc'],
             },
         ],
+        neutral: [
+            {
+                data: 'hasNeutral',
+                warnings: ['structure.neutral.neutral'],
+            },
+        ],
     },
     sotd: {
         supersedable: [
@@ -256,36 +259,46 @@ exports.rules = {
         ],
         publish: [
             {
-                data: 'good',
-                config: {
-                    track: 'Recommendation',
-                    longStatus: 'First Public Working Draft',
-                },
-            },
-            {
                 data: 'noParagraph',
-                config: {
-                    track: 'Recommendation',
-                    longStatus: 'First Public WD',
-                },
                 errors: ['sotd.publish.not-found'],
             },
             {
                 data: 'noMatchUrl',
-                config: {
-                    track: 'Recommendation',
-                    longStatus: 'First Public Working Draft',
-                },
                 errors: ['sotd.publish.url-not-match'],
             },
             {
                 data: 'noHomepageLink',
-                config: {
-                    track: 'Recommendation',
-                    longStatus: 'First Public Working Draft',
-                },
                 errors: ['sotd.publish.no-homepage-link'],
             },
         ],
+        stability: [
+            {
+                data: 'noStability',
+                errors: ['sotd.stability.no-stability'],
+            },
+        ],
+        pp: [
+            {
+                data: 'good',
+                config: {
+                    patentPolicy: 'pp2020',
+                },
+            },
+            {
+                data: 'wrongPPFromCharter',
+                errors: ['sotd.pp.wrong-pp-from-charter'],
+            },
+        ],
     },
+    // validation: {
+    //     html: [
+    //         {
+    //             data: 'skipValidation',
+    //             config: {
+    //                 skipValidation: true,
+    //             },
+    //             warnings: ['validation.html.skipped'],
+    //         },
+    //     ],
+    // },
 };

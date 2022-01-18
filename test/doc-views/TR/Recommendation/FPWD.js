@@ -483,6 +483,10 @@ module.exports = {
     publish: {
         noParagraph: {
             ...good,
+            config: {
+                ...good.config,
+                longStatus: 'First Public WD',
+            },
         },
         noMatchUrl: {
             ...good,
@@ -497,6 +501,47 @@ module.exports = {
             sotd: {
                 ...good.sotd,
                 WGLink: 'https://www.w3.org/groups/wg/i18n-core-wraong-url',
+            },
+        },
+    },
+    stability: {
+        noStability: {
+            ...good,
+            config: {
+                ...good.config,
+                longStatus: 'First Public WorkingDraft',
+            },
+        },
+    },
+    html: {
+        skipValidation: {
+            ...good,
+        },
+    },
+    neutral: {
+        hasNeutral: {
+            ...good,
+            header: {
+                ...good.header,
+                details: {
+                    ...good.header.details,
+                    summary: {
+                        ...good.header.details.summary,
+                        text: 'More details about this document master',
+                    },
+                },
+            },
+        },
+    },
+    pp: {
+        wrongPPFromCharter: {
+            ...good,
+        },
+        noPP: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                extra1: 'extra text',
             },
         },
     },
