@@ -193,12 +193,12 @@ app.engine(
 app.set('view engine', 'handlebars');
 app.set('views', pth.join(__dirname, './doc-views'));
 
-app.get('/doc-views/:docType/:profile/:track', (req, res) => {
+app.get('/doc-views/:docType/:track/:profile', (req, res) => {
     const { rule, type } = req.query;
     // get data for template from json (.js)
     const data = require(pth.join(
         __dirname,
-        `./doc-views/${req.params.docType}/${req.params.profile}/${req.params.track}.js`
+        `./doc-views/${req.params.docType}/${req.params.track}/${req.params.profile}.js`
     ));
 
     let finalData;
@@ -380,18 +380,26 @@ function checkRule(tests, options) {
     });
 }
 
+// ignore .DS_Store from Mac
+function listFilesOf(dir) {
+    const files = readdirSync(dir);
+    const blocklist = ['.DS_Store'];
+
+    return files.filter(v => !blocklist.find(b => b === v));
+}
+
 // The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warnings in lib/l10n-en_GB.js
 describe('Making sure Specberus is not broken...', () => {
     const base = `${process.cwd()}/test/data`;
-    readdirSync(base)
+    listFilesOf(base)
         .filter(v => lstatSync(`${base}/${v}`).isDirectory())
         .forEach(docType => {
             // DocType: TR/SUMB
             describe(`DocType: ${docType}:`, () => {
-                readdirSync(`${base}/${docType}`).forEach(track => {
+                listFilesOf(`${base}/${docType}`).forEach(track => {
                     // Track: Note/Recommendation/Registry
                     describe(`Track: ${track}`, () => {
-                        readdirSync(`${base}/${docType}/${track}`).forEach(
+                        listFilesOf(`${base}/${docType}/${track}`).forEach(
                             file => {
                                 const lastDot = file.lastIndexOf('.');
                                 const profile = file.substring(0, lastDot);

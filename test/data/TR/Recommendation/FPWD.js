@@ -231,5 +231,61 @@ exports.rules = {
                 errors: ['sotd.process-document.multiple-times'],
             },
         ],
+        charter: [
+            {
+                data: 'noGroup',
+                errors: ['sotd.charter.no-group'],
+            },
+            {
+                data: 'noCharter',
+                errors: ['sotd.charter.no-charter'],
+            },
+        ],
+        'draft-stability': [
+            {
+                data: 'noDraft',
+                errors: ['sotd.draft-stability.not-found'],
+            },
+            {
+                data: 'noDraftEither',
+                config: {
+                    crType: 'Draft',
+                },
+                errors: ['sotd.draft-stability.not-found-either'],
+            },
+        ],
+        publish: [
+            {
+                data: 'good',
+                config: {
+                    track: 'Recommendation',
+                    longStatus: 'First Public Working Draft',
+                },
+            },
+            {
+                data: 'noParagraph',
+                config: {
+                    track: 'Recommendation',
+                    longStatus: 'First Public WD',
+                },
+                errors: ['sotd.publish.not-found'],
+            },
+            {
+                data: 'noMatchUrl',
+                config: {
+                    track: 'Recommendation',
+                    longStatus: 'First Public Working Draft',
+                },
+                errors: ['sotd.publish.url-not-match'],
+            },
+            {
+                data: 'noHomepageLink',
+                config: {
+                    track: 'Recommendation',
+                    longStatus: 'First Public Working Draft',
+                },
+                errors: ['sotd.publish.no-homepage-link'],
+            },
+        ],
     },
 };

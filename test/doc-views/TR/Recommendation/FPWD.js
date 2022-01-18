@@ -20,7 +20,10 @@ const customData = {
 const good = { ...data, ...customData };
 
 module.exports = {
+    // good data that used to generate 100% right documents.
     good,
+
+    // data to generate document that trigger certain error(s).
     'div-head': {
         noHead: {
             ...good,
@@ -440,6 +443,60 @@ module.exports = {
             sotd: {
                 ...good.sotd,
                 duplicateProcess: true,
+            },
+        },
+    },
+    charter: {
+        noGroup: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                iprLink: '',
+            },
+        },
+        noCharter: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                iprLink: 'https://www.w3.org/groups/wg/forms/ipr',
+            },
+        },
+    },
+    'draft-stability': {
+        noDraft: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                draftText:
+                    'This is a other document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.',
+            },
+        },
+        noDraftEither: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                draftText:
+                    'This is a other document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.',
+            },
+        },
+    },
+    publish: {
+        noParagraph: {
+            ...good,
+        },
+        noMatchUrl: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                trackLink:
+                    'https://www.w3.org/2021/Process-20211102/#wrong-url',
+            },
+        },
+        noHomepageLink: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                WGLink: 'https://www.w3.org/groups/wg/i18n-core-wraong-url',
             },
         },
     },
