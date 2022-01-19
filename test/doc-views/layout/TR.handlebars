@@ -93,6 +93,20 @@
                     </dd>
                     {{/config.isRescinded}}
 
+                    {{#config.isObsolete}}
+                        <dt><span class="handlebars-data">{{dl.obsoleteText}}</span>{{! Obsolete this Recommendation}}:</dt>
+                        <dd>
+                            <a rel="dcterms:replaces" href="{{dl.obsoleteLink}}"><span class="handlebars-data">{{dl.obsoleteLink}}</span></a>
+                        </dd>
+                    {{/config.isObsolete}}
+
+                    {{#config.isSuperseded}}
+                        <dt><span class="handlebars-data">{{dl.supersedeText}}</span>{{! Obsolete this Recommendation}}:</dt>
+                        <dd>
+                            <a rel="dcterms:replaces" href="{{dl.supersedeLink}}"><span class="handlebars-data">{{dl.supersedeLink}}</span></a>
+                        </dd>
+                    {{/config.isSuperseded}}
+
                     {{#config.needErrata}}
                     <dt>Errata:</dt>
                         <dd><a href="{{dl.errataLink}}"><span class="handlebars-data">{{dl.errataLink}}</span></a><br>

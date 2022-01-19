@@ -207,6 +207,36 @@ module.exports = {
                 historyText: 'wrong one',
             },
         },
+        rescinds: {
+            ...good,
+        },
+        noRescindsNeeded: {
+            ...good,
+            config: {
+                ...good.config,
+                isRescinded: true,
+            },
+        },
+        obsoletes: {
+            ...good,
+        },
+        noObsoletesNeeded: {
+            ...good,
+            config: {
+                ...good.config,
+                isObsolete: true,
+            },
+        },
+        supersedes: {
+            ...good,
+        },
+        noSupersedesNeeded: {
+            ...good,
+            config: {
+                ...good.config,
+                isSuperseded: true,
+            },
+        },
     },
     'github-repo': {
         noFeedback: {
@@ -537,11 +567,71 @@ module.exports = {
         wrongPPFromCharter: {
             ...good,
         },
+        jointDifferentPP: {
+            ...good,
+            header: {
+                ...good.header,
+                defaultDate: '04 November 2020',
+            },
+        },
+        noPPFromCharter: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                iprLink: 'https://www.w3.org/groups/wg/fake/ipr',
+                WGLink: 'https://www.w3.org/groups/wg/fake',
+            },
+        },
         noPP: {
             ...good,
             sotd: {
                 ...good.sotd,
                 extra1: 'extra text',
+            },
+        },
+        noPP2017: {
+            ...good,
+            header: {
+                ...good.header,
+                defaultDate: '04 November 2019',
+            },
+            sotd: {
+                ...good.sotd,
+                ppHTML: '1 August 2017 <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>',
+                ppLink: 'https://www.w3.org/Consortium/Patent-Policy/fake',
+            },
+        },
+        noPP2020: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                ppLink: 'https://www.w3.org/Consortium/Patent-Policy/fake',
+            },
+        },
+        noPPLink: {
+            ...good,
+        },
+        noDisclosures: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                iprRel: 'fake',
+            },
+        },
+        noClaims: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                essentialLink:
+                    'https://www.w3.org/Consortium/Patent-Policy/#def-essential-fake',
+            },
+        },
+        noSection6: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                disclosureLink:
+                    'https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure-fake',
             },
         },
     },

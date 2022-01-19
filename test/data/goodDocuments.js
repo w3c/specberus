@@ -3,7 +3,7 @@ exports.goodDocuments = {
     DNOTE: {
         url: 'doc-views/TR/Note/DNOTE?type=good',
         config: {
-            // patentPolicy: 'pp2020', // the test also takes the config
+            patentPolicy: 'pp2020', // the test also takes the config
         },
     },
     'DNOTE-Echidna': {

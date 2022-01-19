@@ -87,6 +87,39 @@ exports.rules = {
                 data: 'wrongHistoryHead',
                 errors: ['headers.dl.no-history'],
             },
+            {
+                data: 'rescinds',
+                config: {
+                    rescinds: true,
+                },
+                errors: ['headers.dl.rescinds'],
+            },
+            {
+                data: 'noRescindsNeeded',
+                warnings: ['headers.dl.rescinds-not-needed'],
+            },
+            {
+                data: 'obsoletes',
+                config: {
+                    obsoletes: true,
+                },
+                errors: ['headers.dl.obsoletes'],
+            },
+            {
+                data: 'noObsoletesNeeded',
+                warnings: ['headers.dl.obsoletes-not-needed'],
+            },
+            {
+                data: 'supersedes',
+                config: {
+                    supersedes: true,
+                },
+                errors: ['headers.dl.supersedes'],
+            },
+            {
+                data: 'noSupersedesNeeded',
+                warnings: ['headers.dl.supersedes-not-needed'],
+            },
         ],
         'github-repo': [
             {
@@ -249,13 +282,6 @@ exports.rules = {
                 data: 'noDraft',
                 errors: ['sotd.draft-stability.not-found'],
             },
-            {
-                data: 'noDraftEither',
-                config: {
-                    crType: 'Draft',
-                },
-                errors: ['sotd.draft-stability.not-found-either'],
-            },
         ],
         publish: [
             {
@@ -288,17 +314,68 @@ exports.rules = {
                 data: 'wrongPPFromCharter',
                 errors: ['sotd.pp.wrong-pp-from-charter'],
             },
+            {
+                data: 'noPPFromCharter',
+                errors: ['sotd.pp.no-pp-from-charter'],
+            },
+            {
+                data: 'noPP2017',
+                config: {
+                    patentPolicy: 'pp2004',
+                },
+                errors: [
+                    'sotd.pp.no-pp2017',
+                    'sotd.pp.no-claims',
+                    'sotd.pp.no-section6',
+                ],
+            },
+            {
+                data: 'noPP2020',
+                config: {
+                    patentPolicy: 'pp2020',
+                },
+                errors: ['sotd.pp.no-pp2020'],
+            },
+            // TODO: find a patent neither pp2020 pp2017
+            {
+                data: 'noPPLink',
+                config: {
+                    patentPolicy: 'pp2021',
+                },
+                errors: ['sotd.pp.no-pp-link'],
+            },
+            {
+                data: 'noDisclosures',
+                config: {
+                    patentPolicy: 'pp2020',
+                },
+                errors: ['sotd.pp.no-disclosures'],
+            },
+            {
+                data: 'noClaims',
+                config: {
+                    patentPolicy: 'pp2020',
+                },
+                errors: ['sotd.pp.no-claims'],
+            },
+            {
+                data: 'noSection6',
+                config: {
+                    patentPolicy: 'pp2020',
+                },
+                errors: ['sotd.pp.no-section6'],
+            },
         ],
     },
-    // validation: {
-    //     html: [
-    //         {
-    //             data: 'skipValidation',
-    //             config: {
-    //                 skipValidation: true,
-    //             },
-    //             warnings: ['validation.html.skipped'],
-    //         },
-    //     ],
-    // },
+    validation: {
+        html: [
+            {
+                data: 'skipValidation',
+                config: {
+                    skipValidation: true,
+                },
+                warnings: ['validation.html.skipped'],
+            },
+        ],
+    },
 };

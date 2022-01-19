@@ -362,14 +362,19 @@ function checkRule(tests, options) {
     tests.forEach(test => {
         const passOrFail = !test.errors ? 'pass' : 'fail';
         const url = `${ENDPOINT}/doc-views/${docType}/${track}/${profile}?rule=${rule}&type=${test.data}`;
-
+        const {
+            config,
+        } = require(`../lib/profiles/${docType}/${track}/${profile}`);
         it(`should ${passOrFail} for ${url}`, done => {
             const options = {
                 url,
                 profile: {
                     name: `Synthetic ${profile}/${rule}`,
                     rules: [require(`../lib/rules/${category}/${rule}`)],
-                    config: test.config,
+                    config: {
+                        ...config,
+                        ...test.config,
+                    },
                 },
                 events: buildHandler(test, done),
                 ...test.options,

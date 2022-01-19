@@ -71,6 +71,10 @@ exports.data = {
         errataLink: 'https://github.com/w3c/display_errata/',
         rescindText: 'Rescinds this Recommendation',
         rescindLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/',
+        obsoleteText: 'Obsoletes this Recommendation',
+        obsoleteLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/',
+        supersedeText: 'Supersedes this Recommendation',
+        supersedeLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/',
     },
     copyright: {
         show: true,
@@ -131,6 +135,7 @@ exports.data = {
 
         pageIncludeText: 'the group; that page also includes',
         individualText: 'An individual who has',
+        iprRel: 'disclosure',
 
         essentialLink:
             'https://www.w3.org/Consortium/Patent-Policy/#def-essential',
