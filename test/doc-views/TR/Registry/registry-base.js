@@ -1,12 +1,14 @@
 const { data } = require('../TR');
 
-const customData = {
+exports.data = {
+    ...data,
     config: {
+        ...data.config,
         underPP: false,
         isRyTrack: true,
     },
-};
-exports.data = {
-    ...data,
-    ...customData,
+    sotd: {
+        ...data.sotd,
+        deliverer: 'data-deliverer="32113"',
+    },
 };
