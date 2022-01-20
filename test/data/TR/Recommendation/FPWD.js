@@ -120,6 +120,163 @@ exports.rules = {
                 data: 'noSupersedesNeeded',
                 warnings: ['headers.dl.supersedes-not-needed'],
             },
+            {
+                data: 'wrongThisAndLatestOrder',
+                errors: ['headers.dl.this-latest-order'],
+            },
+            {
+                data: 'wrongLatestAndRescindsOrder',
+                config: {
+                    rescinds: true,
+                },
+                errors: ['headers.dl.latest-rescinds-order'],
+            },
+            {
+                data: 'wrongLatestAndObsoletesOrder',
+                config: {
+                    obsoletes: true,
+                },
+                errors: ['headers.dl.latest-obsoletes-order'],
+            },
+            {
+                data: 'wrongLatestAndSupersedesOrder',
+                config: {
+                    supersedes: true,
+                },
+                errors: ['headers.dl.latest-supersedes-order'],
+            },
+            {
+                data: 'noThisLinkExist',
+                errors: [
+                    'headers.dl.not-found',
+                    'headers.dl.this-latest-shortname',
+                    'headers.dl.history-syntax',
+                ],
+            },
+            {
+                data: 'wrongThisDate',
+                errors: ['headers.dl.this-date'],
+            },
+            {
+                data: 'wrongThisDate',
+                errors: ['headers.dl.this-date'],
+            },
+            // TODO: will not end all successfully
+            // {
+            //     data: 'noDocDate',
+            //     warnings: ['headers.dl.no-date'],
+            // },
+            {
+                data: 'wrongThisSyntax',
+                errors: [
+                    'headers.dl.this-syntax',
+                    'headers.dl.this-latest-shortname',
+                    'headers.dl.history-syntax',
+                ],
+            },
+            {
+                data: 'noLatestLinkExist',
+                errors: ['headers.dl.not-found'],
+            },
+            {
+                data: 'linkDiff',
+                errors: ['headers.dl.link-diff'],
+            },
+            {
+                data: 'wrongLatestSyntax',
+                errors: ['headers.dl.latest-syntax'],
+            },
+            {
+                data: 'diffThisAndLatestShortname',
+                errors: ['headers.dl.this-latest-shortname'],
+            },
+            {
+                data: 'noHistoryLinkExist',
+                errors: ['headers.dl.not-found'],
+            },
+            {
+                data: 'wrongHistorySyntax',
+                errors: ['headers.dl.history-syntax'],
+            },
+            {
+                data: 'noRescindLinkExist',
+                config: {
+                    rescinds: true,
+                },
+                errors: ['headers.dl.not-found'],
+            },
+            {
+                data: 'diffThisAndRescindShortname',
+                config: {
+                    rescinds: true,
+                },
+                errors: ['headers.dl.this-rescinds-shortname'],
+            },
+            {
+                data: 'wrongRescindSyntax',
+                config: {
+                    rescinds: true,
+                },
+                errors: ['headers.dl.rescinds-syntax'],
+            },
+            {
+                data: 'noObsoletesLinkExist',
+                config: {
+                    obsoletes: true,
+                },
+                errors: ['headers.dl.not-found'],
+            },
+            {
+                data: 'diffThisAndObsoletesShortname',
+                config: {
+                    obsoletes: true,
+                },
+                errors: ['headers.dl.this-obsoletes-shortname'],
+            },
+            {
+                data: 'wrongObsoletesSyntax',
+                config: {
+                    obsoletes: true,
+                },
+                errors: ['headers.dl.obsoletes-syntax'],
+            },
+            {
+                data: 'noSupersedesLinkExist',
+                config: {
+                    supersedes: true,
+                },
+                errors: ['headers.dl.not-found'],
+            },
+            {
+                data: 'diffThisAndSupersedesShortname',
+                config: {
+                    supersedes: true,
+                },
+                errors: ['headers.dl.this-supersedes-shortname'],
+            },
+            {
+                data: 'wrongSupersedesSyntax',
+                config: {
+                    supersedes: true,
+                },
+                errors: ['headers.dl.supersedes-syntax'],
+            },
+            {
+                data: 'noEditorDraftLinkExist',
+                errors: ['headers.dl.not-found'],
+            },
+            {
+                data: 'noSecureEditorDraftLink',
+                errors: ['headers.dl.editors-draft-should-be-https'],
+            },
+            {
+                data: 'noEditor',
+                errors: ['headers.dl.editor-not-found'],
+            },
+            {
+                data: 'missingEditorId',
+                errors: ['headers.dl.editor-missing-id'],
+            },
         ],
         'github-repo': [
             {
@@ -364,6 +521,14 @@ exports.rules = {
                     patentPolicy: 'pp2020',
                 },
                 errors: ['sotd.pp.no-section6'],
+            },
+            {
+                data: 'jointPublication',
+                config: {
+                    patentPolicy: 'pp2020',
+                },
+                errors: ['sotd.pp.no-pp'],
+                warnings: ['sotd.pp.joint-publication'],
             },
         ],
     },

@@ -45,33 +45,40 @@
         </p>
         {{#if header.details.show}}
         <details {{header.details.open}}>
-            {{#if header.details.summary.show}}
-                <summary>{{header.details.summary.text}}</summary>
+            {{#if header.summary.show}}
+                <summary>{{header.summary.text}}</summary>
             {{/if}}
             {{#if dl.show}}
                 <dl>
-                    {{#if dl.thisVersion.show}}
-                        <dt>{{dl.thisVersion.text}}</dt>
-                        <dd>
-                            <a class="u-url" href="https://www.w3.org/TR/{{#if config.isEchidna}}{{nowYear}}{{else}}2021{{/if}}/{{config.status}}-{{dl.shortName}}-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}{{nowDigit8}}{{else}}20211104{{/if}}/">https://www.w3.org/TR/{{#if config.isEchidna}}<span class="handlebars-data">{{nowYear}}</span>{{else}}2021{{/if}}/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data">{{dl.shortName}}</span>-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}<span class="handlebars-data">{{nowDigit8}}</span>{{else}}20211104{{/if}}/</a>
-                        </dd>
-                    {{/if}}
-
-                    {{#if dl.latestVersion.show}}
+                    {{#if dl.latestVersion.showAhead}}
                         <dt>{{dl.latestVersion.text}}</dt>
                         <dd> <a href="https://www.w3.org/TR/{{dl.seriesShortName}}/">https://www.w3.org/TR/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
                         </dd>
                     {{/if}}
 
+                    {{#if dl.thisVersion.show}}
+                        <dt>{{dl.thisVersion.text}}</dt>
+                        <dd>
+                            <a class="u-url" {{#if dl.thisVersion.showHref}}href="https://www.w3.org/TR/{{#if config.isEchidna}}{{nowYear}}{{else}}2021{{/if}}/{{config.status}}-{{dl.shortName}}-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}{{nowDigit8}}{{else}}20211104{{/if}}/"{{/if}}>https://www.w3.org/TR/{{#if config.isEchidna}}<span class="handlebars-data">{{nowYear}}</span>{{else}}2021{{/if}}/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data">{{dl.shortName}}</span>-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}<span class="handlebars-data">{{nowDigit8}}</span>{{else}}20211104{{/if}}/
+                            </a>
+                        </dd>
+                    {{/if}}
+
+                    {{#if dl.latestVersion.show}}
+                        <dt>{{dl.latestVersion.text}}</dt>
+                        <dd><a {{#if dl.latestVersion.showHref}}href="https://www.w3.org/{{dl.latestVersion.docType}}/{{dl.seriesShortName}}/"{{/if}}>https://www.w3.org/{{dl.latestVersion.textDocType}}/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
+                        </dd>
+                    {{/if}}
+
                     {{#if dl.latestEditor.show}}
                         <dt>Latest editor's draft:</dt>
-                        <dd> <a href="https://w3c.github.io/{{dl.seriesShortName}}/">https://w3c.github.io/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
+                        <dd> <a {{#if dl.latestEditor.showHref}}href="{{dl.latestEditor.linkProtocol}}://w3c.github.io/{{dl.seriesShortName}}/"{{/if}}>{{dl.latestEditor.linkProtocol}}://w3c.github.io/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
                         </dd>
                     {{/if}}
 
                     {{#if dl.history.show}}
                         <dt><span class="handlebars-data">{{dl.historyText}}</span>:</dt>
-                        <dd> <a href="https://www.w3.org/standards/history/{{dl.shortName}}">https://www.w3.org/standards/history/<span class="handlebars-data">{{dl.shortName}}</span></a>
+                        <dd> <a {{#if dl.history.showHref}}href="https://www.w3.org/standards/history/{{dl.history.shortName}}"{{/if}}>https://www.w3.org/standards/history/<span class="handlebars-data">{{dl.history.shortName}}</span></a>
                         </dd>
                     {{/if}}
 
@@ -82,30 +89,38 @@
                     </dd>
                     {{/config.needImple}}
 
-                    <dt><span class="handlebars-data">{{dl.editorText}}</span>:</dt>
-                    <dd class="p-author h-card vcard" data-editor-id="56102">George Herald (WebFoo)
-                    </dd>
+                    {{#if dl.editor.show}}
+                        <dt><span class="handlebars-data">{{dl.editorText}}</span>:</dt>
+                        <dd class="p-author h-card vcard" data-editor-id="{{dl.editor.id}}">George Herald (WebFoo)
+                        </dd>
+                    {{/if}}
 
                     {{#config.isRescinded}}
                     <dt><span class="handlebars-data">{{dl.rescindText}}</span>{{! Rescinds this Recommendation}}:</dt>
                     <dd>
-                        <a rel="dcterms:replaces" href="{{dl.rescindLink}}"><span class="handlebars-data">{{dl.rescindLink}}</span></a>
+                        <a rel="dcterms:replaces" {{#if dl.rescind.showHref}}href="{{dl.rescindLink}}"{{/if}}><span class="handlebars-data">{{dl.rescindLink}}</span></a>
                     </dd>
                     {{/config.isRescinded}}
 
                     {{#config.isObsolete}}
                         <dt><span class="handlebars-data">{{dl.obsoleteText}}</span>{{! Obsolete this Recommendation}}:</dt>
                         <dd>
-                            <a rel="dcterms:replaces" href="{{dl.obsoleteLink}}"><span class="handlebars-data">{{dl.obsoleteLink}}</span></a>
+                            <a rel="dcterms:replaces" {{#if dl.obsolete.showHref}}href="{{dl.obsoleteLink}}"{{/if}}><span class="handlebars-data">{{dl.obsoleteLink}}</span></a>
                         </dd>
                     {{/config.isObsolete}}
 
                     {{#config.isSuperseded}}
                         <dt><span class="handlebars-data">{{dl.supersedeText}}</span>{{! Obsolete this Recommendation}}:</dt>
                         <dd>
-                            <a rel="dcterms:replaces" href="{{dl.supersedeLink}}"><span class="handlebars-data">{{dl.supersedeLink}}</span></a>
+                            <a rel="dcterms:replaces" {{#if dl.supersede.showHref}}href="{{dl.supersedeLink}}"{{/if}}><span class="handlebars-data">{{dl.supersedeLink}}</span></a>
                         </dd>
                     {{/config.isSuperseded}}
+
+                    {{#if dl.latestVersion.showBehind}}
+                        <dt>{{dl.latestVersion.text}}</dt>
+                        <dd> <a href="https://www.w3.org/TR/{{dl.seriesShortName}}/">https://www.w3.org/TR/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
+                        </dd>
+                    {{/if}}
 
                     {{#config.needErrata}}
                     <dt>Errata:</dt>

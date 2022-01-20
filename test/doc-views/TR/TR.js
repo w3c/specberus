@@ -33,10 +33,10 @@ exports.data = {
         details: {
             show: true,
             open: 'open',
-            summary: {
-                show: true,
-                text: 'More details about this document',
-            },
+        },
+        summary: {
+            show: true,
+            text: 'More details about this document',
         },
         defaultDate: '04 November 2021',
     },
@@ -48,17 +48,40 @@ exports.data = {
         show: true,
         thisVersion: {
             show: true,
+            showHref: true,
             text: 'This Version',
         },
         latestVersion: {
             show: true,
+            showHref: true,
+            docType: 'TR',
+            textDocType: 'TR',
             text: 'Latest published version: (@@note that version is not required in the latest version)',
+            showAhead: false,
+            showBehind: false,
         },
         latestEditor: {
             show: true,
+            showHref: true,
+            linkProtocol: 'https',
+        },
+        editor: {
+            show: true,
+            id: '56102',
         },
         history: {
             show: true,
+            showHref: true,
+            shortName: 'hr-time',
+        },
+        rescind: {
+            showHref: true,
+        },
+        obsolete: {
+            showHref: true,
+        },
+        supersede: {
+            showHref: true,
         },
         feedback: {
             show: true,

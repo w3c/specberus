@@ -157,11 +157,8 @@ module.exports = {
             ...good,
             header: {
                 ...good.header,
-                details: {
-                    ...good.header.details,
-                    summary: {
-                        show: false,
-                    },
+                summary: {
+                    show: false,
                 },
             },
         },
@@ -169,12 +166,9 @@ module.exports = {
             ...good,
             header: {
                 ...good.header,
-                details: {
-                    ...good.header.details,
-                    summary: {
-                        ...good.header.details.summary,
-                        text: 'wrong text',
-                    },
+                summary: {
+                    ...good.header.summary,
+                    text: 'wrong text',
                 },
             },
         },
@@ -235,6 +229,305 @@ module.exports = {
             config: {
                 ...good.config,
                 isSuperseded: true,
+            },
+        },
+        wrongThisAndLatestOrder: {
+            ...good,
+            dl: {
+                ...good.dl,
+                latestVersion: {
+                    ...good.dl.latestVersion,
+                    show: false,
+                    showAhead: true,
+                },
+            },
+        },
+        wrongLatestAndRescindsOrder: {
+            ...good,
+            dl: {
+                ...good.dl,
+                latestVersion: {
+                    ...good.dl.latestVersion,
+                    show: false,
+                    showBehind: true,
+                },
+            },
+            config: {
+                ...good.config,
+                isRescinded: true,
+            },
+        },
+        wrongLatestAndObsoletesOrder: {
+            ...good,
+            dl: {
+                ...good.dl,
+                latestVersion: {
+                    ...good.dl.latestVersion,
+                    show: false,
+                    showBehind: true,
+                },
+            },
+            config: {
+                ...good.config,
+                isObsolete: true,
+            },
+        },
+        wrongLatestAndSupersedesOrder: {
+            ...good,
+            dl: {
+                ...good.dl,
+                latestVersion: {
+                    ...good.dl.latestVersion,
+                    show: false,
+                    showBehind: true,
+                },
+            },
+            config: {
+                ...good.config,
+                isSuperseded: true,
+            },
+        },
+        noThisLinkExist: {
+            ...good,
+            dl: {
+                ...good.dl,
+                thisVersion: {
+                    ...good.dl.thisVersion,
+                    showHref: false,
+                },
+            },
+        },
+        wrongThisDate: {
+            ...good,
+            header: {
+                ...good.header,
+                defaultDate: '04 November 2020',
+            },
+        },
+        noDocDate: {
+            ...good,
+            header: {
+                ...good.header,
+                defaultDate: '04 Nov 2020',
+            },
+        },
+        wrongThisSyntax: {
+            ...good,
+            config: {
+                ...good.config,
+                status: 'FWD',
+            },
+        },
+        noLatestLinkExist: {
+            ...good,
+            dl: {
+                ...good.dl,
+                latestVersion: {
+                    ...good.dl.latestVersion,
+                    showHref: false,
+                },
+            },
+        },
+        wrongLatestSyntax: {
+            ...good,
+            dl: {
+                ...good.dl,
+                latestVersion: {
+                    ...good.dl.latestVersion,
+                    docType: 'FAKE',
+                    textDocType: 'FAKE',
+                },
+            },
+        },
+        linkDiff: {
+            ...good,
+            dl: {
+                ...good.dl,
+                latestVersion: {
+                    ...good.dl.latestVersion,
+                    textDocType: 'FAKE',
+                },
+            },
+        },
+        diffThisAndLatestShortname: {
+            ...good,
+            dl: {
+                ...good.dl,
+                seriesShortName: 'fake-hr-time',
+            },
+        },
+        noHistoryLinkExist: {
+            ...good,
+            dl: {
+                ...good.dl,
+                history: {
+                    ...good.dl.history,
+                    showHref: false,
+                },
+            },
+        },
+        wrongHistorySyntax: {
+            ...good,
+            dl: {
+                ...good.dl,
+                history: {
+                    ...good.dl.history,
+                    shortName: 'fake-name',
+                },
+            },
+        },
+        noRescindLinkExist: {
+            ...good,
+            config: {
+                ...good.config,
+                isRescinded: true,
+            },
+            dl: {
+                ...good.dl,
+                rescind: {
+                    ...good.dl.rescind,
+                    showHref: false,
+                },
+            },
+        },
+        diffThisAndRescindShortname: {
+            ...good,
+            config: {
+                ...good.config,
+                isRescinded: true,
+            },
+            dl: {
+                ...good.dl,
+                rescindLink:
+                    'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
+            },
+        },
+        wrongRescindSyntax: {
+            ...good,
+            config: {
+                ...good.config,
+                isRescinded: true,
+            },
+            dl: {
+                ...good.dl,
+                rescindLink:
+                    'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
+            },
+        },
+        noObsoletesLinkExist: {
+            ...good,
+            config: {
+                ...good.config,
+                isObsolete: true,
+            },
+            dl: {
+                ...good.dl,
+                obsolete: {
+                    ...good.dl.obsolete,
+                    showHref: false,
+                },
+            },
+        },
+        diffThisAndObsoletesShortname: {
+            ...good,
+            config: {
+                ...good.config,
+                isObsolete: true,
+            },
+            dl: {
+                ...good.dl,
+                obsoleteLink:
+                    'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
+            },
+        },
+        wrongObsoletesSyntax: {
+            ...good,
+            config: {
+                ...good.config,
+                isObsolete: true,
+            },
+            dl: {
+                ...good.dl,
+                obsoleteLink:
+                    'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
+            },
+        },
+        noSupersedesLinkExist: {
+            ...good,
+            config: {
+                ...good.config,
+                isSuperseded: true,
+            },
+            dl: {
+                ...good.dl,
+                supersede: {
+                    ...good.dl.supersede,
+                    showHref: false,
+                },
+            },
+        },
+        diffThisAndSupersedesShortname: {
+            ...good,
+            config: {
+                ...good.config,
+                isSuperseded: true,
+            },
+            dl: {
+                ...good.dl,
+                supersedeLink:
+                    'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
+            },
+        },
+        wrongSupersedesSyntax: {
+            ...good,
+            config: {
+                ...good.config,
+                isSuperseded: true,
+            },
+            dl: {
+                ...good.dl,
+                supersedeLink:
+                    'https://www.w3.org/FAKE/2017/REC-hr-time-20170101/',
+            },
+        },
+        noEditorDraftLinkExist: {
+            ...good,
+            dl: {
+                ...good.dl,
+                latestEditor: {
+                    ...good.dl.latestEditor,
+                    showHref: false,
+                },
+            },
+        },
+        noSecureEditorDraftLink: {
+            ...good,
+            dl: {
+                ...good.dl,
+                latestEditor: {
+                    ...good.dl.latestEditor,
+                    linkProtocol: 'http',
+                },
+            },
+        },
+        noEditor: {
+            ...good,
+            dl: {
+                ...good.dl,
+                editor: {
+                    ...good.dl.editor,
+                    show: false,
+                },
+            },
+        },
+        missingEditorId: {
+            ...good,
+            dl: {
+                ...good.dl,
+                editor: {
+                    ...good.dl.editor,
+                    id: '',
+                },
             },
         },
     },
@@ -553,12 +846,9 @@ module.exports = {
             ...good,
             header: {
                 ...good.header,
-                details: {
-                    ...good.header.details,
-                    summary: {
-                        ...good.header.details.summary,
-                        text: 'More details about this document master',
-                    },
+                summary: {
+                    ...good.header.summary,
+                    text: 'More details about this document master',
                 },
             },
         },
@@ -632,6 +922,13 @@ module.exports = {
                 ...good.sotd,
                 disclosureLink:
                     'https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure-fake',
+            },
+        },
+        jointPublication: {
+            ...good,
+            sotd: {
+                ...good.sotd,
+                group: 'Internationalization Working Group and the Fake Working Group',
             },
         },
     },
