@@ -1,5 +1,5 @@
 exports.data = {
-    body: {
+    bodyEle: {
         classes: 'h-entry toc-sidebar',
     },
     scripts: ['https://www.w3.org/scripts/TR/2021/fixup.js'],

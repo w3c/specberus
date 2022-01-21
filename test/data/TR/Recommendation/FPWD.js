@@ -161,11 +161,10 @@ exports.rules = {
                 data: 'wrongThisDate',
                 errors: ['headers.dl.this-date'],
             },
-            // TODO: will not end all successfully
-            // {
-            //     data: 'noDocDate',
-            //     warnings: ['headers.dl.no-date'],
-            // },
+            {
+                data: 'noDocDate',
+                warnings: ['headers.dl.no-date'],
+            },
             {
                 data: 'wrongThisSyntax',
                 errors: [
@@ -339,11 +338,10 @@ exports.rules = {
             },
         ],
         'body-toc-sidebar': [
-            // TODO: conflict with fixup.js
-            // {
-            //     data: 'noSidebar',
-            //     errors: ['style.body-toc-sidebar.class-found'],
-            // },
+            {
+                data: 'noSidebar',
+                errors: ['style.body-toc-sidebar.class-found'],
+            },
         ],
         script: [
             {

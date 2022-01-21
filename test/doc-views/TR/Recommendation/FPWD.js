@@ -308,7 +308,7 @@ module.exports = {
             ...good,
             header: {
                 ...good.header,
-                defaultDate: '04 Nov 2020',
+                defaultDate: '',
             },
         },
         wrongThisSyntax: {
@@ -649,9 +649,10 @@ module.exports = {
     'body-toc-sidebar': {
         noSidebar: {
             ...good,
-            body: {
+            bodyEle: {
                 classes: '',
             },
+            scripts: [],
         },
     },
     script: {
