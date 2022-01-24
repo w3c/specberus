@@ -491,14 +491,6 @@ exports.rules = {
                 },
                 errors: ['sotd.pp.no-pp2020'],
             },
-            // TODO: find a patent neither pp2020 pp2017
-            // {
-            //     data: 'noPPLink',
-            //     config: {
-            //         patentPolicy: 'pp2021',
-            //     },
-            //     errors: ['sotd.pp.no-pp-link'],
-            // },
             {
                 data: 'noDisclosures',
                 config: {
