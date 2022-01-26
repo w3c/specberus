@@ -325,7 +325,10 @@ describe('Making sure good documents pass Specberus...', () => {
 
         const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
         it(`should pass for ${docProfile} doc with ${url}`, done => {
-            const profile = util.profiles[docProfile];
+            const profilePath = util.allProfiles.find(p =>
+                p.endsWith(`${docProfile}.js`)
+            );
+            const profile = require(`../lib/profiles/${profilePath}`);
 
             // add custom config to test
             profile.config = {
