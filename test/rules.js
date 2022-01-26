@@ -89,10 +89,6 @@ const compareMetadata = function (url, file, expectedObject) {
                 .equal(expectedObject.latestVersion);
             chai(specberus)
                 .to.have.property('meta')
-                .to.have.property('previousVersion')
-                .equal(expectedObject.previousVersion);
-            chai(specberus)
-                .to.have.property('meta')
                 .to.have.property('editorNames');
             chai(specberus.meta.editorNames).to.satisfy(found =>
                 equivalentArray(found, expectedObject.editorNames)
@@ -123,6 +119,7 @@ const compareMetadata = function (url, file, expectedObject) {
                 .equal(expectedObject.history);
             const optionalProperties = [
                 'process',
+                'previousVersion',
                 'editorsDraft',
                 'implementationFeedbackDue',
                 'prReviewsDue',
