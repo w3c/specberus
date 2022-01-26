@@ -52,7 +52,7 @@ const equivalentArray = function (a1, a2) {
  * Assert that metadata detected in a spec is equal to the expected values.
  *
  * @param {String} url - public URL of a spec.
- * @param {String} file - name of local file containing a spec (without pth and without ".html" suffix).
+ * @param {String} file - name of local file containing a spec (without path and without ".html" suffix).
  * @param {Object} expectedObject - values that are expected to be found.
  */
 
@@ -320,7 +320,10 @@ describe('Making sure good documents pass Specberus...', () => {
 
         const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
         it(`should pass for ${docProfile} doc with ${url}`, done => {
-            const profile = util.profiles[docProfile];
+            const profilePath = util.allProfiles.find(p =>
+                p.endsWith(`${docProfile}.js`)
+            );
+            const profile = require(`../lib/profiles/${profilePath}`);
 
             // add custom config to test
             profile.config = {
