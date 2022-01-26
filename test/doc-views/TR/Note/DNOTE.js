@@ -1,5 +1,9 @@
 /* eslint-disable import/no-dynamic-require */
-const { data } = require('./note-base');
+const {
+    buildCommonViewData,
+    buildDraftStability,
+    data,
+} = require('./noteBase');
 
 const profile = 'DNOTE';
 const { config } = require(`../../../../lib/profiles/TR/Note/${profile}`);
@@ -16,30 +20,20 @@ const customData = {
 // Used in http://localhost:8001/doc-views/TR/Note/DNOTE?type=good
 const good = { ...data, ...customData };
 
-exports.good = good;
+const common = buildCommonViewData(good);
 
-// Used in http://localhost:8001/doc-views/TR/Note/DNOTE?rule=dl&type=badDl
-const badDl = JSON.parse(JSON.stringify(good));
-badDl.dl.seriesShortName = 'hr-dl-bad-shortname';
-// const badDl = {
-//     ...good,
-//     ...{
-//         dl: {
-//             ...good.dl,
-//             seriesShortName: 'hr-dl-bad-shortname',
-//         },
-//     },
-// };
-exports.dl = {
-    badDl,
-};
-
-exports.badCopyright = {
-    ...good,
-    ...{
-        copyright: {
-            ...good.copyright,
-            licenseHTML: 'Non license applies.',
+module.exports = {
+    good,
+    ...common,
+    stability: {
+        ...common.stability,
+        noStability: {
+            ...good,
+            config: {
+                ...good.config,
+                isDNOTE: false,
+            },
         },
     },
+    'draft-stability': buildDraftStability(good),
 };

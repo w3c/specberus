@@ -1,4 +1,4 @@
-const { rules, draftStabilityRules } = require('./recommendationBase');
+const { rules, draftStabilityRules } = require('./registryBase');
 
 exports.rules = {
     ...rules,

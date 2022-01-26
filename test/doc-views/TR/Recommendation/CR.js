@@ -1,5 +1,10 @@
 /* eslint-disable import/no-dynamic-require */
-const { data } = require('./recommendation-base');
+const {
+    buildCommonViewData,
+    buildCandidateReviewEnd,
+    buildSecurityPrivacy,
+    data,
+} = require('./recommendationBase');
 
 const profile = 'CR';
 const {
@@ -19,4 +24,10 @@ const customData = {
 
 // Used in http://localhost:8001/doc-views/TR/Recommendation/CR?type=good
 const good = { ...data, ...customData };
-exports.good = good;
+
+module.exports = {
+    good,
+    ...buildCommonViewData(good),
+    'candidate-review-end': buildCandidateReviewEnd(good),
+    'security-privacy': buildSecurityPrivacy(good),
+};

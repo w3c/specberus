@@ -1,5 +1,5 @@
 /* eslint-disable import/no-dynamic-require */
-const { data } = require('./note-base');
+const { buildCommonViewData, data } = require('./noteBase');
 
 const profile = 'STMT';
 const { config } = require(`../../../../lib/profiles/TR/Note/${profile}`);
@@ -14,4 +14,19 @@ const customData = {
 
 // Used in http://localhost:8001/doc-views/TR/Note/STMT?type=good
 const good = { ...data, ...customData };
-exports.good = good;
+const common = buildCommonViewData(good);
+
+module.exports = {
+    good,
+    ...common,
+    stability: {
+        ...common.stability,
+        noStability: {
+            ...good,
+            config: {
+                ...good.config,
+                isSTMT: false,
+            },
+        },
+    },
+};

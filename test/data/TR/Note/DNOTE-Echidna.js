@@ -1,4 +1,4 @@
-const { rules, draftStabilityRules } = require('./recommendationBase');
+const { rules, draftStabilityRules, echidnaRules } = require('./noteBase');
 
 exports.rules = {
     ...rules,
@@ -6,4 +6,5 @@ exports.rules = {
         ...rules.sotd,
         'draft-stability': draftStabilityRules,
     },
+    echidna: echidnaRules,
 };

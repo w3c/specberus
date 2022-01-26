@@ -1,5 +1,5 @@
 /* eslint-disable import/no-dynamic-require */
-const { data } = require('./recommendation-base');
+const { buildCommonViewData, data } = require('./recommendationBase');
 
 const profile = 'DISC';
 const {
@@ -17,4 +17,19 @@ const customData = {
 
 // Used in http://localhost:8001/doc-views/TR/Recommendation/DISC?type=good
 const good = { ...data, ...customData };
-exports.good = good;
+const commonData = buildCommonViewData(good);
+
+module.exports = {
+    good,
+    ...commonData,
+    stability: {
+        ...commonData.stability,
+        noCRReview: {
+            ...good,
+            config: {
+                ...good.config,
+                maybeUpdated: false,
+            },
+        },
+    },
+};

@@ -10,7 +10,7 @@
     {{#if head.meta.show}}
         <meta name="viewport" content="{{head.meta.width}} initial-scale=1, shrink-to-fit=no">
     {{/if}}
-    <link rel="canonical" href="https://www.w3.org/TR/{{dl.shortName}}/">
+    {{#if head.showCanonical}}<link rel="canonical" href="https://www.w3.org/TR/{{dl.shortName}}/">{{/if}}
     {{#if head.styleSheet.show}}
         <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/{{config.styleSheet}}.css">
     {{/if}}
@@ -21,7 +21,7 @@
         <title>{{config.profile}}: {{head.title.suffix}}</title> <!-- matches div.head h1 -->
     {{/if}}
 </head>
-<body class="{{bodyEle.classes}}" data-cite="WebIDL html dom webidl ecma-262">
+<body class="{{body.classes}}" data-cite="WebIDL html dom webidl ecma-262">
     <div class="{{header.headClassName}}">
         {{#if header.logo.show}}
             <a class="logo" href="{{header.logo.href}}">
@@ -52,21 +52,22 @@
                 <dl>
                     {{#if dl.latestVersion.showAhead}}
                         <dt>{{dl.latestVersion.text}}</dt>
-                        <dd> <a href="https://www.w3.org/TR/{{dl.seriesShortName}}/">https://www.w3.org/TR/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
+                        <dd> <a href="https://www.w3.org/{{dl.topLevel}}/{{dl.seriesShortName}}/">https://www.w3.org/{{dl.topLevel}}/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
                         </dd>
                     {{/if}}
 
                     {{#if dl.thisVersion.show}}
                         <dt>{{dl.thisVersion.text}}</dt>
                         <dd>
-                            <a class="u-url" {{#if dl.thisVersion.showHref}}href="https://www.w3.org/TR/{{#if config.isEchidna}}{{nowYear}}{{else}}2021{{/if}}/{{config.status}}-{{dl.shortName}}-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}{{nowDigit8}}{{else}}20211104{{/if}}/"{{/if}}>https://www.w3.org/TR/{{#if config.isEchidna}}<span class="handlebars-data">{{nowYear}}</span>{{else}}2021{{/if}}/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data">{{dl.shortName}}</span>-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}<span class="handlebars-data">{{nowDigit8}}</span>{{else}}20211104{{/if}}/
+                            <a class="u-url" {{#if dl.thisVersion.showHref}}href="https://www.w3.org/{{dl.topLevel}}/{{#if config.isEchidna}}{{nowYear}}{{else}}2021{{/if}}/{{config.status}}-{{dl.shortName}}-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}{{nowDigit8}}{{else}}20211104{{/if}}/"{{/if}}>
+                               https://www.w3.org/{{dl.topLevel}}/{{#if config.isEchidna}}<span class="handlebars-data">{{nowYear}}</span>{{else}}2021{{/if}}/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data">{{dl.shortName}}</span>-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}<span class="handlebars-data">{{nowDigit8}}</span>{{else}}20211104{{/if}}/
                             </a>
                         </dd>
                     {{/if}}
 
                     {{#if dl.latestVersion.show}}
                         <dt>{{dl.latestVersion.text}}</dt>
-                        <dd><a {{#if dl.latestVersion.showHref}}href="https://www.w3.org/{{dl.latestVersion.docType}}/{{dl.seriesShortName}}/"{{/if}}>https://www.w3.org/{{dl.latestVersion.textDocType}}/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
+                        <dd> <a {{#if dl.latestVersion.showHref}}href="https://www.w3.org/{{dl.latestVersion.docType}}/{{dl.seriesShortName}}/"{{/if}}>https://www.w3.org/{{dl.latestVersion.textDocType}}/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
                         </dd>
                     {{/if}}
 
@@ -118,7 +119,7 @@
 
                     {{#if dl.latestVersion.showBehind}}
                         <dt>{{dl.latestVersion.text}}</dt>
-                        <dd> <a href="https://www.w3.org/TR/{{dl.seriesShortName}}/">https://www.w3.org/TR/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
+                        <dd> <a href="https://www.w3.org/{{dl.topLevel}}/{{dl.seriesShortName}}/">https://www.w3.org/{{dl.topLevel}}/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
                         </dd>
                     {{/if}}
 
@@ -157,6 +158,7 @@
         {{#if showWrongDateFormat}}
             <h2 id="sotd">Status of This Document</h2>
             <p>Hi! This date has the wrong format: 13/Jan/1998. And these two</p>
+
         {{/if}}
 
     </section>
@@ -165,6 +167,19 @@
         <h2><span class="handlebars-data">{{sotd.title}}{{! Status of This Document }}</span></h2>
 
         <p><span class="handlebars-data">{{{sotd.emHTML}}}{{! This section describes the status of this document... }}</span></p>
+        {{#if sotd.submission.show}}
+            <p>By publishing this document, W3C acknowledges that the <a href="{{sotd.submission.submissionMemberLink}}">Submitting
+                Members</a> have made a formal Submission request to W3C for discussion.
+            Publication of this document by W3C indicates no endorsement of its
+            content by W3C, nor that W3C has, is, or will be allocating any
+            resources to the issues addressed by it. This document is not the
+            product of a chartered W3C group, but is published as potential input to
+            the <a href="{{sotd.submission.processLink}}">{{sotd.submission.processText}}</a>. A <a href="{{sotd.submission.submissionComment}}">W3C Team Comment</a> has been published in conjunction with this Member Submission. Publication of acknowledged Member Submissions at the W3C site is one of
+            the benefits of <a href="{{sotd.submission.membershipLink}}">W3C
+                Membership</a>. Please consult the requirements associated with Member
+            Submissions of <a href="{{sotd.submission.ppLink}}">section
+            3.3 of the W3C Patent Policy</a>. Please consult the complete <a href="{{sotd.submission.submissionLink}}">list of acknowledged W3C Member Submissions</a>.</p>
+        {{/if}}
 
         {{#config.isRescinded}}
         <p>
@@ -180,6 +195,14 @@
         <p>
             W3C recommends the wide deployment of this specification as a standard for the Web.
         </p>
+        {{#if sotd.rec.showProposedAdd}}
+            <p>
+                It includes <a href="https://www.w3.org/2021/Process-20211102/#proposed-addition">proposed addition</a>, introducing new features since the Previous Recommendation.
+            </p>
+        {{/if}}
+        {{#if sotd.rec.showAddition}}
+            <p class='addition proposed'>{{sotd.rec.addition}}</p>
+        {{/if}}
         {{/config.isREC}}
 
         <p>
@@ -195,7 +218,7 @@
                 {{#if config.isEchidna}}
                     <span class="handlebars-data">{{sixMonthLater}}.</span>
                 {{else}}
-                    04 October 2022.</p>
+                    {{sotd.defaultCRDate}}.</p>
                 {{/if}}
         {{/config.isCR}}
 
@@ -220,6 +243,9 @@
             <p>
                 This document <span class="handlebars-data">{{sotd.processTextPrefix}}</span>{{! is governed by the}} <a id="w3c_process_revision" href="{{sotd.processLink}}"><span class="handlebars-data">{{{sotd.processHTML}}}{{! 2 November 2021 W3C Process Document }}</span></a>.
             </p>
+        {{/if}}
+        {{#if sotd.newFeatures.show}}
+            <p>{{sotd.newFeatures.text}}</p>
         {{/if}}
 
     </section>

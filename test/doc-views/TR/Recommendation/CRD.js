@@ -1,5 +1,10 @@
 /* eslint-disable import/no-dynamic-require */
-const { data } = require('./recommendation-base');
+const {
+    buildCommonViewData,
+    buildSecurityPrivacy,
+    buildDraftStability,
+    data,
+} = require('./recommendationBase');
 
 const profile = 'CRD';
 const {
@@ -19,10 +24,9 @@ const customData = {
 
 // Used in http://localhost:8001/doc-views/TR/Recommendation/CRD?type=good
 const good = { ...data, ...customData };
-exports.good = good;
 
 // Used in http://localhost:8001/doc-views/TR/Recommendation/CRD?type=good2
-exports.good2 = {
+const good2 = {
     config: {
         ...good.config,
     },
@@ -31,4 +35,12 @@ exports.good2 = {
         draftText:
             'This document is maintained and updated at any time. Some parts of this document are work in progress.',
     },
+};
+
+module.exports = {
+    good,
+    good2,
+    ...buildCommonViewData(good),
+    'draft-stability': buildDraftStability(good),
+    'security-privacy': buildSecurityPrivacy(good),
 };

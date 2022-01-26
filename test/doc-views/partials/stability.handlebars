@@ -61,7 +61,7 @@
     {{/config.maybeUpdated}}
 
     {{#config.isDISC}}
-        Publication as a Discontinued Draft implies that this document is no longer <span class="handlebars-data">{{sotd.discText}}{{! intended to advance or to be maintained}}</span>. It is inappropriate to cite this document as other than abandoned work.
+        Publication as a {{config.longStatus}} implies that this document is no longer <span class="handlebars-data">{{sotd.discText}}{{! intended to advance or to be maintained}}</span>. It is inappropriate to cite this document as other than abandoned work.
     {{/config.isDISC}}
 {{/config.isRecTrack}}
 

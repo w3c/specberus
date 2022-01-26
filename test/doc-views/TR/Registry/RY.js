@@ -1,5 +1,5 @@
 /* eslint-disable import/no-dynamic-require */
-const { data } = require('./registry-base');
+const { buildCommonViewData, data } = require('./registryBase');
 
 const profile = 'RY';
 const { config } = require(`../../../../lib/profiles/TR/Registry/${profile}`);
@@ -9,9 +9,34 @@ const customData = {
         ...data.config,
         profile,
         isRY: true,
+        underPP: true,
     },
 };
 
 // Used in http://localhost:8001/doc-views/TR/Registry/RY?type=good
 const good = { ...data, ...customData };
-exports.good = good;
+const common = buildCommonViewData(good);
+
+module.exports = {
+    good,
+    ...common,
+    stability: {
+        ...common.stability,
+        noStability: {
+            ...good,
+            config: {
+                ...good.config,
+                isRY: false,
+            },
+        },
+    },
+    usage: {
+        noUsage: {
+            ...good,
+            config: {
+                ...good.config,
+                isRY: false,
+            },
+        },
+    },
+};

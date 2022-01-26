@@ -185,7 +185,7 @@ app.use('/docs', express.static(pth.join(__dirname, 'docs')));
 app.engine(
     'handlebars',
     exphbs.engine({
-        defaultLayout: pth.join(__dirname, './doc-views/layout/TR'),
+        defaultLayout: pth.join(__dirname, './doc-views/layout/spec'),
         layoutsDir: pth.join(__dirname, './doc-views'),
         partialsDir: pth.join(__dirname, './doc-views/partials/'),
     })
@@ -193,41 +193,37 @@ app.engine(
 app.set('view engine', 'handlebars');
 app.set('views', pth.join(__dirname, './doc-views'));
 
-app.get('/doc-views/:docType/:track/:profile', (req, res) => {
+function renderByConfig(req, res) {
     const { rule, type } = req.query;
+    const suffix = req.params.track
+        ? `${req.params.track}/${req.params.profile}`
+        : req.params.profile;
+
     // get data for template from json (.js)
     const data = require(pth.join(
         __dirname,
-        `./doc-views/${req.params.docType}/${req.params.track}/${req.params.profile}.js`
+        `./doc-views/${req.params.docType}/${suffix}.js`
     ));
 
     let finalData;
-    if (type.startsWith('good')) {
+    if (!type)
+        res.send('<h1>Error: please add the parameter "type" in the URL </h1>');
+    else if (type.startsWith('good')) {
         finalData = data[type];
     } else {
         if (!rule)
             res.send(
                 '<h1>Error: please add the parameter "rule" in the URL </h1>'
             );
-        if (!type)
-            res.send(
-                '<h1>Error: please add the parameter "type" in the URL </h1>'
-            );
+
         // for data causes error, make rule and the type of error specific.
         finalData = data[rule][type];
     }
-    res.render(pth.join(__dirname, './doc-views/layout/TR'), finalData);
-});
+    res.render(pth.join(__dirname, './doc-views/layout/spec'), finalData);
+}
 
-app.get('/doc-views/SUBM/MEM-SUBM', (req, res) => {
-    // get data for template from json (.js)
-    const { goodData } = require(pth.join(
-        __dirname,
-        `./doc-views/SUBM/MEM-SUBM.js`
-    ));
-
-    res.render(pth.join(__dirname, './doc-views/layout/TR'), goodData);
-});
+app.get('/doc-views/:docType/:track/:profile', renderByConfig);
+app.get('/doc-views/:docType/:profile', renderByConfig);
 
 // config single redirection
 app.get('/docs/links/image/logo', (req, res) => {
@@ -271,7 +267,6 @@ function buildHandler(test, done) {
         handler.warnings.push(`${type.name}.${data.key}`);
     });
     handler.on('done', () => {
-        handler.done += 1;
         if (DEBUG) console.log(`---done, ${handler.done}---`);
     });
     handler.on('exception', data => {
@@ -358,13 +353,13 @@ describe('Making sure good documents pass Specberus...', () => {
 });
 
 function checkRule(tests, options) {
-    const [docType, track, profile, category, rule] = options;
+    const { docType, track, profile, category, rule } = options;
     tests.forEach(test => {
         const passOrFail = !test.errors ? 'pass' : 'fail';
-        const url = `${ENDPOINT}/doc-views/${docType}/${track}/${profile}?rule=${rule}&type=${test.data}`;
-        const {
-            config,
-        } = require(`../lib/profiles/${docType}/${track}/${profile}`);
+        const suffix = track ? `${track}/${profile}` : profile;
+        const url = `${ENDPOINT}/doc-views/${docType}/${suffix}?rule=${rule}&type=${test.data}`;
+        const { config } = require(`../lib/profiles/${docType}/${suffix}`);
+
         it(`should ${passOrFail} for ${url}`, done => {
             const options = {
                 url,
@@ -388,13 +383,40 @@ function checkRule(tests, options) {
 // ignore .DS_Store from Mac
 function listFilesOf(dir) {
     const files = readdirSync(dir);
-    const blocklist = ['.DS_Store'];
+    const blocklist = ['.DS_Store', 'Base.js'];
 
-    return files.filter(v => !blocklist.find(b => b === v));
+    return files.filter(v => !blocklist.find(b => v.includes(b)));
+}
+
+function runTestsForProfile(file, { docType, track }) {
+    const base = `${process.cwd()}/test/data`;
+    const lastDot = file.lastIndexOf('.');
+    const profile = file.substring(0, lastDot);
+
+    // Profile: CR/NOTE/RY ...
+    describe(`Profile: ${profile}`, () => {
+        const suffix = track ? `${track}/${file}` : file;
+        const config = require(`${base}/${docType}/${suffix}`);
+
+        Object.entries(config.rules).forEach(([category, rules]) => {
+            Object.entries(rules).forEach(([rule, tests]) => {
+                // Rule: hr/logo ...
+                describe(`Rule: ${category}.${rule}`, () => {
+                    checkRule(tests, {
+                        docType,
+                        track,
+                        profile,
+                        category,
+                        rule,
+                    });
+                });
+            });
+        });
+    });
 }
 
 // The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warnings in lib/l10n-en_GB.js
-describe('Making sure Specberus is not broken...', () => {
+describe.only('Making sure Specberus is not broken...', () => {
     const base = `${process.cwd()}/test/data`;
     listFilesOf(base)
         .filter(v => lstatSync(`${base}/${v}`).isDirectory())
@@ -402,35 +424,20 @@ describe('Making sure Specberus is not broken...', () => {
             // DocType: TR/SUMB
             describe(`DocType: ${docType}:`, () => {
                 listFilesOf(`${base}/${docType}`).forEach(track => {
+                    const isProfile = lstatSync(
+                        `${base}/${docType}/${track}`
+                    ).isFile();
+
+                    // Profile: SUBM
+                    if (isProfile) {
+                        runTestsForProfile(track, { docType });
+                        return;
+                    }
+
                     // Track: Note/Recommendation/Registry
                     describe(`Track: ${track}`, () => {
                         listFilesOf(`${base}/${docType}/${track}`).forEach(
-                            file => {
-                                const lastDot = file.lastIndexOf('.');
-                                const profile = file.substring(0, lastDot);
-                                // Profile: CR/NOTE/RY ...
-                                describe(`Profile: ${profile}`, () => {
-                                    const config = require(`${base}/${docType}/${track}/${file}`);
-                                    Object.entries(config.rules).forEach(
-                                        ([category, rules]) => {
-                                            Object.entries(rules).forEach(
-                                                ([rule, tests]) => {
-                                                    // Rule: hr/logo ...
-                                                    describe(`Rule: ${category}.${rule}`, () => {
-                                                        checkRule(tests, [
-                                                            docType,
-                                                            track,
-                                                            profile,
-                                                            category,
-                                                            rule,
-                                                        ]);
-                                                    });
-                                                }
-                                            );
-                                        }
-                                    );
-                                });
-                            }
+                            file => runTestsForProfile(file, { docType, track })
                         );
                     });
                 });
