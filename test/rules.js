@@ -255,6 +255,26 @@ after(done => {
 
 function buildHandler(test, done) {
     const handler = new Sink();
+
+    // Mock some external calls to speed up the test suite
+    const nock = require('nock');
+    nock('https://www.w3.org')
+        .head('/standards/history/hr-time')
+        .reply(200, 'HR Time history page');
+    const versions = [
+        {
+            uri: 'https://www.w3.org/TR/2022/WD-hr-time-3-20220117/',
+        },
+        {
+            uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211201/',
+        },
+        {
+            uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
+        },
+    ];
+    nock('https://api.w3.org')
+        .get('/specifications/hr-time/versions')
+        .reply(200, versions);
     handler.on('err', (type, data) => {
         if (DEBUG) console.log('error: \n', type, data);
         handler.errors.push(`${type.name}.${data.key}`);
@@ -295,6 +315,7 @@ function buildHandler(test, done) {
                 }
             }
             done();
+            nock.cleanAll();
         } catch (e) {
             done(e);
         }
@@ -420,24 +441,6 @@ function runTestsForProfile(file, { docType, track }) {
 // The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warnings in lib/l10n-en_GB.js
 describe('Making sure Specberus is not broken...', () => {
     const base = `${process.cwd()}/test/data`;
-    const nock = require('nock');
-    nock('https://www.w3.org')
-        .get('/standards/history/hr-time')
-        .reply(200, 'domain matched');
-    const versions = [
-        {
-            uri: 'https://www.w3.org/TR/2022/WD-hr-time-3-20220117/',
-        },
-        {
-            uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211201/',
-        },
-        {
-            uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
-        },
-    ];
-    nock('https://api.w3.org')
-        .get('/specifications/hr-time/versions')
-        .reply(200, versions);
     listFilesOf(base)
         .filter(v => lstatSync(`${base}/${v}`).isDirectory())
         .forEach(docType => {
