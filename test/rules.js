@@ -310,7 +310,7 @@ const { goodDocuments } = require('./data/goodDocuments');
 const testsGoodDoc = goodDocuments;
 
 // The next check is running each profile using the rules configured.
-describe.only('Making sure good documents pass Specberus...', () => {
+describe('Making sure good documents pass Specberus...', () => {
     Object.keys(testsGoodDoc).forEach(docProfile => {
         // testsGoodDoc[docProfile].profile is used to distinguish multiple cases for same profile.
         docProfile = testsGoodDoc[docProfile].profile || docProfile;
@@ -348,7 +348,6 @@ describe.only('Making sure good documents pass Specberus...', () => {
                 url,
             };
 
-            console.log('\n\nin checkRule, config: ', options.profile.config);
             // for (const o in test.options) options[o] = test.options[o];
             new Specberus(process.env.W3C_API_KEY).validate(options);
         });
