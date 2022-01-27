@@ -114,9 +114,9 @@ exports.buildCommonViewData = base => {
             },
             jointDifferentPP: {
                 ...base,
-                header: {
-                    ...base.header,
-                    defaultDate: '04 November 2020',
+                sotd: {
+                    ...base.sotd,
+                    showDifferentPP: true,
                 },
             },
             noPPFromCharter: {

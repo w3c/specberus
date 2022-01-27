@@ -259,15 +259,15 @@ after(done => {
 function buildHandler(test, done) {
     const handler = new Sink();
     handler.on('err', (type, data) => {
-        if (DEBUG) console.log(type, data);
+        if (DEBUG) console.log('error: \n', type, data);
         handler.errors.push(`${type.name}.${data.key}`);
     });
     handler.on('warning', (type, data) => {
-        if (DEBUG) console.log('[W]', data);
+        if (DEBUG) console.log('warning: \n', type, data);
         handler.warnings.push(`${type.name}.${data.key}`);
     });
-    handler.on('done', () => {
-        if (DEBUG) console.log(`---done, ${handler.done}---`);
+    handler.on('done', name => {
+        if (DEBUG) console.log(`----> ${name} check done`);
     });
     handler.on('exception', data => {
         console.error(
@@ -313,16 +313,18 @@ const { goodDocuments } = require('./data/goodDocuments');
 const testsGoodDoc = goodDocuments;
 
 // The next check is running each profile using the rules configured.
-describe('Making sure good documents pass Specberus...', () => {
+describe.only('Making sure good documents pass Specberus...', () => {
     Object.keys(testsGoodDoc).forEach(docProfile => {
         // testsGoodDoc[docProfile].profile is used to distinguish multiple cases for same profile.
         docProfile = testsGoodDoc[docProfile].profile || docProfile;
 
         const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
         it(`should pass for ${docProfile} doc with ${url}`, done => {
-            const profilePath = util.allProfiles.find(p =>
-                p.endsWith(`${docProfile}.js`)
-            );
+            const profilePath = util.allProfiles.find(p => {
+                const file = p.split('/').pop();
+                const name = file.substring(0, file.lastIndexOf('.'));
+                return name === docProfile;
+            });
             const profile = require(`../lib/profiles/${profilePath}`);
 
             // add custom config to test
@@ -349,6 +351,7 @@ describe('Making sure good documents pass Specberus...', () => {
                 url,
             };
 
+            console.log('\n\nin checkRule, config: ', options.profile.config);
             // for (const o in test.options) options[o] = test.options[o];
             new Specberus(process.env.W3C_API_KEY).validate(options);
         });
@@ -419,7 +422,7 @@ function runTestsForProfile(file, { docType, track }) {
 }
 
 // The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warnings in lib/l10n-en_GB.js
-describe.only('Making sure Specberus is not broken...', () => {
+describe('Making sure Specberus is not broken...', () => {
     const base = `${process.cwd()}/test/data`;
     listFilesOf(base)
         .filter(v => lstatSync(`${base}/${v}`).isDirectory())

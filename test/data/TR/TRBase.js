@@ -112,11 +112,10 @@ exports.rules = {
                 },
                 errors: ['sotd.pp.no-pp2020'],
             },
-            // TODO: find a valid different pp, to resolve different patent policies
-            // {
-            //     data: 'jointDifferentPP',
-            //     errors: ['sotd.pp.joint-different-pp'],
-            // },
+            {
+                data: 'jointDifferentPP',
+                errors: ['sotd.pp.joint-different-pp'],
+            },
             {
                 data: 'jointPublication',
                 config: {

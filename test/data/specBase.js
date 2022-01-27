@@ -316,7 +316,7 @@ exports.rules = {
         ],
         'body-toc-sidebar': [
             {
-                data: 'noSidebar',
+                data: 'classFound',
                 errors: ['style.body-toc-sidebar.class-found'],
             },
         ],

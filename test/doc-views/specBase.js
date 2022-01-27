@@ -1,6 +1,6 @@
 exports.data = {
     body: {
-        classes: 'h-entry toc-sidebar',
+        bodyClassNames: 'h-entry',
     },
     scripts: ['https://www.w3.org/scripts/TR/2021/fixup.js'],
     head: {
@@ -171,6 +171,7 @@ exports.data = {
         iprLink: 'https://www.w3.org/groups/wg/i18n-core/ipr',
         iprText: 'public list of any patent disclosures',
         iprRel: 'disclosure',
+        showDifferentPP: false,
 
         pageIncludeText: 'the group; that page also includes',
         individualText: 'An individual who has',
@@ -522,7 +523,7 @@ exports.buildCommonViewData = base => ({
             ...base,
             header: {
                 ...base.header,
-                defaultDate: '04 November 2020',
+                defaultDate: '04 October 2022',
             },
         },
         noDocDate: {
@@ -850,11 +851,9 @@ exports.buildCommonViewData = base => ({
         },
     },
     'body-toc-sidebar': {
-        noSidebar: {
+        classFound: {
             ...base,
-            body: {
-                classes: '',
-            },
+            bodyClassNames: 'toc-sidebar',
         },
     },
     script: {

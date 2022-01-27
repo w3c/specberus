@@ -14,6 +14,7 @@ const customData = {
 
 // Used in http://localhost:8001/doc-views/TR/Note/DNOTE?type=good
 const good = { ...data, ...customData };
+console.log('\n\ngood: ', good.config);
 
 const common = buildCommonViewData(good);
 
