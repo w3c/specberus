@@ -86,6 +86,7 @@
         "**/*.woff",
         "**/*.svg",
         ".nyc_output/**",
+        ".github/**",
         "coverage/**",
         "doc/api/**",
         "test/**/*.html",

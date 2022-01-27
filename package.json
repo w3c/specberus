@@ -67,7 +67,7 @@
   "lint-staged": {
     "*.js": "eslint --cache",
     "*": [
-      "cspell",
+      "cspell --no-must-find-files",
       "prettier --write --ignore-unknown"
     ]
   },
