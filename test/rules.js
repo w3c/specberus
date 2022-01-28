@@ -262,19 +262,26 @@ function buildHandler(test, mock, done) {
         nock('https://www.w3.org', { allowUnmocked: true })
             .head('/standards/history/hr-time')
             .reply(200, 'HR Time history page');
-        const versions = [
-            {
-                uri: 'https://www.w3.org/TR/2022/WD-hr-time-3-20220117/',
+        const versions = {
+            page: 1,
+            pages: 1,
+            _embedded: {
+                'version-history': [
+                    {
+                        uri: 'https://www.w3.org/TR/2022/WD-hr-time-3-20220117/',
+                    },
+                    {
+                        uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211201/',
+                    },
+                    {
+                        uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
+                    },
+                ],
             },
-            {
-                uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211201/',
-            },
-            {
-                uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
-            },
-        ];
+        };
         nock('https://api.w3.org', { allowUnmocked: true })
             .get('/specifications/hr-time/versions')
+            .query({ embed: true })
             .reply(200, versions);
 
         const groupNames = {
