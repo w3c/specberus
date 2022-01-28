@@ -253,8 +253,30 @@ after(done => {
     }
 });
 
-function buildHandler(test, done) {
+function buildHandler(test, mock, done) {
     const handler = new Sink();
+
+    const nock = require('nock');
+    if (mock) {
+        // Mock some external calls to speed up the test suite
+        nock('https://www.w3.org')
+            .head('/standards/history/hr-time')
+            .reply(200, 'HR Time history page');
+        const versions = [
+            {
+                uri: 'https://www.w3.org/TR/2022/WD-hr-time-3-20220117/',
+            },
+            {
+                uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211201/',
+            },
+            {
+                uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
+            },
+        ];
+        nock('https://api.w3.org')
+            .get('/specifications/hr-time/versions')
+            .reply(200, versions);
+    }
     handler.on('err', (type, data) => {
         if (DEBUG) console.log('error: \n', type, data);
         handler.errors.push(`${type.name}.${data.key}`);
@@ -295,6 +317,7 @@ function buildHandler(test, done) {
                 }
             }
             done();
+            if (mock) nock.cleanAll();
         } catch (e) {
             done(e);
         }
@@ -342,7 +365,7 @@ describe('Making sure good documents pass Specberus...', () => {
                     ...profile,
                     rules, // do not change profile.rules
                 },
-                events: buildHandler({ ignoreWarnings: true }, done),
+                events: buildHandler({ ignoreWarnings: true }, false, done),
                 url,
             };
 
@@ -371,7 +394,7 @@ function checkRule(tests, options) {
                         ...test.config,
                     },
                 },
-                events: buildHandler(test, done),
+                events: buildHandler(test, true, done),
                 ...test.options,
             };
 
