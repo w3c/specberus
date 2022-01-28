@@ -262,20 +262,20 @@ function buildHandler(test, mock, done) {
         nock('https://www.w3.org')
             .head('/standards/history/hr-time')
             .reply(200, 'HR Time history page');
-        // const versions = [
-        //     {
-        //         uri: 'https://www.w3.org/TR/2022/WD-hr-time-3-20220117/',
-        //     },
-        //     {
-        //         uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211201/',
-        //     },
-        //     {
-        //         uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
-        //     },
-        // ];
-        // nock('https://api.w3.org')
-        //     .get('/specifications/hr-time/versions')
-        //     .reply(200, versions);
+        const versions = [
+            {
+                uri: 'https://www.w3.org/TR/2022/WD-hr-time-3-20220117/',
+            },
+            {
+                uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211201/',
+            },
+            {
+                uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
+            },
+        ];
+        nock('https://api.w3.org')
+            .get('/specifications/hr-time/versions')
+            .reply(200, versions);
     }
     handler.on('err', (type, data) => {
         if (DEBUG) console.log('error: \n', type, data);
