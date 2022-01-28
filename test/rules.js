@@ -259,7 +259,7 @@ function buildHandler(test, mock, done) {
     const nock = require('nock');
     if (mock) {
         // Mock some external calls to speed up the test suite
-        nock('https://www.w3.org')
+        nock('https://www.w3.org', { allowUnmocked: true })
             .head('/standards/history/hr-time')
             .reply(200, 'HR Time history page');
         const versions = [
@@ -273,7 +273,7 @@ function buildHandler(test, mock, done) {
                 uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
             },
         ];
-        nock('https://api.w3.org')
+        nock('https://api.w3.org', { allowUnmocked: true })
             .get('/specifications/hr-time/versions')
             .reply(200, versions);
     }
@@ -383,9 +383,6 @@ function checkRule(tests, options) {
         const url = `${ENDPOINT}/doc-views/${docType}/${suffix}?rule=${rule}&type=${test.data}`;
         const { config } = require(`../lib/profiles/${docType}/${suffix}`);
 
-        // TODO: delete before merge
-        if (test.data !== 'noDisclosures') return;
-
         it(`should ${passOrFail} for ${url}`, done => {
             const options = {
                 url,
@@ -441,7 +438,7 @@ function runTestsForProfile(file, { docType, track }) {
 }
 
 // The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warnings in lib/l10n-en_GB.js
-describe.only('Making sure Specberus is not broken...', () => {
+describe('Making sure Specberus is not broken...', () => {
     const base = `${process.cwd()}/test/data`;
     listFilesOf(base)
         .filter(v => lstatSync(`${base}/${v}`).isDirectory())
