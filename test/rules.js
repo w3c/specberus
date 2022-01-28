@@ -536,7 +536,7 @@ function runTestsForProfile(file, { docType, track }) {
 }
 
 // The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warnings in lib/l10n-en_GB.js
-describe.only('Making sure Specberus is not broken...', () => {
+describe('Making sure Specberus is not broken...', () => {
     const base = `${process.cwd()}/test/data`;
     listFilesOf(base)
         .filter(v => lstatSync(`${base}/${v}`).isDirectory())
