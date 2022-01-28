@@ -276,6 +276,104 @@ function buildHandler(test, mock, done) {
         nock('https://api.w3.org', { allowUnmocked: true })
             .get('/specifications/hr-time/versions')
             .reply(200, versions);
+
+        const groupNames = {
+            'i18n-core': 32113,
+            forms: 32219,
+            apa: 83907,
+            ag: 35422,
+        };
+        Object.keys(groupNames).forEach(groupName => {
+            const groupId = groupNames[groupName];
+            nock('https://api.w3.org', { allowUnmocked: true })
+                .get(
+                    `/groups/wg/${groupName}?apikey=${process.env.W3C_API_KEY}`
+                )
+                .reply(200, {
+                    id: groupId,
+                    type: 'working group',
+                });
+        });
+
+        const chartersData = {
+            32113: [
+                {
+                    end: '2021-09-30',
+                    'doc-licenses': [
+                        {
+                            uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
+                            name: 'W3C Software and Document License',
+                        },
+                    ],
+                    start: '2019-06-28',
+                    'patent-policy':
+                        'https://www.w3.org/Consortium/Patent-Policy-20170801/',
+                },
+                {
+                    end: '2024-09-30',
+                    'doc-licenses': [
+                        {
+                            uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
+                            name: 'W3C Software and Document License',
+                        },
+                    ],
+                    start: '2021-09-30',
+                    'patent-policy':
+                        'https://www.w3.org/Consortium/Patent-Policy-20200915/',
+                },
+            ],
+            32219: {
+                end: '2012-03-31',
+                'doc-licenses': [],
+                start: '2010-05-17',
+            },
+            83907: {
+                end: '2023-07-31',
+                'doc-licenses': [
+                    {
+                        uri: 'https://www.w3.org/Consortium/Legal/copyright-documents',
+                        name: 'W3C Document License',
+                    },
+                    {
+                        uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
+                        name: 'W3C Software and Document License',
+                    },
+                ],
+                start: '2021-08-11',
+                'patent-policy':
+                    'https://www.w3.org/Consortium/Patent-Policy-20200915/',
+            },
+            35422: {
+                end: '2022-10-31',
+                'doc-licenses': [
+                    {
+                        uri: 'https://www.w3.org/Consortium/Legal/copyright-documents',
+                        name: 'W3C Document License',
+                    },
+                    {
+                        uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
+                        name: 'W3C Software and Document License',
+                    },
+                ],
+                start: '2019-12-20',
+                'patent-policy':
+                    'https://www.w3.org/Consortium/Patent-Policy-20170801/',
+            },
+        };
+
+        Object.keys(chartersData).forEach(groupId => {
+            const charterData = Array.isArray(chartersData[groupId])
+                ? chartersData[groupId]
+                : [chartersData[groupId]];
+            // nock('https://api.w3.org', { allowUnmocked: true })
+            nock('https://api.w3.org')
+                .get(`/groups/${groupId}/charters?embed=true`)
+                .reply(200, {
+                    _embedded: {
+                        charters: charterData,
+                    },
+                });
+        });
     }
     handler.on('err', (type, data) => {
         if (DEBUG) console.log('error: \n', type, data);
@@ -438,7 +536,7 @@ function runTestsForProfile(file, { docType, track }) {
 }
 
 // The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warnings in lib/l10n-en_GB.js
-describe('Making sure Specberus is not broken...', () => {
+describe.only('Making sure Specberus is not broken...', () => {
     const base = `${process.cwd()}/test/data`;
     listFilesOf(base)
         .filter(v => lstatSync(`${base}/${v}`).isDirectory())
