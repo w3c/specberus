@@ -384,7 +384,7 @@ function checkRule(tests, options) {
         const { config } = require(`../lib/profiles/${docType}/${suffix}`);
 
         // TODO: delete before merge
-        if (test.data !== 'wrongPPFromCharter') return;
+        if (test.data !== 'noDisclosures') return;
 
         it(`should ${passOrFail} for ${url}`, done => {
             const options = {
@@ -400,7 +400,6 @@ function checkRule(tests, options) {
                 events: buildHandler(test, true, done),
                 ...test.options,
             };
-
             new Specberus(process.env.W3C_API_KEY).validate(options);
         });
     });
