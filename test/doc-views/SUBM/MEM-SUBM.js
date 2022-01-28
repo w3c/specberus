@@ -17,12 +17,17 @@ const good = {
     dl: {
         ...data.dl,
         topLevel: 'Submission',
+        latestVersion: {
+            ...data.dl.latestVersion,
+            docType: 'Submission',
+            textDocType: 'Submission',
+        },
     },
     config: {
         ...config,
         ...data.config,
         profile: 'Member Submission',
-        status: 'MEM-SUBM',
+        status: 'SUBM',
     },
 };
 

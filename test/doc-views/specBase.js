@@ -1,7 +1,5 @@
 exports.data = {
-    body: {
-        bodyClassNames: 'h-entry',
-    },
+    bodyClassNames: 'h-entry',
     scripts: ['https://www.w3.org/scripts/TR/2021/fixup.js'],
     head: {
         meta: {
@@ -523,11 +521,15 @@ exports.buildCommonViewData = base => ({
             ...base,
             header: {
                 ...base.header,
-                defaultDate: '04 October 2022',
+                defaultDate: '04 October 2021',
             },
         },
         noDocDate: {
             ...base,
+            config: {
+                ...base.config,
+                isEchidna: false,
+            },
             header: {
                 ...base.header,
                 defaultDate: '',

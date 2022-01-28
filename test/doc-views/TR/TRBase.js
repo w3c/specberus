@@ -114,6 +114,10 @@ exports.buildCommonViewData = base => {
             },
             jointDifferentPP: {
                 ...base,
+                config: {
+                    ...base.config,
+                    underPP: true,
+                },
                 sotd: {
                     ...base.sotd,
                     showDifferentPP: true,

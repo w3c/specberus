@@ -58,7 +58,7 @@
     "prepare": "husky install",
     "spelling": "cspell \"**/*\"",
     "start": "node --use_strict app",
-    "test": "mocha"
+    "test": "NO_THROTTLE=true mocha"
   },
   "engines": {
     "node": "^14 || ^16",
