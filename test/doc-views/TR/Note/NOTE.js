@@ -12,7 +12,7 @@ const customData = {
     },
 };
 
-// Used in http://localhost:8001/doc-views/TR/Note/DNOTE?type=good
+// Used in http://localhost:8001/doc-views/TR/Note/NOTE?type=good
 const good = { ...data, ...customData };
 
 const common = buildCommonViewData(good);

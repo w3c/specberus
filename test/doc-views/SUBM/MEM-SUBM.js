@@ -4,7 +4,7 @@ const { buildCommonViewData, data } = require('../specBase');
 const profile = 'MEM-SUBM';
 const { config } = require(`../../../lib/profiles/SUBM/${profile}`);
 
-// Used in http://localhost:8001/doc-views/TR/Recommendation/FPWD?type=good
+// Used in http://localhost:8001/doc-views/TR/Recommendation/MEM-SUBM?type=good
 const good = {
     ...data,
     sotd: {
