@@ -1,6 +1,6 @@
 exports.samples = [
     {
-        file: 'p2021/2021-fpwd',
+        file: '2021-fpwd',
         profile: 'FPWD',
         title: 'Foo Time',
         docDate: '2021-11-4',
@@ -19,7 +19,7 @@ exports.samples = [
         updated: false,
     },
     {
-        file: 'p2021/2021-wd',
+        file: '2021-wd',
         profile: 'WD',
         title: 'Foo Time',
         docDate: '2021-11-4',
@@ -39,7 +39,7 @@ exports.samples = [
         patentPolicy: 'https://www.w3.org/Consortium/Patent-Policy-20200915/',
     },
     {
-        file: 'p2021/2021-wd-shortname-change',
+        file: '2021-wd-shortname-change',
         profile: 'WD',
         rectrack: 'Recommendation',
         title: 'Foo Time',
@@ -61,7 +61,7 @@ exports.samples = [
         charters: ['https://www.w3.org/2021/02/webperf.html'],
     },
     {
-        file: 'p2021/2021-cr',
+        file: '2021-cr',
         profile: 'CR',
         implementationFeedbackDue: '2022-6-6',
         implementationReport: 'https://wpt.fyi/hr-time/',
@@ -83,7 +83,7 @@ exports.samples = [
         updated: false,
     },
     {
-        file: 'p2021/2021-crd',
+        file: '2021-crd',
         profile: 'CRD',
         implementationReport: 'https://wpt.fyi/hr-time/',
         title: 'High Resolution Time',
@@ -104,7 +104,7 @@ exports.samples = [
         updated: false,
     },
     {
-        file: 'p2021/2021-pr',
+        file: '2021-pr',
         profile: 'PR',
         prReviewsDue: '2022-7-13',
         implementationReport: 'https://wpt.fyi/hr-time/',
@@ -126,7 +126,7 @@ exports.samples = [
         updated: false,
     },
     {
-        file: 'p2021/2021-rec',
+        file: '2021-rec',
         profile: 'REC',
         title: 'CSS Color Module Level 3',
         docDate: '2022-1-18',
@@ -150,7 +150,7 @@ exports.samples = [
         updated: false,
     },
     {
-        file: 'p2021/2021-dnote',
+        file: '2021-dnote',
         profile: 'DNOTE',
         title: 'Ready-made Counter Styles',
         docDate: '2021-11-4',
@@ -175,7 +175,7 @@ exports.samples = [
         updated: false,
     },
     {
-        file: 'p2021/2021-note',
+        file: '2021-note',
         profile: 'NOTE',
         title: 'Ready-made Counter Styles',
         docDate: '2021-11-4',
@@ -200,7 +200,7 @@ exports.samples = [
         updated: false,
     },
     {
-        file: 'p2021/2021-stmt',
+        file: '2021-stmt',
         profile: 'STMT',
         title: 'Ready-made Counter Styles',
         docDate: '2021-11-4',
@@ -225,7 +225,7 @@ exports.samples = [
         updated: false,
     },
     {
-        file: 'p2021/2021-dry',
+        file: '2021-dry',
         profile: 'DRY',
         title: 'Ready-made Counter Styles',
         docDate: '2021-11-4',
@@ -250,7 +250,7 @@ exports.samples = [
         updated: false,
     },
     {
-        file: 'p2021/2021-cry',
+        file: '2021-cry',
         profile: 'CRY',
         title: 'Ready-made Counter Styles',
         docDate: '2021-11-4',
@@ -275,7 +275,7 @@ exports.samples = [
         updated: false,
     },
     {
-        file: 'p2021/2021-cryd',
+        file: '2021-cryd',
         profile: 'CRYD',
         title: 'Ready-made Counter Styles',
         docDate: '2021-11-4',
@@ -300,7 +300,7 @@ exports.samples = [
         updated: false,
     },
     {
-        file: 'p2021/2021-ry',
+        file: '2021-ry',
         profile: 'RY',
         title: 'Ready-made Counter Styles',
         docDate: '2021-11-4',

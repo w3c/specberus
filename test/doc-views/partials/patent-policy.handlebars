@@ -1,0 +1,28 @@
+{{#config.underPP}}
+    {{#if sotd.showDifferentPP}}
+    <p>
+        This document was produced by groups operating under the <a href="https://www.w3.org/Consortium/Patent-Policy-20170801/">W3C Patent Policy</a>.
+        W3C maintains a <a href="https://www.w3.org/groups/wg/apa/ipr" rel="disclosure">public list of any patent disclosures (CSS)</a> and a <a href="https://www.w3.org/groups/wg/ag/ipr" rel="disclosure">public list of any patent disclosures (Technical Architecture Group)</a> made in connection with the deliverables of each group;
+        these pages also include instructions for disclosing a patent.
+        An individual who has actual knowledge of a patent
+        which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy-20170801/#def-essential">Essential Claim(s)</a> must disclose the information
+        in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy-20170801/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.
+    </p>
+    {{else}}
+    <p>
+        This document was produced by a group operating under the <a href="{{sotd.ppLink}}"><span class="handlebars-data">{{{sotd.ppHTML}}}{{! W3C Patent Policy }}</span></a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a rel="{{sotd.iprRel}}" href="{{sotd.iprLink}}"><span class="handlebars-data">{{sotd.iprText}}{{! public list of any patent disclosures }}</span></a> made in connection with the deliverables of <span class="handlebars-data">{{sotd.pageIncludeText}}{{! the group; that page also includes }}</span> instructions for disclosing a patent. <span class="handlebars-data">{{sotd.individualText}}{{! An individual who has }}</span> actual knowledge of a patent which the individual believes contains <a href="{{sotd.essentialLink}}"><span class="handlebars-data">{{sotd.essentialText}}{{! Essential Claim(s) }}</span></a> must disclose the information in accordance with <a href="{{sotd.disclosureLink}}"><span class="handlebars-data">{{{sotd.disclosureHTML}}}</span></a>.
+    </p>
+    {{/if}}
+{{/config.underPP}}
+{{^config.underPP}}
+
+    <p {{{sotd.deliverer}}} {{! data-deliverer="32113"}}></p>
+        The <a href="{{sotd.ppLink}}"><span class="handlebars-data">{{{sotd.ppHTML}}}{{! W3C Patent Policy }}</span></a> does not carry any <span class="handlebars-data">{{sotd.noPPText}}{{! licensing requirements or commitments }}</span> on this document.
+    </p>
+{{/config.underPP}}
+{{#config.isNoteTrack}}
+<p>The <a href="{{sotd.ppLink1}}">{{sotd.ppDate}} W3C Patent Policy</a> does not carry any licensing requirements or commitments on this document. </p>
+{{/config.isNoteTrack}}
+{{#config.isRyTrack}}
+<p>The <a href="{{sotd.ppLink1}}">{{sotd.ppDate}} W3C Patent Policy</a> does not carry any licensing requirements or commitments on this document. </p>
+{{/config.isRyTrack}}

@@ -112,13 +112,20 @@ io.on('connection', socket => {
             return socket.emit('exception', {
                 message: 'Profile not provided.',
             });
-        if (!util.profiles[data.profile])
+        const profilePath = util.allProfiles.find(p =>
+            p.endsWith(`/${data.profile}.js`)
+        );
+        let profile;
+        try {
+            // eslint-disable-next-line import/no-dynamic-require
+            profile = require(`./lib/profiles/${profilePath}`);
+        } catch (err) {
             return socket.emit('exception', {
                 message: 'Profile does not exist.',
             });
+        }
         const specberus = new validator.Specberus(process.env.W3C_API_KEY);
         const handler = new Sink();
-        const profile = util.profiles[data.profile];
         const profileCode = profile.name;
         socket.emit('start', {
             rules: (profile.rules || []).map(rule => rule.name),

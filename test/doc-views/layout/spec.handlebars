@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style>
+        .handlebars-data {
+            background: rgba(255, 0, 0, 0.15)
+        }
+    </style>
+    {{#if head.meta.show}}
+        <meta name="viewport" content="{{head.meta.width}} initial-scale=1, shrink-to-fit=no">
+    {{/if}}
+    {{#if head.showCanonical}}<link rel="canonical" href="https://www.w3.org/TR/{{dl.shortName}}/">{{/if}}
+    {{#if head.styleSheet.show}}
+        <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/{{config.styleSheet}}.css">
+    {{/if}}
+    {{#if head.styleSheet.showAnother}}
+        <link rel="stylesheet" href="https://another.css">
+    {{/if}}
+    {{#if head.title.show}}
+        <title>{{config.profile}}: {{head.title.suffix}}</title> <!-- matches div.head h1 -->
+    {{/if}}
+</head>
+<body class="{{bodyClassNames}}" data-cite="WebIDL html dom webidl ecma-262">
+    <div class="{{header.headClassName}}">
+        {{#if header.logo.show}}
+            <a class="logo" href="{{header.logo.href}}">
+                <img alt="W3C" src="{{header.logo.src}}" width="72" height="48">
+            </a>
+        {{/if}}
+        {{#if header.title.show}}
+            <h1 id="title" class="title p-name"><span class="handlebars-data">{{config.profile}}: test document - {{#config.titleSuffix}}<span class="handlebars-data">{{config.titleSuffix}}</span>{{/config.titleSuffix}}Specberus</h1>
+        {{/if}}
+
+        <p id='w3c-state'>
+            <a href='https://www.w3.org/standards/types#{{#if config.isFPWD}}FPWD{{else}}{{config.status}}{{/if}}'>W3C <span class="handlebars-data">{{config.longStatus}} {{config.crType}} {{config.cryType}}</span></a>
+            {{! if document is Echidna, use current date. else, use default date}}
+            <time class="dt-published" datetime="2021-11-04">
+                {{#if config.isEchidna}}
+                    <span class="handlebars-data">{{now}}</span>
+                {{else}}
+                    {{header.defaultDate}}
+                {{/if}}
+            </time>
+        </p>
+        {{#if header.details.show}}
+        <details {{header.details.open}}>
+            {{#if header.summary.show}}
+                <summary>{{header.summary.text}}</summary>
+            {{/if}}
+            {{#if dl.show}}
+                <dl>
+                    {{#if dl.latestVersion.showAhead}}
+                        <dt>{{dl.latestVersion.text}}</dt>
+                        <dd> <a href="https://www.w3.org/{{dl.topLevel}}/{{dl.seriesShortName}}/">https://www.w3.org/{{dl.topLevel}}/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
+                        </dd>
+                    {{/if}}
+
+                    {{#if dl.thisVersion.show}}
+                        <dt>{{dl.thisVersion.text}}</dt>
+                        <dd>
+                            <a class="u-url" {{#if dl.thisVersion.showHref}}href="https://www.w3.org/{{dl.topLevel}}/{{#if config.isEchidna}}{{nowYear}}{{else}}2021{{/if}}/{{config.status}}-{{dl.shortName}}-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}{{nowDigit8}}{{else}}20211104{{/if}}/"{{/if}}>
+                               https://www.w3.org/{{dl.topLevel}}/{{#if config.isEchidna}}<span class="handlebars-data">{{nowYear}}</span>{{else}}2021{{/if}}/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data">{{dl.shortName}}</span>-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}<span class="handlebars-data">{{nowDigit8}}</span>{{else}}20211104{{/if}}/
+                            </a>
+                        </dd>
+                    {{/if}}
+
+                    {{#if dl.latestVersion.show}}
+                        <dt>{{dl.latestVersion.text}}</dt>
+                        <dd> <a {{#if dl.latestVersion.showHref}}href="https://www.w3.org/{{dl.latestVersion.docType}}/{{dl.seriesShortName}}/"{{/if}}>https://www.w3.org/{{dl.latestVersion.textDocType}}/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
+                        </dd>
+                    {{/if}}
+
+                    {{#if dl.latestEditor.show}}
+                        <dt>Latest editor's draft:</dt>
+                        <dd> <a {{#if dl.latestEditor.showHref}}href="{{dl.latestEditor.linkProtocol}}://w3c.github.io/{{dl.seriesShortName}}/"{{/if}}>{{dl.latestEditor.linkProtocol}}://w3c.github.io/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
+                        </dd>
+                    {{/if}}
+
+                    {{#if dl.history.show}}
+                        <dt><span class="handlebars-data">{{dl.historyText}}</span>:</dt>
+                        <dd> <a {{#if dl.history.showHref}}href="https://www.w3.org/standards/history/{{dl.history.shortName}}"{{/if}}>https://www.w3.org/standards/history/<span class="handlebars-data">{{dl.history.shortName}}</span></a>
+                        </dd>
+                    {{/if}}
+
+                    {{#config.needImple}}
+                    <dt>Implementation report:</dt>
+                    <dd>
+                        <a href="https://wpt.fyi/hr-time/">https://wpt.fyi/hr-time/</a>
+                    </dd>
+                    {{/config.needImple}}
+
+                    {{#if dl.editor.show}}
+                        <dt><span class="handlebars-data">{{dl.editorText}}</span>:</dt>
+                        <dd class="p-author h-card vcard" data-editor-id="{{dl.editor.id}}">George Herald (WebFoo)
+                        </dd>
+                    {{/if}}
+
+                    {{#config.isRescinded}}
+                    <dt><span class="handlebars-data">{{dl.rescindText}}</span>{{! Rescinds this Recommendation}}:</dt>
+                    <dd>
+                        <a rel="dcterms:replaces" {{#if dl.rescind.showHref}}href="{{dl.rescindLink}}"{{/if}}><span class="handlebars-data">{{dl.rescindLink}}</span></a>
+                    </dd>
+                    {{/config.isRescinded}}
+
+                    {{#config.isObsolete}}
+                        <dt><span class="handlebars-data">{{dl.obsoleteText}}</span>{{! Obsolete this Recommendation}}:</dt>
+                        <dd>
+                            <a rel="dcterms:replaces" {{#if dl.obsolete.showHref}}href="{{dl.obsoleteLink}}"{{/if}}><span class="handlebars-data">{{dl.obsoleteLink}}</span></a>
+                        </dd>
+                    {{/config.isObsolete}}
+
+                    {{#config.isSuperseded}}
+                        <dt><span class="handlebars-data">{{dl.supersedeText}}</span>{{! Obsolete this Recommendation}}:</dt>
+                        <dd>
+                            <a rel="dcterms:replaces" {{#if dl.supersede.showHref}}href="{{dl.supersedeLink}}"{{/if}}><span class="handlebars-data">{{dl.supersedeLink}}</span></a>
+                        </dd>
+                    {{/config.isSuperseded}}
+
+                    {{#if dl.latestVersion.showBehind}}
+                        <dt>{{dl.latestVersion.text}}</dt>
+                        <dd> <a href="https://www.w3.org/{{dl.topLevel}}/{{dl.seriesShortName}}/">https://www.w3.org/{{dl.topLevel}}/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>
+                        </dd>
+                    {{/if}}
+
+                    {{#config.needErrata}}
+                    <dt>Errata:</dt>
+                        <dd><a href="{{dl.errataLink}}"><span class="handlebars-data">{{dl.errataLink}}</span></a><br>
+                    </dd>
+                    {{/config.needErrata}}
+
+                    {{#if dl.feedback.show}}
+                        <dt>Feedback:</dt>
+                        <dd><a href="{{dl.feedbackPrefix}}{{dl.shortName}}/issues"><span class="handlebars-data">{{dl.feedbackPrefix}}</span><span class="handlebars-data">{{dl.seriesShortName}}</span>/issues</a></dd>
+                        <dd><a href="mailto:public-foo@w3.org?subject=%5B{{dl.shortName}}%5D%20YOUR%20TOPIC%20HERE">public-foo@w3.org</a> with subject line “<kbd>[<span class="handlebars-data">{{dl.shortName}}</span>] <var>… message topic …</var></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-foo/" rel="discussion">archives</a>)</dd>
+                    {{/if}}
+                </dl>
+            {{/if}}
+        </details>
+        {{/if}}
+
+        {{#if copyright.show}}
+            <p class="copyright">
+                <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright"><span class="handlebars-data">{{copyright.startText}}</span></a> © {{#if config.isEchidna}}<span class="handlebars-data">{{nowYear}}</span>{{else}}2021{{/if}} <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="{{copyright.MITLink}}"><abbr title="Massachusetts Institute of Technology"><span class="handlebars-data">{{copyright.MIT}}</span></abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <span class="handlebars-data">{{{copyright.beihangHTML}}}</span>). <span class="handlebars-data">{{{copyright.licenseHTML}}}</span>
+            </p>
+        {{/if}}
+        {{#if header.hr.show}}
+            <hr title="Separator for header">
+        {{/if}}
+    </div>
+    {{#if hr.show}}
+        <hr title="Separator for header">
+    {{/if}}
+
+    <section id="abstract" class="introductory">
+        <h2><span class="handlebars-data">{{abstract.abstractText}}</span></h2>
+        <p>This specification defines an API that provides the time origin, and current time in sub-millisecond resolution, such that it is not subject to system clock skew or adjustments.</p>
+        {{#if showWrongDateFormat}}
+            <h2 id="sotd">Status of This Document</h2>
+            <p>Hi! This date has the wrong format: 13/Jan/1998. And these two</p>
+
+        {{/if}}
+
+    </section>
+
+    <section id="{{sotd.id}}" data-link-for="Performance" class="introductory">
+        <h2><span class="handlebars-data">{{sotd.title}}{{! Status of This Document }}</span></h2>
+
+        <p><span class="handlebars-data">{{{sotd.emHTML}}}{{! This section describes the status of this document... }}</span></p>
+        {{#if sotd.submission.show}}
+            <p>By publishing this document, W3C acknowledges that the <a href="{{sotd.submission.submissionMemberLink}}">Submitting
+                Members</a> have made a formal Submission request to W3C for discussion.
+            Publication of this document by W3C indicates no endorsement of its
+            content by W3C, nor that W3C has, is, or will be allocating any
+            resources to the issues addressed by it. This document is not the
+            product of a chartered W3C group, but is published as potential input to
+            the <a href="{{sotd.submission.processLink}}">{{sotd.submission.processText}}</a>. A <a href="{{sotd.submission.submissionComment}}">W3C Team Comment</a> has been published in conjunction with this Member Submission. Publication of acknowledged Member Submissions at the W3C site is one of
+            the benefits of <a href="{{sotd.submission.membershipLink}}">W3C
+                Membership</a>. Please consult the requirements associated with Member
+            Submissions of <a href="{{sotd.submission.ppLink}}">section
+            3.3 of the W3C Patent Policy</a>. Please consult the complete <a href="{{sotd.submission.submissionLink}}">list of acknowledged W3C Member Submissions</a>.</p>
+        {{/if}}
+
+        {{#config.isRescinded}}
+        <p>
+            W3C has <span class="handlebars-data">{{sotd.rescindText1}}{{! chosen to rescind}}</span> the <a href="https://www.w3.org/TR/2017/REC-samplespec-20170101/">Sample Specification Recommendation</a> for the following reasons: [...list of reasons...]. For additional information <span class="handlebars-data">{{sotd.rescindText2}}{{! about replacement or alternative technologies}}</span>, please refer to the <a href="{{sotd.rescindLink}}">explanation of Obsoleting, Rescinding or Superseding W3C Specifications</a>.
+        </p>
+        {{/config.isRescinded}}
+
+        <p>
+            This document <span class="handlebars-data">{{sotd.extra1}}</span>was published by the <a href="{{sotd.WGLink}}"><span class="handlebars-data">{{sotd.group}}{{!Web Performance Working Group}}</span></a> as a <span class="handlebars-data">{{config.longStatus}} {{config.crType}}{{config.cryType}}</span> using the <a href='{{sotd.trackLink}}'><span class="handlebars-data">{{config.track}}</span> track</a>.
+        </p>
+
+        {{#config.isREC}}
+        <p>
+            W3C recommends the wide deployment of this specification as a standard for the Web.
+        </p>
+        {{#if sotd.rec.showProposedAdd}}
+            <p>
+                It includes <a href="https://www.w3.org/2021/Process-20211102/#proposed-addition">proposed addition</a>, introducing new features since the Previous Recommendation.
+            </p>
+        {{/if}}
+        {{#if sotd.rec.showAddition}}
+            <p class='addition proposed'>{{sotd.rec.addition}}</p>
+        {{/if}}
+        {{/config.isREC}}
+
+        <p>
+            {{! checked by rule sotd.stability & sotd.draft-stability}}
+            <span class="handlebars-data">
+                {{! Publication as a xxx does not imply endorsement ... It is inappropriate to cite ...}}
+                {{> stability}}
+            </span>
+        </p>
+
+        {{#config.isCR}}
+            <p>This Candidate Recommendation is not expected to advance to Proposed Recommendation any earlier than
+                {{#if config.isEchidna}}
+                    <span class="handlebars-data">{{sixMonthLater}}.</span>
+                {{else}}
+                    {{sotd.defaultCRDate}}.</p>
+                {{/if}}
+        {{/config.isCR}}
+
+        {{#config.isCRY}}
+            <p>
+                This Candidate Registry is not expected to advance to Registry any earlier than 6 June 2022.
+            </p>
+        {{/config.isCRY}}
+
+        {{#config.isPR}}
+            <p>
+                <abbr title="World Wide Web Consortium">W3C</abbr> Members and other interested parties are invited to review the document and send comments through 15 October 2021. Advisory Committee Representatives should consult their <a href="{{sotd.acReviewLink}}">questionnaires</a>. Note that substantive technical comments were expected during the Candidate Recommendation review period that ended 13 July 2021.
+            </p>
+        {{/config.isPR}}
+
+        {{> patent-policy}}
+
+        <p>
+            This document <span class="handlebars-data">{{sotd.processTextPrefix}}</span>{{! is governed by the}} <a id="w3c_process_revision" href="{{sotd.processLink}}"><span class="handlebars-data">{{{sotd.processHTML}}}{{! 2 November 2021 W3C Process Document }}</span></a>.
+        </p>
+        {{#if sotd.duplicateProcess}}
+            <p>
+                This document <span class="handlebars-data">{{sotd.processTextPrefix}}</span>{{! is governed by the}} <a id="w3c_process_revision" href="{{sotd.processLink}}"><span class="handlebars-data">{{{sotd.processHTML}}}{{! 2 November 2021 W3C Process Document }}</span></a>.
+            </p>
+        {{/if}}
+        {{#if sotd.newFeatures.show}}
+            <p>{{sotd.newFeatures.text}}</p>
+        {{/if}}
+
+    </section>
+    {{#each tocs}}
+        <{{this.tag}} id="toc">
+            {{#each this.titles}}
+                <h2 class="introductory" id="table-of-contents">{{this}}</h2>
+            {{/each}}
+            <ol class="{{this.class}}">
+                <li class="tocline"><a class="tocxref" href="#introduction"><bdi class="{{secno}}">1. </bdi>Introduction</a>
+                    <ol class="toc"> <li class="tocline"><a class="tocxref" href="#examples"><bdi class="{{secno}}">1.1 </bdi>Examples</a> </li>
+                    </ol>
+                </li>
+
+                <li class="tocline"><a class="tocxref" href="#sec-time-origin"><bdi class="{{secno}}">2. </bdi>Time Origin</a>
+                </li>
+            </ol>
+        </{{this.tag}}>
+    {{/each}}
+    <section id="introduction" class="informative">
+        <h2 id="x1-introduction"><bdi class="{{secno}}">1. </bdi>Introduction<a class="self-link" aria-label="§" href="#introduction"></a></h2>
+        <p id="examples"><em>This section is non-normative.</em></p>
+    </section>
+    <section id="time origin" class="informative">
+        <h2 id="time-origin"><bdi class="{{secno}}">1. </bdi>Time Origin<a class="self-link" aria-label="§" href="#sec-time-origin"></a></h2>
+        <p id="sec-time-origin"><em>This section is non-normative.</em></p>
+    </section>
+
+    {{#if backToTop.show}}
+        <p role="navigation" id="back-to-top"><a href="#title"><abbr title="Back to Top">↑</abbr></a></p>
+    {{/if}}
+
+    {{#each scripts}}
+        <script src="{{this}}"></script>
+    {{/each}}
+</body>
+</html>

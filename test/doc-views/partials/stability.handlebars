@@ -1,0 +1,105 @@
+{{! Note Track:}}
+{{#config.isNoteTrack}}
+    {{#config.isDNOTE}}
+        Group Draft Notes are not endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> nor its Members. <span class="handlebars-data">{{sotd.draftText}}{{! This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.}}</span>
+    {{/config.isDNOTE}}
+    {{#config.isNOTE}}
+        Group Notes {{sotd.noteNotEndorsedText}}{{! are not endorsed by W3C nor its Members}}.
+    {{/config.isNOTE}}
+    {{#config.isSTMT}}
+        A W3C Statement is a specification that, <span class="handlebars-data">{{sotd.recConsensusText}}{{! after extensive consensus-building}}</span>, is endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members.
+    {{/config.isSTMT}}
+{{/config.isNoteTrack}}
+
+
+{{#config.isRecTrack}}
+    {{! Recommendation Track correct rendered html:
+
+    FPWD: Publication as a First Public Working Draft does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+
+    WD: Publication as a Working Draft does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+
+    DISC: Publication as a Discontinued Draft implies that this document is no longer intended to advance or to be maintained. It is inappropriate to cite this document as other than abandoned work.
+
+    CR: Publication as a Candidate Recommendation does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. A Candidate Recommendation Snapshot has received <a href="https://www.w3.org/2021/Process-20211102/#dfn-wide-review">wide review</a>, is intended to gather implementation experience, and has commitments from Working Group members to <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements">royalty-free licensing</a> for implementations.
+
+    CRD: Publication as a Candidate Recommendation does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. A Candidate Recommendation Draft integrates changes from the previous Candidate Recommendation that the Working Group intends to include in a subsequent Candidate Recommendation Snapshot.
+    +
+    (choose one of the 2 following paragraphs:)
+    +
+    This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+    +
+    This document is maintained and updated at any time. Some parts of this document are work in progress.
+
+    PR: Publication as a Proposed Recommendation does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+
+    REC: A W3C Recommendation is a specification that, after extensive consensus-building, is endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members, and has commitments from Working Group members to <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements">royalty-free licensing</a> for implementations.
+    --}}
+
+    {{#config.notEndorsed}}
+        Publication as a <span class="handlebars-data">{{config.longStatus}}</span> <span class="handlebars-data">{{{sotd.noEndorsementHTML}}}{{! does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members}}.</span>
+    {{/config.notEndorsed}}
+
+    {{#config.isCR}}
+        A Candidate Recommendation Snapshot has received <a href="{{sotd.wideReviewLink}}"><span class="handlebars-data">{{sotd.wideReviewText}}{{! wide review}}</span></a>, is intended to gather implementation experience, </span>
+    {{/config.isCR}}
+
+    {{#config.isCRD}}
+        A Candidate Recommendation Draft <span class="handlebars-data">{{sotd.crdIntegrateChangesText}}{{! integrates changes from the previous Candidate Recommendation}}</span> that the Working Group intends to include in a subsequent Candidate Recommendation Snapshot.
+    {{/config.isCRD}}
+
+    {{#config.isREC}}
+        A W3C Recommendation is a specification that, <span class="handlebars-data">{{sotd.recConsensusText}}{{! after extensive consensus-building}}</span>, is endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members, </span>
+    {{/config.isREC}}
+
+    {{#config.hasLicensing}}
+        and has commitments from Working Group members to <a href="{{sotd.licensingLink}}"><span class="handlebars-data">{{sotd.licensingText}}{{! royalty-free licensing}}</span></a> for implementations.
+    {{/config.hasLicensing}}
+
+    {{#config.maybeUpdated}}
+        <span class="handlebars-data">{{sotd.draftText}}{{! This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.}}</span>
+    {{/config.maybeUpdated}}
+
+    {{#config.isDISC}}
+        Publication as a {{config.longStatus}} implies that this document is no longer <span class="handlebars-data">{{sotd.discText}}{{! intended to advance or to be maintained}}</span>. It is inappropriate to cite this document as other than abandoned work.
+    {{/config.isDISC}}
+{{/config.isRecTrack}}
+
+
+{{#config.isRyTrack}}
+
+    {{! Registry Track correct rendered html:
+
+    DRY: Publication as a Draft Registry does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+
+    CRY: Publication as a Candidate Registry Snapshot does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. A Candidate Registry Snapshot has received <a href="https://www.w3.org/2021/Process-20211102/#dfn-wide-review">wide review</a>.
+
+    CRYD: Publication as a Candidate Registry Draft does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. A Candidate Registry Draft integrates changes from the previous Candidate Registry that the Working Group intends to include in a subsequent Candidate Registry Snapshot.
+
+    RY: W3C recommends the wide usage of this registry.
+    RY: A W3C Registry is a specification that, after extensive consensus-building, is endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. }}
+
+    {{#config.notEndorsed}}
+        Publication as a <span class="handlebars-data">{{config.longStatus}} {{config.cryType}}</span> <span class="handlebars-data">{{{sotd.noEndorsementHTML}}}{{! does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members}}.</span>
+    {{/config.notEndorsed}}
+
+
+    {{#config.isCRY}}
+        A Candidate Registry Snapshot has received <a href="{{sotd.wideReviewLink}}"><span class="handlebars-data">{{sotd.wideReviewText}}{{! wide review}}</span></a>.
+    {{/config.isCRY}}
+
+    {{#config.isCRYD}}
+        A Candidate Registry Draft integrates changes from the previous Candidate Registry that the Working Group intends to include in a subsequent Candidate Registry Snapshot.
+    {{/config.isCRYD}}
+
+    {{#config.maybeUpdated}}
+        </p><p><span class="handlebars-data">{{sotd.draftText}}{{! This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.}}</span>
+    {{/config.maybeUpdated}}
+
+    {{#config.isRY}}
+        W3C recommends the wide usage of this registry.</p>
+
+        <p>A W3C Registry is a specification that, <span class="handlebars-data">{{sotd.recConsensusText}}{{! after extensive consensus-building}}</span>, is endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members.</span>
+    {{/config.isRY}}
+
+{{/config.isRyTrack}}
