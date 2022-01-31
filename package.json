@@ -74,6 +74,6 @@
   "mocha": {
     "colors": true,
     "reporter": "spec",
-    "timeout": 40000
+    "timeout": 20000
   }
 }

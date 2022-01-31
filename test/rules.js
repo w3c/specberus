@@ -243,13 +243,13 @@ app.get('/docs/links/image/logo-redirection-3', (req, res) => {
 
 let server;
 
-before(done => {
-    server = app.listen(PORT, done);
+before(() => {
+    server = app.listen(PORT);
 });
 
-after(done => {
+after(() => {
     if (server) {
-        server.close(done);
+        server.close();
     }
 });
 
