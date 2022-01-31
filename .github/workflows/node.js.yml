@@ -38,7 +38,6 @@ jobs:
       - run: npm run coverage
         env:
           W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
-          NO_THROTTLE: true
 
       - name: Notify failure
         uses: rectalogic/notify-irc@v1
