@@ -4,6 +4,7 @@
   "description": "Specberus is a checker used at W3C to validate the compliance of Technical Reports with publication rules.",
   "license": "MIT",
   "main": "lib/validator",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/w3c/specberus.git"
@@ -74,6 +75,9 @@
   "mocha": {
     "colors": true,
     "reporter": "spec",
-    "timeout": 20000
+    "timeout": 20000,
+    "node-option": [
+      "experimental-specifier-resolution=node"
+    ]
   }
 }
