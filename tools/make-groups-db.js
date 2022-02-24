@@ -15,9 +15,13 @@
 
 'use strict';
 
-const fs = require('fs');
-const pth = require('path');
-const src = require('./groups-sparql.json');
+import fs from 'fs';
+import pth, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import src from './groups-sparql.json';
+
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const res = {};
 for (let i = 0, n = src.results.bindings.length; i < n; i += 1) {
