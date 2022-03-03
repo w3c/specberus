@@ -3,22 +3,20 @@
  */
 
 // Native packages:
-import http from 'http';
-
 // External packages:
 import compression from 'compression';
 import cors from 'cors';
 import express from 'express';
+import http from 'http';
 import insafe from 'insafe';
 import morgan from 'morgan';
-import socket from 'socket.io';
-import api from './lib/api';
-import l10n from './lib/l10n';
+import { Server } from 'socket.io';
+import * as api from './lib/api';
+import * as l10n from './lib/l10n';
 import { Sink } from './lib/sink';
 import { allProfiles } from './lib/util';
 import { Specberus } from './lib/validator';
-import views from './lib/views';
-
+import * as views from './lib/views';
 // Internal packages:
 import self from './package.json';
 
@@ -39,7 +37,7 @@ if (!process.env.BASE_URI || process.env.BASE_URI.length < 1) {
 
 const app = express();
 const server = http.createServer(app);
-const io = socket(server);
+const io = new Server(server);
 const { version } = self;
 // Middleware:
 app.use(morgan('combined'));
@@ -47,9 +45,7 @@ app.use(compression());
 app.use('/badterms.json', cors());
 
 app.use(express.static('public'));
-// eslint-disable-next-line import/no-named-as-default-member
 api.setUp(app, process.env.W3C_API_KEY);
-// eslint-disable-next-line import/no-named-as-default-member
 views.setUp(app);
 
 // @TODO Localize this properly when messages are translated; hard-coded British English for now.

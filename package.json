@@ -55,10 +55,10 @@
     "fix": "prettier -w . && eslint --fix .",
     "jsdoc": "jsdoc --configure jsdoc.json -r app.js lib/ public/ test/ tools/",
     "lint": "eslint . --report-unused-disable-directives && prettier -c .",
-    "live": "nodemon --use_strict app",
+    "live": "nodemon --use_strict --experimental-specifier-resolution=node app",
     "prepare": "husky install",
     "spelling": "cspell \"**/*\"",
-    "start": "node --use_strict app",
+    "start": "node --use_strict --experimental-specifier-resolution=node app",
     "test": "NO_THROTTLE=true mocha"
   },
   "engines": {
