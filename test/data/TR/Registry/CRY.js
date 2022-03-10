@@ -1,9 +1,11 @@
-const { rules, candidateReviewEndRules } = require('./registryBase');
+import registryBase from './registryBase';
 
-exports.rules = {
-    ...rules,
+const { rules: baseRules, candidateReviewEndRules } = registryBase;
+
+export const rules = {
+    ...baseRules,
     sotd: {
-        ...rules.sotd,
+        ...baseRules.sotd,
         'candidate-review-end': candidateReviewEndRules,
     },
 };

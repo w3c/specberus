@@ -1,16 +1,16 @@
-/* eslint-disable import/no-dynamic-require */
-const data = require('./WD').good;
+import { config } from '../../../../lib/profiles/TR/Recommendation/WD-Echidna';
+import recommendationBase from './recommendationBase';
+import WD from './WD';
+
+const { good: data } = WD;
 const {
     buildCommonViewData,
     buildDraftStability,
     buildSecurityPrivacy,
     buildTodaysDate,
-} = require('./recommendationBase');
+} = recommendationBase;
 
 const profile = 'WD-Echidna';
-const {
-    config,
-} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
 const customData = {
     config: {
         ...config,
@@ -24,7 +24,7 @@ const customData = {
 const good = { ...data, ...customData };
 const common = buildCommonViewData(good);
 
-module.exports = {
+export default {
     good,
     ...common,
     'draft-stability': buildDraftStability(good),

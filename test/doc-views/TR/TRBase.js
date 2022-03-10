@@ -1,11 +1,8 @@
-const {
-    buildCommonViewData: _buildCommonViewData,
-    data,
-} = require('../specBase');
+import { buildCommonViewData as _buildCommonViewData, data } from '../specBase';
 
-exports.data = data;
+export { data };
 
-exports.buildCommonViewData = base => {
+export function buildCommonViewData(base) {
     const common = _buildCommonViewData(base);
     return {
         ...common,
@@ -189,92 +186,100 @@ exports.buildCommonViewData = base => {
             },
         },
     };
-};
+}
 
-exports.buildCandidateReviewEnd = base => ({
-    noDateFound: {
-        ...base,
-        sotd: {
-            ...base.sotd,
-            defaultCRDate: '',
-        },
-    },
-    multipleDateFound: {
-        ...base,
-        sotd: {
-            ...base.sotd,
-            defaultCRDate: '04 October 2022. 05 October 2022.',
-        },
-    },
-    invalidDate: {
-        ...base,
-        sotd: {
-            ...base.sotd,
-            defaultCRDate: '02 December 2023',
-        },
-    },
-});
-
-exports.buildTodaysDate = base => ({
-    noDateDetected: {
-        ...base,
-        config: {
-            ...base.config,
-            isEchidna: false,
-        },
-        header: {
-            ...base.header,
-            defaultDate: '',
-        },
-    },
-    wrongDate: {
-        ...base,
-        config: {
-            ...base.config,
-            isEchidna: false,
-        },
-        header: {
-            ...base.header,
-            defaultDate: '04 November 2019',
-        },
-    },
-});
-
-exports.buildDraftStability = base => ({
-    noDraftEither: {
-        ...base,
-        sotd: {
-            ...base.sotd,
-            draftText:
-                'This is a other document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.',
-        },
-    },
-    noDraft: {
-        ...base,
-        sotd: {
-            ...base.sotd,
-            draftText:
-                'This is a other document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.',
-        },
-    },
-});
-
-exports.buildNewFeatures = base => ({
-    noWarning: {
-        ...base,
-    },
-    noLink: {
-        ...base,
-        sotd: {
-            ...base.sotd,
-            newFeatures: {
-                show: true,
-                text: `Future updates to this ${
-                    base.config.status === 'PR'
-                        ? 'specification'
-                        : 'Recommendation'
-                } may incorporate new features.`,
+export function buildCandidateReviewEnd(base) {
+    return {
+        noDateFound: {
+            ...base,
+            sotd: {
+                ...base.sotd,
+                defaultCRDate: '',
             },
         },
-    },
-});
+        multipleDateFound: {
+            ...base,
+            sotd: {
+                ...base.sotd,
+                defaultCRDate: '04 October 2022. 05 October 2022.',
+            },
+        },
+        invalidDate: {
+            ...base,
+            sotd: {
+                ...base.sotd,
+                defaultCRDate: '02 December 2023',
+            },
+        },
+    };
+}
+
+export function buildTodaysDate(base) {
+    return {
+        noDateDetected: {
+            ...base,
+            config: {
+                ...base.config,
+                isEchidna: false,
+            },
+            header: {
+                ...base.header,
+                defaultDate: '',
+            },
+        },
+        wrongDate: {
+            ...base,
+            config: {
+                ...base.config,
+                isEchidna: false,
+            },
+            header: {
+                ...base.header,
+                defaultDate: '04 November 2019',
+            },
+        },
+    };
+}
+
+export function buildDraftStability(base) {
+    return {
+        noDraftEither: {
+            ...base,
+            sotd: {
+                ...base.sotd,
+                draftText:
+                    'This is a other document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.',
+            },
+        },
+        noDraft: {
+            ...base,
+            sotd: {
+                ...base.sotd,
+                draftText:
+                    'This is a other document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.',
+            },
+        },
+    };
+}
+
+export function buildNewFeatures(base) {
+    return {
+        noWarning: {
+            ...base,
+        },
+        noLink: {
+            ...base,
+            sotd: {
+                ...base.sotd,
+                newFeatures: {
+                    show: true,
+                    text: `Future updates to this ${
+                        base.config.status === 'PR'
+                            ? 'specification'
+                            : 'Recommendation'
+                    } may incorporate new features.`,
+                },
+            },
+        },
+    };
+}

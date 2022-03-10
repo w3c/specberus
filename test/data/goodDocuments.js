@@ -1,4 +1,4 @@
-exports.goodDocuments = {
+export const goodDocuments = {
     // Note track
     DNOTE: {
         url: 'doc-views/TR/Note/DNOTE?type=good',

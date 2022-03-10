@@ -5,15 +5,15 @@
 /* globals expect: true */
 
 // Native packages:
-const fs = require('fs');
-
 // External packages:
-const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
-
+// eslint-disable-next-line node/no-unpublished-import
+import chai from 'chai';
+// eslint-disable-next-line node/no-unpublished-import
+import chaiAsPromised from 'chai-as-promised';
+import fs from 'fs';
+import * as l10n from '../lib/l10n-en_GB';
 // Internal packages:
-const rules = require('../lib/rules.json');
-const l10n = require('../lib/l10n-en_GB');
+import rules from '../lib/rules.json';
 
 // Constants:
 const { messages } = l10n;

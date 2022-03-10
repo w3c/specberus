@@ -1,8 +1,5 @@
-/* eslint-disable import/no-dynamic-require */
-const { buildCommonViewData, data } = require('../specBase');
-
-const profile = 'MEM-SUBM';
-const { config } = require(`../../../lib/profiles/SUBM/${profile}`);
+import { config } from '../../../lib/profiles/SUBM/MEM-SUBM';
+import { buildCommonViewData, data } from '../specBase';
 
 // Used in http://localhost:8001/doc-views/TR/Recommendation/MEM-SUBM?type=good
 const good = {
@@ -31,7 +28,7 @@ const good = {
     },
 };
 
-module.exports = {
+export default {
     good,
     ...buildCommonViewData(good),
     'memsub-copyright': {

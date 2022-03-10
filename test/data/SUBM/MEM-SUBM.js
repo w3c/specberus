@@ -1,9 +1,9 @@
-const { rules } = require('./SUBMBase');
+import { rules as baseRules } from './SUBMBase';
 
-exports.rules = {
-    ...rules,
+export const rules = {
+    ...baseRules,
     headers: {
-        ...rules.headers,
+        ...baseRules.headers,
         'memsub-copyright': [
             {
                 data: 'noCopyright',
@@ -199,7 +199,7 @@ exports.rules = {
         ],
     },
     sotd: {
-        ...rules.sotd,
+        ...baseRules.sotd,
         submission: [
             {
                 data: 'noSubmissionText',

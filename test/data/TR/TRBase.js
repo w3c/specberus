@@ -1,8 +1,8 @@
-const { rules } = require('../specBase');
+import { rules as baseRules } from '../specBase';
 
-exports.rules = {
+export const rules = {
     headers: {
-        ...rules.headers,
+        ...baseRules.headers,
         'github-repo': [
             {
                 data: 'noFeedback',
@@ -21,16 +21,16 @@ exports.rules = {
         ],
     },
     style: {
-        ...rules.style,
+        ...baseRules.style,
     },
     heuristic: {
-        ...rules.heuristic,
+        ...baseRules.heuristic,
     },
     links: {
-        ...rules.links,
+        ...baseRules.links,
     },
     structure: {
-        ...rules.structure,
+        ...baseRules.structure,
     },
     sotd: {
         supersedable: [
@@ -127,11 +127,11 @@ exports.rules = {
         ],
     },
     validation: {
-        ...rules.validation,
+        ...baseRules.validation,
     },
 };
 
-exports.candidateReviewEndRules = [
+export const candidateReviewEndRules = [
     {
         data: 'noDateFound',
         errors: ['sotd.candidate-review-end.not-found'],
@@ -146,7 +146,7 @@ exports.candidateReviewEndRules = [
     },
 ];
 
-exports.echidnaRules = {
+export const echidnaRules = {
     'todays-date': [
         {
             data: 'noDateDetected',
@@ -159,21 +159,21 @@ exports.echidnaRules = {
     ],
 };
 
-exports.draftStabilityRules = [
+export const draftStabilityRules = [
     {
         data: 'noDraft',
         errors: ['sotd.draft-stability.not-found'],
     },
 ];
 
-exports.draftStabilityRulesForDraft = [
+export const draftStabilityRulesForDraft = [
     {
         data: 'noDraftEither',
         errors: ['sotd.draft-stability.not-found-either'],
     },
 ];
 
-exports.newFeaturesRules = [
+export const newFeaturesRules = [
     {
         data: 'noWarning',
         warnings: ['sotd.new-features.no-warning'],

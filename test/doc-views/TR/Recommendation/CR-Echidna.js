@@ -1,16 +1,17 @@
-/* eslint-disable import/no-dynamic-require */
-const data = require('./CR').good;
+import { config } from '../../../../lib/profiles/TR/Recommendation/CR-Echidna';
+import CR from './CR';
+import recommendationBase from './recommendationBase';
+
 const {
-    buildCommonViewData,
     buildCandidateReviewEnd,
-    buildTodaysDate,
+    buildCommonViewData,
     buildSecurityPrivacy,
-} = require('./recommendationBase');
+    buildTodaysDate,
+} = recommendationBase;
+
+const { good: data } = CR;
 
 const profile = 'CR-Echidna';
-const {
-    config,
-} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
 const customData = {
     config: {
         ...config,
@@ -25,7 +26,7 @@ const good = { ...data, ...customData };
 const common = buildCommonViewData(good);
 const creCommon = buildCandidateReviewEnd(good);
 
-module.exports = {
+export default {
     good,
     ...common,
     'candidate-review-end': {

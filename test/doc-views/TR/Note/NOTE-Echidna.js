@@ -1,9 +1,11 @@
-/* eslint-disable import/no-dynamic-require */
-const data = require('./NOTE').good;
-const { buildCommonViewData, buildTodaysDate } = require('./noteBase');
+import { config } from '../../../../lib/profiles/TR/Note/NOTE-Echidna';
+import NOTE from './NOTE';
+import noteBase from './noteBase';
+
+const { good: data } = NOTE;
+const { buildCommonViewData, buildTodaysDate } = noteBase;
 
 const profile = 'NOTE-Echidna';
-const { config } = require(`../../../../lib/profiles/TR/Note/${profile}`);
 const customData = {
     config: {
         ...config,
@@ -18,7 +20,7 @@ const good = { ...data, ...customData };
 
 const common = buildCommonViewData(good);
 
-module.exports = {
+export default {
     good,
     ...common,
     dl: {

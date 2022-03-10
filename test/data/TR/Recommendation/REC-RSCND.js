@@ -1,11 +1,13 @@
-const { rules, recStabilityRules } = require('./recommendationBase');
+import recommendationBase from './recommendationBase';
 
-exports.rules = {
-    ...rules,
+const { recStabilityRules, rules: baseRules } = recommendationBase;
+
+export const rules = {
+    ...baseRules,
     headers: {
-        ...rules.headers,
+        ...baseRules.headers,
         dl: [
-            ...rules.headers.dl.filter(
+            ...baseRules.headers.dl.filter(
                 v =>
                     ![
                         'wrongThisVersionHead',
@@ -66,7 +68,7 @@ exports.rules = {
         ],
     },
     sotd: {
-        ...rules.sotd,
+        ...baseRules.sotd,
         stability: recStabilityRules,
         'obsl-rescind': [
             {

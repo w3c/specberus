@@ -1,15 +1,10 @@
-/* eslint-disable import/no-dynamic-require */
-const {
-    buildCommonViewData,
-    buildDraftStability,
-    buildSecurityPrivacy,
-    data,
-} = require('./recommendationBase');
+import { config } from '../../../../lib/profiles/TR/Recommendation/WD';
+import recommendationBase from './recommendationBase';
+
+const { buildCommonViewData, buildDraftStability, buildSecurityPrivacy, data } =
+    recommendationBase;
 
 const profile = 'WD';
-const {
-    config,
-} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
 const customData = {
     config: {
         ...config,
@@ -23,7 +18,7 @@ const customData = {
 // Used in http://localhost:8001/doc-views/TR/Recommendation/WD?type=good
 const good = { ...data, ...customData };
 
-module.exports = {
+export default {
     good,
     ...buildCommonViewData(good),
     'draft-stability': buildDraftStability(good),

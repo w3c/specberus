@@ -1,20 +1,22 @@
+import recommendationBase from './recommendationBase';
+
 const {
-    rules,
     candidateReviewEndRules,
     echidnaRules,
+    rules: baseRules,
     securityPrivacyRules,
-} = require('./recommendationBase');
+} = recommendationBase;
 
-exports.rules = {
-    ...rules,
+export const rules = {
+    ...baseRules,
     sotd: {
-        ...rules.sotd,
+        ...baseRules.sotd,
         'draft-stability': [],
         'candidate-review-end': candidateReviewEndRules,
     },
     echidna: echidnaRules,
     structure: {
-        ...rules.structure,
+        ...baseRules.structure,
         'security-privacy': securityPrivacyRules,
     },
 };

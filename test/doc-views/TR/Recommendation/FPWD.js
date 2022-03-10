@@ -1,14 +1,9 @@
-/* eslint-disable import/no-dynamic-require */
-const {
-    buildCommonViewData,
-    buildDraftStability,
-    data,
-} = require('./recommendationBase');
+import { config } from '../../../../lib/profiles/TR/Recommendation/FPWD';
+import recommendationBase from './recommendationBase';
+
+const { buildCommonViewData, buildDraftStability, data } = recommendationBase;
 
 const profile = 'FPWD';
-const {
-    config,
-} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
 const customData = {
     config: {
         ...config,
@@ -23,7 +18,7 @@ const customData = {
 // Used in http://localhost:8001/doc-views/TR/Recommendation/FPWD?type=good
 const good = { ...data, ...customData };
 
-module.exports = {
+export default {
     // good data that used to generate 100% right documents.
     good,
     ...buildCommonViewData(good),

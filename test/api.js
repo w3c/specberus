@@ -2,24 +2,24 @@
  * Test the REST API.
  */
 
-/* globals expect: true */
+// Native packages:
+// External packages:
+// eslint-disable-next-line node/no-unpublished-import
+import chai, { expect } from 'chai';
+// eslint-disable-next-line node/no-unpublished-import
+import chaiAsPromised from 'chai-as-promised';
+import express from 'express';
+import http from 'http';
+import superagent from 'superagent';
+import { setUp } from '../lib/api';
+// Internal packages:
+import meta from '../package.json';
 
 // Settings:
 const DEFAULT_PORT = 8000;
 const PORT = process.env.PORT || DEFAULT_PORT;
 const ENDPOINT = `http://localhost:${PORT}/api/`;
 const TIMEOUT = 30000;
-// Native packages:
-const http = require('http');
-
-// External packages:
-const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
-const express = require('express');
-const superagent = require('superagent');
-// Internal packages:
-const meta = require('../package.json');
-const api = require('../lib/api');
 
 let server;
 
@@ -30,7 +30,7 @@ let server;
 const launchServer = function () {
     const app = express();
     server = http.createServer(app);
-    api.setUp(app, process.env.W3C_API_KEY);
+    setUp(app, process.env.W3C_API_KEY);
     server.listen(PORT).on('error', err => {
         throw new Error(err);
     });
@@ -40,9 +40,8 @@ const launchServer = function () {
  * Set up the testing framework.
  */
 
-const setUp = function () {
+const setUpTest = function () {
     chai.use(chaiAsPromised);
-    expect = chai.expect;
 };
 
 /**
@@ -88,7 +87,7 @@ describe('API', () => {
 
     before(() => {
         launchServer();
-        setUp();
+        setUpTest();
     });
 
     describe('Endpoint', () => {

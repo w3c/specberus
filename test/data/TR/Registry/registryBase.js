@@ -1,6 +1,8 @@
-const { rules, ...rest } = require('../TRBase');
+import * as TRBase from '../TRBase';
 
-module.exports = {
+const { rules, ...rest } = TRBase;
+
+export default {
     ...rest,
     rules: {
         ...rules,
