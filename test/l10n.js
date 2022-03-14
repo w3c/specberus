@@ -2,8 +2,6 @@
  * Test L10n features.
  */
 
-/* globals expect: true */
-
 // Native packages:
 // External packages:
 // eslint-disable-next-line node/no-unpublished-import
@@ -11,9 +9,13 @@ import chai from 'chai';
 // eslint-disable-next-line node/no-unpublished-import
 import chaiAsPromised from 'chai-as-promised';
 import fs from 'fs';
-import * as l10n from '../lib/l10n-en_GB';
+import * as l10n from '../lib/l10n-en_GB.js';
+import { importJSON } from '../lib/util.js';
+
 // Internal packages:
-import rules from '../lib/rules.json';
+const rules = importJSON('../lib/rules.json', import.meta.url);
+
+const { expect } = chai;
 
 // Constants:
 const { messages } = l10n;
@@ -27,7 +29,6 @@ const exceptionFinder = /emits\s*:\s*["']([^()"'{}]+)["']/g;
 
 const setUp = function () {
     chai.use(chaiAsPromised);
-    expect = chai.expect;
 };
 
 /**
@@ -204,8 +205,9 @@ describe('L10n', () => {
     describe('UI messages module', () => {
         it('“lib/rules-wrapper” should be a valid object', () =>
             expect(rules).to.be.an('object'));
-        it('“lib/l10n-en_GB” should be a valid object', () =>
-            expect(l10n).to.be.an('object'));
+        it('“lib/l10n-en_GB” should be a valid object', () => {
+            expect(typeof l10n).to.equal('object');
+        });
     });
 
     describe('Consistency between rules and L10n messages', () => {

@@ -1,4 +1,7 @@
-import { buildCommonViewData as _buildCommonViewData, data } from '../specBase';
+import {
+    buildCommonViewData as _buildCommonViewData,
+    data,
+} from '../specBase.js';
 
 export { data };
 

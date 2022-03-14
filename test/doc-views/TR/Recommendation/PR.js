@@ -1,5 +1,5 @@
-import { config } from '../../../../lib/profiles/TR/Recommendation/PR';
-import recommendationBase from './recommendationBase';
+import { config } from '../../../../lib/profiles/TR/Recommendation/PR.js';
+import recommendationBase from './recommendationBase.js';
 
 const { buildCommonViewData, buildNewFeatures, buildSecurityPrivacy, data } =
     recommendationBase;

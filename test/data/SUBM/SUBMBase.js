@@ -1,4 +1,4 @@
-import { rules as baseRules } from '../specBase';
+import { rules as baseRules } from '../specBase.js';
 
 export const rules = {
     headers: {

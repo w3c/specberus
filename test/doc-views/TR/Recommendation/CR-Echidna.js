@@ -1,6 +1,6 @@
-import { config } from '../../../../lib/profiles/TR/Recommendation/CR-Echidna';
-import CR from './CR';
-import recommendationBase from './recommendationBase';
+import { config } from '../../../../lib/profiles/TR/Recommendation/CR-Echidna.js';
+import CR from './CR.js';
+import recommendationBase from './recommendationBase.js';
 
 const {
     buildCandidateReviewEnd,

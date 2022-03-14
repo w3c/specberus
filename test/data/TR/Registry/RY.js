@@ -1,3 +1,3 @@
-import registryBase from './registryBase';
+import registryBase from './registryBase.js';
 
 export const { rules } = registryBase;

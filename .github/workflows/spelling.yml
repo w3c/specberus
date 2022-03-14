@@ -1,4 +1,4 @@
-wraname: Spellcheck
+name: Spellcheck
 
 on: [push, pull_request]
 

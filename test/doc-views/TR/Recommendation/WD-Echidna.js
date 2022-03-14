@@ -1,6 +1,6 @@
-import { config } from '../../../../lib/profiles/TR/Recommendation/WD-Echidna';
-import recommendationBase from './recommendationBase';
-import WD from './WD';
+import { config } from '../../../../lib/profiles/TR/Recommendation/WD-Echidna.js';
+import recommendationBase from './recommendationBase.js';
+import WD from './WD.js';
 
 const { good: data } = WD;
 const {

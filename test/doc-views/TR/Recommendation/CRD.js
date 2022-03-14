@@ -1,5 +1,5 @@
-import { config } from '../../../../lib/profiles/TR/Recommendation/CRD';
-import recommendationBase from './recommendationBase';
+import { config } from '../../../../lib/profiles/TR/Recommendation/CRD.js';
+import recommendationBase from './recommendationBase.js';
 
 const { buildCommonViewData, buildSecurityPrivacy, buildDraftStability, data } =
     recommendationBase;

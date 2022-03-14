@@ -1,5 +1,5 @@
-import { config } from '../../../../lib/profiles/TR/Recommendation/CR';
-import recommendationBase from './recommendationBase';
+import { config } from '../../../../lib/profiles/TR/Recommendation/CR.js';
+import recommendationBase from './recommendationBase.js';
 
 const {
     buildCandidateReviewEnd,

@@ -1,4 +1,4 @@
-import registryBase from './registryBase';
+import registryBase from './registryBase.js';
 
 const { rules: baseRules, draftStabilityRulesForDraft } = registryBase;
 

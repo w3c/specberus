@@ -1,4 +1,4 @@
-import * as TRBase from '../TRBase';
+import * as TRBase from '../TRBase.js';
 
 const { buildCommonViewData: _buildCommonViewData, data, ...rest } = TRBase;
 const buildCommonViewData = base => {

@@ -1,6 +1,6 @@
-import { config } from '../../../../lib/profiles/TR/Note/DNOTE-Echidna';
-import DNOTE from './DNOTE';
-import noteBase from './noteBase';
+import { config } from '../../../../lib/profiles/TR/Note/DNOTE-Echidna.js';
+import DNOTE from './DNOTE.js';
+import noteBase from './noteBase.js';
 
 const { good: data } = DNOTE;
 const { buildCommonViewData, buildDraftStability, buildTodaysDate } = noteBase;

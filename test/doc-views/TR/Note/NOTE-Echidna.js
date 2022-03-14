@@ -1,6 +1,6 @@
-import { config } from '../../../../lib/profiles/TR/Note/NOTE-Echidna';
-import NOTE from './NOTE';
-import noteBase from './noteBase';
+import { config } from '../../../../lib/profiles/TR/Note/NOTE-Echidna.js';
+import NOTE from './NOTE.js';
+import noteBase from './noteBase.js';
 
 const { good: data } = NOTE;
 const { buildCommonViewData, buildTodaysDate } = noteBase;

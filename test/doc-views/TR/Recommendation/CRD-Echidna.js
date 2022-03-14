@@ -1,6 +1,6 @@
-import { config } from '../../../../lib/profiles/TR/Recommendation/CRD-Echidna';
-import CRD from './CRD';
-import recommendationBase from './recommendationBase';
+import { config } from '../../../../lib/profiles/TR/Recommendation/CRD-Echidna.js';
+import CRD from './CRD.js';
+import recommendationBase from './recommendationBase.js';
 
 const { good: data } = CRD;
 const {

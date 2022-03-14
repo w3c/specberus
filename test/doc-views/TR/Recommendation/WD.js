@@ -1,5 +1,5 @@
-import { config } from '../../../../lib/profiles/TR/Recommendation/WD';
-import recommendationBase from './recommendationBase';
+import { config } from '../../../../lib/profiles/TR/Recommendation/WD.js';
+import recommendationBase from './recommendationBase.js';
 
 const { buildCommonViewData, buildDraftStability, buildSecurityPrivacy, data } =
     recommendationBase;

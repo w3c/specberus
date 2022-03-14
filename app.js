@@ -11,14 +11,14 @@ import http from 'http';
 import insafe from 'insafe';
 import morgan from 'morgan';
 import { Server } from 'socket.io';
-import * as api from './lib/api';
-import * as l10n from './lib/l10n';
-import { Sink } from './lib/sink';
-import { allProfiles } from './lib/util';
-import { Specberus } from './lib/validator';
-import * as views from './lib/views';
-// Internal packages:
-import self from './package.json';
+import * as api from './lib/api.js';
+import * as l10n from './lib/l10n.js';
+import { Sink } from './lib/sink.js';
+import { allProfiles, importJSON } from './lib/util.js';
+import { Specberus } from './lib/validator.js';
+import * as views from './lib/views.js';
+
+const { version } = importJSON('./package.json', import.meta.url);
 
 // Settings:
 const DEFAULT_PORT = 80;
@@ -38,7 +38,6 @@ if (!process.env.BASE_URI || process.env.BASE_URI.length < 1) {
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
-const { version } = self;
 // Middleware:
 app.use(morgan('combined'));
 app.use(compression());

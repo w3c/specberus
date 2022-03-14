@@ -1,5 +1,5 @@
-import { config } from '../../../../lib/profiles/TR/Recommendation/DISC';
-import recommendationBase from './recommendationBase';
+import { config } from '../../../../lib/profiles/TR/Recommendation/DISC.js';
+import recommendationBase from './recommendationBase.js';
 
 const { buildCommonViewData, data } = recommendationBase;
 

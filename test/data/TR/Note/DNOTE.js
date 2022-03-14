@@ -1,4 +1,4 @@
-import noteBase from './noteBase';
+import noteBase from './noteBase.js';
 
 const { draftStabilityRules, rules: baseRules } = noteBase;
 

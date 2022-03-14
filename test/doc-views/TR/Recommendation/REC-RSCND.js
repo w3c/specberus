@@ -1,6 +1,6 @@
-import { config } from '../../../../lib/profiles/TR/Recommendation/REC-RSCND';
-import REC from './REC';
-import recommendationBase from './recommendationBase';
+import { config } from '../../../../lib/profiles/TR/Recommendation/REC-RSCND.js';
+import REC from './REC.js';
+import recommendationBase from './recommendationBase.js';
 
 const { good: data } = REC;
 const { buildCommonViewData, buildRecStability } = recommendationBase;

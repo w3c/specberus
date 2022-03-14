@@ -1,5 +1,5 @@
-import { config } from '../../../../lib/profiles/TR/Note/STMT';
-import noteBase from './noteBase';
+import { config } from '../../../../lib/profiles/TR/Note/STMT.js';
+import noteBase from './noteBase.js';
 
 const { buildCommonViewData, data } = noteBase;
 

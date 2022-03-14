@@ -1,4 +1,4 @@
-import noteBase from './noteBase';
+import noteBase from './noteBase.js';
 
 const { echidnaRules, rules: baseRules } = noteBase;
 

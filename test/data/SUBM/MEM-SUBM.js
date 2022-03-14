@@ -1,4 +1,4 @@
-import { rules as baseRules } from './SUBMBase';
+import { rules as baseRules } from './SUBMBase.js';
 
 export const rules = {
     ...baseRules,

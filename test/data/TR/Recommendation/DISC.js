@@ -1,4 +1,4 @@
-import recommendationBase from './recommendationBase';
+import recommendationBase from './recommendationBase.js';
 
 const { rules: baseRules } = recommendationBase;
 

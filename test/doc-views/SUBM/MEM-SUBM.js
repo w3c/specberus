@@ -1,5 +1,5 @@
-import { config } from '../../../lib/profiles/SUBM/MEM-SUBM';
-import { buildCommonViewData, data } from '../specBase';
+import { config } from '../../../lib/profiles/SUBM/MEM-SUBM.js';
+import { buildCommonViewData, data } from '../specBase.js';
 
 // Used in http://localhost:8001/doc-views/TR/Recommendation/MEM-SUBM?type=good
 const good = {

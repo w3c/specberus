@@ -1,5 +1,5 @@
-import { config } from '../../../../lib/profiles/TR/Registry/CRYD';
-import registryBase from './registryBase';
+import { config } from '../../../../lib/profiles/TR/Registry/CRYD.js';
+import registryBase from './registryBase.js';
 
 const { buildCommonViewData, buildDraftStability, data } = registryBase;
 

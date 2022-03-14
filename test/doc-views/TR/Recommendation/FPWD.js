@@ -1,5 +1,5 @@
-import { config } from '../../../../lib/profiles/TR/Recommendation/FPWD';
-import recommendationBase from './recommendationBase';
+import { config } from '../../../../lib/profiles/TR/Recommendation/FPWD.js';
+import recommendationBase from './recommendationBase.js';
 
 const { buildCommonViewData, buildDraftStability, data } = recommendationBase;
 

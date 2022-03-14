@@ -11,7 +11,8 @@
         "no-restricted-syntax": "warn",
         "guard-for-in": "warn",
         "prefer-destructuring": "warn",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "import/extensions": "off"
     },
     "overrides": [
         {
@@ -43,7 +44,7 @@
             "plugins": ["node"],
             "extends": "plugin:node/recommended",
             "parserOptions": {
-                "ecmaVersion": 2020,
+                "ecmaVersion": 2022,
                 "sourceType": "module"
             }
         }
