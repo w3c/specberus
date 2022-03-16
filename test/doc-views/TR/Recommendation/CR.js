@@ -1,15 +1,15 @@
-/* eslint-disable import/no-dynamic-require */
+import { config } from '../../../../lib/profiles/TR/Recommendation/CR.js';
+import recommendationBase from './recommendationBase.js';
+
 const {
-    buildCommonViewData,
     buildCandidateReviewEnd,
+    buildCommonViewData,
     buildSecurityPrivacy,
     data,
-} = require('./recommendationBase');
+} = recommendationBase;
 
 const profile = 'CR';
-const {
-    config,
-} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
+
 const customData = {
     config: {
         ...config,
@@ -25,7 +25,7 @@ const customData = {
 // Used in http://localhost:8001/doc-views/TR/Recommendation/CR?type=good
 const good = { ...data, ...customData };
 
-module.exports = {
+export default {
     good,
     ...buildCommonViewData(good),
     'candidate-review-end': buildCandidateReviewEnd(good),

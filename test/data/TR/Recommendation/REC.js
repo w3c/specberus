@@ -1,13 +1,15 @@
+import recommendationBase from './recommendationBase.js';
+
 const {
-    rules,
+    rules: baseRules,
     newFeaturesRules,
     recStabilityRules,
-} = require('./recommendationBase');
+} = recommendationBase;
 
-exports.rules = {
-    ...rules,
+export const rules = {
+    ...baseRules,
     sotd: {
-        ...rules.sotd,
+        ...baseRules.sotd,
         stability: recStabilityRules,
         deployment: [
             {
@@ -46,7 +48,7 @@ exports.rules = {
         ],
     },
     headers: {
-        ...rules.headers,
+        ...baseRules.headers,
         errata: [
             {
                 data: 'noErrata',

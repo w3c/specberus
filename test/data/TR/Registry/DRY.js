@@ -1,9 +1,11 @@
-const { rules, draftStabilityRules } = require('./registryBase');
+import registryBase from './registryBase.js';
 
-exports.rules = {
-    ...rules,
+const { rules: baseRules, draftStabilityRules } = registryBase;
+
+export const rules = {
+    ...baseRules,
     sotd: {
-        ...rules.sotd,
+        ...baseRules.sotd,
         'draft-stability': draftStabilityRules,
     },
 };

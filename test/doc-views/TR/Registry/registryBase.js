@@ -1,9 +1,6 @@
-const {
-    buildCommonViewData: _buildCommonViewData,
-    data,
-    ...rest
-} = require('../TRBase');
+import * as TRBase from '../TRBase.js';
 
+const { buildCommonViewData: _buildCommonViewData, data, ...rest } = TRBase;
 const buildCommonViewData = base => {
     const common = _buildCommonViewData(base);
     return {
@@ -52,7 +49,7 @@ const buildCommonViewData = base => {
     };
 };
 
-module.exports = {
+export default {
     ...rest,
     buildCommonViewData,
     data: {

@@ -1,17 +1,19 @@
+import recommendationBase from './recommendationBase.js';
+
 const {
-    rules,
+    rules: baseRules,
     securityPrivacyRules,
     newFeaturesRules,
-} = require('./recommendationBase');
+} = recommendationBase;
 
-exports.rules = {
-    ...rules,
+export const rules = {
+    ...baseRules,
     structure: {
-        ...rules.structure,
+        ...baseRules.structure,
         'security-privacy': securityPrivacyRules,
     },
     sotd: {
-        ...rules.sotd,
+        ...baseRules.sotd,
         'ac-review': [
             {
                 data: 'noACReview',

@@ -1,5 +1,3 @@
-const { rules } = require('./noteBase');
+import noteBase from './noteBase.js';
 
-exports.rules = {
-    ...rules,
-};
+export const { rules } = noteBase;

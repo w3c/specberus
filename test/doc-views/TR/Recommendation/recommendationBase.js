@@ -1,4 +1,6 @@
-const { data, ...rest } = require('../TRBase');
+import * as TRBase from '../TRBase.js';
+
+const { data, ...rest } = TRBase;
 
 const buildSecurityPrivacy = base => ({
     noSecurityPrivacy: {
@@ -38,7 +40,7 @@ const buildRecStability = base => ({
     },
 });
 
-module.exports = {
+export default {
     ...rest,
     buildSecurityPrivacy,
     buildRecStability,

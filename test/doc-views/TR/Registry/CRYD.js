@@ -1,12 +1,9 @@
-/* eslint-disable import/no-dynamic-require */
-const {
-    buildCommonViewData,
-    buildDraftStability,
-    data,
-} = require('./registryBase');
+import { config } from '../../../../lib/profiles/TR/Registry/CRYD.js';
+import registryBase from './registryBase.js';
+
+const { buildCommonViewData, buildDraftStability, data } = registryBase;
 
 const profile = 'CRYD';
-const { config } = require(`../../../../lib/profiles/TR/Registry/${profile}`);
 const customData = {
     config: {
         ...config,
@@ -23,7 +20,7 @@ const customData = {
 const good = { ...data, ...customData };
 
 // Used in http://localhost:8001/doc-views/TR/Recommendation/CRYD?type=good2
-exports.good2 = {
+export const good2 = {
     config: {
         ...good.config,
     },
@@ -36,7 +33,7 @@ exports.good2 = {
 
 const common = buildCommonViewData(good);
 
-module.exports = {
+export default {
     good,
     ...common,
     'draft-stability': buildDraftStability(good),

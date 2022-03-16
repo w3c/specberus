@@ -1,11 +1,13 @@
-const { rules } = require('./recommendationBase');
+import recommendationBase from './recommendationBase.js';
 
-exports.rules = {
-    ...rules,
+const { rules: baseRules } = recommendationBase;
+
+export const rules = {
+    ...baseRules,
     sotd: {
-        ...rules.sotd,
+        ...baseRules.sotd,
         stability: [
-            ...rules.sotd.stability,
+            ...baseRules.sotd.stability,
             {
                 data: 'noCRReview',
                 config: {

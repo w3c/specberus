@@ -1,4 +1,4 @@
-exports.data = {
+export const data = {
     bodyClassNames: 'h-entry',
     scripts: ['https://www.w3.org/scripts/TR/2021/fixup.js'],
     head: {
@@ -239,732 +239,734 @@ exports.data = {
     },
 };
 
-exports.buildCommonViewData = base => ({
-    'div-head': {
-        noHead: {
-            ...base,
-            header: {
-                ...base.header,
-                headClassName: 'foo',
+export function buildCommonViewData(base) {
+    return {
+        'div-head': {
+            noHead: {
+                ...base,
+                header: {
+                    ...base.header,
+                    headClassName: 'foo',
+                },
             },
         },
-    },
-    hr: {
-        noHr: {
-            ...base,
-            header: {
-                ...base.header,
+        hr: {
+            noHr: {
+                ...base,
+                header: {
+                    ...base.header,
+                    hr: {
+                        show: false,
+                    },
+                },
+            },
+            duplicatedHr: {
+                ...base,
                 hr: {
+                    ...base.header.hr,
+                    show: true,
+                },
+            },
+        },
+        logo: {
+            noLogo: {
+                ...base,
+                header: {
+                    ...base.header,
+                    logo: {
+                        show: false,
+                    },
+                },
+            },
+            invalidSrc: {
+                ...base,
+                header: {
+                    ...base.header,
+                    logo: {
+                        ...base.logo,
+                        src: 'http://invalid/source',
+                    },
+                },
+            },
+            invalidHref: {
+                ...base,
+                header: {
+                    ...base.header,
+                    logo: {
+                        ...base.logo,
+                        href: 'http://invalid/href',
+                    },
+                },
+            },
+        },
+        'h1-title': {
+            noHeadTitle: {
+                ...base,
+                head: {
+                    ...base.head,
+                    title: {
+                        show: false,
+                    },
+                },
+            },
+            noH1Title: {
+                ...base,
+                header: {
+                    ...base.header,
+                    title: {
+                        show: false,
+                    },
+                },
+            },
+            noH1AndHeadTitle: {
+                ...base,
+                head: {
+                    ...base.head,
+                    title: {
+                        show: false,
+                    },
+                },
+                header: {
+                    ...base.header,
+                    title: {
+                        show: false,
+                    },
+                },
+            },
+            titlesNotMatch: {
+                ...base,
+                head: {
+                    ...base.head,
+                    title: {
+                        ...base.head.title,
+                        suffix: 'not match to h1',
+                    },
+                },
+            },
+        },
+        'details-summary': {
+            noDetails: {
+                ...base,
+                header: {
+                    ...base.header,
+                    details: {
+                        show: false,
+                    },
+                },
+            },
+            noDetailsOpen: {
+                ...base,
+                header: {
+                    ...base.header,
+                    details: {
+                        ...base.header.details,
+                        open: '',
+                    },
+                },
+            },
+            noDetailsDl: {
+                ...base,
+                dl: {
+                    show: false,
+                },
+            },
+            noDetailsSummary: {
+                ...base,
+                header: {
+                    ...base.header,
+                    summary: {
+                        show: false,
+                    },
+                },
+            },
+            wrongDetailsSummary: {
+                ...base,
+                header: {
+                    ...base.header,
+                    summary: {
+                        ...base.header.summary,
+                        text: 'wrong text',
+                    },
+                },
+            },
+        },
+        dl: {
+            wrongThisVersionHead: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    thisVersion: {
+                        ...base.dl.thisVersion,
+                        text: 'wrong this version head',
+                    },
+                },
+            },
+            wrongLatestVersionHead: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.latestVersion,
+                        text: 'wrong latest version key',
+                    },
+                },
+            },
+            wrongHistoryHead: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    historyText: 'wrong one',
+                },
+            },
+            rescinds: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isRescinded: false,
+                },
+            },
+            noRescindsNeeded: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isRescinded: true,
+                },
+            },
+            obsoletes: {
+                ...base,
+            },
+            noObsoletesNeeded: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isObsolete: true,
+                },
+            },
+            supersedes: {
+                ...base,
+            },
+            noSupersedesNeeded: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isSuperseded: true,
+                },
+            },
+            wrongThisAndLatestOrder: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        show: false,
+                        showAhead: true,
+                    },
+                },
+            },
+            wrongLatestAndRescindsOrder: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        show: false,
+                        showBehind: true,
+                    },
+                },
+                config: {
+                    ...base.config,
+                    isRescinded: true,
+                },
+            },
+            wrongLatestAndObsoletesOrder: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        show: false,
+                        showBehind: true,
+                    },
+                },
+                config: {
+                    ...base.config,
+                    isObsolete: true,
+                },
+            },
+            wrongLatestAndSupersedesOrder: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        show: false,
+                        showBehind: true,
+                    },
+                },
+                config: {
+                    ...base.config,
+                    isSuperseded: true,
+                },
+            },
+            noThisLinkExist: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    thisVersion: {
+                        ...base.dl.thisVersion,
+                        showHref: false,
+                    },
+                },
+            },
+            wrongThisDate: {
+                ...base,
+                header: {
+                    ...base.header,
+                    defaultDate: '04 October 2021',
+                },
+            },
+            noDocDate: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isEchidna: false,
+                },
+                header: {
+                    ...base.header,
+                    defaultDate: '',
+                },
+            },
+            wrongThisSyntax: {
+                ...base,
+                config: {
+                    ...base.config,
+                    status: 'FWD',
+                },
+            },
+            noLatestLinkExist: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        showHref: false,
+                    },
+                },
+            },
+            wrongLatestSyntax: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        docType: 'FAKE',
+                        textDocType: 'FAKE',
+                    },
+                },
+            },
+            linkDiff: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        textDocType: 'FAKE',
+                    },
+                },
+            },
+            diffThisAndLatestShortname: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    seriesShortName: 'fake-hr-time',
+                },
+            },
+            noHistoryLinkExist: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    history: {
+                        ...base.dl.history,
+                        showHref: false,
+                    },
+                },
+            },
+            wrongHistorySyntax: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    history: {
+                        ...base.dl.history,
+                        shortName: 'fake-name',
+                    },
+                },
+            },
+            noRescindLinkExist: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isRescinded: true,
+                },
+                dl: {
+                    ...base.dl,
+                    rescind: {
+                        ...base.dl.rescind,
+                        showHref: false,
+                    },
+                },
+            },
+            diffThisAndRescindShortname: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isRescinded: true,
+                },
+                dl: {
+                    ...base.dl,
+                    rescindLink:
+                        'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
+                },
+            },
+            wrongRescindSyntax: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isRescinded: true,
+                },
+                dl: {
+                    ...base.dl,
+                    rescindLink:
+                        'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
+                },
+            },
+            noObsoletesLinkExist: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isObsolete: true,
+                },
+                dl: {
+                    ...base.dl,
+                    obsolete: {
+                        ...base.dl.obsolete,
+                        showHref: false,
+                    },
+                },
+            },
+            diffThisAndObsoletesShortname: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isObsolete: true,
+                },
+                dl: {
+                    ...base.dl,
+                    obsoleteLink:
+                        'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
+                },
+            },
+            wrongObsoletesSyntax: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isObsolete: true,
+                },
+                dl: {
+                    ...base.dl,
+                    obsoleteLink:
+                        'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
+                },
+            },
+            noSupersedesLinkExist: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isSuperseded: true,
+                },
+                dl: {
+                    ...base.dl,
+                    supersede: {
+                        ...base.dl.supersede,
+                        showHref: false,
+                    },
+                },
+            },
+            diffThisAndSupersedesShortname: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isSuperseded: true,
+                },
+                dl: {
+                    ...base.dl,
+                    supersedeLink:
+                        'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
+                },
+            },
+            wrongSupersedesSyntax: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isSuperseded: true,
+                },
+                dl: {
+                    ...base.dl,
+                    supersedeLink:
+                        'https://www.w3.org/FAKE/2017/REC-hr-time-20170101/',
+                },
+            },
+            noEditorDraftLinkExist: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestEditor: {
+                        ...base.dl.latestEditor,
+                        showHref: false,
+                    },
+                },
+            },
+            noSecureEditorDraftLink: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestEditor: {
+                        ...base.dl.latestEditor,
+                        linkProtocol: 'http',
+                    },
+                },
+            },
+            noEditor: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    editor: {
+                        ...base.dl.editor,
+                        show: false,
+                    },
+                },
+            },
+            missingEditorId: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    editor: {
+                        ...base.dl.editor,
+                        id: '',
+                    },
+                },
+            },
+        },
+        secno: {
+            noSecno: {
+                ...base,
+                secno: '',
+            },
+        },
+        'ol-toc': {
+            noToc: {
+                ...base,
+                tocs: [],
+            },
+        },
+        'h2-toc': {
+            mixedTocs: {
+                ...base,
+                tocs: [
+                    base.tocs[0],
+                    {
+                        ...base.tocs[0],
+                        tag: 'div',
+                    },
+                ],
+            },
+            notHtml5: {
+                ...base,
+                tocs: [
+                    {
+                        ...base.tocs[0],
+                        tag: 'div',
+                    },
+                ],
+            },
+            noTocs: {
+                ...base,
+                tocs: [],
+            },
+            noTitles: {
+                ...base,
+                tocs: [
+                    {
+                        ...base.tocs[0],
+                        titles: [],
+                    },
+                ],
+            },
+            duplicatedTitle: {
+                ...base,
+                tocs: [
+                    {
+                        ...base.tocs[0],
+                        titles: ['Table of Contents', 'Table of Contents'],
+                    },
+                ],
+            },
+        },
+        sheet: {
+            noSheet: {
+                ...base,
+                head: {
+                    ...base.head,
+                    styleSheet: {
+                        show: false,
+                    },
+                },
+            },
+            notLast: {
+                ...base,
+                head: {
+                    ...base.head,
+                    styleSheet: {
+                        ...base.head.styleSheet,
+                        showAnother: true,
+                    },
+                },
+            },
+        },
+        meta: {
+            noMeta: {
+                ...base,
+                head: {
+                    ...base.head,
+                    meta: {
+                        show: false,
+                    },
+                },
+            },
+            noWidth: {
+                ...base,
+                head: {
+                    ...base.head,
+                    meta: {
+                        ...base.head.meta,
+                        width: '',
+                    },
+                },
+            },
+        },
+        'body-toc-sidebar': {
+            classFound: {
+                ...base,
+                bodyClassNames: 'toc-sidebar',
+            },
+        },
+        script: {
+            noScript: {
+                ...base,
+                scripts: [],
+            },
+        },
+        'back-to-top': {
+            noBackToTop: {
+                ...base,
+                backToTop: {
                     show: false,
                 },
             },
         },
-        duplicatedHr: {
-            ...base,
-            hr: {
-                ...base.header.hr,
-                show: true,
+        'date-format': {
+            wrongDateFormat: {
+                ...base,
+                showWrongDateFormat: true,
             },
         },
-    },
-    logo: {
-        noLogo: {
-            ...base,
-            header: {
-                ...base.header,
-                logo: {
-                    show: false,
+        wcag: {},
+        reliability: {
+            hasUnreliableLinks: {
+                ...base,
+                header: {
+                    ...base.header,
+                    logo: {
+                        ...base.header.logo,
+                        href: 'http://www.w3c-test.org/foo/bar.jpg',
+                    },
                 },
             },
         },
-        invalidSrc: {
-            ...base,
-            header: {
-                ...base.header,
-                logo: {
-                    ...base.logo,
-                    src: 'http://invalid/source',
-                },
-            },
-        },
-        invalidHref: {
-            ...base,
-            header: {
-                ...base.header,
-                logo: {
-                    ...base.logo,
-                    href: 'http://invalid/href',
-                },
-            },
-        },
-    },
-    'h1-title': {
-        noHeadTitle: {
-            ...base,
-            head: {
-                ...base.head,
-                title: {
-                    show: false,
-                },
-            },
-        },
-        noH1Title: {
-            ...base,
-            header: {
-                ...base.header,
-                title: {
-                    show: false,
-                },
-            },
-        },
-        noH1AndHeadTitle: {
-            ...base,
-            head: {
-                ...base.head,
-                title: {
-                    show: false,
-                },
-            },
-            header: {
-                ...base.header,
-                title: {
-                    show: false,
-                },
-            },
-        },
-        titlesNotMatch: {
-            ...base,
-            head: {
-                ...base.head,
-                title: {
-                    ...base.head.title,
-                    suffix: 'not match to h1',
-                },
-            },
-        },
-    },
-    'details-summary': {
-        noDetails: {
-            ...base,
-            header: {
-                ...base.header,
-                details: {
-                    show: false,
-                },
-            },
-        },
-        noDetailsOpen: {
-            ...base,
-            header: {
-                ...base.header,
-                details: {
-                    ...base.header.details,
-                    open: '',
-                },
-            },
-        },
-        noDetailsDl: {
-            ...base,
-            dl: {
-                show: false,
-            },
-        },
-        noDetailsSummary: {
-            ...base,
-            header: {
-                ...base.header,
-                summary: {
-                    show: false,
-                },
-            },
-        },
-        wrongDetailsSummary: {
-            ...base,
-            header: {
-                ...base.header,
-                summary: {
-                    ...base.header.summary,
-                    text: 'wrong text',
-                },
-            },
-        },
-    },
-    dl: {
-        wrongThisVersionHead: {
-            ...base,
-            dl: {
-                ...base.dl,
-                thisVersion: {
-                    ...base.dl.thisVersion,
-                    text: 'wrong this version head',
-                },
-            },
-        },
-        wrongLatestVersionHead: {
-            ...base,
-            dl: {
-                ...base.dl,
-                latestVersion: {
-                    ...base.latestVersion,
-                    text: 'wrong latest version key',
-                },
-            },
-        },
-        wrongHistoryHead: {
-            ...base,
-            dl: {
-                ...base.dl,
-                historyText: 'wrong one',
-            },
-        },
-        rescinds: {
-            ...base,
-            config: {
-                ...base.config,
-                isRescinded: false,
-            },
-        },
-        noRescindsNeeded: {
-            ...base,
-            config: {
-                ...base.config,
-                isRescinded: true,
-            },
-        },
-        obsoletes: {
-            ...base,
-        },
-        noObsoletesNeeded: {
-            ...base,
-            config: {
-                ...base.config,
-                isObsolete: true,
-            },
-        },
-        supersedes: {
-            ...base,
-        },
-        noSupersedesNeeded: {
-            ...base,
-            config: {
-                ...base.config,
-                isSuperseded: true,
-            },
-        },
-        wrongThisAndLatestOrder: {
-            ...base,
-            dl: {
-                ...base.dl,
-                latestVersion: {
-                    ...base.dl.latestVersion,
-                    show: false,
-                    showAhead: true,
-                },
-            },
-        },
-        wrongLatestAndRescindsOrder: {
-            ...base,
-            dl: {
-                ...base.dl,
-                latestVersion: {
-                    ...base.dl.latestVersion,
-                    show: false,
-                    showBehind: true,
-                },
-            },
-            config: {
-                ...base.config,
-                isRescinded: true,
-            },
-        },
-        wrongLatestAndObsoletesOrder: {
-            ...base,
-            dl: {
-                ...base.dl,
-                latestVersion: {
-                    ...base.dl.latestVersion,
-                    show: false,
-                    showBehind: true,
-                },
-            },
-            config: {
-                ...base.config,
-                isObsolete: true,
-            },
-        },
-        wrongLatestAndSupersedesOrder: {
-            ...base,
-            dl: {
-                ...base.dl,
-                latestVersion: {
-                    ...base.dl.latestVersion,
-                    show: false,
-                    showBehind: true,
-                },
-            },
-            config: {
-                ...base.config,
-                isSuperseded: true,
-            },
-        },
-        noThisLinkExist: {
-            ...base,
-            dl: {
-                ...base.dl,
-                thisVersion: {
-                    ...base.dl.thisVersion,
-                    showHref: false,
-                },
-            },
-        },
-        wrongThisDate: {
-            ...base,
-            header: {
-                ...base.header,
-                defaultDate: '04 October 2021',
-            },
-        },
-        noDocDate: {
-            ...base,
-            config: {
-                ...base.config,
-                isEchidna: false,
-            },
-            header: {
-                ...base.header,
-                defaultDate: '',
-            },
-        },
-        wrongThisSyntax: {
-            ...base,
-            config: {
-                ...base.config,
-                status: 'FWD',
-            },
-        },
-        noLatestLinkExist: {
-            ...base,
-            dl: {
-                ...base.dl,
-                latestVersion: {
-                    ...base.dl.latestVersion,
-                    showHref: false,
-                },
-            },
-        },
-        wrongLatestSyntax: {
-            ...base,
-            dl: {
-                ...base.dl,
-                latestVersion: {
-                    ...base.dl.latestVersion,
-                    docType: 'FAKE',
-                    textDocType: 'FAKE',
-                },
-            },
-        },
-        linkDiff: {
-            ...base,
-            dl: {
-                ...base.dl,
-                latestVersion: {
-                    ...base.dl.latestVersion,
-                    textDocType: 'FAKE',
-                },
-            },
-        },
-        diffThisAndLatestShortname: {
-            ...base,
-            dl: {
-                ...base.dl,
-                seriesShortName: 'fake-hr-time',
-            },
-        },
-        noHistoryLinkExist: {
-            ...base,
-            dl: {
-                ...base.dl,
-                history: {
-                    ...base.dl.history,
-                    showHref: false,
-                },
-            },
-        },
-        wrongHistorySyntax: {
-            ...base,
-            dl: {
-                ...base.dl,
-                history: {
-                    ...base.dl.history,
-                    shortName: 'fake-name',
-                },
-            },
-        },
-        noRescindLinkExist: {
-            ...base,
-            config: {
-                ...base.config,
-                isRescinded: true,
-            },
-            dl: {
-                ...base.dl,
-                rescind: {
-                    ...base.dl.rescind,
-                    showHref: false,
-                },
-            },
-        },
-        diffThisAndRescindShortname: {
-            ...base,
-            config: {
-                ...base.config,
-                isRescinded: true,
-            },
-            dl: {
-                ...base.dl,
-                rescindLink:
-                    'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
-            },
-        },
-        wrongRescindSyntax: {
-            ...base,
-            config: {
-                ...base.config,
-                isRescinded: true,
-            },
-            dl: {
-                ...base.dl,
-                rescindLink:
-                    'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
-            },
-        },
-        noObsoletesLinkExist: {
-            ...base,
-            config: {
-                ...base.config,
-                isObsolete: true,
-            },
-            dl: {
-                ...base.dl,
-                obsolete: {
-                    ...base.dl.obsolete,
-                    showHref: false,
-                },
-            },
-        },
-        diffThisAndObsoletesShortname: {
-            ...base,
-            config: {
-                ...base.config,
-                isObsolete: true,
-            },
-            dl: {
-                ...base.dl,
-                obsoleteLink:
-                    'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
-            },
-        },
-        wrongObsoletesSyntax: {
-            ...base,
-            config: {
-                ...base.config,
-                isObsolete: true,
-            },
-            dl: {
-                ...base.dl,
-                obsoleteLink:
-                    'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
-            },
-        },
-        noSupersedesLinkExist: {
-            ...base,
-            config: {
-                ...base.config,
-                isSuperseded: true,
-            },
-            dl: {
-                ...base.dl,
-                supersede: {
-                    ...base.dl.supersede,
-                    showHref: false,
-                },
-            },
-        },
-        diffThisAndSupersedesShortname: {
-            ...base,
-            config: {
-                ...base.config,
-                isSuperseded: true,
-            },
-            dl: {
-                ...base.dl,
-                supersedeLink:
-                    'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
-            },
-        },
-        wrongSupersedesSyntax: {
-            ...base,
-            config: {
-                ...base.config,
-                isSuperseded: true,
-            },
-            dl: {
-                ...base.dl,
-                supersedeLink:
-                    'https://www.w3.org/FAKE/2017/REC-hr-time-20170101/',
-            },
-        },
-        noEditorDraftLinkExist: {
-            ...base,
-            dl: {
-                ...base.dl,
-                latestEditor: {
-                    ...base.dl.latestEditor,
-                    showHref: false,
-                },
-            },
-        },
-        noSecureEditorDraftLink: {
-            ...base,
-            dl: {
-                ...base.dl,
-                latestEditor: {
-                    ...base.dl.latestEditor,
-                    linkProtocol: 'http',
-                },
-            },
-        },
-        noEditor: {
-            ...base,
-            dl: {
-                ...base.dl,
-                editor: {
-                    ...base.dl.editor,
-                    show: false,
-                },
-            },
-        },
-        missingEditorId: {
-            ...base,
-            dl: {
-                ...base.dl,
-                editor: {
-                    ...base.dl.editor,
+        'section-ids': {
+            noSectionId: {
+                ...base,
+                sotd: {
+                    ...base.sotd,
                     id: '',
                 },
             },
         },
-    },
-    secno: {
-        noSecno: {
-            ...base,
-            secno: '',
-        },
-    },
-    'ol-toc': {
-        noToc: {
-            ...base,
-            tocs: [],
-        },
-    },
-    'h2-toc': {
-        mixedTocs: {
-            ...base,
-            tocs: [
-                base.tocs[0],
-                {
-                    ...base.tocs[0],
-                    tag: 'div',
+        h2: {
+            wrongAbstractH2: {
+                ...base,
+                abstract: {
+                    ...base.abstract,
+                    abstractText: 'foo',
                 },
-            ],
-        },
-        notHtml5: {
-            ...base,
-            tocs: [
-                {
-                    ...base.tocs[0],
-                    tag: 'div',
+            },
+            wrongSotdH2: {
+                ...base,
+                sotd: {
+                    ...base.sotd,
+                    title: 'wrong sotd title',
                 },
-            ],
+            },
+            wrongTocH2: {
+                ...base,
+                tocs: [
+                    {
+                        ...base.tocs[0],
+                        titles: ['wrong toc title'],
+                    },
+                ],
+            },
         },
-        noTocs: {
-            ...base,
-            tocs: [],
-        },
-        noTitles: {
-            ...base,
-            tocs: [
-                {
-                    ...base.tocs[0],
-                    titles: [],
-                },
-            ],
-        },
-        duplicatedTitle: {
-            ...base,
-            tocs: [
-                {
-                    ...base.tocs[0],
-                    titles: ['Table of Contents', 'Table of Contents'],
-                },
-            ],
-        },
-    },
-    sheet: {
-        noSheet: {
-            ...base,
-            head: {
-                ...base.head,
-                styleSheet: {
-                    show: false,
+        canonical: {
+            noCanonical: {
+                ...base,
+                head: {
+                    ...base.head,
+                    showCanonical: false,
                 },
             },
         },
-        notLast: {
-            ...base,
-            head: {
-                ...base.head,
-                styleSheet: {
-                    ...base.head.styleSheet,
-                    showAnother: true,
+        supersedable: {
+            noIntro: {
+                ...base,
+                sotd: {
+                    ...base.sotd,
+                    emHTML: '<em>This section not the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>',
+                },
+            },
+            noTr: {
+                ...base,
+                sotd: {
+                    ...base.sotd,
+                    emHTML: "<em>This section describes the status of this document at the time of its publication. A list of current <abbr >W3C</abbr> publications and the latest revision of this technical report can be found in the <a ><abbr title='World Wide Web Consortium'>W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>",
                 },
             },
         },
-    },
-    meta: {
-        noMeta: {
-            ...base,
-            head: {
-                ...base.head,
-                meta: {
-                    show: false,
+        html: {
+            skipValidation: {
+                ...base,
+            },
+        },
+        neutral: {
+            hasNeutral: {
+                ...base,
+                header: {
+                    ...base.header,
+                    summary: {
+                        ...base.header.summary,
+                        text: 'More details about this document master',
+                    },
                 },
             },
         },
-        noWidth: {
-            ...base,
-            head: {
-                ...base.head,
-                meta: {
-                    ...base.head.meta,
-                    width: '',
-                },
-            },
-        },
-    },
-    'body-toc-sidebar': {
-        classFound: {
-            ...base,
-            bodyClassNames: 'toc-sidebar',
-        },
-    },
-    script: {
-        noScript: {
-            ...base,
-            scripts: [],
-        },
-    },
-    'back-to-top': {
-        noBackToTop: {
-            ...base,
-            backToTop: {
-                show: false,
-            },
-        },
-    },
-    'date-format': {
-        wrongDateFormat: {
-            ...base,
-            showWrongDateFormat: true,
-        },
-    },
-    wcag: {},
-    reliability: {
-        hasUnreliableLinks: {
-            ...base,
-            header: {
-                ...base.header,
-                logo: {
-                    ...base.header.logo,
-                    href: 'http://www.w3c-test.org/foo/bar.jpg',
-                },
-            },
-        },
-    },
-    'section-ids': {
-        noSectionId: {
-            ...base,
-            sotd: {
-                ...base.sotd,
-                id: '',
-            },
-        },
-    },
-    h2: {
-        wrongAbstractH2: {
-            ...base,
-            abstract: {
-                ...base.abstract,
-                abstractText: 'foo',
-            },
-        },
-        wrongSotdH2: {
-            ...base,
-            sotd: {
-                ...base.sotd,
-                title: 'wrong sotd title',
-            },
-        },
-        wrongTocH2: {
-            ...base,
-            tocs: [
-                {
-                    ...base.tocs[0],
-                    titles: ['wrong toc title'],
-                },
-            ],
-        },
-    },
-    canonical: {
-        noCanonical: {
-            ...base,
-            head: {
-                ...base.head,
-                showCanonical: false,
-            },
-        },
-    },
-    supersedable: {
-        noIntro: {
-            ...base,
-            sotd: {
-                ...base.sotd,
-                emHTML: '<em>This section not the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>',
-            },
-        },
-        noTr: {
-            ...base,
-            sotd: {
-                ...base.sotd,
-                emHTML: "<em>This section describes the status of this document at the time of its publication. A list of current <abbr >W3C</abbr> publications and the latest revision of this technical report can be found in the <a ><abbr title='World Wide Web Consortium'>W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>",
-            },
-        },
-    },
-    html: {
-        skipValidation: {
-            ...base,
-        },
-    },
-    neutral: {
-        hasNeutral: {
-            ...base,
-            header: {
-                ...base.header,
-                summary: {
-                    ...base.header.summary,
-                    text: 'More details about this document master',
-                },
-            },
-        },
-    },
-});
+    };
+}

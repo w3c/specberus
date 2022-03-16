@@ -1,6 +1,8 @@
-const { rules, echidnaRules } = require('./noteBase');
+import noteBase from './noteBase.js';
 
-exports.rules = {
-    ...rules,
+const { echidnaRules, rules: baseRules } = noteBase;
+
+export const rules = {
+    ...baseRules,
     echidna: echidnaRules,
 };

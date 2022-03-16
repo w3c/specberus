@@ -1,4 +1,4 @@
-exports.rules = {
+export const rules = {
     headers: {
         'div-head': [
             {

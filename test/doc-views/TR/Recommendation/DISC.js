@@ -1,10 +1,9 @@
-/* eslint-disable import/no-dynamic-require */
-const { buildCommonViewData, data } = require('./recommendationBase');
+import { config } from '../../../../lib/profiles/TR/Recommendation/DISC.js';
+import recommendationBase from './recommendationBase.js';
+
+const { buildCommonViewData, data } = recommendationBase;
 
 const profile = 'DISC';
-const {
-    config,
-} = require(`../../../../lib/profiles/TR/Recommendation/${profile}`);
 const customData = {
     config: {
         ...config,
@@ -19,7 +18,7 @@ const customData = {
 const good = { ...data, ...customData };
 const commonData = buildCommonViewData(good);
 
-module.exports = {
+export default {
     good,
     ...commonData,
     stability: {

@@ -1,8 +1,9 @@
-/* eslint-disable import/no-dynamic-require */
-const { buildCommonViewData, data } = require('./registryBase');
+import { config } from '../../../../lib/profiles/TR/Registry/RY.js';
+import registryBase from './registryBase.js';
+
+const { buildCommonViewData, data } = registryBase;
 
 const profile = 'RY';
-const { config } = require(`../../../../lib/profiles/TR/Registry/${profile}`);
 const customData = {
     config: {
         ...config,
@@ -17,7 +18,7 @@ const customData = {
 const good = { ...data, ...customData };
 const common = buildCommonViewData(good);
 
-module.exports = {
+export default {
     good,
     ...common,
     stability: {

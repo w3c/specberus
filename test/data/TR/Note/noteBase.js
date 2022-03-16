@@ -1,13 +1,15 @@
-const { rules, ...rest } = require('../TRBase');
+import * as TRBase from '../TRBase.js';
 
-module.exports = {
+const { rules: baseRules, ...rest } = TRBase;
+
+export default {
     ...rest,
     rules: {
-        ...rules,
+        ...baseRules,
         sotd: {
-            ...rules.sotd,
+            ...baseRules.sotd,
             pp: [
-                ...rules.sotd.pp.filter(
+                ...baseRules.sotd.pp.filter(
                     v =>
                         !['noPP2017', 'jointPublication'].find(
                             x => x === v.data

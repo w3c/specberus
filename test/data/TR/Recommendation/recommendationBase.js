@@ -1,6 +1,8 @@
-const { rules, ...rest } = require('../TRBase');
+import * as TRBase from '../TRBase.js';
 
-module.exports = {
+const { rules: baseRules, ...rest } = TRBase;
+
+export default {
     ...rest,
     securityPrivacyRules: [
         {
@@ -27,11 +29,11 @@ module.exports = {
         },
     ],
     rules: {
-        ...rules,
+        ...baseRules,
         sotd: {
-            ...rules.sotd,
+            ...baseRules.sotd,
             pp: [
-                ...rules.sotd.pp,
+                ...baseRules.sotd.pp,
                 {
                     data: 'noDisclosures',
                     config: {

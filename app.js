@@ -2,7 +2,21 @@
  * Main runnable file.
  */
 
-'use strict';
+import compression from 'compression';
+import cors from 'cors';
+import express from 'express';
+import http from 'http';
+import insafe from 'insafe';
+import morgan from 'morgan';
+import { Server } from 'socket.io';
+import * as api from './lib/api.js';
+import * as l10n from './lib/l10n.js';
+import { Sink } from './lib/sink.js';
+import { allProfiles, importJSON } from './lib/util.js';
+import { Specberus } from './lib/validator.js';
+import * as views from './lib/views.js';
+
+const { version } = importJSON('./package.json', import.meta.url);
 
 // Settings:
 const DEFAULT_PORT = 80;
@@ -19,33 +33,13 @@ if (!process.env.BASE_URI || process.env.BASE_URI.length < 1) {
     );
 }
 
-// Native packages:
-const http = require('http');
-
-// External packages:
-const compression = require('compression');
-const express = require('express');
-const insafe = require('insafe');
-const morgan = require('morgan');
-const socket = require('socket.io');
-// Internal packages:
-const self = require('./package.json');
-const l10n = require('./lib/l10n');
-const sink = require('./lib/sink');
-const validator = require('./lib/validator');
-const views = require('./lib/views');
-const util = require('./lib/util');
-const api = require('./lib/api');
-
 const app = express();
 const server = http.createServer(app);
-const io = socket(server);
-const { Sink } = sink;
-const { version } = self;
+const io = new Server(server);
 // Middleware:
 app.use(morgan('combined'));
 app.use(compression());
-app.use('/badterms.json', require('cors')());
+app.use('/badterms.json', cors());
 
 app.use(express.static('public'));
 api.setUp(app, process.env.W3C_API_KEY);
@@ -61,7 +55,7 @@ io.on('connection', socket => {
     socket.on('extractMetadata', data => {
         if (!data.url)
             return socket.emit('exception', { message: 'URL not provided.' });
-        const specberus = new validator.Specberus(process.env.W3C_API_KEY);
+        const specberus = new Specberus(process.env.W3C_API_KEY);
         const handler = new Sink();
         handler.on('err', (type, data) => {
             try {
@@ -105,26 +99,26 @@ io.on('connection', socket => {
             events: handler,
         });
     });
-    socket.on('validate', data => {
+    socket.on('validate', async data => {
         if (!data.url)
             return socket.emit('exception', { message: 'URL not provided.' });
         if (!data.profile)
             return socket.emit('exception', {
                 message: 'Profile not provided.',
             });
-        const profilePath = util.allProfiles.find(p =>
+        const profilePath = allProfiles.find(p =>
             p.endsWith(`/${data.profile}.js`)
         );
         let profile;
         try {
-            // eslint-disable-next-line import/no-dynamic-require
-            profile = require(`./lib/profiles/${profilePath}`);
+            // eslint-disable-next-line node/no-unsupported-features/es-syntax
+            profile = await import(`./lib/profiles/${profilePath}`);
         } catch (err) {
             return socket.emit('exception', {
                 message: 'Profile does not exist.',
             });
         }
-        const specberus = new validator.Specberus(process.env.W3C_API_KEY);
+        const specberus = new Specberus(process.env.W3C_API_KEY);
         const handler = new Sink();
         const profileCode = profile.name;
         socket.emit('start', {

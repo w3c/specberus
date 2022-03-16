@@ -1,8 +1,9 @@
-/* eslint-disable import/no-dynamic-require */
-const { buildCommonViewData, data } = require('./noteBase');
+import { config } from '../../../../lib/profiles/TR/Note/NOTE.js';
+import noteBase from './noteBase.js';
+
+const { buildCommonViewData, data } = noteBase;
 
 const profile = 'NOTE';
-const { config } = require(`../../../../lib/profiles/TR/Note/${profile}`);
 const customData = {
     config: {
         ...config,
@@ -17,7 +18,7 @@ const good = { ...data, ...customData };
 
 const common = buildCommonViewData(good);
 
-module.exports = {
+export default {
     good,
     ...common,
 };

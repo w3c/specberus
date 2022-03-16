@@ -1,4 +1,28 @@
-/* eslint-disable import/no-dynamic-require */
+// Native packages:
+// eslint-disable-next-line node/no-unpublished-import
+import { expect as chai } from 'chai';
+// eslint-disable-next-line node/no-unpublished-import
+import expect from 'expect.js';
+// External packages:
+import express from 'express';
+import exphbs from 'express-handlebars';
+import { lstatSync, readdirSync } from 'fs';
+// eslint-disable-next-line node/no-unpublished-import
+import nock from 'nock';
+import pth, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { Sink } from '../lib/sink.js';
+import { allProfiles } from '../lib/util.js';
+// Internal packages:
+import { Specberus } from '../lib/validator.js';
+// A list of good documents to be tested, using all rules configured in the profiles.
+// Shouldn't cause any error.
+import { goodDocuments } from './data/goodDocuments.js';
+import { samples } from './samples.js';
+
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 /**
  * Test the rules.
  */
@@ -8,21 +32,6 @@ const DEBUG = process.env.DEBUG || false;
 const DEFAULT_PORT = 8001;
 const PORT = process.env.PORT || DEFAULT_PORT;
 const ENDPOINT = `http://localhost:${PORT}`;
-// Native packages:
-const pth = require('path');
-const { readdirSync, lstatSync } = require('fs');
-
-// External packages:
-const express = require('express');
-const expect = require('expect.js');
-const chai = require('chai').expect;
-const exphbs = require('express-handlebars');
-
-// Internal packages:
-const { Specberus } = require('../lib/validator');
-const { Sink } = require('../lib/sink');
-const util = require('../lib/util');
-const { samples } = require('./samples');
 
 /**
  * Compare two arrays of "deliverer IDs" and check that they're equivalent.
@@ -197,26 +206,33 @@ function renderByConfig(req, res) {
         : req.params.profile;
 
     // get data for template from json (.js)
-    const data = require(pth.join(
+    const path = pth.join(
         __dirname,
         `./doc-views/${req.params.docType}/${suffix}.js`
-    ));
+    );
 
-    let finalData;
-    if (!type)
-        res.send('<h1>Error: please add the parameter "type" in the URL </h1>');
-    else if (type.startsWith('good')) {
-        finalData = data[type];
-    } else {
-        if (!rule)
+    // eslint-disable-next-line node/no-unsupported-features/es-syntax
+    import(path).then(module => {
+        const data = module.default;
+
+        let finalData;
+        if (!type)
             res.send(
-                '<h1>Error: please add the parameter "rule" in the URL </h1>'
+                '<h1>Error: please add the parameter "type" in the URL </h1>'
             );
+        else if (type.startsWith('good')) {
+            finalData = data[type];
+        } else {
+            if (!rule)
+                res.send(
+                    '<h1>Error: please add the parameter "rule" in the URL </h1>'
+                );
 
-        // for data causes error, make rule and the type of error specific.
-        finalData = data[rule][type];
-    }
-    res.render(pth.join(__dirname, './doc-views/layout/spec'), finalData);
+            // for data causes error, make rule and the type of error specific.
+            finalData = data[rule][type];
+        }
+        res.render(pth.join(__dirname, './doc-views/layout/spec'), finalData);
+    });
 }
 
 app.get('/doc-views/:docType/:track/:profile', renderByConfig);
@@ -243,20 +259,19 @@ app.get('/docs/links/image/logo-redirection-3', (req, res) => {
 
 let server;
 
-before(() => {
-    server = app.listen(PORT);
+before(done => {
+    server = app.listen(PORT, done);
 });
 
-after(() => {
+after(done => {
     if (server) {
-        server.close();
+        server.close(done);
     }
 });
 
 function buildHandler(test, mock, done) {
     const handler = new Sink();
 
-    const nock = require('nock');
     if (mock) {
         // Mock some external calls to speed up the test suite
         nock('https://www.w3.org', { allowUnmocked: true })
@@ -431,10 +446,6 @@ function buildHandler(test, mock, done) {
     return handler;
 }
 
-// A list of good documents to be tested, using all rules configured in the profiles.
-// Shouldn't cause any error.
-const { goodDocuments } = require('./data/goodDocuments');
-
 const testsGoodDoc = goodDocuments;
 
 // The next check is running each profile using the rules configured.
@@ -445,64 +456,90 @@ describe('Making sure good documents pass Specberus...', () => {
 
         const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
         it(`should pass for ${docProfile} doc with ${url}`, done => {
-            const profilePath = util.allProfiles.find(p =>
+            const profilePath = allProfiles.find(p =>
                 p.endsWith(`/${docProfile}.js`)
             );
-            const profile = require(`../lib/profiles/${profilePath}`);
-
-            // add custom config to test
-            profile.config = {
-                patentPolicy: 'pp2020', // default config for all docs.
-                ...profile.config,
-                ...testsGoodDoc[docProfile].config,
-            };
-
-            // remove unnecessary rules from test
-            const { removeRules } = require('../lib/profiles/profileUtil');
-            const rules = removeRules(profile.rules, [
-                'validation.html',
-                'validation.wcag',
-                'links.linkchecker', // too slow. will check separately.
-            ]);
-
-            const options = {
-                profile: {
+            // eslint-disable-next-line node/no-unsupported-features/es-syntax
+            import(`../lib/profiles/${profilePath}`).then(profile => {
+                // add custom config to test
+                const extendedProfile = {
                     ...profile,
-                    rules, // do not change profile.rules
-                },
-                events: buildHandler({ ignoreWarnings: true }, false, done),
-                url,
-            };
+                    config: {
+                        patentPolicy: 'pp2020', // default config for all docs.
+                        ...profile.config,
+                        ...testsGoodDoc[docProfile].config,
+                    },
+                };
 
-            // for (const o in test.options) options[o] = test.options[o];
-            new Specberus(process.env.W3C_API_KEY).validate(options);
+                // remove unnecessary rules from test
+                // eslint-disable-next-line node/no-unsupported-features/es-syntax
+                import('../lib/profiles/profileUtil.js').then(
+                    ({ removeRules }) => {
+                        const rules = removeRules(extendedProfile.rules, [
+                            'validation.html',
+                            'validation.wcag',
+                            'links.linkchecker', // too slow. will check separately.
+                        ]);
+
+                        const options = {
+                            profile: {
+                                ...extendedProfile,
+                                rules, // do not change profile.rules
+                            },
+                            events: buildHandler(
+                                { ignoreWarnings: true },
+                                false,
+                                done
+                            ),
+                            url,
+                        };
+
+                        // for (const o in test.options) options[o] = test.options[o];
+                        new Specberus(process.env.W3C_API_KEY).validate(
+                            options
+                        );
+                    }
+                );
+            });
         });
     });
 });
 
 function checkRule(tests, options) {
     const { docType, track, profile, category, rule } = options;
+
     tests.forEach(test => {
         const passOrFail = !test.errors ? 'pass' : 'fail';
         const suffix = track ? `${track}/${profile}` : profile;
         const url = `${ENDPOINT}/doc-views/${docType}/${suffix}?rule=${rule}&type=${test.data}`;
-        const { config } = require(`../lib/profiles/${docType}/${suffix}`);
 
         it(`should ${passOrFail} for ${url}`, done => {
-            const options = {
-                url,
-                profile: {
-                    name: `Synthetic ${profile}/${rule}`,
-                    rules: [require(`../lib/rules/${category}/${rule}`)],
-                    config: {
-                        ...config,
-                        ...test.config,
-                    },
-                },
-                events: buildHandler(test, true, done),
-                ...test.options,
-            };
-            new Specberus(process.env.W3C_API_KEY).validate(options);
+            // eslint-disable-next-line node/no-unsupported-features/es-syntax
+            import(`../lib/profiles/${docType}/${suffix}.js`).then(
+                ({ config }) => {
+                    // eslint-disable-next-line node/no-unsupported-features/es-syntax
+                    import(`../lib/rules/${category}/${rule}.js`).then(
+                        ruleModule => {
+                            const options = {
+                                url,
+                                profile: {
+                                    name: `Synthetic ${profile}/${rule}`,
+                                    rules: [ruleModule],
+                                    config: {
+                                        ...config,
+                                        ...test.config,
+                                    },
+                                },
+                                events: buildHandler(test, true, done),
+                                ...test.options,
+                            };
+                            new Specberus(process.env.W3C_API_KEY).validate(
+                                options
+                            );
+                        }
+                    );
+                }
+            );
         });
     });
 }
@@ -515,24 +552,63 @@ function listFilesOf(dir) {
     return files.filter(v => !blocklist.find(b => v.includes(b)));
 }
 
-function runTestsForProfile(file, { docType, track }) {
-    const base = `${process.cwd()}/test/data`;
-    const lastDot = file.lastIndexOf('.');
-    const profile = file.substring(0, lastDot);
+const flat = objs => objs.reduce((acc, cur) => ({ ...acc, ...cur }), {});
 
+const buildProfileTestCases = async path => {
+    // eslint-disable-next-line node/no-unsupported-features/es-syntax
+    const { rules } = await import(path);
+    return rules;
+};
+
+const buildTrackTestCases = async path => {
+    if (lstatSync(path).isFile()) {
+        const profile = await buildProfileTestCases(path);
+        return profile;
+    }
+
+    const profiles = await Promise.all(
+        listFilesOf(path).map(async profile => ({
+            [profile]: await buildProfileTestCases(`${path}/${profile}`),
+        }))
+    );
+
+    return flat(profiles);
+};
+
+const buildDocTypeTestCases = async path => {
+    const tracks = await Promise.all(
+        listFilesOf(path).map(async track => ({
+            [track]: await buildTrackTestCases(`${path}/${track}`),
+        }))
+    );
+
+    return flat(tracks);
+};
+
+const buildBadTestCases = async () => {
+    const base = `${process.cwd()}/test/data`;
+    const docTypes = await Promise.all(
+        listFilesOf(base)
+            .filter(v => lstatSync(`${base}/${v}`).isDirectory())
+            .map(async docType => ({
+                [docType]: await buildDocTypeTestCases(`${base}/${docType}`),
+            }))
+    );
+
+    return flat(docTypes);
+};
+
+function runTestsForProfile({ docType, track, profile, rules }) {
     // Profile: CR/NOTE/RY ...
     describe(`Profile: ${profile}`, () => {
-        const suffix = track ? `${track}/${file}` : file;
-        const config = require(`${base}/${docType}/${suffix}`);
-
-        Object.entries(config.rules).forEach(([category, rules]) => {
+        Object.entries(rules).forEach(([category, rules]) => {
             Object.entries(rules).forEach(([rule, tests]) => {
                 // Rule: hr/logo ...
                 describe(`Rule: ${category}.${rule}`, () => {
                     checkRule(tests, {
                         docType,
                         track,
-                        profile,
+                        profile: profile.substring(0, profile.lastIndexOf('.')),
                         category,
                         rule,
                     });
@@ -542,31 +618,39 @@ function runTestsForProfile(file, { docType, track }) {
     });
 }
 
+const badTestCases = await buildBadTestCases();
+
 // The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warnings in lib/l10n-en_GB.js
 describe('Making sure Specberus is not broken...', () => {
-    const base = `${process.cwd()}/test/data`;
-    listFilesOf(base)
-        .filter(v => lstatSync(`${base}/${v}`).isDirectory())
-        .forEach(docType => {
-            // DocType: TR/SUMB
-            describe(`DocType: ${docType}:`, () => {
-                listFilesOf(`${base}/${docType}`).forEach(track => {
-                    const isProfile = lstatSync(
-                        `${base}/${docType}/${track}`
-                    ).isFile();
-
+    Object.entries(badTestCases).forEach(([docType, tracksOrProfiles]) => {
+        // DocType: TR/SUMB
+        describe(`DocType: ${docType}`, () => {
+            Object.entries(tracksOrProfiles).forEach(
+                ([trackOrProfile, profilesOrRules]) => {
                     // Profile: SUBM
-                    if (isProfile) {
-                        runTestsForProfile(track, { docType });
+                    if (trackOrProfile === 'MEM-SUBM.js') {
+                        runTestsForProfile({
+                            docType,
+                            profile: trackOrProfile,
+                            rules: profilesOrRules,
+                        });
                         return;
                     }
+
                     // Track: Note/Recommendation/Registry
-                    describe(`Track: ${track}`, () => {
-                        listFilesOf(`${base}/${docType}/${track}`).forEach(
-                            file => runTestsForProfile(file, { docType, track })
+                    describe(`Track: ${trackOrProfile}`, () => {
+                        Object.entries(profilesOrRules).forEach(
+                            ([profile, rules]) =>
+                                runTestsForProfile({
+                                    docType,
+                                    track: trackOrProfile,
+                                    profile,
+                                    rules,
+                                })
                         );
                     });
-                });
-            });
+                }
+            );
         });
+    });
 });

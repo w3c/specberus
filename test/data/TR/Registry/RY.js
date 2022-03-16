@@ -1,5 +1,3 @@
-const { rules } = require('./registryBase');
+import registryBase from './registryBase.js';
 
-exports.rules = {
-    ...rules,
-};
+export const { rules } = registryBase;

@@ -3,10 +3,14 @@
 
 // XXX also look at https://cvs.w3.org/Team/WWW/2000/04/mem-news/groups.rdf
 
-const fs = require('fs');
-const pth = require('path');
-const ua = require('superagent');
-const { JSDOM } = require('jsdom');
+import fs from 'fs';
+import { JSDOM } from 'jsdom';
+import pth, { dirname } from 'path';
+import ua from 'superagent';
+import { fileURLToPath } from 'url';
+
+// eslint-disable-next-line no-underscore-dangle
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const user = process.argv[2];
 const pass = process.argv[3];

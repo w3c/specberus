@@ -1,12 +1,9 @@
-/* eslint-disable import/no-dynamic-require */
-const {
-    buildCommonViewData,
-    buildDraftStability,
-    data,
-} = require('./registryBase');
+import { config } from '../../../../lib/profiles/TR/Registry/DRY.js';
+import registryBase from './registryBase.js';
+
+const { buildCommonViewData, buildDraftStability, data } = registryBase;
 
 const profile = 'DRY';
-const { config } = require(`../../../../lib/profiles/TR/Registry/${profile}`);
 const customData = {
     config: {
         ...config,
@@ -23,7 +20,7 @@ const customData = {
 const good = { ...data, ...customData };
 const common = buildCommonViewData(good);
 
-module.exports = {
+export default {
     good,
     ...common,
     'draft-stability': buildDraftStability(good),

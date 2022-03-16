@@ -10,7 +10,9 @@
         "global-require": "off",
         "no-restricted-syntax": "warn",
         "guard-for-in": "warn",
-        "prefer-destructuring": "warn"
+        "prefer-destructuring": "warn",
+        "import/prefer-default-export": "off",
+        "import/extensions": "off"
     },
     "overrides": [
         {
@@ -25,6 +27,10 @@
         {
             "files": ["app.js", "lib/**/*.js", "tools/**/*.js"],
             "plugins": ["node"],
+            "parserOptions": {
+                "ecmaVersion": 2020,
+                "sourceType": "module"
+            },
             "extends": ["plugin:node/recommended", "plugin:jsdoc/recommended"]
         },
         {
@@ -36,7 +42,11 @@
                 "node/no-unpublished-require": "off"
             },
             "plugins": ["node"],
-            "extends": "plugin:node/recommended"
+            "extends": "plugin:node/recommended",
+            "parserOptions": {
+                "ecmaVersion": 2022,
+                "sourceType": "module"
+            }
         }
     ]
 }

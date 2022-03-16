@@ -1,4 +1,4 @@
-exports.samples = [
+export const samples = [
     {
         file: '2021-fpwd',
         profile: 'FPWD',

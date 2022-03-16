@@ -1,23 +1,23 @@
-const { rules } = require('../specBase');
+import { rules as baseRules } from '../specBase.js';
 
-exports.rules = {
+export const rules = {
     headers: {
-        ...rules.headers,
+        ...baseRules.headers,
     },
     style: {
-        ...rules.style,
+        ...baseRules.style,
     },
     heuristic: {
-        ...rules.heuristic,
+        ...baseRules.heuristic,
     },
     links: {
-        ...rules.links,
+        ...baseRules.links,
     },
     structure: {
-        ...rules.structure,
+        ...baseRules.structure,
     },
     sotd: {},
     validation: {
-        ...rules.validation,
+        ...baseRules.validation,
     },
 };

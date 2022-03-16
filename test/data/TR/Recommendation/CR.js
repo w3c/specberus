@@ -1,18 +1,20 @@
-const {
-    rules,
-    candidateReviewEndRules,
-    securityPrivacyRules,
-} = require('./recommendationBase');
+import recommendationBase from './recommendationBase.js';
 
-exports.rules = {
-    ...rules,
+const {
+    candidateReviewEndRules,
+    rules: baseRules,
+    securityPrivacyRules,
+} = recommendationBase;
+
+export const rules = {
+    ...baseRules,
     sotd: {
-        ...rules.sotd,
+        ...baseRules.sotd,
         'draft-stability': [],
         'candidate-review-end': candidateReviewEndRules,
     },
     structure: {
-        ...rules.structure,
+        ...baseRules.structure,
         'security-privacy': securityPrivacyRules,
     },
 };
