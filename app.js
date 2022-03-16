@@ -2,8 +2,6 @@
  * Main runnable file.
  */
 
-// Native packages:
-// External packages:
 import compression from 'compression';
 import cors from 'cors';
 import express from 'express';
