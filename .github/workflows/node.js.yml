@@ -40,7 +40,7 @@ jobs:
           W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
 
       - name: Notify failure
-        uses: rectalogic/notify-irc@v1
+        uses: rectalogic/notify-irc@v2
         if: failure() && github.event.pull_request.draft == false
         with:
           server: 'irc.w3.org'
