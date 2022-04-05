@@ -1162,7 +1162,7 @@
                             "draftStability": true,
                             "patPolReq": true,
                             "knownDisclosureNumber": true,
-                            "newFeatures": "If it is the intention to incorporate new features in future updates of the specification, please make sure to identify the document as intending to allow new features. Recommended text is: <blockquote class=\"boilerplate\">Future updates to this specification may incorporate new features.</blockquote>Include one of this source code:</span><br> <code>&lt;p&gt;Future updates to this specification may incorporate &lt;a href=\"https://www.w3.org/2021/Process-20211102/#allow-new-features\"&gt;new features&lt;a&gt;.&lt;/p&gt;</code>",
+                            "newFeatures": "If it is the intention to incorporate new features in future updates of the specification, please make sure to identify the document as intending to allow new features. Recommended text is: <blockquote class=\"boilerplate\">Future updates to this specification may incorporate new features.</blockquote>Include one of this source code:</span><br> <code>&lt;p&gt;Future updates to this specification may incorporate &lt;a href=\"https://www.w3.org/2021/Process-20211102/#allow-new-features\"&gt;new features&lt;/a&gt;.&lt;/p&gt;</code>",
                             "whichProcess": true
                         }
                     },
