@@ -54,7 +54,7 @@
     "cspell": "cspell \"**/*\"",
     "fix": "prettier -w . && eslint --fix .",
     "jsdoc": "jsdoc --configure jsdoc.json -r app.js lib/ public/ test/ tools/",
-    "lint1": "prettier -c lib/rules/headers/dl.js",
+    "lint": "eslint . --report-unused-disable-directives && prettier -c .",
     "live": "nodemon --use_strict app",
     "prepare": "husky install",
     "spelling": "cspell \"**/*\"",
