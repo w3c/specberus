@@ -6,6 +6,16 @@ export default {
     ...rest,
     rules: {
         ...rules,
+        headers: {
+            ...rules.headers,
+            dl: [
+                ...rules.headers.dl,
+                {
+                    data: 'shortnameLowercase',
+                    errors: ['headers.dl.shortname-lowercase'],
+                },
+            ],
+        },
         sotd: {
             ...rules.sotd,
             pp: [
