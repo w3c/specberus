@@ -121,7 +121,10 @@
                             "dateState": ["Draft Registry", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": ["DRY", "If this document introduces a new shortname, it <span class=\"rfc2119\">must</span> use lowercase letters."],
+                            "docIDThisVersion": [
+                                "DRY",
+                                "If this document introduces a new shortname, it <span class=\"rfc2119\">must</span> use lowercase letters."
+                            ],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
@@ -483,7 +486,10 @@
                             "dateState": ["Group Draft Note", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": ["DNOTE", "If this document introduces a new shortname, it <span class=\"rfc2119\">must</span> use lowercase letters."],
+                            "docIDThisVersion": [
+                                "DNOTE",
+                                "If this document introduces a new shortname, it <span class=\"rfc2119\">must</span> use lowercase letters."
+                            ],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
@@ -753,7 +759,10 @@
                             "dateState": ["First Public Working Draft", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
-                            "docIDThisVersion": ["WD", "This document introduces a new shortname, it <span class=\"rfc2119\">must</span> use lowercase letters."],
+                            "docIDThisVersion": [
+                                "WD",
+                                "This document introduces a new shortname, it <span class=\"rfc2119\">must</span> use lowercase letters."
+                            ],
                             "docIDDate": true,
                             "docIDLatestVersion": true,
                             "docIDHistory": true,
