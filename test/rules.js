@@ -621,7 +621,7 @@ function runTestsForProfile({ docType, track, profile, rules }) {
 const badTestCases = await buildBadTestCases();
 
 // The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warnings in lib/l10n-en_GB.js
-describe.only('Making sure Specberus is not broken...', () => {
+describe('Making sure Specberus is not broken...', () => {
     Object.entries(badTestCases).forEach(([docType, tracksOrProfiles]) => {
         // DocType: TR/SUMB
         describe(`DocType: ${docType}`, () => {
