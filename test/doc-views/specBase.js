@@ -543,6 +543,30 @@ export function buildCommonViewData(base) {
                     status: 'FWD',
                 },
             },
+            shortnameLowercaseFP: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    shortName: 'UPPERcase-name',
+                    seriesShortName: 'UPPERcase-name',
+                    history: {
+                        ...base.dl.history,
+                        shortName: 'UPPERcase-name',
+                    },
+                },
+            },
+            shortnameLowercase: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    shortName: 'FileAPI',
+                    seriesShortName: 'FileAPI',
+                    history: {
+                        ...base.dl.history,
+                        shortName: 'FileAPI',
+                    },
+                },
+            },
             noLatestLinkExist: {
                 ...base,
                 dl: {

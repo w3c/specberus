@@ -8,4 +8,14 @@ export const rules = {
         ...baseRules.sotd,
         'draft-stability': draftStabilityRules,
     },
+    headers: {
+        ...baseRules.headers,
+        dl: [
+            ...baseRules.headers.dl,
+            {
+                data: 'shortnameLowercaseFP',
+                errors: ['headers.dl.shortname-lowercase'],
+            },
+        ],
+    },
 };

@@ -55,5 +55,11 @@ export const rules = {
                 errors: ['headers.errata.no-errata'],
             },
         ],
+        dl: [
+            ...baseRules.headers.dl,
+            {
+                data: 'shortnameLowercase',
+            },
+        ],
     },
 };

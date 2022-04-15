@@ -17,4 +17,13 @@ export const rules = {
         ...baseRules.structure,
         'security-privacy': securityPrivacyRules,
     },
+    headers: {
+        ...baseRules.headers,
+        dl: [
+            ...baseRules.headers.dl,
+            {
+                data: 'shortnameLowercase',
+            },
+        ],
+    },
 };
