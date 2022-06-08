@@ -39,7 +39,7 @@
     "expect.js": "0.3",
     "husky": "8.0.0",
     "jsdoc": "3.6.7",
-    "lint-staged": "12.4.0",
+    "lint-staged": "13.0.0",
     "minami": "1.2.3",
     "mocha": "10.0.0",
     "nock": "13.2.2",
