@@ -3,7 +3,7 @@
         {
             "rule": "validation.html",
             "type": "noexistence-at-all",
-            "message": "CSS: “caret-shape”: Property “caret-shape” doesn't exist."
+            "message": "^CSS: .*$"
         },
         {
             "rule": "validation.html",
