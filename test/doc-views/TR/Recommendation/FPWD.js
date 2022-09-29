@@ -13,6 +13,16 @@ const customData = {
         maybeUpdated: true,
         isFPWD: true,
     },
+    // FPWD should have a unique shortname
+    dl: {
+        ...data.dl,
+        history: {
+            ...data.dl.history,
+            shortName: 'hr-time-new',
+        },
+        shortName: 'hr-time-new',
+        seriesShortName: 'hr-time-new',
+    },
 };
 
 // Used in http://localhost:8001/doc-views/TR/Recommendation/FPWD?type=good
