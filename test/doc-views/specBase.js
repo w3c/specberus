@@ -90,7 +90,7 @@ export const data = {
         editorText: 'Editor',
         errataLink: 'https://github.com/w3c/display_errata/',
         rescindText: 'Rescinds this Recommendation',
-        rescindLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/',
+        rescindLink: 'https://www.w3.org/TR/2017/REC-hr-time-new-20170101/', // TODO: This shortname hr-time-new should not be constrained
     },
     copyright: {
         show: true,
