@@ -22,6 +22,7 @@ const customData = {
         },
         shortName: 'hr-time-new',
         seriesShortName: 'hr-time-new',
+        rescindLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/', // TODO: This shortname hr-time-new should not be constrained
     },
 };
 
