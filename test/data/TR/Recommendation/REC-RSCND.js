@@ -12,8 +12,6 @@ export const rules = {
                     ![
                         'wrongThisVersionHead',
                         'noRescindsNeeded',
-                        'wrongLatestAndObsoletesOrder',
-                        'wrongLatestAndSupersedesOrder',
                         'noThisLinkExist',
                         'wrongThisSyntax',
                     ].find(x => x === v.data)
@@ -25,26 +23,6 @@ export const rules = {
                     'headers.dl.this-latest-shortname',
                     'headers.dl.history-syntax',
                     'headers.dl.this-rescinds-shortname',
-                ],
-            },
-            {
-                data: 'wrongLatestAndObsoletesOrder',
-                config: {
-                    obsoletes: true,
-                },
-                errors: [
-                    'headers.dl.latest-rescinds-order',
-                    'headers.dl.latest-obsoletes-order',
-                ],
-            },
-            {
-                data: 'wrongLatestAndSupersedesOrder',
-                config: {
-                    supersedes: true,
-                },
-                errors: [
-                    'headers.dl.latest-rescinds-order',
-                    'headers.dl.latest-supersedes-order',
                 ],
             },
             {

@@ -103,20 +103,6 @@
                     </dd>
                     {{/config.isRescinded}}
 
-                    {{#config.isObsolete}}
-                        <dt><span class="handlebars-data">{{dl.obsoleteText}}</span>{{! Obsolete this Recommendation}}:</dt>
-                        <dd>
-                            <a rel="dcterms:replaces" {{#if dl.obsolete.showHref}}href="{{dl.obsoleteLink}}"{{/if}}><span class="handlebars-data">{{dl.obsoleteLink}}</span></a>
-                        </dd>
-                    {{/config.isObsolete}}
-
-                    {{#config.isSuperseded}}
-                        <dt><span class="handlebars-data">{{dl.supersedeText}}</span>{{! Obsolete this Recommendation}}:</dt>
-                        <dd>
-                            <a rel="dcterms:replaces" {{#if dl.supersede.showHref}}href="{{dl.supersedeLink}}"{{/if}}><span class="handlebars-data">{{dl.supersedeLink}}</span></a>
-                        </dd>
-                    {{/config.isSuperseded}}
-
                     {{#if dl.latestVersion.showBehind}}
                         <dt>{{dl.latestVersion.text}}</dt>
                         <dd> <a href="https://www.w3.org/{{dl.topLevel}}/{{dl.seriesShortName}}/">https://www.w3.org/{{dl.topLevel}}/<span class="handlebars-data">{{dl.seriesShortName}}</span>/</a>

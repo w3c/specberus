@@ -39,20 +39,6 @@ export const rules = {
                 errors: ['headers.dl.rescinds'],
             },
             {
-                data: 'obsoletes',
-                config: {
-                    obsoletes: true,
-                },
-                errors: ['headers.dl.obsoletes'],
-            },
-            {
-                data: 'supersedes',
-                config: {
-                    supersedes: true,
-                },
-                errors: ['headers.dl.supersedes'],
-            },
-            {
                 data: 'wrongThisAndLatestOrder',
                 errors: ['headers.dl.this-latest-order'],
             },
@@ -62,20 +48,6 @@ export const rules = {
                     rescinds: true,
                 },
                 errors: ['headers.dl.latest-rescinds-order'],
-            },
-            {
-                data: 'wrongLatestAndObsoletesOrder',
-                config: {
-                    obsoletes: true,
-                },
-                errors: ['headers.dl.latest-obsoletes-order'],
-            },
-            {
-                data: 'wrongLatestAndSupersedesOrder',
-                config: {
-                    supersedes: true,
-                },
-                errors: ['headers.dl.latest-supersedes-order'],
             },
             {
                 data: 'noThisLinkExist',
@@ -137,48 +109,6 @@ export const rules = {
                     rescinds: true,
                 },
                 errors: ['headers.dl.rescinds-syntax'],
-            },
-            {
-                data: 'noObsoletesLinkExist',
-                config: {
-                    obsoletes: true,
-                },
-                errors: ['headers.dl.not-found'],
-            },
-            {
-                data: 'diffThisAndObsoletesShortname',
-                config: {
-                    obsoletes: true,
-                },
-                errors: ['headers.dl.this-obsoletes-shortname'],
-            },
-            {
-                data: 'wrongObsoletesSyntax',
-                config: {
-                    obsoletes: true,
-                },
-                errors: ['headers.dl.obsoletes-syntax'],
-            },
-            {
-                data: 'noSupersedesLinkExist',
-                config: {
-                    supersedes: true,
-                },
-                errors: ['headers.dl.not-found'],
-            },
-            {
-                data: 'diffThisAndSupersedesShortname',
-                config: {
-                    supersedes: true,
-                },
-                errors: ['headers.dl.this-supersedes-shortname'],
-            },
-            {
-                data: 'wrongSupersedesSyntax',
-                config: {
-                    supersedes: true,
-                },
-                errors: ['headers.dl.supersedes-syntax'],
             },
             {
                 data: 'noEditorDraftLinkExist',

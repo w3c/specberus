@@ -80,9 +80,6 @@ export const data = {
         obsolete: {
             showHref: true,
         },
-        supersede: {
-            showHref: true,
-        },
         feedback: {
             show: true,
         },
@@ -94,10 +91,6 @@ export const data = {
         errataLink: 'https://github.com/w3c/display_errata/',
         rescindText: 'Rescinds this Recommendation',
         rescindLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/',
-        obsoleteText: 'Obsoletes this Recommendation',
-        obsoleteLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/',
-        supersedeText: 'Supersedes this Recommendation',
-        supersedeLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/',
     },
     copyright: {
         show: true,
@@ -432,26 +425,6 @@ export function buildCommonViewData(base) {
                     isRescinded: true,
                 },
             },
-            obsoletes: {
-                ...base,
-            },
-            noObsoletesNeeded: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isObsolete: true,
-                },
-            },
-            supersedes: {
-                ...base,
-            },
-            noSupersedesNeeded: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isSuperseded: true,
-                },
-            },
             wrongThisAndLatestOrder: {
                 ...base,
                 dl: {
@@ -476,36 +449,6 @@ export function buildCommonViewData(base) {
                 config: {
                     ...base.config,
                     isRescinded: true,
-                },
-            },
-            wrongLatestAndObsoletesOrder: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    latestVersion: {
-                        ...base.dl.latestVersion,
-                        show: false,
-                        showBehind: true,
-                    },
-                },
-                config: {
-                    ...base.config,
-                    isObsolete: true,
-                },
-            },
-            wrongLatestAndSupersedesOrder: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    latestVersion: {
-                        ...base.dl.latestVersion,
-                        show: false,
-                        showBehind: true,
-                    },
-                },
-                config: {
-                    ...base.config,
-                    isSuperseded: true,
                 },
             },
             noThisLinkExist: {
@@ -661,82 +604,6 @@ export function buildCommonViewData(base) {
                     ...base.dl,
                     rescindLink:
                         'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
-                },
-            },
-            noObsoletesLinkExist: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isObsolete: true,
-                },
-                dl: {
-                    ...base.dl,
-                    obsolete: {
-                        ...base.dl.obsolete,
-                        showHref: false,
-                    },
-                },
-            },
-            diffThisAndObsoletesShortname: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isObsolete: true,
-                },
-                dl: {
-                    ...base.dl,
-                    obsoleteLink:
-                        'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
-                },
-            },
-            wrongObsoletesSyntax: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isObsolete: true,
-                },
-                dl: {
-                    ...base.dl,
-                    obsoleteLink:
-                        'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
-                },
-            },
-            noSupersedesLinkExist: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isSuperseded: true,
-                },
-                dl: {
-                    ...base.dl,
-                    supersede: {
-                        ...base.dl.supersede,
-                        showHref: false,
-                    },
-                },
-            },
-            diffThisAndSupersedesShortname: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isSuperseded: true,
-                },
-                dl: {
-                    ...base.dl,
-                    supersedeLink:
-                        'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
-                },
-            },
-            wrongSupersedesSyntax: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isSuperseded: true,
-                },
-                dl: {
-                    ...base.dl,
-                    supersedeLink:
-                        'https://www.w3.org/FAKE/2017/REC-hr-time-20170101/',
                 },
             },
             noEditorDraftLinkExist: {
