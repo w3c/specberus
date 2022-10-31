@@ -11,6 +11,18 @@ updates:
         update-types: ['version-update:semver-patch']
       - dependency-name: 'cspell'
         update-types: ['version-update:semver-minor']
+      # ignore minor updates for eslint and any packages starting "eslint"
+      - dependency-name: "eslint*"
+        update-types: ['version-update:semver-minor']
+      # ignore minor updates for chai and any packages starting "chai"
+      - dependency-name: "chai*"
+        update-types: ['version-update:semver-minor']
+      - dependency-name: "jsdoc"
+        update-types: ['version-update:semver-minor']
+      - dependency-name: "husky"
+        update-types: ['version-update:semver-minor']
+      - dependency-name: "nodemon"
+        update-types: ['version-update:semver-minor']
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
