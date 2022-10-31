@@ -20,7 +20,7 @@
     "metaviewport-parser": "0.2.0",
     "morgan": "1.10.0",
     "node-w3capi": "1.11.2",
-    "promise": "8.2.0",
+    "promise": "8.3.0",
     "puppeteer": "19.2.0",
     "socket.io": "4.5.0",
     "superagent": "8.0.0"
@@ -33,7 +33,7 @@
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jsdoc": "39.3.2",
+    "eslint-plugin-jsdoc": "39.4.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "expect.js": "0.3",
