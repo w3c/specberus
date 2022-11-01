@@ -14,7 +14,7 @@ export const rules = {
             ...baseRules.headers.dl,
             {
                 data: 'shortnameLowercaseFP',
-                errors: ['headers.dl.shortname-lowercase'],
+                errors: ['headers.shortname.shortname-lowercase'],
             },
         ],
     },

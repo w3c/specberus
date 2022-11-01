@@ -70,14 +70,43 @@ export const rules = {
                 errors: ['headers.details-summary.wrong-summary-text'],
             },
         ],
+        shortname: [
+            {
+                data: 'diffThisAndLatestShortname',
+                errors: ['headers.shortname.this-latest-shortname'],
+            },
+            {
+                data: 'noHistoryLinkExist',
+                errors: ['headers.shortname.not-found'],
+            },
+            {
+                data: 'wrongHistorySyntax',
+                errors: ['headers.shortname.history-syntax'],
+            },
+            {
+                data: 'diffThisAndRescindShortname',
+                config: {
+                    rescinds: true,
+                },
+                errors: ['headers.shortname.this-rescinds-shortname'],
+            },
+        ],
         dl: [
             {
                 data: 'wrongThisVersionHead',
-                errors: [
-                    'headers.dl.this-version',
-                    'headers.dl.this-latest-shortname',
-                    'headers.dl.history-syntax',
-                ],
+                errors: ['headers.dl.this-version'],
+            },
+            {
+                data: 'noLatestLinkExist',
+                errors: ['headers.dl.not-found'],
+            },
+            {
+                data: 'linkDiff',
+                errors: ['headers.dl.link-diff'],
+            },
+            {
+                data: 'wrongLatestSyntax',
+                errors: ['headers.dl.latest-syntax'],
             },
             {
                 data: 'wrongLatestVersionHead',
@@ -111,11 +140,7 @@ export const rules = {
             },
             {
                 data: 'noThisLinkExist',
-                errors: [
-                    'headers.dl.not-found',
-                    'headers.dl.this-latest-shortname',
-                    'headers.dl.history-syntax',
-                ],
+                errors: ['headers.dl.not-found'],
             },
             {
                 data: 'wrongThisDate',
@@ -127,35 +152,7 @@ export const rules = {
             },
             {
                 data: 'wrongThisSyntax',
-                errors: [
-                    'headers.dl.this-syntax',
-                    'headers.dl.this-latest-shortname',
-                    'headers.dl.history-syntax',
-                ],
-            },
-            {
-                data: 'noLatestLinkExist',
-                errors: ['headers.dl.not-found'],
-            },
-            {
-                data: 'linkDiff',
-                errors: ['headers.dl.link-diff'],
-            },
-            {
-                data: 'wrongLatestSyntax',
-                errors: ['headers.dl.latest-syntax'],
-            },
-            {
-                data: 'diffThisAndLatestShortname',
-                errors: ['headers.dl.this-latest-shortname'],
-            },
-            {
-                data: 'noHistoryLinkExist',
-                errors: ['headers.dl.not-found'],
-            },
-            {
-                data: 'wrongHistorySyntax',
-                errors: ['headers.dl.history-syntax'],
+                errors: ['headers.dl.this-syntax'],
             },
             {
                 data: 'noRescindLinkExist',
@@ -163,13 +160,6 @@ export const rules = {
                     rescinds: true,
                 },
                 errors: ['headers.dl.not-found'],
-            },
-            {
-                data: 'diffThisAndRescindShortname',
-                config: {
-                    rescinds: true,
-                },
-                errors: ['headers.dl.this-rescinds-shortname'],
             },
             {
                 data: 'wrongRescindSyntax',
