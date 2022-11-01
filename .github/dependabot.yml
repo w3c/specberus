@@ -15,8 +15,6 @@ updates:
       - dependency-name: "eslint*"
         update-types: ['version-update:semver-minor']
       # ignore minor updates for chai and any packages starting "chai"
-      - dependency-name: "chai*"
-        update-types: ['version-update:semver-minor']
       - dependency-name: "jsdoc"
         update-types: ['version-update:semver-minor']
       - dependency-name: "husky"
