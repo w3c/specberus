@@ -486,30 +486,6 @@ export function buildCommonViewData(base) {
                     status: 'FWD',
                 },
             },
-            shortnameLowercaseFP: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    shortName: 'UPPERcase-name',
-                    seriesShortName: 'UPPERcase-name',
-                    history: {
-                        ...base.dl.history,
-                        shortName: 'UPPERcase-name',
-                    },
-                },
-            },
-            shortnameLowercase: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    shortName: 'FileAPI',
-                    seriesShortName: 'FileAPI',
-                    history: {
-                        ...base.dl.history,
-                        shortName: 'FileAPI',
-                    },
-                },
-            },
             noLatestLinkExist: {
                 ...base,
                 dl: {
@@ -539,13 +515,6 @@ export function buildCommonViewData(base) {
                         ...base.dl.latestVersion,
                         textDocType: 'FAKE',
                     },
-                },
-            },
-            diffThisAndLatestShortname: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    seriesShortName: 'fake-hr-time',
                 },
             },
             noHistoryLinkExist: {
@@ -580,18 +549,6 @@ export function buildCommonViewData(base) {
                         ...base.dl.rescind,
                         showHref: false,
                     },
-                },
-            },
-            diffThisAndRescindShortname: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isRescinded: true,
-                },
-                dl: {
-                    ...base.dl,
-                    rescindLink:
-                        'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
                 },
             },
             wrongRescindSyntax: {
@@ -644,6 +601,49 @@ export function buildCommonViewData(base) {
                         ...base.dl.editor,
                         id: '',
                     },
+                },
+            },
+        },
+        shortname: {
+            shortnameLowercaseFP: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    shortName: 'UPPERcase-name',
+                    seriesShortName: 'UPPERcase-name',
+                    history: {
+                        ...base.dl.history,
+                        shortName: 'UPPERcase-name',
+                    },
+                },
+            },
+            diffThisAndLatestShortname: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    seriesShortName: 'fake-hr-time',
+                },
+            },
+            wrongHistorySyntax: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    history: {
+                        ...base.dl.history,
+                        shortName: 'fake-name',
+                    },
+                },
+            },
+            diffThisAndRescindShortname: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isRescinded: true,
+                },
+                dl: {
+                    ...base.dl,
+                    rescindLink:
+                        'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
                 },
             },
         },
