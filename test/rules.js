@@ -332,7 +332,7 @@ function buildHandler(test, mock, done) {
                         'https://www.w3.org/Consortium/Patent-Policy-20170801/',
                 },
                 {
-                    end: '2024-09-30',
+                    end: '2090-09-30',
                     'doc-licenses': [
                         {
                             uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
@@ -350,7 +350,7 @@ function buildHandler(test, mock, done) {
                 start: '2010-05-17',
             },
             83907: {
-                end: '2023-07-31',
+                end: '2090-07-31',
                 'doc-licenses': [
                     {
                         uri: 'https://www.w3.org/Consortium/Legal/copyright-documents',
@@ -366,7 +366,7 @@ function buildHandler(test, mock, done) {
                     'https://www.w3.org/Consortium/Patent-Policy-20200915/',
             },
             35422: {
-                end: '2022-10-31',
+                end: '2090-10-31',
                 'doc-licenses': [
                     {
                         uri: 'https://www.w3.org/Consortium/Legal/copyright-documents',
