@@ -76,10 +76,6 @@ export const rules = {
                 errors: ['headers.shortname.this-latest-shortname'],
             },
             {
-                data: 'noHistoryLinkExist',
-                errors: ['headers.shortname.not-found'],
-            },
-            {
                 data: 'wrongHistorySyntax',
                 errors: ['headers.shortname.history-syntax'],
             },
@@ -93,8 +89,26 @@ export const rules = {
         ],
         dl: [
             {
-                data: 'wrongThisVersionHead',
-                errors: ['headers.dl.this-version'],
+                data: 'wrongRescindSyntax',
+                config: {
+                    rescinds: true,
+                },
+                errors: ['headers.dl.rescinds-syntax'],
+            },
+            {
+                data: 'wrongLatestSyntax',
+                errors: ['headers.dl.latest-syntax'],
+            },
+            {
+                data: 'noRescindLinkExist',
+                config: {
+                    rescinds: true,
+                },
+                errors: ['headers.dl.not-found'],
+            },
+            {
+                data: 'noHistoryLinkExist',
+                errors: ['headers.dl.not-found'],
             },
             {
                 data: 'noLatestLinkExist',
@@ -105,8 +119,8 @@ export const rules = {
                 errors: ['headers.dl.link-diff'],
             },
             {
-                data: 'wrongLatestSyntax',
-                errors: ['headers.dl.latest-syntax'],
+                data: 'wrongThisVersionHead',
+                errors: ['headers.dl.this-version'],
             },
             {
                 data: 'wrongLatestVersionHead',
@@ -153,20 +167,6 @@ export const rules = {
             {
                 data: 'wrongThisSyntax',
                 errors: ['headers.dl.this-syntax'],
-            },
-            {
-                data: 'noRescindLinkExist',
-                config: {
-                    rescinds: true,
-                },
-                errors: ['headers.dl.not-found'],
-            },
-            {
-                data: 'wrongRescindSyntax',
-                config: {
-                    rescinds: true,
-                },
-                errors: ['headers.dl.rescinds-syntax'],
             },
             {
                 data: 'noEditorDraftLinkExist',

@@ -14,7 +14,13 @@ export const rules = {
             ...baseRules.headers.dl,
             {
                 data: 'shortnameLowercaseFP',
-                errors: ['headers.shortname.shortname-lowercase'],
+                errors: [
+                    'headers.dl.this-version',
+                    'headers.dl.latest-version',
+                    'headers.dl.no-history',
+                    'generic.sotd.not-found',
+                    'headers.dl.editor-not-found',
+                ],
             },
         ],
     },

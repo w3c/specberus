@@ -18,30 +18,15 @@ export const rules = {
             ),
             {
                 data: 'wrongThisVersionHead',
-                errors: [
-                    'headers.dl.this-version',
-                    'headers.dl.this-latest-shortname',
-                    'headers.dl.history-syntax',
-                    'headers.dl.this-rescinds-shortname',
-                ],
+                errors: ['headers.dl.this-version'],
             },
             {
                 data: 'noThisLinkExist',
-                errors: [
-                    'headers.dl.not-found',
-                    'headers.dl.this-latest-shortname',
-                    'headers.dl.history-syntax',
-                    'headers.dl.this-rescinds-shortname',
-                ],
+                errors: ['headers.dl.not-found'],
             },
             {
                 data: 'wrongThisSyntax',
-                errors: [
-                    'headers.dl.this-syntax',
-                    'headers.dl.this-latest-shortname',
-                    'headers.dl.history-syntax',
-                    'headers.dl.this-rescinds-shortname',
-                ],
+                errors: ['headers.dl.this-syntax'],
             },
         ],
     },
