@@ -486,81 +486,16 @@ export function buildCommonViewData(base) {
                     status: 'FWD',
                 },
             },
-            noLatestLinkExist: {
+            shortnameLowercase: {
                 ...base,
                 dl: {
                     ...base.dl,
-                    latestVersion: {
-                        ...base.dl.latestVersion,
-                        showHref: false,
-                    },
-                },
-            },
-            wrongLatestSyntax: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    latestVersion: {
-                        ...base.dl.latestVersion,
-                        docType: 'FAKE',
-                        textDocType: 'FAKE',
-                    },
-                },
-            },
-            linkDiff: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    latestVersion: {
-                        ...base.dl.latestVersion,
-                        textDocType: 'FAKE',
-                    },
-                },
-            },
-            noHistoryLinkExist: {
-                ...base,
-                dl: {
-                    ...base.dl,
+                    shortName: 'FileAPI',
+                    seriesShortName: 'FileAPI',
                     history: {
                         ...base.dl.history,
-                        showHref: false,
+                        shortName: 'FileAPI',
                     },
-                },
-            },
-            wrongHistorySyntax: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    history: {
-                        ...base.dl.history,
-                        shortName: 'fake-name',
-                    },
-                },
-            },
-            noRescindLinkExist: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isRescinded: true,
-                },
-                dl: {
-                    ...base.dl,
-                    rescind: {
-                        ...base.dl.rescind,
-                        showHref: false,
-                    },
-                },
-            },
-            wrongRescindSyntax: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isRescinded: true,
-                },
-                dl: {
-                    ...base.dl,
-                    rescindLink:
-                        'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
                 },
             },
             noEditorDraftLinkExist: {
@@ -600,6 +535,73 @@ export function buildCommonViewData(base) {
                     editor: {
                         ...base.dl.editor,
                         id: '',
+                    },
+                },
+            },
+            noHistoryLinkExist: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    history: {
+                        ...base.dl.history,
+                        showHref: false,
+                    },
+                },
+            },
+            noRescindLinkExist: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isRescinded: true,
+                },
+                dl: {
+                    ...base.dl,
+                    rescind: {
+                        ...base.dl.rescind,
+                        showHref: false,
+                    },
+                },
+            },
+            noLatestLinkExist: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        showHref: false,
+                    },
+                },
+            },
+            linkDiff: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        textDocType: 'FAKE',
+                    },
+                },
+            },
+            wrongRescindSyntax: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isRescinded: true,
+                },
+                dl: {
+                    ...base.dl,
+                    rescindLink:
+                        'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
+                },
+            },
+            wrongLatestSyntax: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        docType: 'FAKE',
+                        textDocType: 'FAKE',
                     },
                 },
             },
