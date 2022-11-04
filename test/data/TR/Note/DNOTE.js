@@ -10,8 +10,8 @@ export const rules = {
     },
     headers: {
         ...baseRules.headers,
-        dl: [
-            ...baseRules.headers.dl,
+        shortname: [
+            ...baseRules.headers.shortname,
             {
                 data: 'shortnameLowercaseFP',
                 errors: ['headers.shortname.shortname-lowercase'],
