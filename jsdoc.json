@@ -1,9 +1,0 @@
-{
-    "opts": {
-        "access": "all",
-        "destination": "doc/api/",
-        "encoding": "utf8",
-        "recurse": true,
-        "template": "node_modules/minami"
-    }
-}
