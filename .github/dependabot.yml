@@ -13,8 +13,6 @@ updates:
         update-types: ['version-update:semver-minor']
       - dependency-name: 'eslint*'
         update-types: ['version-update:semver-minor']
-      - dependency-name: 'jsdoc'
-        update-types: ['version-update:semver-minor']
       - dependency-name: 'husky'
         update-types: ['version-update:semver-minor']
       - dependency-name: 'nodemon'

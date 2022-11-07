@@ -4,12 +4,10 @@ on:
   push:
     paths:
       - '**/*.js'
-      - 'jsdoc.json'
       - 'package.json'
   pull_request:
     paths:
       - '**/*.js'
-      - 'jsdoc.json'
       - 'package.json'
 
 jobs:
@@ -26,5 +24,3 @@ jobs:
       - run: npm ci
 
       - run: npm run lint
-
-      - run: npm run jsdoc
