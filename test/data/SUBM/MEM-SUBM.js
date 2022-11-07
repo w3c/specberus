@@ -14,14 +14,53 @@ export const rules = {
                 errors: ['headers.memsub-copyright.not-found'],
             },
         ],
+        shortname: [
+            {
+                data: 'wrongHistorySyntax',
+                errors: ['headers.shortname.history-syntax'],
+            },
+            {
+                data: 'diffThisAndRescindShortname',
+                config: {
+                    rescinds: true,
+                },
+                errors: ['headers.shortname.this-rescinds-shortname'],
+            },
+        ],
         dl: [
             {
+                data: 'wrongRescindSyntax',
+                config: {
+                    rescinds: true,
+                },
+                errors: ['headers.dl.rescinds-syntax'],
+            },
+            {
+                data: 'wrongLatestSyntax',
+                errors: ['headers.dl.latest-syntax'],
+            },
+            {
+                data: 'noRescindLinkExist',
+                config: {
+                    rescinds: true,
+                },
+                errors: ['headers.dl.not-found'],
+            },
+            {
+                data: 'noHistoryLinkExist',
+                errors: ['headers.dl.not-found'],
+            },
+            {
+                data: 'noLatestLinkExist',
+                errors: ['headers.dl.not-found'],
+            },
+            {
+                data: 'linkDiff',
+                errors: ['headers.dl.link-diff'],
+            },
+            {
                 data: 'wrongThisVersionHead',
-                errors: [
-                    'headers.dl.this-version',
-                    'headers.dl.this-latest-shortname',
-                    'headers.dl.history-syntax',
-                ],
+                errors: ['headers.dl.this-version'],
             },
             {
                 data: 'wrongLatestVersionHead',
@@ -39,20 +78,6 @@ export const rules = {
                 errors: ['headers.dl.rescinds'],
             },
             {
-                data: 'obsoletes',
-                config: {
-                    obsoletes: true,
-                },
-                errors: ['headers.dl.obsoletes'],
-            },
-            {
-                data: 'supersedes',
-                config: {
-                    supersedes: true,
-                },
-                errors: ['headers.dl.supersedes'],
-            },
-            {
                 data: 'wrongThisAndLatestOrder',
                 errors: ['headers.dl.this-latest-order'],
             },
@@ -64,26 +89,8 @@ export const rules = {
                 errors: ['headers.dl.latest-rescinds-order'],
             },
             {
-                data: 'wrongLatestAndObsoletesOrder',
-                config: {
-                    obsoletes: true,
-                },
-                errors: ['headers.dl.latest-obsoletes-order'],
-            },
-            {
-                data: 'wrongLatestAndSupersedesOrder',
-                config: {
-                    supersedes: true,
-                },
-                errors: ['headers.dl.latest-supersedes-order'],
-            },
-            {
                 data: 'noThisLinkExist',
-                errors: [
-                    'headers.dl.not-found',
-                    'headers.dl.this-latest-shortname',
-                    'headers.dl.history-syntax',
-                ],
+                errors: ['headers.dl.not-found'],
             },
             {
                 data: 'noDocDate',
@@ -91,94 +98,7 @@ export const rules = {
             },
             {
                 data: 'wrongThisSyntax',
-                errors: [
-                    'headers.dl.this-syntax',
-                    'headers.dl.this-latest-shortname',
-                    'headers.dl.history-syntax',
-                ],
-            },
-            {
-                data: 'noLatestLinkExist',
-                errors: ['headers.dl.not-found'],
-            },
-            {
-                data: 'linkDiff',
-                errors: ['headers.dl.link-diff'],
-            },
-            {
-                data: 'wrongLatestSyntax',
-                errors: ['headers.dl.latest-syntax'],
-            },
-            {
-                data: 'noHistoryLinkExist',
-                errors: ['headers.dl.not-found'],
-            },
-            {
-                data: 'wrongHistorySyntax',
-                errors: ['headers.dl.history-syntax'],
-            },
-            {
-                data: 'noRescindLinkExist',
-                config: {
-                    rescinds: true,
-                },
-                errors: ['headers.dl.not-found'],
-            },
-            {
-                data: 'diffThisAndRescindShortname',
-                config: {
-                    rescinds: true,
-                },
-                errors: ['headers.dl.this-rescinds-shortname'],
-            },
-            {
-                data: 'wrongRescindSyntax',
-                config: {
-                    rescinds: true,
-                },
-                errors: ['headers.dl.rescinds-syntax'],
-            },
-            {
-                data: 'noObsoletesLinkExist',
-                config: {
-                    obsoletes: true,
-                },
-                errors: ['headers.dl.not-found'],
-            },
-            {
-                data: 'diffThisAndObsoletesShortname',
-                config: {
-                    obsoletes: true,
-                },
-                errors: ['headers.dl.this-obsoletes-shortname'],
-            },
-            {
-                data: 'wrongObsoletesSyntax',
-                config: {
-                    obsoletes: true,
-                },
-                errors: ['headers.dl.obsoletes-syntax'],
-            },
-            {
-                data: 'noSupersedesLinkExist',
-                config: {
-                    supersedes: true,
-                },
-                errors: ['headers.dl.not-found'],
-            },
-            {
-                data: 'diffThisAndSupersedesShortname',
-                config: {
-                    supersedes: true,
-                },
-                errors: ['headers.dl.this-supersedes-shortname'],
-            },
-            {
-                data: 'wrongSupersedesSyntax',
-                config: {
-                    supersedes: true,
-                },
-                errors: ['headers.dl.supersedes-syntax'],
+                errors: ['headers.dl.this-syntax'],
             },
             {
                 data: 'noEditorDraftLinkExist',

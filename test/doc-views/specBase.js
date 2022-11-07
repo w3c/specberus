@@ -80,9 +80,6 @@ export const data = {
         obsolete: {
             showHref: true,
         },
-        supersede: {
-            showHref: true,
-        },
         feedback: {
             show: true,
         },
@@ -93,11 +90,7 @@ export const data = {
         editorText: 'Editor',
         errataLink: 'https://github.com/w3c/display_errata/',
         rescindText: 'Rescinds this Recommendation',
-        rescindLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/',
-        obsoleteText: 'Obsoletes this Recommendation',
-        obsoleteLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/',
-        supersedeText: 'Supersedes this Recommendation',
-        supersedeLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/',
+        rescindLink: 'https://www.w3.org/TR/2017/REC-hr-time-20170101/', // TODO: This shortname hr-time-new should not be constrained
     },
     copyright: {
         show: true,
@@ -432,26 +425,6 @@ export function buildCommonViewData(base) {
                     isRescinded: true,
                 },
             },
-            obsoletes: {
-                ...base,
-            },
-            noObsoletesNeeded: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isObsolete: true,
-                },
-            },
-            supersedes: {
-                ...base,
-            },
-            noSupersedesNeeded: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isSuperseded: true,
-                },
-            },
             wrongThisAndLatestOrder: {
                 ...base,
                 dl: {
@@ -476,36 +449,6 @@ export function buildCommonViewData(base) {
                 config: {
                     ...base.config,
                     isRescinded: true,
-                },
-            },
-            wrongLatestAndObsoletesOrder: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    latestVersion: {
-                        ...base.dl.latestVersion,
-                        show: false,
-                        showBehind: true,
-                    },
-                },
-                config: {
-                    ...base.config,
-                    isObsolete: true,
-                },
-            },
-            wrongLatestAndSupersedesOrder: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    latestVersion: {
-                        ...base.dl.latestVersion,
-                        show: false,
-                        showBehind: true,
-                    },
-                },
-                config: {
-                    ...base.config,
-                    isSuperseded: true,
                 },
             },
             noThisLinkExist: {
@@ -543,18 +486,6 @@ export function buildCommonViewData(base) {
                     status: 'FWD',
                 },
             },
-            shortnameLowercaseFP: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    shortName: 'UPPERcase-name',
-                    seriesShortName: 'UPPERcase-name',
-                    history: {
-                        ...base.dl.history,
-                        shortName: 'UPPERcase-name',
-                    },
-                },
-            },
             shortnameLowercase: {
                 ...base,
                 dl: {
@@ -565,178 +496,6 @@ export function buildCommonViewData(base) {
                         ...base.dl.history,
                         shortName: 'FileAPI',
                     },
-                },
-            },
-            noLatestLinkExist: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    latestVersion: {
-                        ...base.dl.latestVersion,
-                        showHref: false,
-                    },
-                },
-            },
-            wrongLatestSyntax: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    latestVersion: {
-                        ...base.dl.latestVersion,
-                        docType: 'FAKE',
-                        textDocType: 'FAKE',
-                    },
-                },
-            },
-            linkDiff: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    latestVersion: {
-                        ...base.dl.latestVersion,
-                        textDocType: 'FAKE',
-                    },
-                },
-            },
-            diffThisAndLatestShortname: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    seriesShortName: 'fake-hr-time',
-                },
-            },
-            noHistoryLinkExist: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    history: {
-                        ...base.dl.history,
-                        showHref: false,
-                    },
-                },
-            },
-            wrongHistorySyntax: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    history: {
-                        ...base.dl.history,
-                        shortName: 'fake-name',
-                    },
-                },
-            },
-            noRescindLinkExist: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isRescinded: true,
-                },
-                dl: {
-                    ...base.dl,
-                    rescind: {
-                        ...base.dl.rescind,
-                        showHref: false,
-                    },
-                },
-            },
-            diffThisAndRescindShortname: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isRescinded: true,
-                },
-                dl: {
-                    ...base.dl,
-                    rescindLink:
-                        'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
-                },
-            },
-            wrongRescindSyntax: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isRescinded: true,
-                },
-                dl: {
-                    ...base.dl,
-                    rescindLink:
-                        'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
-                },
-            },
-            noObsoletesLinkExist: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isObsolete: true,
-                },
-                dl: {
-                    ...base.dl,
-                    obsolete: {
-                        ...base.dl.obsolete,
-                        showHref: false,
-                    },
-                },
-            },
-            diffThisAndObsoletesShortname: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isObsolete: true,
-                },
-                dl: {
-                    ...base.dl,
-                    obsoleteLink:
-                        'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
-                },
-            },
-            wrongObsoletesSyntax: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isObsolete: true,
-                },
-                dl: {
-                    ...base.dl,
-                    obsoleteLink:
-                        'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
-                },
-            },
-            noSupersedesLinkExist: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isSuperseded: true,
-                },
-                dl: {
-                    ...base.dl,
-                    supersede: {
-                        ...base.dl.supersede,
-                        showHref: false,
-                    },
-                },
-            },
-            diffThisAndSupersedesShortname: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isSuperseded: true,
-                },
-                dl: {
-                    ...base.dl,
-                    supersedeLink:
-                        'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
-                },
-            },
-            wrongSupersedesSyntax: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isSuperseded: true,
-                },
-                dl: {
-                    ...base.dl,
-                    supersedeLink:
-                        'https://www.w3.org/FAKE/2017/REC-hr-time-20170101/',
                 },
             },
             noEditorDraftLinkExist: {
@@ -777,6 +536,116 @@ export function buildCommonViewData(base) {
                         ...base.dl.editor,
                         id: '',
                     },
+                },
+            },
+            noHistoryLinkExist: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    history: {
+                        ...base.dl.history,
+                        showHref: false,
+                    },
+                },
+            },
+            noRescindLinkExist: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isRescinded: true,
+                },
+                dl: {
+                    ...base.dl,
+                    rescind: {
+                        ...base.dl.rescind,
+                        showHref: false,
+                    },
+                },
+            },
+            noLatestLinkExist: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        showHref: false,
+                    },
+                },
+            },
+            linkDiff: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        textDocType: 'FAKE',
+                    },
+                },
+            },
+            wrongRescindSyntax: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isRescinded: true,
+                },
+                dl: {
+                    ...base.dl,
+                    rescindLink:
+                        'https://www.w3.org/FAKE/2017/REC-fake-name-20170101/',
+                },
+            },
+            wrongLatestSyntax: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    latestVersion: {
+                        ...base.dl.latestVersion,
+                        docType: 'FAKE',
+                        textDocType: 'FAKE',
+                    },
+                },
+            },
+        },
+        shortname: {
+            shortnameLowercaseFP: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    shortName: 'UPPERcase-name',
+                    seriesShortName: 'UPPERcase-name',
+                    history: {
+                        ...base.dl.history,
+                        shortName: 'UPPERcase-name',
+                    },
+                },
+            },
+            diffThisAndLatestShortname: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    seriesShortName: 'fake-hr-time',
+                },
+            },
+            wrongHistorySyntax: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    history: {
+                        ...base.dl.history,
+                        shortName: 'fake-name',
+                    },
+                },
+            },
+            diffThisAndRescindShortname: {
+                ...base,
+                config: {
+                    ...base.config,
+                    isRescinded: true,
+                },
+                dl: {
+                    ...base.dl,
+                    rescindLink:
+                        'https://www.w3.org/TR/2017/REC-fake-name-20170101/',
                 },
             },
         },
