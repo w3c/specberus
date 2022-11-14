@@ -15,7 +15,8 @@ import { Specberus } from '../lib/validator.js';
 import { goodDocuments } from './data/goodDocuments.js';
 import { samples } from './samples.js';
 import { app } from './lib/testserver.js';
-import { buildBadTestCases } from './lib/utils.js';
+import { buildBadTestCases, equivalentArray } from './lib/utils.js';
+import { nockData } from './lib/nockData.js';
 
 /**
  * Test the rules.
@@ -26,30 +27,6 @@ const DEBUG = process.env.DEBUG || false;
 const DEFAULT_PORT = 8001;
 const PORT = process.env.PORT || DEFAULT_PORT;
 const ENDPOINT = `http://localhost:${PORT}`;
-
-/**
- * Compare two arrays of "deliverer IDs" and check that they're equivalent.
- *
- * @param {Array} a1 - One array.
- * @param {Array} a2 - The other array.
- * @returns {Boolean} whether the two arrays contain exactly the same integers.
- */
-
-const equivalentArray = function (a1, a2) {
-    if (a1 && a2 && a1.length === a2.length) {
-        let found = 0;
-        for (let i = 0; i < a1.length; i += 1) {
-            for (let j = 0; j < a2.length && found === i; j += 1) {
-                if (a1[i] === a2[j]) {
-                    found += 1;
-                }
-            }
-        }
-        return found === a1.length;
-    }
-
-    return false;
-};
 
 /**
  * Assert that metadata detected in a spec is equal to the expected values.
@@ -197,34 +174,13 @@ function buildHandler(test, mock, done) {
         nock('https://www.w3.org', { allowUnmocked: true })
             .head('/standards/history/hr-time')
             .reply(200, 'HR Time history page');
-        const versions = {
-            page: 1,
-            pages: 1,
-            _embedded: {
-                'version-history': [
-                    {
-                        uri: 'https://www.w3.org/TR/2022/WD-hr-time-3-20220117/',
-                    },
-                    {
-                        uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211201/',
-                    },
-                    {
-                        uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
-                    },
-                ],
-            },
-        };
+        const { versions } = nockData;
         nock('https://api.w3.org', { allowUnmocked: true })
             .get('/specifications/hr-time/versions')
             .query({ embed: true })
             .reply(200, versions);
 
-        const groupNames = {
-            'i18n-core': 32113,
-            forms: 32219,
-            apa: 83907,
-            ag: 35422,
-        };
+        const { groupNames } = nockData;
         Object.keys(groupNames).forEach(groupName => {
             const groupId = groupNames[groupName];
             nock('https://api.w3.org', { allowUnmocked: true })
@@ -237,72 +193,7 @@ function buildHandler(test, mock, done) {
                 });
         });
 
-        const chartersData = {
-            32113: [
-                {
-                    end: '2021-09-30',
-                    'doc-licenses': [
-                        {
-                            uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
-                            name: 'W3C Software and Document License',
-                        },
-                    ],
-                    start: '2019-06-28',
-                    'patent-policy':
-                        'https://www.w3.org/Consortium/Patent-Policy-20170801/',
-                },
-                {
-                    end: '2090-09-30',
-                    'doc-licenses': [
-                        {
-                            uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
-                            name: 'W3C Software and Document License',
-                        },
-                    ],
-                    start: '2021-09-30',
-                    'patent-policy':
-                        'https://www.w3.org/Consortium/Patent-Policy-20200915/',
-                },
-            ],
-            32219: {
-                end: '2012-03-31',
-                'doc-licenses': [],
-                start: '2010-05-17',
-            },
-            83907: {
-                end: '2090-07-31',
-                'doc-licenses': [
-                    {
-                        uri: 'https://www.w3.org/Consortium/Legal/copyright-documents',
-                        name: 'W3C Document License',
-                    },
-                    {
-                        uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
-                        name: 'W3C Software and Document License',
-                    },
-                ],
-                start: '2021-08-11',
-                'patent-policy':
-                    'https://www.w3.org/Consortium/Patent-Policy-20200915/',
-            },
-            35422: {
-                end: '2090-10-31',
-                'doc-licenses': [
-                    {
-                        uri: 'https://www.w3.org/Consortium/Legal/copyright-documents',
-                        name: 'W3C Document License',
-                    },
-                    {
-                        uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
-                        name: 'W3C Software and Document License',
-                    },
-                ],
-                start: '2019-12-20',
-                'patent-policy':
-                    'https://www.w3.org/Consortium/Patent-Policy-20170801/',
-            },
-        };
-
+        const { chartersData } = nockData;
         Object.keys(chartersData).forEach(groupId => {
             const charterData = Array.isArray(chartersData[groupId])
                 ? chartersData[groupId]

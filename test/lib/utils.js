@@ -54,3 +54,27 @@ export const buildBadTestCases = async () => {
 
     return flat(docTypes);
 };
+
+/**
+ * Compare two arrays of "deliverer IDs" and check that they're equivalent.
+ *
+ * @param {Array} a1 - One array.
+ * @param {Array} a2 - The other array.
+ * @returns {Boolean} whether the two arrays contain exactly the same integers.
+ */
+
+export const equivalentArray = function (a1, a2) {
+    if (a1 && a2 && a1.length === a2.length) {
+        let found = 0;
+        for (let i = 0; i < a1.length; i += 1) {
+            for (let j = 0; j < a2.length && found === i; j += 1) {
+                if (a1[i] === a2[j]) {
+                    found += 1;
+                }
+            }
+        }
+        return found === a1.length;
+    }
+
+    return false;
+};
