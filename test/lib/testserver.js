@@ -18,16 +18,15 @@ app.use('/docs', express.static(pth.join(__dirname, 'docs')));
 app.engine(
     'handlebars',
     exphbs.engine({
-        defaultLayout: pth.join(__dirname, './doc-views/layout/spec'),
-        layoutsDir: pth.join(__dirname, './doc-views'),
-        partialsDir: pth.join(__dirname, './doc-views/partials/'),
+        defaultLayout: pth.join(__dirname, '../doc-views/layout/spec'),
+        layoutsDir: pth.join(__dirname, '../doc-views'),
+        partialsDir: pth.join(__dirname, '../doc-views/partials/'),
     })
 );
 app.set('view engine', 'handlebars');
-app.set('views', pth.join(__dirname, './doc-views'));
+app.set('views', pth.join(__dirname, '../doc-views'));
 
 function renderByConfig(req, res) {
-    console.log('renderByConfig: ', req.query);
     const { rule, type } = req.query;
     const suffix = req.params.track
         ? `${req.params.track}/${req.params.profile}`
@@ -36,7 +35,7 @@ function renderByConfig(req, res) {
     // get data for template from json (.js)
     const path = pth.join(
         __dirname,
-        `./doc-views/${req.params.docType}/${suffix}.js`
+        `../doc-views/${req.params.docType}/${suffix}.js`
     );
 
     // eslint-disable-next-line node/no-unsupported-features/es-syntax
@@ -59,7 +58,7 @@ function renderByConfig(req, res) {
             // for data causes error, make rule and the type of error specific.
             finalData = data[rule][type];
         }
-        res.render(pth.join(__dirname, './doc-views/layout/spec'), finalData);
+        res.render(pth.join(__dirname, '../doc-views/layout/spec'), finalData);
     });
 }
 
