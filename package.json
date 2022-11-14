@@ -58,7 +58,7 @@
   },
   "engines": {
     "node": "^16 || ^18",
-    "npm": ">=6"
+    "npm": ">=7"
   },
   "lint-staged": {
     "*.js": "eslint --cache",
