@@ -3,14 +3,9 @@
 import { expect as chai } from 'chai';
 // eslint-disable-next-line node/no-unpublished-import
 import expect from 'expect.js';
-// External packages:
-import express from 'express';
-import exphbs from 'express-handlebars';
-import { lstatSync, readdirSync } from 'fs';
+
 // eslint-disable-next-line node/no-unpublished-import
 import nock from 'nock';
-import pth, { dirname } from 'path';
-import { fileURLToPath } from 'url';
 import { Sink } from '../lib/sink.js';
 import { allProfiles } from '../lib/util.js';
 // Internal packages:
@@ -19,9 +14,9 @@ import { Specberus } from '../lib/validator.js';
 // Shouldn't cause any error.
 import { goodDocuments } from './data/goodDocuments.js';
 import { samples } from './samples.js';
-
-// eslint-disable-next-line no-underscore-dangle
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { app } from './lib/testserver.js';
+import { buildBadTestCases, equivalentArray } from './lib/utils.js';
+import { nockData } from './lib/nockData.js';
 
 /**
  * Test the rules.
@@ -32,30 +27,6 @@ const DEBUG = process.env.DEBUG || false;
 const DEFAULT_PORT = 8001;
 const PORT = process.env.PORT || DEFAULT_PORT;
 const ENDPOINT = `http://localhost:${PORT}`;
-
-/**
- * Compare two arrays of "deliverer IDs" and check that they're equivalent.
- *
- * @param {Array} a1 - One array.
- * @param {Array} a2 - The other array.
- * @returns {Boolean} whether the two arrays contain exactly the same integers.
- */
-
-const equivalentArray = function (a1, a2) {
-    if (a1 && a2 && a1.length === a2.length) {
-        let found = 0;
-        for (let i = 0; i < a1.length; i += 1) {
-            for (let j = 0; j < a2.length && found === i; j += 1) {
-                if (a1[i] === a2[j]) {
-                    found += 1;
-                }
-            }
-        }
-        return found === a1.length;
-    }
-
-    return false;
-};
 
 /**
  * Assert that metadata detected in a spec is equal to the expected values.
@@ -183,89 +154,15 @@ describe('Basics', () => {
     });
 });
 
-// start an server to host doc, response to sr.url requests
-const app = express();
-app.use('/docs', express.static(pth.join(__dirname, 'docs')));
-
-// use express-handlebars
-app.engine(
-    'handlebars',
-    exphbs.engine({
-        defaultLayout: pth.join(__dirname, './doc-views/layout/spec'),
-        layoutsDir: pth.join(__dirname, './doc-views'),
-        partialsDir: pth.join(__dirname, './doc-views/partials/'),
-    })
-);
-app.set('view engine', 'handlebars');
-app.set('views', pth.join(__dirname, './doc-views'));
-
-function renderByConfig(req, res) {
-    const { rule, type } = req.query;
-    const suffix = req.params.track
-        ? `${req.params.track}/${req.params.profile}`
-        : req.params.profile;
-
-    // get data for template from json (.js)
-    const path = pth.join(
-        __dirname,
-        `./doc-views/${req.params.docType}/${suffix}.js`
-    );
-
-    // eslint-disable-next-line node/no-unsupported-features/es-syntax
-    import(path).then(module => {
-        const data = module.default;
-
-        let finalData;
-        if (!type)
-            res.send(
-                '<h1>Error: please add the parameter "type" in the URL </h1>'
-            );
-        else if (type.startsWith('good')) {
-            finalData = data[type];
-        } else {
-            if (!rule)
-                res.send(
-                    '<h1>Error: please add the parameter "rule" in the URL </h1>'
-                );
-
-            // for data causes error, make rule and the type of error specific.
-            finalData = data[rule][type];
-        }
-        res.render(pth.join(__dirname, './doc-views/layout/spec'), finalData);
-    });
-}
-
-app.get('/doc-views/:docType/:track/:profile', renderByConfig);
-app.get('/doc-views/:docType/:profile', renderByConfig);
-
-// config single redirection
-app.get('/docs/links/image/logo', (req, res) => {
-    res.redirect('/docs/links/image/logo.png');
-});
-// config single redirection to no where (404)
-app.get('/docs/links/image/logo-fail', (req, res) => {
-    res.redirect('/docs/links/image/logo-fail.png');
-});
-// config multiple redirection
-app.get('/docs/links/image/logo-redirection-1', (req, res) => {
-    res.redirect(301, '/docs/links/image/logo-redirection-2');
-});
-app.get('/docs/links/image/logo-redirection-2', (req, res) => {
-    res.redirect(307, '/docs/links/image/logo-redirection-3');
-});
-app.get('/docs/links/image/logo-redirection-3', (req, res) => {
-    res.redirect('/docs/links/image/logo.png');
-});
-
-let server;
+let testserver;
 
 before(done => {
-    server = app.listen(PORT, done);
+    testserver = app.listen(PORT, done);
 });
 
 after(done => {
-    if (server) {
-        server.close(done);
+    if (testserver) {
+        testserver.close(done);
     }
 });
 
@@ -277,34 +174,13 @@ function buildHandler(test, mock, done) {
         nock('https://www.w3.org', { allowUnmocked: true })
             .head('/standards/history/hr-time')
             .reply(200, 'HR Time history page');
-        const versions = {
-            page: 1,
-            pages: 1,
-            _embedded: {
-                'version-history': [
-                    {
-                        uri: 'https://www.w3.org/TR/2022/WD-hr-time-3-20220117/',
-                    },
-                    {
-                        uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211201/',
-                    },
-                    {
-                        uri: 'https://www.w3.org/TR/2021/WD-hr-time-3-20211012/',
-                    },
-                ],
-            },
-        };
+        const { versions } = nockData;
         nock('https://api.w3.org', { allowUnmocked: true })
             .get('/specifications/hr-time/versions')
             .query({ embed: true })
             .reply(200, versions);
 
-        const groupNames = {
-            'i18n-core': 32113,
-            forms: 32219,
-            apa: 83907,
-            ag: 35422,
-        };
+        const { groupNames } = nockData;
         Object.keys(groupNames).forEach(groupName => {
             const groupId = groupNames[groupName];
             nock('https://api.w3.org', { allowUnmocked: true })
@@ -317,72 +193,7 @@ function buildHandler(test, mock, done) {
                 });
         });
 
-        const chartersData = {
-            32113: [
-                {
-                    end: '2021-09-30',
-                    'doc-licenses': [
-                        {
-                            uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
-                            name: 'W3C Software and Document License',
-                        },
-                    ],
-                    start: '2019-06-28',
-                    'patent-policy':
-                        'https://www.w3.org/Consortium/Patent-Policy-20170801/',
-                },
-                {
-                    end: '2090-09-30',
-                    'doc-licenses': [
-                        {
-                            uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
-                            name: 'W3C Software and Document License',
-                        },
-                    ],
-                    start: '2021-09-30',
-                    'patent-policy':
-                        'https://www.w3.org/Consortium/Patent-Policy-20200915/',
-                },
-            ],
-            32219: {
-                end: '2012-03-31',
-                'doc-licenses': [],
-                start: '2010-05-17',
-            },
-            83907: {
-                end: '2090-07-31',
-                'doc-licenses': [
-                    {
-                        uri: 'https://www.w3.org/Consortium/Legal/copyright-documents',
-                        name: 'W3C Document License',
-                    },
-                    {
-                        uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
-                        name: 'W3C Software and Document License',
-                    },
-                ],
-                start: '2021-08-11',
-                'patent-policy':
-                    'https://www.w3.org/Consortium/Patent-Policy-20200915/',
-            },
-            35422: {
-                end: '2090-10-31',
-                'doc-licenses': [
-                    {
-                        uri: 'https://www.w3.org/Consortium/Legal/copyright-documents',
-                        name: 'W3C Document License',
-                    },
-                    {
-                        uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
-                        name: 'W3C Software and Document License',
-                    },
-                ],
-                start: '2019-12-20',
-                'patent-policy':
-                    'https://www.w3.org/Consortium/Patent-Policy-20170801/',
-            },
-        };
-
+        const { chartersData } = nockData;
         Object.keys(chartersData).forEach(groupId => {
             const charterData = Array.isArray(chartersData[groupId])
                 ? chartersData[groupId]
@@ -543,60 +354,6 @@ function checkRule(tests, options) {
         });
     });
 }
-
-// ignore .DS_Store from Mac
-function listFilesOf(dir) {
-    const files = readdirSync(dir);
-    const blocklist = ['.DS_Store', 'Base.js'];
-
-    return files.filter(v => !blocklist.find(b => v.includes(b)));
-}
-
-const flat = objs => objs.reduce((acc, cur) => ({ ...acc, ...cur }), {});
-
-const buildProfileTestCases = async path => {
-    // eslint-disable-next-line node/no-unsupported-features/es-syntax
-    const { rules } = await import(path);
-    return rules;
-};
-
-const buildTrackTestCases = async path => {
-    if (lstatSync(path).isFile()) {
-        const profile = await buildProfileTestCases(path);
-        return profile;
-    }
-
-    const profiles = await Promise.all(
-        listFilesOf(path).map(async profile => ({
-            [profile]: await buildProfileTestCases(`${path}/${profile}`),
-        }))
-    );
-
-    return flat(profiles);
-};
-
-const buildDocTypeTestCases = async path => {
-    const tracks = await Promise.all(
-        listFilesOf(path).map(async track => ({
-            [track]: await buildTrackTestCases(`${path}/${track}`),
-        }))
-    );
-
-    return flat(tracks);
-};
-
-const buildBadTestCases = async () => {
-    const base = `${process.cwd()}/test/data`;
-    const docTypes = await Promise.all(
-        listFilesOf(base)
-            .filter(v => lstatSync(`${base}/${v}`).isDirectory())
-            .map(async docType => ({
-                [docType]: await buildDocTypeTestCases(`${base}/${docType}`),
-            }))
-    );
-
-    return flat(docTypes);
-};
 
 function runTestsForProfile({ docType, track, profile, rules }) {
     // Profile: CR/NOTE/RY ...
