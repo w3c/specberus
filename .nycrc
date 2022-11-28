@@ -1,9 +1,5 @@
 {
-  "all": true,
-  "exclude": [
-    "**/*.min.js"
-  ],
-  "reporter": [
-    "lcovonly"
-  ]
+    "all": true,
+    "exclude": ["**/*.min.js"],
+    "reporter": ["lcovonly"]
 }
