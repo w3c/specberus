@@ -261,6 +261,22 @@ export function buildTodaysDate(base) {
     };
 }
 
+export function buildDelivererChange(base) {
+    return {
+        delivererChanged: {
+            ...base,
+            config: {
+                ...base.config,
+                isEchidna: true,
+            },
+            header: {
+                ...base.header,
+                defaultDate: '',
+            },
+        },
+    };
+}
+
 export function buildDraftStability(base) {
     return {
         noDraftEither: {

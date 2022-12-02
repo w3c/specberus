@@ -3,7 +3,12 @@ import DNOTE from './DNOTE.js';
 import noteBase from './noteBase.js';
 
 const { good: data } = DNOTE;
-const { buildCommonViewData, buildDraftStability, buildTodaysDate } = noteBase;
+const {
+    buildCommonViewData,
+    buildDraftStability,
+    buildTodaysDate,
+    buildDelivererChange,
+} = noteBase;
 
 const profile = 'DNOTE-Echidna';
 const customData = {
@@ -44,4 +49,5 @@ export default {
     },
     'draft-stability': buildDraftStability(good),
     'todays-date': buildTodaysDate(good),
+    'deliverer-change': buildDelivererChange(good),
 };

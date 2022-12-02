@@ -8,6 +8,7 @@ const {
     buildDraftStability,
     buildSecurityPrivacy,
     buildTodaysDate,
+    buildDelivererChange,
 } = recommendationBase;
 
 const profile = 'CRD-Echidna';
@@ -45,4 +46,5 @@ export default {
     'draft-stability': buildDraftStability(good),
     'todays-date': buildTodaysDate(good),
     'security-privacy': buildSecurityPrivacy(good),
+    'deliverer-change': buildDelivererChange(good),
 };

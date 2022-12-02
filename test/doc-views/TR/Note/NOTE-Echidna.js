@@ -3,7 +3,7 @@ import NOTE from './NOTE.js';
 import noteBase from './noteBase.js';
 
 const { good: data } = NOTE;
-const { buildCommonViewData, buildTodaysDate } = noteBase;
+const { buildCommonViewData, buildTodaysDate, buildDelivererChange } = noteBase;
 
 const profile = 'NOTE-Echidna';
 const customData = {
@@ -34,4 +34,5 @@ export default {
         },
     },
     'todays-date': buildTodaysDate(good),
+    'deliverer-change': buildDelivererChange(good),
 };
