@@ -54,6 +54,22 @@ export const rules = {
                 data: 'noErrata',
                 errors: ['headers.errata.no-errata'],
             },
+            {
+                data: 'recWithProposedSubChanges',
+                errors: [],
+            },
+            {
+                data: 'recWithProposedNewChanges',
+                errors: [],
+            },
+            {
+                data: 'recWithCandidateSubChanges',
+                errors: [],
+            },
+            {
+                data: 'recWithCandidateNewChanges',
+                errors: [],
+            },
         ],
         dl: [
             ...baseRules.headers.dl,
