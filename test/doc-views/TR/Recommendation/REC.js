@@ -42,7 +42,11 @@ export default {
             },
             sotd: {
                 ...good.sotd,
-                emHTML: `${good.sotd.emHTML} It includes proposed corrections.`,
+                rec: {
+                    ...good.sotd.rec,
+                    showAddition: true,
+                    addition: 'It includes proposed corrections.',
+                },
             },
         },
         recWithProposedNewChanges: {
@@ -53,7 +57,10 @@ export default {
             },
             sotd: {
                 ...good.sotd,
-                emHTML: `${good.sotd.emHTML} It includes proposed additions, introducing new features since the previous Recommendation.`,
+                rec: {
+                    ...good.sotd.rec,
+                    showProposedAdd: true,
+                },
             },
         },
         recWithCandidateSubChanges: {
@@ -64,7 +71,11 @@ export default {
             },
             sotd: {
                 ...good.sotd,
-                emHTML: `${good.sotd.emHTML} It includes candidate corrections.`,
+                rec: {
+                    ...good.sotd.rec,
+                    showAddition: true,
+                    addition: 'It includes candidate corrections.',
+                },
             },
         },
         recWithCandidateNewChanges: {
@@ -75,7 +86,12 @@ export default {
             },
             sotd: {
                 ...good.sotd,
-                emHTML: `${good.sotd.emHTML} It includes candidate additions, introducing new features since the previous Recommendation.`,
+                rec: {
+                    ...good.sotd.rec,
+                    showAddition: true,
+                    addition:
+                        'It includes candidate additions, introducing new features since the previous Recommendation.',
+                },
             },
         },
     },
