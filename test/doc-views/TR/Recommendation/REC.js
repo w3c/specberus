@@ -34,6 +34,66 @@ export default {
                 needErrata: false,
             },
         },
+        recWithProposedSubChanges: {
+            ...good,
+            config: {
+                ...good.config,
+                needErrata: false,
+            },
+            sotd: {
+                ...good.sotd,
+                rec: {
+                    ...good.sotd.rec,
+                    showAddition: true,
+                    addition: 'It includes proposed corrections.',
+                },
+            },
+        },
+        recWithProposedNewChanges: {
+            ...good,
+            config: {
+                ...good.config,
+                needErrata: false,
+            },
+            sotd: {
+                ...good.sotd,
+                rec: {
+                    ...good.sotd.rec,
+                    showProposedAdd: true,
+                },
+            },
+        },
+        recWithCandidateSubChanges: {
+            ...good,
+            config: {
+                ...good.config,
+                needErrata: false,
+            },
+            sotd: {
+                ...good.sotd,
+                rec: {
+                    ...good.sotd.rec,
+                    showAddition: true,
+                    addition: 'It includes candidate corrections.',
+                },
+            },
+        },
+        recWithCandidateNewChanges: {
+            ...good,
+            config: {
+                ...good.config,
+                needErrata: false,
+            },
+            sotd: {
+                ...good.sotd,
+                rec: {
+                    ...good.sotd.rec,
+                    showAddition: true,
+                    addition:
+                        'It includes candidate additions, introducing new features since the previous Recommendation.',
+                },
+            },
+        },
     },
     deployment: {
         noDeployment: {
