@@ -138,12 +138,12 @@ export function buildCommonViewData(base) {
                 header: {
                     ...base.header,
                     showDefaultDate: true,
-                    defaultDate: '08 January 2022',
+                    defaultDate: '08 January 2023',
                 },
                 copyright: {
                     ...base.copyright,
                     showCustomYear: true,
-                    customYear: 2022,
+                    customYear: 2023,
                 },
             },
             wrongLatestCopyrightLinkDuringTransition: {
@@ -167,12 +167,12 @@ export function buildCommonViewData(base) {
                 header: {
                     ...base.header,
                     showDefaultDate: true,
-                    defaultDate: '08 January 2022',
+                    defaultDate: '08 January 2023',
                 },
                 copyright: {
                     ...base.copyright,
                     showCustomYear: true,
-                    customYear: 2022,
+                    customYear: 2023,
                     MITLink: 'https://fake.csail.mit.org/',
                 },
             },

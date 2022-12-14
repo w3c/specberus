@@ -85,6 +85,8 @@ $ W3C_API_KEY="xxx" npm run live 3001
 
 ## 3. Testing
 
+#### 1. Simple test
+
 Testing is done using mocha. Simply run:
 
 ```bash
@@ -97,12 +99,48 @@ from the root and you will be running the test suite. Mocha can be installed wit
 $ npm install -g mocha
 ```
 
+#### 2. SKIP_NETWORK
+
 Some of the tests can on occasion take a long time, or fail outright because a remote service is
 unavailable. To work around this, you can set SKIP_NETWORK:
 
 ```bash
 $ SKIP_NETWORK=1 W3C_API_KEY="<YOUR W3C API KEY>" mocha
 ```
+
+#### 3. Run testserver
+
+The testcase document can run independently
+
+```bash
+$ npm run testserver
+```
+
+#### 4. Run certain test
+
+Add process env before `npm run test` and `describe.only()`to run single test.
+
+```
+// test/rules.js
+describe.only('Making sure Specberus is not broken...', () => {
+```
+
+The following example only run test for the http://localhost:8001/doc-views/TR/Recommendation/WD?rule=copyright&type=noCopyright document.
+
+```bash
+$ RULE=copyright TYPE=noCopyright PROFILE=WD npm run test
+```
+
+The following example run tests to all the documents, but limit to `copyright` rule and using the `noCopyright` data.
+
+```bash
+$ RULE=copyright TYPE=noCopyright npm run test
+```
+
+-   http://localhost:8001/doc-views/TR/Recommendation/WD?rule=copyright&type=noCopyright
+-   http://localhost:8001/doc-views/TR/Registry/CRYD/?rule=copyright&type=noCopyright
+-   http://localhost:8001/doc-views/TR/Note/DNOTE-Echidna?rule=copyright&type=noCopyright
+-   ... and all profiles
 
 ## 4. JS API
 
