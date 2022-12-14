@@ -118,7 +118,7 @@ $ npm run testserver
 
 #### 4. Run certain test
 
-Add process env before `npm run test` and `describe.only()`to run single test.
+Add process env before `npm run test` and `describe.only()` to run single test.
 
 ```
 // test/rules.js
