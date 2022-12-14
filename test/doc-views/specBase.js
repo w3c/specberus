@@ -38,6 +38,7 @@ export const data = {
             text: 'More details about this document',
         },
         defaultDate: '04 November 2021',
+        showDefaultDate: false,
     },
     secno: 'secno',
     hr: {
@@ -95,8 +96,10 @@ export const data = {
     copyright: {
         show: true,
         startText: 'Copyright',
+        showCustomYear: false,
         MIT: 'MIT',
         MITLink: 'https://www.csail.mit.edu/',
+        W3CLink: 'https://www.w3.org/',
         beihangHTML: '<a href="https://ev.buaa.edu.cn/">Beihang</a>',
         licenseHTML:
             'W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a> rules apply.',

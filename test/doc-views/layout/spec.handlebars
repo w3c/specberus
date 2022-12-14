@@ -37,7 +37,11 @@
             {{! if document is Echidna, use current date. else, use default date}}
             <time class="dt-published" datetime="2021-11-04">
                 {{#if config.isEchidna}}
-                    <span class="handlebars-data">{{now}}</span>
+                    {{#if header.showDefaultDate}}
+                        <span class="handlebars-data">{{header.defaultDate}}</span>
+                    {{else}}
+                        <span class="handlebars-data">{{now}}</span>
+                    {{/if}}
                 {{else}}
                     {{header.defaultDate}}
                 {{/if}}
@@ -127,7 +131,12 @@
 
         {{#if copyright.show}}
             <p class="copyright">
-                <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright"><span class="handlebars-data">{{copyright.startText}}</span></a> © {{#if config.isEchidna}}<span class="handlebars-data">{{nowYear}}</span>{{else}}2021{{/if}} <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="{{copyright.MITLink}}"><abbr title="Massachusetts Institute of Technology"><span class="handlebars-data">{{copyright.MIT}}</span></abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <span class="handlebars-data">{{{copyright.beihangHTML}}}</span>). <span class="handlebars-data">{{{copyright.licenseHTML}}}</span>
+                <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright"><span class="handlebars-data">{{copyright.startText}}</span></a> © {{#if config.isEchidna}}{{#if copyright.showCustomYear}}<span class="handlebars-data">{{copyright.customYear}}</span>{{else}}<span class="handlebars-data">{{nowYear}}</span>{{/if}}{{else}}{{#if copyright.showCustomYear}}<span class="handlebars-data">{{copyright.customYear}}</span>{{else}}<span class="handlebars-data">2021</span>{{/if}}{{/if}} <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="{{copyright.MITLink}}"><abbr title="Massachusetts Institute of Technology"><span class="handlebars-data">{{copyright.MIT}}</span></abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <span class="handlebars-data">{{{copyright.beihangHTML}}}</span>). <span class="handlebars-data">{{{copyright.licenseHTML}}}</span>
+            </p>
+        {{/if}}
+        {{#if copyright.showLatest}}
+            <p class="copyright">
+                <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">{{copyright.startText}}</a> © 2023 <a href="{{copyright.W3CLink}}"> World Wide Web Consortium, Inc.</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-software">permissive document license</a> rules apply.
             </p>
         {{/if}}
         {{#if header.hr.show}}

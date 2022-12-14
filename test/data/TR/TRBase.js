@@ -18,6 +18,48 @@ export const rules = {
                 data: 'noCopyright',
                 errors: ['headers.copyright.not-found'],
             },
+            {
+                data: 'noMatchedCopyright',
+                errors: ['headers.copyright.no-match'],
+            },
+            {
+                data: 'wrongCopyrightLink',
+                errors: ['headers.copyright.href-not-match'],
+            },
+            {
+                data: 'noLatestCopyright',
+                errors: ['headers.copyright.not-found'],
+            },
+            {
+                data: 'noMatchedLatestCopyright',
+                errors: ['headers.copyright.no-match'],
+            },
+            {
+                data: 'wrongLatestCopyrightLink',
+                errors: ['headers.copyright.href-not-match'],
+            },
+
+            {
+                data: 'noCopyrightDuringTransition',
+                errors: ['headers.copyright.not-found'],
+            },
+            {
+                data: 'noMatchedCopyrightDuringTransition',
+                errors: ['headers.copyright.no-match'],
+            },
+            {
+                data: 'matchLegacyCopyrightDuringTransition',
+                warnings: ['headers.copyright.legacy-copyright-found'],
+            },
+            {
+                data: 'wrongLatestCopyrightLinkDuringTransition',
+                errors: ['headers.copyright.href-not-match'],
+            },
+            {
+                data: 'wrongLegacyCopyrightLinkDuringTransition',
+                warnings: ['headers.copyright.legacy-copyright-found'],
+                errors: ['headers.copyright.href-not-match'],
+            },
         ],
     },
     style: {
