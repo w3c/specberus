@@ -30,8 +30,150 @@ export function buildCommonViewData(base) {
         copyright: {
             noCopyright: {
                 ...base,
+                header: {
+                    ...base.header,
+                    showDefaultDate: true,
+                },
                 copyright: {
+                    ...base.copyright,
                     show: false,
+                },
+            },
+            noMatchedCopyright: {
+                ...base,
+                header: {
+                    ...base.header,
+                    showDefaultDate: true,
+                },
+                copyright: {
+                    ...base.copyright,
+                    startText: 'Fake Copyright',
+                    show: true,
+                },
+            },
+            wrongCopyrightLink: {
+                ...base,
+                header: {
+                    ...base.header,
+                    showDefaultDate: true,
+                },
+                copyright: {
+                    ...base.copyright,
+                    show: true,
+                    showCustomYear: true,
+                    customYear: 2021,
+                    MITLink: 'https://fake.csail.mit.org/',
+                },
+            },
+            noLatestCopyright: {
+                ...base,
+                header: {
+                    ...base.header,
+                    showDefaultDate: true,
+                    defaultDate: '04 November 2023',
+                },
+                copyright: {
+                    ...base.copyright,
+                    show: false,
+                },
+            },
+            noMatchedLatestCopyright: {
+                ...base,
+                header: {
+                    ...base.header,
+                    showDefaultDate: true,
+                    defaultDate: '04 November 2023',
+                },
+                copyright: {
+                    ...base.copyright,
+                    startText: 'Fake Copyright',
+                    show: false,
+                    showLatest: true,
+                },
+            },
+            wrongLatestCopyrightLink: {
+                ...base,
+                header: {
+                    ...base.header,
+                    showDefaultDate: true,
+                    defaultDate: '04 November 2023',
+                },
+                copyright: {
+                    ...base.copyright,
+                    show: false,
+                    showLatest: true,
+                    showCustomYear: true,
+                    customYear: 2023,
+                    W3CLink: 'https://fake.w3c.org/',
+                },
+            },
+            noCopyrightDuringTransition: {
+                ...base,
+                header: {
+                    ...base.header,
+                    showDefaultDate: true,
+                    defaultDate: '08 January 2023',
+                },
+                copyright: {
+                    ...base.copyright,
+                    show: false,
+                },
+            },
+            noMatchedCopyrightDuringTransition: {
+                ...base,
+                header: {
+                    ...base.header,
+                    showDefaultDate: true,
+                    defaultDate: '08 January 2023',
+                },
+                copyright: {
+                    ...base.copyright,
+                    startText: 'Fake Copyright',
+                    show: false,
+                    showLatest: true,
+                },
+            },
+            matchLegacyCopyrightDuringTransition: {
+                ...base,
+                header: {
+                    ...base.header,
+                    showDefaultDate: true,
+                    defaultDate: '08 January 2023',
+                },
+                copyright: {
+                    ...base.copyright,
+                    showCustomYear: true,
+                    customYear: 2023,
+                },
+            },
+            wrongLatestCopyrightLinkDuringTransition: {
+                ...base,
+                header: {
+                    ...base.header,
+                    showDefaultDate: true,
+                    defaultDate: '08 January 2023',
+                },
+                copyright: {
+                    ...base.copyright,
+                    show: false,
+                    showLatest: true,
+                    showCustomYear: true,
+                    customYear: 2023,
+                    W3CLink: 'https://fake.w3c.org/',
+                },
+            },
+            wrongLegacyCopyrightLinkDuringTransition: {
+                ...base,
+                header: {
+                    ...base.header,
+                    showDefaultDate: true,
+                    defaultDate: '08 January 2023',
+                },
+                copyright: {
+                    ...base.copyright,
+                    showCustomYear: true,
+                    customYear: 2023,
+                    MITLink: 'https://fake.csail.mit.org/',
                 },
             },
         },

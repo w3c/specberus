@@ -316,6 +316,12 @@ describe('Making sure good documents pass Specberus...', () => {
     });
 });
 
+// These 3 environment variables are to reduce test documents.
+// e.g. `RULE=copyright TYPE=noCopyright PROFILE=WD npm run test`
+const testRule = process.env.RULE;
+const testType = process.env.TYPE;
+const testProfile = process.env.PROFILE;
+
 function checkRule(tests, options) {
     const { docType, track, profile, category, rule } = options;
 
@@ -323,6 +329,14 @@ function checkRule(tests, options) {
         const passOrFail = !test.errors ? 'pass' : 'fail';
         const suffix = track ? `${track}/${profile}` : profile;
         const url = `${ENDPOINT}/doc-views/${docType}/${suffix}?rule=${rule}&type=${test.data}`;
+
+        // If the test is not mentioned in the environment variables, skip it.
+        if (
+            (testRule && rule !== testRule) ||
+            (testType && test.data !== testType) ||
+            (testProfile && profile !== 'CR')
+        )
+            return;
 
         it(`should ${passOrFail} for ${url}`, done => {
             // eslint-disable-next-line node/no-unsupported-features/es-syntax
