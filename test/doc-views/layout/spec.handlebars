@@ -63,8 +63,8 @@
                     {{#if dl.thisVersion.show}}
                         <dt>{{dl.thisVersion.text}}</dt>
                         <dd>
-                            <a class="u-url" {{#if dl.thisVersion.showHref}}href="https://www.w3.org/{{dl.topLevel}}/{{#if config.isEchidna}}{{nowYear}}{{else}}2021{{/if}}/{{config.status}}-{{dl.shortName}}-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}{{nowDigit8}}{{else}}20211104{{/if}}/"{{/if}}>
-                               https://www.w3.org/{{dl.topLevel}}/{{#if config.isEchidna}}<span class="handlebars-data">{{nowYear}}</span>{{else}}2021{{/if}}/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data">{{dl.shortName}}</span>-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}<span class="handlebars-data">{{nowDigit8}}</span>{{else}}20211104{{/if}}/
+                            <a class="u-url" {{#if dl.thisVersion.showHref}}href="https://www.w3.org/{{dl.topLevel}}/{{#if config.isEchidna}}{{nowYear}}{{else}}2023{{/if}}/{{config.status}}-{{dl.shortName}}-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}{{nowDigit8}}{{else}}20231104{{/if}}/"{{/if}}>
+                               https://www.w3.org/{{dl.topLevel}}/{{#if config.isEchidna}}<span class="handlebars-data">{{nowYear}}</span>{{else}}2023{{/if}}/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data">{{dl.shortName}}</span>-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}<span class="handlebars-data">{{nowDigit8}}</span>{{else}}20231104{{/if}}/
                             </a>
                         </dd>
                     {{/if}}
@@ -131,14 +131,10 @@
 
         {{#if copyright.show}}
             <p class="copyright">
-                <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright"><span class="handlebars-data">{{copyright.startText}}</span></a> © {{#if config.isEchidna}}{{#if copyright.showCustomYear}}<span class="handlebars-data">{{copyright.customYear}}</span>{{else}}<span class="handlebars-data">{{nowYear}}</span>{{/if}}{{else}}{{#if copyright.showCustomYear}}<span class="handlebars-data">{{copyright.customYear}}</span>{{else}}<span class="handlebars-data">2021</span>{{/if}}{{/if}} <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="{{copyright.MITLink}}"><abbr title="Massachusetts Institute of Technology"><span class="handlebars-data">{{copyright.MIT}}</span></abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <span class="handlebars-data">{{{copyright.beihangHTML}}}</span>). <span class="handlebars-data">{{{copyright.licenseHTML}}}</span>
+                <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">{{copyright.startText}}</a> © {{nowYear}} <a href="{{copyright.W3CLink}}"> World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-software">permissive document license</a> rules apply.
             </p>
         {{/if}}
-        {{#if copyright.showLatest}}
-            <p class="copyright">
-                <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">{{copyright.startText}}</a> © 2023 <a href="{{copyright.W3CLink}}"> World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-software">permissive document license</a> rules apply.
-            </p>
-        {{/if}}
+
         {{#if header.hr.show}}
             <hr title="Separator for header">
         {{/if}}
@@ -219,13 +215,13 @@
 
         {{#config.isCRY}}
             <p>
-                This Candidate Registry is not expected to advance to Registry any earlier than 6 June 2022.
+                This Candidate Registry is not expected to advance to Registry any earlier than 6 June 2024.
             </p>
         {{/config.isCRY}}
 
         {{#config.isPR}}
             <p>
-                <abbr title="World Wide Web Consortium">W3C</abbr> Members and other interested parties are invited to review the document and send comments through 15 October 2021. Advisory Committee Representatives should consult their <a href="{{sotd.acReviewLink}}">questionnaires</a>. Note that substantive technical comments were expected during the Candidate Recommendation review period that ended 13 July 2021.
+                <abbr title="World Wide Web Consortium">W3C</abbr> Members and other interested parties are invited to review the document and send comments through 15 October 2021. Advisory Committee Representatives should consult their <a href="{{sotd.acReviewLink}}">questionnaires</a>. Note that substantive technical comments were expected during the Candidate Recommendation review period that ended 13 July 2023.
             </p>
         {{/config.isPR}}
 

@@ -38,7 +38,7 @@ export default {
             },
             header: {
                 ...good.header,
-                defaultDate: '04 October 2022',
+                defaultDate: '04 October 2023',
             },
         },
     },
