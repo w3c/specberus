@@ -38,21 +38,11 @@ export default {
             },
             header: {
                 ...good.header,
-                defaultDate: '04 October 2022',
+                defaultDate: '04 October 2023',
             },
         },
     },
     'draft-stability': buildDraftStability(good),
-    pp: {
-        ...common.pp,
-        noPP2017: {
-            ...common.pp.noPP2017,
-            config: {
-                ...common.pp.noPP2017.config,
-                isEchidna: false,
-            },
-        },
-    },
     'todays-date': buildTodaysDate(good),
     'security-privacy': buildSecurityPrivacy(good),
 };

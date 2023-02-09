@@ -26,40 +26,6 @@ export const rules = {
                 data: 'wrongCopyrightLink',
                 errors: ['headers.copyright.href-not-match'],
             },
-            {
-                data: 'noLatestCopyright',
-                errors: ['headers.copyright.not-found'],
-            },
-            {
-                data: 'noMatchedLatestCopyright',
-                errors: ['headers.copyright.no-match'],
-            },
-            {
-                data: 'wrongLatestCopyrightLink',
-                errors: ['headers.copyright.href-not-match'],
-            },
-
-            {
-                data: 'noCopyrightDuringTransition',
-                errors: ['headers.copyright.not-found'],
-            },
-            {
-                data: 'noMatchedCopyrightDuringTransition',
-                errors: ['headers.copyright.no-match'],
-            },
-            {
-                data: 'matchLegacyCopyrightDuringTransition',
-                warnings: ['headers.copyright.legacy-copyright-found'],
-            },
-            {
-                data: 'wrongLatestCopyrightLinkDuringTransition',
-                errors: ['headers.copyright.href-not-match'],
-            },
-            {
-                data: 'wrongLegacyCopyrightLinkDuringTransition',
-                warnings: ['headers.copyright.legacy-copyright-found'],
-                errors: ['headers.copyright.href-not-match'],
-            },
         ],
     },
     style: {
@@ -135,17 +101,6 @@ export const rules = {
             {
                 data: 'noPPFromCharter',
                 errors: ['sotd.pp.no-pp-from-charter'],
-            },
-            {
-                data: 'noPP2017',
-                config: {
-                    patentPolicy: 'pp2004',
-                },
-                errors: [
-                    'sotd.pp.no-pp2017',
-                    'sotd.pp.no-claims',
-                    'sotd.pp.no-section6',
-                ],
             },
             {
                 data: 'noPP2020',

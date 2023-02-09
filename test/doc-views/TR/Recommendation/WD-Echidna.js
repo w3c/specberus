@@ -39,17 +39,7 @@ export default {
             },
             header: {
                 ...good.header,
-                defaultDate: '04 October 2021',
-            },
-        },
-    },
-    pp: {
-        ...common.pp,
-        noPP2017: {
-            ...common.pp.noPP2017,
-            config: {
-                ...common.pp.noPP2017.config,
-                isEchidna: false,
+                defaultDate: '04 October 2023',
             },
         },
     },

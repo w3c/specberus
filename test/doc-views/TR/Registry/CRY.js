@@ -36,7 +36,7 @@ export default {
             sotd: {
                 ...good.sotd,
                 processHTML:
-                    '04 October 2022. 05 October 2022.<abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
+                    '04 October 2024. 05 October 2024.<abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
             },
         },
         invalidDate: {

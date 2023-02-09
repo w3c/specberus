@@ -127,7 +127,7 @@ export default {
                     showProposedAdd: true,
                 },
                 processHTML:
-                    '2 November 2023, 3 November 2023 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
+                    '2 November 2024, 3 November 2024 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
             },
         },
         notFound: {
