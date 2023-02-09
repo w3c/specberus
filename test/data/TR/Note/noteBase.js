@@ -9,19 +9,7 @@ export default {
         sotd: {
             ...baseRules.sotd,
             pp: [
-                ...baseRules.sotd.pp.filter(
-                    v =>
-                        !['noPP2017', 'jointPublication'].find(
-                            x => x === v.data
-                        )
-                ),
-                {
-                    data: 'noPP2017',
-                    config: {
-                        patentPolicy: 'pp2004',
-                    },
-                    errors: ['sotd.pp.no-pp2017'],
-                },
+                ...baseRules.sotd.pp.filter(v => v.data !== 'jointPublication'),
                 {
                     data: 'jointPublication',
                     config: {

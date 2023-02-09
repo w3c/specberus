@@ -43,15 +43,5 @@ export default {
             },
         },
     },
-    pp: {
-        ...common.pp,
-        noPP2017: {
-            ...common.pp.noPP2017,
-            config: {
-                ...common.pp.noPP2017.config,
-                isEchidna: false,
-            },
-        },
-    },
     'todays-date': buildTodaysDate(good),
 };

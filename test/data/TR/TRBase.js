@@ -103,17 +103,6 @@ export const rules = {
                 errors: ['sotd.pp.no-pp-from-charter'],
             },
             {
-                data: 'noPP2017',
-                config: {
-                    patentPolicy: 'pp2004',
-                },
-                errors: [
-                    'sotd.pp.no-pp2017',
-                    'sotd.pp.no-claims',
-                    'sotd.pp.no-section6',
-                ],
-            },
-            {
                 data: 'noPP2020',
                 config: {
                     patentPolicy: 'pp2020',

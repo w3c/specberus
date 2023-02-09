@@ -57,22 +57,6 @@ const buildCommonViewData = base => {
                     ppLink1: 'https://www.w3.org/Consortium/fake-pp',
                 },
             },
-            noPP2017: {
-                ...base,
-                config: {
-                    ...base.config,
-                    isEchidna: false,
-                },
-                header: {
-                    ...base.header,
-                    defaultDate: '04 November 2019',
-                },
-                sotd: {
-                    ...base.sotd,
-                    ppDate: '1 August 2017',
-                    ppLink1: 'https://www.w3.org/Consortium/fake-one',
-                },
-            },
             noPP2020: {
                 ...base,
                 sotd: {

@@ -167,18 +167,6 @@ export function buildCommonViewData(base) {
                     extra1: 'extra text',
                 },
             },
-            // noPP2017: {
-            //     ...base,
-            //     header: {
-            //         ...base.header,
-            //         defaultDate: '04 November 2023',
-            //     },
-            //     sotd: {
-            //         ...base.sotd,
-            //         ppHTML: '1 August 2017 <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>',
-            //         ppLink: 'https://www.w3.org/Consortium/Patent-Policy/fake',
-            //     },
-            // },
             noPP2020: {
                 ...base,
                 sotd: {
@@ -240,7 +228,7 @@ export function buildCandidateReviewEnd(base) {
             ...base,
             sotd: {
                 ...base.sotd,
-                defaultCRDate: '02 December 2023',
+                defaultCRDate: '02 December 2024',
             },
         },
     };
