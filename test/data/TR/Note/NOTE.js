@@ -13,4 +13,17 @@ export const rules = {
             },
         ],
     },
+    sotd: {
+        ...baseRules.sotd,
+        stability: [
+            {
+                data: 'noStability',
+                errors: ['sotd.stability.no-stability'],
+            },
+            {
+                data: 'supportAnotherSW',
+                errors: [],
+            },
+        ],
+    },
 };

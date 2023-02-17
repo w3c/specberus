@@ -4,7 +4,7 @@
         Group Draft Notes are not endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> nor its Members. <span class="handlebars-data">{{sotd.draftText}}{{! This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.}}</span>
     {{/config.isDNOTE}}
     {{#config.isNOTE}}
-        Group Notes {{sotd.noteNotEndorsedText}}{{! are not endorsed by W3C nor its Members}}.
+        {{sotd.noteNotEndorsedText}}{{! are not endorsed by W3C nor its Members}}.
     {{/config.isNOTE}}
     {{#config.isSTMT}}
         A W3C Statement is a specification that, <span class="handlebars-data">{{sotd.recConsensusText}}{{! after extensive consensus-building}}</span>, is endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members.
