@@ -115,7 +115,7 @@ io.on('connection', socket => {
             profile = await import(`./lib/profiles/${profilePath}`);
         } catch (err) {
             return socket.emit('exception', {
-                message: 'Profile does not exist.',
+                message: `Failed to get profile ${profilePath}.`,
             });
         }
         const specberus = new Specberus(process.env.W3C_API_KEY);
