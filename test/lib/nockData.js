@@ -21,6 +21,7 @@ export const nockData = {
         forms: 32219,
         apa: 83907,
         ag: 35422,
+        webperf: 45211,
     },
     chartersData: {
         32113: [
@@ -34,7 +35,7 @@ export const nockData = {
                 ],
                 start: '2019-06-28',
                 'patent-policy':
-                    'https://www.w3.org/Consortium/Patent-Policy-20170801/',
+                    'https://www.w3.org/Consortium/Patent-Policy-20200915/',
             },
             {
                 end: '2090-09-30',
@@ -84,7 +85,23 @@ export const nockData = {
             ],
             start: '2019-12-20',
             'patent-policy':
-                'https://www.w3.org/Consortium/Patent-Policy-20170801/',
+                'https://www.w3.org/Consortium/Patent-Policy-20200915/',
+        },
+        45211: {
+            end: '2090-10-31',
+            'doc-licenses': [
+                {
+                    uri: 'https://www.w3.org/Consortium/Legal/copyright-documents',
+                    name: 'W3C Document License',
+                },
+                {
+                    uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
+                    name: 'W3C Software and Document License',
+                },
+            ],
+            start: '2019-12-20',
+            'patent-policy':
+                'https://www.w3.org/Consortium/Patent-Policy-20200915/',
         },
     },
 };

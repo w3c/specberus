@@ -127,9 +127,9 @@ export const data = {
         rescindText2: 'about replacement or alternative technologies',
         rescindLink: 'https://www.w3.org/2016/11/obsoleting-rescinding/',
 
-        group: 'Internationalization Working Group',
+        group: 'Web Performance Working Group',
 
-        WGLink: 'https://www.w3.org/groups/wg/i18n-core',
+        WGLink: 'https://www.w3.org/groups/wg/webperf',
         trackLink: 'https://www.w3.org/2021/Process-20211102/#recs-and-notes',
         extra1: '',
         noEndorsementHTML:
@@ -158,7 +158,7 @@ export const data = {
         ppLink1: 'https://www.w3.org/Consortium/Patent-Policy-20200915/',
         ppDate: '15 September 2020',
 
-        iprLink: 'https://www.w3.org/groups/wg/i18n-core/ipr',
+        iprLink: 'https://www.w3.org/groups/wg/hr-time/ipr',
         iprText: 'public list of any patent disclosures',
         iprRel: 'disclosure',
         showDifferentPP: false,
