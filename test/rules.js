@@ -174,7 +174,12 @@ function buildHandler(test, mock, done) {
         nock('https://www.w3.org', { allowUnmocked: true })
             .head('/standards/history/hr-time')
             .reply(200, 'HR Time history page');
-        const { versions } = nockData;
+        const { versions, deliverers } = nockData;
+        nock('https://api.w3.org', { allowUnmocked: true })
+            .get('/specifications/hr-time/versions/20220117/deliverers')
+            .query({ embed: true })
+            .reply(200, deliverers);
+
         nock('https://api.w3.org', { allowUnmocked: true })
             .get('/specifications/hr-time/versions')
             .query({ embed: true })
@@ -299,7 +304,7 @@ describe('Making sure good documents pass Specberus...', () => {
                             },
                             events: buildHandler(
                                 { ignoreWarnings: true },
-                                false,
+                                true,
                                 done
                             ),
                             url,
