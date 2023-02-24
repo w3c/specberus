@@ -266,16 +266,14 @@ describe('Making sure good documents pass Specberus...', () => {
         // testsGoodDoc[docProfile].profile is used to distinguish multiple cases for same profile.
         docProfile = testsGoodDoc[docProfile].profile || docProfile;
 
-        before(() => {
-            const { deliverers } = nockData;
-            nock('https://api.w3.org', { allowUnmocked: true })
-                .get(`/specifications/hr-time/versions/20220117/deliverers`)
-                .query({ embed: true })
-                .reply(200, deliverers);
-        });
-
         const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
         it(`should pass for ${docProfile} doc with ${url}`, done => {
+            const { deliverers } = nockData;
+            nock('https://api.w3.org', { allowUnmocked: true })
+                .get(/\/specifications\/hr-time[-0-9a-zA-Z]*\/versions\/w*/)
+                .query({ embed: true })
+                .reply(200, deliverers);
+
             const profilePath = allProfiles.find(p =>
                 p.endsWith(`/${docProfile}.js`)
             );
