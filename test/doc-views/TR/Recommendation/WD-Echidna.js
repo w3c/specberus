@@ -8,6 +8,7 @@ const {
     buildDraftStability,
     buildSecurityPrivacy,
     buildTodaysDate,
+    buildDelivererChange,
 } = recommendationBase;
 
 const profile = 'WD-Echidna';
@@ -44,4 +45,5 @@ export default {
         },
     },
     'todays-date': buildTodaysDate(good),
+    'deliverer-change': buildDelivererChange(good),
 };
