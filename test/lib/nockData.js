@@ -1,4 +1,27 @@
 export const nockData = {
+    deliverers: {
+        page: 1,
+        limit: 100,
+        pages: 1,
+        total: 1,
+        _links: {},
+        _embedded: {
+            deliverers: [
+                {
+                    id: 32113,
+                    name: 'Web Performance Working Group',
+                    is_closed: false,
+                    description:
+                        'The mission of the Web Performance Working Group is to provide methods to measure aspects of application performance of user agent features and APIs.',
+                    shortname: 'webperf',
+                    discr: 'w3cgroup',
+                    type: 'working group',
+                    'start-date': '2010-08-18',
+                    'end-date': '2083-02-28',
+                },
+            ],
+        },
+    },
     versions: {
         page: 1,
         pages: 1,

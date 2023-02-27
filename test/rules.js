@@ -180,7 +180,11 @@ function buildHandler(test, mock, done) {
         nock('https://www.w3.org', { allowUnmocked: true })
             .head('/standards/history/hr-time')
             .reply(200, 'HR Time history page');
-        const { versions } = nockData;
+        const { versions, deliverers } = nockData;
+        nock('https://api.w3.org', { allowUnmocked: true })
+            .get(/\/specifications\/hr-time[-0-9a-zA-Z]*\/versions\/w*/)
+            .query({ embed: true })
+            .reply(200, deliverers);
         nock('https://api.w3.org', { allowUnmocked: true })
             .get('/specifications/hr-time/versions')
             .query({ embed: true })
