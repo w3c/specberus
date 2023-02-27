@@ -24,6 +24,10 @@ export const rules = {
                 data: 'supportAnotherSW',
                 errors: [],
             },
+            {
+                data: 'supportAnotherSWJoint',
+                errors: [],
+            },
         ],
     },
 };

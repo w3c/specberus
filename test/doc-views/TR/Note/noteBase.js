@@ -30,7 +30,16 @@ const buildCommonViewData = base => {
                 sotd: {
                     ...base.sotd,
                     noteNotEndorsedText:
-                        'This Group Note is endorsed by the XXX Group, but is not endorsed by W3C itself nor its Members',
+                        'This Group Note is endorsed by the Internationalization Working Group, but is not endorsed by W3C itself nor its Members',
+                },
+            },
+            supportAnotherSWJoint: {
+                ...base,
+                sotd: {
+                    ...base.sotd,
+                    noteNotEndorsedText:
+                        'This Group Note is endorsed by the Internationalization Working Group and the Technical Architecture Group, but is not endorsed by W3C itself nor its Members',
+                    group: 'Internationalization Working Group and the Technical Architecture Group',
                 },
             },
         },
