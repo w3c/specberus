@@ -187,12 +187,6 @@ function buildHandler(test, mock, done) {
             .query({ embed: true })
             .reply(200, versions);
 
-        const { deliverers } = nockData;
-        nock('https://api.w3.org', { allowUnmocked: true })
-            .get(/\/specifications\/hr-time[-0-9a-zA-Z]*\/versions\/w*/)
-            .query({ embed: true })
-            .reply(200, deliverers);
-
         const { groupNames } = nockData;
         Object.keys(groupNames).forEach(groupName => {
             const groupId = groupNames[groupName];
@@ -280,7 +274,14 @@ describe('Making sure good documents pass Specberus...', () => {
         if (testProfile && testProfile !== docProfile) return;
 
         const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
+
         it(`should pass for ${docProfile} doc with ${url}`, done => {
+            const { deliverers } = nockData;
+            nock('https://api.w3.org', { allowUnmocked: true })
+                .get(/\/specifications\/hr-time[-0-9a-zA-Z]*\/versions\/w*/)
+                .query({ embed: true })
+                .reply(200, deliverers);
+
             const profilePath = allProfiles.find(p =>
                 p.endsWith(`/${docProfile}.js`)
             );
@@ -313,7 +314,7 @@ describe('Making sure good documents pass Specberus...', () => {
                             },
                             events: buildHandler(
                                 { ignoreWarnings: true },
-                                true,
+                                false,
                                 done
                             ),
                             url,
