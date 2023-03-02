@@ -38,8 +38,8 @@ const buildCommonViewData = base => {
                 sotd: {
                     ...base.sotd,
                     noteNotEndorsedText:
-                        'This Group Note is endorsed by the Internationalization Working Group and the Technical Architecture Group, but is not endorsed by W3C itself nor its Members',
-                    group: 'Internationalization Working Group and the Technical Architecture Group',
+                        'This Group Note is endorsed by the Decentralized Identifier Working Group and the Technical Architecture Group, but is not endorsed by W3C itself nor its Members',
+                    group: 'Decentralized Identifier Working Group and the Technical Architecture Group',
                 },
             },
         },
