@@ -511,7 +511,7 @@
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Note track&lt;/a&gt;"
                             ],
                             "customParagraph": true,
-                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Group Draft Notes are not endorsed by W3C nor its Members.</p> </blockquote>",
+                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Group Draft Notes are not endorsed by W3C nor its Members.</p> </blockquote> or <blockquote class=\"boilerplate\"> <p>This Group Draft Note is endorsed by the @@@ Working/Interest Group (and the @@@ Working/Interest Group), but is not endorsed by W3C itself nor its Members.</p> </blockquote>",
                             "draftStability": true,
                             "knownDisclosureNumber": true,
                             "patPolReq": true,
@@ -600,7 +600,7 @@
                                 "&lt;a href=\"https://www.w3.org/2021/Process-20211102/#recs-and-notes\"&gt;Note track&lt;/a&gt;"
                             ],
                             "customParagraph": true,
-                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Group Notes are not endorsed by W3C nor its Members.</p> </blockquote>",
+                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Group Notes are not endorsed by W3C nor its Members.</p> </blockquote> or <blockquote class=\"boilerplate\"> <p>This Group Note is endorsed by the @@@ Working/Interest Group (and the @@@ Working/Interest Group), but is not endorsed by W3C itself nor its Members.</p> </blockquote>",
                             "draftStability": true,
                             "knownDisclosureNumber": true,
                             "patPolReq": true,

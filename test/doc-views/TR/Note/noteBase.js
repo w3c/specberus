@@ -22,7 +22,24 @@ const buildCommonViewData = base => {
                 sotd: {
                     ...base.sotd,
                     noteNotEndorsedText:
-                        'are not endorsed by FAKE nor its Members',
+                        'Group Notes are not endorsed by FAKE nor its Members',
+                },
+            },
+            supportAnotherSW: {
+                ...base,
+                sotd: {
+                    ...base.sotd,
+                    noteNotEndorsedText:
+                        'This Group Note is endorsed by the Internationalization Working Group, but is not endorsed by W3C itself nor its Members',
+                },
+            },
+            supportAnotherSWJoint: {
+                ...base,
+                sotd: {
+                    ...base.sotd,
+                    noteNotEndorsedText:
+                        'This Group Note is endorsed by the Decentralized Identifier Working Group and the Technical Architecture Group, but is not endorsed by W3C itself nor its Members',
+                    group: 'Decentralized Identifier Working Group and the Technical Architecture Group',
                 },
             },
         },
