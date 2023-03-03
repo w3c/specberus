@@ -7,6 +7,7 @@ const {
     buildCommonViewData,
     buildSecurityPrivacy,
     buildTodaysDate,
+    buildDelivererChange,
 } = recommendationBase;
 
 const { good: data } = CR;
@@ -64,4 +65,5 @@ export default {
     },
     'todays-date': buildTodaysDate(good),
     'security-privacy': buildSecurityPrivacy(good),
+    'deliverer-change': buildDelivererChange(good),
 };

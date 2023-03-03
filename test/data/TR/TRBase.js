@@ -154,6 +154,12 @@ export const echidnaRules = {
             errors: ['echidna.todays-date.wrong-date'],
         },
     ],
+    'deliverer-change': [
+        {
+            data: 'delivererChanged',
+            errors: ['echidna.deliverer-change.deliverer-changed'],
+        },
+    ],
 };
 
 export const draftStabilityRules = [

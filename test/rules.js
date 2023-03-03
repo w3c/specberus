@@ -28,6 +28,12 @@ const DEFAULT_PORT = 8001;
 const PORT = process.env.PORT || DEFAULT_PORT;
 const ENDPOINT = `http://localhost:${PORT}`;
 
+// These 3 environment variables are to reduce test documents.
+// e.g. `RULE=copyright TYPE=noCopyright PROFILE=WD npm run test`
+const testRule = process.env.RULE;
+const testType = process.env.TYPE;
+const testProfile = process.env.PROFILE;
+
 /**
  * Assert that metadata detected in a spec is equal to the expected values.
  *
@@ -175,6 +181,7 @@ function buildHandler(test, mock, done) {
             .head('/standards/history/hr-time')
             .reply(200, 'HR Time history page');
         const { versions } = nockData;
+
         nock('https://api.w3.org', { allowUnmocked: true })
             .get('/specifications/hr-time/versions')
             .query({ embed: true })
@@ -264,9 +271,17 @@ describe('Making sure good documents pass Specberus...', () => {
     Object.keys(testsGoodDoc).forEach(docProfile => {
         // testsGoodDoc[docProfile].profile is used to distinguish multiple cases for same profile.
         docProfile = testsGoodDoc[docProfile].profile || docProfile;
+        if (testProfile && testProfile !== docProfile) return;
 
         const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
+
         it(`should pass for ${docProfile} doc with ${url}`, done => {
+            const { deliverers } = nockData;
+            nock('https://api.w3.org', { allowUnmocked: true })
+                .get(/\/specifications\/hr-time[-0-9a-zA-Z]*\/versions\/w*/)
+                .query({ embed: true })
+                .reply(200, deliverers);
+
             const profilePath = allProfiles.find(p =>
                 p.endsWith(`/${docProfile}.js`)
             );
@@ -316,12 +331,6 @@ describe('Making sure good documents pass Specberus...', () => {
     });
 });
 
-// These 3 environment variables are to reduce test documents.
-// e.g. `RULE=copyright TYPE=noCopyright PROFILE=WD npm run test`
-const testRule = process.env.RULE;
-const testType = process.env.TYPE;
-const testProfile = process.env.PROFILE;
-
 function checkRule(tests, options) {
     const { docType, track, profile, category, rule } = options;
 
@@ -334,7 +343,7 @@ function checkRule(tests, options) {
         if (
             (testRule && rule !== testRule) ||
             (testType && test.data !== testType) ||
-            (testProfile && profile !== 'CR')
+            (testProfile && profile !== testProfile)
         )
             return;
 
