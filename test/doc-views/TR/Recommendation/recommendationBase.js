@@ -40,10 +40,34 @@ const buildRecStability = base => ({
     },
 });
 
+const buildCopyrightException = base => ({
+    goodCopyright: {
+        ...base,
+        dl: {
+            ...base.dl,
+            seriesShortName: 'epub-ssv-11',
+        },
+        copyright: {
+            ...base.copyright,
+            startString:
+                '<a href="https://www.idpf.org">International Digital Publishing Forum</a> and <a href="https://www.w3.org/">World Wide Web Consortium</a>',
+        },
+    },
+    wrongExpLink: {
+        ...base,
+        copyright: {
+            ...base.copyright,
+            licensingLink:
+                'https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements-fake',
+        },
+    },
+});
+
 export default {
     ...rest,
     buildSecurityPrivacy,
     buildRecStability,
+    buildCopyrightException,
     data: {
         ...data,
         config: {

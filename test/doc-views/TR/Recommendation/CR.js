@@ -5,6 +5,7 @@ const {
     buildCandidateReviewEnd,
     buildCommonViewData,
     buildSecurityPrivacy,
+    buildCopyrightException,
     data,
 } = recommendationBase;
 
@@ -30,4 +31,5 @@ export default {
     ...buildCommonViewData(good),
     'candidate-review-end': buildCandidateReviewEnd(good),
     'security-privacy': buildSecurityPrivacy(good),
+    copyright: buildCopyrightException(good),
 };
