@@ -23,10 +23,15 @@ const customData = {
 // Used in http://localhost:8001/doc-views/TR/Recommendation/WD?type=good
 const good = { ...data, ...customData };
 
+const commonData = buildCommonViewData(good);
+
 export default {
     good,
-    ...buildCommonViewData(good),
+    ...commonData,
     'draft-stability': buildDraftStability(good),
     'security-privacy': buildSecurityPrivacy(good),
-    copyright: buildCopyrightException(good),
+    copyright: {
+        ...commonData.copyright,
+        ...buildCopyrightException(good),
+    },
 };

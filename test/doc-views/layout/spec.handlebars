@@ -134,6 +134,9 @@
                 <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">{{copyright.startText}}{{! Copyright }}</a> © {{nowYear}} {{{copyright.startString}}}{{! World Wide Web Consortium }}. {{{copyright.licenseHTML}}}{{! W3C® liability, trademark and permissive document license rules apply. }}.
             </p>
         {{/if}}
+        {{#if copyrightHtmlContent.show}}
+            {{{copyrightHtmlContent.html}}}
+        {{/if}}
 
         {{#if header.hr.show}}
             <hr title="Separator for header">

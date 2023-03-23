@@ -19,6 +19,8 @@
         "doasync",
         "doctypes",
         "dvcs",
+        "epub",
+        "epubcfi",
         "ERCIM",
         "exphbs",
         "extractmetadataoptions",
