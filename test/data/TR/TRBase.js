@@ -24,7 +24,7 @@ export const rules = {
             },
             {
                 data: 'wrongCopyrightLink',
-                errors: ['headers.copyright.no-match'],
+                errors: ['headers.copyright.href-not-match'],
             },
         ],
     },
