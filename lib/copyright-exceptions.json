@@ -1,0 +1,31 @@
+[
+    {
+        "specShortnames": [
+            "epub-overview-33",
+            "epub-33",
+            "epub-rs-33",
+            "epub-multi-rend-11",
+            "epub-tts-10",
+            "epub-ssv-11",
+            "epub-a11y-11",
+            "epub-a11y-tech-11",
+            "epub-aria-authoring-11",
+            "epub-fxl-a11y",
+            "epubcfi",
+            "epubcfi-11"
+        ],
+        "copyright": "<a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Copyright\">Copyright</a> © 1999-@YEAR <a href=\"https://www.idpf.org\">International Digital Publishing Forum</a> and <a href=\"https://www.w3.org/\">World Wide Web Consortium</a>. <abbr title=\"World Wide Web Consortium\">W3C</abbr><sup>®</sup> <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer\">liability</a>, <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks\">trademark</a> and <a rel=\"license\" href=\"https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document\" title=\"W3C Software and Document Notice and License\">permissive document license</a> rules apply."
+    },
+    {
+        "specShortnames": ["webrtc"],
+        "copyright": "Initial Author of this Specification was Ian Hickson, Google Inc., with the following copyright statement:<br> © Copyright 2004-2011 Apple Computer, Inc., Mozilla Foundation, and Opera Software ASA. You are granted a license to use, reproduce and create derivative works of this document. All subsequent changes since 26 July 2011 done by the W3C WebRTC Working Group are under the following <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Copyright\">Copyright</a>:<br> <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Copyright\">Copyright</a> © 2011-@YEAR <a href=\"https://www.w3.org/\">World Wide Web Consortium</a>. <abbr title=\"World Wide Web Consortium\">W3C</abbr><sup>®</sup> <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer\">liability</a>, <a href=\"https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks\">trademark</a> and <a href=\"https://www.w3.org/Consortium/Legal/copyright-documents\">document use</a> rules apply."
+    },
+    {
+        "specShortnames": ["security-privacy-questionnaire"],
+        "copyright": "<a href=\"http://creativecommons.org/publicdomain/zero/1.0/\" rel=\"license\"><img alt=\"CC0\" src=\"cc0-80x15.png\" title=\"CC0\"></a> To the extent possible under law, the editors have waived all copyright and related or neighboring rights to this work. This document is also made available under the <a href=\"https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document\" rel=\"license\">W3C Software and Document License</a>."
+    },
+    {
+        "specShortnames": ["mediacapture-streams"],
+        "copyright": "Initial Author of this Specification was Ian Hickson, Google Inc., with the following copyright statement:<br> © Copyright 2004-2011 Apple Computer, Inc., Mozilla Foundation, and Opera Software ASA. You are granted a license to use, reproduce and create derivative works of this document."
+    }
+]

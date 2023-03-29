@@ -10,21 +10,6 @@
             "message": "Bad value “publication” for attribute “rel” on element “link”: The string “publication” is not a registered keyword."
         }
     ],
-    "^webrtc$": [
-        {
-            "rule": "headers.copyright"
-        }
-    ],
-    "^security-privacy-questionnaire$": [
-        {
-            "rule": "headers.copyright"
-        }
-    ],
-    "^mediacapture-streams$": [
-        {
-            "rule": "headers.copyright"
-        }
-    ],
     "^audiobooks$": [
         {
             "rule": "sotd.candidate-review-end"

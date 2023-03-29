@@ -58,7 +58,7 @@ $ W3C_API_KEY="<YOUR W3C API KEY>" npm start 3001
 Set the environment variable `DEBUG` to run in _debug mode_ instead:
 
 ```bash
-$ DEBUG=true W3C_API_KEY="<YOUR W3C API KEY>" npm start
+$ DEBUG=true W3C_API_KEY="<YOUR W3C API KEY>" npm run start
 ```
 
 This modifies the behaviour of certain parts of the application to facilitate debugging.
