@@ -1,13 +1,8 @@
 import { config } from '../../../../lib/profiles/TR/Recommendation/WD.js';
 import recommendationBase from './recommendationBase.js';
 
-const {
-    buildCommonViewData,
-    buildDraftStability,
-    buildSecurityPrivacy,
-    buildCopyrightException,
-    data,
-} = recommendationBase;
+const { buildCommonViewData, buildDraftStability, buildSecurityPrivacy, data } =
+    recommendationBase;
 
 const profile = 'WD';
 const customData = {
@@ -30,8 +25,4 @@ export default {
     ...commonData,
     'draft-stability': buildDraftStability(good),
     'security-privacy': buildSecurityPrivacy(good),
-    copyright: {
-        ...commonData.copyright,
-        ...buildCopyrightException(good),
-    },
 };
