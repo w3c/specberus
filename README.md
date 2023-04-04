@@ -217,7 +217,7 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
   "delivererIDs": [123, 456],
   "editorIDs": [ 12345 ],
   "informative": false,
-  "process": "https://www.w3.org/2015/Process-20150901/" }
+  "process": "https://www.w3.org/2015/Process-20150901/"
 }
 ```
 
