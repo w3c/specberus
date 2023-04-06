@@ -54,7 +54,7 @@
     "prepare": "husky install",
     "spelling": "cspell \"**/*\"",
     "start": "node --use_strict app",
-    "testserver": "node test/lib/testserver.js",
+    "testserver": "nodemon test/lib/testserver.js",
     "test": "NO_THROTTLE=true mocha"
   },
   "engines": {

@@ -63,6 +63,36 @@ export function buildCommonViewData(base) {
                     W3CLink: 'https://www.w.org/',
                 },
             },
+            niceCopyrightException: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    shortName: 'epub-33',
+                    seriesShortName: 'epub-33',
+                },
+                copyright: {
+                    show: false,
+                },
+                copyrightHtmlContent: {
+                    show: true,
+                    html: '<a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 1999-2023 <a href="https://www.idpf.org">International Digital Publishing Forum</a> and <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.',
+                },
+            },
+            copyrightExceptionNotFound: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    shortName: 'epub-33',
+                    seriesShortName: 'epub-33',
+                },
+                copyright: {
+                    show: false,
+                },
+                copyrightHtmlContent: {
+                    show: true,
+                    html: '<a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright Exception Not Found</a> © 1999-2023 <a href="https://www.idpf.org">International Digital Publishing Forum</a> and <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.',
+                },
+            },
         },
         'process-document': {
             noProcess: {
