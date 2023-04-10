@@ -207,17 +207,17 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
 
 ```json
 {
-  "profile": "WD",
-  "title": "Title of the spec",
-  "docDate": "2016-2-3",
-  "thisVersion": "https://www.w3.org/TR/2016/WD-foobar-20160203/",
-  "latestVersion": "https://www.w3.org/TR/foobar/",
-  "previousVersion": "https://www.w3.org/TR/2015/WD-foobar-20150101/",
-  "editorsDraft": "https://w3c.github.io/foobar/",
-  "delivererIDs": [123, 456],
-  "editorIDs": [ 12345 ],
-  "informative": false,
-  "process": "https://www.w3.org/2015/Process-20150901/"
+    "profile": "WD",
+    "title": "Title of the spec",
+    "docDate": "2016-2-3",
+    "thisVersion": "https://www.w3.org/TR/2016/WD-foobar-20160203/",
+    "latestVersion": "https://www.w3.org/TR/foobar/",
+    "previousVersion": "https://www.w3.org/TR/2015/WD-foobar-20150101/",
+    "editorsDraft": "https://w3c.github.io/foobar/",
+    "delivererIDs": [123, 456],
+    "editorIDs": [12345],
+    "informative": false,
+    "process": "https://www.w3.org/2015/Process-20150901/"
 }
 ```
 
