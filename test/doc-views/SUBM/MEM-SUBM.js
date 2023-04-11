@@ -35,7 +35,7 @@ export default {
         noCopyright: {
             ...good,
             copyright: {
-                showDefault: false,
+                show: false,
             },
         },
         noCopyrightLink: {
