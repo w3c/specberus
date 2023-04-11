@@ -95,13 +95,11 @@ export const data = {
     },
     copyright: {
         show: true,
+        showDefault: true,
         startText: 'Copyright',
         W3CLink: 'https://www.w3.org/',
         licenseHTML:
             '<abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a> rules apply',
-    },
-    copyrightHtmlContent: {
-        show: false,
     },
     abstract: {
         abstractText: 'Abstract',

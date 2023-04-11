@@ -26,6 +26,14 @@ export const rules = {
                 data: 'wrongCopyrightLink',
                 errors: ['headers.copyright.href-not-match'],
             },
+            {
+                data: 'copyrightExceptionFound',
+                errors: [],
+            },
+            {
+                data: 'copyrightExceptionNotFound',
+                errors: ['headers.copyright.exception-no-html'],
+            },
         ],
     },
     style: {
