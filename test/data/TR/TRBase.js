@@ -27,7 +27,7 @@ export const rules = {
                 errors: ['headers.copyright.href-not-match'],
             },
             {
-                data: 'niceCopyrightException',
+                data: 'copyrightExceptionFound',
                 errors: [],
             },
             {

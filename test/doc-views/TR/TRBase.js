@@ -63,7 +63,7 @@ export function buildCommonViewData(base) {
                     W3CLink: 'https://www.w.org/',
                 },
             },
-            niceCopyrightException: {
+            copyrightExceptionFound: {
                 ...base,
                 dl: {
                     ...base.dl,
