@@ -58,7 +58,7 @@
     "test": "NO_THROTTLE=true mocha"
   },
   "engines": {
-    "node": "^16 || ^18",
+    "node": "16 || 18 || 20",
     "npm": ">=7"
   },
   "lint-staged": {
