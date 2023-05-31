@@ -17,6 +17,9 @@
     {{#if head.styleSheet.showAnother}}
         <link rel="stylesheet" href="https://another.css">
     {{/if}}
+    {{#if head.styleSheet.dark}}
+        <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/dark">
+    {{/if}}
     {{#if head.title.show}}
         <title>{{config.profile}}: {{head.title.suffix}}</title> <!-- matches div.head h1 -->
     {{/if}}
