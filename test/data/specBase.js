@@ -215,6 +215,9 @@ export const rules = {
                 data: 'notLast',
                 errors: ['style.sheet.last'],
             },
+            {
+                data: 'darkMode',
+            },
         ],
         meta: [
             {

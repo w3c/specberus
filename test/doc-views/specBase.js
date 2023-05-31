@@ -13,6 +13,7 @@ export const data = {
         styleSheet: {
             show: true,
             showAnother: false,
+            dark: false,
         },
         showCanonical: true,
     },
@@ -722,6 +723,16 @@ export function buildCommonViewData(base) {
                     styleSheet: {
                         ...base.head.styleSheet,
                         showAnother: true,
+                    },
+                },
+            },
+            darkMode: {
+                ...base,
+                head: {
+                    ...base.head,
+                    styleSheet: {
+                        ...base.head.styleSheet,
+                        dark: true,
                     },
                 },
             },
