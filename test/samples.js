@@ -31,7 +31,6 @@ export const samples = [
         thisVersion: 'https://www.w3.org/TR/2021/WD-hr-time-2-20211104/',
         latestVersion: 'https://www.w3.org/TR/hr-time-2/',
         history: 'https://www.w3.org/standards/history/hr-time-2',
-        previousVersion: 'https://www.w3.org/TR/2019/REC-hr-time-2-20191121/',
         rectrack: 'Recommendation',
         editorsDraft: 'https://w3c.github.io/hr-time/',
         updated: false,
@@ -52,8 +51,6 @@ export const samples = [
         thisVersion: 'https://www.w3.org/TR/2021/WD-new-name-3-20211104/',
         latestVersion: 'https://www.w3.org/TR/new-name-3/',
         history: 'https://www.w3.org/standards/history/new-name-3',
-        previousVersion:
-            'https://www.w3.org/TR/2021/REC-trace-context-1-20211123/',
         editorsDraft: 'https://w3c.github.io/foo-time/',
         sameWorkAs: 'https://www.w3.org/TR/hr-time-3/',
         updated: false,
@@ -77,7 +74,6 @@ export const samples = [
         thisVersion: 'https://www.w3.org/TR/2021/CR-hr-time-2-20211104/',
         latestVersion: 'https://www.w3.org/TR/hr-time-2/',
         history: 'https://www.w3.org/standards/history/hr-time-2',
-        previousVersion: 'https://www.w3.org/TR/2019/REC-hr-time-2-20191121/',
         rectrack: 'Recommendation',
         editorsDraft: 'https://w3c.github.io/hr-time/',
         updated: false,
@@ -98,7 +94,6 @@ export const samples = [
         thisVersion: 'https://www.w3.org/TR/2021/CRD-hr-time-2-20211104/',
         latestVersion: 'https://www.w3.org/TR/hr-time-2/',
         history: 'https://www.w3.org/standards/history/hr-time-2',
-        previousVersion: 'https://www.w3.org/TR/2019/REC-hr-time-2-20191121/',
         rectrack: 'Recommendation',
         editorsDraft: 'https://w3c.github.io/hr-time/',
         updated: false,
@@ -120,7 +115,6 @@ export const samples = [
         thisVersion: 'https://www.w3.org/TR/2021/PR-hr-time-2-20211104/',
         latestVersion: 'https://www.w3.org/TR/hr-time-2/',
         history: 'https://www.w3.org/standards/history/hr-time-2',
-        previousVersion: 'https://www.w3.org/TR/2019/REC-hr-time-2-20191121/',
         rectrack: 'Recommendation',
         editorsDraft: 'https://w3c.github.io/hr-time/',
         updated: false,
@@ -144,7 +138,6 @@ export const samples = [
         thisVersion: 'https://www.w3.org/TR/2022/REC-css-color-3-20220118/',
         latestVersion: 'https://www.w3.org/TR/css-color-3/',
         history: 'https://www.w3.org/standards/history/css-color-3',
-        previousVersion: 'https://www.w3.org/TR/2021/REC-css-color-3-20210805/',
         rectrack: 'Recommendation',
         editorsDraft: 'https://drafts.csswg.org/css-color-3/',
         updated: false,
@@ -168,8 +161,6 @@ export const samples = [
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
-        previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Note',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
@@ -193,8 +184,6 @@ export const samples = [
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
-        previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Note',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
@@ -218,8 +207,6 @@ export const samples = [
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
-        previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Note',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
@@ -243,8 +230,6 @@ export const samples = [
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
-        previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Registry',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
@@ -268,8 +253,6 @@ export const samples = [
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
-        previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Registry',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
@@ -293,8 +276,6 @@ export const samples = [
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
-        previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Registry',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
@@ -318,8 +299,6 @@ export const samples = [
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
         history:
             'https://www.w3.org/standards/history/predefined-counter-styles',
-        previousVersion:
-            'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20210609/',
         rectrack: 'Registry',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
         updated: false,
