@@ -33,7 +33,10 @@ img.filler {
 .navbar img.logo:focus,
 .navbar img.logo:hover,
 .navbar img.logo:active {
-    box-shadow: -2px 0 16px #ffffff, 2px 0 16px #ffffff, 0 -2px 16px #ffffff;
+    box-shadow:
+        -2px 0 16px #ffffff,
+        2px 0 16px #ffffff,
+        0 -2px 16px #ffffff;
 }
 
 #infoLink {
