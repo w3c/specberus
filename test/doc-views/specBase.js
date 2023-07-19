@@ -131,7 +131,7 @@ export const data = {
 
         group: 'Internationalization Working Group',
 
-        WGLink: 'https://www.w3.org/groups/wg/i18n-core',
+        WGLink: 'https://www.w3.org/groups/wg/i18n-core/',
         trackLink: 'https://www.w3.org/2023/Process-20230612/#recs-and-notes',
         extra1: '',
         noEndorsementHTML:
