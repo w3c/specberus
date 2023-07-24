@@ -21,12 +21,6 @@ const { version } = importJSON('./package.json', import.meta.url);
 // Settings:
 const DEFAULT_PORT = 80;
 
-if (!process.env.W3C_API_KEY || process.env.W3C_API_KEY.length < 1) {
-    throw new Error(
-        'Pubrules is missing a valid key for the W3C API; define environment variable “W3C_API_KEY”'
-    );
-}
-
 if (!process.env.BASE_URI || process.env.BASE_URI.length < 1) {
     console.warn(
         `Environment variable “BASE_URI” not defined; assuming that Pubrules lives at “/”`
@@ -42,7 +36,7 @@ app.use(compression());
 app.use('/badterms.json', cors());
 
 app.use(express.static('public'));
-api.setUp(app, process.env.W3C_API_KEY);
+api.setUp(app);
 views.setUp(app);
 
 // @TODO Localize this properly when messages are translated; hard-coded British English for now.
@@ -55,7 +49,7 @@ io.on('connection', socket => {
     socket.on('extractMetadata', data => {
         if (!data.url)
             return socket.emit('exception', { message: 'URL not provided.' });
-        const specberus = new Specberus(process.env.W3C_API_KEY);
+        const specberus = new Specberus();
         const handler = new Sink();
         handler.on('err', (type, data) => {
             try {
@@ -118,7 +112,7 @@ io.on('connection', socket => {
                 message: `Failed to get profile ${profilePath}.`,
             });
         }
-        const specberus = new Specberus(process.env.W3C_API_KEY);
+        const specberus = new Specberus();
         const handler = new Sink();
         const profileCode = profile.name;
         socket.emit('start', {

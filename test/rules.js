@@ -43,7 +43,7 @@ const testProfile = process.env.PROFILE;
  */
 
 const compareMetadata = function (url, file, expectedObject) {
-    const specberus = new Specberus(process.env.W3C_API_KEY);
+    const specberus = new Specberus();
     const handler = new Sink(data => {
         throw new Error(data);
     });
@@ -127,7 +127,7 @@ const compareMetadata = function (url, file, expectedObject) {
 };
 
 describe('Basics', () => {
-    const specberus = new Specberus(process.env.W3C_API_KEY);
+    const specberus = new Specberus();
 
     describe('Method "extractMetadata"', () => {
         it('Should exist and be a function', done => {
@@ -191,9 +191,7 @@ function buildHandler(test, mock, done) {
         Object.keys(groupNames).forEach(groupName => {
             const groupId = groupNames[groupName];
             nock('https://api.w3.org', { allowUnmocked: true })
-                .get(
-                    `/groups/wg/${groupName}?apikey=${process.env.W3C_API_KEY}`
-                )
+                .get(`/groups/wg/${groupName}`)
                 .reply(200, {
                     id: groupId,
                     type: 'working group',
@@ -321,9 +319,7 @@ describe('Making sure good documents pass Specberus...', () => {
                         };
 
                         // for (const o in test.options) options[o] = test.options[o];
-                        new Specberus(process.env.W3C_API_KEY).validate(
-                            options
-                        );
+                        new Specberus().validate(options);
                     }
                 );
             });
@@ -367,9 +363,7 @@ function checkRule(tests, options) {
                                 events: buildHandler(test, true, done),
                                 ...test.options,
                             };
-                            new Specberus(process.env.W3C_API_KEY).validate(
-                                options
-                            );
+                            new Specberus().validate(options);
                         }
                     );
                 }

@@ -36,5 +36,3 @@ jobs:
       - run: npm ci
 
       - run: npm run coverage
-        env:
-          W3C_API_KEY: ${{ secrets.W3C_API_KEY }}
