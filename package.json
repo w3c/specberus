@@ -23,7 +23,7 @@
     "promise": "8.3.0",
     "puppeteer": "21.1.0",
     "socket.io": "4.7.0",
-    "superagent": "8.0.0"
+    "superagent": "8.1.2"
   },
   "devDependencies": {
     "chai": "4.3.4",
