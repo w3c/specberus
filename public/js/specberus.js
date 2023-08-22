@@ -398,14 +398,20 @@ jQuery.extend({
         if (checkbox.prop('checked')) {
             $profileOptions.each((_, el) => {
                 if (
-                    !['WD', 'NOTE', 'DNOTE', 'CR', 'CRD', 'REC'].includes(
-                        $(el).val()
-                    )
+                    ![
+                        'WD',
+                        'NOTE',
+                        'DNOTE',
+                        'CR',
+                        'CRD',
+                        'REC',
+                        'DRY',
+                    ].includes($(el).val())
                 )
                     $(el).prop('disabled', true);
             });
             if (
-                !['WD', 'NOTE', 'DNOTE', 'CR', 'CRD', 'REC'].includes(
+                !['WD', 'NOTE', 'DNOTE', 'CR', 'CRD', 'REC', 'DRY'].includes(
                     $profile.val()
                 )
             )
