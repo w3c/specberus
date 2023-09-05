@@ -13,11 +13,11 @@ const good = {
     },
     dl: {
         ...data.dl,
-        topLevel: 'Submission',
+        topLevel: 'submissions',
         latestVersion: {
             ...data.dl.latestVersion,
-            docType: 'Submission',
-            textDocType: 'Submission',
+            docType: 'submissions',
+            textDocType: 'submissions',
         },
     },
     config: {
@@ -94,7 +94,7 @@ export default {
                 ...good.sotd,
                 submission: {
                     ...good.sotd.submission,
-                    submissionLink: 'https://fake-url/Submission',
+                    submissionLink: 'https://fake-url/submissions',
                 },
             },
         },
@@ -105,7 +105,7 @@ export default {
                 submission: {
                     ...good.sotd.submission,
                     submissionMemberLink:
-                        'https://fake-url/Submission/2020/02/',
+                        'https://fake-url/submissions/2020/02/',
                 },
             },
         },
@@ -116,7 +116,7 @@ export default {
                 submission: {
                     ...good.sotd.submission,
                     submissionComment:
-                        'https://fake-url/Submission/2020/02/Comment/',
+                        'https://fake-url/submissions/2020/02/Comment/',
                 },
             },
         },

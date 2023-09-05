@@ -120,9 +120,10 @@ export const data = {
             processLink: 'https://www.w3.org/Consortium/Process',
             membershipLink: 'https://www.w3.org/Consortium/Prospectus/Joining',
             ppLink: 'https://www.w3.org/Consortium/Patent-Policy/#sec-submissions',
-            submissionLink: 'https://www.w3.org/Submission',
-            submissionMemberLink: 'https://www.w3.org/Submission/2020/02/',
-            submissionComment: 'https://www.w3.org/Submission/2020/02/Comment/',
+            submissionLink: 'https://www.w3.org/submissions',
+            submissionMemberLink: 'https://www.w3.org/submissions/2020/02/',
+            submissionComment:
+                'https://www.w3.org/submissions/2020/02/Comment/',
         },
 
         rescindText1: 'chosen to rescind',
