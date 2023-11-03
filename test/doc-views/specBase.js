@@ -133,7 +133,7 @@ export const data = {
         group: 'Internationalization Working Group',
 
         WGLink: 'https://www.w3.org/groups/wg/i18n-core/',
-        trackLink: 'https://www.w3.org/2023/Process-20230612/#recs-and-notes',
+        trackLink: 'https://www.w3.org/2023/Process-20231103/#recs-and-notes',
         extra1: '',
         noEndorsementHTML:
             'does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members',
@@ -147,7 +147,7 @@ export const data = {
         discText: 'intended to advance or to be maintained',
         wideReviewText: 'wide review',
         wideReviewLink:
-            'https://www.w3.org/2023/Process-20230612/#dfn-wide-review',
+            'https://www.w3.org/2023/Process-20231103/#dfn-wide-review',
         recConsensusText: 'after extensive consensus-building',
 
         licensingText: 'royalty-free licensing',
@@ -181,9 +181,9 @@ export const data = {
 
         duplicateProcess: false,
         processTextPrefix: 'is governed by the',
-        processLink: 'https://www.w3.org/2023/Process-20230612/',
+        processLink: 'https://www.w3.org/2023/Process-20231103/',
         processHTML:
-            '12 June 2023 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
+            '03 November 2023 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
         newFeatures: {
             show: false,
             text: 'Future updates to this Recommendation may incorporate new features.',

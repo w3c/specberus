@@ -59,13 +59,6 @@ export const rules = {
                 errors: ['sotd.process-document.not-found'],
             },
             {
-                data: 'wrongLink',
-                errors: [
-                    'sotd.process-document.wrong-link',
-                    'sotd.process-document.not-found',
-                ],
-            },
-            {
                 data: 'duplicatedProcess',
                 errors: ['sotd.process-document.multiple-times'],
             },
