@@ -111,7 +111,7 @@ export function buildCommonViewData(base) {
                 sotd: {
                     ...base.sotd,
                     processLink:
-                        'https://www.w3.org/wrong/link/2023/Process-20230612/',
+                        'https://www.w3.org/wrong/link/2023/Process-20231103/',
                 },
             },
             duplicatedProcess: {
@@ -151,7 +151,7 @@ export function buildCommonViewData(base) {
                 sotd: {
                     ...base.sotd,
                     trackLink:
-                        'https://www.w3.org/2023/Process-20230612/#wrong-url',
+                        'https://www.w3.org/2023/Process-20231103/#wrong-url',
                 },
             },
             noHomepageLink: {
