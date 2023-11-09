@@ -51,7 +51,7 @@ export const nockData = {
                 end: '2021-09-30',
                 'doc-licenses': [
                     {
-                        uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
+                        uri: 'https://www.w3.org/copyright/software-license/',
                         name: 'W3C Software and Document License',
                     },
                 ],
@@ -63,7 +63,7 @@ export const nockData = {
                 end: '2090-09-30',
                 'doc-licenses': [
                     {
-                        uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
+                        uri: 'https://www.w3.org/copyright/software-license/',
                         name: 'W3C Software and Document License',
                     },
                 ],
@@ -81,11 +81,11 @@ export const nockData = {
             end: '2090-07-31',
             'doc-licenses': [
                 {
-                    uri: 'https://www.w3.org/Consortium/Legal/copyright-documents',
+                    uri: 'https://www.w3.org/copyright/document-license/',
                     name: 'W3C Document License',
                 },
                 {
-                    uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
+                    uri: 'https://www.w3.org/copyright/software-license/',
                     name: 'W3C Software and Document License',
                 },
             ],
@@ -97,11 +97,11 @@ export const nockData = {
             end: '2090-10-31',
             'doc-licenses': [
                 {
-                    uri: 'https://www.w3.org/Consortium/Legal/copyright-documents',
+                    uri: 'https://www.w3.org/copyright/document-license/',
                     name: 'W3C Document License',
                 },
                 {
-                    uri: 'https://www.w3.org/Consortium/Legal/copyright-software',
+                    uri: 'https://www.w3.org/copyright/software-license/',
                     name: 'W3C Software and Document License',
                 },
             ],

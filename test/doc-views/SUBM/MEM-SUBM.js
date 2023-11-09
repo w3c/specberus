@@ -43,7 +43,7 @@ export default {
             copyright: {
                 ...good.copyright,
                 licenseHTML:
-                    'W3C <a href="https://fake-url#Legal_Disclaimer">liability</a>, <a href="https://fake-url#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a> rules apply.',
+                    'W3C <a href="https://fake-url#Legal_Disclaimer">liability</a>, <a href="https://fake-url#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/copyright/software-license-2023/">permissive document license</a> rules apply.',
             },
         },
     },
