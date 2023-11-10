@@ -69,7 +69,7 @@ export const data = {
         },
         editor: {
             show: true,
-            id: '56102',
+            id: '3439',
         },
         history: {
             show: true,
