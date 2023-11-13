@@ -71,6 +71,9 @@ export const data = {
             show: true,
             id: '3439',
         },
+        editor2: {
+            show: false,
+        },
         history: {
             show: true,
             showHref: true,
@@ -605,6 +608,18 @@ export function buildCommonViewData(base) {
                         ...base.dl.latestVersion,
                         docType: 'FAKE',
                         textDocType: 'FAKE',
+                    },
+                },
+            },
+        },
+        'editor-participation': {
+            noEditorParticipation: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    editor2: {
+                        show: true,
+                        id: '3440',
                     },
                 },
             },

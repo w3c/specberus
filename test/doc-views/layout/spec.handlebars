@@ -101,6 +101,10 @@
                         <dt><span class="handlebars-data">{{dl.editorText}}</span>:</dt>
                         <dd class="p-author h-card vcard" data-editor-id="{{dl.editor.id}}">George Herald (WebFoo)
                         </dd>
+                        {{#if dl.editor2.show}}
+                        <dd class="p-author h-card vcard" data-editor-id="{{dl.editor2.id}}">John Doe (WebFoo)
+                        </dd>
+                        {{/if}}
                     {{/if}}
 
                     {{#config.isRescinded}}
