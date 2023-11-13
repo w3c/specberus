@@ -35,6 +35,12 @@ export const rules = {
                 errors: ['headers.copyright.exception-no-html'],
             },
         ],
+        'editor-participation': [
+            {
+                data: 'noEditorParticipation',
+                errors: ['headers.editor-participation.not-participating'],
+            },
+        ],
     },
     style: {
         ...baseRules.style,
