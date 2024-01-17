@@ -5,9 +5,9 @@
 // Native packages:
 // External packages:
 // eslint-disable-next-line node/no-unpublished-import
-import chai, { expect } from 'chai';
-// eslint-disable-next-line node/no-unpublished-import
-import chaiAsPromised from 'chai-as-promised';
+import * as chai from 'chai';
+// eslint-disable-next-line
+import chaiAsPromised from '@rvagg/chai-as-promised';
 import express from 'express';
 import http from 'http';
 import superagent from 'superagent';
@@ -15,6 +15,7 @@ import { setUp } from '../lib/api.js';
 import { importJSON } from '../lib/util.js';
 // Internal packages:
 const meta = importJSON('../package.json', import.meta.url);
+const { expect } = chai;
 
 // Settings:
 const DEFAULT_PORT = 8000;
