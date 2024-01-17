@@ -5,9 +5,9 @@
 // Native packages:
 // External packages:
 // eslint-disable-next-line node/no-unpublished-import
-import chai from 'chai';
-// eslint-disable-next-line node/no-unpublished-import
-import chaiAsPromised from 'chai-as-promised';
+import * as chai from 'chai';
+// eslint-disable-next-line
+import chaiAsPromised from '@rvagg/chai-as-promised';
 import fs from 'fs';
 import * as l10n from '../lib/l10n-en_GB.js';
 import { importJSON } from '../lib/util.js';
