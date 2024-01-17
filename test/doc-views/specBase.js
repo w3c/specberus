@@ -38,7 +38,7 @@ export const data = {
             show: true,
             text: 'More details about this document',
         },
-        defaultDate: '04 November 2023',
+        defaultDate: '04 August 2024',
         showDefaultDate: false,
     },
     secno: 'secno',
