@@ -31,5 +31,9 @@
     {
         "specShortnames": ["sdw-bp"],
         "copyright": "Copyright © @YEAR <a href=\"https://www.ogc.org/\">OGC</a> &amp; <a href=\"https://www.w3.org/\">World Wide Web Consortium</a>. <abbr title=\"World Wide Web Consortium\">W3C</abbr><sup>®</sup> <a href=\"https://www.w3.org/policies/#Legal_Disclaimer\">liability</a>, <a href=\"https://www.w3.org/policies/#W3C_Trademarks\">trademark</a>, <a href=\"https://www.w3.org/copyright/document-license/\">W3C</a> and <a href=\"https://www.ogc.org/ogc/document\">OGC</a> document use rules apply."
+    },
+    {
+        "specShortnames": ["html-ruby-extensions"],
+        "copyright": "<a href=\"https://www.w3.org/policies/#copyright\">Copyright</a> © @YEAR <a href=\"https://www.w3.org/\">World Wide Web Consortium</a> and WHATWG (Apple, Google, Mozilla, Microsoft). <abbr title=\"World Wide Web Consortium\">W3C</abbr><sup>®</sup> <a href=\"https://www.w3.org/policies/#Legal_Disclaimer\">liability</a>, and <a href=\"https://www.w3.org/policies/#W3C_Trademarks\">trademark</a> rules apply. This work is licensed under a <a href=\"https://creativecommons.org/licenses/by/4.0/\">Creative Commons Attribution 4.0 International License</a>."
     }
 ]
