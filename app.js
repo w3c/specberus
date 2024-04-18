@@ -105,7 +105,6 @@ io.on('connection', socket => {
         );
         let profile;
         try {
-            // eslint-disable-next-line node/no-unsupported-features/es-syntax
             profile = await import(`./lib/profiles/${profilePath}`);
         } catch (err) {
             return socket.emit('exception', {

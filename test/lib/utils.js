@@ -12,7 +12,6 @@ function listFilesOf(dir) {
 const flat = objs => objs.reduce((acc, cur) => ({ ...acc, ...cur }), {});
 
 const buildProfileTestCases = async path => {
-    // eslint-disable-next-line node/no-unsupported-features/es-syntax
     const { rules } = await import(path);
     return rules;
 };

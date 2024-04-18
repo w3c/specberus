@@ -22,7 +22,6 @@ import { importJSON } from '../lib/util.js';
 
 const src = importJSON('./groups-sparql.json');
 
-// eslint-disable-next-line no-underscore-dangle
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const res = {};
