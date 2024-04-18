@@ -1,10 +1,7 @@
 // Native packages:
-// eslint-disable-next-line node/no-unpublished-import
 import { expect as chai } from 'chai';
-// eslint-disable-next-line node/no-unpublished-import
 import expect from 'expect.js';
 
-// eslint-disable-next-line node/no-unpublished-import
 import nock from 'nock';
 import { Sink } from '../lib/sink.js';
 import { allProfiles } from '../lib/util.js';
@@ -283,7 +280,6 @@ describe('Making sure good documents pass Specberus...', () => {
             const profilePath = allProfiles.find(p =>
                 p.endsWith(`/${docProfile}.js`)
             );
-            // eslint-disable-next-line node/no-unsupported-features/es-syntax
             import(`../lib/profiles/${profilePath}`).then(profile => {
                 // add custom config to test
                 const extendedProfile = {
@@ -296,7 +292,6 @@ describe('Making sure good documents pass Specberus...', () => {
                 };
 
                 // remove unnecessary rules from test
-                // eslint-disable-next-line node/no-unsupported-features/es-syntax
                 import('../lib/profiles/profileUtil.js').then(
                     ({ removeRules }) => {
                         const rules = removeRules(extendedProfile.rules, [
@@ -344,10 +339,8 @@ function checkRule(tests, options) {
             return;
 
         it(`should ${passOrFail} for ${url}`, done => {
-            // eslint-disable-next-line node/no-unsupported-features/es-syntax
             import(`../lib/profiles/${docType}/${suffix}.js`).then(
                 ({ config }) => {
-                    // eslint-disable-next-line node/no-unsupported-features/es-syntax
                     import(`../lib/rules/${category}/${rule}.js`).then(
                         ruleModule => {
                             const options = {

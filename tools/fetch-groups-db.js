@@ -9,7 +9,6 @@ import pth, { dirname } from 'path';
 import ua from 'superagent';
 import { fileURLToPath } from 'url';
 
-// eslint-disable-next-line no-underscore-dangle
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const user = process.argv[2];
@@ -50,7 +49,6 @@ function munge(err, res) {
             td4.querySelectorAll('a').forEach(element => {
                 let list = element.textContent;
                 if (!/@w3\.org$/.test(list)) list += '@w3.org';
-                // eslint-disable-next-line no-unused-expressions
                 if (href.indexOf('http') === 0) true;
                 else if (href.indexOf('/') === 0)
                     href = `https://www.w3.org${href}`;

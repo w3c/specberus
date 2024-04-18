@@ -4,9 +4,7 @@
 
 // Native packages:
 // External packages:
-// eslint-disable-next-line node/no-unpublished-import
 import * as chai from 'chai';
-// eslint-disable-next-line
 import chaiAsPromised from '@rvagg/chai-as-promised';
 import express from 'express';
 import http from 'http';

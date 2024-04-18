@@ -4,9 +4,7 @@
 
 // Native packages:
 // External packages:
-// eslint-disable-next-line node/no-unpublished-import
 import * as chai from 'chai';
-// eslint-disable-next-line
 import chaiAsPromised from '@rvagg/chai-as-promised';
 import fs from 'fs';
 import * as l10n from '../lib/l10n-en_GB.js';
@@ -113,7 +111,6 @@ const scanFileSystem = function () {
         const result = {};
         fs.readdir(baseDir, (err, dirs) => {
             if (err)
-                // eslint-disable-next-line
                 reject(
                     `Error: could not read directory “${baseDir}”: “${err}”`
                 );
@@ -127,7 +124,6 @@ const scanFileSystem = function () {
                         const readFile = function (file) {
                             return function (err, data) {
                                 if (err)
-                                    // eslint-disable-next-line
                                     reject(
                                         `Error: could not read file ${dir}/${file}: ${err}`
                                     );

@@ -8,7 +8,6 @@ const DEFAULT_PORT = 8001;
 const PORT = process.env.PORT || DEFAULT_PORT;
 const ENDPOINT = `http://localhost:${PORT}`;
 
-// eslint-disable-next-line no-underscore-dangle
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const app = express();
@@ -38,7 +37,6 @@ function renderByConfig(req, res) {
         `../doc-views/${req.params.docType}/${suffix}.js`
     );
 
-    // eslint-disable-next-line node/no-unsupported-features/es-syntax
     import(path).then(module => {
         const data = module.default;
 
