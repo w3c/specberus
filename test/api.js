@@ -100,7 +100,7 @@ describe('API', () => {
         it('Should exist and listen to POST requests', () => {
             query = request('', true);
             return expect(query).to.eventually.be.rejectedWith(
-                /form content-type not supported/i
+                /wrong api endpoint/i
             );
         });
     });
