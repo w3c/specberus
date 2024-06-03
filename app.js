@@ -5,6 +5,7 @@
 import compression from 'compression';
 import cors from 'cors';
 import express from 'express';
+import fileUpload from 'express-fileupload';
 import http from 'http';
 import insafe from 'insafe';
 import morgan from 'morgan';
@@ -34,6 +35,13 @@ const io = new Server(server);
 app.use(morgan('combined'));
 app.use(compression());
 app.use('/badterms.json', cors());
+app.use(
+    fileUpload({
+        createParentPath: true,
+        useTempFiles: true,
+        tempFileDir: '/tmp/',
+    })
+);
 
 app.use(express.static('public'));
 api.setUp(app);
