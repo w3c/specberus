@@ -40,7 +40,7 @@
     "nock": "13.5.0",
     "nodemon": "3.0.1",
     "nyc": "15.1.0",
-    "prettier": "3.2.4"
+    "prettier": "3.3.0"
   },
   "scripts": {
     "build": "npm run lint && npm run test",
