@@ -228,17 +228,17 @@ Use either `url` or `file` to pass along the document (neither `source` nor `doc
 
 Note: If you want to use the public W3C instance of Specberus, you can replace `<host>` with `https://www.w3.org/pubrules`.
 
-There are three `GET` methods available.
+The different endpoints are described below.
 
-### `version`
+### `version` (GET)
 
 Returns the version string, eg `1.5.3`.
 
-### `metadata`
+### `metadata` (GET and POST)
 
 Extract all known metadata from a document; see [below](#return-values) for information about the return value.
 
-### `validate`
+### `validate` (GET and POST)
 
 Check the document ([syntax](#validateoptions)).
 Many of [the options understood by the JS method `validate`](#validateoptions) are accepted.
@@ -249,13 +249,17 @@ The special profile `auto` is also available.
 
 #### 1. Get API version of Pubrules
 
-`https://www.w3.org/pubrules/api/version`
-
-e.g. https://www.w3.org/pubrules/api/version
+`curl https://www.w3.org/pubrules/api/version`
 
 #### 2. Get metadata of one document.
 
-`https://www.w3.org/pubrules/api/metadata?url=https://example.com/doc.html`
+```sh
+# GET
+curl "https://www.w3.org/pubrules/api/metadata?url=https://example.com/doc.html"
+
+# POST
+curl "https://www.w3.org/pubrules/api/metadata" -F "file=@/tmp/foo.html"
+```
 
 Metadata is a bunch of data extracted from the document. It includes the type (profile) of the document, publish date, editors' names, Patent Policy version the document is under, etc...
 
@@ -263,7 +267,15 @@ e.g. https://www.w3.org/pubrules/api/metadata?url=https://www.w3.org/TR/2021/WD-
 
 #### 3. Validate the document using profile: auto
 
-`https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=auto`
+```sh
+# GET
+curl "https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=auto"
+
+# POST
+curl "https://www.w3.org/pubrules/api/validate" -F "file=@/tmp/foo.html" -F "profile=auto"
+```
+
+Note: The POST method will skip some checks requiring the document to be staged online such as checking if [assets in the same folder](https://github.com/w3c/specberus/blob/main/lib/rules/links/linkchecker.js).
 
 `auto` profile is the easiest way to validate a document. The validation relies on the automatically extracted data.
 
