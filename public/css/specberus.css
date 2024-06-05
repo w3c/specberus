@@ -179,6 +179,10 @@ span.info {
     color: #337ab7;
 }
 
+.panel-body > ul.nav-tabs {
+    margin-bottom: 2em;
+}
+
 option:disabled {
     color: #c0c0c0;
     text-decoration: line-through;

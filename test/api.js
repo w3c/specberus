@@ -48,7 +48,7 @@ const setUpTest = function () {
  * Query the API.
  */
 
-const get = function (suffix, post) {
+const request = function (suffix, post) {
     const method = post ? superagent.post : superagent.get;
     return new Promise((resolve, reject) => {
         method(ENDPOINT + suffix, (error, response, body) => {
@@ -92,27 +92,29 @@ describe('API', () => {
 
     describe('Endpoint', () => {
         it('Should exist and listen to GET requests', () => {
-            query = get('');
+            query = request('');
             return expect(query).to.eventually.be.rejectedWith(
-                /wrong api method/i
+                /wrong api endpoint/i
             );
         });
-        it('Should not accept POST requests', () => {
-            query = get('', true);
-            return expect(query).to.eventually.be.rejectedWith(/cannot post/i);
+        it('Should exist and listen to POST requests', () => {
+            query = request('', true);
+            return expect(query).to.eventually.be.rejectedWith(
+                /wrong api endpoint/i
+            );
         });
     });
 
     describe('Method “version”', () => {
         it('Should return the right version string', () => {
-            query = get('version');
+            query = request('version');
             return expect(query).to.eventually.become(meta.version);
         });
     });
 
     describe('Method “metadata”', () => {
         it('Should accept the parameter “file”, and return the right profile and date', () => {
-            query = get('metadata?file=test/docs/metadata/ttml-imsc1.html');
+            query = request('metadata?file=test/docs/metadata/ttml-imsc1.html');
             // @TODO: parse result as an Object (it's JSON) instead of a String.
             return expect(query)
                 .to.eventually.match(/"profile":\s*"pr"/i)
@@ -122,7 +124,7 @@ describe('API', () => {
 
     describe('Method “validate”', () => {
         it('Should 404 and return an array of errors when validation fails', () => {
-            query = get(
+            query = request(
                 'validate?file=test/docs/metadata/ttml-imsc1.html&profile=REC&validation=simple-validation&processDocument=2047'
             );
             return expect(query).to.eventually.be.rejectedWith(
@@ -147,13 +149,13 @@ describe('API', () => {
 
     describe('Parameter restrictions', () => {
         it('Should reject the parameter “document”', () => {
-            query = get('metadata?document=foo');
+            query = request('metadata?document=foo');
             return expect(query).to.eventually.be.rejectedWith(
                 'Parameter “document” is not allowed in this context'
             );
         });
         it('Should reject the parameter “source”', () => {
-            query = get('metadata?source=foo');
+            query = request('metadata?source=foo');
             return expect(query).to.eventually.be.rejectedWith(
                 'Parameter “source” is not allowed in this context'
             );

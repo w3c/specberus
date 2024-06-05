@@ -38,7 +38,12 @@ jQuery.extend({
     const MSG_INFO = { ui: 'Advice', bootstrap: 'info' };
     const $form = $('form#options');
     const $urlContainer = $('#urlContainer');
+    const $urlLabel = $('label[for="url"]');
+    const $fileContainer = $('#fileContainer');
+    const $fileLabel = $('label[for="file"]');
     const $url = $('#url');
+    const $file = $('#file');
+    let tempPostFile;
     let profile;
     const $profileContainer = $('#profileContainer');
     const $profile = $('#profile');
@@ -53,6 +58,8 @@ jQuery.extend({
     const $progressContainer = $('#progressBar');
     const $progress = $progressContainer.find('.progress-bar');
     const $progressStyler = $progress.parent();
+    const $valfile = $('#valfile');
+    const $valuri = $('#valuri');
     const baseURI = `${document.location.pathname}/`.replace(/\/+$/, '/');
     const socket = io(
         `${document.location.protocol}//${document.location.host}`,
@@ -80,6 +87,10 @@ jQuery.extend({
             $('form input, form select, form label')
                 .removeClass('disabled')
                 .removeAttr('disabled');
+            if ($form.attr('method') === 'post') {
+            }
+            $url.prop('disabled', $form.attr('method') === 'post');
+            $file.prop('disabled', $form.attr('method') !== 'post');
             $('button[type=submit]').fadeIn();
         } else {
             $('form').css('opacity', 0.333);
@@ -92,24 +103,17 @@ jQuery.extend({
 
     // validate
     function validate(options) {
+        if (options.url) options.url = decodeURIComponent(options.url);
         $resultsBody.empty();
         $resultsList.empty();
         profile = options.profile;
-        socket.emit('validate', {
-            url: decodeURIComponent(options.url),
-            profile,
-            validation: options.validation,
-            informativeOnly: options.informativeOnly === true,
-            echidnaReady: options.echidnaReady === true,
-            patentPolicy: options.patentPolicy,
-        });
+        socket.emit('validate', options);
     }
 
     // extractMetadata
-    function extractMetadata(url) {
-        socket.emit('extractMetadata', {
-            url: decodeURIComponent(url),
-        });
+    function extractMetadata(input) {
+        if (input.url) input.url = decodeURIComponent(input.url);
+        socket.emit('extractMetadata', input);
     }
 
     function addMessage(type, data) {
@@ -221,7 +225,9 @@ jQuery.extend({
         if (total > 0 && profile)
             message += `<a href="doc/rules?profile=${profile}">${total} rules</a> were checked. `;
         message += `Hover over the rows below for options.<br />`;
-        message += `Tip: review the <a href="${metadataURL}">metadata that was inferred from the document</a> to make sure that there are no errors.`;
+        if ($form.attr('method') !== 'post') {
+            message += `Tip: review the <a href="${metadataURL}">metadata that was inferred from the document</a> to make sure that there are no errors.`;
+        }
         message += '</p>';
         $resultsBody.html(message);
         message = '';
@@ -320,17 +326,26 @@ jQuery.extend({
             $patentPolicy.find('label').removeClass('active');
             $patentPolicy.find(`label#${patentPolicy}`).addClass('active');
 
+            const isPost = $form.attr('method') === 'post';
             const options = {
-                url: data.url,
                 profile,
                 validation: 'simple-validation',
                 informativeOnly: data.metadata.informative || false,
                 echidnaReady: false,
                 patentPolicy,
             };
+            if (isPost) {
+                options.file = tempPostFile;
+            } else {
+                options.url = data.url;
+                const newUrl = `${document.URL.split('?')[0]}?${$.param(options)}`;
+                window.history.pushState(
+                    options,
+                    `${url} - ${profile}`,
+                    newUrl
+                );
+            }
             validate(options);
-            const newUrl = `${document.URL.split('?')[0]}?${$.param(options)}`;
-            window.history.pushState(options, `${url} - ${profile}`, newUrl);
         } else {
             // Deal with all possible errors:
             if (!data)
@@ -352,34 +367,44 @@ jQuery.extend({
         }
     });
 
-    $form.submit(event => {
+    $file.on('change', event => {
+        socket.emit('upload', event.target.files[0], status => {
+            tempPostFile = status.filename;
+        });
+    });
+
+    $form.on('submit', event => {
+        const isPost = $form.attr('method') === 'post';
         if (running) {
             if (event) event.preventDefault();
             return;
         }
         running = true;
+
+        const input = isPost ? { file: tempPostFile } : { url: $url.val() };
         toggleForm(false);
         $resultsBody.empty();
         $resultsList.empty();
         result = { exceptions: [], errors: [], warnings: [], infos: [] };
         if ($profile.val() === 'auto') {
-            extractMetadata($url.val());
+            extractMetadata(input);
         } else {
-            const url = $url.val();
             const validation = $validation.find('label.active').attr('id');
             const informativeOnly = $informativeOnly.is(':checked') || false;
             const echidnaReady = $echidnaReady.is(':checked') || false;
             const patentPolicy = $patentPolicy.find('label.active').attr('id');
             profile = $profile.val();
-            if (!url)
-                addMessage(MSG_ERROR, { message: 'Missing “URL” parameter' });
+            if (!input.file && !input.url)
+                addMessage(MSG_ERROR, {
+                    message: 'Missing "URL" or "file" parameter',
+                });
             if (!profile)
                 addMessage(MSG_ERROR, {
-                    message: 'Missing “profile” parameter',
+                    message: 'Missing "profile" parameter',
                 });
             if (echidnaReady) profile += '-Echidna';
             const options = {
-                url,
+                ...input,
                 profile,
                 validation,
                 informativeOnly,
@@ -387,8 +412,14 @@ jQuery.extend({
                 patentPolicy,
             };
             validate(options);
-            const newUrl = `${document.URL.split('?')[0]}?${$.param(options)}`;
-            window.history.pushState(options, `${url} - ${profile}`, newUrl);
+            if (!isPost) {
+                const newUrl = `${document.URL.split('?')[0]}?${$.param(options)}`;
+                window.history.pushState(
+                    options,
+                    `${url} - ${profile}`,
+                    newUrl
+                );
+            }
         }
         return false;
     });
@@ -462,13 +493,41 @@ jQuery.extend({
         disableProfilesIfNeeded($echidnaReady);
     });
 
+    const validation_method = method => {
+        const isFileMethod = method === 'file';
+        $valfile.parent().toggleClass('active', isFileMethod);
+        $valuri.parent().toggleClass('active', !isFileMethod);
+        $urlContainer.toggleClass('hidden', isFileMethod);
+        $urlLabel.toggleClass('hidden', isFileMethod);
+        $fileContainer.toggleClass('hidden', !isFileMethod);
+        $fileLabel.toggleClass('hidden', !isFileMethod);
+        $url.prop('disabled', isFileMethod);
+        $file.prop('disabled', !isFileMethod);
+        if (isFileMethod) {
+            $form.attr('method', 'post');
+            $form.attr('enctype', 'multipart/form-data');
+        } else {
+            $form.removeAttr('method');
+            $form.removeAttr('action');
+            $form.removeAttr('enctype');
+        }
+    };
+
+    $valfile.click(() => validation_method('file'));
+
+    $valuri.click(() => validation_method('url'));
+
     $(document).ready(() => {
-        $profileOptions = $('#profile option');
-        const options = $.getQueryParameters();
-        setFormParams(options);
-        toggleManual($profile.val() !== 'auto');
-        if (options.url && options.profile) $('form').submit();
-        $('[data-toggle="tooltip"]').tooltip();
-        $url.select();
+        if (window.location.hash === '#validate_file') {
+            validation_method('file');
+        } else {
+            $profileOptions = $('#profile option');
+            const options = $.getQueryParameters();
+            setFormParams(options);
+            toggleManual($profile.val() !== 'auto');
+            if (options.url && options.profile) $('form').submit();
+            $('[data-toggle="tooltip"]').tooltip();
+            $url.select();
+        }
     });
 })(jQuery);

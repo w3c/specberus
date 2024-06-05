@@ -14,7 +14,9 @@
     "cors": "2.8.5",
     "doasync": "2.0.1",
     "express": "4.19.2",
+    "express-fileupload": "1.5.0",
     "express-handlebars": "7.1.0",
+    "file-type": "19.0.0",
     "insafe": "0.5.1",
     "jsdom": "24.1.0",
     "metaviewport-parser": "0.3.0",
@@ -23,7 +25,8 @@
     "promise": "8.3.0",
     "puppeteer": "22.10.0",
     "socket.io": "4.7.0",
-    "superagent": "9.0.1"
+    "superagent": "9.0.1",
+    "tmp": "0.2.3"
   },
   "devDependencies": {
     "chai": "5.1.0",
