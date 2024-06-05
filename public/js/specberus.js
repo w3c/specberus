@@ -524,10 +524,10 @@ jQuery.extend({
             $profileOptions = $('#profile option');
             const options = $.getQueryParameters();
             setFormParams(options);
-            toggleManual($profile.val() !== 'auto');
             if (options.url && options.profile) $('form').submit();
             $('[data-toggle="tooltip"]').tooltip();
             $url.select();
         }
+        toggleManual($profile.val() !== 'auto');
     });
 })(jQuery);
