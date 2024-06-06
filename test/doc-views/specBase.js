@@ -120,7 +120,7 @@ export const data = {
         submission: {
             show: false,
             processText: 'W3C Process',
-            processLink: 'https://www.w3.org/Consortium/Process',
+            processLink: 'https://www.w3.org/policies/process/',
             membershipLink: 'https://www.w3.org/Consortium/Prospectus/Joining',
             ppLink: 'https://www.w3.org/Consortium/Patent-Policy/#sec-submissions',
             submissionLink: 'https://www.w3.org/submissions/',

@@ -63,7 +63,7 @@ export default {
                 ...good.sotd,
                 submission: {
                     ...good.sotd.submission,
-                    processLink: 'https://fake-url/Consortium/Process',
+                    processLink: 'https://fake-url/policies/process/',
                 },
             },
         },
