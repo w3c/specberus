@@ -151,7 +151,7 @@ export function buildCommonViewData(base) {
                 sotd: {
                     ...base.sotd,
                     trackLink:
-                        'https://www.w3.org/2023/Process-20231103/#wrong-url',
+                        'https://www.w3.org/policies/process/20231103/#wrong-url',
                 },
             },
             noHomepageLink: {

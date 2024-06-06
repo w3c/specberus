@@ -84,7 +84,7 @@
     <p>
         This document was published by the <a href="https://www.w3.org/groups/wg/webperf">Web Performance Working Group</a>
         as a Candidate Recommendation Snapshot using the <a
-        href="https://www.w3.org/2023/Process-20231103/#recs-and-notes">Recommendation
+        href="https://www.w3.org/policies/process/20231103/#recs-and-notes">Recommendation
         track</a>.
     </p>
 
@@ -92,7 +92,7 @@
       Publication as a Candidate Recommendation does not imply endorsement by
       <abbr title="World Wide Web Consortium">W3C</abbr> and its Members.
       A Candidate Recommendation Snapshot has received <a
-      href="https://www.w3.org/2023/Process-20231103/#dfn-wide-review">wide review</a>, is intended to
+      href="https://www.w3.org/policies/process/20231103/#dfn-wide-review">wide review</a>, is intended to
       gather implementation experience, and has commitments from Working Group members to <a
       href="https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements">royalty-free licensing</a> for implementations.
     </p>
@@ -111,7 +111,7 @@
           Patent Policy</a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a rel="disclosure" href="https://www.w3.org/groups/wg/webperf/ipr">public list of any patent disclosures</a>  made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
     </p>
     <p>
-        This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2023/Process-20231103/">03 November 2023 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+        This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/policies/process/20231103/">03 November 2023 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
     </p>
               </section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#examples"><bdi class="secno">1.1 </bdi>Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sec-time-origin"><bdi class="secno">2. </bdi>Time Origin</a></li><li class="tocline"><a class="tocxref" href="#sec-domhighrestimestamp"><bdi class="secno">3. </bdi>The <span data-dfn-type="typedef" data-export="" data-idl="typedef" data-title="DOMHighResTimeStamp" data-dfn-for=""><code>DOMHighResTimeStamp</code></span> typedef</a></li><li class="tocline"><a class="tocxref" href="#sec-performance"><bdi class="secno">4. </bdi>The <span data-dfn-type="interface" data-export="" data-idl="interface" data-title="Performance" data-dfn-for=""><code>Performance</code></span> interface</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#now-method"><bdi class="secno">4.1 </bdi><code>now()</code> method</a></li><li class="tocline"><a class="tocxref" href="#timeorigin-attribute"><bdi class="secno">4.2 </bdi><code>timeOrigin</code> attribute</a></li><li class="tocline"><a class="tocxref" href="#tojson-method"><bdi class="secno">4.3 </bdi><code>toJSON()</code> method</a></li></ol></li><li class="tocline"><a class="tocxref" href="#extensions-to-windoworworkerglobalscope-mixin"><bdi class="secno">5. </bdi>Extensions to <code>WindowOrWorkerGlobalScope</code> mixin</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#the-performance-attribute"><bdi class="secno">5.1 </bdi>The <code>performance</code> attribute</a></li></ol></li><li class="tocline"><a class="tocxref" href="#sec-monotonic-clock"><bdi class="secno">6. </bdi>Monotonic Clock</a></li><li class="tocline"><a class="tocxref" href="#sec-privacy-security"><bdi class="secno">7. </bdi>Privacy and Security</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#clock-resolution"><bdi class="secno">7.1 </bdi>Clock resolution</a></li><li class="tocline"><a class="tocxref" href="#clock-drift"><bdi class="secno">7.2 </bdi>Clock drift</a></li></ol></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">8. </bdi>Conformance</a></li><li class="tocline"><a class="tocxref" href="#idl-index"><bdi class="secno">9. </bdi>IDL Index</a></li><li class="tocline"><a class="tocxref" href="#acknowledgments"><bdi class="secno">A. </bdi>Acknowledgments</a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">B. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">B.1 </bdi>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">B.2 </bdi>Informative references</a></li></ol></li></ol></nav>
   <section id="introduction" class="informative">
