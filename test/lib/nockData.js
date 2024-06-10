@@ -69,7 +69,7 @@ export const nockData = {
                 ],
                 start: '2021-09-30',
                 'patent-policy':
-                    'https://www.w3.org/Consortium/Patent-Policy-20200915/',
+                    'https://www.w3.org/policies/patent-policy/20200915/',
             },
         ],
         32219: {
@@ -91,7 +91,7 @@ export const nockData = {
             ],
             start: '2021-08-11',
             'patent-policy':
-                'https://www.w3.org/Consortium/Patent-Policy-20200915/',
+                'https://www.w3.org/policies/patent-policy/20200915/',
         },
         35422: {
             end: '2090-10-31',

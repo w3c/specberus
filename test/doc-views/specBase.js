@@ -122,7 +122,7 @@ export const data = {
             processText: 'W3C Process',
             processLink: 'https://www.w3.org/policies/process/',
             membershipLink: 'https://www.w3.org/Consortium/Prospectus/Joining',
-            ppLink: 'https://www.w3.org/Consortium/Patent-Policy/#sec-submissions',
+            ppLink: 'https://www.w3.org/policies/patent-policy/#sec-submissions',
             submissionLink: 'https://www.w3.org/submissions/',
             submissionMemberLink: 'https://www.w3.org/submissions/2020/02/',
             submissionComment:
@@ -156,14 +156,14 @@ export const data = {
 
         licensingText: 'royalty-free licensing',
         licensingLink:
-            'https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements',
+            'https://www.w3.org/policies/patent-policy/#sec-Requirements',
 
         acReviewLink: 'https://www.w3.org/2002/09/wbs/myQuestionnaires',
 
-        ppLink: 'https://www.w3.org/Consortium/Patent-Policy/',
+        ppLink: 'https://www.w3.org/policies/patent-policy/',
         ppHTML: '<abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>',
         noPPText: 'licensing requirements or commitments',
-        ppLink1: 'https://www.w3.org/Consortium/Patent-Policy-20200915/',
+        ppLink1: 'https://www.w3.org/policies/patent-policy/20200915/',
         ppDate: '15 September 2020',
 
         iprLink: 'https://www.w3.org/groups/wg/i18n-core/ipr',
@@ -175,11 +175,11 @@ export const data = {
         individualText: 'An individual who has',
 
         essentialLink:
-            'https://www.w3.org/Consortium/Patent-Policy/#def-essential',
+            'https://www.w3.org/policies/patent-policy/#def-essential',
         essentialText: 'Essential Claim(s)',
 
         disclosureLink:
-            'https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure',
+            'https://www.w3.org/policies/patent-policy/#sec-Disclosure',
         disclosureHTML:
             'section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy',
 
