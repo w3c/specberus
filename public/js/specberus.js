@@ -318,7 +318,7 @@ jQuery.extend({
                     patentPolicy = 'pp2004';
                 } else if (
                     data.metadata.patentPolicy ===
-                    'https://www.w3.org/Consortium/Patent-Policy-20200915/'
+                    'https://www.w3.org/policies/patent-policy/20200915/'
                 ) {
                     patentPolicy = 'pp2020';
                 }
