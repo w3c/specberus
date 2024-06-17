@@ -151,7 +151,7 @@ export function buildCommonViewData(base) {
                 sotd: {
                     ...base.sotd,
                     trackLink:
-                        'https://www.w3.org/2023/Process-20231103/#wrong-url',
+                        'https://www.w3.org/policies/process/20231103/#wrong-url',
                 },
             },
             noHomepageLink: {
@@ -205,7 +205,7 @@ export function buildCommonViewData(base) {
                 ...base,
                 sotd: {
                     ...base.sotd,
-                    ppLink: 'https://www.w3.org/Consortium/Patent-Policy/fake',
+                    ppLink: 'https://www.w3.org/policies/patent-policy/fake',
                 },
             },
             noDisclosures: {
@@ -220,7 +220,7 @@ export function buildCommonViewData(base) {
                 sotd: {
                     ...base.sotd,
                     essentialLink:
-                        'https://www.w3.org/Consortium/Patent-Policy/#def-essential-fake',
+                        'https://www.w3.org/policies/patent-policy/#def-essential-fake',
                 },
             },
             noSection6: {
@@ -228,7 +228,7 @@ export function buildCommonViewData(base) {
                 sotd: {
                     ...base.sotd,
                     disclosureLink:
-                        'https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure-fake',
+                        'https://www.w3.org/policies/patent-policy/#sec-Disclosure-fake',
                 },
             },
             jointPublication: {

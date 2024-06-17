@@ -35,7 +35,7 @@ const buildRecStability = base => ({
         sotd: {
             ...base.sotd,
             licensingLink:
-                'https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements-fake',
+                'https://www.w3.org/policies/patent-policy/#sec-Requirements-fake',
         },
     },
 });
