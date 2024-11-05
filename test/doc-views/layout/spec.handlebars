@@ -36,7 +36,7 @@
         {{/if}}
 
         <p id='w3c-state'>
-            <a href='https://www.w3.org/standards/types#{{#if config.isFPWD}}FPWD{{else}}{{config.status}}{{/if}}'>W3C <span class="handlebars-data">{{config.longStatus}} {{config.crType}} {{config.cryType}}</span></a>
+            <a href='https://www.w3.org/standards/types/#{{#if config.isFPWD}}FPWD{{else}}{{config.status}}{{/if}}'>W3C <span class="handlebars-data">{{config.longStatus}} {{config.crType}} {{config.cryType}}</span></a>
             {{! if document is Echidna, use current date. else, use default date}}
             <time class="dt-published" datetime="2021-11-04">
                 {{#if config.isEchidna}}
