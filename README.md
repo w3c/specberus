@@ -135,10 +135,10 @@ The following example run tests to all the documents, but limit to `copyright` r
 $ RULE=copyright TYPE=noCopyright npm run test
 ```
 
--   http://localhost:8001/doc-views/TR/Recommendation/WD?rule=copyright&type=noCopyright
--   http://localhost:8001/doc-views/TR/Registry/CRYD/?rule=copyright&type=noCopyright
--   http://localhost:8001/doc-views/TR/Note/DNOTE-Echidna?rule=copyright&type=noCopyright
--   ... and all profiles
+- http://localhost:8001/doc-views/TR/Recommendation/WD?rule=copyright&type=noCopyright
+- http://localhost:8001/doc-views/TR/Registry/CRYD/?rule=copyright&type=noCopyright
+- http://localhost:8001/doc-views/TR/Note/DNOTE-Echidna?rule=copyright&type=noCopyright
+- ... and all profiles
 
 ## 4. JS API
 
@@ -161,14 +161,14 @@ const specberus = new Specberus(apiKey);
 
 This method takes an object with the following fields:
 
--   `url`: URL of the content to check. One of `url`, `source`, `file`, or `document` must be
-    specified and if several are they will be used in this order.
--   `source`: A `String` with the content to check.
--   `file`: A file system path to the content to check.
--   `document`: A DOM `Document` object to be checked.
--   `profile`: A profile object which defines the validation. Required. See below.
--   `events`: An event sink which supports the same interface as the Node.js `EventEmitter`. Required. See
-    below for the events that get generated.
+- `url`: URL of the content to check. One of `url`, `source`, `file`, or `document` must be
+  specified and if several are they will be used in this order.
+- `source`: A `String` with the content to check.
+- `file`: A file system path to the content to check.
+- `document`: A DOM `Document` object to be checked.
+- `profile`: A profile object which defines the validation. Required. See below.
+- `events`: An event sink which supports the same interface as the Node.js `EventEmitter`. Required. See
+  below for the events that get generated.
 
 ### `extractMetadata(options)`
 
@@ -180,24 +180,24 @@ goals of this method).
 
 `this.meta` will be an `Object` and may include up to 16 properties described below:
 
--   `profile`
--   `title`: The (possible) title of the document.
--   `docDate`: The date associated to the document.
--   `thisVersion`: URL of this version of the document.
--   `latestVersion`: URL of the latest version of the document.
--   `previousVersion`: URL of the previous version of the document (the last one, if multiple are shown).
--   `editorsDraft`: URL of the latest editor's draft.
--   `delivererIDs`: ID(s) of the deliverer(s); an `Array` of `Number`s.
--   `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
--   `informative`: Whether the document in informative or not.
--   `process`: The process rules link.
--   `sameWorkAs`: The previous shortlink if any.
--   `implementationFeedbackDue`: The implementation review date for CRs.
--   `prReviewsDue`: The review date for PRs.
--   `implementationReport`: Implementation report link for CRs, PRs and RECs.
--   `errata`: The errata link of the document.
--   `substantiveChanges`: Whether the document is a REC and has proposed amendments
--   `newFeatures`: Whether the document is a REC and has proposed additions
+- `profile`
+- `title`: The (possible) title of the document.
+- `docDate`: The date associated to the document.
+- `thisVersion`: URL of this version of the document.
+- `latestVersion`: URL of the latest version of the document.
+- `previousVersion`: URL of the previous version of the document (the last one, if multiple are shown).
+- `editorsDraft`: URL of the latest editor's draft.
+- `delivererIDs`: ID(s) of the deliverer(s); an `Array` of `Number`s.
+- `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
+- `informative`: Whether the document in informative or not.
+- `process`: The process rules link.
+- `sameWorkAs`: The previous shortlink if any.
+- `implementationFeedbackDue`: The implementation review date for CRs.
+- `prReviewsDue`: The review date for PRs.
+- `implementationReport`: Implementation report link for CRs, PRs and RECs.
+- `errata`: The errata link of the document.
+- `substantiveChanges`: Whether the document is a REC and has proposed amendments
+- `newFeatures`: Whether the document is a REC and has proposed additions
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
@@ -302,11 +302,11 @@ e.g. https://www.w3.org/pubrules/api/validate?url=https://www.w3.org/TR/2021/WD-
 
 Methods `metadata` and `validate` return a JSON object with these properties:
 
--   `success` (`boolean`): whether the operation succeeded, or not.
--   `errors` (`array`): all errors found.
--   `warnings` (`array`): all warnings.
--   `info` (`array`): additional, informative messages.
--   `metadata` (`object`): extracted metadata; [see structure here](#extractmetadataoptions).
+- `success` (`boolean`): whether the operation succeeded, or not.
+- `errors` (`array`): all errors found.
+- `warnings` (`array`): all warnings.
+- `info` (`array`): additional, informative messages.
+- `metadata` (`object`): extracted metadata; [see structure here](#extractmetadataoptions).
 
 If there is an internal error, the document cannot be retrieved or is not recognised, or validation fails, both methods would return HTTP status code `400`.
 Also, in the case of `validate`, `success` would be `false` and `errors.length > 0`.
@@ -354,8 +354,8 @@ When the profile is given by the user (instead of being set to `auto`), fewer it
 
 Profiles are simple objects that support the following API:
 
--   name: A `String` being the name of this profile.
--   rules: An `Array` of rule objects which are checked in this profile.
+- name: A `String` being the name of this profile.
+- rules: An `Array` of rule objects which are checked in this profile.
 
 A profile is basically a configuration of what to check. You can load a specific profile from under
 `lib/profiles` or create your own.
@@ -363,56 +363,56 @@ A profile is basically a configuration of what to check. You can load a specific
 Here follows the current hierarchy of profiles. Each profile inherits all rules from its parent profile.
 Profiles that are identical to its parent profile, ie that do not add any new rules, are marked too.
 
--   `base`
-    -   `TR`
-        -   `WD`
-            -   `WD-Echidna`
-        -   `FPWD` (identical)
-        -   `PR`
-        -   `CR`
-            -   `CR-Echidna`
-        -   `CRD`
-            -   `CRD-Echidna`
-        -   `REC`
-        -   `REC-OBSOLETE`
-        -   `REC-RSCND`
-        -   `REC-SUPERSEDED`
-        -   `DNOTE`
-        -   `DNOTE-Echidna`
-        -   `NOTE`
-        -   `NOTE-Echidna`
-        -   `STMT`
-        -   `DRY`
-        -   `CRY`
-        -   `CRYD`
-        -   `RY`
-    -   `Submission`
-        -   `SUBM`
-        -   `MEM-SUBM`
+- `base`
+    - `TR`
+        - `WD`
+            - `WD-Echidna`
+        - `FPWD` (identical)
+        - `PR`
+        - `CR`
+            - `CR-Echidna`
+        - `CRD`
+            - `CRD-Echidna`
+        - `REC`
+        - `REC-OBSOLETE`
+        - `REC-RSCND`
+        - `REC-SUPERSEDED`
+        - `DNOTE`
+        - `DNOTE-Echidna`
+        - `NOTE`
+        - `NOTE-Echidna`
+        - `STMT`
+        - `DRY`
+        - `CRY`
+        - `CRYD`
+        - `RY`
+    - `Submission`
+        - `SUBM`
+        - `MEM-SUBM`
 
 ## 7. Validation events
 
 For a given checking run, the event sink you specify will be receiving a bunch of events as
 indicated below. Events are shown as having parameters since those are passed to the event handler.
 
--   `start-all(profile-name)`: Fired first to indicate that the profile's checking has started.
--   `end-all(profile-name)`: Fired last to indicate that the profile's checking has completed. When
-    you receive this you are promised that all testing operations, including asynchronous ones, have
-    terminated.
--   `done(rule-name)`: Fired when a specific rule has finished processing, including its asynchronous
-    tasks.
--   `ok(rule-name)`: Fired to indicate that a rule has succeeded. There is only one `ok` per rule.
-    There cannot also be `err` events but there can be `warning` events.
--   `err(error-name, data)`: Fired when an error is detected. The `data` contains further details,
-    that depend on the error but _should_ feature a `message` field. There can be multiple errors for
-    a given rule. There cannot also be `ok` events but there can be `warning`s.
--   `warning(warnings-name, data)`: Fired for non-fatal problems with the document that may
-    nevertheless require investigation. There may be several for a rule.
--   `info(info-name, data)`: Fired for additional information items detected by the validator.
--   `metadata(key, value)`: Fired for every piece of document metadata found by the validator.
--   `exception(message)`: Fired when there is a system error, such as a _File not found_ error. `message`
-    contains details about this error. All exceptions are displayed on the error console in addition to
-    this event being fired.
+- `start-all(profile-name)`: Fired first to indicate that the profile's checking has started.
+- `end-all(profile-name)`: Fired last to indicate that the profile's checking has completed. When
+  you receive this you are promised that all testing operations, including asynchronous ones, have
+  terminated.
+- `done(rule-name)`: Fired when a specific rule has finished processing, including its asynchronous
+  tasks.
+- `ok(rule-name)`: Fired to indicate that a rule has succeeded. There is only one `ok` per rule.
+  There cannot also be `err` events but there can be `warning` events.
+- `err(error-name, data)`: Fired when an error is detected. The `data` contains further details,
+  that depend on the error but _should_ feature a `message` field. There can be multiple errors for
+  a given rule. There cannot also be `ok` events but there can be `warning`s.
+- `warning(warnings-name, data)`: Fired for non-fatal problems with the document that may
+  nevertheless require investigation. There may be several for a rule.
+- `info(info-name, data)`: Fired for additional information items detected by the validator.
+- `metadata(key, value)`: Fired for every piece of document metadata found by the validator.
+- `exception(message)`: Fired when there is a system error, such as a _File not found_ error. `message`
+  contains details about this error. All exceptions are displayed on the error console in addition to
+  this event being fired.
 
 ## 8. Writing rules
 
@@ -422,14 +422,14 @@ they're done.
 
 The Specberus object exposes the following API that's useful for validation:
 
--   `loader`. The loader object that loaded the content, which exposes the content's `url` and
-    `source` if they are known.
--   `sink`. The event target on which to fire validation events.
--   `version`. The Specberus version.
--   `checkSelector(selector, rule-name, cb)`. Some rules need to do nothing other than to check that a
-    selector returns some content. For this case, the rule can just call this method with the selector
-    and its callback, and Specberus will conveniently take care of all the rest.
--   `norm(text)`. Returns a whitespace-normalised version of the text.
--   `getDocumentDate()`. Returns a Date object that matches the document's date as specified in the
-    headers' `stateElement` (id="w3c-state").
--   `getDocumentStateElement()`. Returns the element that contains the document's date.
+- `loader`. The loader object that loaded the content, which exposes the content's `url` and
+  `source` if they are known.
+- `sink`. The event target on which to fire validation events.
+- `version`. The Specberus version.
+- `checkSelector(selector, rule-name, cb)`. Some rules need to do nothing other than to check that a
+  selector returns some content. For this case, the rule can just call this method with the selector
+  and its callback, and Specberus will conveniently take care of all the rest.
+- `norm(text)`. Returns a whitespace-normalised version of the text.
+- `getDocumentDate()`. Returns a Date object that matches the document's date as specified in the
+  headers' `stateElement` (id="w3c-state").
+- `getDocumentStateElement()`. Returns the element that contains the document's date.
