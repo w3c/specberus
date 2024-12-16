@@ -29,5 +29,11 @@
         {
             "rule": "sotd.candidate-review-end"
         }
+    ],
+    "^webgpu|WGSL$": [
+        {
+            "rule": "headers.dl",
+            "message": "Implementation report"
+        }
     ]
 }
