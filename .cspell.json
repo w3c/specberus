@@ -91,11 +91,13 @@
         "vcard",
         "WHATWG",
         "wcag",
+        "webgpu",
         "webidl",
         "webperf",
         "webrtc",
         "Whut",
-        "wrongprocess"
+        "wrongprocess",
+        "WGSL"
     ],
     "dictionaries": ["html", "js", "css", "npm", "en-gb"],
     "ignorePaths": [
