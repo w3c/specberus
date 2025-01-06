@@ -36,8 +36,8 @@
         {{/if}}
 
         <p id='w3c-state'>
-            <a href='https://www.w3.org/standards/types/#{{#if config.isFPWD}}FPWD{{else}}{{config.status}}{{/if}}'>W3C <span class="handlebars-data">{{config.longStatus}} {{config.crType}} {{config.cryType}}</span></a>
             {{! if document is Echidna, use current date. else, use default date}}
+            <a href='https://www.w3.org/standards/types/#{{#if config.isFPWD}}FPWD{{else}}{{config.status}}{{/if}}'>W3C <span class="handlebars-data">{{config.longStatus}} {{config.crType}} {{config.cryType}}</span></a>
             <time class="dt-published" datetime="2021-11-04">
                 {{#if config.isEchidna}}
                     {{#if header.showDefaultDate}}
@@ -66,8 +66,8 @@
                     {{#if dl.thisVersion.show}}
                         <dt>{{dl.thisVersion.text}}</dt>
                         <dd>
-                            <a class="u-url" {{#if dl.thisVersion.showHref}}href="https://www.w3.org/{{dl.topLevel}}/{{#if config.isEchidna}}{{nowYear}}{{else}}2024{{/if}}/{{config.status}}-{{dl.shortName}}-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}{{nowDigit8}}{{else}}20240804{{/if}}/"{{/if}}>
-                               https://www.w3.org/{{dl.topLevel}}/{{#if config.isEchidna}}<span class="handlebars-data">{{nowYear}}</span>{{else}}2024{{/if}}/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data">{{dl.shortName}}</span>-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}<span class="handlebars-data">{{nowDigit8}}</span>{{else}}20240804{{/if}}/
+                            <a class="u-url" {{#if dl.thisVersion.showHref}}href="https://www.w3.org/{{dl.topLevel}}/{{nowYear}}/{{config.status}}-{{dl.shortName}}-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}{{nowDigit8}}{{else}}{{nowYear}}0804{{/if}}/"{{/if}}>
+                                https://www.w3.org/{{dl.topLevel}}/<span class="handlebars-data">{{nowYear}}</span>/<span class="handlebars-data">{{config.status}}</span>-<span class="handlebars-data">{{dl.shortName}}</span>-{{! if document is Echidna, use current date. else, use default date}}{{#if config.isEchidna}}<span class="handlebars-data">{{nowDigit8}}</span>{{else}}{{nowYear}}0804{{/if}}/
                             </a>
                         </dd>
                     {{/if}}
@@ -226,7 +226,7 @@
 
         {{#config.isCRY}}
             <p>
-                This Candidate Registry is not expected to advance to Registry any earlier than 6 June 2025.
+                This Candidate Registry is not expected to advance to Registry any earlier than 6 September 2025.
             </p>
         {{/config.isCRY}}
 

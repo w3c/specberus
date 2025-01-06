@@ -126,8 +126,7 @@ export default {
                     ...good.sotd.rec,
                     showProposedAdd: true,
                 },
-                processHTML:
-                    '2 November 2024, 3 November 2024 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
+                processHTML: `2 November ${currentYear}, 3 November ${currentYear} <abbr title="World Wide Web Consortium">W3C</abbr> Process Document`,
             },
         },
         notFound: {

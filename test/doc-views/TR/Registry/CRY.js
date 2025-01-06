@@ -2,6 +2,7 @@ import { config } from '../../../../lib/profiles/TR/Registry/CRY.js';
 import registryBase from './registryBase.js';
 
 const { buildCommonViewData, data } = registryBase;
+const currentYear = new Date().getFullYear();
 
 const profile = 'CRY';
 const customData = {
@@ -28,15 +29,14 @@ export default {
             ...good,
             header: {
                 ...good.header,
-                defaultDate: '04 November 2025',
+                defaultDate: `04 November ${currentYear}`,
             },
         },
         multipleDateFound: {
             ...good,
             sotd: {
                 ...good.sotd,
-                processHTML:
-                    '04 October 2024. 05 October 2024.<abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
+                processHTML: `04 October ${currentYear}. 05 October ${currentYear}.<abbr title="World Wide Web Consortium">W3C</abbr> Process Document`,
             },
         },
         invalidDate: {

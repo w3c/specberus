@@ -5,6 +5,8 @@ import {
 
 export { data };
 
+const currentYear = new Date().getFullYear();
+
 export function buildCommonViewData(base) {
     const common = _buildCommonViewData(base);
     return {
@@ -75,8 +77,7 @@ export function buildCommonViewData(base) {
                 copyright: {
                     ...base.copyright,
                     showDefault: false,
-                    exceptionHtml:
-                        '<a href="https://www.w3.org/policies/#copyright">Copyright</a> © 1999-2024 <a href="https://www.idpf.org">International Digital Publishing Forum</a> and <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/copyright/software-license-2023/" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.',
+                    exceptionHtml: `<a href="https://www.w3.org/policies/#copyright">Copyright</a> © 1999-${currentYear} <a href="https://www.idpf.org">International Digital Publishing Forum</a> and <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/copyright/software-license-2023/" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.`,
                 },
             },
             copyrightExceptionNotFound: {
@@ -93,8 +94,7 @@ export function buildCommonViewData(base) {
                 copyright: {
                     ...base.copyright,
                     showDefault: false,
-                    exceptionHtml:
-                        '<a href="https://www.w3.org/policies/#copyright">Copyright Exception Not Found</a> © 1999-2024 <a href="https://www.idpf.org">International Digital Publishing Forum</a> and <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/copyright/software-license-2023/" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.',
+                    exceptionHtml: `<a href="https://www.w3.org/policies/#copyright">Copyright Exception Not Found</a> © 1999-${currentYear} <a href="https://www.idpf.org">International Digital Publishing Forum</a> and <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/copyright/software-license-2023/" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.`,
                 },
             },
         },
@@ -255,14 +255,14 @@ export function buildCandidateReviewEnd(base) {
             ...base,
             sotd: {
                 ...base.sotd,
-                defaultCRDate: '04 October 2024. 05 October 2024.',
+                defaultCRDate: `04 November ${currentYear}. 05 November ${currentYear}.`,
             },
         },
         invalidDate: {
             ...base,
             sotd: {
                 ...base.sotd,
-                defaultCRDate: '02 October 2025',
+                defaultCRDate: '02 October 2030',
             },
         },
     };

@@ -1,3 +1,5 @@
+const currentYear = new Date().getFullYear();
+
 export const data = {
     bodyClassNames: 'h-entry',
     scripts: ['https://www.w3.org/scripts/TR/2021/fixup.js'],
@@ -38,7 +40,7 @@ export const data = {
             show: true,
             text: 'More details about this document',
         },
-        defaultDate: '04 August 2024',
+        defaultDate: `04 August ${currentYear}`,
         showDefaultDate: false,
     },
     secno: 'secno',
@@ -192,7 +194,7 @@ export const data = {
             show: false,
             text: 'Future updates to this Recommendation may incorporate new features.',
         },
-        defaultCRDate: '04 October 2024',
+        defaultCRDate: `04 October ${currentYear}`,
         rec: {
             showProposedAdd: false,
             showAddition: false,
