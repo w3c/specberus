@@ -5,6 +5,7 @@ const { buildCommonViewData, buildNewFeatures, buildRecStability, data } =
     recommendationBase;
 
 const profile = 'REC';
+const currentYear = new Date().getFullYear();
 const customData = {
     config: {
         ...config,
