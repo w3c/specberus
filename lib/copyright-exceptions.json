@@ -21,7 +21,7 @@
     },
     {
         "specShortnames": ["security-privacy-questionnaire"],
-        "copyright": "<a href=\"http://creativecommons.org/publicdomain/zero/1.0/\" rel=\"license\"><img alt=\"CC0\" src=\"cc0-80x15.png\" title=\"CC0\"></a> To the extent possible under law, the editors have waived all copyright and related or neighboring rights to this work. This document is also made available under the <a href=\"https://www.w3.org/copyright/software-license-2023/\" rel=\"license\">W3C Software and Document License</a>."
+        "copyright": "<a href=\"http://creativecommons.org/publicdomain/zero/1.0/\" rel=\"license\"><img alt=\"CC0\" height=\"15\" src=\"cc0-80x15.png\" title=\"CC0\" width=\"80\"></a> To the extent possible under law, the editors have waived all copyright and related or neighboring rights to this work. This document is also made available under the <a href=\"https://www.w3.org/copyright/software-license-2023/\" rel=\"license\">W3C Software and Document License</a>."
     },
     {
         "specShortnames": ["mediacapture-streams"],
