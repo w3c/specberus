@@ -29,7 +29,7 @@
     "tmp": "0.2.3"
   },
   "devDependencies": {
-    "chai": "5.1.0",
+    "chai": "5.2.0",
     "@rvagg/chai-as-promised": "8.0.1",
     "cspell": "8.0.0",
     "eslint": "9.0.0",
