@@ -178,26 +178,28 @@ Once the [event `end-all`](#validation-events) is emitted, the metadata should b
 The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
 goals of this method).
 
-`this.meta` will be an `Object` and may include up to 16 properties described below:
+`this.meta` will be an `Object` and may include up to 20 properties described below:
 
 - `profile`
-- `title`: The (possible) title of the document.
-- `docDate`: The date associated to the document.
-- `thisVersion`: URL of this version of the document.
-- `latestVersion`: URL of the latest version of the document.
-- `previousVersion`: URL of the previous version of the document (the last one, if multiple are shown).
-- `editorsDraft`: URL of the latest editor's draft.
-- `delivererIDs`: ID(s) of the deliverer(s); an `Array` of `Number`s.
-- `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s.
-- `informative`: Whether the document in informative or not.
-- `process`: The process rules link.
-- `sameWorkAs`: The previous shortlink if any.
-- `implementationFeedbackDue`: The implementation review date for CRs.
-- `prReviewsDue`: The review date for PRs.
-- `implementationReport`: Implementation report link for CRs, PRs and RECs.
-- `errata`: The errata link of the document.
+- `title`: The (possible) title of the document
+- `docDate`: The date associated to the document
+- `thisVersion`: URL of this version of the document
+- `latestVersion`: URL of the latest version of the document
+- `previousVersion`: URL of the previous version of the document (the last one, if multiple are shown)
+- `editorsDraft`: URL of the latest editor's draft
+- `delivererIDs`: ID(s) of the deliverer(s); an `Array` of `Number`s
+- `editorIDs`: ID(s) of the editor(s) responsible for the document; an `Array` of `Number`s
+- `informative`: Whether the document in informative or not
+- `process`: The process rules link
+- `sameWorkAs`: The previous shortlink if any
+- `implementationFeedbackDue`: The implementation review date for CRs
+- `prReviewsDue`: The review date for PRs
+- `implementationReport`: Implementation report link for CRs, PRs and RECs
+- `errata`: The errata link of the document
 - `substantiveChanges`: Whether the document is a REC and has proposed amendments
 - `newFeatures`: Whether the document is a REC and has proposed additions
+- `sotd`: The section "Status of this Document"
+- `abstract`: The abstract of the document
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
@@ -259,6 +261,9 @@ curl "https://www.w3.org/pubrules/api/metadata?url=https://example.com/doc.html"
 
 # POST
 curl "https://www.w3.org/pubrules/api/metadata" -F "file=@/tmp/foo.html"
+
+# GET with additional metadata
+curl "https://www.w3.org/pubrules/api/metadata?url=https://example.com/doc.html&additionalMetadata=true"
 ```
 
 Metadata is a bunch of data extracted from the document. It includes the type (profile) of the document, publish date, editors' names, Patent Policy version the document is under, etc...
