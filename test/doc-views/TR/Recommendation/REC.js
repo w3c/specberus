@@ -179,7 +179,7 @@ export default {
         },
     },
     translation: {
-        notFound: {
+        noTranslation: {
             ...good,
             config: {
                 ...good.config,
