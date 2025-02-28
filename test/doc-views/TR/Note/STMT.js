@@ -10,6 +10,7 @@ const customData = {
         ...data.config,
         profile,
         isSTMT: true,
+        needTranslation: true,
     },
 };
 
@@ -27,6 +28,15 @@ export default {
             config: {
                 ...good.config,
                 isSTMT: false,
+            },
+        },
+    },
+    translation: {
+        notFound: {
+            ...good,
+            config: {
+                ...good.config,
+                needTranslation: false,
             },
         },
     },
