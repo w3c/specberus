@@ -16,6 +16,7 @@ const customData = {
         hasLicensing: true,
         needImple: true,
         needErrata: true,
+        needTranslation: true,
     },
 };
 
@@ -174,6 +175,15 @@ export default {
                     ...good.sotd.rec,
                     showAddition: true,
                 },
+            },
+        },
+    },
+    translation: {
+        noTranslation: {
+            ...good,
+            config: {
+                ...good.config,
+                needTranslation: false,
             },
         },
     },

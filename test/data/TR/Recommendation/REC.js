@@ -71,6 +71,12 @@ export const rules = {
                 errors: [],
             },
         ],
+        translation: [
+            {
+                data: 'noTranslation',
+                errors: ['headers.translation.not-found'],
+            },
+        ],
         dl: [
             ...baseRules.headers.dl,
             {
