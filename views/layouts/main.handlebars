@@ -16,22 +16,20 @@
       <link rel="stylesheet" type="text/css" href="https://www.w3.org/scripts/bootstrap/3.3/css/bootstrap.min.css">
     {{/if}}
     <link rel="stylesheet" type="text/css" href="{{BASE_URI}}css/specberus.css">
-    <link rel="icon" type="image/x-icon" href="{{BASE_URI}}img/favicon.ico">
   </head>
 
   <body>
 
-    <header class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <div class="row">
           <div class="col-xs-12 navbar-brand">
-            <a href="https://www.w3.org/"><img class="logo" src="{{BASE_URI}}img/logo-w3c.svg" alt="W3C logo"></a>
-            <img src="{{BASE_URI}}img/logo.svg" alt="Logo for the Pubrules Checker">
+            <a href="https://www.w3.org/"><img class="logo" src="https://www.w3.org/assets/logos/w3c-2025/svg/w3c.svg" alt="W3C logo"></a>
             <a href="{{BASE_URI}}"><abbr title="Technical Report Publication Policy">Pubrules</abbr></a> {{version}}{{#if title }} &mdash; {{title}}{{/if}}
           </div>
         </div>
       </div>
-    </header>
+    </nav>
 
     <div class="container-fluid">
       {{{body}}}
