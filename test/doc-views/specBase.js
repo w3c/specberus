@@ -117,7 +117,7 @@ export const data = {
     sotd: {
         id: 'sotd',
         title: 'Status of This Document',
-        emHTML: '<em>This section describes the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>',
+        emHTML: '<em>This section describes the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> Standards and drafts index</a> at https://www.w3.org/TR/.</em>',
 
         submission: {
             show: false,
@@ -864,14 +864,21 @@ export function buildCommonViewData(base) {
                 ...base,
                 sotd: {
                     ...base.sotd,
-                    emHTML: '<em>This section not the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>',
+                    emHTML: '<em>This section not the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> Standards and drafts index</a> at https://www.w3.org/TR/.</em>',
                 },
             },
             noTr: {
                 ...base,
                 sotd: {
                     ...base.sotd,
-                    emHTML: "<em>This section describes the status of this document at the time of its publication. A list of current <abbr >W3C</abbr> publications and the latest revision of this technical report can be found in the <a ><abbr title='World Wide Web Consortium'>W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>",
+                    emHTML: "<em>This section describes the status of this document at the time of its publication. A list of current <abbr >W3C</abbr> publications and the latest revision of this technical report can be found in the <a ><abbr title='World Wide Web Consortium'>W3C</abbr> Standards and drafts index</a> at https://www.w3.org/TR/.</em>",
+                },
+            },
+            deprecated: {
+                ...base,
+                sotd: {
+                    ...base.sotd,
+                    emHTML: '<em>This section describes the status of this document at the time of its publication. A list of current <abbr >W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>',
                 },
             },
         },

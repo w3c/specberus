@@ -58,6 +58,7 @@ export const rules = {
         supersedable: [
             { data: 'noIntro', errors: ['sotd.supersedable.no-sotd-intro'] },
             { data: 'noTr', errors: ['sotd.supersedable.no-sotd-tr'] },
+            { data: 'deprecated', warnings: ['sotd.supersedable.deprecated'] },
         ],
         'process-document': [
             {
