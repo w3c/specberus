@@ -2,6 +2,7 @@
     {
         "specShortnames": [
             "epub-overview-33",
+            "epub-overview-34",
             "epub-33",
             "epub-34",
             "epub-rs-33",
@@ -12,6 +13,7 @@
             "epub-a11y-11",
             "epub-a11y-111",
             "epub-a11y-tech-11",
+            "epub-a11y-tech-111",
             "epub-aria-authoring-11",
             "epubcfi",
             "epubcfi-11"
