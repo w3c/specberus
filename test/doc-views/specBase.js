@@ -147,7 +147,7 @@ export const data = {
             'Group Notes are not endorsed by W3C nor its Members',
 
         draftText:
-            'This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.',
+            'This is a draft document and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.',
         crdIntegrateChangesText:
             'integrates changes from the previous Candidate Recommendation',
         discText: 'intended to advance or to be maintained',
