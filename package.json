@@ -31,7 +31,7 @@
   "devDependencies": {
     "chai": "5.2.0",
     "@rvagg/chai-as-promised": "8.0.1",
-    "cspell": "8.0.0",
+    "cspell": "9.0.1",
     "eslint": "9.0.0",
     "eslint-config-prettier": "10.0.1",
     "eslint-plugin-node": "11.1.0",
