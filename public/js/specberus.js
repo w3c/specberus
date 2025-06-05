@@ -51,7 +51,6 @@ jQuery.extend({
     const $validation = $('#validation');
     const $informativeOnly = $('#informativeOnly');
     const $echidnaReady = $('#echidnaReady');
-    const $patentPolicy = $('#patentPolicy');
     const $results = $('#results');
     const $resultsBody = $results.find('.panel-body');
     const $resultsList = $results.find('.list-group');
@@ -309,24 +308,6 @@ jQuery.extend({
             $informativeOnly.prop('checked', data.metadata.informative);
             $validation.find('label').removeClass('active');
             $validation.find('label#simple-validation').addClass('active');
-            let patentPolicy;
-            if (data.metadata.patentPolicy) {
-                if (
-                    data.metadata.patentPolicy ===
-                    'https://www.w3.org/Consortium/Patent-Policy-20170801/'
-                ) {
-                    patentPolicy = 'pp2004';
-                } else if (
-                    [
-                        'https://www.w3.org/policies/patent-policy/20200915/',
-                        'https://www.w3.org/Consortium/Patent-Policy-20200915/',
-                    ].includes(data.metadata.patentPolicy)
-                ) {
-                    patentPolicy = 'pp2020';
-                }
-            }
-            $patentPolicy.find('label').removeClass('active');
-            $patentPolicy.find(`label#${patentPolicy}`).addClass('active');
 
             const isPost = $form.attr('method') === 'post';
             const options = {
@@ -334,7 +315,6 @@ jQuery.extend({
                 validation: 'simple-validation',
                 informativeOnly: data.metadata.informative || false,
                 echidnaReady: false,
-                patentPolicy,
             };
             if (isPost) {
                 options.file = tempPostFile;
@@ -394,7 +374,6 @@ jQuery.extend({
             const validation = $validation.find('label.active').attr('id');
             const informativeOnly = $informativeOnly.is(':checked') || false;
             const echidnaReady = $echidnaReady.is(':checked') || false;
-            const patentPolicy = $patentPolicy.find('label.active').attr('id');
             profile = $profile.val();
             if (!input.file && !input.url)
                 addMessage(MSG_ERROR, {
@@ -411,7 +390,6 @@ jQuery.extend({
                 validation,
                 informativeOnly,
                 echidnaReady,
-                patentPolicy,
             };
             validate(options);
             if (!isPost) {
@@ -470,14 +448,6 @@ jQuery.extend({
                 .removeClass('active');
         }
         $informativeOnly.prop('checked', options.informativeOnly);
-        $patentPolicy.find('label').removeClass('active');
-        if (options.patentPolicy) {
-            $patentPolicy
-                .find(`label#${options.patentPolicy}`)
-                .addClass('active');
-        } else {
-            $patentPolicy.find(`label#pp2020`).addClass('active');
-        }
     }
 
     window.addEventListener('popstate', event => {
