@@ -38,7 +38,7 @@
     "eslint-plugin-prettier": "5.0.0-alpha.2",
     "expect.js": "0.3",
     "husky": "9.0.6",
-    "lint-staged": "16.0.0",
+    "lint-staged": "16.1.0",
     "mocha": "11.3.0",
     "nock": "14.0.0",
     "nodemon": "3.0.1",
