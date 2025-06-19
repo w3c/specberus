@@ -318,7 +318,7 @@ export function buildDraftStability(base) {
             sotd: {
                 ...base.sotd,
                 draftText:
-                    'This is a other document and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.',
+                    'This is a other document and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to cite this document as other than a work in progress.',
             },
         },
         noDraft: {
@@ -326,7 +326,7 @@ export function buildDraftStability(base) {
             sotd: {
                 ...base.sotd,
                 draftText:
-                    'This is a other document and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.',
+                    'This is a other document and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to cite this document as other than a work in progress.',
             },
         },
     };
