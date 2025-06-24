@@ -27,7 +27,7 @@ export const good2 = {
     sotd: {
         ...good.sotd,
         draftText:
-            'This document is maintained and updated at any time. Some parts of this document are work in progress.',
+            'This document is maintained and updated at any time. Some parts of this document are a work in progress.',
     },
 };
 
