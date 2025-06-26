@@ -165,7 +165,7 @@ export const data = {
         ppLink: 'https://www.w3.org/policies/patent-policy/',
         ppHTML: '<abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>',
         noPPText: 'licensing requirements or commitments',
-        ppLink1: 'https://www.w3.org/policies/patent-policy/20200915/',
+        ppLink1: 'https://www.w3.org/policies/patent-policy/',
         ppDate: '15 September 2020',
 
         iprLink: 'https://www.w3.org/groups/wg/i18n-core/ipr',
