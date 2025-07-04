@@ -172,40 +172,11 @@ export function buildCommonViewData(base) {
             },
         },
         pp: {
-            wrongPPFromCharter: {
-                ...base,
-            },
-            jointDifferentPP: {
-                ...base,
-                config: {
-                    ...base.config,
-                    underPP: true,
-                },
-                sotd: {
-                    ...base.sotd,
-                    showDifferentPP: true,
-                },
-            },
-            noPPFromCharter: {
-                ...base,
-                sotd: {
-                    ...base.sotd,
-                    iprLink: 'https://www.w3.org/groups/wg/fake/ipr',
-                    WGLink: 'https://www.w3.org/groups/wg/fake',
-                },
-            },
             noPP: {
                 ...base,
                 sotd: {
                     ...base.sotd,
                     extra1: 'extra text',
-                },
-            },
-            noPP2020: {
-                ...base,
-                sotd: {
-                    ...base.sotd,
-                    ppLink: 'https://www.w3.org/policies/patent-policy/fake',
                 },
             },
             noDisclosures: {
