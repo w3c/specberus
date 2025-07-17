@@ -10,7 +10,7 @@
     "url": "https://github.com/w3c/specberus.git"
   },
   "dependencies": {
-    "compression": "1.8.0",
+    "compression": "1.8.1",
     "cors": "2.8.5",
     "doasync": "2.0.1",
     "express": "5.1.0",
@@ -20,7 +20,7 @@
     "insafe": "0.5.1",
     "jsdom": "26.1.0",
     "metaviewport-parser": "0.3.0",
-    "morgan": "1.10.0",
+    "morgan": "1.10.1",
     "node-w3capi": "2.2.0",
     "promise": "8.3.0",
     "puppeteer": "24.11.1",
