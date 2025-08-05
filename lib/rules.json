@@ -970,6 +970,7 @@
                             "changesList": ["must", ""],
                             "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Publication as a Candidate Recommendation does not imply endorsement by W3C and its Members. A Candidate Recommendation Snapshot has received <a href=\"https://www.w3.org/policies/process/202508XX/#dfn-wide-review\">wide review</a>, is intended to gather implementation experience, and has commitments from Working Group members to <a href=\"https://www.w3.org/policies/patent-policy/#sec-Requirements\">royalty-free licensing</a> for implementations.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;Publication as a Candidate Recommendation does not imply endorsement by W3C and its Members. A Candidate Recommendation Snapshot has received &lt;a href=\"https://www.w3.org/policies/process/202508XX/#dfn-wide-review\"&gt;wide review&lt;/a&gt;, is intended to gather implementation experience,  and has commitments from Working Group members to &lt;a href=\"https://www.w3.org/policies/patent-policy/#sec-Requirements\"&gt;royalty-free licensing&lt;/a&gt; for implementations.&lt;/p&gt;</code></div>",
                             "patPolReq": true,
+                            "newFeatures": "If it is the intention to incorporate new features in future updates of the specification, please make sure to identify the document as intending to allow new features. Recommended text is: <blockquote class=\"boilerplate\">Future updates to this upcoming Recommendation may incorporate new features.</blockquote>Include one of this source code:</span><br> <code>&lt;p&gt;Future updates to this upcoming Recommendation may incorporate &lt;a href=\"https://www.w3.org/policies/process/202508XX/#allow-new-features\"&gt;new features&lt;/a&gt;.&lt;/p&gt;</code>",
                             "knownDisclosureNumber": true,
                             "whichProcess": true
                         }
@@ -1064,6 +1065,7 @@
                             "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Publication as a Candidate Recommendation does not imply endorsement by W3C and its Members. A Candidate Recommendation Draft integrates changes from the previous Candidate Recommendation that the Working Group intends to include in a subsequent Candidate Recommendation Snapshot.</p> </blockquote> <div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;Publication as a Candidate Recommendation does not imply endorsement by W3C and its Members. A Candidate Recommendation Draft integrates changes from the previous Candidate Recommendation that the Working Group intends to include in a subsequent Candidate Recommendation Snapshot.&lt;/p&gt;</code></div>",
                             "draftStability": "W3C Candidate Recommendation Draft <span class=\"rfc2119\">must</span> include one of the following two paragraphs in the \"Status Of This Document\": <blockquote class=\"boilerplate\">This is a draft document and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to cite this document as other than a work in progress.</blockquote><blockquote class=\"boilerplate\">This document is maintained and updated at any time. Some parts of this document are work in progress.</blockquote>",
                             "patPolReq": true,
+                            "newFeatures": "If it is the intention to incorporate new features in future updates of the specification, please make sure to identify the document as intending to allow new features. Recommended text is: <blockquote class=\"boilerplate\">Future updates to this upcoming Recommendation may incorporate new features.</blockquote>Include one of this source code:</span><br> <code>&lt;p&gt;Future updates to this upcoming Recommendation may incorporate &lt;a href=\"https://www.w3.org/policies/process/202508XX/#allow-new-features\"&gt;new features&lt;/a&gt;.&lt;/p&gt;</code>",
                             "knownDisclosureNumber": true,
                             "whichProcess": true
                         }
@@ -1084,104 +1086,6 @@
                         "name": "8. Compound Documents",
                         "rules": {
                             "compoundFilesLocation": ["CRD"],
-                            "compoundOverview": true,
-                            "compound": true
-                        }
-                    }
-                }
-            },
-            "PR": {
-                "order": 5,
-                "name": "Proposed Recommendation",
-                "sections": {
-                    "format": {
-                        "name": "1. Normative Document Representation",
-                        "rules": {
-                            "normativeVersion": true,
-                            "validHTML": true,
-                            "visualStyle": true
-                        }
-                    },
-                    "metadata": {
-                        "name": "2. Document Metadata",
-                        "rules": {
-                            "goodStylesheet": ["PR"],
-                            "lastStylesheet": true,
-                            "viewport": true,
-                            "canonical": true
-                        }
-                    },
-                    "front-matter": {
-                        "name": "3. Front Matter",
-                        "rules": {
-                            "divClassHead": true,
-                            "logo": true,
-                            "title": true,
-                            "versionNumber": [""],
-                            "dateState": ["Proposed Recommendation", ""],
-                            "docIDFormat": true,
-                            "docIDOrder": true,
-                            "docIDThisVersion": ["PR"],
-                            "docIDDate": true,
-                            "docIDLatestVersion": true,
-                            "docIDHistory": true,
-                            "editorSection": true,
-                            "altRepresentations": ["PR"],
-                            "implReport": true,
-                            "copyright": true,
-                            "hrAfterCopyright": true
-                        }
-                    },
-                    "navigation": {
-                        "name": "6. Table of Contents",
-                        "rules": {
-                            "toc": true,
-                            "tocNav": true
-                        }
-                    },
-                    "document-status": {
-                        "name": "5. Document Status Section",
-                        "rules": {
-                            "sotd": true,
-                            "boilerplateTRDoc": true,
-                            "datesFormat": true,
-                            "publish": [
-                                "Proposed Recommendation",
-                                "<a href=\"https://www.w3.org/policies/process/202508XX/#recs-and-notes\">Recommendation track</a>",
-                                "&lt;a href=\"https://www.w3.org/policies/process/202508XX/#recs-and-notes\"&gt;Recommendation track&lt;/a&gt;"
-                            ],
-                            "ACRepFeedbackEmail": true,
-                            "reviewEndDatePR": true,
-                            "skipCR": "If the previous version of this document was not a Candidate Recommendation, the status section <span class=\"rfc2119\">should</span> include rationale for the <a href=\"https://www.w3.org/2005/08/01-transitions-about#director\">Director</a>'s decision to skip CR (e.g., there was already sufficient implementation experience).",
-                            "customParagraph": true,
-                            "changesList": [
-                                "must",
-                                " The group <span class=\"rfc2119\">must</span> indicate which changes may affect conformance."
-                            ],
-                            "stability": ["a Proposed Recommendation", ""],
-                            "draftStability": true,
-                            "patPolReq": true,
-                            "knownDisclosureNumber": true,
-                            "newFeatures": "If it is the intention to incorporate new features in future updates of the specification, please make sure to identify the document as intending to allow new features. Recommended text is: <blockquote class=\"boilerplate\">Future updates to this specification may incorporate new features.</blockquote>Include one of this source code:</span><br> <code>&lt;p&gt;Future updates to this specification may incorporate &lt;a href=\"https://www.w3.org/policies/process/202508XX/#allow-new-features\"&gt;new features&lt;/a&gt;.&lt;/p&gt;</code>",
-                            "whichProcess": true
-                        }
-                    },
-                    "document-body": {
-                        "name": "7. Document Body",
-                        "rules": {
-                            "headingWithoutID": true,
-                            "brokenLink": true,
-                            "cssValid": true,
-                            "namespaces": true,
-                            "wcag": true,
-                            "fixupJs": true,
-                            "securityAndPrivacy": true
-                        }
-                    },
-                    "compound": {
-                        "name": "8. Compound Documents",
-                        "rules": {
-                            "compoundFilesLocation": ["PR"],
                             "compoundOverview": true,
                             "compound": true
                         }
