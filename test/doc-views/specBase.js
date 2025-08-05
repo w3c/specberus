@@ -189,7 +189,7 @@ export const data = {
         processTextPrefix: 'is governed by the',
         processLink: 'https://www.w3.org/policies/process/20250818/',
         processHTML:
-            'XX August 2025 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
+            '18 August 2025 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
         newFeatures: {
             show: false,
             text: 'Future updates to this Recommendation may incorporate new features.',
