@@ -40,9 +40,6 @@ export const goodDocuments = {
     FPWD: {
         url: 'doc-views/TR/Recommendation/FPWD?type=good',
     },
-    PR: {
-        url: 'doc-views/TR/Recommendation/PR?type=good',
-    },
     REC: {
         url: 'doc-views/TR/Recommendation/REC?type=good',
     },

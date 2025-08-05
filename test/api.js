@@ -117,7 +117,7 @@ describe('API', () => {
             query = request('metadata?file=test/docs/metadata/ttml-imsc1.html');
             // @TODO: parse result as an Object (it's JSON) instead of a String.
             return expect(query)
-                .to.eventually.match(/"profile":\s*"pr"/i)
+                .to.eventually.match(/"profile":\s*"rec"/i)
                 .and.to.eventually.match(/"docDate":\s*"2016-3-8"/i);
         });
     });
