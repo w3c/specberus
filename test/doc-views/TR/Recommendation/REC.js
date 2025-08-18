@@ -140,7 +140,7 @@ export default {
                     showProposedAdd: true,
                 },
                 processHTML:
-                    '03 November 2023 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
+                    '18 August 2025 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
             },
         },
     },
