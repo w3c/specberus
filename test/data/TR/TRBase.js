@@ -40,6 +40,14 @@ export const rules = {
                 data: 'noEditorParticipation',
                 errors: ['headers.editor-participation.not-participating'],
             },
+            {
+                data: 'formerEditorParticipation',
+                errors: [],
+            },
+            {
+                data: 'formerEditorParticipationNoRationale',
+                errors: ['headers.editor-participation.not-participating'],
+            },
         ],
     },
     style: {

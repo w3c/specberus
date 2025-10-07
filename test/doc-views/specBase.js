@@ -626,6 +626,28 @@ export function buildCommonViewData(base) {
                     },
                 },
             },
+            formerEditorParticipation: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    editor2: {
+                        show: true,
+                        id: '3440',
+                        former: ' <span class="former">(until January 2020)</span>',
+                    },
+                },
+            },
+            formerEditorParticipationNoRationale: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    editor2: {
+                        show: true,
+                        id: '3440',
+                        former: ' <span class="former"></span>',
+                    },
+                },
+            },
         },
         shortname: {
             shortnameLowercaseFP: {
