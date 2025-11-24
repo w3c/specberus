@@ -91,7 +91,7 @@
         "profiles": {
             "DRY": {
                 "order": 1,
-                "name": "Draft Registry",
+                "name": "Registry Draft",
                 "sections": {
                     "format": {
                         "name": "1. Normative Document Representation",
@@ -118,7 +118,7 @@
                             "logo": true,
                             "title": true,
                             "versionNumber": [""],
-                            "dateState": ["Draft Registry", ""],
+                            "dateState": ["Registry Draft", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
                             "docIDThisVersion": ["DRY"],
@@ -145,12 +145,12 @@
                             "boilerplateTRDoc": true,
                             "datesFormat": true,
                             "publish": [
-                                "Draft Registry",
+                                "Registry Draft",
                                 "<a href=\"https://www.w3.org/policies/process/20250818/#recs-and-notes\">Registry track</a>",
                                 "&lt;a href=\"https://www.w3.org/policies/process/20250818/#recs-and-notes\"&gt;Registry track&lt;/a&gt;"
                             ],
                             "customParagraph": true,
-                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"><p>Publication as a Draft Registry does not imply endorsement by W3C and its Members</p></blockquote>",
+                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"><p>Publication as a Registry Draft does not imply endorsement by W3C and its Members</p></blockquote>",
                             "draftStability": true,
                             "patPolReq": true,
                             "knownDisclosureNumber": true,
@@ -239,7 +239,7 @@
                                 "&lt;a href=\"https://www.w3.org/policies/process/20250818/#recs-and-notes\"&gt;Registry track&lt;/a&gt;"
                             ],
                             "customParagraph": true,
-                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"><p>Publication as a Draft Registry does not imply endorsement by W3C and its Members. A Candidate Registry Snapshot has received <a href=\"https://www.w3.org/policies/process/20250818/#dfn-wide-review\">wide review</a>.</p></blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;Publication as a Draft Registry does not imply endorsement by W3C and its Members. A Candidate Registry Snapshot has received &lt;a href=\"https://www.w3.org/policies/process/20250818/#dfn-wide-review\"&gt;wide review&lt;/a&gt;.&lt;/p&gt;</code></div>",
+                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"><p>Publication as a Registry Draft does not imply endorsement by W3C and its Members. A Candidate Registry Snapshot has received <a href=\"https://www.w3.org/policies/process/20250818/#dfn-wide-review\">wide review</a>.</p></blockquote><div class=\"source\"> <span style=\"font-style: italic\">Include this source code</span>:<br><code>&lt;p&gt;Publication as a Registry Draft does not imply endorsement by W3C and its Members. A Candidate Registry Snapshot has received &lt;a href=\"https://www.w3.org/policies/process/20250818/#dfn-wide-review\"&gt;wide review&lt;/a&gt;.&lt;/p&gt;</code></div>",
                             "reviewEndDate": "It <span class=\"rfc2119\">must</span> include a minimal duration (before which the group will not request the next transition). The duration <span class=\"rfc2119\">must</span> be expressed as an estimated date.",
                             "knownDisclosureNumber": true,
                             "patPolReq": true,
@@ -453,7 +453,7 @@
         "profiles": {
             "DNOTE": {
                 "order": 1,
-                "name": "Group Draft Note",
+                "name": "Group Note Draft",
                 "sections": {
                     "format": {
                         "name": "1. Normative Document Representation",
@@ -480,7 +480,7 @@
                             "logo": true,
                             "title": true,
                             "versionNumber": [""],
-                            "dateState": ["Group Draft Note", ""],
+                            "dateState": ["Group Note Draft", ""],
                             "docIDFormat": true,
                             "docIDOrder": true,
                             "docIDThisVersion": ["DNOTE"],
@@ -506,12 +506,12 @@
                             "sotd": true,
                             "boilerplateTRDoc": true,
                             "publish": [
-                                "Group Draft Note",
+                                "Group Note Draft",
                                 "<a href=\"https://www.w3.org/policies/process/20250818/#recs-and-notes\">Note track</a>",
                                 "&lt;a href=\"https://www.w3.org/policies/process/20250818/#recs-and-notes\"&gt;Note track&lt;/a&gt;"
                             ],
                             "customParagraph": true,
-                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Group Draft Notes are not endorsed by W3C nor its Members.</p> </blockquote> or <blockquote class=\"boilerplate\"> <p>This Group Draft Note is endorsed by the @@@ Working/Interest Group (and the @@@ Working/Interest Group), but is not endorsed by W3C itself nor its Members.</p> </blockquote>",
+                            "stability": "It <span class=\"rfc2119\">must</span> set expectations about the (in)stability of the document. The <span class=\"rfc2119\">recommended</span> text is: <blockquote class=\"boilerplate\"> <p>Group Note Drafts are not endorsed by W3C nor its Members.</p> </blockquote> or <blockquote class=\"boilerplate\"> <p>This Group Note Draft is endorsed by the @@@ Working/Interest Group (and the @@@ Working/Interest Group), but is not endorsed by W3C itself nor its Members.</p> </blockquote>",
                             "draftStability": true,
                             "knownDisclosureNumber": true,
                             "patPolReq": true,
