@@ -128,7 +128,7 @@ export const samples = [
         docDate: '2021-11-4',
         editorIDs: [3439],
         editorNames: ['Richard Ishida'],
-        informative: false,
+        informative: true,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [32113],
         patentPolicy: 'https://www.w3.org/Consortium/Patent-Policy-20170801/',
