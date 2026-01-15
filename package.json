@@ -10,6 +10,7 @@
     "url": "https://github.com/w3c/specberus.git"
   },
   "dependencies": {
+    "cheerio": "^1.1.2",
     "compression": "1.8.1",
     "cors": "2.8.5",
     "doasync": "2.0.1",
@@ -18,7 +19,6 @@
     "express-handlebars": "8.0.1",
     "file-type": "21.3.0",
     "insafe": "0.5.1",
-    "jsdom": "27.4.0",
     "metaviewport-parser": "0.3.0",
     "morgan": "1.10.1",
     "node-w3capi": "2.2.0",
@@ -29,9 +29,11 @@
     "tmp": "0.2.4"
   },
   "devDependencies": {
-    "chai": "6.2.0",
     "@rvagg/chai-as-promised": "8.0.1",
+    "@types/node": "^24.10.9",
+    "chai": "6.2.0",
     "cspell": "9.0.1",
+    "domhandler": "^5.0.3",
     "eslint": "9.0.0",
     "eslint-config-prettier": "10.0.1",
     "eslint-plugin-node": "11.1.0",
@@ -43,7 +45,8 @@
     "nock": "15.0.0",
     "nodemon": "3.0.1",
     "nyc": "17.1.0",
-    "prettier": "3.8.0"
+    "prettier": "3.8.0",
+    "typescript": "^5.9.3"
   },
   "scripts": {
     "build": "npm run lint && npm run test",

@@ -3,8 +3,8 @@
 
 // XXX also look at https://cvs.w3.org/Team/WWW/2000/04/mem-news/groups.rdf
 
+import { load } from 'cheerio';
 import fs from 'fs';
-import { JSDOM } from 'jsdom';
 import pth, { dirname } from 'path';
 import ua from 'superagent';
 import { fileURLToPath } from 'url';
@@ -33,21 +33,19 @@ function norm(str) {
  * @param res
  */
 function munge(err, res) {
-    const jsdom = new JSDOM(res.text);
-    const jsDocument = jsdom.window.document;
+    const $ = load(res.text);
 
-    jsDocument.querySelectorAll('tr.WG, tr.IG, tr.CG').forEach(tr => {
-        const tds = tr.querySelectorAll('td');
-        const td1 = tds && tds[0];
-        const td4 = tds && tds[3];
-        const name = td1 && norm(td1.textContent);
+    $('tr.WG, tr.IG, tr.CG').each((_, tr) => {
+        const $tr = $(tr);
+        const $tds = $tr.find('td');
+        const $td1 = $tds.eq(0);
+        const $td4 = $tds.eq(3);
+        const name = $td1.length && norm($td1.text());
         let href =
-            td1 &&
-            td1.querySelector('a') &&
-            td1.querySelector('a').getAttribute('href');
-        if (td4) {
-            td4.querySelectorAll('a').forEach(element => {
-                let list = element.textContent;
+            $td1.length && $td1.find('a').length && $td1.find('a').attr('href');
+        if ($td4.length) {
+            $td4.find('a').each((_, el) => {
+                let list = $(el).text();
                 if (!/@w3\.org$/.test(list)) list += '@w3.org';
                 if (href.indexOf('http') === 0) true;
                 else if (href.indexOf('/') === 0)

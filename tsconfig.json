@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "noEmit": true,
+        "target": "es2021"
+    }
+}
