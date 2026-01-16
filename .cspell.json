@@ -19,6 +19,7 @@
         "DNOTE",
         "doasync",
         "doctypes",
+        "domhandler",
         "dvcs",
         "epub",
         "epubcfi",
@@ -35,6 +36,7 @@
         "historyuri",
         "Hickson",
         "howto",
+        "hrefs",
         "Imple",
         "implelink",
         "imsc",
@@ -111,6 +113,7 @@
         "coverage/**",
         "test/**/*.html",
         "package-lock.json",
+        "tsconfig.json",
         "node_modules/**",
         "design/**"
     ],
