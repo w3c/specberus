@@ -195,6 +195,7 @@ export const data = {
             text: 'Future updates to this Recommendation may incorporate new features.',
         },
         defaultCRDate: `04 October ${currentYear}`,
+        defaultCRYDate: `6 September ${currentYear}`,
         rec: {
             showProposedAdd: false,
             showAddition: false,
