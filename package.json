@@ -16,7 +16,7 @@
     "express": "5.2.0",
     "express-fileupload": "1.5.0",
     "express-handlebars": "8.0.1",
-    "file-type": "21.1.1",
+    "file-type": "21.3.0",
     "insafe": "0.5.1",
     "jsdom": "27.4.0",
     "metaviewport-parser": "0.3.0",
