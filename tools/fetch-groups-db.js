@@ -42,7 +42,9 @@ function munge(err, res) {
         const $td4 = $tds.eq(3);
         const name = $td1.length && norm($td1.text());
         let href =
-            $td1.length && $td1.find('a').length && $td1.find('a').attr('href');
+            $td1.length &&
+            $td1.find('a').length &&
+            $td1.find('a').first().attr('href');
         if ($td4.length) {
             $td4.find('a').each((_, el) => {
                 let list = $(el).text();
