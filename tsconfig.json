@@ -1,9 +1,11 @@
 {
     "compilerOptions": {
         "allowJs": true,
+        "checkJs": true,
         "module": "nodenext",
         "moduleResolution": "nodenext",
         "noEmit": true,
         "target": "es2021"
-    }
+    },
+    "exclude": ["public/**/*", "test/**/*"]
 }
