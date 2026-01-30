@@ -6,6 +6,7 @@ import compression from 'compression';
 import cors from 'cors';
 import express from 'express';
 import fileUpload from 'express-fileupload';
+import EventEmitter from 'events';
 import { writeFile } from 'fs';
 import http from 'http';
 import insafe from 'insafe';
@@ -14,7 +15,6 @@ import { Server } from 'socket.io';
 import tmp from 'tmp';
 import * as api from './lib/api.js';
 import * as l10n from './lib/l10n.js';
-import { Sink } from './lib/sink.js';
 import { allProfiles, importJSON } from './lib/util.js';
 import { Specberus } from './lib/validator.js';
 import * as views from './lib/views.js';
@@ -62,7 +62,7 @@ io.on('connection', socket => {
                 message: 'URL or file not provided.',
             });
         const specberus = new Specberus();
-        const handler = new Sink();
+        const handler = new EventEmitter();
         handler.on('err', (type, data) => {
             try {
                 socket.emit(
@@ -124,7 +124,7 @@ io.on('connection', socket => {
             });
         }
         const specberus = new Specberus();
-        const handler = new Sink();
+        const handler = new EventEmitter();
         const profileCode = profile.name;
         socket.emit('start', {
             rules: (profile.rules || []).map(rule => rule.name),
