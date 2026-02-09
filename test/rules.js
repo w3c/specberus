@@ -1,19 +1,22 @@
-// Native packages:
+// External modules:
 import { expect as chai } from 'chai';
 import expect from 'expect.js';
 
-import nock from 'nock';
+// Internal modules:
 import { Sink } from '../lib/sink.js';
 import { allProfiles } from '../lib/util.js';
-// Internal packages:
 import { Specberus } from '../lib/validator.js';
 // A list of good documents to be tested, using all rules configured in the profiles.
 // Shouldn't cause any error.
 import { goodDocuments } from './data/goodDocuments.js';
 import { samples } from './samples.js';
 import { app } from './lib/testserver.js';
-import { buildBadTestCases, equivalentArray } from './lib/utils.js';
-import { nockData } from './lib/nockData.js';
+import {
+    buildBadTestCases,
+    cleanupMocks,
+    equivalentArray,
+    setupMocks,
+} from './lib/utils.js';
 
 /**
  * Test the rules.
@@ -53,53 +56,77 @@ const compareMetadata = function (url, file, expectedObject) {
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('profile')
-                .equal(expectedObject.profile);
+                .equal(
+                    expectedObject.profile,
+                    'Expected meta.profile to match'
+                );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('title')
-                .equal(expectedObject.title);
+                .equal(expectedObject.title, 'Expected meta.title to match');
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('docDate')
-                .equal(expectedObject.docDate);
+                .equal(
+                    expectedObject.docDate,
+                    'Expected meta.docDate to match'
+                );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('thisVersion')
-                .equal(expectedObject.thisVersion);
+                .equal(
+                    expectedObject.thisVersion,
+                    'Expected meta.thisVersion to match'
+                );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('latestVersion')
-                .equal(expectedObject.latestVersion);
+                .equal(
+                    expectedObject.latestVersion,
+                    'Expected meta.latestVersion to match'
+                );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('editorNames');
-            chai(specberus.meta.editorNames).to.satisfy(found =>
-                equivalentArray(found, expectedObject.editorNames)
+            chai(specberus.meta.editorNames).to.satisfy(
+                found => equivalentArray(found, expectedObject.editorNames),
+                'Expected meta.editorNames to match'
             );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('delivererIDs');
-            chai(specberus.meta.delivererIDs).to.satisfy(found =>
-                equivalentArray(found, expectedObject.delivererIDs)
+            chai(specberus.meta.delivererIDs).to.satisfy(
+                found => equivalentArray(found, expectedObject.delivererIDs),
+                'Expected meta.delivererIDs to match'
             );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('editorIDs');
-            chai(specberus.meta.editorIDs).to.satisfy(found =>
-                equivalentArray(found, expectedObject.editorIDs)
+            chai(specberus.meta.editorIDs).to.satisfy(
+                found => equivalentArray(found, expectedObject.editorIDs),
+                'Expected meta.editorIDs to match'
             );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('informative')
-                .equal(expectedObject.informative);
+                .equal(
+                    expectedObject.informative,
+                    'Expected meta.informative to match'
+                );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('rectrack')
-                .equal(expectedObject.rectrack);
+                .equal(
+                    expectedObject.rectrack,
+                    'Expected meta.rectrack to match'
+                );
             chai(specberus)
                 .to.have.property('meta')
                 .to.have.property('history')
-                .equal(expectedObject.history);
+                .equal(
+                    expectedObject.history,
+                    'Expected meta.history to match'
+                );
             const optionalProperties = [
                 'process',
                 'previousVersion',
@@ -125,6 +152,9 @@ const compareMetadata = function (url, file, expectedObject) {
 
 describe('Basics', () => {
     const specberus = new Specberus();
+
+    beforeEach(() => setupMocks());
+    afterEach(cleanupMocks);
 
     describe('Method "extractMetadata"', () => {
         it('Should exist and be a function', done => {
@@ -169,47 +199,9 @@ after(done => {
     }
 });
 
-function buildHandler(test, mock, done) {
+function buildHandler(test, done) {
     const handler = new Sink();
 
-    if (mock) {
-        // Mock some external calls to speed up the test suite
-        nock('https://www.w3.org', { allowUnmocked: true })
-            .head('/standards/history/hr-time')
-            .reply(200, 'HR Time history page');
-        const { versions } = nockData;
-
-        nock('https://api.w3.org', { allowUnmocked: true })
-            .get('/specifications/hr-time/versions')
-            .query({ embed: true })
-            .reply(200, versions);
-
-        const { groupNames } = nockData;
-        Object.keys(groupNames).forEach(groupName => {
-            const groupId = groupNames[groupName];
-            nock('https://api.w3.org', { allowUnmocked: true })
-                .get(`/groups/wg/${groupName}`)
-                .reply(200, {
-                    id: groupId,
-                    type: 'working group',
-                });
-        });
-
-        const { chartersData } = nockData;
-        Object.keys(chartersData).forEach(groupId => {
-            const charterData = Array.isArray(chartersData[groupId])
-                ? chartersData[groupId]
-                : [chartersData[groupId]];
-            // nock('https://api.w3.org', { allowUnmocked: true })
-            nock('https://api.w3.org')
-                .get(`/groups/${groupId}/charters?embed=true`)
-                .reply(200, {
-                    _embedded: {
-                        charters: charterData,
-                    },
-                });
-        });
-    }
     handler.on('err', (type, data) => {
         if (DEBUG) console.log('error: \n', type, data);
         handler.errors.push(`${type.name}.${data.key}`);
@@ -250,7 +242,6 @@ function buildHandler(test, mock, done) {
                 }
             }
             done();
-            if (mock) nock.cleanAll();
         } catch (e) {
             done(e);
         }
@@ -263,6 +254,14 @@ const testsGoodDoc = goodDocuments;
 
 // The next check is running each profile using the rules configured.
 describe('Making sure good documents pass Specberus...', () => {
+    beforeEach(() =>
+        setupMocks({
+            // hard-code group ID to match state of test documents
+            delivererMap: { 'hr-time': 32113 },
+        })
+    );
+    afterEach(cleanupMocks);
+
     Object.keys(testsGoodDoc).forEach(docProfile => {
         // testsGoodDoc[docProfile].profile is used to distinguish multiple cases for same profile.
         docProfile = testsGoodDoc[docProfile].profile || docProfile;
@@ -271,12 +270,6 @@ describe('Making sure good documents pass Specberus...', () => {
         const url = `${ENDPOINT}/${testsGoodDoc[docProfile].url}`;
 
         it(`should pass for ${docProfile} doc with ${url}`, done => {
-            const { deliverers } = nockData;
-            nock('https://api.w3.org', { allowUnmocked: true })
-                .get(/\/specifications\/hr-time[-0-9a-zA-Z]*\/versions\/w*/)
-                .query({ embed: true })
-                .reply(200, deliverers);
-
             const profilePath = allProfiles.find(p =>
                 p.endsWith(`/${docProfile}.js`)
             );
@@ -307,7 +300,6 @@ describe('Making sure good documents pass Specberus...', () => {
                             },
                             events: buildHandler(
                                 { ignoreWarnings: true },
-                                false,
                                 done
                             ),
                             url,
@@ -353,7 +345,7 @@ function checkRule(tests, options) {
                                         ...test.config,
                                     },
                                 },
-                                events: buildHandler(test, true, done),
+                                events: buildHandler(test, done),
                                 ...test.options,
                             };
                             new Specberus().validate(options);
@@ -389,6 +381,9 @@ const badTestCases = await buildBadTestCases();
 
 // The next check runs every rule for each profile, one rule at a time, and should trigger every existing errors and warnings in lib/l10n-en_GB.js
 describe('Making sure Specberus is not broken...', () => {
+    beforeEach(() => setupMocks());
+    afterEach(cleanupMocks);
+
     Object.entries(badTestCases).forEach(([docType, tracksOrProfiles]) => {
         // DocType: TR/SUMB
         describe(`DocType: ${docType}`, () => {

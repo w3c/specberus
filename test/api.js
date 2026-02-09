@@ -11,6 +11,7 @@ import http from 'http';
 import superagent from 'superagent';
 import { setUp } from '../lib/api.js';
 import { importJSON } from '../lib/util.js';
+import { cleanupMocks, setupMocks } from './lib/utils.js';
 // Internal packages:
 const meta = importJSON('../package.json', import.meta.url);
 const { expect } = chai;
@@ -24,25 +25,19 @@ const TIMEOUT = 30000;
 let server;
 
 /**
- * Launch an HTTP server for tests.
+ * Sets up Chai, mocks, and the HTTP server for tests.
  */
+function setup() {
+    setupMocks();
+    chai.use(chaiAsPromised);
 
-const launchServer = function () {
     const app = express();
     server = http.createServer(app);
     setUp(app);
     server.listen(PORT).on('error', err => {
         throw new Error(err);
     });
-};
-
-/**
- * Set up the testing framework.
- */
-
-const setUpTest = function () {
-    chai.use(chaiAsPromised);
-};
+}
 
 /**
  * Query the API.
@@ -85,9 +80,11 @@ const request = function (suffix, post) {
 describe('API', () => {
     let query;
 
-    before(() => {
-        launchServer();
-        setUpTest();
+    before(setup);
+
+    after(() => {
+        cleanupMocks();
+        server.close();
     });
 
     describe('Endpoint', () => {
@@ -160,9 +157,5 @@ describe('API', () => {
                 'Parameter “source” is not allowed in this context'
             );
         });
-    });
-
-    after(() => {
-        server.close();
     });
 });
