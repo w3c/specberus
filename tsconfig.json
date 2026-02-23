@@ -4,7 +4,17 @@
         "checkJs": true,
         "module": "nodenext",
         "moduleResolution": "nodenext",
-        "noEmit": true
+        "noEmit": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "exactOptionalPropertyTypes": true,
+        "noImplicitOverride": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "useUnknownInCatchVariables": false,
+        "verbatimModuleSyntax": true
     },
     "exclude": ["public/**/*", "test/**/*"]
 }

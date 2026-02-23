@@ -32,6 +32,7 @@
   "devDependencies": {
     "@rvagg/chai-as-promised": "8.0.2",
     "@types/express": "^5.0.6",
+    "@types/express-fileupload": "^1.5.1",
     "@types/mocha": "^10.0.10",
     "@types/node": "^24.10.9",
     "@types/superagent": "^8.1.9",

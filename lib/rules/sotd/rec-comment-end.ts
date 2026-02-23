@@ -1,0 +1,60 @@
+import type { RuleCheckFunction } from '../../types.js';
+import { Specberus } from '../../validator.js';
+
+const self = {
+    name: 'sotd.rec-comment-end',
+    section: 'document-status',
+    rule: 'commentEnd',
+};
+
+export const { name } = self;
+
+/**
+ * @param {Specberus} sr
+ * @param done
+ */
+export const check: RuleCheckFunction = (sr, done) => {
+    const $sotd = sr.getSotDSection();
+    if ($sotd) {
+        const recType = sr.getRecMetadata();
+        if (recType.pSubChanges || recType.pNewFeatures) {
+            const txt = sr.norm($sotd.text());
+            const rex = new RegExp(Specberus.dateRegexStrCapturing, 'g');
+            const docDate = sr.getDocumentDate()!;
+
+            // 60 days later than docDate;
+            const minimumEndDate = new Date(
+                +docDate - 0 + 60 * 24 * 60 * 60 * 1000
+            );
+            // "Mon Nov 02 2020 16:26:28 GMT+0800 (@@ Standard Time)" -> "Nov 02 2020"
+            const readableDate = minimumEndDate
+                .toDateString()
+                .split(' ')
+                .slice(1)
+                .join(' ');
+            if (!rex.test(txt))
+                sr.error(self, 'not-found', { minimumEndDate: readableDate });
+            else {
+                const matches = txt.match(rex);
+                const dateFound = [];
+                for (const i in matches) {
+                    const date = sr.stringToDate(matches[i]);
+                    if (date && date > minimumEndDate) {
+                        dateFound.push(sr.stringToDate(matches[i]));
+                    }
+                }
+                if (dateFound.length > 1) {
+                    sr.warning(self, 'multi-found', {
+                        date: dateFound.join(', '),
+                        minimumEndDate: readableDate,
+                    });
+                } else if (!dateFound.length) {
+                    sr.error(self, 'not-found', {
+                        minimumEndDate: readableDate,
+                    });
+                }
+            }
+        }
+    }
+    done();
+};
