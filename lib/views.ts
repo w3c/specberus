@@ -1,11 +1,12 @@
-// Internal packages:
+import type { Express, Request, Response } from 'express';
 import handlebars from 'express-handlebars';
-import qs from 'querystring';
-import { importJSON } from './util.js';
+import { escape } from 'querystring';
 
-/** @import {Express} from "express" */
+import type { RulesProfile, RulesSection } from './types.js';
+import { isRuleTrack } from './util.js';
 
-const rules = importJSON('./rules.json', import.meta.url);
+import pkg from '../package.json' with { type: 'json' };
+import rules from './rules.json' with { type: 'json' };
 
 // Settings:
 const DEBUG = process && process.env && process.env.DEBUG;
@@ -14,99 +15,102 @@ const BASE_URI = `${process.env.BASE_URI ? process.env.BASE_URI : ''}/`.replace(
     '/'
 );
 
-const { version } = importJSON('../package.json', import.meta.url);
 const nav = `<p class="pull-right">
         <a href="${BASE_URI}sitemap/">Site map</a> &middot;
         <a href="https://github.com/w3c/specberus">Github</a> &middot;
         <a href="${BASE_URI}help/">Help</a>
         </p>`;
-/**
- * @TODO Document.
- */
 
-const serveStraight = function (req, res) {
+// TODO(tripu): Document.
+const serveStraight = function (req: Request, res: Response) {
     const fragment = req.path.replace(/^\/|\/$/gi, '');
     res.render(fragment, {
         DEBUG,
         BASE_URI,
-        version,
+        version: pkg.version,
         nav,
         title: fragment,
     });
 };
 
-/**
- * @TODO Document.
- */
-
-const handleWrongPage = function (req, res) {
+// TODO(tripu): Document.
+const handleWrongPage = function (_: Request, res: Response) {
     res.render('error', {
         DEBUG,
         BASE_URI,
-        version,
+        version: pkg.version,
         nav,
         title: 'whut?',
     });
 };
 
-/**
- * @TODO Document.
- */
+/** Profile object as returned by listProfiles (distinct from rules.json) */
+interface Profile {
+    order: number;
+    abbr: string;
+    name: string;
+}
 
-const listProfiles = function () {
+// TODO(tripu): Document.
+function listProfiles() {
     const result = [];
-    const sortByOrderField = (a, b) => {
+    const sortByOrderField = (a: Profile, b: Profile) => {
+        if (!a.order || !b.order) return 0;
         if (a.order < b.order) return -1;
-        if (a.order > b.order) return +1;
+        if (a.order > b.order) return 1;
         return 0;
     };
     for (const t in rules) {
-        if (t !== '*') {
+        if (isRuleTrack(t)) {
+            const rule = rules[t];
             result.push({
-                order: rules[t].order,
+                order: rule.order,
                 abbr: t,
-                name: rules[t].name,
-                profiles: [],
+                name: rule.name,
+                profiles: [] as Profile[],
             });
-            for (const p in rules[t].profiles)
+            for (const [p, profile] of Object.entries(rule.profiles))
                 result[result.length - 1].profiles.push({
-                    order: rules[t].profiles[p].order,
+                    order: profile.order,
                     abbr: p,
-                    name: rules[t].profiles[p].name,
+                    name: profile.name,
                 });
             result[result.length - 1].profiles.sort(sortByOrderField);
         }
         result.sort(sortByOrderField);
     }
     return result;
-};
-
+}
 export const sortedProfiles = listProfiles();
-/**
- * @TODO Document.
- */
 
-const formatRules = function (sections, common) {
+// TODO(tripu): Document.
+// TODO(kgf): Ideally, this should check for inconsistent rules.json state and report error
+function formatRules(sections: RulesSection[]) {
+    const common = rules['*'];
     const total = [];
     for (const s in sections) {
         let result = `<h3 id ="${s}"><a href="#${s}">${sections[s].name}</a></h3>
             <ul>`;
-        for (const r in sections[s].rules)
-            if (typeof sections[s].rules[r] === 'boolean') {
+        for (const [r, rValue] of Object.entries(sections[s].rules))
+            if (typeof rValue === 'boolean') {
                 // Common rule, with no parameters
                 result += `<li id="${r}">
                     <a href="#${r}">&sect;</a>
-                    ${common.sections[s].rules[r]}
+                    ${
+                        // @ts-expect-error (7053) This code assumes common.sections is consistently populated
+                        common.sections[s].rules[r]
+                    }
                     </li>`;
-            } else if (typeof sections[s].rules[r] === 'string') {
+            } else if (typeof rValue === 'string') {
                 // Specific rule
                 result += `<li id="${r}">
                     <a href="#${r}">&sect;</a>
-                    ${sections[s].rules[r]}
+                    ${rValue}
                     </li>`;
-            } else if (typeof sections[s].rules[r] === 'object') {
+            } else if (typeof rValue === 'object') {
                 // Array (common rule with parameters)
-                const values = sections[s].rules[r];
+                const values = rValue;
+                // @ts-expect-error (7053) This code assumes common.sections is consistently populated
                 let template = common.sections[s].rules[r];
                 for (let p = 0; p < values.length; p += 1)
                     template = template.replace(
@@ -134,69 +138,74 @@ const formatRules = function (sections, common) {
         })
         .map(a => a.content)
         .join('');
-};
+}
 
-/**
- * @TODO Document.
- */
+interface RetrieveProfileResult {
+    abbr: string;
+    name: string;
+    body: string;
+}
 
-const retrieveProfile = function (query) {
-    const result = {};
+// TODO(tripu): Document.
+function retrieveProfile(query: qs.ParsedQs) {
+    let result: RetrieveProfileResult | { error: string } | undefined;
 
-    if (query && query.profile) {
-        const codename = qs.escape(query.profile).trim().toUpperCase();
+    if (query && query.profile && typeof query.profile === 'string') {
+        const codename = escape(query.profile).trim().toUpperCase();
         if (rules)
-            for (const t in rules)
-                if (
-                    t !== '*' &&
-                    Object.prototype.hasOwnProperty.call(
-                        rules[t].profiles,
-                        codename
-                    )
-                ) {
-                    const profile = rules[t].profiles[codename];
-                    result.abbr = codename;
-                    result.name = `<em>${profile.name}</em>`;
-                    result.body = formatRules(profile.sections, rules['*']);
+            for (const t in rules) {
+                if (isRuleTrack(t)) {
+                    const profiles = rules[t].profiles;
+                    if (Object.hasOwn(profiles, codename)) {
+                        const profile = profiles[
+                            codename as keyof typeof profiles
+                        ] as RulesProfile;
+                        result = {
+                            abbr: codename,
+                            name: `<em>${profile.name}</em>`,
+                            body: formatRules(profile.sections),
+                        };
+                    }
                 }
-        if (Object.keys(result).length === 0)
-            result.error = `<p>Error: unknown profile <code>${qs.escape(
-                query.profile
-            )}</code>.</p>\n`;
+            }
+        if (!result)
+            result = {
+                error: `<p>Error: unknown profile <code>${escape(
+                    query.profile
+                )}</code>.</p>\n`,
+            };
     } else
-        result.error =
-            '<p>Error: no profile specified. Try appending eg <code>?profile=WD</code> to the URL.</p>\n';
+        result = {
+            error: '<p>Error: no profile specified. Try appending eg <code>?profile=WD</code> to the URL.</p>\n',
+        };
 
     return result;
-};
+}
 
 /**
  * Set up HTML views using templates and Express Handlebars.
- *
- * @param {Express} app - the Express application.
  */
-
-export const setUp = function (app) {
+export function setUp(app: Express) {
     const hb = handlebars.create({ defaultLayout: 'main' });
     app.engine('handlebars', hb.engine);
     app.set('view engine', 'handlebars');
 
-    app.get('/', (req, res) => {
+    app.get('/', (_, res) => {
         res.render('index', {
             DEBUG,
             BASE_URI,
-            version,
+            version: pkg.version,
             nav,
             interactive: true,
             tracks: sortedProfiles,
         });
     });
 
-    app.get('/doc', (req, res) => {
+    app.get('/doc', (_, res) => {
         res.render('doc', {
             DEBUG,
             BASE_URI,
-            version,
+            version: pkg.version,
             nav,
             title: 'documentation',
             tracks: sortedProfiles,
@@ -207,7 +216,7 @@ export const setUp = function (app) {
         res.render('doc/rules', {
             DEBUG,
             BASE_URI,
-            version,
+            version: pkg.version,
             nav,
             title: 'publication rules',
             content: retrieveProfile(req.query),
@@ -221,4 +230,4 @@ export const setUp = function (app) {
 
     // Catch-all:
     app.get(/(.*)/, handleWrongPage);
-};
+}

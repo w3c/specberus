@@ -7,11 +7,13 @@
  * 4. For "copyright-software", the url is https://www.w3.org/copyright/software-license/, the dated url is https://www.w3.org/copyright/software-license-2023/, they are both allowed. The name in the API is "W3C Software and Document License", but the document would use text "permissive document license".
  * 5. For "copyright-documents", the url is https://www.w3.org/document/document-license/, the dated url is https://www.w3.org/copyright/document-license-2023/. The name in the API is "W3C Document License", but the document would use text "document use".
  */
-import { AB, TAG, importJSON } from '../../util.js';
+import type { Cheerio } from 'cheerio';
+import type { Element } from 'domhandler';
 
-/** @import { Cheerio } from "cheerio" */
-/** @import { Element } from "domhandler" */
-/** @import { Specberus } from "../../validator.js" */
+import { AB, TAG } from '../../util.js';
+import type { Specberus } from '../../validator.js';
+
+import copyrightExceptions from '../../copyright-exceptions.json' with { type: 'json' };
 
 const self = {
     name: 'headers.copyright',
@@ -47,17 +49,9 @@ const latestBaseLinks = {
     trademark: 'https://www.w3.org/policies/#W3C_Trademarks',
 };
 
-const copyrightExceptions = importJSON(
-    '../../copyright-exceptions.json',
-    import.meta.url
-);
-
 export const { name } = self;
 
-/**
- * @param {Specberus} sr
- */
-async function isOnlyPublishedByTagOrAb(sr) {
+async function isOnlyPublishedByTagOrAb(sr: Specberus) {
     const TagID = TAG.id;
     const AbID = AB.id;
 
@@ -91,14 +85,34 @@ function getLatestCopyrightMatchRegex(sr, licenseTexts) {
     return new RegExp(startRex + endRex);
 }
 
-/**
- * @param {Specberus} sr
- * @param {Cheerio<Element>} $copyright
- * @param licenseTexts
- * @param baseLinks
- * @param matchRegex
- */
-function checkCopyright(sr, $copyright, licenseTexts, baseLinks, matchRegex) {
+// Some documents like epub-33 uses special copyrights listed in copyright-exception.json
+function checkSpecialCopyright(
+    sr: Specberus,
+    $copyright: Cheerio<Element>,
+    specialCopyright,
+    shortname: string
+) {
+    const year = (sr.getDocumentDate() || new Date()).getFullYear();
+
+    const domHtml = sr.norm($copyright.html());
+    const specHtml = sr.norm(
+        specialCopyright.copyright.replace(/@YEAR/g, year)
+    );
+    if (domHtml !== specHtml) {
+        sr.error(self, 'exception-no-html', {
+            copyright: domHtml,
+            expected: specHtml,
+            shortname,
+        });
+    }
+}
+
+function checkLatestCopyright(
+    sr: Specberus,
+    $copyright: Cheerio<Element>,
+    licenseTexts: string[]
+) {
+    const matchRegex = getLatestCopyrightMatchRegex(sr, licenseTexts);
     const regResult = sr.norm($copyright.text()).match(matchRegex);
     if (!regResult) {
         sr.error(self, 'no-match', { rex: matchRegex });
@@ -110,7 +124,7 @@ function checkCopyright(sr, $copyright, licenseTexts, baseLinks, matchRegex) {
     const textsToCheck = allowBothLicense ? [licenseInDoc] : licenseTexts; // When document can have 2 licenses, keep the one mentioned in document.
     const linksToCheck = textsToCheck.reduce(
         (acc, v) => ({ ...acc, [v]: LICENSE_TEXT_LINKS_MAP[v] }),
-        baseLinks
+        latestBaseLinks
     );
 
     const links = $copyright.find('a').toArray();
@@ -140,44 +154,7 @@ function checkCopyright(sr, $copyright, licenseTexts, baseLinks, matchRegex) {
     });
 }
 
-// Some documents like epub-33 uses special copyrights listed in copyright-exception.json
-/**
- * @param {Specberus} sr
- * @param {Cheerio<Element>} $copyright
- * @param specialCopyright
- * @param shortname
- */
-function checkSpecialCopyright(sr, $copyright, specialCopyright, shortname) {
-    const year = (sr.getDocumentDate() || new Date()).getFullYear();
-
-    const domHtml = sr.norm($copyright.html());
-    const specHtml = sr.norm(
-        specialCopyright.copyright.replace(/@YEAR/g, year)
-    );
-    if (domHtml !== specHtml) {
-        sr.error(self, 'exception-no-html', {
-            copyright: domHtml,
-            expected: specHtml,
-            shortname,
-        });
-    }
-}
-
-/**
- * @param {Specberus} sr
- * @param {Cheerio<Element>} $copyright
- * @param licenseTexts
- */
-function checkLatestCopyright(sr, $copyright, licenseTexts) {
-    const matchRegex = getLatestCopyrightMatchRegex(sr, licenseTexts);
-    checkCopyright(sr, $copyright, licenseTexts, latestBaseLinks, matchRegex);
-}
-
-/**
- * @param {Specberus} sr
- * @param done
- */
-export async function check(sr, done) {
+export async function check(sr: Specberus, done: () => void) {
     const $copyright = sr.$('body div.head p.copyright').first();
 
     if (!$copyright.length) {
