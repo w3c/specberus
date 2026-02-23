@@ -1,8 +1,9 @@
 // errata, right after dl
 
-/** @import { Specberus } from "../../validator.js" */
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
+import type { Specberus } from '../../validator.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'headers.errata',
     section: 'front-matter',
     rule: 'docIDOrder',
@@ -11,20 +12,16 @@ const self = {
 export const { name } = self;
 
 // Check if document is Recommendation, and uses inline changes(REC with Candidate/Proposed changes)
-function isRECWithChanges(sr) {
+function isRECWithChanges(sr: Specberus) {
     if (sr.config.status !== 'REC') {
         return false;
     }
 
-    const recMeta = sr.getRecMetadata({});
+    const recMeta = sr.getRecMetadata();
     return Object.values(recMeta).length !== 0;
 }
 
-/**
- * @param {Specberus} sr
- * @param done
- */
-export function check(sr, done) {
+export const check: RuleCheckFunction<void> = (sr, done) => {
     // for REC with Candidate/Proposed changes, no need to check errata link
     if (isRECWithChanges(sr)) {
         return done();
@@ -37,4 +34,4 @@ export function check(sr, done) {
         return done();
     }
     return done();
-}
+};

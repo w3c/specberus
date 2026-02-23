@@ -5,7 +5,16 @@
         "module": "nodenext",
         "moduleResolution": "nodenext",
         "noEmit": true,
-        "target": "es2021"
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "exactOptionalPropertyTypes": true,
+        "noImplicitOverride": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "useUnknownInCatchVariables": false,
+        "verbatimModuleSyntax": true
     },
     "exclude": ["public/**/*", "test/**/*"]
 }

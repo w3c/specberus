@@ -1,9 +1,8 @@
-// External modules:
+import { EventEmitter } from 'events';
+
 import { expect as chai } from 'chai';
 import expect from 'expect.js';
 
-// Internal modules:
-import { Sink } from '../lib/sink.js';
 import { allProfiles } from '../lib/util.js';
 import { Specberus } from '../lib/validator.js';
 // A list of good documents to be tested, using all rules configured in the profiles.
@@ -44,7 +43,8 @@ const testProfile = process.env.PROFILE;
 
 const compareMetadata = function (url, file, expectedObject) {
     const specberus = new Specberus();
-    const handler = new Sink(data => {
+    const handler = new EventEmitter();
+    handler.on('error', data => {
         throw new Error(data);
     });
     const thisFile = file ? `test/docs/${file}.html` : null;
@@ -137,7 +137,7 @@ const compareMetadata = function (url, file, expectedObject) {
                 'errata',
             ];
             optionalProperties.forEach(p => {
-                if (Object.prototype.hasOwnProperty.call(expectedObject, p)) {
+                if (Object.hasOwn(expectedObject, p)) {
                     chai(specberus)
                         .to.have.property('meta')
                         .to.have.property(p)
@@ -200,7 +200,7 @@ after(done => {
 });
 
 function buildHandler(test, done) {
-    const handler = new Sink();
+    const handler = new EventEmitter();
 
     handler.on('err', (type, data) => {
         if (DEBUG) console.log('error: \n', type, data);

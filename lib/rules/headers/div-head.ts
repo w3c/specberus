@@ -1,6 +1,6 @@
 /* emits: 'not-found' */
 
-/** @import { Specberus } from "../../validator.js" */
+import type { RuleCheckFunction } from '../../types.js';
 
 const self = {
     name: 'headers.div-head',
@@ -10,10 +10,6 @@ const self = {
 
 export const { name } = self;
 
-/**
- * @param {Specberus} sr
- * @param done
- */
-export function check(sr, done) {
+export const check: RuleCheckFunction<void> = (sr, done) => {
     sr.checkSelector('body div.head', self, done);
-}
+};

@@ -2,27 +2,29 @@
  * Pseudo-rule for metadata extraction: profile.
  */
 
-/** @import { Specberus } from "../../validator.js" */
+import type { Cheerio } from 'cheerio';
+import type { Element } from 'domhandler';
 
-// Internal packages:
-import { allProfiles, importJSON } from '../../util.js';
+import { allProfiles, isRuleTrack } from '../../util.js';
+import type { Specberus } from '../../validator.js';
 import { sortedProfiles } from '../../views.js';
+import type { RecMetadata, RuleCheckFunction } from '../../types.js';
 import { check as getTitle } from './title.js';
 
-const rules = importJSON('../../rules.json', import.meta.url);
+import rules from '../../rules.json' with { type: 'json' };
 
 // 'self.name' would be 'metadata.profile'
 export const name = 'metadata.profile';
 
-/**
- * @param {Specberus} sr
- * @param done
- */
-export async function check(sr, done) {
+export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
     let matchedLength = 0;
     let id;
-    let $profileEl;
-    const reviewStatus = new Map();
+    let $profileEl: Cheerio<Element> | undefined;
+    const reviewStatus = {
+        CR: 'implementationFeedbackDue',
+        PR: 'prReviewsDue',
+        CRY: 'cryFeedbackDue',
+    } as const;
 
     const $stateEl = sr.getDocumentStateElement();
     if (!$stateEl) {
@@ -32,10 +34,10 @@ export async function check(sr, done) {
     }
     const candidate = $stateEl && sr.norm($stateEl.text()).toLowerCase();
     if (candidate) {
-        for (const t in rules)
-            if (t !== '*')
-                for (const p in rules[t].profiles) {
-                    const name = rules[t].profiles[p].name.toLowerCase();
+        for (const t in rules) {
+            if (isRuleTrack(t)) {
+                for (const [p, profile] of Object.entries(rules[t].profiles)) {
+                    const name = profile.name.toLowerCase();
                     if (
                         candidate.indexOf(name) !== -1 &&
                         matchedLength < name.length
@@ -45,34 +47,25 @@ export async function check(sr, done) {
                         matchedLength = name.length;
                     }
                 }
+            }
+        }
     }
 
-    reviewStatus.set('CR', 'implementationFeedbackDue');
-    reviewStatus.set('PR', 'prReviewsDue');
-    reviewStatus.set('CRY', 'cryFeedbackDue');
-
-    /**
-     * @param id
-     * @param {Specberus} sr
-     */
-    function assembleMeta(id, sr) {
-        let meta = { profile: id };
-        if (reviewStatus.has(id)) {
+    function assembleMeta(id: string, sr: Specberus) {
+        let meta: RecMetadata = { profile: id };
+        if (id in reviewStatus) {
             const dueDate = sr.getFeedbackDueDate();
             const dates = dueDate && dueDate.valid;
             let res = dates[0];
             if (dates.length === 0 || !res) return done({ profile: id });
-            if (dates.length > 1) res = new Date(Math.min.apply(null, dates));
+            if (dates.length > 1)
+                res = new Date(Math.min(...dates.map(d => +d)));
 
-            const d = [
-                res.getFullYear(),
-                res.getMonth() + 1,
-                res.getDate(),
-            ].join('-');
-            meta[reviewStatus.get(id)] = d;
+            meta[reviewStatus[id as keyof typeof reviewStatus]] =
+                `${res.getFullYear()}-${res.getMonth() + 1}-${res.getDate()}`;
         }
         // implementation report
-        if (['CR', 'CRD', 'PR', 'REC'].indexOf(id) > -1) {
+        if (['CR', 'CRD', 'PR', 'REC'].includes(id)) {
             const dts = sr.extractHeaders();
             if (dts.Implementation?.$dd?.find('a').length) {
                 meta.implementationReport = dts.Implementation.$dd
@@ -80,8 +73,7 @@ export async function check(sr, done) {
                     .first()
                     .attr('href');
             }
-        }
-        if (id === 'REC') {
+        } else if (id === 'REC') {
             meta = sr.getRecMetadata(meta);
         }
 
@@ -93,15 +85,16 @@ export async function check(sr, done) {
             // eg for eachProfile: 'TR/Note/NOTE-Echidna.js'
             profileRex.test(eachProfile)
         );
-        const profileMatch =
-            thisProfile.length && thisProfile[0].match(profileRex);
+        const profileMatch = thisProfile.length
+            ? thisProfile[0].match(profileRex)
+            : null;
         const track = profileMatch && profileMatch[profileMatch.length - 2];
         meta.rectrack = track;
 
         return done(meta);
     }
 
-    const checkRecType = function () {
+    function checkRecType() {
         if (
             $profileEl &&
             sr.norm($profileEl.text()).indexOf('Candidate Recommendation') > 0
@@ -111,7 +104,7 @@ export async function check(sr, done) {
                 : 'CR';
         }
         return 'REC';
-    };
+    }
     if (id) {
         // W3C Candidate Recommendation (CR before 2020/CR snapshot/CR draft), W3C Recommendation will have "REC"
         if (id === 'REC' || id === 'CR') {
@@ -122,7 +115,7 @@ export async function check(sr, done) {
         if (id === 'CRY') {
             // distinguish CRY CRYD
             id =
-                sr.norm($profileEl.text()).indexOf('Draft') > 0
+                sr.norm($profileEl?.text() || '').indexOf('Draft') > 0
                     ? 'CRYD'
                     : 'CRY';
         }
@@ -137,7 +130,7 @@ export async function check(sr, done) {
                 `[EXCEPTION] The document "${docTitle}" seems to be an Editor's Draft, which is not supported.`
             );
         } else if (
-            sr.$('link[href^="https://www.w3.org/StyleSheets/TR/"]').length
+            sr.$!('link[href^="https://www.w3.org/StyleSheets/TR/"]').length
         ) {
             let profileList = '';
             sortedProfiles.forEach(category => {
@@ -156,4 +149,4 @@ export async function check(sr, done) {
             );
         }
     }
-}
+};

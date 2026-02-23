@@ -1,4 +1,5 @@
-/** @import { Specberus } from "../../validator.js" */
+import type { RuleCheckFunction } from '../../types.js';
+import { Specberus } from '../../validator.js';
 
 const self = {
     name: 'sotd.rec-comment-end',
@@ -12,18 +13,18 @@ export const { name } = self;
  * @param {Specberus} sr
  * @param done
  */
-export function check(sr, done) {
+export const check: RuleCheckFunction = (sr, done) => {
     const $sotd = sr.getSotDSection();
     if ($sotd) {
-        const recType = sr.getRecMetadata({});
+        const recType = sr.getRecMetadata();
         if (recType.pSubChanges || recType.pNewFeatures) {
             const txt = sr.norm($sotd.text());
-            const rex = new RegExp(sr.dateRegexStrCapturing, 'g');
-            const docDate = sr.getDocumentDate();
+            const rex = new RegExp(Specberus.dateRegexStrCapturing, 'g');
+            const docDate = sr.getDocumentDate()!;
 
             // 60 days later than docDate;
             const minimumEndDate = new Date(
-                docDate - 0 + 60 * 24 * 60 * 60 * 1000
+                +docDate - 0 + 60 * 24 * 60 * 60 * 1000
             );
             // "Mon Nov 02 2020 16:26:28 GMT+0800 (@@ Standard Time)" -> "Nov 02 2020"
             const readableDate = minimumEndDate
@@ -37,7 +38,8 @@ export function check(sr, done) {
                 const matches = txt.match(rex);
                 const dateFound = [];
                 for (const i in matches) {
-                    if (sr.stringToDate(matches[i]) > minimumEndDate) {
+                    const date = sr.stringToDate(matches[i]);
+                    if (date && date > minimumEndDate) {
                         dateFound.push(sr.stringToDate(matches[i]));
                     }
                 }
@@ -55,4 +57,4 @@ export function check(sr, done) {
         }
     }
     done();
-}
+};
