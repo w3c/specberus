@@ -172,13 +172,16 @@ export function setupMocks(overrides) {
         nock('https://api.w3.org')
             .persist()
             .get(`/groups/${group.id}/charters?embed=true`)
-            .reply(200, { _embedded: { charters } });
+            .reply(200, charters.length ? { _embedded: { charters } } : {});
         if (userIds) {
             nock('https://api.w3.org')
                 .get(`/groups/${group.id}/users?embed=true`)
-                .reply(200, {
-                    _embedded: { users: userIds.map(id => ({ id })) },
-                });
+                .reply(
+                    200,
+                    userIds.length
+                        ? { _embedded: { users: userIds.map(id => ({ id })) } }
+                        : {}
+                );
         }
     }
 }
