@@ -39,7 +39,7 @@ const scanStrings = function () {
             );
         if (c[0] !== 'generic') {
             // 1. Process the section:
-            if (!Object.prototype.hasOwnProperty.call(result, c[0])) {
+            if (!Object.hasOwn(result, c[0])) {
                 if (c.length === 1) {
                     if (messages[i] === false) result[c[0]] = false;
                     else
@@ -58,7 +58,7 @@ const scanStrings = function () {
 
             // 2. Process the rule:
             if (c.length > 1) {
-                if (!Object.prototype.hasOwnProperty.call(result[c[0]], c[1])) {
+                if (!Object.hasOwn(result[c[0]], c[1])) {
                     if (c.length === 2) {
                         if (messages[i] === false) result[c[0]][c[1]] = false;
                         else
@@ -78,12 +78,7 @@ const scanStrings = function () {
 
             // 3. Process the message ID:
             if (c.length > 2) {
-                if (
-                    !Object.prototype.hasOwnProperty.call(
-                        result[c[0]][c[1]],
-                        c[2]
-                    )
-                )
+                if (!Object.hasOwn(result[c[0]][c[1]], c[2]))
                     result[c[0]][c[1]][c[2]] = !!messages[i];
                 else throw new Error(`key “${i}” is defined more than once`);
             }
@@ -130,20 +125,15 @@ async function scanFileSystem() {
 const findHoles = function (source, expected, labelSource, labelExpected) {
     let errors = '';
     for (const i in expected)
-        if (!Object.prototype.hasOwnProperty.call(source, i))
+        if (!Object.hasOwn(source, i))
             errors += `Section “${i}” exists in ${labelExpected} but is missing in ${labelSource}.\n`;
         else if (source[i] !== false)
             for (const j in expected[i])
-                if (!Object.prototype.hasOwnProperty.call(source[i], j))
+                if (!Object.hasOwn(source[i], j))
                     errors += `Rule “${i}/${j}” exists in ${labelExpected} but is missing in ${labelSource}.\n`;
                 else if (source[i][j] !== false)
                     for (const k in expected[i][j])
-                        if (
-                            !Object.prototype.hasOwnProperty.call(
-                                source[i][j],
-                                k
-                            )
-                        )
+                        if (!Object.hasOwn(source[i][j], k))
                             errors += `Message ID “${i}/${j}/${k}” exists in ${labelExpected} but is missing in ${labelSource}.\n`;
     if (errors) throw new Error(`${errors.slice(0, -2)}.`);
 };

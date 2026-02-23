@@ -117,7 +117,10 @@
         "node_modules/**",
         "design/**"
     ],
-    "ignoreRegExpList": ["/require\\(.*\\);/"],
+    "ignoreRegExpList": [
+        "/require\\(.*\\);/",
+        "(FIXME|TODO|XXX)\\(.[^\\)]+\\)"
+    ],
     "overrides": [
         {
             "filename": ["package.json"],
