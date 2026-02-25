@@ -23,7 +23,7 @@
     "morgan": "1.10.1",
     "node-w3capi": "2.2.2",
     "promise": "8.3.0",
-    "puppeteer": "24.37.3",
+    "puppeteer": "24.37.5",
     "socket.io": "4.8.3",
     "superagent": "10.3.0",
     "tmp": "0.2.5"
@@ -37,7 +37,7 @@
     "chai": "6.2.2",
     "cspell": "9.0.2",
     "domhandler": "^5.0.3",
-    "eslint": "10.0.0",
+    "eslint": "10.0.2",
     "eslint-config-prettier": "10.0.3",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "5.0.1",
