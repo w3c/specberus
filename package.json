@@ -10,6 +10,7 @@
     "url": "https://github.com/w3c/specberus.git"
   },
   "dependencies": {
+    "@octokit/core": "^7.0.6",
     "cheerio": "^1.1.2",
     "compression": "1.8.1",
     "cors": "2.8.6",
