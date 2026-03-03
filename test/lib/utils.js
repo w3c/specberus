@@ -158,6 +158,22 @@ export function setupMocks(overrides) {
         }
     }
 
+    for (const [username, value] of Object.entries(mockData.githubUsers)) {
+        const interceptor = nock('https://api.github.com/')
+            .persist()
+            .get(`/users/${username}`);
+        if (typeof value === 'object') interceptor.reply(value.status, {});
+        else {
+            // Mock distinct GitHub ID to verify that W3C ID lookup occurs
+            const githubId = value * 2;
+            interceptor.reply(200, { id: githubId });
+            nock('https://api.w3.org/')
+                .persist()
+                .get(`/users/connected/github/${githubId}`)
+                .reply(200, { id: value });
+        }
+    }
+
     for (const { charters, group, userIds } of Object.values(
         mockData.groupData
     )) {

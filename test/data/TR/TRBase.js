@@ -28,7 +28,6 @@ export const rules = {
             },
             {
                 data: 'copyrightExceptionFound',
-                errors: [],
             },
             {
                 data: 'copyrightExceptionNotFound',
@@ -42,11 +41,23 @@ export const rules = {
             },
             {
                 data: 'formerEditorParticipation',
-                errors: [],
             },
             {
                 data: 'formerEditorParticipationNoRationale',
                 errors: ['headers.editor-participation.not-participating'],
+            },
+            {
+                data: 'githubEditorParticipation',
+            },
+            {
+                data: 'githubEditorParticipationUserNotFound',
+                errors: [
+                    'headers.editor-participation.editor-github-unresolvable',
+                ],
+            },
+            {
+                data: 'githubEditorParticipationApiFailure',
+                errors: ['headers.editor-participation.editor-github-failed'],
             },
         ],
     },
