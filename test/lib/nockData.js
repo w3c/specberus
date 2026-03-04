@@ -464,6 +464,6 @@ export const nockData = {
     githubUsers: {
         fail: { status: 500 },
         notfound: { status: 404 },
-        test: 3439, // Matches default in doc-views/specBase
+        test: 3439, // Matches default in doc-views/specBase and samples
     },
 };
