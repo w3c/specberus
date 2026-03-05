@@ -693,28 +693,6 @@ export function buildCommonViewData(base) {
                     },
                 },
             },
-            githubEditorParticipationUserNotFound: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    editor: {
-                        ...base.dl.editor,
-                        id: '',
-                        github: 'notfound',
-                    },
-                },
-            },
-            githubEditorParticipationApiFailure: {
-                ...base,
-                dl: {
-                    ...base.dl,
-                    editor: {
-                        ...base.dl.editor,
-                        id: '',
-                        github: 'fail',
-                    },
-                },
-            },
         },
         shortname: {
             shortnameLowercaseFP: {

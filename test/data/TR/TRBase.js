@@ -49,16 +49,6 @@ export const rules = {
             {
                 data: 'githubEditorParticipation',
             },
-            {
-                data: 'githubEditorParticipationUserNotFound',
-                errors: [
-                    'headers.editor-participation.editor-github-unresolvable',
-                ],
-            },
-            {
-                data: 'githubEditorParticipationApiFailure',
-                errors: ['headers.editor-participation.editor-github-failed'],
-            },
         ],
     },
     style: {
