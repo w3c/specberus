@@ -53,6 +53,10 @@ $ npm start 3001
 
 ![running specberus](doc/running.jpg)
 
+### Environment variables
+
+#### `DEBUG`
+
 Set the environment variable `DEBUG` to run in _debug mode_ instead:
 
 ```bash
@@ -63,6 +67,8 @@ This modifies the behaviour of certain parts of the application to facilitate de
 eg, CSS and JS resources will _not_ be loaded in their minified/uglified forms
 (the web UI will load `bootstrap.css`, `bootstrap.js` and `jquery.js` instead of `bootstrap.min.css`, `bootstrap.min.js` and `jquery.min.js`).
 
+#### `BASE_URI`
+
 If Specberus is _not_ going to be served from the root directory of a domain, or if it will be served through a proxy,
 set also `BASE_URI` pointing to the public root URI of Specberus; eg
 
@@ -71,7 +77,17 @@ $ BASE_URI=https://spec-store.com/check/ npm start
 $ BASE_URI=/hostname/can/be/omitted/ npm start 88
 ```
 
-2. Auto reload when developing
+#### `GH_TOKEN`
+
+The `GH_TOKEN` environment variable allows specifying an access token to be used for GitHub API requests.
+Otherwise, GitHub [rate-limits](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api)
+unauthenticated requests to 60 per hour.
+
+```bash
+GH_TOKEN=github_pat_... npm start
+```
+
+### Auto reload when developing
 
 Run `npm run live` when developing. The app will automatically reload when changes happen.
 

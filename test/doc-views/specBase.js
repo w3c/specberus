@@ -548,6 +548,39 @@ export function buildCommonViewData(base) {
                     },
                 },
             },
+            githubEditor: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    editor: {
+                        ...base.dl.editor,
+                        id: '',
+                        github: 'test',
+                    },
+                },
+            },
+            githubEditorUserNotFound: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    editor: {
+                        ...base.dl.editor,
+                        id: '',
+                        github: 'notfound',
+                    },
+                },
+            },
+            githubEditorApiFailure: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    editor: {
+                        ...base.dl.editor,
+                        id: '',
+                        github: 'fail',
+                    },
+                },
+            },
             noHistoryLinkExist: {
                 ...base,
                 dl: {
@@ -646,6 +679,17 @@ export function buildCommonViewData(base) {
                         show: true,
                         id: '3440',
                         former: ' <span class="former"></span>',
+                    },
+                },
+            },
+            githubEditorParticipation: {
+                ...base,
+                dl: {
+                    ...base.dl,
+                    editor: {
+                        ...base.dl.editor,
+                        id: '',
+                        github: 'test',
                     },
                 },
             },

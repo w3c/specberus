@@ -4,8 +4,7 @@
         "checkJs": true,
         "module": "nodenext",
         "moduleResolution": "nodenext",
-        "noEmit": true,
-        "target": "es2021"
+        "noEmit": true
     },
     "exclude": ["public/**/*", "test/**/*"]
 }

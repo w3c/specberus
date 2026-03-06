@@ -184,6 +184,17 @@ export const rules = {
                 data: 'missingEditorId',
                 errors: ['headers.dl.editor-missing-id'],
             },
+            {
+                data: 'githubEditor',
+            },
+            {
+                data: 'githubEditorUserNotFound',
+                errors: ['headers.dl.editor-github-unresolvable'],
+            },
+            {
+                data: 'githubEditorApiFailure',
+                errors: ['headers.dl.editor-github-failed'],
+            },
         ],
         secno: [
             {
