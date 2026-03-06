@@ -86,6 +86,10 @@ export const rules = {
                 },
                 errors: ['headers.shortname.this-rescinds-shortname'],
             },
+            {
+                data: 'noThisLinkExist',
+                errors: ['generic.shortname.not-found'],
+            },
         ],
         dl: [
             {
