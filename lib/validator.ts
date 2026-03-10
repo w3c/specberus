@@ -294,7 +294,11 @@ export class Specberus {
             .catch(err => this.throw(err.toString()));
     }
 
-    error(rule: RuleBase, key: string, extra?: Record<string, string>) {
+    error(
+        rule: RuleBase | RuleMeta,
+        key: string,
+        extra?: Record<string, string>
+    ) {
         let name;
         if (typeof rule === 'string') name = rule;
         else name = rule.name;
@@ -318,7 +322,11 @@ export class Specberus {
             });
     }
 
-    warning(rule: RuleBase, key: string, extra?: Record<string, string>) {
+    warning(
+        rule: RuleBase | RuleMeta,
+        key: string,
+        extra?: Record<string, string>
+    ) {
         this.sink!.emit('warning', rule, {
             key,
             extra,
@@ -326,7 +334,11 @@ export class Specberus {
         });
     }
 
-    info(rule: RuleBase, key: string, extra?: Record<string, string>) {
+    info(
+        rule: RuleBase | RuleMeta,
+        key: string,
+        extra?: Record<string, string>
+    ) {
         this.sink!.emit('info', rule, {
             key,
             extra,
@@ -823,8 +835,14 @@ export class Specberus {
         const shortname = this.shortname || (await this.getShortname());
 
         if (!shortname) {
-            // FIXME: This never worked - would crash server due to no matching l10n string
-            this.error('shortname', 'not-found');
+            this.error(
+                {
+                    name: 'generic-shortname',
+                    section: 'front-matter',
+                    rule: 'docIDThisVersion',
+                },
+                'not-found'
+            );
             return;
         }
 
