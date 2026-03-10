@@ -130,7 +130,7 @@ export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
                 `[EXCEPTION] The document "${docTitle}" seems to be an Editor's Draft, which is not supported.`
             );
         } else if (
-            sr.$!('link[href^="https://www.w3.org/StyleSheets/TR/"]').length
+            sr.$('link[href^="https://www.w3.org/StyleSheets/TR/"]').length
         ) {
             let profileList = '';
             sortedProfiles.forEach(category => {

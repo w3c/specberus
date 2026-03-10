@@ -6,7 +6,7 @@ import type { Rule } from '../types.js';
 export function insertAfter(
     original: Rule[],
     anchor: string,
-    newRules: Rule[]
+    newRules: Rule | Rule[]
 ) {
     newRules = Array.isArray(newRules) ? newRules : [newRules];
     original = original.slice();

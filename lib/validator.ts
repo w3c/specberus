@@ -28,6 +28,7 @@ import type {
     ApiSpecificationVersion,
     RecMetadata,
     RuleMeta,
+    SpecberusConfig,
 } from './types.js';
 
 setLanguage('en_GB');
@@ -103,10 +104,11 @@ export const possibleMonths = [...months, ...abbrMonths].join('|');
 const separator = '[ -]{1}';
 
 export class Specberus {
-    $: CheerioAPI | undefined;
-    config: any | undefined;
+    $ = load('');
+    config: SpecberusConfig | undefined;
+    url!: string | null;
     version = pkg.version;
-    private $docDateEl: Cheerio<Element> | null | undefined;
+    private $docDateEl: Cheerio<Element> | undefined;
     private $sotdSection: Cheerio<Element> | null | undefined;
     private meta: Record<string, any> | undefined;
     /** Group objects returned by W3C API charters endpoint */
@@ -118,7 +120,6 @@ export class Specberus {
     private docDate: Date | null | undefined;
     private headers: HeaderMap | undefined;
     private isFirstPublic: any | undefined;
-    private url!: string | null;
     private shortname: string | undefined;
     private source!: any | null;
     private sink: EventEmitter | undefined;
@@ -128,8 +129,10 @@ export class Specberus {
     }
 
     clearCache() {
+        this.$ = load('');
+        this.config = undefined;
         this.docDate = null;
-        this.$docDateEl = null;
+        this.$docDateEl = undefined;
         this.$sotdSection = undefined;
         this.url = null;
         this.source = null;
@@ -140,8 +143,6 @@ export class Specberus {
         this.charters = undefined;
         this.headers = undefined;
         this.isFirstPublic = undefined;
-        this.$ = undefined;
-        // TODO: should this clear this.sink, this.config, this.meta?
     }
 
     extractMetadata(options: ExtractMetadataOptions) {
@@ -157,7 +158,6 @@ export class Specberus {
                 '[WARNING] No handler for event `exception` which to report system errors.'
             );
 
-        this.config = {};
         const meta: Record<string, any> = (this.meta = {});
         const errors: HandlerMessage[] = [];
         const warnings: HandlerMessage[] = [];
@@ -177,7 +177,7 @@ export class Specberus {
          */
         const doMetadataExtraction = (err: any, $?: CheerioAPI) => {
             if (err) return this.throw(err);
-            this.$ = $;
+            if ($) this.$ = $;
             const profile = options.additionalMetadata
                 ? profileAdditionalMetadata
                 : profileMetadata;
@@ -254,7 +254,7 @@ export class Specberus {
                  */
                 const doValidation = (err: any, $?: CheerioAPI) => {
                     if (err) return this.throw(err);
-                    this.$ = $;
+                    if ($) this.$ = $;
                     sink.emit('start-all', profile.name);
                     const total = (profile.rules || []).length;
                     let done = 0;
@@ -294,11 +294,7 @@ export class Specberus {
             .catch(err => this.throw(err.toString()));
     }
 
-    error(
-        rule: RuleBase | RuleMeta,
-        key: string,
-        extra?: Record<string, string>
-    ) {
+    error(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
         let name;
         if (typeof rule === 'string') name = rule;
         else name = rule.name;
@@ -325,7 +321,7 @@ export class Specberus {
     warning(
         rule: RuleBase | RuleMeta,
         key: string,
-        extra?: Record<string, string>
+        extra?: Record<string, any>
     ) {
         this.sink!.emit('warning', rule, {
             key,
@@ -334,11 +330,7 @@ export class Specberus {
         });
     }
 
-    info(
-        rule: RuleBase | RuleMeta,
-        key: string,
-        extra?: Record<string, string>
-    ) {
+    info(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
         this.sink!.emit('info', rule, {
             key,
             extra,
@@ -353,7 +345,7 @@ export class Specberus {
 
     checkSelector(sel: string, rule: RuleMeta, done: () => void) {
         try {
-            if (!this.$!(sel).length) this.error(rule, 'not-found');
+            if (!this.$(sel).length) this.error(rule, 'not-found');
         } catch (e) {
             this.throw(`Selector '${sel}' caused the validator to blow up.`);
         }
@@ -388,7 +380,7 @@ export class Specberus {
         const rex = new RegExp(
             `${Specberus.dateRegexStrCapturing}(?:, edited in place ${Specberus.dateRegexStrNonCapturing})?$`
         );
-        const $el = this.$!('#w3c-state');
+        const $el = this.$('#w3c-state');
 
         const matches = $el.length && this.norm($el.text()).match(rex);
         if (matches) {
@@ -413,8 +405,8 @@ export class Specberus {
         let endH2: Element | undefined;
         const $div = load('<div></div>', null, false)('div');
         const self = this;
-        const $nav = this.$!('nav#toc');
-        this.$!('h2').each((_, h2) => {
+        const $nav = this.$('nav#toc');
+        this.$('h2').each((_, h2) => {
             if (startH2) {
                 endH2 = h2;
                 return false;
@@ -422,7 +414,7 @@ export class Specberus {
             if (
                 // cspell:disable-next-line
                 /^Status [Oo]f [Tt]his [Dd]ocument$/.test(
-                    self.norm(this.$!(h2).text())
+                    self.norm(this.$(h2).text())
                 )
             ) {
                 startH2 = h2;
@@ -431,7 +423,7 @@ export class Specberus {
         if (!startH2) this.$sotdSection = null;
         else {
             let started = false;
-            this.$!(startH2)
+            this.$(startH2)
                 .parent()
                 .children()
                 .each((_, el) => {
@@ -469,11 +461,11 @@ export class Specberus {
 
         if (!$dl && typeof this.headers !== 'undefined') return this.headers;
 
-        $dl = $dl || this.$!('body div.head dl');
+        $dl = $dl || this.$('body div.head dl');
 
         if ($dl && $dl.length) {
             $dl.find('dt').each((idx, dt) => {
-                const $dt = this.$!(dt);
+                const $dt = this.$(dt);
                 const txt = this.norm($dt.text())
                     .replace(':', '')
                     .toLowerCase()
@@ -604,7 +596,7 @@ export class Specberus {
         // For rec-track
         if (ids.length === 0 && $sotdLinks && $sotdLinks.length > 0) {
             $sotdLinks.each((_, el) => {
-                const $el = this.$!(el);
+                const $el = this.$(el);
                 const href = $el.attr('href')!;
                 const text = this.norm($el.text());
                 const found: Record<string, boolean> = {};
@@ -697,7 +689,7 @@ export class Specberus {
 
         if (ids.length === 0 && $sotdLinks && $sotdLinks.length > 0) {
             $sotdLinks.each((_, el) => {
-                const $el = this.$!(el);
+                const $el = this.$(el);
                 const href = $el.attr('href')!;
                 const text = this.norm($el.text());
                 const found: Record<string, boolean> = {};

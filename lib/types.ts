@@ -1,5 +1,43 @@
 import type { Specberus } from './validator.js';
 
+type Status =
+    | 'FPWD'
+    | 'WD'
+    | 'CR'
+    | 'CRD'
+    | 'REC'
+    | 'DISC'
+    | 'DNOTE'
+    | 'NOTE'
+    | 'STMT'
+    | 'DRY'
+    | 'CRY'
+    | 'CRYD'
+    | 'RY'
+    | 'SUBM'
+    | 'MEM-SUBM';
+
+type SubmissionType = 'member';
+
+type Track = 'Note' | 'Recommendation' | 'Registry';
+
+// TODO: add properties and narrow types
+export interface SpecberusConfig {
+    /** Candidate Recommendation type is only defined for CR/CRD statuses */
+    crType?: 'Draft' | 'Snapshot';
+    /** Candidate Registry type is only defined for CRY/CRYD statuses */
+    cryType?: 'Draft' | 'Snapshot';
+    editorial?: 'true';
+    longStatus: string;
+    rescinds?: boolean;
+    status: Status;
+    styleSheet: string;
+    /** Submission type is only defined for MEM-SUBM status */
+    submissionType?: SubmissionType;
+    track: Track;
+    validation?: 'no-validation' | 'simple-validation' | 'recursive';
+}
+
 // TODO: ideally make this more precise
 export type HandlerMessage = Record<string, string | undefined>;
 

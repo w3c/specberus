@@ -12,7 +12,7 @@ export const check: RuleCheckFunction<{ title: string } | void> = (
     sr,
     done
 ) => {
-    const $title = sr.$!('body div.head h1').first();
+    const $title = sr.$('body div.head h1').first();
     if (!$title.length) return done();
 
     $title.html($title.html()!.replace(/:<br>/g, ': ').replace(/<br>/g, ' - '));
