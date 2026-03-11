@@ -18,7 +18,7 @@
     "express": "5.2.1",
     "express-fileupload": "1.5.2",
     "express-handlebars": "8.0.6",
-    "file-type": "21.3.0",
+    "file-type": "21.3.1",
     "insafe": "0.5.1",
     "metaviewport-parser": "0.3.0",
     "morgan": "1.10.1",
