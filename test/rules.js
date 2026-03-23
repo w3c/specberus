@@ -11,12 +11,7 @@ import { Specberus } from '../lib/validator.js';
 import { goodDocuments } from './data/goodDocuments.js';
 import { samples } from './samples.js';
 import { app } from './lib/testserver.js';
-import {
-    buildBadTestCases,
-    cleanupMocks,
-    equivalentArray,
-    setupMocks,
-} from './lib/utils.js';
+import { buildBadTestCases, cleanupMocks, setupMocks } from './lib/utils.js';
 
 /**
  * Test the rules.
@@ -91,103 +86,16 @@ function compareMetadata(file, expectedObject) {
                         );
                 }
 
-                chai(specberus)
-                    .to.have.property('meta')
-                    .to.have.property('profile')
-                    .equal(
-                        expectedObject.profile,
-                        'Expected meta.profile to match'
-                    );
-                chai(specberus)
-                    .to.have.property('meta')
-                    .to.have.property('title')
-                    .equal(
-                        expectedObject.title,
-                        'Expected meta.title to match'
-                    );
-                chai(specberus)
-                    .to.have.property('meta')
-                    .to.have.property('docDate')
-                    .equal(
-                        expectedObject.docDate,
-                        'Expected meta.docDate to match'
-                    );
-                chai(specberus)
-                    .to.have.property('meta')
-                    .to.have.property('thisVersion')
-                    .equal(
-                        expectedObject.thisVersion,
-                        'Expected meta.thisVersion to match'
-                    );
-                chai(specberus)
-                    .to.have.property('meta')
-                    .to.have.property('latestVersion')
-                    .equal(
-                        expectedObject.latestVersion,
-                        'Expected meta.latestVersion to match'
-                    );
-                chai(specberus)
-                    .to.have.property('meta')
-                    .to.have.property('editorNames');
-                chai(specberus.meta.editorNames).to.satisfy(
-                    found => equivalentArray(found, expectedObject.editorNames),
-                    'Expected meta.editorNames to match'
-                );
-                chai(specberus)
-                    .to.have.property('meta')
-                    .to.have.property('delivererIDs');
-                chai(specberus.meta.delivererIDs).to.satisfy(
-                    found =>
-                        equivalentArray(found, expectedObject.delivererIDs),
-                    'Expected meta.delivererIDs to match'
-                );
-                chai(specberus)
-                    .to.have.property('meta')
-                    .to.have.property('editorIDs');
-                chai(specberus.meta.editorIDs).to.satisfy(
-                    found => equivalentArray(found, expectedObject.editorIDs),
-                    'Expected meta.editorIDs to match'
-                );
-                chai(specberus)
-                    .to.have.property('meta')
-                    .to.have.property('informative')
-                    .equal(
-                        expectedObject.informative,
-                        'Expected meta.informative to match'
-                    );
-                chai(specberus)
-                    .to.have.property('meta')
-                    .to.have.property('rectrack')
-                    .equal(
-                        expectedObject.rectrack,
-                        'Expected meta.rectrack to match'
-                    );
-                chai(specberus)
-                    .to.have.property('meta')
-                    .to.have.property('history')
-                    .equal(
-                        expectedObject.history,
-                        'Expected meta.history to match'
-                    );
-                const optionalProperties = [
-                    'process',
-                    'previousVersion',
-                    'editorsDraft',
-                    'implementationFeedbackDue',
-                    'prReviewsDue',
-                    'implementationReport',
-                    'errata',
-                ];
-                optionalProperties.forEach(p => {
-                    if (
-                        Object.prototype.hasOwnProperty.call(expectedObject, p)
-                    ) {
-                        chai(specberus)
-                            .to.have.property('meta')
-                            .to.have.property(p)
-                            .equal(expectedObject[p]);
-                    }
-                });
+                for (const [key, value] of Object.entries(expectedObject)) {
+                    if (key === 'errors' || key === 'file') continue;
+                    let assertion = chai(specberus)
+                        .to.have.property('meta')
+                        .to.have.property(key);
+
+                    if (Array.isArray(value)) assertion = assertion.deep;
+                    assertion.equal(value, `Expected meta.${key} to match`);
+                }
+
                 done();
             } catch (error) {
                 done(error);
