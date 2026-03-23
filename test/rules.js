@@ -150,6 +150,46 @@ const compareMetadata = function (url, file, expectedObject) {
     });
 };
 
+function expectMetadataFailure(file, expectedErrors) {
+    const path = `test/docs/failures/${file}.html`;
+    it(`Should fail metadata extraction for ${path}`, done => {
+        const specberus = new Specberus();
+        const handler = new Sink();
+        // Intentionally throw only on exception, _not_ on error
+        handler.on('exception', data => {
+            throw new Error(data);
+        });
+        handler.on('end-all', result => {
+            try {
+                chai(result).to.have.property('success', false);
+                chai(result)
+                    .to.have.property('errors')
+                    .satisfy(
+                        errors => {
+                            if (errors.length !== expectedErrors.length)
+                                return false;
+                            return expectedErrors.every((expected, i) => {
+                                return Object.entries(expected).every(
+                                    ([key, value]) => {
+                                        return (
+                                            key !== 'file' &&
+                                            errors[i][key] === value
+                                        );
+                                    }
+                                );
+                            });
+                        },
+                        `Errors should contain expected properties:\n${JSON.stringify(expectedErrors, null, '  ')}`
+                    );
+                done();
+            } catch (error) {
+                done(error);
+            }
+        });
+        specberus.extractMetadata({ events: handler, file: path });
+    });
+}
+
 describe('Basics', () => {
     const specberus = new Specberus();
 
@@ -177,6 +217,18 @@ describe('Basics', () => {
         samples.forEach(sample => {
             compareMetadata(null, sample.file, sample);
         });
+
+        const failures = {
+            '2021-wd-no-this-link': [
+                {
+                    name: 'generic.shortname',
+                    section: 'front-matter',
+                    rule: 'docIDThisVersion',
+                },
+            ],
+        };
+        for (const [basename, expectedErrors] of Object.entries(failures))
+            expectMetadataFailure(basename, expectedErrors);
     });
 
     describe('Method "validate"', () => {
