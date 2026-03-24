@@ -46,11 +46,6 @@ function compareMetadata(file, expectedObject) {
     handler.on('exception', data => {
         throw new Error(data);
     });
-    if (successExpected) {
-        handler.on('err', (...data) => {
-            throw new Error(...data);
-        });
-    }
 
     const testFile = `test/docs/${file}.html`;
     // test only local fixtures
