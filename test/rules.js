@@ -1,3 +1,5 @@
+import { nextTick } from 'process';
+
 // External modules:
 import { expect as chai } from 'chai';
 import expect from 'expect.js';
@@ -56,28 +58,23 @@ function compareMetadata(file, expectedObject) {
 
     it(`Should detect metadata for ${testFile}`, done => {
         handler.on('end-all', result => {
-            try {
+            // Use nextTick to prevent assertion failures from
+            // bubbling up through final check and hanging
+            nextTick(() => {
                 chai(result).to.have.property('success').equal(successExpected);
                 if (!successExpected) {
                     chai(result)
                         .to.have.property('errors')
+                        .lengthOf(expectedObject.errors.length)
                         .satisfy(
-                            errors => {
-                                if (
-                                    errors.length !==
-                                    expectedObject.errors.length
-                                )
-                                    return false;
-                                return expectedObject.errors.every(
-                                    (expected, i) => {
-                                        return Object.entries(expected).every(
-                                            ([key, value]) => {
-                                                return errors[i][key] === value;
-                                            }
-                                        );
-                                    }
-                                );
-                            },
+                            errors =>
+                                expectedObject.errors.every((expected, i) => {
+                                    return Object.entries(expected).every(
+                                        ([key, value]) => {
+                                            return errors[i][key] === value;
+                                        }
+                                    );
+                                }),
                             `Errors should contain expected properties:\n${JSON.stringify(
                                 expectedObject.errors,
                                 null,
@@ -97,9 +94,7 @@ function compareMetadata(file, expectedObject) {
                 }
 
                 done();
-            } catch (error) {
-                done(error);
-            }
+            });
         });
         specberus.extractMetadata(opts);
     });
