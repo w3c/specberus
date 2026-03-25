@@ -59,19 +59,6 @@ export const buildBadTestCases = async () => {
 };
 
 /**
- * Compare two arrays of values and check that they're equal.
- *
- * @param {Array} a1 - One array.
- * @param {Array} a2 - The other array.
- * @returns {Boolean} whether the two arrays contain exactly the same values.
- */
-
-export const equivalentArray = function (a1, a2) {
-    if (!a1 || !a2 || a1.length !== a2.length) return false;
-    return JSON.stringify(a1) === JSON.stringify(a2);
-};
-
-/**
  * @param {Request} req
  */
 function warnOnNonLocalRequest(req) {

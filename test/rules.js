@@ -1,3 +1,5 @@
+import { nextTick } from 'process';
+
 // External modules:
 import { expect as chai } from 'chai';
 import expect from 'expect.js';
@@ -11,12 +13,7 @@ import { Specberus } from '../lib/validator.js';
 import { goodDocuments } from './data/goodDocuments.js';
 import { samples } from './samples.js';
 import { app } from './lib/testserver.js';
-import {
-    buildBadTestCases,
-    cleanupMocks,
-    equivalentArray,
-    setupMocks,
-} from './lib/utils.js';
+import { buildBadTestCases, cleanupMocks, setupMocks } from './lib/utils.js';
 
 /**
  * Test the rules.
@@ -37,156 +34,64 @@ const testProfile = process.env.PROFILE;
 /**
  * Assert that metadata detected in a spec is equal to the expected values.
  *
- * @param {String} url - public URL of a spec.
  * @param {String} file - name of local file containing a spec (without path and without ".html" suffix).
  * @param {Object} expectedObject - values that are expected to be found.
  */
 
-const compareMetadata = function (url, file, expectedObject) {
+function compareMetadata(file, expectedObject) {
     const specberus = new Specberus();
-    const handler = new Sink(data => {
+    const successExpected = !('errors' in expectedObject);
+
+    const handler = new Sink();
+    handler.on('exception', data => {
         throw new Error(data);
     });
-    const thisFile = file ? `test/docs/${file}.html` : null;
-    // test only local fixtures
-    const opts = { events: handler, file: thisFile };
 
-    it(`Should detect metadata for ${thisFile}`, done => {
-        handler.on('end-all', () => {
-            chai(specberus)
-                .to.have.property('meta')
-                .to.have.property('profile')
-                .equal(
-                    expectedObject.profile,
-                    'Expected meta.profile to match'
-                );
-            chai(specberus)
-                .to.have.property('meta')
-                .to.have.property('title')
-                .equal(expectedObject.title, 'Expected meta.title to match');
-            chai(specberus)
-                .to.have.property('meta')
-                .to.have.property('docDate')
-                .equal(
-                    expectedObject.docDate,
-                    'Expected meta.docDate to match'
-                );
-            chai(specberus)
-                .to.have.property('meta')
-                .to.have.property('thisVersion')
-                .equal(
-                    expectedObject.thisVersion,
-                    'Expected meta.thisVersion to match'
-                );
-            chai(specberus)
-                .to.have.property('meta')
-                .to.have.property('latestVersion')
-                .equal(
-                    expectedObject.latestVersion,
-                    'Expected meta.latestVersion to match'
-                );
-            chai(specberus)
-                .to.have.property('meta')
-                .to.have.property('editorNames');
-            chai(specberus.meta.editorNames).to.satisfy(
-                found => equivalentArray(found, expectedObject.editorNames),
-                'Expected meta.editorNames to match'
-            );
-            chai(specberus)
-                .to.have.property('meta')
-                .to.have.property('delivererIDs');
-            chai(specberus.meta.delivererIDs).to.satisfy(
-                found => equivalentArray(found, expectedObject.delivererIDs),
-                'Expected meta.delivererIDs to match'
-            );
-            chai(specberus)
-                .to.have.property('meta')
-                .to.have.property('editorIDs');
-            chai(specberus.meta.editorIDs).to.satisfy(
-                found => equivalentArray(found, expectedObject.editorIDs),
-                'Expected meta.editorIDs to match'
-            );
-            chai(specberus)
-                .to.have.property('meta')
-                .to.have.property('informative')
-                .equal(
-                    expectedObject.informative,
-                    'Expected meta.informative to match'
-                );
-            chai(specberus)
-                .to.have.property('meta')
-                .to.have.property('rectrack')
-                .equal(
-                    expectedObject.rectrack,
-                    'Expected meta.rectrack to match'
-                );
-            chai(specberus)
-                .to.have.property('meta')
-                .to.have.property('history')
-                .equal(
-                    expectedObject.history,
-                    'Expected meta.history to match'
-                );
-            const optionalProperties = [
-                'process',
-                'previousVersion',
-                'editorsDraft',
-                'implementationFeedbackDue',
-                'prReviewsDue',
-                'implementationReport',
-                'errata',
-            ];
-            optionalProperties.forEach(p => {
-                if (Object.prototype.hasOwnProperty.call(expectedObject, p)) {
-                    chai(specberus)
-                        .to.have.property('meta')
-                        .to.have.property(p)
-                        .equal(expectedObject[p]);
+    const testFile = `test/docs/${file}.html`;
+    // test only local fixtures
+    const opts = { events: handler, file: testFile };
+
+    it(`Should detect metadata for ${testFile}`, done => {
+        handler.on('end-all', result => {
+            // Use nextTick to prevent assertion failures from
+            // bubbling up through final check and hanging
+            nextTick(() => {
+                chai(result).to.have.property('success').equal(successExpected);
+                if (!successExpected) {
+                    chai(result)
+                        .to.have.property('errors')
+                        .lengthOf(expectedObject.errors.length)
+                        .satisfy(
+                            errors =>
+                                expectedObject.errors.every((expected, i) => {
+                                    return Object.entries(expected).every(
+                                        ([key, value]) => {
+                                            return errors[i][key] === value;
+                                        }
+                                    );
+                                }),
+                            `Errors should contain expected properties:\n${JSON.stringify(
+                                expectedObject.errors,
+                                null,
+                                '  '
+                            )}`
+                        );
                 }
+
+                for (const [key, value] of Object.entries(expectedObject)) {
+                    if (key === 'errors' || key === 'file') continue;
+                    let assertion = chai(specberus)
+                        .to.have.property('meta')
+                        .to.have.property(key);
+
+                    if (Array.isArray(value)) assertion = assertion.deep;
+                    assertion.equal(value, `Expected meta.${key} to match`);
+                }
+
+                done();
             });
-            done();
         });
         specberus.extractMetadata(opts);
-    });
-};
-
-function expectMetadataFailure(file, expectedErrors) {
-    const path = `test/docs/failures/${file}.html`;
-    it(`Should fail metadata extraction for ${path}`, done => {
-        const specberus = new Specberus();
-        const handler = new Sink();
-        // Intentionally throw only on exception, _not_ on error
-        handler.on('exception', data => {
-            throw new Error(data);
-        });
-        handler.on('end-all', result => {
-            try {
-                chai(result).to.have.property('success', false);
-                chai(result)
-                    .to.have.property('errors')
-                    .satisfy(
-                        errors => {
-                            if (errors.length !== expectedErrors.length)
-                                return false;
-                            return expectedErrors.every((expected, i) => {
-                                return Object.entries(expected).every(
-                                    ([key, value]) => {
-                                        return (
-                                            key !== 'file' &&
-                                            errors[i][key] === value
-                                        );
-                                    }
-                                );
-                            });
-                        },
-                        `Errors should contain expected properties:\n${JSON.stringify(expectedErrors, null, '  ')}`
-                    );
-                done();
-            } catch (error) {
-                done(error);
-            }
-        });
-        specberus.extractMetadata({ events: handler, file: path });
     });
 }
 
@@ -204,31 +109,9 @@ describe('Basics', () => {
             done();
         });
 
-        // if (!process || !process.env || (process.env.TRAVIS !== 'true' && !process.env.SKIP_NETWORK)) {
-        //     for(i in samples) {
-        //         compareMetadata(samples[i].url, null, samples[i]);
-        //     }
-        // }
-        // else {
-        //     for(i in samples) {
-        //         compareMetadata(null, samples[i].file, samples[i]);
-        //     }
-        // }
         samples.forEach(sample => {
-            compareMetadata(null, sample.file, sample);
+            compareMetadata(sample.file, sample);
         });
-
-        const failures = {
-            '2021-wd-no-this-link': [
-                {
-                    name: 'generic.shortname',
-                    section: 'front-matter',
-                    rule: 'docIDThisVersion',
-                },
-            ],
-        };
-        for (const [basename, expectedErrors] of Object.entries(failures))
-            expectMetadataFailure(basename, expectedErrors);
     });
 
     describe('Method "validate"', () => {

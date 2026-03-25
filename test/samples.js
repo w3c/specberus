@@ -9,14 +9,11 @@ export const samples = [
         informative: false,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [45211],
-        patentPolicy: 'https://www.w3.org/policies/patent-policy/',
-        charters: ['https://www.w3.org/2021/02/webperf.html'],
         thisVersion: 'https://www.w3.org/TR/2021/WD-hr-foo-time-2-20211104/',
         latestVersion: 'https://www.w3.org/TR/hr-foo-time-2/',
         history: 'https://www.w3.org/standards/history/hr-foo-time-2',
         rectrack: 'Recommendation',
         editorsDraft: 'https://w3c.github.io/hr-foo-time/',
-        updated: false,
     },
     {
         file: '2021-wd',
@@ -33,9 +30,28 @@ export const samples = [
         history: 'https://www.w3.org/standards/history/hr-time-2',
         rectrack: 'Recommendation',
         editorsDraft: 'https://w3c.github.io/hr-time/',
-        updated: false,
-        charters: ['https://www.w3.org/2021/02/webperf.html'],
-        patentPolicy: 'https://www.w3.org/policies/patent-policy/',
+    },
+    {
+        file: 'failures/2021-wd-no-this-link',
+        profile: 'WD',
+        title: 'Foo Time',
+        docDate: '2021-11-4',
+        editorIDs: [3439],
+        editorNames: ['George Herald'],
+        informative: false,
+        process: 'https://www.w3.org/policies/process/20250818/',
+        delivererIDs: [45211],
+        // thisVersion, latestVersion intentionally omitted due to failure
+        history: 'https://www.w3.org/standards/history/hr-time-2',
+        rectrack: 'Recommendation',
+        editorsDraft: 'https://w3c.github.io/hr-time/',
+        errors: [
+            {
+                name: 'generic.shortname',
+                section: 'front-matter',
+                rule: 'docIDThisVersion',
+            },
+        ],
     },
     {
         file: '2021-wd-github',
@@ -52,9 +68,6 @@ export const samples = [
         history: 'https://www.w3.org/standards/history/hr-time-2',
         rectrack: 'Recommendation',
         editorsDraft: 'https://w3c.github.io/hr-time/',
-        updated: false,
-        charters: ['https://www.w3.org/2021/02/webperf.html'],
-        patentPolicy: 'https://www.w3.org/policies/patent-policy/',
     },
     {
         file: '2021-wd-shortname-change',
@@ -72,9 +85,6 @@ export const samples = [
         history: 'https://www.w3.org/standards/history/new-name-3',
         editorsDraft: 'https://w3c.github.io/foo-time/',
         sameWorkAs: 'https://www.w3.org/TR/hr-time-3/',
-        updated: false,
-        patentPolicy: 'https://www.w3.org/policies/patent-policy/',
-        charters: ['https://www.w3.org/2021/02/webperf.html'],
     },
     {
         file: '2021-cr',
@@ -88,14 +98,11 @@ export const samples = [
         informative: false,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [45211],
-        patentPolicy: 'https://www.w3.org/policies/patent-policy/',
-        charters: ['https://www.w3.org/2021/02/webperf.html'],
         thisVersion: 'https://www.w3.org/TR/2021/CR-hr-time-2-20211104/',
         latestVersion: 'https://www.w3.org/TR/hr-time-2/',
         history: 'https://www.w3.org/standards/history/hr-time-2',
         rectrack: 'Recommendation',
         editorsDraft: 'https://w3c.github.io/hr-time/',
-        updated: false,
     },
     {
         file: '2021-crd',
@@ -108,14 +115,11 @@ export const samples = [
         informative: false,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [45211],
-        charters: ['https://www.w3.org/2021/02/webperf.html'],
-        patentPolicy: 'https://www.w3.org/policies/patent-policy/',
         thisVersion: 'https://www.w3.org/TR/2021/CRD-hr-time-2-20211104/',
         latestVersion: 'https://www.w3.org/TR/hr-time-2/',
         history: 'https://www.w3.org/standards/history/hr-time-2',
         rectrack: 'Recommendation',
         editorsDraft: 'https://w3c.github.io/hr-time/',
-        updated: false,
     },
     {
         file: '2021-rec',
@@ -131,14 +135,11 @@ export const samples = [
         informative: false,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [32061],
-        charters: ['https://www.w3.org/2020/12/css-wg-charter.html'],
-        patentPolicy: 'https://www.w3.org/policies/patent-policy/',
         thisVersion: 'https://www.w3.org/TR/2022/REC-css-color-3-20220118/',
         latestVersion: 'https://www.w3.org/TR/css-color-3/',
         history: 'https://www.w3.org/standards/history/css-color-3',
         rectrack: 'Recommendation',
         editorsDraft: 'https://drafts.csswg.org/css-color-3/',
-        updated: false,
     },
     {
         file: '2021-dnote',
@@ -150,10 +151,6 @@ export const samples = [
         informative: true,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [32113],
-        patentPolicy: 'https://www.w3.org/Consortium/Patent-Policy-20170801/',
-        charters: [
-            'https://www.w3.org/International/groups/wg/charter-2019-2021.html',
-        ],
         thisVersion:
             'https://www.w3.org/TR/2021/DNOTE-predefined-counter-styles-20211104/',
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
@@ -161,7 +158,6 @@ export const samples = [
             'https://www.w3.org/standards/history/predefined-counter-styles',
         rectrack: 'Note',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
-        updated: false,
     },
     {
         file: '2021-note',
@@ -173,10 +169,6 @@ export const samples = [
         informative: true,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [32113],
-        patentPolicy: 'https://www.w3.org/Consortium/Patent-Policy-20170801/',
-        charters: [
-            'https://www.w3.org/International/groups/wg/charter-2019-2021.html',
-        ],
         thisVersion:
             'https://www.w3.org/TR/2021/NOTE-predefined-counter-styles-20211104/',
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
@@ -184,7 +176,6 @@ export const samples = [
             'https://www.w3.org/standards/history/predefined-counter-styles',
         rectrack: 'Note',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
-        updated: false,
     },
     {
         file: '2021-stmt',
@@ -196,10 +187,6 @@ export const samples = [
         informative: false,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [32113],
-        patentPolicy: 'https://www.w3.org/Consortium/Patent-Policy-20170801/',
-        charters: [
-            'https://www.w3.org/International/groups/wg/charter-2019-2021.html',
-        ],
         thisVersion:
             'https://www.w3.org/TR/2021/STMT-predefined-counter-styles-20211104/',
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
@@ -207,7 +194,6 @@ export const samples = [
             'https://www.w3.org/standards/history/predefined-counter-styles',
         rectrack: 'Note',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
-        updated: false,
     },
     {
         file: '2021-dry',
@@ -219,10 +205,6 @@ export const samples = [
         informative: false,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [32113],
-        charters: [
-            'https://www.w3.org/International/groups/wg/charter-2019-2021.html',
-        ],
-        patentPolicy: 'https://www.w3.org/Consortium/Patent-Policy-20170801/',
         thisVersion:
             'https://www.w3.org/TR/2021/DRY-predefined-counter-styles-20211104/',
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
@@ -230,7 +212,6 @@ export const samples = [
             'https://www.w3.org/standards/history/predefined-counter-styles',
         rectrack: 'Registry',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
-        updated: false,
     },
     {
         file: '2021-cry',
@@ -242,10 +223,6 @@ export const samples = [
         informative: false,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [32113],
-        patentPolicy: 'https://www.w3.org/Consortium/Patent-Policy-20170801/',
-        charters: [
-            'https://www.w3.org/International/groups/wg/charter-2019-2021.html',
-        ],
         thisVersion:
             'https://www.w3.org/TR/2021/CRY-predefined-counter-styles-20211104/',
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
@@ -253,7 +230,6 @@ export const samples = [
             'https://www.w3.org/standards/history/predefined-counter-styles',
         rectrack: 'Registry',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
-        updated: false,
     },
     {
         file: '2021-cryd',
@@ -265,10 +241,6 @@ export const samples = [
         informative: false,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [32113],
-        charters: [
-            'https://www.w3.org/International/groups/wg/charter-2019-2021.html',
-        ],
-        patentPolicy: 'https://www.w3.org/Consortium/Patent-Policy-20170801/',
         thisVersion:
             'https://www.w3.org/TR/2021/CRYD-predefined-counter-styles-20211104/',
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
@@ -276,7 +248,6 @@ export const samples = [
             'https://www.w3.org/standards/history/predefined-counter-styles',
         rectrack: 'Registry',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
-        updated: false,
     },
     {
         file: '2021-ry',
@@ -288,10 +259,6 @@ export const samples = [
         informative: false,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [32113],
-        charters: [
-            'https://www.w3.org/International/groups/wg/charter-2019-2021.html',
-        ],
-        patentPolicy: 'https://www.w3.org/Consortium/Patent-Policy-20170801/',
         thisVersion:
             'https://www.w3.org/TR/2021/RY-predefined-counter-styles-20211104/',
         latestVersion: 'https://www.w3.org/TR/predefined-counter-styles/',
@@ -299,6 +266,5 @@ export const samples = [
             'https://www.w3.org/standards/history/predefined-counter-styles',
         rectrack: 'Registry',
         editorsDraft: 'https://w3c.github.io/predefined-counter-styles/',
-        updated: false,
     },
 ];
