@@ -41,8 +41,7 @@ export const samples = [
         informative: false,
         process: 'https://www.w3.org/policies/process/20250818/',
         delivererIDs: [45211],
-        // thisVersion intentionally omitted due to failure
-        latestVersion: 'https://www.w3.org/TR/undefined/',
+        // thisVersion, latestVersion intentionally omitted due to failure
         history: 'https://www.w3.org/standards/history/hr-time-2',
         rectrack: 'Recommendation',
         editorsDraft: 'https://w3c.github.io/hr-time/',
