@@ -124,7 +124,7 @@ const processRequest = async (
     try {
         options = await processParams(params, undefined, {
             required: shouldValidate ? ['profile'] : [],
-            forbidden: ['document', 'source'],
+            forbidden: ['source'],
         });
     } catch (err) {
         return sendJSONresult(res, [err.toString()]);
