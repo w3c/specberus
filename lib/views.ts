@@ -2,7 +2,11 @@ import type { Express, Request, Response } from 'express';
 import handlebars from 'express-handlebars';
 import { escape } from 'querystring';
 
-import type { RulesProfile, RulesSection } from './types.js';
+import type {
+    GenericRulesSection,
+    RulesProfile,
+    RulesSection,
+} from './types.js';
 import { isRuleTrack } from './util.js';
 
 import pkg from '../package.json' with { type: 'json' };
@@ -84,9 +88,11 @@ function listProfiles() {
 export const sortedProfiles = listProfiles();
 
 // TODO(tripu): Document.
-// TODO(kgf): Ideally, this should check for inconsistent rules.json state and report error
-function formatRules(sections: RulesSection[]) {
-    const common = rules['*'];
+function formatRules(sections: Record<string, RulesSection>) {
+    const commonSections = rules['*'].sections as Record<
+        string,
+        GenericRulesSection
+    >;
     const total = [];
     for (const s in sections) {
         let result = `<h3 id ="${s}"><a href="#${s}">${sections[s].name}</a></h3>
@@ -96,10 +102,7 @@ function formatRules(sections: RulesSection[]) {
                 // Common rule, with no parameters
                 result += `<li id="${r}">
                     <a href="#${r}">&sect;</a>
-                    ${
-                        // @ts-expect-error (7053) This code assumes common.sections is consistently populated
-                        common.sections[s].rules[r]
-                    }
+                    ${commonSections[s].rules[r]}
                     </li>`;
             } else if (typeof rValue === 'string') {
                 // Specific rule
@@ -110,8 +113,7 @@ function formatRules(sections: RulesSection[]) {
             } else if (typeof rValue === 'object') {
                 // Array (common rule with parameters)
                 const values = rValue;
-                // @ts-expect-error (7053) This code assumes common.sections is consistently populated
-                let template = common.sections[s].rules[r];
+                let template = commonSections[s].rules[r];
                 for (let p = 0; p < values.length; p += 1)
                     template = template.replace(
                         new RegExp(`@{param${p + 1}}`, 'g'),

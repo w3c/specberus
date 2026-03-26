@@ -1,8 +1,8 @@
 // for CR and REC.
 
-import type { RuleCheckFunction } from '../../types.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'sotd.deployment',
     section: 'document-status',
     rule: 'deployment',

@@ -1,4 +1,4 @@
-import type { RuleCheckFunction } from "../../types.js";
+import type { RuleCheckFunction } from '../../types.js';
 
 const self = {
     name: 'links.reliability',
@@ -23,7 +23,7 @@ const unreliableServices = [
 export const check: RuleCheckFunction = (sr, done) => {
     sr.$('a').each((_, el) => {
         const $el = sr.$(el);
-        const href = $el.attr("href");
+        const href = $el.attr('href');
         if (!href) return;
 
         let url;

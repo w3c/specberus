@@ -2,9 +2,9 @@
  * Check the presence of the actual TOC (<code>&lt;ol class="toc"&gt;</code>) inside the main navigation element.
  */
 
-import type { RuleCheckFunction } from "../../types.js";
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'headers.ol-toc',
     section: 'navigation',
     // @TODO: update this selector... when the rule is added to the JSON.
@@ -19,4 +19,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     if (!$toc.length) sr.warning(self, 'not-found');
 
     done();
-}
+};

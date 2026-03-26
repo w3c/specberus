@@ -8,7 +8,7 @@
 import type { Cheerio } from 'cheerio';
 import type { Specberus } from '../../validator.js';
 import type { Element } from 'domhandler';
-import type { RuleCheckFunction } from '../../types.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
 function findRscndRationale($candidates: Cheerio<Element>, sr: Specberus) {
     const v = sr.config!.rescinds === true ? 'rescind' : '';
@@ -29,7 +29,7 @@ function findRscndRationale($candidates: Cheerio<Element>, sr: Specberus) {
     }
 }
 
-const self = {
+const self: RuleMeta = {
     name: 'sotd.obsl-rescind',
     section: 'document-status',
     rule: 'rescindsRationale',
