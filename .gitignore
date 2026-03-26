@@ -29,3 +29,7 @@ scratch
 
 .nyc_output
 .eslintcache
+
+# TS build output
+app.js
+lib/**/*.js

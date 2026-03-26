@@ -114,6 +114,7 @@
         "test/**/*.html",
         "package-lock.json",
         "tsconfig.json",
+        "lib/**/*.js",
         "node_modules/**",
         "design/**"
     ],
