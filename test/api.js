@@ -2,20 +2,19 @@
  * Test the REST API.
  */
 
-// Native packages:
-// External packages:
-import * as chai from 'chai';
-import chaiAsPromised from '@rvagg/chai-as-promised';
-import express from 'express';
-import fileUpload from 'express-fileupload';
 import http from 'http';
 import { join } from 'path';
+
+import chaiAsPromised from '@rvagg/chai-as-promised';
+import * as chai from 'chai';
+import express from 'express';
+import fileUpload from 'express-fileupload';
 import superagent from 'superagent';
+
 import { setUp } from '../lib/api.js';
-import { importJSON } from '../lib/util.js';
 import { cleanupMocks, setupMocks } from './lib/utils.js';
-// Internal packages:
-const meta = importJSON('../package.json', import.meta.url);
+import meta from '../package.json' with { type: 'json' };
+
 const { expect } = chai;
 
 // Settings:
