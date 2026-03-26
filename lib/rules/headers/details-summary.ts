@@ -1,9 +1,8 @@
 /* check if the document's headers link are in */
 
-import type { RuleCheckFunction } from "../../types.js";
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-
-const self = {
+const self: RuleMeta = {
     name: 'headers.details-summary',
     section: 'front-matter',
     rule: 'docIDFormat',
@@ -39,4 +38,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     }
 
     return done();
-}
+};

@@ -1,6 +1,6 @@
-import type { RuleCheckFunction } from "../../types.js";
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'headers.hr',
     section: 'front-matter',
     rule: 'hrAfterCopyright',
@@ -17,4 +17,4 @@ export const check: RuleCheckFunction = (sr, done) => {
         sr.error(self, 'not-found');
     }
     done();
-}
+};

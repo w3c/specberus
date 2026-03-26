@@ -12,27 +12,27 @@ import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 import { resolveGithubUsernameToId } from '../../util.js';
 import type { Specberus } from '../../validator.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'headers.dl',
     section: 'front-matter',
     rule: 'docIDFormat',
 };
-const thisError = {
+const thisError: RuleMeta = {
     name: 'headers.dl',
     section: 'front-matter',
     rule: 'docIDThisVersion',
 };
-const latestError = {
+const latestError: RuleMeta = {
     name: 'headers.dl',
     section: 'front-matter',
     rule: 'docIDLatestVersion',
 };
-const historyError = {
+const historyError: RuleMeta = {
     name: 'headers.dl',
     section: 'front-matter',
     rule: 'docIDHistory',
 };
-const editorError = {
+const editorError: RuleMeta = {
     name: 'headers.dl',
     section: 'front-matter',
     rule: 'editorSection',
@@ -72,7 +72,6 @@ function checkLink({
 export const check: RuleCheckFunction = async (sr, done) => {
     const { rescinds, status, submissionType } = sr.config!;
     let topLevel = 'TR';
-    let thisURI = '';
 
     if (submissionType === 'member') topLevel = 'submissions';
 
@@ -109,7 +108,6 @@ export const check: RuleCheckFunction = async (sr, done) => {
                 .match(new RegExp(vThisRex));
             const docDate = sr.getDocumentDate();
             if (matches) {
-                [thisURI] = matches;
                 const year = +matches[1];
                 const year2 = +matches[3];
                 const month = +matches[4];
@@ -205,7 +203,7 @@ export const check: RuleCheckFunction = async (sr, done) => {
             .startsWith('https://')
     ) {
         sr.error(self, 'implelink-should-be-https', {
-            link: $linkImplementation.attr('href') || "",
+            link: $linkImplementation.attr('href') || '',
         });
     }
     if (noImplementation && needImplementation) {
@@ -222,7 +220,7 @@ export const check: RuleCheckFunction = async (sr, done) => {
             linkName: 'Implementation report',
         });
         if (exist) {
-            const editorsDraft = $editorsDraftElement.attr('href') || "";
+            const editorsDraft = $editorsDraftElement.attr('href') || '';
             if (!editorsDraft.trim().toLowerCase().startsWith('https://'))
                 sr.error(self, 'editors-draft-should-be-https', {
                     link: editorsDraft,
@@ -253,8 +251,7 @@ export const check: RuleCheckFunction = async (sr, done) => {
             .filter(el => el.attribs['data-editor-github'])
             .map(el => el.attribs['data-editor-github']);
 
-        /** @type string[] */
-        const unresolvedUsernames = [];
+        const unresolvedUsernames: string[] = [];
         for (const username of githubUsernames) {
             try {
                 if (!(await resolveGithubUsernameToId(username)))

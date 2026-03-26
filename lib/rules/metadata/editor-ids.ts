@@ -2,10 +2,10 @@
  * Pseudo-rule for metadata extraction: editor-ids.
  */
 
-import type { RuleCheckFunction } from '../../types.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 import { resolveGithubUsernameToId } from '../../util.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'metadata.editor-ids',
     section: 'front-matter',
     rule: 'editorSection',

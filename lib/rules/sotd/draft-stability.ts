@@ -1,8 +1,8 @@
 // These 2 sentences exist in draft documents only, choose one of the 2.
 
-import type { RuleCheckFunction } from '../../types.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'sotd.draft-stability',
     section: 'document-status',
     rule: 'draftStability',

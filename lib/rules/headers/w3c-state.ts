@@ -1,8 +1,8 @@
-import rules from "../../rules.json" with { type: "json" };
-import type { RuleCheckFunction } from "../../types.js";
-import { isRuleTrack } from "../../util.js";
+import rules from '../../rules.json' with { type: 'json' };
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
+import { isRuleTrack } from '../../util.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'headers.w3c-state',
     section: 'front-matter',
     rule: 'dateState',
@@ -33,10 +33,7 @@ export const check: RuleCheckFunction = (sr, done) => {
     for (const t in rules)
         if (isRuleTrack(t) && !profileFound)
             for (const profile of Object.values(rules[t].profiles)) {
-                const rx = new RegExp(
-                    `^w3c\\ ${profile.name}(\\ |,)`,
-                    'i'
-                );
+                const rx = new RegExp(`^w3c\\ ${profile.name}(\\ |,)`, 'i');
                 if (rx.test(txt)) {
                     profileFound = true;
                     break;
@@ -57,7 +54,7 @@ export const check: RuleCheckFunction = (sr, done) => {
         );
         if (!$standardLink.length) {
             sr.error(self, 'no-w3c-state-link');
-        } else if (!expectedLink.test($standardLink.attr('href') || "")) {
+        } else if (!expectedLink.test($standardLink.attr('href') || '')) {
             sr.error(self, 'wrong-w3c-state-link', {
                 hash,
                 linkFound: $standardLink.attr('href'),
@@ -67,4 +64,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     }
 
     done();
-}
+};
