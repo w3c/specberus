@@ -145,13 +145,13 @@ describe('API', () => {
     });
 
     describe('Parameter restrictions', () => {
-        it('Should reject the parameter “document”', () => {
+        it('Should reject the parameter "document" as unknown', () => {
             const query = get('metadata?document=foo');
             return expect(query).to.eventually.be.rejectedWith(
-                'Parameter “document” is not allowed in this context'
+                'Error: Illegal parameter “document”'
             );
         });
-        it('Should reject the parameter “source”', () => {
+        it('Should reject the parameter "source" as forbidden', () => {
             const query = get('metadata?source=foo');
             return expect(query).to.eventually.be.rejectedWith(
                 'Parameter “source” is not allowed in this context'
