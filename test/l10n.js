@@ -7,10 +7,8 @@ import { join } from 'path';
 
 import * as chai from 'chai';
 import * as l10n from '../lib/l10n-en_GB.js';
-import { importJSON } from '../lib/util.js';
 
-// Internal packages:
-const rules = importJSON('../lib/rules.json', import.meta.url);
+import rules from '../lib/rules.json' with { type: 'json' };
 
 const { expect } = chai;
 
