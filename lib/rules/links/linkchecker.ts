@@ -1,14 +1,14 @@
 // Check every sources(img, stylesheets, scripts) are in same folder as spec document, and they are reachable.
 import puppeteer from 'puppeteer';
-import type { RuleCheckFunction } from '../../types.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'links.linkchecker',
     section: 'document-body',
     rule: 'brokenLink',
 };
 
-const compound = {
+const compound: RuleMeta = {
     name: 'links.linkchecker',
     section: 'compound',
     rule: 'compoundFilesLocation',

@@ -14,8 +14,9 @@ import { AB, TAG } from '../../util.js';
 import type { Specberus } from '../../validator.js';
 
 import copyrightExceptions from '../../copyright-exceptions.json' with { type: 'json' };
+import type { ApiCharter, RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'headers.copyright',
     section: 'front-matter',
     rule: 'copyright',
@@ -32,12 +33,12 @@ const LICENSE_CD_URL = 'https://www.w3.org/copyright/document-license/';
 const LICENSE_CD_DATED_URL =
     'https://www.w3.org/copyright/document-license-2023/';
 
-const LICENSE_URL_TEXT_MAP = {
+const LICENSE_URL_TEXT_MAP: Record<string, string> = {
     [LICENSE_CD_URL]: LICENSE_CD_TEXT,
     [LICENSE_CS_URL]: LICENSE_CS_TEXT,
 };
 
-const LICENSE_TEXT_LINKS_MAP = {
+const LICENSE_TEXT_LINKS_MAP: Record<string, string[]> = {
     [LICENSE_CD_TEXT]: [LICENSE_CD_URL, LICENSE_CD_DATED_URL],
     [LICENSE_CS_TEXT]: [LICENSE_CS_URL, LICENSE_CS_DATED_URL],
 };
@@ -52,34 +53,27 @@ const latestBaseLinks = {
 export const { name } = self;
 
 async function isOnlyPublishedByTagOrAb(sr: Specberus) {
-    const TagID = TAG.id;
-    const AbID = AB.id;
-
     const delivererIDs = await sr.getDelivererIDs();
-    return delivererIDs.every(id => [TagID, AbID].includes(id));
+    return delivererIDs.every(id => id === TAG.id || id === AB.id);
 }
 
 // Create an array of license URIs per group -> array of arrays
 // Then find the intersection of all arrays, to extract union license(s)
-function getCommonLicenseUri(data) {
+function getCommonLicenseUri(data: ApiCharter[]) {
     return data
         .map(charter => charter['doc-licenses'].map(license => license.uri))
         .reduce((first, cur) => first.filter(uri => cur.includes(uri)));
 }
 
 // The date can be 19xx-2023, or 2023.
-/**
- * @param {Specberus} sr
- * @param licenseTexts
- */
-function getLatestCopyrightMatchRegex(sr, licenseTexts) {
+function getLatestCopyrightMatchRegex(sr: Specberus, licenseTexts: string[]) {
     const licenseRex = licenseTexts.join('|');
     const year = (sr.getDocumentDate() || new Date()).getFullYear();
 
     const startRex =
         '^Copyright [©|&copy;] (?:(?:199\\d|20\\d\\d)-)?@YEAR *World Wide Web Consortium'.replace(
             '@YEAR',
-            year
+            '' + year
         );
     const endRex = `\\. W3C[®|&reg;] liability, trademark,? and (${licenseRex}) rules apply\\.$`;
     return new RegExp(startRex + endRex);
@@ -89,14 +83,14 @@ function getLatestCopyrightMatchRegex(sr, licenseTexts) {
 function checkSpecialCopyright(
     sr: Specberus,
     $copyright: Cheerio<Element>,
-    specialCopyright,
-    shortname: string
+    specialCopyright: (typeof copyrightExceptions)[number],
+    shortname: string | undefined
 ) {
     const year = (sr.getDocumentDate() || new Date()).getFullYear();
 
-    const domHtml = sr.norm($copyright.html());
+    const domHtml = sr.norm($copyright.html()!);
     const specHtml = sr.norm(
-        specialCopyright.copyright.replace(/@YEAR/g, year)
+        specialCopyright.copyright.replace(/@YEAR/g, '' + year)
     );
     if (domHtml !== specHtml) {
         sr.error(self, 'exception-no-html', {
@@ -122,7 +116,7 @@ function checkLatestCopyright(
     const [, licenseInDoc] = regResult;
     const allowBothLicense = licenseTexts.length === 2;
     const textsToCheck = allowBothLicense ? [licenseInDoc] : licenseTexts; // When document can have 2 licenses, keep the one mentioned in document.
-    const linksToCheck = textsToCheck.reduce(
+    const linksToCheck: Record<string, string | string[]> = textsToCheck.reduce(
         (acc, v) => ({ ...acc, [v]: LICENSE_TEXT_LINKS_MAP[v] }),
         latestBaseLinks
     );
@@ -154,7 +148,7 @@ function checkLatestCopyright(
     });
 }
 
-export async function check(sr: Specberus, done: () => void) {
+export const check: RuleCheckFunction = async (sr, done) => {
     const $copyright = sr.$('body div.head p.copyright').first();
 
     if (!$copyright.length) {
@@ -188,8 +182,8 @@ export async function check(sr: Specberus, done: () => void) {
 
     // get exception rule for certain shortnames
     const shortname = await sr.getShortname();
-    const specialCopyright = copyrightExceptions.find(({ specShortnames }) =>
-        specShortnames.includes(shortname)
+    const specialCopyright = copyrightExceptions.find(
+        ({ specShortnames }) => shortname && specShortnames.includes(shortname)
     );
 
     if (specialCopyright) {
@@ -199,4 +193,4 @@ export async function check(sr: Specberus, done: () => void) {
     }
 
     return done();
-}
+};
