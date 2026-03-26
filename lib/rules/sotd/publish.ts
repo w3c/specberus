@@ -1,8 +1,6 @@
-/** @import { Specberus } from "../../validator.js" */
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-import type { RuleCheckFunction } from '../../types.js';
-
-const self = {
+const self: RuleMeta = {
     name: 'sotd.publish',
     section: 'document-status',
     rule: 'publish',
@@ -10,10 +8,6 @@ const self = {
 
 export const { name } = self;
 
-/**
- * @param {Specberus} sr
- * @param done
- */
 export const check: RuleCheckFunction = async (sr, done) => {
     const $sotd = sr.getSotDSection();
     const { crType, cryType, longStatus, status, track } = sr.config!;
@@ -24,7 +18,7 @@ export const check: RuleCheckFunction = async (sr, done) => {
         docType = `Candidate Registry ${cryType}`;
     }
 
-    const text = `^This document was (?:produced|published) by the (.+? Working Group|Technical Architecture Group|Advisory Board|.+? Interest Group)( and the (.+? Working Group|Technical Architecture Group|Advisory Board|.+? Interest Group))? as a ${docType} using the ${sr.config.track} track.`;
+    const text = `^This document was (?:produced|published) by the (.+? Working Group|Technical Architecture Group|Advisory Board|.+? Interest Group)( and the (.+? Working Group|Technical Architecture Group|Advisory Board|.+? Interest Group))? as a ${docType} using the ${sr.config!.track} track.`;
 
     if ($sotd) {
         // Find the paragraph of 'This document was published by ... , it includes ...'

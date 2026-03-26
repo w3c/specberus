@@ -1,6 +1,6 @@
-import type { RuleCheckFunction } from "../../types.js";
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'headers.translation',
     section: 'front-matter',
     rule: 'translation',
@@ -33,4 +33,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     }
 
     done();
-}
+};

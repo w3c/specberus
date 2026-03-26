@@ -2,11 +2,9 @@
  * Check the presence of a valid ToC.
  */
 
-import type { RuleCheckFunction } from "../../types.js";
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-/** @import { Specberus } from "../../validator.js" */
-
-const self = {
+const self: RuleMeta = {
     name: 'headers.h2-toc',
     // @TODO: fix the section... when it is fixed in the JSON.
     section: 'navigation',
@@ -40,4 +38,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     }
 
     done();
-}
+};

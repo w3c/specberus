@@ -23,12 +23,13 @@ import pkg from '../package.json' with { type: 'json' };
 import type {
     ApiCharter,
     HandlerMessage,
-    Rule,
+    RuleModule,
     RuleBase,
     ApiSpecificationVersion,
     RecMetadata,
     RuleMeta,
     SpecberusConfig,
+    ProfileModule,
 } from './types.js';
 
 setLanguage('en_GB');
@@ -45,7 +46,8 @@ interface ExtractMetadataOptions extends BaseOptions {
 }
 
 export interface ValidateOptions extends BaseOptions {
-    profile: any; // TODO
+    profile: ProfileModule;
+    validation?: 'no-validation' | 'simple-validation' | 'recursive';
 }
 
 type HeaderMap = Record<
@@ -62,13 +64,24 @@ interface DelivererGroup {
     groupType: string;
 }
 
-interface TransitionOptions {
-    doAfter: () => void;
-    doBefore: () => void;
+interface TransitionBaseOptions {
     doMeanwhile: () => void;
+}
+
+interface TransitionFromOptions {
+    doBefore: () => void;
     from: Date;
+}
+
+interface TransitionToOptions {
+    doAfter: () => void;
     to: Date;
 }
+
+type TransitionOptions =
+    | (TransitionBaseOptions & TransitionFromOptions)
+    | (TransitionBaseOptions & TransitionToOptions)
+    | (TransitionBaseOptions & TransitionFromOptions & TransitionToOptions);
 
 const months = [
     'January',
@@ -106,11 +119,14 @@ const separator = '[ -]{1}';
 export class Specberus {
     $ = load('');
     config: SpecberusConfig | undefined;
+    // TODO(kgf): This is publicly documented, but is unused within the codebase;
+    // it would be better exposed as a Promise return value from extractMetadata
+    meta: Record<string, any> | undefined;
+    source!: any | null;
     url!: string | null;
     version = pkg.version;
     private $docDateEl: Cheerio<Element> | undefined;
     private $sotdSection: Cheerio<Element> | null | undefined;
-    private meta: Record<string, any> | undefined;
     /** Group objects returned by W3C API charters endpoint */
     private chartersData: ApiCharter[] | undefined;
     /** Charter URIs */
@@ -121,7 +137,6 @@ export class Specberus {
     private headers: HeaderMap | undefined;
     private isFirstPublic: any | undefined;
     private shortname: string | undefined;
-    private source!: any | null;
     private sink: EventEmitter | undefined;
 
     constructor() {
@@ -235,6 +250,7 @@ export class Specberus {
         processParams(options, profile.config)
             .then(config => {
                 this.config = config;
+                // TODO(kgf): Is this even used?
                 config.lang = 'en_GB';
                 const errors: HandlerMessage[] = [];
                 const warnings: HandlerMessage[] = [];
@@ -258,7 +274,7 @@ export class Specberus {
                     sink.emit('start-all', profile.name);
                     const total = (profile.rules || []).length;
                     let done = 0;
-                    profile.rules.forEach((rule: Rule) => {
+                    profile.rules.forEach((rule: RuleModule) => {
                         // XXX(darobin)
                         //  I would like to catch all exceptions here, but this derails the testing
                         //  infrastructure which also uses exceptions that it expects aren't caught
@@ -304,12 +320,6 @@ export class Specberus {
             hasExceptions(shortname, name, extra)
         )
             this.warning(rule, key, extra);
-        else if (typeof rule === 'string')
-            this.sink!.emit('err', name, {
-                key,
-                extra,
-                detailMessage: assembleData(null, name, key, extra).message,
-            });
         else
             this.sink!.emit('err', rule, {
                 key,
@@ -635,7 +645,7 @@ export class Specberus {
                 new Promise(resolve => {
                     get(groupApiUrl)
                         .set('User-Agent', `W3C-Pubrules/${pkg.version}`)
-                        .end((err, data) => {
+                        .end((_, data) => {
                             resolve(data);
                         });
                 })
@@ -714,7 +724,7 @@ export class Specberus {
                                         'User-Agent',
                                         `W3C-Pubrules/${pkg.version}`
                                     )
-                                    .end((err: any, data) => {
+                                    .end((_: any, data) => {
                                         resolve(data);
                                     });
                             })
@@ -773,7 +783,7 @@ export class Specberus {
                             .charters()
                             .fetch(
                                 { embed: true },
-                                (err: any, charters: ApiCharter[]) => {
+                                (_: any, charters: ApiCharter[]) => {
                                     resolve(charters);
                                 }
                             );
@@ -861,7 +871,7 @@ export class Specberus {
                                     .fetch(
                                         { embed: true, items: 1000 },
                                         (
-                                            err: any,
+                                            _: any,
                                             data: ApiSpecificationVersion[]
                                         ) => {
                                             resolve(data);
@@ -924,8 +934,11 @@ export class Specberus {
     }
 
     transition(options: TransitionOptions) {
-        if (this.getDocumentDate()! < options.from) options.doBefore();
-        else if (this.getDocumentDate()! > options.to) options.doAfter();
+        const documentDate = this.getDocumentDate();
+        if (documentDate && 'from' in options && documentDate < options.from)
+            options.doBefore();
+        else if (documentDate && 'to' in options && documentDate > options.to)
+            options.doAfter();
         else options.doMeanwhile();
     }
 

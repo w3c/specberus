@@ -1,7 +1,7 @@
-import type { RuleCheckFunction } from '../../types.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 import { possibleMonths } from '../../validator.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'heuristic.date-format',
     section: 'document-status',
     rule: 'datesFormat',

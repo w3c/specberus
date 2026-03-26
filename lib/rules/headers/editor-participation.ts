@@ -1,9 +1,9 @@
 // @ts-ignore (No typings)
 import w3cApi from 'node-w3capi';
 import { resolveGithubUsernameToId } from '../../util.js';
-import type { RuleCheckFunction } from '../../types.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'headers.editor-participation',
     section: 'front-matter',
     rule: 'editorSection',

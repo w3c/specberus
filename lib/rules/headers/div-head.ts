@@ -1,8 +1,8 @@
 /* emits: 'not-found' */
 
-import type { RuleCheckFunction } from '../../types.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'headers.div-head',
     section: 'front-matter',
     rule: 'divClassHead',

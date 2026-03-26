@@ -2,9 +2,9 @@
 //  must include a public archived place to send comments to.
 //  below:
 
-import type { RuleCheckFunction } from "../../types.js";
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'headers.github-repo',
     section: 'front-matter',
     rule: 'docIDOrder',
@@ -40,4 +40,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     if (!foundRepo) sr.error(self, 'no-repo');
 
     done();
-}
+};

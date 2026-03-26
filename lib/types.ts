@@ -1,4 +1,4 @@
-import type { Specberus } from './validator.js';
+import type { Specberus, ValidateOptions } from './validator.js';
 
 type Status =
     | 'FPWD'
@@ -28,14 +28,18 @@ export interface SpecberusConfig {
     /** Candidate Registry type is only defined for CRY/CRYD statuses */
     cryType?: 'Draft' | 'Snapshot';
     editorial?: 'true';
+    htmlValidator?: string;
     longStatus: string;
     rescinds?: boolean;
+    skipValidation?: boolean;
     status: Status;
     styleSheet: string;
     /** Submission type is only defined for MEM-SUBM status */
     submissionType?: SubmissionType;
-    track: Track;
-    validation?: 'no-validation' | 'simple-validation' | 'recursive';
+    /** Track (Recommendation or Note); not defined for MEM-SUBM status */
+    track?: Track;
+    /** Validation setting, inherited from options passed to validate */
+    validation?: ValidateOptions['validation'];
 }
 
 // TODO: ideally make this more precise
@@ -70,26 +74,42 @@ export interface RuleMeta extends RuleBase {
     section: string;
 }
 
-export interface Rule extends RuleBase {
+export interface RuleModule extends RuleBase {
     check: RuleCheckFunction<any>;
 }
 
 /** `section` from lib/rules.json */
 export interface RulesSection {
     name: string;
-    rules: Record<string, boolean | string[]>;
+    rules: Record<string, boolean | string | string[]>;
+}
+
+/** `section` under `*` from lib/rules.json */
+export interface GenericRulesSection {
+    name: string;
+    rules: Record<string, string>;
 }
 
 /** `profile` from lib/rules.json */
 export interface RulesProfile {
     name: string;
     order: number;
-    sections: RulesSection[];
+    sections: {
+        '*': GenericRulesSection;
+        [index: string]: RulesSection;
+    };
+}
+
+export interface ProfileModule {
+    config: SpecberusConfig;
+    name: string;
+    rules: RuleModule[];
 }
 
 // The following are minimal types that would ideally be defined more completely in node-w3capi
 
 export interface ApiCharter {
+    'doc-licenses': { name: string; uri: string }[];
     end: string;
     start: string;
     uri: string;

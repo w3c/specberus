@@ -13,9 +13,7 @@ export const { name } = self;
 
 // Check if document is Recommendation, and uses inline changes(REC with Candidate/Proposed changes)
 function isRECWithChanges(sr: Specberus) {
-    if (sr.config.status !== 'REC') {
-        return false;
-    }
+    if (sr.config!.status !== 'REC') return false;
 
     const recMeta = sr.getRecMetadata();
     return Object.values(recMeta).length !== 0;

@@ -8,7 +8,7 @@ import { fileTypeFromFile } from 'file-type';
 import type { Express, Request, Response } from 'express';
 
 import { buildJSONresult, processParams } from './util.js';
-import { Specberus } from './validator.js';
+import { Specberus, type ValidateOptions } from './validator.js';
 import type { HandlerMessage } from './types.js';
 
 import pkg from '../package.json' with { type: 'json' };
@@ -143,7 +143,7 @@ const processRequest = async (
                 const meta = data.metadata;
                 if (options.url) meta.url = options.url;
                 else meta.file = options.file;
-                let metaOptions;
+                let metaOptions: ValidateOptions;
                 try {
                     metaOptions = await processParams(meta, undefined, {
                         allowUnknownParams: true,

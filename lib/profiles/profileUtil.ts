@@ -1,12 +1,12 @@
-import type { Rule } from '../types.js';
+import type { RuleModule } from '../types.js';
 
 /**
  * Takes an array of rules, returns a copy with new rules added after a given named anchor
  */
 export function insertAfter(
-    original: Rule[],
+    original: RuleModule[],
     anchor: string,
-    newRules: Rule | Rule[]
+    newRules: RuleModule | RuleModule[]
 ) {
     newRules = Array.isArray(newRules) ? newRules : [newRules];
     original = original.slice();
@@ -32,7 +32,10 @@ export function insertAfter(
  * @param original
  * @param ruleNames
  */
-export function removeRules(original: Rule[], ruleNames: string | string[]) {
+export function removeRules(
+    original: RuleModule[],
+    ruleNames: string | string[]
+) {
     ruleNames = Array.isArray(ruleNames) ? ruleNames : [ruleNames];
     original = original.slice();
     ruleNames.forEach(name => {

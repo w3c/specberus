@@ -1,7 +1,7 @@
-import type { RuleCheckFunction } from '../../types.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 import { Specberus } from '../../validator.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'sotd.rec-comment-end',
     section: 'document-status',
     rule: 'commentEnd',
@@ -9,10 +9,6 @@ const self = {
 
 export const { name } = self;
 
-/**
- * @param {Specberus} sr
- * @param done
- */
 export const check: RuleCheckFunction = (sr, done) => {
     const $sotd = sr.getSotDSection();
     if ($sotd) {
@@ -37,10 +33,12 @@ export const check: RuleCheckFunction = (sr, done) => {
             else {
                 const matches = txt.match(rex);
                 const dateFound = [];
-                for (const i in matches) {
-                    const date = sr.stringToDate(matches[i]);
-                    if (date && date > minimumEndDate) {
-                        dateFound.push(sr.stringToDate(matches[i]));
+                if (matches) {
+                    for (const match of matches) {
+                        const date = sr.stringToDate(match);
+                        if (date && date > minimumEndDate) {
+                            dateFound.push(sr.stringToDate(match));
+                        }
                     }
                 }
                 if (dateFound.length > 1) {

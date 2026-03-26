@@ -3,20 +3,22 @@
 //  latest version is https://www.w3.org/TR/shortname/
 
 import superagent from 'superagent';
+// TODO(kgf): Replace with promisify?
+// @ts-ignore (no typings)
 import doAsync from 'doasync';
-import type { RuleCheckFunction } from '../../types.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'headers.shortname',
     section: 'front-matter',
     rule: 'docIDFormat',
 };
-const thisError = {
+const thisError: RuleMeta = {
     name: 'headers.shortname',
     section: 'front-matter',
     rule: 'docIDThisVersion',
 };
-const historyError = {
+const historyError: RuleMeta = {
     name: 'headers.shortname',
     section: 'front-matter',
     rule: 'docIDHistory',
@@ -25,28 +27,25 @@ export const name = self.name;
 
 export const check: RuleCheckFunction = async (sr, done) => {
     let topLevel = 'TR';
-    let thisURI = '';
 
     if (sr.config!.submissionType === 'member') topLevel = 'submissions';
 
     const dts = sr.extractHeaders();
 
-    let shortname;
-    let seriesShortname;
-    let matches;
+    let shortname = '';
+    let seriesShortname = '';
 
     if (dts.This) {
         const $linkThis = dts.This.$dd.find('a').first();
 
         if ($linkThis.attr('href')) {
             const vThisRex = `^https:\\/\\/www\\.w3\\.org\\/${topLevel}\\/(\\d{4})\\/${
-                sr.config.status || '[A-Z]+'
+                sr.config!.status || '[A-Z]+'
             }-(.+)-(\\d{4})(\\d\\d)(\\d\\d)\\/?$`;
-            matches = ($linkThis.attr('href') || '')
+            const matches = ($linkThis.attr('href') || '')
                 .trim()
                 .match(new RegExp(vThisRex));
             if (matches) {
-                [thisURI] = matches;
                 [, , shortname] = matches;
                 const pattern = /-?\d[\d.]*$/;
                 const dashPattern = /\d[\d.]*-/;
@@ -75,7 +74,7 @@ export const check: RuleCheckFunction = async (sr, done) => {
 
         if ($linkLate.attr('href')) {
             const lateRex = `^https:\\/\\/www\\.w3\\.org\\/${topLevel}\\/(.+?)\\/?$`;
-            matches = ($linkLate.attr('href') || '')
+            const matches = ($linkLate.attr('href') || '')
                 .trim()
                 .match(new RegExp(lateRex));
             if (matches) {
@@ -97,7 +96,7 @@ export const check: RuleCheckFunction = async (sr, done) => {
             // e.g. https://www.w3.org/standards/history/hr-time-10086/
             const historyReg =
                 /^https:\/\/www\.w3\.org\/standards\/history\/(.+?)\/?$/;
-            matches = ($linkHistory.attr('href') || '')
+            const matches = ($linkHistory.attr('href') || '')
                 .trim()
                 .match(historyReg);
             if (matches) {
@@ -159,7 +158,7 @@ export const check: RuleCheckFunction = async (sr, done) => {
         const $linkRescinds = dts.Rescinds.$dd.find('a').first();
 
         if ($linkRescinds.attr('href')) {
-            matches = ($linkRescinds.attr('href') || '')
+            const matches = ($linkRescinds.attr('href') || '')
                 .trim()
                 .match(
                     /^https:\/\/www\.w3\.org\/TR\/\d{4}\/REC-(.+)-\d{8}\/?$/

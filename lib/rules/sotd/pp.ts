@@ -1,9 +1,10 @@
 import type { Cheerio } from 'cheerio';
 import type { Element } from 'domhandler';
-import type { Specberus } from '../../validator.js';
-import type { RuleCheckFunction } from '../../types.js';
 
-const self = {
+import type { Specberus } from '../../validator.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
+
+const self: RuleMeta = {
     name: 'sotd.pp',
     section: 'document-status',
     rule: 'patPolReq',

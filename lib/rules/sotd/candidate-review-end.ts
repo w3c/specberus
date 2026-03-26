@@ -1,6 +1,6 @@
-import type { RuleCheckFunction } from '../../types.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'sotd.candidate-review-end',
     section: 'document-status',
     rule: 'reviewEndDate',

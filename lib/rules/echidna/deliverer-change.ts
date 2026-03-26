@@ -1,8 +1,8 @@
 // @ts-ignore (no typings)
 import w3cApi from 'node-w3capi';
-import type { RuleCheckFunction } from '../../types.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'echidna.deliverer-change',
     section: 'metadata',
     rule: 'delivererID',

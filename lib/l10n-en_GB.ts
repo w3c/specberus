@@ -379,4 +379,4 @@ export const messages = {
     'metadata.charters': false,
     'metadata.sotd': false,
     'metadata.abstract': false,
-};
+} as const;

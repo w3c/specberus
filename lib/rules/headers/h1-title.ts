@@ -1,8 +1,8 @@
 // must have h1, with same content as title
 
-import type { RuleCheckFunction } from "../../types.js";
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-const self = {
+const self: RuleMeta = {
     name: 'headers.h1-title',
     section: 'front-matter',
     rule: 'title',
@@ -23,4 +23,4 @@ export const check: RuleCheckFunction = (sr, done) => {
             sr.error(self, 'not-match', { titleText, h1Text });
     }
     done();
-}
+};

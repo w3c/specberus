@@ -21,8 +21,8 @@ export const check: RuleCheckFunction = (sr, done) => {
     if (
         !$logo.length ||
         $logo.attr('alt') !== checks[type].alt ||
-        !checks[type].src.test($logo.attr('src') || "") ||
-        !checks[type].href.test($logo.parent().attr('href') || "")
+        !checks[type].src.test($logo.attr('src') || '') ||
+        !checks[type].href.test($logo.parent().attr('href') || '')
     ) {
         sr.error(self, 'not-found', {
             type: type.charAt(0).toUpperCase() + type.slice(1),

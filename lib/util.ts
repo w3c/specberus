@@ -11,7 +11,7 @@ import { Octokit } from '@octokit/core';
 // @ts-ignore (no typings)
 import w3cApi from 'node-w3capi';
 
-import type { HandlerMessage } from './types.js';
+import type { HandlerMessage, SpecberusConfig } from './types.js';
 import type { ValidateOptions } from './validator.js';
 
 import rules from './rules.json' with { type: 'json' };
@@ -103,7 +103,7 @@ interface ProcessParamsConstraints {
  */
 export async function processParams(
     params: qs.ParsedQs | ValidateOptions,
-    base = {},
+    base: Partial<SpecberusConfig> = {},
     constraints: ProcessParamsConstraints = {}
 ) {
     const result = JSON.parse(JSON.stringify(base));

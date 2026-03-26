@@ -1,4 +1,4 @@
-import type { RuleCheckFunction } from "../../types.js";
+import type { RuleCheckFunction } from '../../types.js';
 
 const self = {
     name: 'headers.memsub-copyright',
@@ -22,4 +22,4 @@ export const check: RuleCheckFunction = (sr, done) => {
         if (!seen) sr.error(self, 'not-found');
     } else sr.error(self, 'not-found');
     done();
-}
+};
