@@ -348,7 +348,7 @@ export class Specberus {
         });
     }
 
-    throw(message: any) {
+    throw(message: string) {
         console.error(`[EXCEPTION] ${message}`);
         this.sink!.emit('exception', { message });
     }
