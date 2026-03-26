@@ -153,7 +153,7 @@ export async function processParams(
     if (!originFound)
         // Origin: one required.
         throw new Error(
-            'One parameter of {“url”, “source”, “file”, “document”} is required'
+            'One parameter of {“url”, “source”, “file”} is required'
         );
     else {
         if (constraints?.required) {
