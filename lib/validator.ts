@@ -311,9 +311,7 @@ export class Specberus {
     }
 
     error(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
-        let name;
-        if (typeof rule === 'string') name = rule;
-        else name = rule.name;
+        const name = typeof rule === 'string' ? rule : rule.name;
         const shortname = this.getShortname();
         if (
             typeof shortname !== 'undefined' &&

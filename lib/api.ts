@@ -91,30 +91,18 @@ const processPost = () => async (req: Request, res: Response) => {
 };
 
 function createHandler(res: Response, metadataOverride?: Record<string, any>) {
-    const metaErrors: HandlerMessage[] = [];
-    const warnings: HandlerMessage[] = [];
-    const info: HandlerMessage[] = [];
     const handler = new EventEmitter();
-    handler.on('error', (...data) => {
-        metaErrors.push(Object.assign({}, ...data));
+    handler.on('exception', data => {
+        sendJSONresult(res, [data.message ? data.message : data]);
     });
     handler.on('end-all', data => {
         sendJSONresult(
             res,
-            metaErrors,
-            warnings,
-            info,
+            data.errors,
+            data.warnings,
+            data.info,
             metadataOverride || data.metadata
         );
-    });
-    handler.on('warning', (...data) => {
-        warnings.push(Object.assign({}, ...data));
-    });
-    handler.on('info', (...data) => {
-        info.push(Object.assign({}, ...data));
-    });
-    handler.on('exception', data => {
-        sendJSONresult(res, [data.message ? data.message : data]);
     });
     return handler;
 }
@@ -137,14 +125,13 @@ const processRequest = async (
     }
 
     if (shouldValidate && options.profile === 'auto') {
-        const errors: HandlerMessage[] = [];
         const sr = new Specberus();
         const handler = new EventEmitter();
-        handler.on('error', (...data) => {
-            errors.push(Object.assign({}, ...data));
+        handler.on('exception', data => {
+            sendJSONresult(res, [data.message ? data.message : data]);
         });
         handler.on('end-all', async data => {
-            if (errors.length) sendJSONresult(res, errors);
+            if (data.errors.length) sendJSONresult(res, data.errors);
             else {
                 const meta = data.metadata;
                 if (options.url) meta.url = options.url;
@@ -162,9 +149,6 @@ const processRequest = async (
                 const metaSr = new Specberus();
                 metaSr.validate(metaOptions);
             }
-        });
-        handler.on('exception', data => {
-            sendJSONresult(res, [data.message ? data.message : data]);
         });
         options.events = handler;
         sr.extractMetadata(options);
