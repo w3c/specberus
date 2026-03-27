@@ -90,7 +90,7 @@ const processPost = () => async (req: Request, res: Response) => {
     }
 };
 
-function createHandler(res: Response) {
+function createHandler(res: Response, metadataOverride?: Record<string, any>) {
     const metaErrors: HandlerMessage[] = [];
     const warnings: HandlerMessage[] = [];
     const info: HandlerMessage[] = [];
@@ -98,8 +98,14 @@ function createHandler(res: Response) {
     handler.on('error', (...data) => {
         metaErrors.push(Object.assign({}, ...data));
     });
-    handler.on('end-all', () => {
-        sendJSONresult(res, metaErrors, warnings, info);
+    handler.on('end-all', data => {
+        sendJSONresult(
+            res,
+            metaErrors,
+            warnings,
+            info,
+            metadataOverride || data.metadata
+        );
     });
     handler.on('warning', (...data) => {
         warnings.push(Object.assign({}, ...data));
@@ -151,7 +157,7 @@ const processRequest = async (
                 } catch (err) {
                     return sendJSONresult(res, [err.toString()]);
                 }
-                metaOptions.events = createHandler(res);
+                metaOptions.events = createHandler(res, meta);
 
                 const metaSr = new Specberus();
                 metaSr.validate(metaOptions);
