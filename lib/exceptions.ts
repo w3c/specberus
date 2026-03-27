@@ -30,13 +30,13 @@ export function hasExceptions(
     extra?: Record<string, string>
 ) {
     const set = findSet(shortname);
-    if (set === undefined) return false;
-    for (let i = set.length - 1; i >= 0; i -= 1) {
-        for (let y = set[i].length - 1; y >= 0; y -= 1) {
+    if (!set) return false;
+    for (let i = set.length - 1; i >= 0; i--) {
+        for (let y = set[i].length - 1; y >= 0; y--) {
             const exception = set[i][y];
             if (
                 rule === exception.rule &&
-                (extra === undefined ||
+                (!extra ||
                     (!exception.message &&
                         (exception.type === undefined ||
                             extra.type === exception.type)) ||

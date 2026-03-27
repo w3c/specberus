@@ -30,7 +30,7 @@ export const buildJSONresult = function (
     errors: HandlerMessage[],
     warnings: HandlerMessage[],
     info: HandlerMessage[],
-    metadata: any // TODO
+    metadata: Record<string, any>
 ) {
     return {
         success: !errors.length,
