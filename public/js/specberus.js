@@ -304,13 +304,10 @@ jQuery.extend({
 
             profile = data.metadata.profile;
             $profile.val(profile);
-            $validation.find('label').removeClass('active');
-            $validation.find('label#simple-validation').addClass('active');
 
             const isPost = $form.attr('method') === 'post';
             const options = {
                 profile,
-                validation: 'simple-validation',
                 echidnaReady: false,
             };
             if (isPost) {
@@ -368,8 +365,8 @@ jQuery.extend({
         if ($profile.val() === 'auto') {
             extractMetadata(input);
         } else {
-            const validation = $validation.find('label.active').attr('id');
-            const echidnaReady = $echidnaReady.is(':checked') || false;
+            const validation = $validation.is(':checked');
+            const echidnaReady = $echidnaReady.is(':checked');
             profile = $profile.val();
             if (!input.file && !input.url)
                 addMessage(MSG_ERROR, {
@@ -385,7 +382,7 @@ jQuery.extend({
             const options = {
                 ...input,
                 profile,
-                validation,
+                ...(validation && { validation: 'recursive' }),
                 echidnaReady,
             };
             validate(options);
@@ -432,17 +429,12 @@ jQuery.extend({
     function setFormParams(options) {
         // Option "echidnaReady" processed first, as it may restrict the list of enabled profiles.
         $echidnaReady.prop('checked', options.echidnaReady);
+        $validation.prop('checked', !!options.validation);
         if (options.url) $url.val(decodeURIComponent(options.url));
         // "profile" might be eg "WD-Echidna". Normalise.
         if (options.profile) {
             const newProfile = options.profile.replace(/-echidna$/i, '');
             $profile.find(`option[value=${newProfile}]`).prop('selected', true);
-        }
-        if (options.validation) {
-            $validation.find(`label#${options.validation}`).addClass('active');
-            $validation
-                .find(`:not(label#${options.validation})`)
-                .removeClass('active');
         }
     }
 
