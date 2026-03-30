@@ -168,6 +168,10 @@ io.on('connection', socket => {
         handler.on('exception', data => {
             socket.emit('exception', data);
         });
+
+        // Note: informativeOnly and patentPolicy no longer affect validation,
+        // and echidnaReady only impacts client-side profile selection.
+
         if (data.url) {
             insafe
                 .check({
@@ -182,9 +186,6 @@ io.on('connection', socket => {
                                 profile,
                                 events: handler,
                                 validation: data.validation,
-                                informativeOnly: data.informativeOnly,
-                                echidnaReady: data.echidnaReady,
-                                patentPolicy: data.patentPolicy,
                             });
                         } catch (e) {
                             socket.emit('exception', {
@@ -212,9 +213,6 @@ io.on('connection', socket => {
                     profile,
                     events: handler,
                     validation: data.validation,
-                    informativeOnly: data.informativeOnly,
-                    echidnaReady: data.echidnaReady,
-                    patentPolicy: data.patentPolicy,
                 });
             } catch (e) {
                 socket.emit('exception', {

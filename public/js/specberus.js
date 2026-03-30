@@ -49,7 +49,6 @@ jQuery.extend({
     const $profile = $('#profile');
     let $profileOptions = $('#profile option');
     const $validation = $('#validation');
-    const $informativeOnly = $('#informativeOnly');
     const $echidnaReady = $('#echidnaReady');
     const $results = $('#results');
     const $resultsBody = $results.find('.panel-body');
@@ -305,7 +304,6 @@ jQuery.extend({
 
             profile = data.metadata.profile;
             $profile.val(profile);
-            $informativeOnly.prop('checked', data.metadata.informative);
             $validation.find('label').removeClass('active');
             $validation.find('label#simple-validation').addClass('active');
 
@@ -313,7 +311,6 @@ jQuery.extend({
             const options = {
                 profile,
                 validation: 'simple-validation',
-                informativeOnly: data.metadata.informative || false,
                 echidnaReady: false,
             };
             if (isPost) {
@@ -372,7 +369,6 @@ jQuery.extend({
             extractMetadata(input);
         } else {
             const validation = $validation.find('label.active').attr('id');
-            const informativeOnly = $informativeOnly.is(':checked') || false;
             const echidnaReady = $echidnaReady.is(':checked') || false;
             profile = $profile.val();
             if (!input.file && !input.url)
@@ -383,12 +379,13 @@ jQuery.extend({
                 addMessage(MSG_ERROR, {
                     message: 'Missing "profile" parameter',
                 });
+            // echidnaReady is only used client-side to adjust profile selection.
+            // It is included in options to maintain history state, but is ignored by the server.
             if (echidnaReady) profile += '-Echidna';
             const options = {
                 ...input,
                 profile,
                 validation,
-                informativeOnly,
                 echidnaReady,
             };
             validate(options);
@@ -447,7 +444,6 @@ jQuery.extend({
                 .find(`:not(label#${options.validation})`)
                 .removeClass('active');
         }
-        $informativeOnly.prop('checked', options.informativeOnly);
     }
 
     window.addEventListener('popstate', event => {
