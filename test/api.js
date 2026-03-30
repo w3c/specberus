@@ -120,12 +120,12 @@ describe('API', () => {
     });
 
     describe('Method “validate”', () => {
-        it('Should 404 and return an array of errors when validation fails', () => {
+        it('Should 400 and return an array of errors when validation fails', () => {
             query = request(
-                'validate?file=test/docs/metadata/ttml-imsc1.html&profile=REC&validation=simple-validation&processDocument=2047'
+                'validate?file=test/docs/metadata/ttml-imsc1.html&profile=REC'
             );
             return expect(query).to.eventually.be.rejectedWith(
-                /"headers\.\w+/i
+                /"errors":\[\{"name":"headers\.\w+/
             );
         });
         // @TODO: The following two tests are failing because the rule dl.js follows the latest version
