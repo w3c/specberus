@@ -306,18 +306,19 @@ e.g. https://www.w3.org/pubrules/api/validate?url=https://www.w3.org/TR/2021/WD-
 
 #### 4. Validate the document using manual configs
 
-`https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=WD&validation=simple-validation&patentPolicy=pp2020`
+Pubrules supports advanced configs to make the validation more accurate:
 
-Pubrules supports advanced configs to make the validation more accurate.
+- `validation=recursive` - Recursively validates multipart documents
+- The following `profile` values extend their base counterparts to additionally check that the document is valid for automatic publication with Echidna:
+    - `DRY-Echidna`
+    - `DNOTE-Echidna`
+    - `NOTE-Echidna`
+    - `WD-Echidna`
+    - `CRD-Echidna`
+    - `CR-Echidna`
+    - `REC-Echidna`
 
-| Config          | Explanation                                                             | Supported value                             |
-| --------------- | ----------------------------------------------------------------------- | ------------------------------------------- |
-| validation      | Recursively validate multipart documents                                | no-validation, simple-validation, recursive |
-| informativeOnly | If the document is informative                                          | true, false                                 |
-| echidnaReady    | Check that the document is valid for automatic publication with Echidna | true, false                                 |
-| patentPolicy    | Patent Policy version                                                   | pp2020, pp2004                              |
-
-e.g. https://www.w3.org/pubrules/api/validate?url=https://www.w3.org/TR/2021/WD-i18n-glossary-20210708/&profile=WD&validation=simple-validation
+e.g. `https://www.w3.org/pubrules/api/validate?url=https://example.com/doc.html&profile=WD-Echidna&validation=recursive`
 
 ### Return values
 
