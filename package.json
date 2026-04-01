@@ -17,7 +17,7 @@
     "doasync": "2.0.1",
     "express": "5.2.1",
     "express-fileupload": "1.5.2",
-    "express-handlebars": "8.0.6",
+    "express-handlebars": "8.0.7",
     "file-type": "21.3.4",
     "insafe": "0.5.1",
     "metaviewport-parser": "0.3.0",
