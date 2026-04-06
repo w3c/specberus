@@ -136,43 +136,41 @@ after(done => {
 function buildHandler(test, done) {
     const handler = new EventEmitter();
 
-    handler.on('err', (type, data) => {
-        if (DEBUG) console.log('error: \n', type, data);
-        handler.errors.push(`${type.name}.${data.key}`);
-    });
-    handler.on('warning', (type, data) => {
-        if (DEBUG) console.log('warning: \n', type, data);
-        handler.warnings.push(`${type.name}.${data.key}`);
-    });
-    handler.on('done', name => {
-        if (DEBUG) console.log(`----> ${name} check done`);
-    });
+    if (DEBUG) {
+        handler.on('err', (type, data) => {
+            console.log('error:\n', type, data);
+        });
+        handler.on('warning', (type, data) => {
+            console.log('warning:\n', type, data);
+        });
+        handler.on('done', name => {
+            console.log(`----> ${name} check done`);
+        });
+    }
     handler.on('exception', data => {
         console.error(
             `[EXCEPTION] Validator had a massive failure: ${data.message}`
         );
     });
-    handler.on('end-all', () => {
+    handler.on('end-all', ({ errors, warnings }) => {
         try {
             if (!test.errors) {
-                expect(handler.errors).to.be.empty();
+                expect(errors).to.be.empty();
             } else {
-                expect(handler.errors.length).to.eql(test.errors.length);
-                handler.errors.forEach((_, i) => {
-                    expect(handler.errors).to.contain(test.errors[i]);
+                expect(errors.length).to.eql(test.errors.length);
+                errors.forEach(({ key, name }, i) => {
+                    expect(`${name}.${key}`).to.equal(test.errors[i]);
                 });
             }
 
             if (!test.ignoreWarnings) {
                 if (test.warnings) {
-                    expect(handler.warnings.length).to.eql(
-                        test.warnings.length
-                    );
-                    handler.warnings.forEach((_, i) => {
-                        expect(handler.warnings).to.contain(test.warnings[i]);
+                    expect(warnings.length).to.eql(test.warnings.length);
+                    warnings.forEach(({ key, name }, i) => {
+                        expect(`${name}.${key}`).to.contain(test.warnings[i]);
                     });
                 } else {
-                    expect(handler.warnings).to.be.empty();
+                    expect(warnings).to.be.empty();
                 }
             }
             done();
