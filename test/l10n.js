@@ -2,11 +2,10 @@
  * Test L10n features.
  */
 
-// Native packages:
-// External packages:
+import { readdir, readFile } from 'fs/promises';
+import { join } from 'path';
+
 import * as chai from 'chai';
-import chaiAsPromised from '@rvagg/chai-as-promised';
-import fs from 'fs';
 import * as l10n from '../lib/l10n-en_GB.js';
 import { importJSON } from '../lib/util.js';
 
@@ -17,17 +16,11 @@ const { expect } = chai;
 
 // Constants:
 const { messages } = l10n;
-const baseDir = './lib/rules/';
+const baseDir = join('lib', 'rules');
 const extensionRemover = /\.[^.]+$/;
-const messageFinder = /\.(info|warning|error)\s*\(.+,\s*["']([^()"'{}]+)["']/g;
+const messageFinder =
+    /\.(info|warning|error)\s*\([\s\S]+?,\s*["']([^"']+)["']/g;
 const exceptionFinder = /emits\s*:\s*["']([^()"'{}]+)["']/g;
-/**
- * Set up the testing framework.
- */
-
-const setUp = function () {
-    chai.use(chaiAsPromised);
-};
 
 /**
  * Process “messages” and build a tree with up to 3 levels (section, rule, message ID).
@@ -106,58 +99,29 @@ const scanStrings = function () {
  * Return a promise that will be fulfilled if/when all directories and files are read successfully.
  */
 
-const scanFileSystem = function () {
-    return new Promise((fulfill, reject) => {
-        const result = {};
-        fs.readdir(baseDir, (err, dirs) => {
-            if (err)
-                reject(
-                    `Error: could not read directory “${baseDir}”: “${err}”`
-                );
-            else {
-                let total = 0;
-                let n = 0;
-                const readDir = function (dir) {
-                    result[dir] = {};
-                    return function (bar, filenames) {
-                        total += filenames.length;
-                        const readFile = function (file) {
-                            return function (err, data) {
-                                if (err)
-                                    reject(
-                                        `Error: could not read file ${dir}/${file}: ${err}`
-                                    );
-                                else {
-                                    const name = file.replace(
-                                        extensionRemover,
-                                        ''
-                                    );
-                                    let match;
-                                    result[dir][name] = {};
-                                    match = messageFinder.exec(data);
-                                    while (match) {
-                                        result[dir][name][match[2]] = true;
-                                        match = messageFinder.exec(data);
-                                    }
-                                    match = exceptionFinder.exec(data);
-                                    while (match) {
-                                        result[dir][name][match[1]] = true;
-                                        match = exceptionFinder.exec(data);
-                                    }
-                                    n += 1;
-                                    if (total === n) fulfill(result);
-                                }
-                            };
-                        };
-                        for (const i of filenames)
-                            fs.readFile(`${baseDir}${dir}/${i}`, readFile(i));
-                    };
-                };
-                for (const i of dirs) fs.readdir(`${baseDir}${i}`, readDir(i));
-            }
-        });
-    });
-};
+async function scanFileSystem() {
+    const result = {};
+
+    const dirnames = await readdir(baseDir);
+    for (const dirname of dirnames) {
+        result[dirname] = {};
+
+        const filenames = await readdir(join(baseDir, dirname));
+        for (const filename of filenames) {
+            const content = await readFile(join(baseDir, dirname, filename));
+            const name = filename.replace(extensionRemover, '');
+            result[dirname][name] = {};
+
+            let match;
+            while ((match = messageFinder.exec(content)))
+                result[dirname][name][match[2]] = true;
+            while ((match = exceptionFinder.exec(content)))
+                result[dirname][name][match[1]] = true;
+        }
+    }
+
+    return result;
+}
 
 /**
  * Compare two trees of {sections, rules, message IDs} to find leaves that are missing.
@@ -188,14 +152,9 @@ describe('L10n', () => {
     let strings;
     let files;
 
-    before(() => {
-        setUp();
+    before(async () => {
         strings = scanStrings();
-        const p = scanFileSystem();
-        p.then(value => {
-            files = value;
-        });
-        return expect(p).to.be.fulfilled;
+        files = await scanFileSystem();
     });
 
     describe('UI messages module', () => {
