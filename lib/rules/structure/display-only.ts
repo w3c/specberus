@@ -3,7 +3,6 @@ import type { RuleCheckFunction } from '../../types.js';
 export const name = 'structure.display-only';
 
 export const check: RuleCheckFunction = (sr, done) => {
-    // to pass test/l10n.js, who only recognise message in single line, so prettier is disabled for this file
     if (sr.config!.status !== 'DISC')
         sr.info(
             { name, section: 'document-status', rule: 'customParagraph' },
