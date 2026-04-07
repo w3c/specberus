@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+Output from testserver's /doc-views/TR/Recommendation/WD-Echidna?type=good
+-->
+<head>
+    <meta charset="utf-8">
+    <style>
+        .handlebars-data {
+            background: rgba(255, 0, 0, 0.15)
+        }
+    </style>
+        <meta name="viewport" content="width&#x3D;device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="canonical" href="https://www.w3.org/TR/hr-time/">
+        <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-WD.css">
+        <title>WD-Echidna: test document - Specberus</title> <!-- matches div.head h1 -->
+</head>
+<body class="h-entry" data-cite="WebIDL html dom webidl ecma-262">
+    <div class="head">
+            <a class="logo" href="https://www.w3.org/">
+                <img alt="W3C" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C">
+            </a>
+            <h1 id="title" class="title p-name"><span class="handlebars-data">WD-Echidna: test document - Specberus</h1>
+
+        <p id='w3c-state'>
+            <a href='https://www.w3.org/standards/types/#WD'>W3C <span class="handlebars-data">Working Draft  </span></a>
+            <time class="dt-published" datetime="2021-11-04">
+                        <span class="handlebars-data">7 April 2026</span>
+            </time>
+        </p>
+        <details open>
+                <summary>More details about this document</summary>
+                <dl>
+
+                        <dt>This Version</dt>
+                        <dd>
+                            <a class="u-url" href="https://www.w3.org/TR/2026/WD-hr-time-20260407/">
+                                https://www.w3.org/TR/<span class="handlebars-data">2026</span>/<span class="handlebars-data">WD</span>-<span class="handlebars-data">hr-time</span>-<span class="handlebars-data">20260407</span>/
+                            </a>
+                        </dd>
+
+                        <dt>Latest published version: (@@note that version is not required in the latest version)</dt>
+                        <dd> <a href="https://www.w3.org/TR/hr-time/">https://www.w3.org/TR/<span class="handlebars-data">hr-time</span>/</a>
+                        </dd>
+
+                        <dt>Latest editor's draft:</dt>
+                        <dd> <a href="https://w3c.github.io/hr-time/">https://w3c.github.io/<span class="handlebars-data">hr-time</span>/</a>
+                        </dd>
+
+                        <dt><span class="handlebars-data">History</span>:</dt>
+                        <dd> <a href="https://www.w3.org/standards/history/hr-time">https://www.w3.org/standards/history/<span class="handlebars-data">hr-time</span></a>
+                        </dd>
+
+
+                        <dt><span class="handlebars-data">Editor</span>:</dt>
+                        <dd class="p-author h-card vcard" data-editor-id="3439">George Herald (WebFoo)
+                        </dd>
+
+
+
+
+                        <dt>Feedback:</dt>
+                        <dd><a href="https://github.com/w3c/hr-time/issues"><span class="handlebars-data">https://github.com/w3c/</span><span class="handlebars-data">hr-time</span>/issues</a></dd>
+                        <dd><a href="mailto:public-foo@w3.org?subject=%5Bhr-time%5D%20YOUR%20TOPIC%20HERE">public-foo@w3.org</a> with subject line “<kbd>[<span class="handlebars-data">hr-time</span>] <var>… message topic …</var></kbd>” (<a href="http://lists.w3.org/Archives/Public/public-foo/" rel="discussion">archives</a>)</dd>
+                </dl>
+        </details>
+
+
+            <p class="copyright">
+                    <a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2026 <a href="https://www.w3.org/"> World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/">permissive document license</a> rules apply.
+            </p>
+
+            <hr title="Separator for header">
+    </div>
+
+    <section id="abstract" class="introductory">
+        <h2><span class="handlebars-data">Abstract</span></h2>
+        <p>This specification defines an API that provides the time origin, and current time in sub-millisecond resolution, such that it is not subject to system clock skew or adjustments.</p>
+
+    </section>
+
+    <section id="sotd" data-link-for="Performance" class="introductory">
+        <h2><span class="handlebars-data">Status of This Document</span></h2>
+
+        <p><span class="handlebars-data"><em>This section describes the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> standards and drafts index</a>.</em></span></p>
+
+
+        <p>
+            This document <span class="handlebars-data"></span>was published by the <a href="https://www.w3.org/groups/wg/i18n-core/"><span class="handlebars-data">Internationalization Working Group</span></a> as a <span class="handlebars-data">Working Draft </span> using the <a href='https://www.w3.org/policies/process/20250818/#recs-and-notes'><span class="handlebars-data">Recommendation</span> track</a>.
+        </p>
+
+
+        <p>
+            <span class="handlebars-data">
+
+
+
+                        Publication as a <span class="handlebars-data">Working Draft</span> <span class="handlebars-data">does not imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members.</span>
+
+
+
+
+
+                        <span class="handlebars-data">This is a draft document and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to cite this document as other than a work in progress.</span>
+
+
+
+            </span>
+        </p>
+
+
+
+
+            <p>
+                This document was produced by a group operating under the <a href="https://www.w3.org/policies/patent-policy/"><span class="handlebars-data"><abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a></span></a>. <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a rel="disclosure" href="https://www.w3.org/groups/wg/i18n-core/ipr"><span class="handlebars-data">public list of any patent disclosures</span></a> made in connection with the deliverables of <span class="handlebars-data">the group; that page also includes</span> instructions for disclosing a patent. <span class="handlebars-data">An individual who has</span> actual knowledge of a patent that the individual believes contains <a href="https://www.w3.org/policies/patent-policy/#def-essential"><span class="handlebars-data">Essential Claim(s)</span></a> must disclose the information in accordance with <a href="https://www.w3.org/policies/patent-policy/#sec-Disclosure"><span class="handlebars-data">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</span></a>.
+            </p>
+
+        <p>
+            This document <span class="handlebars-data">is governed by the</span> <a id="w3c_process_revision" href="https://www.w3.org/policies/process/20250818/"><span class="handlebars-data">18 August 2025 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</span></a>.
+        </p>
+
+    </section>
+        <nav id="toc">
+                <h2 class="introductory" id="table-of-contents">Table of Contents</h2>
+            <ol class="toc">
+                <li class="tocline"><a class="tocxref" href="#introduction"><bdi class="">1. </bdi>Introduction</a>
+                    <ol class="toc"> <li class="tocline"><a class="tocxref" href="#examples"><bdi class="">1.1 </bdi>Examples</a> </li>
+                    </ol>
+                </li>
+
+                <li class="tocline"><a class="tocxref" href="#sec-time-origin"><bdi class="">2. </bdi>Time Origin</a>
+                </li>
+            </ol>
+        </nav>
+    <section id="introduction" class="informative">
+        <h2 id="x1-introduction"><bdi class="secno">1. </bdi>Introduction<a class="self-link" aria-label="§" href="#introduction"></a></h2>
+        <p id="examples"><em>This section is non-normative.</em></p>
+    </section>
+    <section id="time origin" class="informative">
+        <h2 id="time-origin"><bdi class="secno">1. </bdi>Time Origin<a class="self-link" aria-label="§" href="#sec-time-origin"></a></h2>
+        <p id="sec-time-origin"><em>This section is non-normative.</em></p>
+    </section>
+
+        <p role="navigation" id="back-to-top"><a href="#title"><abbr title="Back to Top">↑</abbr></a></p>
+
+        <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
+</body>
+</html>

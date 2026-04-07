@@ -111,7 +111,7 @@ describe('API', () => {
 
     describe('Method “metadata”', () => {
         it('Should accept the parameter “file”, and return the right profile and date', () => {
-            query = request('metadata?file=test/docs/metadata/ttml-imsc1.html');
+            query = request('metadata?file=test/docs/api/ttml-imsc1.html');
             // @TODO: parse result as an Object (it's JSON) instead of a String.
             return expect(query)
                 .to.eventually.match(/"profile":\s*"rec"/i)
@@ -122,26 +122,28 @@ describe('API', () => {
     describe('Method “validate”', () => {
         it('Should 400 and return an array of errors when validation fails', () => {
             query = request(
-                'validate?file=test/docs/metadata/ttml-imsc1.html&profile=REC'
+                'validate?file=test/docs/api/ttml-imsc1.html&profile=REC'
             );
             return expect(query).to.eventually.be.rejectedWith(
                 /"errors":\[\{"name":"headers\.\w+/
             );
         });
-        // @TODO: The following two tests are failing because the rule dl.js follows the latest version
-        //        and that version is pre-https switch
-        // it('Should accept the parameter “file”, and succeed when the document is valid', function() {
-        //     query = get('validate?file=test/docs/metadata/charmod-norm.html&' +
-        //         'profile=WD&validation=simple-validation&processDocument=2015');
-        //     // @TODO: parse result as an Object (it's JSON) instead of a String.
-        //     return expect(query).to.eventually.match(/"success":\s*true/i);
-        // });
-        // it('Special profile “auto”: should detect the right profile and validate the document', function() {
-        //     query = get('validate?file=test/docs/metadata/charmod-norm.html&profile=auto');
-        //     // @TODO: parse result as an Object (it's JSON) instead of a String.
-        //     return expect(query).to.eventually.match(/"success":\s*true/i)
-        //         .and.to.eventually.match(/"profile":\s*"wd"/i);
-        // });
+        it('Should accept the parameter “file”, and succeed when the document is valid', function () {
+            query = request(
+                'validate?file=test/docs/api/wd-good.html&profile=WD'
+            );
+            // @TODO: parse result as an Object (it's JSON) instead of a String.
+            return expect(query).to.eventually.match(/"success":\s*true/);
+        });
+        it('Special profile “auto”: should detect the right profile and validate the document', function () {
+            query = request(
+                'validate?file=test/docs/api/wd-good.html&profile=auto'
+            );
+            // @TODO: parse result as an Object (it's JSON) instead of a String.
+            return expect(query)
+                .to.eventually.match(/"success":\s*true/)
+                .and.to.eventually.match(/"profile":\s*"WD"/);
+        });
     });
 
     describe('Parameter restrictions', () => {
