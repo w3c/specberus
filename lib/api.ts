@@ -162,6 +162,10 @@ const processRequest = async (
     }
 };
 
+/**
+ * Adds middleware for handling pubrules requests.
+ * NOTE: This requires express-fileupload middleware to be hooked up separately!
+ */
 export const setUp = function (app: Express) {
     app.get(/\/api\/.*/, processGet());
     app.post(/\/api\/.*/, processPost());
