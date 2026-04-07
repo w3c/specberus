@@ -11,9 +11,9 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "skipLibCheck": true,
-        "strict": true,
         "useUnknownInCatchVariables": false,
         "verbatimModuleSyntax": true
     },
-    "exclude": ["public/**/*", "test/**/*"]
+    "exclude": ["public/**/*", "test/**/*"],
+    "types": ["node"]
 }
