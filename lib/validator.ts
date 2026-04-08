@@ -1,8 +1,5 @@
 /**
  * @file Main file of the Specberus npm package.
- *
- * The most useful source:
- * https://services.w3.org/xslt?xmlfile=https://www.w3.org/2005/07/13-pubrules-src.html&xslfile=https://www.w3.org/2005/07/13-pubrules-compare.xsl
  */
 
 import fs from 'fs';
