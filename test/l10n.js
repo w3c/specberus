@@ -102,6 +102,7 @@ async function scanFileSystem() {
         const filenames = await readdir(join(baseDir, dirname));
         for (const filename of filenames) {
             if (!filename.endsWith('.ts')) continue;
+            if (filename.endsWith('.d.ts')) continue;
 
             const content = await readFile(join(baseDir, dirname, filename));
             const name = filename.replace(extensionRemover, '');
