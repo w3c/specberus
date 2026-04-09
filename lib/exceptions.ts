@@ -1,27 +1,11 @@
-import exceptions from './exceptions.json' with { type: 'json' };
-
-interface Exception {
-    rule: string;
-    message?: string;
-    type?: string;
-}
+import { exceptions, type Exception } from './exceptions-map.js';
 
 function findSet(shortname: string) {
-    let count = 0;
-    function recursiveFindSet(name: string) {
-        if (count > 10) return undefined;
-        const set: Exception[][] = [];
-        for (const k in exceptions) {
-            const regex = new RegExp(k);
-            if (Object.hasOwn(exceptions, k) && regex.test(name)) {
-                set.push(exceptions[k as keyof typeof exceptions]);
-            }
-        }
-        count += 1;
-        if (typeof set === 'string') return recursiveFindSet(set);
-        return set;
+    const set: Exception[][] = [];
+    for (const [regexp, applicableExceptions] of exceptions) {
+        if (regexp.test(shortname)) set.push(applicableExceptions);
     }
-    return recursiveFindSet(shortname);
+    return set;
 }
 
 export function hasExceptions(
