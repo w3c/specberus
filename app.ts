@@ -19,13 +19,10 @@ import tmp from 'tmp';
 import * as api from './lib/api.js';
 import badterms from './lib/badterms.js';
 import * as l10n from './lib/l10n.js';
-import { allProfiles } from './lib/util.js';
+import { allProfiles, specberusVersion } from './lib/util.js';
 import { Specberus } from './lib/validator.js';
 import * as views from './lib/views.js';
 import type { ProfileModule } from './lib/types.js';
-import pkg from './package.json' with { type: 'json' };
-
-const { version } = pkg;
 
 // Settings:
 const DEFAULT_PORT = 80;
@@ -63,7 +60,7 @@ l10n.setLanguage('en_GB');
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
 
 io.on('connection', socket => {
-    socket.emit('handshake', { version });
+    socket.emit('handshake', { version: specberusVersion });
     socket.on('extractMetadata', data => {
         if (!data.url && !data.file)
             return socket.emit('exception', {

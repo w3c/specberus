@@ -2,11 +2,11 @@ import type { Express, Request, Response } from 'express';
 import handlebars from 'express-handlebars';
 import { escape } from 'querystring';
 
-import pkg from '../package.json' with { type: 'json' };
 import rules, { type RulesProfile, type RulesSection } from './rules-track.js';
 import genericSections, {
     type GenericRulesSection,
 } from './rules-generic-sections.js';
+import { specberusVersion } from './util.js';
 
 // Settings:
 const DEBUG = process && process.env && process.env.DEBUG;
@@ -27,7 +27,7 @@ const serveStraight = function (req: Request, res: Response) {
     res.render(fragment, {
         DEBUG,
         BASE_URI,
-        version: pkg.version,
+        version: specberusVersion,
         nav,
         title: fragment,
     });
@@ -38,7 +38,7 @@ const handleWrongPage = function (_: Request, res: Response) {
     res.render('error', {
         DEBUG,
         BASE_URI,
-        version: pkg.version,
+        version: specberusVersion,
         nav,
         title: 'whut?',
     });
@@ -184,7 +184,7 @@ export function setUp(app: Express) {
         res.render('index', {
             DEBUG,
             BASE_URI,
-            version: pkg.version,
+            version: specberusVersion,
             nav,
             interactive: true,
             tracks: sortedProfiles,
@@ -195,7 +195,7 @@ export function setUp(app: Express) {
         res.render('doc', {
             DEBUG,
             BASE_URI,
-            version: pkg.version,
+            version: specberusVersion,
             nav,
             title: 'documentation',
             tracks: sortedProfiles,
@@ -206,7 +206,7 @@ export function setUp(app: Express) {
         res.render('doc/rules', {
             DEBUG,
             BASE_URI,
-            version: pkg.version,
+            version: specberusVersion,
             nav,
             title: 'publication rules',
             content: retrieveProfile(req.query),
