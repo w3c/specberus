@@ -9,6 +9,14 @@
     "type": "git",
     "url": "https://github.com/w3c/specberus.git"
   },
+  "files": [
+    "app.js",
+    "lib/**/*.js",
+    "lib/**/*.d.ts",
+    "lib/**/*.json",
+    "public/*",
+    "views/*"
+  ],
   "dependencies": {
     "@octokit/core": "^7.0.6",
     "cheerio": "^1.1.2",
