@@ -2,15 +2,11 @@ import type { Express, Request, Response } from 'express';
 import handlebars from 'express-handlebars';
 import { escape } from 'querystring';
 
-import type {
-    GenericRulesSection,
-    RulesProfile,
-    RulesSection,
-} from './types.js';
-import { isRuleTrack } from './util.js';
-
 import pkg from '../package.json' with { type: 'json' };
-import rules from './rules.json' with { type: 'json' };
+import rules, { type RulesProfile, type RulesSection } from './rules-track.js';
+import genericSections, {
+    type GenericRulesSection,
+} from './rules-generic-sections.js';
 
 // Settings:
 const DEBUG = process && process.env && process.env.DEBUG;
@@ -48,7 +44,7 @@ const handleWrongPage = function (_: Request, res: Response) {
     });
 };
 
-/** Profile object as returned by listProfiles (distinct from rules.json) */
+/** Profile object as returned by listProfiles (distinct from rules-track.ts) */
 interface Profile {
     order: number;
     abbr: string;
@@ -64,32 +60,28 @@ function listProfiles() {
         if (a.order > b.order) return 1;
         return 0;
     };
-    for (const t in rules) {
-        if (isRuleTrack(t)) {
-            const rule = rules[t];
-            result.push({
-                order: rule.order,
-                abbr: t,
-                name: rule.name,
-                profiles: [] as Profile[],
+    for (const [track, entry] of Object.entries(rules)) {
+        result.push({
+            order: entry.order,
+            abbr: track,
+            name: entry.name,
+            profiles: [] as Profile[],
+        });
+        for (const [p, profile] of Object.entries(entry.profiles))
+            result[result.length - 1].profiles.push({
+                order: profile.order,
+                abbr: p,
+                name: profile.name,
             });
-            for (const [p, profile] of Object.entries(rule.profiles))
-                result[result.length - 1].profiles.push({
-                    order: profile.order,
-                    abbr: p,
-                    name: profile.name,
-                });
-            result[result.length - 1].profiles.sort(sortByOrderField);
-        }
-        result.sort(sortByOrderField);
+        result[result.length - 1].profiles.sort(sortByOrderField);
     }
-    return result;
+    return result.sort(sortByOrderField);
 }
 export const sortedProfiles = listProfiles();
 
 // TODO(tripu): Document.
 function formatRules(sections: Record<string, RulesSection>) {
-    const commonSections = rules['*'].sections as Record<
+    const commonSections = genericSections as Record<
         string,
         GenericRulesSection
     >;
@@ -154,22 +146,18 @@ function retrieveProfile(query: qs.ParsedQs) {
 
     if (query && query.profile && typeof query.profile === 'string') {
         const codename = escape(query.profile).trim().toUpperCase();
-        if (rules)
-            for (const t in rules) {
-                if (isRuleTrack(t)) {
-                    const profiles = rules[t].profiles;
-                    if (Object.hasOwn(profiles, codename)) {
-                        const profile = profiles[
-                            codename as keyof typeof profiles
-                        ] as RulesProfile;
-                        result = {
-                            abbr: codename,
-                            name: `<em>${profile.name}</em>`,
-                            body: formatRules(profile.sections),
-                        };
-                    }
-                }
+        for (const { profiles } of Object.values(rules)) {
+            if (Object.hasOwn(profiles, codename)) {
+                const profile = profiles[
+                    codename as keyof typeof profiles
+                ] as RulesProfile;
+                result = {
+                    abbr: codename,
+                    name: `<em>${profile.name}</em>`,
+                    body: formatRules(profile.sections),
+                };
             }
+        }
         if (!result)
             result = {
                 error: `<p>Error: unknown profile <code>${escape(
