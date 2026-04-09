@@ -44,7 +44,7 @@ interface ExtractMetadataOptions extends BaseOptions {
 
 export interface ValidateOptions extends BaseOptions {
     profile: ProfileModule;
-    validation?: 'no-validation' | 'simple-validation' | 'recursive';
+    validation?: 'no-validation' | 'recursive';
 }
 
 type HeaderMap = Record<
