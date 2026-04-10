@@ -113,7 +113,7 @@ export async function processParams(
             // Origins: only one allowed.
             if (originFound)
                 throw new Error(
-                    'Only one of parameters {“url”, “source”, “file”, “document”} is allowed'
+                    'Only one of parameters {“url”, “source”, “file”} is allowed'
                 );
             originFound = true;
             result[p] = params[p];
