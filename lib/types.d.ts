@@ -21,7 +21,6 @@ type SubmissionType = 'member';
 
 type Track = 'Note' | 'Recommendation' | 'Registry';
 
-// TODO: add properties and narrow types
 export interface SpecberusConfig {
     /** Candidate Recommendation type is only defined for CR/CRD statuses */
     crType?: 'Draft' | 'Snapshot';
@@ -42,7 +41,6 @@ export interface SpecberusConfig {
     validation?: ValidateOptions['validation'];
 }
 
-// TODO: ideally make this more precise
 export type HandlerMessage = Record<string, string | undefined>;
 
 type IsoDateString = `${number}-${number}-${number}`;
