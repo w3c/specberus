@@ -247,7 +247,7 @@ export class Specberus {
         processParams(options, profile.config)
             .then(config => {
                 this.config = config;
-                // TODO(kgf): Is this even used?
+                // TODO(kgf): Is this unused? We seem to hard-code it at the top of this file...
                 config.lang = 'en_GB';
                 const errors: HandlerMessage[] = [];
                 const warnings: HandlerMessage[] = [];
