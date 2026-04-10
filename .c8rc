@@ -1,0 +1,5 @@
+{
+    "all": true,
+    "exclude": ["public/*", "test/*", "tools/*"],
+    "reporter": ["html"]
+}
