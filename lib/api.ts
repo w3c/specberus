@@ -70,14 +70,12 @@ const processPost = () => async (req: Request, res: Response) => {
 
     if (path === '/api/metadata' || path === '/api/validate') {
         if (!req.files || !req.files.file) {
-            return res.send({
-                status: 400,
+            return res.status(400).send({
                 message: 'Missing file.',
             });
         }
         if (Array.isArray(req.files.file)) {
-            return res.send({
-                status: 400,
+            return res.status(400).send({
                 message: 'Expected a single file.',
             });
         }
@@ -87,8 +85,7 @@ const processPost = () => async (req: Request, res: Response) => {
             // file must be an html file
             const type = await fileTypeFromFile(tempFilePath);
             if (type != null) {
-                return res.send({
-                    status: 500,
+                return res.status(400).send({
                     message: 'Invalid file type. Please send an HTML file.',
                 });
             }
