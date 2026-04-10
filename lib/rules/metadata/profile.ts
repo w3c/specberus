@@ -73,7 +73,8 @@ export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
                     .first()
                     .attr('href');
             }
-        } else if (id === 'REC') {
+        }
+        if (id === 'REC') {
             meta = sr.getRecMetadata(meta);
         }
 
