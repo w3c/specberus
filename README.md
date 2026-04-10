@@ -158,17 +158,16 @@ $ RULE=copyright TYPE=noCopyright npm run test
 
 ## 4. JS API
 
-The interface you get when you `require("specberus")` is that from `lib/validator`. It returns a
-`Specberus` instance that is properly configured for operation in the Node.js environment
-(there is nominal support for running Specberus under other environments, but it isn't usable at this time).
+The interface you get when you `import { Specberus } from "specberus"` is that from `lib/validator`.
+`Specberus` is a class configured for operation in the Node.js environment.
 
 (See also [the REST API](#5-rest-api).)
 
 ## Creating a Validator instance
 
 ```js
-const { Specberus } = require('specberus');
-const specberus = new Specberus(apiKey);
+import { Specberus } from 'specberus';
+const specberus = new Specberus();
 // specberus.validate(...)
 // specberus.extractMetadata(...)
 ```
@@ -444,14 +443,18 @@ they're done.
 
 The Specberus object exposes the following API that's useful for validation:
 
-- `loader`. The loader object that loaded the content, which exposes the content's `url` and
-  `source` if they are known.
-- `sink`. The event target on which to fire validation events.
+- `source`. The HTML source of the document being processed
+- `url`. The URL of the document being processed, only applicable if `options.url` was specified
+- `error`, `warn`, `info`. Methods for firing respective levels of events to the instance's sink.
+  All three methods accept the same arguments:
+    - `rule` object: at minimum, an object with a `name` string. May also contain `rule` and `section` strings.
+    - `key` string: specifies the precise occurrence within the particular `rule`
+    - `extra` object (optional): any additional fields to include within the event
 - `version`. The Specberus version.
 - `checkSelector(selector, rule-name, cb)`. Some rules need to do nothing other than to check that a
   selector returns some content. For this case, the rule can just call this method with the selector
   and its callback, and Specberus will conveniently take care of all the rest.
-- `norm(text)`. Returns a whitespace-normalised version of the text.
+- `norm(text)`. Returns a whitespace-normalized version of the text.
 - `getDocumentDate()`. Returns a Date object that matches the document's date as specified in the
   headers' `stateElement` (id="w3c-state").
 - `getDocumentStateElement()`. Returns the element that contains the document's date.
