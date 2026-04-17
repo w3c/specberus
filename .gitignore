@@ -25,7 +25,12 @@ scratch
 # mac files
 .DS_Store
 */.DS_Store
-.vscode/
 
 .nyc_output
 .eslintcache
+
+# TS build output
+app.js
+*.d.ts
+!lib/types.d.ts
+lib/**/*.js
