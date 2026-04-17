@@ -106,6 +106,7 @@ export function setupMocks(overrides) {
     // Requests which only depend on a 200 response
 
     nock('https://www.w3.org')
+        .persist()
         .head('/standards/history/hr-time')
         .reply(200, 'HR Time history page');
     nock('https://api.w3.org')
@@ -178,6 +179,7 @@ export function setupMocks(overrides) {
             .reply(200, charters.length ? { _embedded: { charters } } : {});
         if (userIds) {
             nock('https://api.w3.org')
+                .persist()
                 .get(`/groups/${group.id}/users?embed=true`)
                 .reply(
                     200,
