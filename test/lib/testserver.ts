@@ -1,6 +1,7 @@
-// start an server to host doc, response to sr.url requests
-import express from 'express';
-import pth, { dirname } from 'path';
+/** @file Starts a server to host doc, response to sr.url requests */
+
+import express, { type Request, type Response } from 'express';
+import { dirname, join } from 'path';
 import exphbs from 'express-handlebars';
 import { fileURLToPath } from 'url';
 
@@ -11,74 +12,77 @@ const ENDPOINT = `http://localhost:${PORT}`;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const app = express();
-app.use('/docs', express.static(pth.join(__dirname, 'docs')));
+app.use('/docs', express.static(join(__dirname, 'docs')));
 
 // use express-handlebars
 app.engine(
     'handlebars',
     exphbs.engine({
-        defaultLayout: pth.join(__dirname, '../doc-views/layout/spec'),
-        layoutsDir: pth.join(__dirname, '../doc-views'),
-        partialsDir: pth.join(__dirname, '../doc-views/partials/'),
+        defaultLayout: join(__dirname, '..', 'doc-views', 'layout', 'spec'),
+        layoutsDir: join(__dirname, '..', 'doc-views'),
+        partialsDir: join(__dirname, '..', 'doc-views', 'partials'),
     })
 );
 app.set('view engine', 'handlebars');
-app.set('views', pth.join(__dirname, '../doc-views'));
+app.set('views', join(__dirname, '..', 'doc-views'));
 
-function renderByConfig(req, res) {
+async function renderByConfig(req: Request, res: Response) {
     const { rule, type } = req.query;
     const suffix = req.params.track
         ? `${req.params.track}/${req.params.profile}`
         : req.params.profile;
 
     // get data for template from json (.js)
-    const path = pth.join(
+    const path = join(
         __dirname,
-        `../doc-views/${req.params.docType}/${suffix}.js`
+        '..',
+        'doc-views',
+        `${req.params.docType}`,
+        `${suffix}.js`
     );
+    const data = (await import(path)).default;
+    let finalData;
 
-    import(path).then(module => {
-        const data = module.default;
-
-        let finalData;
-        if (!type)
-            res.send(
-                '<h1>Error: please add the parameter "type" in the URL </h1>'
+    if (typeof type !== 'string') {
+        res.status(400).send(
+            '<h1>Error: please add the parameter "type" in the URL </h1>'
+        );
+        return;
+    } else if (type.startsWith('good')) {
+        finalData = data[type];
+    } else {
+        if (typeof rule !== 'string') {
+            res.status(400).send(
+                '<h1>Error: please add the parameter "rule" in the URL </h1>'
             );
-        else if (type.startsWith('good')) {
-            finalData = data[type];
-        } else {
-            if (!rule)
-                res.send(
-                    '<h1>Error: please add the parameter "rule" in the URL </h1>'
-                );
-
-            // for data causes error, make rule and the type of error specific.
-            finalData = data[rule][type];
+            return;
         }
-        res.render(pth.join(__dirname, '../doc-views/layout/spec'), finalData);
-    });
+        // for data causes error, make rule and the type of error specific.
+        finalData = data[rule][type];
+    }
+
+    res.render(join(__dirname, '..', 'doc-views', 'layout', 'spec'), finalData);
 }
 
 app.get('/doc-views/:docType/:track/:profile', renderByConfig);
 app.get('/doc-views/:docType/:profile', renderByConfig);
 
 // config single redirection
-app.get('/docs/links/image/logo', (req, res) => {
+app.get('/docs/links/image/logo', (_, res) => {
     res.redirect('/docs/links/image/logo.png');
 });
 // config single redirection to no where (404)
-app.get('/docs/links/image/logo-fail', (req, res) => {
+app.get('/docs/links/image/logo-fail', (_, res) => {
     res.redirect('/docs/links/image/logo-fail.png');
 });
 // config multiple redirection
-app.get('/docs/links/image/logo-redirection-1', (req, res) => {
+app.get('/docs/links/image/logo-redirection-1', (_, res) => {
     res.redirect(301, '/docs/links/image/logo-redirection-2');
 });
-app.get('/docs/links/image/logo-redirection-2', (req, res) => {
+app.get('/docs/links/image/logo-redirection-2', (_, res) => {
     res.redirect(307, '/docs/links/image/logo-redirection-3');
 });
-app.get('/docs/links/image/logo-redirection-3', (req, res) => {
+app.get('/docs/links/image/logo-redirection-3', (_, res) => {
     res.redirect('/docs/links/image/logo.png');
 });
 

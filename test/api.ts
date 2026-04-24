@@ -1,0 +1,183 @@
+/**
+ * Test the REST API.
+ */
+
+import assert from 'assert';
+import http, { type Server } from 'http';
+import { join } from 'path';
+import { before, after, describe, it } from 'node:test';
+
+import express from 'express';
+import fileUpload from 'express-fileupload';
+import superagent, { type Response, type ResponseError } from 'superagent';
+
+import { setUp } from '../lib/api.js';
+import { specberusVersion } from '../lib/util.js';
+import { cleanupMocks, setupMocks } from './lib/utils.js';
+
+// Settings:
+const DEFAULT_PORT = 8000;
+const PORT = process.env.PORT || DEFAULT_PORT;
+const ENDPOINT = `http://localhost:${PORT}/api/`;
+const timeouts = { response: 30000 };
+const testDocsPath = join('test', 'docs', 'api');
+
+let server: Server;
+
+/**
+ * Sets up Chai, mocks, and the HTTP server for tests.
+ */
+function setup() {
+    setupMocks();
+
+    const app = express();
+    // fileUpload is _not_ covered by app.js setUp, so need to repeat it here
+    app.use(
+        fileUpload({
+            createParentPath: true,
+            useTempFiles: true,
+            tempFileDir: '/tmp/',
+        })
+    );
+    server = http.createServer(app);
+    setUp(app);
+    server.listen(PORT).on('error', err => {
+        throw err;
+    });
+}
+
+const handleUnexpectedFulfillment = () =>
+    assert.fail(`Promise was expected to reject but was fulfilled`);
+const handleResponse = (response: Response) => response.text || response.body;
+const handleJsonResponse = (response: Response) =>
+    JSON.parse(handleResponse(response));
+function getErrorResponseText(error: ResponseError) {
+    const text = error.response?.text;
+    assert(text, 'Response data not available on error');
+    return text;
+}
+
+/** Performs a GET request. */
+const get = (suffix: string) =>
+    superagent
+        .get(ENDPOINT + suffix)
+        .timeout(timeouts)
+        .then(handleResponse);
+
+/** Creates a POST request, returning the superagent object for parameter chaining. */
+const createPostRequest = (suffix: string) =>
+    superagent.post(ENDPOINT + suffix).timeout(timeouts);
+
+describe('API', () => {
+    before(setup);
+
+    after(() => {
+        cleanupMocks();
+        server.close();
+    });
+
+    describe('Endpoint', () => {
+        it('Should exist and listen to GET requests', () =>
+            get('').then(handleUnexpectedFulfillment, error => {
+                const text = getErrorResponseText(error);
+                assert.strictEqual(text, 'Wrong API endpoint.');
+            }));
+        it('Should exist and listen to POST requests', () =>
+            createPostRequest('').then(handleUnexpectedFulfillment, error => {
+                const text = getErrorResponseText(error);
+                assert.strictEqual(text, 'Wrong API endpoint.');
+            }));
+    });
+
+    describe('Method “version”', () => {
+        it('Should return the right version string', async () => {
+            assert.strictEqual(await get('version'), specberusVersion);
+        });
+    });
+
+    describe('Method “metadata”', () => {
+        it('Should accept "file" via POST, and return the right profile and date', () =>
+            createPostRequest('metadata')
+                .attach('file', join(testDocsPath, 'ttml-imsc1.html'))
+                .then(handleJsonResponse)
+                .then(({ metadata }) => {
+                    assert.strictEqual(metadata.profile, 'REC');
+                    assert.strictEqual(metadata.docDate, '2016-3-8');
+                }));
+    });
+
+    describe('Method “validate”', () => {
+        it('Should 400 and return an array of errors when validation fails', () =>
+            createPostRequest('validate')
+                .field('profile', 'REC')
+                .attach('file', join(testDocsPath, 'ttml-imsc1.html'))
+                .then(handleUnexpectedFulfillment, error => {
+                    const { success, errors } = JSON.parse(
+                        getErrorResponseText(error)
+                    );
+                    assert.strictEqual(success, false);
+                    assert(errors.length > 0, 'Response should report errors');
+                    for (const obj of errors) {
+                        assert(
+                            obj.name &&
+                                obj.rule &&
+                                obj.section &&
+                                obj.key &&
+                                obj.detailMessage,
+                            'Every error should consistently define fields'
+                        );
+                    }
+                }));
+
+        it('Should accept "file" via POST, and succeed when the document is valid', () =>
+            createPostRequest('validate')
+                .field('profile', 'WD')
+                .attach('file', join(testDocsPath, 'wd-good.html'))
+                .then(handleJsonResponse)
+                .then(({ success }) => {
+                    assert.strictEqual(success, true);
+                }));
+
+        it('Special profile “auto”: should detect the right profile and validate the document', () =>
+            createPostRequest('validate')
+                .field('profile', 'auto')
+                .attach('file', join(testDocsPath, 'wd-good.html'))
+                .then(handleJsonResponse)
+                .then(({ success, metadata }) => {
+                    assert.strictEqual(success, true);
+                    assert.strictEqual(metadata.profile, 'WD');
+                }));
+    });
+
+    describe('Parameter restrictions', () => {
+        it('Should reject the parameter "document" as unknown', () =>
+            get('metadata?document=foo').then(
+                handleUnexpectedFulfillment,
+                error => {
+                    const { success, errors } = JSON.parse(
+                        getErrorResponseText(error)
+                    );
+                    assert.strictEqual(success, false);
+                    assert.strictEqual(
+                        errors[0],
+                        'Error: Illegal parameter “document”'
+                    );
+                }
+            ));
+
+        it('Should reject the parameter "source" as forbidden', () =>
+            get('metadata?source=foo').then(
+                handleUnexpectedFulfillment,
+                error => {
+                    const { success, errors } = JSON.parse(
+                        getErrorResponseText(error)
+                    );
+                    assert.strictEqual(success, false);
+                    assert.strictEqual(
+                        errors[0],
+                        'Error: Parameter “source” is not allowed in this context'
+                    );
+                }
+            ));
+    });
+});

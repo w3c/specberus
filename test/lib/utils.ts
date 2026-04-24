@@ -1,11 +1,11 @@
-import { lstatSync, readdirSync } from 'fs';
 import merge from 'lodash.merge';
 import nock from 'nock';
 
-import { nockData } from './nockData.js';
+import { nockData, type NockData } from './nockData.js';
+import { lstat, readdir } from 'fs/promises';
 
-function listFilesOf(dir) {
-    const files = readdirSync(dir);
+async function listFilesOf(dir: string) {
+    const files = await readdir(dir);
 
     // ignore .DS_Store from Mac
     const blocklist = ['.DS_Store', 'Base.js'];
@@ -13,62 +13,62 @@ function listFilesOf(dir) {
     return files.filter(v => !blocklist.find(b => v.includes(b)));
 }
 
-const flat = objs => objs.reduce((acc, cur) => ({ ...acc, ...cur }), {});
+// TODO(kgf): This probably doesn't need to exist...
+const flattenObjects = (objs: Record<string, any>[]) =>
+    objs.reduce((acc, cur) => ({ ...acc, ...cur }), {});
 
-const buildProfileTestCases = async path => {
+const buildProfileTestCases = async (path: string) => {
     const { rules } = await import(path);
     return rules;
 };
 
-const buildTrackTestCases = async path => {
-    if (lstatSync(path).isFile()) {
-        const profile = await buildProfileTestCases(path);
-        return profile;
-    }
+const buildTrackTestCases = async (path: string) => {
+    // TODO(kgf): Is this ever hit? I'm not sure it would work... wouldn't it be un-nested?
+    if ((await lstat(path)).isFile()) return buildProfileTestCases(path);
 
     const profiles = await Promise.all(
-        listFilesOf(path).map(async profile => ({
+        (await listFilesOf(path)).map(async profile => ({
             [profile]: await buildProfileTestCases(`${path}/${profile}`),
         }))
     );
 
-    return flat(profiles);
+    return flattenObjects(profiles);
 };
 
-const buildDocTypeTestCases = async path => {
+const buildDocTypeTestCases = async (path: string) => {
     const tracks = await Promise.all(
-        listFilesOf(path).map(async track => ({
+        (await listFilesOf(path)).map(async track => ({
             [track]: await buildTrackTestCases(`${path}/${track}`),
         }))
     );
 
-    return flat(tracks);
+    return flattenObjects(tracks);
 };
 
 export const buildBadTestCases = async () => {
     const base = `${process.cwd()}/test/data`;
-    const docTypes = await Promise.all(
-        listFilesOf(base)
-            .filter(v => lstatSync(`${base}/${v}`).isDirectory())
-            .map(async docType => ({
-                [docType]: await buildDocTypeTestCases(`${base}/${docType}`),
-            }))
-    );
+    const docTypes: Record<string, Record<string, any>>[] = [];
+    for (const docType of await listFilesOf(base)) {
+        if (!(await lstat(`${base}/${docType}`)).isDirectory()) continue;
+        docTypes.push({
+            [docType]: await buildDocTypeTestCases(`${base}/${docType}`),
+        });
+    }
 
-    return flat(docTypes);
+    return flattenObjects(docTypes);
 };
 
 /**
  * @param {Request} req
  */
-function warnOnNonLocalRequest(req) {
+function warnOnNonLocalRequest(req: Request) {
     if (!req.url.includes('//localhost')) {
         console.warn('Unmocked non-local request:', req.url, req.body);
     }
 }
 
 /** Mocks external calls to speed up tests and make them consistently runnable locally */
-export function setupMocks(overrides) {
+export function setupMocks(overrides?: Partial<NockData>) {
     // Report non-local URLs that were not mocked during test runs
     nock.emitter.on('no match', warnOnNonLocalRequest);
 

@@ -41,6 +41,7 @@
     "@rvagg/chai-as-promised": "8.0.2",
     "@types/express": "^5.0.6",
     "@types/express-fileupload": "^1.5.1",
+    "@types/lodash.merge": "^4.6.9",
     "@types/mocha": "^10.0.10",
     "@types/morgan": "^1.9.10",
     "@types/node": "^24.10.9",
@@ -74,7 +75,8 @@
     "spelling": "cspell \"**/*\"",
     "start": "node app",
     "testserver": "nodemon test/lib/testserver.js",
-    "test": "NO_THROTTLE=true mocha"
+    "test": "NO_THROTTLE=true tsx --test 'test/*.ts'",
+    "test:only": "NO_THROTTLE=true tsx --test --test-only 'test/*.ts'"
   },
   "engines": {
     "node": "20 || 22 || 24",
