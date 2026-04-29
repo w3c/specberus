@@ -1,61 +1,82 @@
+import { lstat, readdir } from 'fs/promises';
+import { join } from 'path';
+
 import merge from 'lodash.merge';
 import nock from 'nock';
 
 import { nockData, type NockData } from './nockData.js';
-import { lstat, readdir } from 'fs/promises';
+import type { SpecberusConfig } from '../../lib/types.js';
 
-async function listFilesOf(dir: string) {
-    const files = await readdir(dir);
-
-    // ignore .DS_Store from Mac
-    const blocklist = ['.DS_Store', 'Base.js'];
-
-    return files.filter(v => !blocklist.find(b => v.includes(b)));
+export interface RuleTest {
+    config?: Partial<SpecberusConfig>;
+    data: string;
+    errors?: string[];
+    warnings?: string[];
 }
 
-// TODO(kgf): This probably doesn't need to exist...
-const flattenObjects = (objs: Record<string, any>[]) =>
-    objs.reduce((acc, cur) => ({ ...acc, ...cur }), {});
+interface RuleTestModule {
+    rules: Record<string, Record<string, RuleTest[]>>;
+}
+
+async function listDirectories(dir: string) {
+    const directories: string[] = [];
+    for (const entry of await readdir(dir))
+        if ((await lstat(join(dir, entry))).isDirectory())
+            directories.push(entry);
+    return directories;
+}
+
+async function listModules(dir: string) {
+    const list = (await readdir(dir))
+        .filter(
+            filename =>
+                filename.endsWith('.ts') &&
+                !filename.endsWith('.d.ts') &&
+                !filename.endsWith('Base.ts')
+        )
+        // Map to resolvable module identifiers
+        .map(filename => filename.replace(/\.ts$/, '.js'));
+    return list;
+}
 
 const buildProfileTestCases = async (path: string) => {
-    const { rules } = await import(path);
+    const { rules } = (await import(path)) as RuleTestModule;
     return rules;
 };
 
 const buildTrackTestCases = async (path: string) => {
-    // TODO(kgf): Is this ever hit? I'm not sure it would work... wouldn't it be un-nested?
-    if ((await lstat(path)).isFile()) return buildProfileTestCases(path);
-
-    const profiles = await Promise.all(
-        (await listFilesOf(path)).map(async profile => ({
-            [profile]: await buildProfileTestCases(`${path}/${profile}`),
-        }))
-    );
-
-    return flattenObjects(profiles);
+    const profiles: Record<string, RuleTestModule['rules']> = {};
+    for (const profile of await listModules(path)) {
+        profiles[profile] = await buildProfileTestCases(`${path}/${profile}`);
+    }
+    return profiles;
 };
 
 const buildDocTypeTestCases = async (path: string) => {
-    const tracks = await Promise.all(
-        (await listFilesOf(path)).map(async track => ({
-            [track]: await buildTrackTestCases(`${path}/${track}`),
-        }))
-    );
+    const tracks: Record<
+        string,
+        RuleTestModule['rules'] | Record<string, RuleTestModule['rules']>
+    > = {};
 
-    return flattenObjects(tracks);
+    for (const module of await listModules(path)) {
+        tracks[module] = await buildProfileTestCases(`${path}/${module}`);
+    }
+    for (const track of await listDirectories(path)) {
+        tracks[track] = await buildTrackTestCases(`${path}/${track}`);
+    }
+    return tracks;
 };
 
 export const buildBadTestCases = async () => {
-    const base = `${process.cwd()}/test/data`;
-    const docTypes: Record<string, Record<string, any>>[] = [];
-    for (const docType of await listFilesOf(base)) {
-        if (!(await lstat(`${base}/${docType}`)).isDirectory()) continue;
-        docTypes.push({
-            [docType]: await buildDocTypeTestCases(`${base}/${docType}`),
-        });
+    const base = join(process.cwd(), 'test', 'data');
+    const docTypes: Record<
+        string,
+        Awaited<ReturnType<typeof buildDocTypeTestCases>>
+    > = {};
+    for (const docType of await listDirectories(base)) {
+        docTypes[docType] = await buildDocTypeTestCases(`${base}/${docType}`);
     }
-
-    return flattenObjects(docTypes);
+    return docTypes;
 };
 
 /**
@@ -72,8 +93,9 @@ export function setupMocks(overrides?: Partial<NockData>) {
     // Report non-local URLs that were not mocked during test runs
     nock.emitter.on('no match', warnOnNonLocalRequest);
 
-    /** @type {typeof nockData} */
-    const mockData = overrides ? merge({}, nockData, overrides) : nockData;
+    const mockData: typeof nockData = overrides
+        ? merge({}, nockData, overrides)
+        : nockData;
 
     const notFoundNames = [
         'hr-foo-time',

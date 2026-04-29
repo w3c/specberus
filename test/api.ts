@@ -5,7 +5,7 @@
 import assert from 'assert';
 import http, { type Server } from 'http';
 import { join } from 'path';
-import { before, after, describe, it } from 'node:test';
+import { after, before, describe, it } from 'node:test';
 
 import express from 'express';
 import fileUpload from 'express-fileupload';
