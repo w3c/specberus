@@ -35,7 +35,7 @@ const sendJSONresult = function (
 };
 
 const getFullUrl = (req: Request) =>
-    new URL(`http://${process.env.HOST ?? 'localhost'}${req.url}`);
+    new URL(`${req.protocol}://${req.host}${req.url}`);
 
 /**
  * Handle an API request: parse method and parameters, handle common errors and call the validator.
