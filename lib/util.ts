@@ -2,8 +2,8 @@
  * Miscellaneous utilities.
  */
 
-import fs from 'fs';
-import { dirname } from 'path';
+import { readdir } from 'fs/promises';
+import { dirname, join } from 'path';
 import { nextTick } from 'process';
 import { fileURLToPath } from 'url';
 
@@ -16,11 +16,6 @@ import type { ValidateOptions } from './validator.js';
 
 import rules from './rules.json' with { type: 'json' };
 type RuleTrack = Exclude<keyof typeof rules, '*'>;
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-const filesTR = fs.readdirSync(`${__dirname}/profiles/TR/`);
-const filesSUBM = fs.readdirSync(`${__dirname}/profiles/SUBM/`);
 
 /**
  * Builds a JSON result (of validation, metadata extraction, etc).
@@ -41,32 +36,48 @@ export const buildJSONresult = function (
     };
 };
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+async function readModuleBasenames(dir: string) {
+    const basenames = new Set<string>();
+    for (const filename of await readdir(dir)) {
+        if (filename.startsWith('.')) continue;
+        basenames.add(filename.replace(/(\.d)?\.[jt]s$/, ''));
+    }
+    return Array.from(basenames);
+}
+
+const directoriesTR = await readdir(join(__dirname, 'profiles', 'TR'));
+const SUBMProfiles = await readModuleBasenames(
+    join(__dirname, 'profiles', 'SUBM')
+);
+
 // Get rules of each profile
 const TRProfiles: string[] = [];
-for (const track of filesTR) {
+for (const track of directoriesTR) {
     if (!track.startsWith('.')) {
-        const profileNames = fs
-            .readdirSync(`${__dirname}/profiles/TR/${track}/`)
-            .map(profileName => `${track}/${profileName}`);
+        const profileNames = (
+            await readModuleBasenames(join(__dirname, 'profiles', 'TR', track))
+        ).map(profileName => `${track}/${profileName}`);
         TRProfiles.push(...profileNames);
     }
 }
 
 export const allProfiles = [
     ...TRProfiles.map(x => `TR/${x}`),
-    ...filesSUBM.map(x => `SUBM/${x}`),
+    ...SUBMProfiles.map(x => `SUBM/${x}`),
 ];
 
 export const profiles = Object.fromEntries(
     allProfiles
         .map(file => {
             const match =
-                /((TR|SUBM)\/([A-Za-z]+\/)?([A-Z][A-Z-]*[A-Z](-Echidna)?))\.js$/.exec(
+                /((TR|SUBM)\/([A-Za-z]+\/)?([A-Z][A-Z-]*[A-Z](-Echidna)?))$/.exec(
                     file
                 );
             if (match && match[4]) {
                 const key = match[4];
-                return [key, import(`./profiles/${match[0]}`)];
+                return [key, import(`./profiles/${match[0]}.js`)];
             }
             return null;
         })
@@ -122,11 +133,13 @@ export async function processParams(
             if (Object.hasOwn(result, p))
                 throw new Error(`Parameter “${p}” is used more than once`);
             else if (typeof params[p] === 'string') {
-                const subPath = `/${params[p]}.js`;
+                const subPath = `/${params[p]}`;
                 const profilePath = allProfiles.find(p => p.endsWith(subPath));
 
                 if (profilePath)
-                    result[p] = await import(`../lib/profiles/${profilePath}`);
+                    result[p] = await import(
+                        `../lib/profiles/${profilePath}.js`
+                    );
                 else if (params[p] === 'auto') result[p] = 'auto';
                 else throw new Error(`Unknown profile “${params[p]}”`);
             } else result[p] = params[p];

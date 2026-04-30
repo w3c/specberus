@@ -80,7 +80,7 @@ export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
 
         // Get 'track/rectrack' of the document based on id
         const profileRex = new RegExp(
-            `SUBM|(TR/(Registry|Recommendation|Note))/(${id}).js`
+            `SUBM|(TR/(Registry|Recommendation|Note))/(${id})`
         );
         const thisProfile = allProfiles.filter(eachProfile =>
             // eg for eachProfile: 'TR/Note/NOTE-Echidna.js'

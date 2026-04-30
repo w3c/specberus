@@ -118,12 +118,12 @@ io.on('connection', socket => {
                 message: 'Profile not provided.',
             });
         const profilePath = allProfiles.find(p =>
-            p.endsWith(`/${data.profile}.js`)
+            p.endsWith(`/${data.profile}`)
         );
         let profile;
         try {
             profile = (await import(
-                `./lib/profiles/${profilePath}`
+                `./lib/profiles/${profilePath}.js`
             )) as ProfileModule;
         } catch (err) {
             return socket.emit('exception', {

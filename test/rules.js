@@ -203,9 +203,9 @@ describe('Making sure good documents pass Specberus...', () => {
 
         it(`should pass for ${docProfile} doc with ${url}`, done => {
             const profilePath = allProfiles.find(p =>
-                p.endsWith(`/${docProfile}.js`)
+                p.endsWith(`/${docProfile}`)
             );
-            import(`../lib/profiles/${profilePath}`).then(profile => {
+            import(`../lib/profiles/${profilePath}.js`).then(profile => {
                 // add custom config to test
                 const extendedProfile = {
                     ...profile,
