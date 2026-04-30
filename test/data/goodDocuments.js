@@ -27,10 +27,13 @@ export const goodDocuments = {
     CRD: {
         url: 'doc-views/TR/Recommendation/CRD?type=good',
     },
-    'CRD-2': {
-        profile: 'CRD',
-        url: 'doc-views/TR/Recommendation/CRD?type=good2',
-    },
+    // TODO(kgf): Fix how *-2 docs are run.
+    // Currently they are actually re-testing type=good,
+    // and type=good2 is not served correctly.
+    // 'CRD-2': {
+    //     profile: 'CRD',
+    //     url: 'doc-views/TR/Recommendation/CRD?type=good2',
+    // },
     'CRD-Echidna': {
         url: 'doc-views/TR/Recommendation/CRD-Echidna?type=good',
     },
@@ -60,10 +63,10 @@ export const goodDocuments = {
     CRYD: {
         url: 'doc-views/TR/Registry/CRYD?type=good',
     },
-    'CRYD-2': {
-        profile: 'CRYD',
-        url: 'doc-views/TR/Recommendation/CRYD?type=good2',
-    },
+    // 'CRYD-2': {
+    //     profile: 'CRYD',
+    //     url: 'doc-views/TR/Recommendation/CRYD?type=good2',
+    // },
     DRY: {
         url: 'doc-views/TR/Registry/DRY?type=good',
     },
