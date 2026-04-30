@@ -103,6 +103,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
         );
     });
 } else {
-    // server run by mocha
-    console.log(`\nTestserver running for mocha. \nHosting ${ENDPOINT}`);
+    // server run by test suite
+    console.log(`\nTestserver running for test suite. \nHosting ${ENDPOINT}`);
 }

@@ -99,17 +99,13 @@ $ npm run live 3001
 
 #### 1. Simple test
 
-Testing is done using mocha. Simply run:
+Run:
 
 ```bash
-$ mocha
+$ npm test
 ```
 
-from the root and you will be running the test suite. Mocha can be installed with:
-
-```bash
-$ npm install -g mocha
-```
+from the root to run the test suite.
 
 #### 2. SKIP_NETWORK
 
@@ -122,7 +118,7 @@ $ SKIP_NETWORK=1 mocha
 
 #### 3. Run testserver
 
-The testcase document can run independently
+The testcase document server can run independently:
 
 ```bash
 $ npm run testserver
