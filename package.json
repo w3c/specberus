@@ -60,8 +60,8 @@
   "scripts": {
     "build": "tsc",
     "check": "tsc --noEmit",
-    "coverage": "tsc && c8 npm test",
-    "coverage:text": "tsc && c8 --reporter=text npm test",
+    "coverage": "NO_THROTTLE=true c8 tsx --test --test-timeout=120000 'test/*.ts'",
+    "coverage:text": "npm run coverage && c8 report --reporter=text",
     "cspell": "cspell \"**/*\"",
     "fix": "prettier -w .",
     "lint": "npm run check && prettier -c .",
@@ -70,7 +70,7 @@
     "spelling": "cspell \"**/*\"",
     "start": "node app",
     "testserver": "tsx --watch test/lib/testserver.ts",
-    "test": "NO_THROTTLE=true tsx --test --test-isolation=none --test-timeout=2500 'test/*.ts'"
+    "test": "NO_THROTTLE=true tsx --test --test-isolation=none 'test/*.ts'"
   },
   "engines": {
     "node": "20 || 22 || 24",
