@@ -73,7 +73,7 @@
     "test": "NO_THROTTLE=true tsx --test --test-isolation=none 'test/*.ts'"
   },
   "engines": {
-    "node": "20 || 22 || 24",
+    "node": "22 || 24",
     "npm": ">=7"
   },
   "lint-staged": {
