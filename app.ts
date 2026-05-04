@@ -17,6 +17,7 @@ import { Server } from 'socket.io';
 import tmp from 'tmp';
 
 import * as api from './lib/api.js';
+import badterms from './lib/badterms.js';
 import * as l10n from './lib/l10n.js';
 import { allProfiles } from './lib/util.js';
 import { Specberus } from './lib/validator.js';
@@ -41,7 +42,6 @@ const io = new Server(server);
 // Middleware:
 app.use(morgan('combined'));
 app.use(compression());
-app.use('/badterms.json', cors());
 app.use(
     fileUpload({
         createParentPath: true,
@@ -51,6 +51,9 @@ app.use(
 );
 
 app.use(express.static('public'));
+app.get('/badterms.json', cors(), (_, res) => {
+    res.json(badterms);
+});
 api.setUp(app);
 views.setUp(app);
 
