@@ -46,8 +46,6 @@ function setup() {
     });
 }
 
-const handleUnexpectedFulfillment = () =>
-    assert.fail(`Promise was expected to reject but was fulfilled`);
 const handleResponse = (response: Response) => response.text || response.body;
 const handleJsonResponse = (response: Response) =>
     JSON.parse(handleResponse(response));
@@ -78,14 +76,16 @@ describe('API', () => {
 
     describe('Endpoint', () => {
         it('Should exist and listen to GET requests', () =>
-            get('').then(handleUnexpectedFulfillment, error => {
+            assert.rejects(get(''), (error: any) => {
                 const text = getErrorResponseText(error);
                 assert.strictEqual(text, 'Wrong API endpoint.');
+                return true;
             }));
         it('Should exist and listen to POST requests', () =>
-            createPostRequest('').then(handleUnexpectedFulfillment, error => {
+            assert.rejects(createPostRequest(''), (error: any) => {
                 const text = getErrorResponseText(error);
                 assert.strictEqual(text, 'Wrong API endpoint.');
+                return true;
             }));
     });
 
@@ -108,10 +108,11 @@ describe('API', () => {
 
     describe('Method “validate”', () => {
         it('Should 400 and return an array of errors when validation fails', () =>
-            createPostRequest('validate')
-                .field('profile', 'REC')
-                .attach('file', join(testDocsPath, 'ttml-imsc1.html'))
-                .then(handleUnexpectedFulfillment, error => {
+            assert.rejects(
+                createPostRequest('validate')
+                    .field('profile', 'REC')
+                    .attach('file', join(testDocsPath, 'ttml-imsc1.html')),
+                (error: any) => {
                     const { success, errors } = JSON.parse(
                         getErrorResponseText(error)
                     );
@@ -127,7 +128,9 @@ describe('API', () => {
                             'Every error should consistently define fields'
                         );
                     }
-                }));
+                    return true;
+                }
+            ));
 
         it('Should accept "file" via POST, and succeed when the document is valid', () =>
             createPostRequest('validate')
@@ -151,33 +154,29 @@ describe('API', () => {
 
     describe('Parameter restrictions', () => {
         it('Should reject the parameter "document" as unknown', () =>
-            get('metadata?document=foo').then(
-                handleUnexpectedFulfillment,
-                error => {
-                    const { success, errors } = JSON.parse(
-                        getErrorResponseText(error)
-                    );
-                    assert.strictEqual(success, false);
-                    assert.strictEqual(
-                        errors[0],
-                        'Error: Illegal parameter “document”'
-                    );
-                }
-            ));
+            assert.rejects(get('metadata?document=foo'), (error: any) => {
+                const { success, errors } = JSON.parse(
+                    getErrorResponseText(error)
+                );
+                assert.strictEqual(success, false);
+                assert.strictEqual(
+                    errors[0],
+                    'Error: Illegal parameter “document”'
+                );
+                return true;
+            }));
 
         it('Should reject the parameter "source" as forbidden', () =>
-            get('metadata?source=foo').then(
-                handleUnexpectedFulfillment,
-                error => {
-                    const { success, errors } = JSON.parse(
-                        getErrorResponseText(error)
-                    );
-                    assert.strictEqual(success, false);
-                    assert.strictEqual(
-                        errors[0],
-                        'Error: Parameter “source” is not allowed in this context'
-                    );
-                }
-            ));
+            assert.rejects(get('metadata?source=foo'), (error: any) => {
+                const { success, errors } = JSON.parse(
+                    getErrorResponseText(error)
+                );
+                assert.strictEqual(success, false);
+                assert.strictEqual(
+                    errors[0],
+                    'Error: Parameter “source” is not allowed in this context'
+                );
+                return true;
+            }));
     });
 });
