@@ -51,8 +51,6 @@ $ npm start
 $ npm start 3001
 ```
 
-![running specberus](doc/running.jpg)
-
 ### Environment variables
 
 #### `DEBUG`
