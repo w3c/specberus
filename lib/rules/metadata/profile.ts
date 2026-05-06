@@ -83,7 +83,7 @@ export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
             `SUBM|(TR/(Registry|Recommendation|Note))/(${id})`
         );
         const thisProfile = allProfiles.filter(eachProfile =>
-            // eg for eachProfile: 'TR/Note/NOTE-Echidna.js'
+            // e.g. for eachProfile: 'TR/Note/NOTE-Echidna'
             profileRex.test(eachProfile)
         );
         const profileMatch = thisProfile.length
