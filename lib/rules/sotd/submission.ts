@@ -1,0 +1,123 @@
+import type { Cheerio } from 'cheerio';
+import type { Element } from 'domhandler';
+
+import type { Specberus } from '../../validator.js';
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
+
+const self: RuleMeta = {
+    name: 'sotd.submission',
+    section: 'document-status',
+    rule: 'boilerplateSUBM',
+};
+
+export const { name } = self;
+
+function findSubmText($candidates: Cheerio<Element>, sr: Specberus) {
+    const wanted =
+        'By publishing this document, W3C acknowledges that the Submitting Members ' +
+        'have made a formal Submission request to W3C for discussion. Publication of ' +
+        'this document by W3C indicates no endorsement of its content by W3C, nor ' +
+        'that W3C has, is, or will be allocating any resources to the issues ' +
+        'addressed by it. This document is not the product of a chartered W3C group, ' +
+        'but is published as potential input to the W3C Process. A W3C Team Comment ' +
+        'has been published in conjunction with this Member Submission. Publication ' +
+        'of acknowledged Member Submissions at the W3C site is one of the benefits ' +
+        'of W3C Membership. Please consult the requirements associated with Member ' +
+        'Submissions of section 3.3 of the W3C Patent Policy. Please consult the ' +
+        'complete list of acknowledged W3C Member Submissions.';
+
+    for (const p of $candidates.toArray()) {
+        const $p = sr.$(p);
+        const text = sr.norm($p.text());
+        if (text === wanted) return $p;
+    }
+    return null;
+}
+
+export const check: RuleCheckFunction = (sr, done) => {
+    const $sotd = sr.getSotDSection();
+    if ($sotd) {
+        const $st =
+            findSubmText($sotd.filter('p'), sr) ||
+            findSubmText($sotd.find('p'), sr);
+        if (!$st) {
+            sr.error(self, 'no-submission-text');
+            return done();
+        }
+
+        // check the links
+        const w3cProcessOld = 'https://www.w3.org/Consortium/Process';
+        const w3cProcessNew = 'https://www.w3.org/policies/process/';
+        const w3cMembership =
+            'https://www.w3.org/Consortium/Prospectus/Joining';
+        const w3cPP =
+            'https://www.w3.org/policies/patent-policy/#sec-submissions';
+        const w3cSubm = 'https://www.w3.org/submissions/';
+        let foundW3CProcess = false;
+        let foundW3CMembership = false;
+        let foundPP = false;
+        let foundSubm = false;
+        let foundSubmMembers = false;
+        let foundComment = false;
+        $st.find('a[href]').each((_, a) => {
+            const $a = sr.$(a);
+            const href = $a.attr('href')!;
+            const text = sr.norm($a.text());
+            if (
+                [w3cProcessNew, w3cProcessOld].includes(href) &&
+                text === 'W3C Process'
+            ) {
+                foundW3CProcess = true;
+                return;
+            }
+            if (href === w3cMembership && text === 'W3C Membership') {
+                foundW3CMembership = true;
+                return;
+            }
+            if (
+                href === w3cPP &&
+                text === 'section 3.3 of the W3C Patent Policy'
+            ) {
+                foundPP = true;
+                return;
+            }
+            if (
+                href === w3cSubm &&
+                text === 'list of acknowledged W3C Member Submissions'
+            ) {
+                foundSubm = true;
+                return;
+            }
+            if (href.indexOf(w3cSubm) === 0 && text === 'Submitting Members') {
+                foundSubmMembers = true;
+                return;
+            }
+            if (href.indexOf(w3cSubm) === 0 && text === 'W3C Team Comment') {
+                foundComment = true;
+            }
+        });
+        if (!foundW3CProcess)
+            sr.error(self, 'link-text', {
+                href: w3cProcessNew,
+                text: 'W3C Process',
+            });
+        if (!foundW3CMembership)
+            sr.error(self, 'link-text', {
+                href: w3cMembership,
+                text: 'W3C Membership',
+            });
+        if (!foundPP)
+            sr.error(self, 'link-text', {
+                href: w3cPP,
+                text: 'section 3.3 of the W3C Patent Policy',
+            });
+        if (!foundSubm)
+            sr.error(self, 'link-text', {
+                href: w3cSubm,
+                text: 'list of acknowledged W3C Member Submissions',
+            });
+        if (!foundSubmMembers) sr.error(self, 'no-sm-link');
+        if (!foundComment) sr.error(self, 'no-tc-link');
+    }
+    done();
+};
