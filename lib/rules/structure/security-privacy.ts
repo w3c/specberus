@@ -1,0 +1,35 @@
+import type { RuleCheckFunction, RuleMeta } from '../../types.js';
+
+const self: RuleMeta = {
+    name: 'structure.security-privacy',
+    section: 'document-body',
+    rule: 'securityAndPrivacy',
+};
+
+export const { name } = self;
+
+export const check: RuleCheckFunction = (sr, done) => {
+    let security = false;
+    let privacy = false;
+
+    sr.$('h2, h3, h4, h5, h6').each((_, el) => {
+        const text = sr.norm(sr.$(el).text()).toLowerCase();
+
+        if (text.includes('security')) {
+            security = true;
+        }
+        if (text.includes('privacy')) {
+            privacy = true;
+        }
+    });
+
+    if (!security && !privacy) {
+        sr.warning(self, 'no-security-privacy');
+    } else {
+        if (!security) sr.warning(self, 'no-security');
+
+        if (!privacy) sr.warning(self, 'no-privacy');
+    }
+
+    done();
+};
