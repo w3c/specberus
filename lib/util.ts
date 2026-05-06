@@ -68,22 +68,6 @@ export const allProfiles = [
     ...SUBMProfiles.map(x => `SUBM/${x}`),
 ];
 
-export const profiles = Object.fromEntries(
-    allProfiles
-        .map(file => {
-            const match =
-                /((TR|SUBM)\/([A-Za-z]+\/)?([A-Z][A-Z-]*[A-Z](-Echidna)?))$/.exec(
-                    file
-                );
-            if (match && match[4]) {
-                const key = match[4];
-                return [key, import(`./profiles/${match[0]}.js`)];
-            }
-            return null;
-        })
-        .filter(file => !!file)
-);
-
 /**
  * Build a function that builds an “options” object based on certain parameters.
  *
