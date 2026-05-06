@@ -51,6 +51,20 @@ $ npm start
 $ npm start 3001
 ```
 
+**Note:** `npm start` relies on JavaScript files, which must first be built via `npm run build`.
+This step is not necessary when running the live development server or tests (see below).
+
+#### Auto reload when developing
+
+Run `npm run live [PORT]` when developing. The app will automatically reload when changes happen.
+
+Examples:
+
+```bash
+$ npm run live
+$ npm run live 3001
+```
+
 ### Environment variables
 
 #### `DEBUG`
@@ -83,16 +97,6 @@ unauthenticated requests to 60 per hour.
 
 ```bash
 GH_TOKEN=github_pat_... npm start
-```
-
-### Auto reload when developing
-
-Run `npm run live` when developing. The app will automatically reload when changes happen.
-
-```bash
-$ npm run live
-
-$ npm run live 3001
 ```
 
 ## 3. Testing

@@ -1,5 +1,6 @@
 {
     "all": true,
     "exclude": ["public/*", "test/*", "tools/*"],
+    "extension": [".js"],
     "reporter": ["html"]
 }
