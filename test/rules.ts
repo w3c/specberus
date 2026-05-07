@@ -1,7 +1,6 @@
 import assert from 'assert';
 import { EventEmitter } from 'events';
 import type { Server } from 'http';
-import { nextTick } from 'process';
 import { after, afterEach, before, beforeEach, describe, it } from 'node:test';
 
 import { removeRules } from '../lib/profiles/profileUtil.js';
@@ -47,16 +46,8 @@ function createSpecberusPromiseHandler() {
     const handler = new EventEmitter();
     const promise = new Promise<ReturnType<typeof buildJSONresult>>(
         (resolve, reject) => {
-            handler.on('exception', data => {
-                reject(data);
-            });
-
-            handler.on('end-all', result => {
-                // Use nextTick to prevent assertion failures from
-                // bubbling up through final check and hanging
-                // TODO(kgf): Is this still necessary with node:test?
-                nextTick(() => resolve(result));
-            });
+            handler.on('end-all', resolve);
+            handler.on('exception', reject);
         }
     );
     return { handler, promise };
