@@ -58,10 +58,7 @@ export interface RecMetadata {
     rectrack?: string | null;
 }
 
-export type RuleCheckFunction<R = void> = (
-    sr: Specberus,
-    done: (result: R) => void
-) => void | Promise<void>;
+export type RuleCheckFunction<R = void> = (sr: Specberus) => R | Promise<R>;
 
 export interface RuleBase {
     name: string;

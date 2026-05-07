@@ -9,15 +9,15 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const config = sr.config!;
     let profileFound = false;
 
-    if (config.longStatus) return done();
+    if (config.longStatus) return;
     const $stateEl = sr.getDocumentStateElement();
     if (!$stateEl) {
         sr.error(self, 'no-w3c-state');
-        return done();
+        return;
     }
     const txt = sr.norm($stateEl.text());
     // crType/cryType: Add 'Draft', 'Snapshot' suffix to title.
@@ -61,6 +61,4 @@ export const check: RuleCheckFunction = (sr, done) => {
             });
         }
     }
-
-    done();
 };

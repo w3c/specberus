@@ -9,7 +9,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     // Pseudo-constants:
     const POSSIBLE_DATE = new RegExp(
         `\\b([0123]?\\d|${possibleMonths})[\\ \\-\\/–—]([0123]?\\d|${possibleMonths})[\\ \\-\\/–—]([\\'‘’]?\\d{2})(\\d\\d)?\\b`,
@@ -38,6 +38,4 @@ export const check: RuleCheckFunction = (sr, done) => {
             sr.error(self, 'wrong', { text: date });
         }
     }
-
-    return done();
 };

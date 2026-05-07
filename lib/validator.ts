@@ -2,10 +2,10 @@
  * @file Main file of the Specberus npm package.
  */
 
-import fs from 'fs';
+import { access, constants, readFile } from 'fs/promises';
 import type EventEmitter from 'events';
 
-import { type Cheerio, type CheerioAPI, load } from 'cheerio';
+import { type Cheerio, load } from 'cheerio';
 import type { Element } from 'domhandler';
 // @ts-ignore (no typings)
 import w3cApi from 'node-w3capi';
@@ -26,7 +26,6 @@ import {
 import type {
     ApiCharter,
     HandlerMessage,
-    RuleModule,
     RuleBase,
     ApiSpecificationVersion,
     RecMetadata,
@@ -125,53 +124,57 @@ export class Specberus {
     // TODO(kgf): This is publicly documented, but is unused within the codebase;
     // it would be better exposed as a Promise return value from extractMetadata
     meta: Record<string, any> | undefined;
-    source!: any | null;
-    url!: string | null;
+    source: string | undefined;
+    url: string | undefined;
     version = specberusVersion;
-    private $docDateEl: Cheerio<Element> | undefined;
-    private $sotdSection: Cheerio<Element> | null | undefined;
+
+    // Private fields
+
+    #$docDateEl: Cheerio<Element> | undefined;
+    #$sotdSection: Cheerio<Element> | null | undefined;
     /** Group objects returned by W3C API charters endpoint */
-    private chartersData: ApiCharter[] | undefined;
+    #chartersData: ApiCharter[] | undefined;
     /** Charter URIs */
-    private charters: string[] | undefined;
-    private delivererIDs: number[] | undefined;
-    private delivererGroups: DelivererGroup[] | undefined;
-    private docDate: Date | null | undefined;
-    private headers: HeaderMap | undefined;
-    private isFirstPublic: any | undefined;
-    private shortname: string | undefined;
-    private sink: EventEmitter | undefined;
+    #charters: string[] | undefined;
+    #delivererIDs: number[] | undefined;
+    #delivererGroups: DelivererGroup[] | undefined;
+    #docDate: Date | undefined;
+    /** Stores messages from any unexpected errors encountered during process */
+    #exceptions: string[] = [];
+    #headers: HeaderMap | undefined;
+    #isFirstPublic: any | undefined;
+    #shortname: string | undefined = undefined;
+    #sink: EventEmitter | undefined;
 
-    constructor() {
-        this.clearCache();
+    /**
+     * Handles common end-state logic for both extractMetadata and validate,
+     * returning results (resolving) or throwing an error if exceptions occurred (rejecting).
+     */
+    #reportResult(
+        errors: HandlerMessage[],
+        warnings: HandlerMessage[],
+        info: HandlerMessage[],
+        metadata: Record<string, any>
+    ) {
+        if (!this.#exceptions.length) {
+            const result = buildJSONresult(errors, warnings, info, metadata);
+            this.#sink?.emit('end-all', result);
+            return result;
+        } else {
+            throw new Error(
+                'The following unexpected errors occurred:\n' +
+                    this.#exceptions.join('\n')
+            );
+        }
     }
 
-    clearCache() {
-        this.$ = load('');
-        this.config = undefined;
-        this.docDate = null;
-        this.$docDateEl = undefined;
-        this.$sotdSection = undefined;
-        this.url = null;
-        this.source = null;
-        this.shortname = undefined;
-        this.delivererIDs = undefined;
-        this.delivererGroups = undefined;
-        this.chartersData = undefined;
-        this.charters = undefined;
-        this.headers = undefined;
-        this.isFirstPublic = undefined;
-    }
-
-    extractMetadata(options: ExtractMetadataOptions) {
-        this.clearCache();
-
+    async extractMetadata(options: ExtractMetadataOptions) {
         if (!options.events)
             throw new Error(
                 '[EXCEPTION] The events option is required for reporting.'
             );
-        const sink = (this.sink = options.events);
-        if (!this.sink.listeners('exception').length)
+        const sink = (this.#sink = options.events);
+        if (!this.#sink.listeners('exception').length)
             throw new Error(
                 '[WARNING] No handler for event `exception` which to report system errors.'
             );
@@ -189,128 +192,81 @@ export class Specberus {
         sink.on('info', data => {
             infos.push(data);
         });
-        /**
-         * @param err
-         * @param {CheerioAPI} $
-         */
-        const doMetadataExtraction = (err: any, $?: CheerioAPI) => {
-            if (err) return this.throw(err);
-            if ($) this.$ = $;
-            const profile = options.additionalMetadata
-                ? profileAdditionalMetadata
-                : profileMetadata;
-            sink.emit('start-all', profile);
-            const total = (profile.rules || []).length;
-            let done = 0;
-            profile.rules.forEach(rule => {
+
+        try {
+            this.$ = await this.#load(options);
+        } catch (error) {
+            return this.#throw(error.toString());
+        }
+
+        const profile = options.additionalMetadata
+            ? profileAdditionalMetadata
+            : profileMetadata;
+        sink.emit('start-all', profile);
+        await Promise.all(
+            profile.rules.map(async rule => {
                 try {
-                    rule.check(this, result => {
-                        if (result) {
-                            for (const i in result) {
-                                meta[i] = result[i];
-                            }
-                        }
-                        done += 1;
-                        sink.emit('done', rule.name);
-                        if (done === total)
-                            sink.emit(
-                                'end-all',
-                                buildJSONresult(errors, warnings, infos, meta)
-                            );
-                    });
-                } catch (e) {
-                    this.throw(e.message);
+                    const result = await rule.check(this);
+                    if (result)
+                        for (const [key, value] of Object.entries(result))
+                            meta[key] = value;
+                    sink.emit('done', rule.name);
+                } catch (error) {
+                    this.#throw(error.message);
                 }
-            });
-        };
-        if (options.url) this.loadURL(options.url, doMetadataExtraction);
-        else if (options.source)
-            this.loadSource(options.source, doMetadataExtraction);
-        else if (options.file)
-            this.loadFile(options.file, doMetadataExtraction);
-        else
-            return this.throw(
-                'At least one of url, source, file, or document must be specified.'
-            );
+            })
+        );
+
+        return this.#reportResult(errors, warnings, infos, meta);
     }
 
-    validate(options: ValidateOptions) {
-        this.clearCache();
-
+    async validate(options: ValidateOptions) {
         if (!options.events)
             throw new Error(
                 '[EXCEPTION] The events option is required for reporting.'
             );
-        const sink = (this.sink = options.events);
+        const sink = (this.#sink = options.events);
         if (sink.listeners('exception').length === 0)
             throw new Error(
                 '[WARNING] No handler for event `exception` which to report system errors.'
             );
 
         if (!options.profile)
-            return this.throw('Without a profile there is nothing to check.');
+            return this.#throw('Without a profile there is nothing to check.');
         const { profile } = options;
-        processParams(options, profile.config)
-            .then(config => {
-                this.config = config;
-                // TODO(kgf): Is this unused? We seem to hard-code it at the top of this file...
-                config.lang = 'en_GB';
-                const errors: HandlerMessage[] = [];
-                const warnings: HandlerMessage[] = [];
-                const infos: HandlerMessage[] = [];
-                sink.on('err', (...data) => {
-                    errors.push(Object.assign({}, ...data));
-                });
-                sink.on('warning', (...data) => {
-                    warnings.push(Object.assign({}, ...data));
-                });
-                sink.on('info', (...data) => {
-                    infos.push(Object.assign({}, ...data));
-                });
-                /**
-                 * @param err
-                 * @param {CheerioAPI} $
-                 */
-                const doValidation = (err: any, $?: CheerioAPI) => {
-                    if (err) return this.throw(err);
-                    if ($) this.$ = $;
-                    sink.emit('start-all', profile.name);
-                    const total = (profile.rules || []).length;
-                    let done = 0;
-                    profile.rules.forEach((rule: RuleModule) => {
-                        // XXX(darobin)
-                        //  I would like to catch all exceptions here, but this derails the testing
-                        //  infrastructure which also uses exceptions that it expects aren't caught
-                        rule.check(
-                            this,
-                            function () {
-                                done += 1;
-                                sink.emit('done', rule.name);
-                                if (done === total)
-                                    sink.emit(
-                                        'end-all',
-                                        buildJSONresult(
-                                            errors,
-                                            warnings,
-                                            infos,
-                                            {}
-                                        )
-                                    );
-                            }.bind(rule)
-                        );
-                    });
-                };
-                if (options.url) this.loadURL(options.url, doValidation);
-                else if (options.source)
-                    this.loadSource(options.source, doValidation);
-                else if (options.file)
-                    this.loadFile(options.file, doValidation);
-                else
-                    return this.throw(
-                        'At least one of url, source, file, or document must be specified.'
-                    );
+        this.config = await processParams(options, profile.config);
+        const errors: HandlerMessage[] = [];
+        const warnings: HandlerMessage[] = [];
+        const infos: HandlerMessage[] = [];
+        sink.on('err', (...data) => {
+            errors.push(Object.assign({}, ...data));
+        });
+        sink.on('warning', (...data) => {
+            warnings.push(Object.assign({}, ...data));
+        });
+        sink.on('info', (...data) => {
+            infos.push(Object.assign({}, ...data));
+        });
+
+        try {
+            this.$ = await this.#load(options);
+        } catch (error) {
+            return this.#throw(error.toString());
+        }
+
+        sink.emit('start-all', profile);
+        await Promise.all(
+            profile.rules.map(async rule => {
+                try {
+                    await rule.check(this);
+                    sink.emit('done', rule.name);
+                } catch (error) {
+                    this.#throw(error.message);
+                }
             })
-            .catch(err => this.throw(err.toString()));
+        );
+
+        return this.#reportResult(errors, warnings, infos, {});
     }
 
     error(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
@@ -322,7 +278,7 @@ export class Specberus {
         )
             this.warning(rule, key, extra);
         else
-            this.sink!.emit('err', rule, {
+            this.#sink!.emit('err', rule, {
                 key,
                 extra,
                 detailMessage: assembleData(null, rule, key, extra).message,
@@ -334,7 +290,7 @@ export class Specberus {
         key: string,
         extra?: Record<string, any>
     ) {
-        this.sink!.emit('warning', rule, {
+        this.#sink!.emit('warning', rule, {
             key,
             extra,
             detailMessage: assembleData(null, rule, key, extra).message,
@@ -342,27 +298,42 @@ export class Specberus {
     }
 
     info(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
-        this.sink!.emit('info', rule, {
+        this.#sink!.emit('info', rule, {
             key,
             extra,
             detailMessage: assembleData(null, rule, key, extra).message,
         });
     }
 
-    throw(message: string) {
+    /**
+     * Emits an exception event, intended to signify that the process stopped on a critical error.
+     *
+     * NOTE: This should not be called from rules; they should throw an Error,
+     * which will result in extractMetadata or validate invoking this method.
+     */
+    #throw(message: string) {
         console.error(`[EXCEPTION] ${message}`);
-        this.sink!.emit('exception', { message });
+        this.#sink!.emit('exception', { message });
+        // Track in exceptions array, used to determine whether to resolve or reject process
+        this.#exceptions.push(message);
     }
 
-    checkSelector(sel: string, rule: RuleMeta, done: () => void) {
+    /**
+     * Checks for presence of a selector.
+     * Reports a not-found error for the specified rule if no match is found.
+     */
+    checkSelector(sel: string, rule: RuleMeta) {
         try {
             if (!this.$(sel).length) this.error(rule, 'not-found');
         } catch (e) {
-            this.throw(`Selector '${sel}' caused the validator to blow up.`);
+            throw new Error(`Invalid selector '${sel}': ${e}`);
         }
-        done();
     }
 
+    /**
+     * Normalizes a string by removing leading/trailing whitespace
+     * and condensing multiple consecutive whitespace characters to one.
+     */
     norm(str: string) {
         if (!str) return '';
         return `${str}`
@@ -387,7 +358,7 @@ export class Specberus {
     }
 
     getDocumentDate() {
-        if (this.docDate) return this.docDate;
+        if (this.#docDate) return this.#docDate;
         const rex = new RegExp(
             `${Specberus.dateRegexStrCapturing}(?:, edited in place ${Specberus.dateRegexStrNonCapturing})?$`
         );
@@ -395,22 +366,23 @@ export class Specberus {
 
         const matches = $el.length && this.norm($el.text()).match(rex);
         if (matches) {
-            this.docDate = this.stringToDate(
+            this.#docDate = this.stringToDate(
                 `${matches[1]} ${matches[2]} ${matches[3]}`
             );
-            this.$docDateEl = $el;
+            this.#$docDateEl = $el;
         }
-        return this.docDate;
+        return this.#docDate;
     }
 
     getDocumentStateElement() {
-        if (this.$docDateEl) return this.$docDateEl;
+        if (this.#$docDateEl) return this.#$docDateEl;
         this.getDocumentDate();
-        return this.$docDateEl;
+        return this.#$docDateEl;
     }
 
     getSotDSection() {
-        if (typeof this.$sotdSection !== 'undefined') return this.$sotdSection;
+        if (typeof this.#$sotdSection !== 'undefined')
+            return this.#$sotdSection;
 
         let startH2: Element | undefined;
         let endH2: Element | undefined;
@@ -431,7 +403,7 @@ export class Specberus {
                 startH2 = h2;
             }
         });
-        if (!startH2) this.$sotdSection = null;
+        if (!startH2) this.#$sotdSection = null;
         else {
             let started = false;
             this.$(startH2)
@@ -446,9 +418,9 @@ export class Specberus {
                     if (endH2 === el || $nav[0] === el) return false;
                     $div.append(el.cloneNode(true));
                 });
-            this.$sotdSection = $div.children().length ? $div : null;
+            this.#$sotdSection = $div.children().length ? $div : null;
         }
-        if (!this.$sotdSection)
+        if (!this.#$sotdSection)
             this.error(
                 {
                     name: 'generic.sotd',
@@ -457,7 +429,7 @@ export class Specberus {
                 },
                 'not-found'
             );
-        return this.$sotdSection;
+        return this.#$sotdSection;
     }
 
     /**
@@ -470,7 +442,7 @@ export class Specberus {
         const EDITORS = /^editor(s)?$/;
         const EDITORS_DRAFT = /^(latest )?editor's draft$/i;
 
-        if (!$dl && typeof this.headers !== 'undefined') return this.headers;
+        if (!$dl && typeof this.#headers !== 'undefined') return this.#headers;
 
         $dl = $dl || this.$('body div.head dl');
 
@@ -484,9 +456,7 @@ export class Specberus {
                 let $dd = $dt.next('dd');
                 let key = null;
                 if (!$dd.length)
-                    return this.throw(
-                        `No &lt;dd&gt; element found for ${txt}.`
-                    );
+                    throw new Error(`No &lt;dd&gt; element found for ${txt}.`);
                 if (txt === 'this version') key = 'This';
                 else if (
                     !dts.Latest &&
@@ -512,12 +482,12 @@ export class Specberus {
                 if (key) dts[key] = { pos: idx, $el: $dt, $dd };
             });
         }
-        this.headers = dts;
+        this.#headers = dts;
         return dts;
     }
 
     getShortname() {
-        if (typeof this.shortname !== 'undefined') return this.shortname;
+        if (typeof this.#shortname !== 'undefined') return this.#shortname;
 
         let shortname;
         const dts = this.extractHeaders();
@@ -528,7 +498,7 @@ export class Specberus {
         if (thisVersionMatches && thisVersionMatches.length > 0)
             [, shortname] = thisVersionMatches;
 
-        this.shortname = shortname;
+        this.#shortname = shortname;
         return shortname;
     }
 
@@ -585,8 +555,8 @@ export class Specberus {
      * Retrieves deliverers groupNames and types.
      */
     async getDelivererGroups() {
-        if (typeof this.delivererGroups !== 'undefined')
-            return this.delivererGroups;
+        if (typeof this.#delivererGroups !== 'undefined')
+            return this.#delivererGroups;
         const REGEX_DELIVERER_URL =
             /^https?:\/\/www\.w3\.org\/2004\/01\/pp-impl\/(\d+)\/status(#.*)?$/i;
         const REGEX_DELIVERER_TEXT =
@@ -640,22 +610,18 @@ export class Specberus {
         }
 
         // send request to W3C API if there's id extracted from the doc.
-        for (let i = 0; i < ids.length; i += 1) {
-            const groupApiUrl = `https://api.w3.org/groups/${ids[i]}`;
+        for (const id of ids) {
+            const groupApiUrl = `https://api.w3.org/groups/${id}`;
             promiseArray.push(
-                new Promise(resolve => {
-                    get(groupApiUrl)
-                        .set('User-Agent', `W3C-Pubrules/${specberusVersion}`)
-                        .end((_, data) => {
-                            resolve(data);
-                        });
-                })
+                get(groupApiUrl).set(
+                    'User-Agent',
+                    `W3C-Pubrules/${specberusVersion}`
+                )
             );
         }
 
-        await Promise.all(promiseArray).then(res => {
-            for (let i = 0; i < res.length; i += 1) {
-                const data = res[i];
+        await Promise.all(promiseArray).then(responses => {
+            for (const data of responses) {
                 if (data && data.body) {
                     let { type } = data.body;
                     switch (type) {
@@ -677,13 +643,13 @@ export class Specberus {
                 }
             }
         });
-        this.delivererGroups = delivererGroups;
+        this.#delivererGroups = delivererGroups;
         return delivererGroups;
     }
 
     async getDelivererIDs() {
-        if (undefined !== this.delivererIDs) {
-            return this.delivererIDs;
+        if (undefined !== this.#delivererIDs) {
+            return this.#delivererIDs;
         }
         const REGEX_DELIVERER_URL =
             /^https?:\/\/www\.w3\.org\/2004\/01\/pp-impl\/(\d+)\/status(#.*)?$/i;
@@ -740,7 +706,7 @@ export class Specberus {
                 }
             });
         }
-        this.delivererIDs = ids;
+        this.#delivererIDs = ids;
         return ids;
     }
 
@@ -763,7 +729,7 @@ export class Specberus {
 
     /** Finds the current charter(s) of the document. */
     async getChartersData() {
-        if (undefined !== this.chartersData) return this.chartersData;
+        if (undefined !== this.#chartersData) return this.#chartersData;
 
         const deliverers = await this.getDelivererIDs();
         const docDate = this.getDocumentDate()!;
@@ -807,15 +773,15 @@ export class Specberus {
             }
         }
 
-        this.chartersData = chartersData;
+        this.#chartersData = chartersData;
         return chartersData;
     }
 
     async getCharters() {
-        if (typeof this.charters !== 'undefined') return this.charters;
+        if (typeof this.#charters !== 'undefined') return this.#charters;
 
-        this.charters = (await this.getChartersData()).map(({ uri }) => uri);
-        return this.charters;
+        this.#charters = (await this.getChartersData()).map(({ uri }) => uri);
+        return this.#charters;
     }
 
     /**
@@ -823,11 +789,11 @@ export class Specberus {
      * For shortname change document, data-previous-shortname attribute is needed.
      */
     async isFP() {
-        if (typeof this.isFirstPublic !== 'undefined')
-            return this.isFirstPublic;
+        if (typeof this.#isFirstPublic !== 'undefined')
+            return this.#isFirstPublic;
 
-        this.isFirstPublic = !(await this.getPreviousVersion());
-        return this.isFirstPublic;
+        this.#isFirstPublic = !(await this.getPreviousVersion());
+        return this.#isFirstPublic;
     }
 
     /**
@@ -835,7 +801,7 @@ export class Specberus {
      */
     async getPreviousVersion() {
         const dts = this.extractHeaders();
-        const shortname = this.shortname || (await this.getShortname());
+        const shortname = this.#shortname || (await this.getShortname());
 
         if (!shortname) {
             this.error(
@@ -897,41 +863,41 @@ export class Specberus {
         }
     }
 
-    loadURL(url: string, cb: (err: any, $?: CheerioAPI) => void) {
-        if (!cb) return this.throw('Missing callback to loadURL.');
-        get(url)
+    #load(options: ExtractMetadataOptions | ValidateOptions) {
+        if (options.url) return this.#loadURL(options.url);
+        if (options.source) return this.#loadSource(options.source);
+        if (options.file) return this.#loadFile(options.file);
+        throw new Error('url, source, or file must be specified.');
+    }
+
+    #loadURL(url: string) {
+        return get(url)
             .set('User-Agent', `W3C-Pubrules/${specberusVersion}`)
-            .end((err, res) => {
-                if (err) return this.throw(err.message);
-                if (!res.text) return this.throw(`Body of ${url} is empty.`);
+            .then(res => {
+                if (!res.text) throw new Error(`Body of ${url} is empty.`);
                 this.url = url;
-                this.loadSource(res.text, cb);
+                return this.#loadSource(res.text);
             });
     }
 
-    loadSource(src: string, cb: (err: Error | null, $?: CheerioAPI) => void) {
-        if (!cb) return this.throw('Missing callback to loadSource.');
+    #loadSource(src: string) {
         this.source = src;
-        let $: CheerioAPI;
         try {
-            $ = load(src);
+            return load(src);
         } catch (e) {
-            return this.throw(
+            throw new Error(
                 `Cheerio failed to parse source: ${JSON.stringify(e)}`
             );
         }
-        cb(null, $);
     }
 
-    loadFile(file: string, cb: (err: any, $?: CheerioAPI) => void) {
-        if (!cb) return this.throw('Missing callback to loadFile.');
-        fs.access(file, fs.constants.F_OK, errors => {
-            if (errors) return cb(`File '${file}' not found.`);
-            fs.readFile(file, { encoding: 'utf8' }, (err, src) => {
-                if (err) return cb(err);
-                this.loadSource(src, cb);
-            });
-        });
+    async #loadFile(file: string) {
+        try {
+            access(file, constants.F_OK);
+        } catch (error) {
+            throw new Error(`File '${file}' not found or inaccessible.`);
+        }
+        return this.#loadSource(await readFile(file, 'utf8'));
     }
 
     transition(options: TransitionOptions) {

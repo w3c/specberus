@@ -25,7 +25,7 @@ const historyError: RuleMeta = {
 };
 export const name = self.name;
 
-export const check: RuleCheckFunction = async (sr, done) => {
+export const check: RuleCheckFunction = async sr => {
     let topLevel = 'TR';
 
     if (sr.config!.submissionType === 'member') topLevel = 'submissions';
@@ -197,6 +197,4 @@ export const check: RuleCheckFunction = async (sr, done) => {
             status: sr.config!.longStatus,
         });
     }
-
-    done();
 };

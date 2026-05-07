@@ -8,7 +8,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $ignoreH3 = sr.$('.head > h3').first();
 
     sr.$('h2, h3, h4, h5, h6').each((_, el) => {
@@ -43,5 +43,4 @@ export const check: RuleCheckFunction = (sr, done) => {
 
         sr.error(self, 'no-id', { text: el.name });
     });
-    done();
 };

@@ -6,7 +6,6 @@ import type { Cheerio } from 'cheerio';
 import type { Element } from 'domhandler';
 
 import { allProfiles } from '../../util.js';
-import type { Specberus } from '../../validator.js';
 import { sortedProfiles } from '../../views.js';
 import type { RecMetadata, RuleCheckFunction } from '../../types.js';
 import { check as getTitle } from './title.js';
@@ -16,7 +15,7 @@ import rules from '../../rules-track.js';
 // 'self.name' would be 'metadata.profile'
 export const name = 'metadata.profile';
 
-export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
+export const check: RuleCheckFunction<RecMetadata> = async sr => {
     let matchedLength = 0;
     let id;
     let $profileEl: Cheerio<Element> | undefined;
@@ -28,7 +27,7 @@ export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
 
     const $stateEl = sr.getDocumentStateElement();
     if (!$stateEl) {
-        sr.throw(
+        throw new Error(
             'Cannot find the <code>&lt;p id="w3c-state"&gt;</code> element for profile and date.<br><br>Please make sure the <code>&lt;p id="w3c-state"&gt;<a href="https://www.w3.org/standards/types#@@Profile">W3C @@Profile</a>, DD Month Year&lt;/p&gt;</code> element can be selected by <code>document.getElementById(\'w3c-state\')</code>; <br>If you are using bikeshed, please update to the latest version.'
         );
     }
@@ -49,13 +48,13 @@ export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
         }
     }
 
-    function assembleMeta(id: string, sr: Specberus) {
+    function assembleMeta(id: string) {
         let meta: RecMetadata = { profile: id };
         if (id in reviewStatus) {
             const dueDate = sr.getFeedbackDueDate();
             const dates = dueDate && dueDate.valid;
             let res = dates[0];
-            if (dates.length === 0 || !res) return done({ profile: id });
+            if (dates.length === 0 || !res) return { profile: id };
             if (dates.length > 1)
                 res = new Date(Math.min(...dates.map(d => +d)));
 
@@ -90,7 +89,7 @@ export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
         const track = profileMatch && profileMatch[profileMatch.length - 2];
         meta.rectrack = track;
 
-        return done(meta);
+        return meta;
     }
 
     function checkRecType() {
@@ -104,6 +103,7 @@ export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
         }
         return 'REC';
     }
+
     if (id) {
         // W3C Candidate Recommendation (CR before 2020/CR snapshot/CR draft), W3C Recommendation will have "REC"
         if (id === 'REC' || id === 'CR') {
@@ -118,15 +118,12 @@ export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
                     ? 'CRYD'
                     : 'CRY';
         }
-        assembleMeta(id, sr);
+        return assembleMeta(id);
     } else {
-        let docTitle;
-        await getTitle(sr, result => {
-            docTitle = result && result.title;
-        });
+        const docTitle = (await getTitle(sr))?.title;
         if (candidate && candidate.indexOf("editor's draft") > -1) {
-            sr.throw(
-                `[EXCEPTION] The document "${docTitle}" seems to be an Editor's Draft, which is not supported.`
+            throw new Error(
+                `The document "${docTitle}" seems to be an Editor's Draft, which is not supported.`
             );
         } else if (
             sr.$('link[href^="https://www.w3.org/StyleSheets/TR/"]').length
@@ -139,12 +136,12 @@ export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
                 });
                 profileList += '</ul>';
             });
-            sr.throw(
+            throw new Error(
                 `Pubrules is having a hard time identifying the profile of the document "${docTitle}" from its w3c-state element; Please make sure the &lt;p id="w3c-state"&gt; is in a valid format: <pre><code>&lt;p id="w3c-state"&gt;<a href="https://www.w3.org/standards/types#@@Profile">W3C @@type of the document@@</a> DD Month YYYY&lt;/p&gt;</code></pre>${profileList}`
             );
         } else {
-            sr.throw(
-                `[EXCEPTION] The document "${docTitle}" could not be parsed, it's neither a TR document nor a Member Submission.`
+            throw new Error(
+                `The document "${docTitle}" could not be parsed, it's neither a TR document nor a Member Submission.`
             );
         }
     }

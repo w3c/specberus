@@ -23,7 +23,7 @@ interface DlMetadata {
     updated?: boolean;
 }
 
-export const check: RuleCheckFunction<DlMetadata> = async (sr, done) => {
+export const check: RuleCheckFunction<DlMetadata> = async sr => {
     const dts = sr.extractHeaders();
     const result: DlMetadata = {};
     let shortname;
@@ -83,11 +83,17 @@ export const check: RuleCheckFunction<DlMetadata> = async (sr, done) => {
         const endpoint = `https://api.w3.org/specifications/${latestShortname}/versions/${formattedDate}`;
 
         const req = get(endpoint).set('User-Agent', ua);
-        req.end((err, res) => {
-            result.updated = !(err || !res.ok);
-            return done(result);
-        });
+        return req.then(
+            res => {
+                result.updated = res.ok;
+                return result;
+            },
+            () => {
+                result.updated = false;
+                return result;
+            }
+        );
     } else {
-        sr.throw('[EXCEPTION] The document date could not be parsed.');
+        throw new Error('The document date could not be parsed.');
     }
 };

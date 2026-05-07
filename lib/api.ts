@@ -28,6 +28,7 @@ const sendJSONresult = function (
     metadata: Record<string, string> = {}
 ) {
     delete metadata.file;
+    // TODO(kgf): Is buildJSONresult no longer needed once promise-based APIs are used?
     const wrapper = buildJSONresult(errors, warnings, info, metadata);
     res.status(wrapper.success ? 200 : 400).json(wrapper);
 };
