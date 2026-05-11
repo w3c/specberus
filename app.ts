@@ -61,7 +61,7 @@ server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
 
 io.on('connection', socket => {
     socket.emit('handshake', { version: specberusVersion });
-    socket.on('extractMetadata', data => {
+    socket.on('extractMetadata', async data => {
         if (!data.url && !data.file)
             return socket.emit('exception', {
                 message: 'URL or file not provided.',
@@ -98,15 +98,19 @@ io.on('connection', socket => {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('end-all', metadata => {
-            metadata.url = data.url;
-            socket.emit('finishedExtraction', metadata);
-        });
         handler.on('exception', data => {
             socket.emit('exception', data);
         });
         data.events = handler;
-        specberus.extractMetadata(data);
+        try {
+            const metadata = await specberus.extractMetadata(data);
+            socket.emit('finishedExtraction', {
+                ...metadata,
+                url: data.url,
+            });
+        } catch {
+            // exceptions already emitted from event handler
+        }
     });
     socket.on('validate', async data => {
         if (!data.url && !data.file)
@@ -169,9 +173,6 @@ io.on('connection', socket => {
         handler.on('done', name => {
             socket.emit('done', { name });
         });
-        handler.on('end-all', () => {
-            socket.emit('finished');
-        });
         handler.on('exception', data => {
             socket.emit('exception', data);
         });
@@ -185,10 +186,10 @@ io.on('connection', socket => {
                     url: data.url,
                     statusCodesAccepted: ['301', '406'],
                 })
-                .then((res: any) => {
+                .then(async (res: any) => {
                     if (res.status) {
                         try {
-                            specberus.validate({
+                            await specberus.validate({
                                 url: data.url,
                                 profile,
                                 events: handler,
@@ -198,6 +199,7 @@ io.on('connection', socket => {
                             socket.emit('exception', {
                                 message: `Validation blew up: ${e}`,
                             });
+                        } finally {
                             socket.emit('finished');
                         }
                     } else {
@@ -215,16 +217,14 @@ io.on('connection', socket => {
                 });
         } else {
             try {
-                specberus.validate({
+                await specberus.validate({
                     file: data.file,
                     profile,
                     events: handler,
                     validation: data.validation,
                 });
-            } catch (e) {
-                socket.emit('exception', {
-                    message: `Validation blew up: ${e}`,
-                });
+            } finally {
+                // Exceptions already emitted from event handler
                 socket.emit('finished');
             }
         }

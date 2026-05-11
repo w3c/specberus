@@ -40,20 +40,6 @@ interface CompareMetadataObject {
 }
 
 /**
- * Returns an EventEmitter and Promise, both reflecting progress/completion of a Specberus call.
- */
-function createSpecberusPromiseHandler() {
-    const handler = new EventEmitter();
-    const promise = new Promise<ReturnType<typeof buildJSONresult>>(
-        (resolve, reject) => {
-            handler.on('end-all', resolve);
-            handler.on('exception', reject);
-        }
-    );
-    return { handler, promise };
-}
-
-/**
  * Assert that metadata detected in a spec is equal to the expected values.
  *
  * @param file - name of local file containing a spec (without path and without ".html" suffix).
@@ -64,9 +50,7 @@ function compareMetadata(file: string, expectedObject: CompareMetadataObject) {
 
     it(`Should detect metadata for ${testFile}`, async () => {
         const specberus = new Specberus();
-        const { handler, promise } = createSpecberusPromiseHandler();
-        specberus.extractMetadata({ events: handler, file: testFile });
-        const result = await promise;
+        const result = await specberus.extractMetadata({ file: testFile });
 
         assert.strictEqual(result.success, !('errors' in expectedObject));
         if ('errors' in expectedObject) {
@@ -148,8 +132,8 @@ interface ValidationTestConfig {
     warnings?: any[];
 }
 
-function buildValidationTestHandler(test: ValidationTestConfig) {
-    const { handler, promise } = createSpecberusPromiseHandler();
+function buildValidationTestHandler() {
+    const handler = new EventEmitter();
 
     if (DEBUG) {
         handler.on('err', (type, data) => {
@@ -168,39 +152,38 @@ function buildValidationTestHandler(test: ValidationTestConfig) {
         );
     });
 
-    return {
-        handler,
-        promise: promise.then(({ errors, warnings }) => {
-            if (test.errors) {
-                assert.strictEqual(errors.length, test.errors.length);
-                errors.forEach(({ key, name }, i) => {
-                    assert.strictEqual(`${name}.${key}`, test.errors![i]);
+    return handler;
+}
+
+const verifySpecberusResult = (
+    promise: Promise<ReturnType<typeof buildJSONresult>>,
+    test: ValidationTestConfig
+) =>
+    promise.then(({ errors, warnings }) => {
+        if (test.errors) {
+            assert.strictEqual(errors.length, test.errors.length);
+            errors.forEach(({ key, name }, i) => {
+                assert.strictEqual(`${name}.${key}`, test.errors![i]);
+            });
+        } else {
+            assert.strictEqual(errors.length, 0, 'Expected errors to be empty');
+        }
+
+        if (!test.ignoreWarnings) {
+            if (test.warnings) {
+                assert.strictEqual(warnings.length, test.warnings.length);
+                warnings.forEach(({ key, name }, i) => {
+                    assert.strictEqual(`${name}.${key}`, test.warnings![i]);
                 });
             } else {
                 assert.strictEqual(
-                    errors.length,
+                    warnings.length,
                     0,
-                    'Expected errors to be empty'
+                    'Expected warnings to be empty'
                 );
             }
-
-            if (!test.ignoreWarnings) {
-                if (test.warnings) {
-                    assert.strictEqual(warnings.length, test.warnings.length);
-                    warnings.forEach(({ key, name }, i) => {
-                        assert.strictEqual(`${name}.${key}`, test.warnings![i]);
-                    });
-                } else {
-                    assert.strictEqual(
-                        warnings.length,
-                        0,
-                        'Expected warnings to be empty'
-                    );
-                }
-            }
-        }),
-    };
-}
+        }
+    });
 
 const testsGoodDoc = goodDocuments;
 
@@ -243,20 +226,18 @@ describe('Making sure good documents pass Specberus...', () => {
                 'links.linkchecker', // too slow. will check separately.
             ]);
 
-            const { handler, promise } = buildValidationTestHandler({
-                ignoreWarnings: true,
-            });
             const options = {
                 profile: {
                     ...extendedProfile,
                     rules, // do not change profile.rules
                 },
-                events: handler,
+                events: buildValidationTestHandler(),
                 url,
             };
 
-            new Specberus().validate(options);
-            return promise;
+            await verifySpecberusResult(new Specberus().validate(options), {
+                ignoreWarnings: true,
+            });
         });
     }
 });
@@ -292,7 +273,6 @@ function checkRule(tests: RuleTest[], options: CheckRuleOptions) {
             const ruleModule = await import(
                 `../lib/rules/${category}/${rule}.js`
             );
-            const { handler, promise } = buildValidationTestHandler(test);
 
             const options = {
                 url,
@@ -304,10 +284,12 @@ function checkRule(tests: RuleTest[], options: CheckRuleOptions) {
                         ...test.config,
                     },
                 },
-                events: handler,
+                events: buildValidationTestHandler(),
             };
-            new Specberus().validate(options);
-            return promise;
+            await verifySpecberusResult(
+                new Specberus().validate(options),
+                test
+            );
         });
     });
 }

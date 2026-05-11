@@ -2,13 +2,15 @@
  * @file REST API.
  */
 
-import EventEmitter from 'events';
-
 import { fileTypeFromFile } from 'file-type';
 import type { Express, Request, Response } from 'express';
 
 import { buildJSONresult, processParams, specberusVersion } from './util.js';
-import { Specberus, type ValidateOptions } from './validator.js';
+import {
+    ExceptionsError,
+    Specberus,
+    type ValidateOptions,
+} from './validator.js';
 import type { HandlerMessage } from './types.js';
 
 /**
@@ -89,21 +91,28 @@ const processPost = () => async (req: Request, res: Response) => {
     }
 };
 
-function createHandler(res: Response, metadataOverride?: Record<string, any>) {
-    const handler = new EventEmitter();
-    handler.on('exception', data => {
-        sendJSONresult(res, [data.message ? data.message : data]);
-    });
-    handler.on('end-all', data => {
-        sendJSONresult(
-            res,
-            data.errors,
-            data.warnings,
-            data.info,
-            metadataOverride || data.metadata
-        );
-    });
-    return handler;
+function handlePromise(
+    promise: Promise<ReturnType<typeof buildJSONresult>>,
+    res: Response,
+    metadataOverride?: Record<string, any>
+) {
+    return promise.then(
+        result => {
+            sendJSONresult(
+                res,
+                result.errors,
+                result.warnings,
+                result.info,
+                metadataOverride || result.metadata
+            );
+        },
+        (error: ExceptionsError) => {
+            sendJSONresult(
+                res,
+                error.exceptions.map(exception => ({ exception }))
+            );
+        }
+    );
 }
 
 const processRequest = async (
@@ -125,39 +134,34 @@ const processRequest = async (
 
     if (shouldValidate && options.profile === 'auto') {
         const sr = new Specberus();
-        const handler = new EventEmitter();
-        handler.on('exception', data => {
-            sendJSONresult(res, [data.message ? data.message : data]);
-        });
-        handler.on('end-all', async data => {
-            if (data.errors.length) sendJSONresult(res, data.errors);
-            else {
-                const meta = data.metadata;
-                if (options.url) meta.url = options.url;
-                else meta.file = options.file;
-                let metaOptions: ValidateOptions;
-                try {
-                    metaOptions = await processParams(meta, undefined, {
-                        allowUnknownParams: true,
-                    });
-                } catch (err) {
-                    return sendJSONresult(res, [err.toString()]);
-                }
-                metaOptions.events = createHandler(res, meta);
-
-                const metaSr = new Specberus();
-                metaSr.validate(metaOptions);
+        try {
+            const result = await sr.extractMetadata(options);
+            if (result.errors.length) return sendJSONresult(res, result.errors);
+            const meta = result.metadata;
+            if (options.url) meta.url = options.url;
+            else meta.file = options.file;
+            let metaOptions: ValidateOptions;
+            try {
+                metaOptions = await processParams(meta, undefined, {
+                    allowUnknownParams: true,
+                });
+            } catch (error) {
+                return sendJSONresult(res, [error.toString()]);
             }
-        });
-        options.events = handler;
-        sr.extractMetadata(options);
+
+            const metaSr = new Specberus();
+            return handlePromise(metaSr.validate(metaOptions), res, meta);
+        } catch (error) {
+            sendJSONresult(res, [error.message]);
+        }
     } else {
-        options.events = createHandler(res);
         options.additionalMetadata = req.query.additionalMetadata === 'true';
 
         const sr = new Specberus();
-        if (shouldValidate) sr.validate(options);
-        else sr.extractMetadata(options);
+        return handlePromise(
+            shouldValidate ? sr.validate(options) : sr.extractMetadata(options),
+            res
+        );
     }
 };
 

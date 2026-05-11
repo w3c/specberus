@@ -2,8 +2,8 @@
  * @file Main file of the Specberus npm package.
  */
 
+import EventEmitter from 'events';
 import { access, constants, readFile } from 'fs/promises';
-import type EventEmitter from 'events';
 
 import { type Cheerio, load } from 'cheerio';
 import type { Element } from 'domhandler';
@@ -37,7 +37,7 @@ import type {
 setLanguage('en_GB');
 
 interface BaseOptions {
-    events: EventEmitter;
+    events?: EventEmitter;
     file?: string;
     source?: string;
     url?: string;
@@ -118,6 +118,23 @@ export const possibleMonths = [...months, ...abbrMonths].join('|');
 
 const separator = '[ -]{1}';
 
+interface ExceptionsErrorOptions extends ErrorOptions {
+    exceptions: string[];
+}
+
+/**
+ * Error which includes list of exception messages,
+ * thrown in case of unexpected errors during extractMetadata or validate
+ */
+export class ExceptionsError extends Error {
+    exceptions: string[];
+
+    constructor(message?: string, options?: ExceptionsErrorOptions) {
+        super(message, options);
+        this.exceptions = options?.exceptions || [];
+    }
+}
+
 export class Specberus {
     $ = load('');
     config: SpecberusConfig | undefined;
@@ -157,27 +174,18 @@ export class Specberus {
         metadata: Record<string, any>
     ) {
         if (!this.#exceptions.length) {
-            const result = buildJSONresult(errors, warnings, info, metadata);
-            this.#sink?.emit('end-all', result);
-            return result;
+            return buildJSONresult(errors, warnings, info, metadata);
         } else {
-            throw new Error(
+            throw new ExceptionsError(
                 'The following unexpected errors occurred:\n' +
-                    this.#exceptions.join('\n')
+                    this.#exceptions.join('\n'),
+                { exceptions: this.#exceptions }
             );
         }
     }
 
     async extractMetadata(options: ExtractMetadataOptions) {
-        if (!options.events)
-            throw new Error(
-                '[EXCEPTION] The events option is required for reporting.'
-            );
-        const sink = (this.#sink = options.events);
-        if (!this.#sink.listeners('exception').length)
-            throw new Error(
-                '[WARNING] No handler for event `exception` which to report system errors.'
-            );
+        const sink = (this.#sink = options.events || new EventEmitter());
 
         const meta: Record<string, any> = (this.meta = {});
         const errors: HandlerMessage[] = [];
@@ -196,13 +204,13 @@ export class Specberus {
         try {
             this.$ = await this.#load(options);
         } catch (error) {
-            return this.#throw(error.toString());
+            this.#throw(error.toString());
+            throw error;
         }
 
         const profile = options.additionalMetadata
             ? profileAdditionalMetadata
             : profileMetadata;
-        sink.emit('start-all', profile);
         await Promise.all(
             profile.rules.map(async rule => {
                 try {
@@ -221,18 +229,10 @@ export class Specberus {
     }
 
     async validate(options: ValidateOptions) {
-        if (!options.events)
-            throw new Error(
-                '[EXCEPTION] The events option is required for reporting.'
-            );
-        const sink = (this.#sink = options.events);
-        if (sink.listeners('exception').length === 0)
-            throw new Error(
-                '[WARNING] No handler for event `exception` which to report system errors.'
-            );
-
         if (!options.profile)
-            return this.#throw('Without a profile there is nothing to check.');
+            throw new Error('Without a profile there is nothing to check.');
+
+        const sink = (this.#sink = options.events || new EventEmitter());
         const { profile } = options;
         this.config = await processParams(options, profile.config);
         const errors: HandlerMessage[] = [];
@@ -248,13 +248,8 @@ export class Specberus {
             infos.push(Object.assign({}, ...data));
         });
 
-        try {
-            this.$ = await this.#load(options);
-        } catch (error) {
-            return this.#throw(error.toString());
-        }
+        this.$ = await this.#load(options);
 
-        sink.emit('start-all', profile);
         await Promise.all(
             profile.rules.map(async rule => {
                 try {
