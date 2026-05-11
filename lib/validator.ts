@@ -15,14 +15,7 @@ import { assembleData, setLanguage } from './l10n.js';
 import * as profileMetadata from './profiles/metadata.js';
 import * as profileAdditionalMetadata from './profiles/additionalMetadata.js';
 import { get } from './throttled-ua.js';
-import {
-    AB,
-    buildJSONresult,
-    processParams,
-    REC_TEXT,
-    specberusVersion,
-    TAG,
-} from './util.js';
+import { AB, processParams, REC_TEXT, specberusVersion, TAG } from './util.js';
 import type {
     ApiCharter,
     HandlerMessage,
@@ -122,6 +115,14 @@ interface ExceptionsErrorOptions extends ErrorOptions {
     exceptions: string[];
 }
 
+export interface SpecberusResult {
+    errors: HandlerMessage[];
+    info: HandlerMessage[];
+    metadata: Record<string, any>;
+    success: boolean;
+    warnings: HandlerMessage[];
+}
+
 /**
  * Error which includes list of exception messages,
  * thrown in case of unexpected errors during extractMetadata or validate
@@ -167,30 +168,27 @@ export class Specberus {
      * Handles common end-state logic for both extractMetadata and validate,
      * returning results (resolving) or throwing an error if exceptions occurred (rejecting).
      */
-    #reportResult(
-        errors: HandlerMessage[],
-        warnings: HandlerMessage[],
-        info: HandlerMessage[],
-        metadata: Record<string, any>
-    ) {
-        if (!this.#exceptions.length) {
-            return buildJSONresult(errors, warnings, info, metadata);
-        } else {
+    #reportResult(result: Omit<SpecberusResult, 'success'>): SpecberusResult {
+        if (this.#exceptions.length) {
             throw new ExceptionsError(
                 'The following unexpected errors occurred:\n' +
                     this.#exceptions.join('\n'),
                 { exceptions: this.#exceptions }
             );
         }
+        return {
+            ...result,
+            success: !result.errors.length,
+        };
     }
 
     async extractMetadata(options: ExtractMetadataOptions) {
         const sink = (this.#sink = options.events || new EventEmitter());
 
-        const meta: Record<string, any> = (this.meta = {});
+        const metadata: Record<string, any> = (this.meta = {});
         const errors: HandlerMessage[] = [];
         const warnings: HandlerMessage[] = [];
-        const infos: HandlerMessage[] = [];
+        const info: HandlerMessage[] = [];
         sink.on('err', data => {
             errors.push(data);
         });
@@ -198,7 +196,7 @@ export class Specberus {
             warnings.push(data);
         });
         sink.on('info', data => {
-            infos.push(data);
+            info.push(data);
         });
 
         try {
@@ -217,7 +215,7 @@ export class Specberus {
                     const result = await rule.check(this);
                     if (result)
                         for (const [key, value] of Object.entries(result))
-                            meta[key] = value;
+                            metadata[key] = value;
                     sink.emit('done', rule.name);
                 } catch (error) {
                     this.#throw(error.message);
@@ -225,7 +223,7 @@ export class Specberus {
             })
         );
 
-        return this.#reportResult(errors, warnings, infos, meta);
+        return this.#reportResult({ errors, warnings, info, metadata });
     }
 
     async validate(options: ValidateOptions) {
@@ -237,7 +235,7 @@ export class Specberus {
         this.config = await processParams(options, profile.config);
         const errors: HandlerMessage[] = [];
         const warnings: HandlerMessage[] = [];
-        const infos: HandlerMessage[] = [];
+        const info: HandlerMessage[] = [];
         sink.on('err', (...data) => {
             errors.push(Object.assign({}, ...data));
         });
@@ -245,7 +243,7 @@ export class Specberus {
             warnings.push(Object.assign({}, ...data));
         });
         sink.on('info', (...data) => {
-            infos.push(Object.assign({}, ...data));
+            info.push(Object.assign({}, ...data));
         });
 
         this.$ = await this.#load(options);
@@ -261,7 +259,7 @@ export class Specberus {
             })
         );
 
-        return this.#reportResult(errors, warnings, infos, {});
+        return this.#reportResult({ errors, warnings, info, metadata: {} });
     }
 
     error(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {

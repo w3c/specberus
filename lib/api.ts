@@ -5,35 +5,39 @@
 import { fileTypeFromFile } from 'file-type';
 import type { Express, Request, Response } from 'express';
 
-import { buildJSONresult, processParams, specberusVersion } from './util.js';
+import { processParams, specberusVersion } from './util.js';
 import {
     ExceptionsError,
     Specberus,
+    type SpecberusResult,
     type ValidateOptions,
 } from './validator.js';
-import type { HandlerMessage } from './types.js';
+
+/** Sends the result to the client. */
+const sendResult = function (res: Response, result: SpecberusResult) {
+    delete result.metadata.file;
+    res.status(result.success ? 200 : 400).json(result);
+};
 
 /**
- * Send the JSON result to the client.
- *
- * @param errors - errors
- * @param warnings - warnings
- * @param info - informative messages
- * @param res - Express HTTP response
- * @param metadata - dictionary with some found metadata
+ * Sends a list of validation errors or processing exceptions to the client.
+ * @param res Express Response
+ * @param errors Array of error message strings
+ * @param type 'error' to indicate invalid input, or 'exception' to indicate unexpected internal errors
  */
-const sendJSONresult = function (
+function sendErrors(
     res: Response,
-    errors: HandlerMessage[] = [],
-    warnings: HandlerMessage[] = [],
-    info: HandlerMessage[] = [],
-    metadata: Record<string, string> = {}
+    errors: string[],
+    type: 'error' | 'exception'
 ) {
-    delete metadata.file;
-    // TODO(kgf): Is buildJSONresult no longer needed once promise-based APIs are used?
-    const wrapper = buildJSONresult(errors, warnings, info, metadata);
-    res.status(wrapper.success ? 200 : 400).json(wrapper);
-};
+    res.status(type === 'error' ? 400 : 500).json({
+        errors: errors.map(error => ({ [type]: error })),
+        info: [],
+        metadata: {},
+        success: false,
+        warnings: [],
+    } satisfies SpecberusResult);
+}
 
 const getFullUrl = (req: Request) =>
     new URL(`${req.protocol}://${req.host}${req.url}`);
@@ -92,25 +96,21 @@ const processPost = () => async (req: Request, res: Response) => {
 };
 
 function handlePromise(
-    promise: Promise<ReturnType<typeof buildJSONresult>>,
+    promise: Promise<SpecberusResult>,
     res: Response,
     metadataOverride?: Record<string, any>
 ) {
     return promise.then(
         result => {
-            sendJSONresult(
+            sendResult(
                 res,
-                result.errors,
-                result.warnings,
-                result.info,
-                metadataOverride || result.metadata
+                metadataOverride
+                    ? { ...result, metadata: metadataOverride }
+                    : result
             );
         },
         (error: ExceptionsError) => {
-            sendJSONresult(
-                res,
-                error.exceptions.map(exception => ({ exception }))
-            );
+            sendErrors(res, error.exceptions, 'exception');
         }
     );
 }
@@ -129,14 +129,14 @@ const processRequest = async (
             forbidden: ['source'],
         });
     } catch (err) {
-        return sendJSONresult(res, [err.toString()]);
+        return sendErrors(res, [err.toString()], 'error');
     }
 
     if (shouldValidate && options.profile === 'auto') {
         const sr = new Specberus();
         try {
             const result = await sr.extractMetadata(options);
-            if (result.errors.length) return sendJSONresult(res, result.errors);
+            if (result.errors.length) return sendResult(res, result);
             const meta = result.metadata;
             if (options.url) meta.url = options.url;
             else meta.file = options.file;
@@ -146,13 +146,13 @@ const processRequest = async (
                     allowUnknownParams: true,
                 });
             } catch (error) {
-                return sendJSONresult(res, [error.toString()]);
+                return sendErrors(res, [error.toString()], 'error');
             }
 
             const metaSr = new Specberus();
             return handlePromise(metaSr.validate(metaOptions), res, meta);
         } catch (error) {
-            sendJSONresult(res, [error.message]);
+            sendErrors(res, [error.message], 'exception');
         }
     } else {
         options.additionalMetadata = req.query.additionalMetadata === 'true';

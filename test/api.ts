@@ -159,10 +159,9 @@ describe('API', () => {
                     getErrorResponseText(error)
                 );
                 assert.strictEqual(success, false);
-                assert.strictEqual(
-                    errors[0],
-                    'Error: Illegal parameter “document”'
-                );
+                assert.deepStrictEqual(errors[0], {
+                    error: 'Error: Illegal parameter “document”',
+                });
                 return true;
             }));
 
@@ -172,10 +171,9 @@ describe('API', () => {
                     getErrorResponseText(error)
                 );
                 assert.strictEqual(success, false);
-                assert.strictEqual(
-                    errors[0],
-                    'Error: Parameter “source” is not allowed in this context'
-                );
+                assert.deepStrictEqual(errors[0], {
+                    error: 'Error: Parameter “source” is not allowed in this context',
+                });
                 return true;
             }));
     });

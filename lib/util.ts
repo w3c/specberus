@@ -11,31 +11,12 @@ import { Octokit } from '@octokit/core';
 // @ts-ignore (no typings)
 import w3cApi from 'node-w3capi';
 
-import type { HandlerMessage, SpecberusConfig } from './types.js';
+import type { SpecberusConfig } from './types.js';
 import type { ValidateOptions } from './validator.js';
 import pkg from '../package.json' with { type: 'json' };
 
 /** Current specberus version recorded in package.json */
 export const specberusVersion = pkg.version;
-
-/**
- * Builds a JSON result (of validation, metadata extraction, etc).
- */
-
-export const buildJSONresult = function (
-    errors: HandlerMessage[],
-    warnings: HandlerMessage[],
-    info: HandlerMessage[],
-    metadata: Record<string, any>
-) {
-    return {
-        success: !errors.length,
-        errors,
-        warnings,
-        info,
-        metadata,
-    };
-};
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

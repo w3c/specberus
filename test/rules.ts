@@ -4,8 +4,8 @@ import type { Server } from 'http';
 import { after, afterEach, before, beforeEach, describe, it } from 'node:test';
 
 import { removeRules } from '../lib/profiles/profileUtil.js';
-import { allProfiles, buildJSONresult } from '../lib/util.js';
-import { Specberus } from '../lib/validator.js';
+import { allProfiles } from '../lib/util.js';
+import { Specberus, type SpecberusResult } from '../lib/validator.js';
 // A list of good documents to be tested, using all rules configured in the profiles.
 // Shouldn't cause any error.
 import { goodDocuments } from './data/goodDocuments.js';
@@ -156,7 +156,7 @@ function buildValidationTestHandler() {
 }
 
 const verifySpecberusResult = (
-    promise: Promise<ReturnType<typeof buildJSONresult>>,
+    promise: Promise<SpecberusResult>,
     test: ValidationTestConfig
 ) =>
     promise.then(({ errors, warnings }) => {
