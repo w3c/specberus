@@ -3,9 +3,6 @@
 //  latest version is https://www.w3.org/TR/shortname/
 
 import superagent from 'superagent';
-// TODO(kgf): Replace with promisify?
-// @ts-ignore (no typings)
-import doAsync from 'doasync';
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
 const self: RuleMeta = {
@@ -71,12 +68,11 @@ export const check: RuleCheckFunction = async sr => {
 
     if (dts.Latest) {
         const $linkLate = dts.Latest.$dd.find('a').first();
+        const lateHref = $linkLate.attr('href');
 
-        if ($linkLate.attr('href')) {
+        if (lateHref) {
             const lateRex = `^https:\\/\\/www\\.w3\\.org\\/${topLevel}\\/(.+?)\\/?$`;
-            const matches = ($linkLate.attr('href') || '')
-                .trim()
-                .match(new RegExp(lateRex));
+            const matches = lateHref.trim().match(new RegExp(lateRex));
             if (matches) {
                 sn = matches[1];
                 // latest version link mention either shortlink or the series shortlink
@@ -91,24 +87,22 @@ export const check: RuleCheckFunction = async sr => {
 
     if (dts.History) {
         const $linkHistory = dts.History.$dd.find('a').first();
+        const historyHref = $linkHistory.attr('href');
 
-        if ($linkHistory.attr('href')) {
+        if (historyHref) {
             // e.g. https://www.w3.org/standards/history/hr-time-10086/
             const historyReg =
                 /^https:\/\/www\.w3\.org\/standards\/history\/(.+?)\/?$/;
-            const matches = ($linkHistory.attr('href') || '')
-                .trim()
-                .match(historyReg);
+            const matches = historyHref.trim().match(historyReg);
             if (matches) {
                 const [, historyShortname] = matches;
                 if (historyShortname !== shortname) {
                     sr.error(historyError, 'history-syntax', { shortname });
                 } else {
-                    const historyHref = $linkHistory.attr('href');
                     // Check if the history link exist
                     let historyStatusCode;
                     try {
-                        const res = await doAsync(superagent).head(historyHref);
+                        const res = await superagent.head(historyHref);
                         historyStatusCode = res.statusCode;
                     } catch (err) {
                         historyStatusCode = err.status;
@@ -133,9 +127,7 @@ export const check: RuleCheckFunction = async sr => {
                             let previousHistoryStatusCode;
                             try {
                                 const res =
-                                    await doAsync(superagent).head(
-                                        previousHistoryHref
-                                    );
+                                    await superagent.head(previousHistoryHref);
                                 previousHistoryStatusCode = res.statusCode;
                             } catch (err) {
                                 previousHistoryStatusCode = err.status;
@@ -156,9 +148,10 @@ export const check: RuleCheckFunction = async sr => {
 
     if (dts.Rescinds) {
         const $linkRescinds = dts.Rescinds.$dd.find('a').first();
+        const rescindsHref = $linkRescinds.attr('href');
 
-        if ($linkRescinds.attr('href')) {
-            const matches = ($linkRescinds.attr('href') || '')
+        if (rescindsHref) {
+            const matches = rescindsHref
                 .trim()
                 .match(
                     /^https:\/\/www\.w3\.org\/TR\/\d{4}\/REC-(.+)-\d{8}\/?$/

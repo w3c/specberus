@@ -18,7 +18,6 @@
         "deniak",
         "discr",
         "DNOTE",
-        "doasync",
         "doctypes",
         "domhandler",
         "dvcs",
@@ -126,13 +125,7 @@
     "overrides": [
         {
             "filename": ["package.json"],
-            "words": [
-                "capi",
-                "doasync",
-                "metaviewport",
-                "nodesecurity",
-                "vulns"
-            ]
+            "words": ["capi", "metaviewport", "nodesecurity", "vulns"]
         }
     ],
     "ignoreWords": ["en", "gb"]
