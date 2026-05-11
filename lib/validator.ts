@@ -18,13 +18,13 @@ import { get } from './throttled-ua.js';
 import { AB, processParams, REC_TEXT, specberusVersion, TAG } from './util.js';
 import type {
     ApiCharter,
-    HandlerMessage,
-    RuleBase,
     ApiSpecificationVersion,
+    HandlerMessage,
+    ProfileModule,
     RecMetadata,
+    RuleBase,
     RuleMeta,
     SpecberusConfig,
-    ProfileModule,
 } from './types.js';
 
 setLanguage('en_GB');
@@ -136,7 +136,24 @@ export class ExceptionsError extends Error {
     }
 }
 
-export class Specberus {
+type SpecberusMessageEventArgs = [
+    RuleMeta | RuleBase,
+    {
+        detailMessage: string;
+        extra?: Record<string, any>;
+        key: string;
+    },
+];
+
+interface SpecberusEvents {
+    done: [string];
+    err: SpecberusMessageEventArgs;
+    exception: [{ message: string }];
+    info: SpecberusMessageEventArgs;
+    warning: SpecberusMessageEventArgs;
+}
+
+export class Specberus extends EventEmitter<SpecberusEvents> {
     $ = load('');
     config: SpecberusConfig | undefined;
     source: string | undefined;
@@ -159,7 +176,6 @@ export class Specberus {
     #headers: HeaderMap | undefined;
     #isFirstPublic: any | undefined;
     #shortname: string | undefined = undefined;
-    #sink: EventEmitter | undefined;
 
     /**
      * Handles common end-state logic for both extractMetadata and validate,
@@ -180,20 +196,18 @@ export class Specberus {
     }
 
     async extractMetadata(options: ExtractMetadataOptions) {
-        const sink = (this.#sink = options.events || new EventEmitter());
-
         const metadata: Record<string, any> = {};
         const errors: HandlerMessage[] = [];
         const warnings: HandlerMessage[] = [];
         const info: HandlerMessage[] = [];
-        sink.on('err', data => {
-            errors.push(data);
+        this.on('err', (rule, data) => {
+            errors.push({ ...rule, ...data });
         });
-        sink.on('warning', data => {
-            warnings.push(data);
+        this.on('warning', (rule, data) => {
+            warnings.push({ ...rule, ...data });
         });
-        sink.on('info', data => {
-            info.push(data);
+        this.on('info', (rule, data) => {
+            info.push({ ...rule, ...data });
         });
 
         try {
@@ -213,7 +227,7 @@ export class Specberus {
                     if (result)
                         for (const [key, value] of Object.entries(result))
                             metadata[key] = value;
-                    sink.emit('done', rule.name);
+                    this.emit('done', rule.name);
                 } catch (error) {
                     this.#throw(error.message);
                 }
@@ -227,20 +241,19 @@ export class Specberus {
         if (!options.profile)
             throw new Error('Without a profile there is nothing to check.');
 
-        const sink = (this.#sink = options.events || new EventEmitter());
         const { profile } = options;
         this.config = await processParams(options, profile.config);
         const errors: HandlerMessage[] = [];
         const warnings: HandlerMessage[] = [];
         const info: HandlerMessage[] = [];
-        sink.on('err', (...data) => {
-            errors.push(Object.assign({}, ...data));
+        this.on('err', (rule, data) => {
+            errors.push({ ...rule, ...data });
         });
-        sink.on('warning', (...data) => {
-            warnings.push(Object.assign({}, ...data));
+        this.on('warning', (rule, data) => {
+            warnings.push({ ...rule, ...data });
         });
-        sink.on('info', (...data) => {
-            info.push(Object.assign({}, ...data));
+        this.on('info', (rule, data) => {
+            info.push({ ...rule, ...data });
         });
 
         this.$ = await this.#load(options);
@@ -249,7 +262,7 @@ export class Specberus {
             profile.rules.map(async rule => {
                 try {
                     await rule.check(this);
-                    sink.emit('done', rule.name);
+                    this.emit('done', rule.name);
                 } catch (error) {
                     this.#throw(error.message);
                 }
@@ -268,9 +281,9 @@ export class Specberus {
         )
             this.warning(rule, key, extra);
         else
-            this.#sink!.emit('err', rule, {
+            this.emit('err', rule, {
                 key,
-                extra,
+                ...(extra && { extra }),
                 detailMessage: assembleData(null, rule, key, extra).message,
             });
     }
@@ -280,17 +293,17 @@ export class Specberus {
         key: string,
         extra?: Record<string, any>
     ) {
-        this.#sink!.emit('warning', rule, {
+        this.emit('warning', rule, {
             key,
-            extra,
+            ...(extra && { extra }),
             detailMessage: assembleData(null, rule, key, extra).message,
         });
     }
 
     info(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
-        this.#sink!.emit('info', rule, {
+        this.emit('info', rule, {
             key,
-            extra,
+            ...(extra && { extra }),
             detailMessage: assembleData(null, rule, key, extra).message,
         });
     }
@@ -303,7 +316,7 @@ export class Specberus {
      */
     #throw(message: string) {
         console.error(`[EXCEPTION] ${message}`);
-        this.#sink!.emit('exception', { message });
+        this.emit('exception', { message });
         // Track in exceptions array, used to determine whether to resolve or reject process
         this.#exceptions.push(message);
     }

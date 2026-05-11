@@ -1,9 +1,9 @@
 import assert from 'assert';
-import { EventEmitter } from 'events';
 import type { Server } from 'http';
 import { after, afterEach, before, beforeEach, describe, it } from 'node:test';
 
 import { removeRules } from '../lib/profiles/profileUtil.js';
+import type { HandlerMessage } from '../lib/types.js';
 import { allProfiles } from '../lib/util.js';
 import { Specberus, type SpecberusResult } from '../lib/validator.js';
 // A list of good documents to be tested, using all rules configured in the profiles.
@@ -35,7 +35,7 @@ const testType = process.env.TYPE;
 const testProfile = process.env.PROFILE;
 
 interface CompareMetadataObject {
-    errors?: Record<string, any>[];
+    errors?: Partial<HandlerMessage>[];
     [index: string]: any;
 }
 
@@ -61,7 +61,9 @@ function compareMetadata(file: string, expectedObject: CompareMetadataObject) {
             assert(
                 expectedObject.errors.every((expected, i) =>
                     Object.entries(expected).every(
-                        ([key, value]) => result.errors[i][key] === value
+                        ([key, value]) =>
+                            result.errors[i][key as keyof HandlerMessage] ===
+                            value
                     )
                 ),
                 `Errors should contain expected properties:\n${JSON.stringify(
@@ -131,27 +133,23 @@ interface ValidationTestConfig {
     warnings?: any[];
 }
 
-function buildValidationTestHandler() {
-    const handler = new EventEmitter();
-
+function addValidationEventListeners(sr: Specberus) {
     if (DEBUG) {
-        handler.on('err', (type, data) => {
+        sr.on('err', (type, data) => {
             console.log('error:\n', type, data);
         });
-        handler.on('warning', (type, data) => {
+        sr.on('warning', (type, data) => {
             console.log('warning:\n', type, data);
         });
-        handler.on('done', name => {
+        sr.on('done', name => {
             console.log(`----> ${name} check done`);
         });
     }
-    handler.on('exception', data => {
+    sr.on('exception', data => {
         console.error(
             `[EXCEPTION] Validator had a massive failure: ${data.message}`
         );
     });
-
-    return handler;
 }
 
 const verifySpecberusResult = (
@@ -225,16 +223,17 @@ describe('Making sure good documents pass Specberus...', () => {
                 'links.linkchecker', // too slow. will check separately.
             ]);
 
+            const sr = new Specberus();
+            addValidationEventListeners(sr);
             const options = {
                 profile: {
                     ...extendedProfile,
                     rules, // do not change profile.rules
                 },
-                events: buildValidationTestHandler(),
                 url,
             };
 
-            await verifySpecberusResult(new Specberus().validate(options), {
+            await verifySpecberusResult(sr.validate(options), {
                 ignoreWarnings: true,
             });
         });
@@ -273,6 +272,8 @@ function checkRule(tests: RuleTest[], options: CheckRuleOptions) {
                 `../lib/rules/${category}/${rule}.js`
             );
 
+            const sr = new Specberus();
+            addValidationEventListeners(sr);
             const options = {
                 url,
                 profile: {
@@ -283,12 +284,8 @@ function checkRule(tests: RuleTest[], options: CheckRuleOptions) {
                         ...test.config,
                     },
                 },
-                events: buildValidationTestHandler(),
             };
-            await verifySpecberusResult(
-                new Specberus().validate(options),
-                test
-            );
+            await verifySpecberusResult(sr.validate(options), test);
         });
     });
 }

@@ -41,7 +41,13 @@ export interface SpecberusConfig {
     validation?: ValidateOptions['validation'];
 }
 
-export type HandlerMessage = Record<string, string | undefined>;
+/** Data types emitted by error, warning, and info events */
+export type HandlerMessage = RuleBase &
+    Partial<RuleMeta> & {
+        detailMessage: string;
+        key: string;
+        extra?: Record<string, any>;
+    };
 
 type IsoDateString = `${number}-${number}-${number}`;
 

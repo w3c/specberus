@@ -168,8 +168,6 @@ This method returns a Promise that resolves with errors, warnings, and informati
 - `source`: A `String` with the content to check.
 - `file`: A file system path to the content to check.
 - `profile`: A profile object which defines the validation. Required. See below.
-- `events`: An event sink which supports the same interface as the Node.js `EventEmitter`. Required. See
-  below for the events that get generated.
 
 ### `extractMetadata(options)`
 
@@ -400,20 +398,24 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
 
 ## 7. Validation events
 
-For a given checking run, the event sink you specify will be receiving a bunch of events as
+For a given checking run, the Specberus instance will fire events as
 indicated below. Events are shown as having parameters since those are passed to the event handler.
 
-- `done(rule-name)`: Fired when a specific rule has finished processing, including its asynchronous
+- `done(ruleName)`: Fired when a specific rule has finished processing, including its asynchronous
   tasks.
-- `err(error-name, data)`: Fired when an error is detected. The `data` contains further details,
+- `err(rule, data)`: Fired when an error is detected. The `data` contains further details,
   that depend on the error but _should_ feature a `message` field. There can be multiple errors for
-  a given rule. There cannot also be `ok` events but there can be `warning`s.
-- `warning(warning-name, data)`: Fired for non-fatal problems with the document that may
-  nevertheless require investigation. There may be several for a rule.
-- `info(info-name, data)`: Fired for additional information items detected by the validator.
-- `exception(message)`: Fired when there is a system error, such as a _File not found_ error. `message`
+  each rule.
+- `warning(rule, data)`: Fired for non-fatal problems with the document that may
+  nevertheless require investigation. There can be multiple warnings for each rule.
+- `info(rule, data)`: Fired for additional information items detected by the validator.
+- `exception({ message })`: Fired when there is a system error, such as a _File not found_ error. `message`
   contains details about this error. All exceptions are displayed on the error console in addition to
   this event being fired.
+
+The `rule` object passed to `err`, `warning` and `info` events will always contain a `name` string,
+and may also contain `rule` and `section` strings. The `data` object passed to these events will contain
+`key` and `detailMessage` strings, and may also contain an `extra` object with additional fields.
 
 ## 8. Writing rules
 
@@ -425,7 +427,7 @@ The Specberus object exposes the following API that's useful for validation:
 
 - `source`. The HTML source of the document being processed
 - `url`. The URL of the document being processed, only applicable if `options.url` was specified
-- `error`, `warn`, `info`. Methods for firing respective levels of events to the instance's sink.
+- `error`, `warn`, `info`. Methods for firing respective levels of events on the instance.
   All three methods accept the same arguments:
     - `rule` object: at minimum, an object with a `name` string. May also contain `rule` and `section` strings.
     - `key` string: specifies the precise occurrence within the particular `rule`

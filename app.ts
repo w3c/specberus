@@ -7,7 +7,6 @@ import compression from 'compression';
 import cors from 'cors';
 import express from 'express';
 import fileUpload from 'express-fileupload';
-import EventEmitter from 'events';
 import { writeFile } from 'fs';
 import http from 'http';
 // @ts-ignore (no typings)
@@ -67,8 +66,7 @@ io.on('connection', socket => {
                 message: 'URL or file not provided.',
             });
         const specberus = new Specberus();
-        const handler = new EventEmitter();
-        handler.on('err', (type, data) => {
+        specberus.on('err', (type, data) => {
             try {
                 socket.emit(
                     'err',
@@ -78,7 +76,7 @@ io.on('connection', socket => {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('warning', (type, data) => {
+        specberus.on('warning', (type, data) => {
             try {
                 socket.emit(
                     'warning',
@@ -88,7 +86,7 @@ io.on('connection', socket => {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('info', (type, data) => {
+        specberus.on('info', (type, data) => {
             try {
                 socket.emit(
                     'info',
@@ -98,10 +96,9 @@ io.on('connection', socket => {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('exception', data => {
+        specberus.on('exception', data => {
             socket.emit('exception', data);
         });
-        data.events = handler;
         try {
             const metadata = await specberus.extractMetadata(data);
             socket.emit('finishedExtraction', {
@@ -135,12 +132,11 @@ io.on('connection', socket => {
             });
         }
         const specberus = new Specberus();
-        const handler = new EventEmitter();
         const profileCode = profile.name;
         socket.emit('start', {
             rules: (profile.rules || []).map(rule => rule.name),
         });
-        handler.on('err', (type, data) => {
+        specberus.on('err', (type, data) => {
             try {
                 socket.emit(
                     'err',
@@ -150,7 +146,7 @@ io.on('connection', socket => {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('warning', (type, data) => {
+        specberus.on('warning', (type, data) => {
             try {
                 socket.emit(
                     'warning',
@@ -160,7 +156,7 @@ io.on('connection', socket => {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('info', (type, data) => {
+        specberus.on('info', (type, data) => {
             try {
                 socket.emit(
                     'info',
@@ -170,10 +166,10 @@ io.on('connection', socket => {
                 socket.emit('exception', err.message);
             }
         });
-        handler.on('done', name => {
+        specberus.on('done', name => {
             socket.emit('done', { name });
         });
-        handler.on('exception', data => {
+        specberus.on('exception', data => {
             socket.emit('exception', data);
         });
 
@@ -192,7 +188,6 @@ io.on('connection', socket => {
                             await specberus.validate({
                                 url: data.url,
                                 profile,
-                                events: handler,
                                 validation: data.validation,
                             });
                         } catch (e) {
@@ -220,7 +215,6 @@ io.on('connection', socket => {
                 await specberus.validate({
                     file: data.file,
                     profile,
-                    events: handler,
                     validation: data.validation,
                 });
             } finally {

@@ -5,6 +5,7 @@
 import { fileTypeFromFile } from 'file-type';
 import type { Express, Request, Response } from 'express';
 
+import type { HandlerMessage } from './types.js';
 import { processParams, specberusVersion } from './util.js';
 import {
     ExceptionsError,
@@ -12,6 +13,16 @@ import {
     type SpecberusResult,
     type ValidateOptions,
 } from './validator.js';
+
+/** Data types emitted by error events */
+type ErrorHandlerMessage =
+    | { error: string }
+    | { exception: string }
+    | HandlerMessage;
+
+interface ApiResult extends Omit<SpecberusResult, 'errors'> {
+    errors: ErrorHandlerMessage[];
+}
 
 /** Sends the result to the client. */
 const sendResult = function (res: Response, result: SpecberusResult) {
@@ -22,21 +33,26 @@ const sendResult = function (res: Response, result: SpecberusResult) {
 /**
  * Sends a list of validation errors or processing exceptions to the client.
  * @param res Express Response
- * @param errors Array of error message strings
+ * @param messages Array of error message strings
  * @param type 'error' to indicate invalid input, or 'exception' to indicate unexpected internal errors
  */
 function sendErrors(
     res: Response,
-    errors: string[],
+    messages: string[],
     type: 'error' | 'exception'
 ) {
+    const errors =
+        type === 'error'
+            ? messages.map(error => ({ error }))
+            : messages.map(exception => ({ exception }));
+
     res.status(type === 'error' ? 400 : 500).json({
-        errors: errors.map(error => ({ [type]: error })),
+        errors,
         info: [],
         metadata: {},
         success: false,
         warnings: [],
-    } satisfies SpecberusResult);
+    } satisfies ApiResult);
 }
 
 const getFullUrl = (req: Request) =>
