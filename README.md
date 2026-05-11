@@ -159,26 +159,28 @@ const specberus = new Specberus();
 
 ### `validate(options)`
 
-This method takes an object with the following fields:
+This method returns a Promise that resolves with errors, warnings, and informative messages resulting from relevant checks.
+
+`options` is an object accepting the following fields:
 
 - `url`: URL of the content to check. One of `url`, `source`, `file`, or `document` must be
   specified and if several are they will be used in this order.
 - `source`: A `String` with the content to check.
 - `file`: A file system path to the content to check.
-- `document`: A DOM `Document` object to be checked.
 - `profile`: A profile object which defines the validation. Required. See below.
 - `events`: An event sink which supports the same interface as the Node.js `EventEmitter`. Required. See
   below for the events that get generated.
 
 ### `extractMetadata(options)`
 
-This method eventually extends `this` with metadata inferred from the document.
-Once the [event `end-all`](#validation-events) is emitted, the metadata should be available in a new property called `meta`.
+This method returns a Promise that resolves with with metadata inferred from the document.
 
-The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
-goals of this method).
+The `options` accepted are equal to those in `validate()`, with the following differences:
 
-`this.meta` will be an `Object` and may include up to 20 properties described below:
+- Optional `additionalMetadata` property, which performs additional checks (e.g. errata URL)
+- No `profile` or `validation` properties (this method can be used to _determine_ profile)
+
+The resolved object may include up to 20 properties described below:
 
 - `profile`
 - `title`: The (possible) title of the document
@@ -225,7 +227,7 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
 
 Similar to the [JS API](#4-js-api), Specberus exposes a REST API via HTTP too.
 
-The endpoint is `<host>/api/`.
+The base path is `<host>/api/`.
 Use either `url` or `file` to pass along the document (neither `source` nor `document` are allowed).
 
 Note: If you want to use the public W3C instance of Specberus, you can replace `<host>` with `https://www.w3.org/pubrules`.
@@ -401,21 +403,14 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
 For a given checking run, the event sink you specify will be receiving a bunch of events as
 indicated below. Events are shown as having parameters since those are passed to the event handler.
 
-- `start-all(profile-name)`: Fired first to indicate that the profile's checking has started.
-- `end-all(profile-name)`: Fired last to indicate that the profile's checking has completed. When
-  you receive this you are promised that all testing operations, including asynchronous ones, have
-  terminated.
 - `done(rule-name)`: Fired when a specific rule has finished processing, including its asynchronous
   tasks.
-- `ok(rule-name)`: Fired to indicate that a rule has succeeded. There is only one `ok` per rule.
-  There cannot also be `err` events but there can be `warning` events.
 - `err(error-name, data)`: Fired when an error is detected. The `data` contains further details,
   that depend on the error but _should_ feature a `message` field. There can be multiple errors for
   a given rule. There cannot also be `ok` events but there can be `warning`s.
-- `warning(warnings-name, data)`: Fired for non-fatal problems with the document that may
+- `warning(warning-name, data)`: Fired for non-fatal problems with the document that may
   nevertheless require investigation. There may be several for a rule.
 - `info(info-name, data)`: Fired for additional information items detected by the validator.
-- `metadata(key, value)`: Fired for every piece of document metadata found by the validator.
 - `exception(message)`: Fired when there is a system error, such as a _File not found_ error. `message`
   contains details about this error. All exceptions are displayed on the error console in addition to
   this event being fired.
