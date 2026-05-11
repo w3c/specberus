@@ -72,14 +72,13 @@ function compareMetadata(file: string, expectedObject: CompareMetadataObject) {
             );
         }
 
-        assert(specberus.meta, 'Expected specberus.meta to be defined');
         for (const [key, value] of Object.entries(expectedObject)) {
             if (key === 'errors' || key === 'file') continue;
             assert(
-                key in specberus.meta,
-                `Expected specberus.meta.${key} to be defined`
+                key in result.metadata,
+                `Expected ${key} to be defined in metadata`
             );
-            assert.deepStrictEqual(specberus.meta[key], value);
+            assert.deepStrictEqual(result.metadata[key], value);
         }
     });
 }

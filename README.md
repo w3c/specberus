@@ -180,7 +180,7 @@ The `options` accepted are equal to those in `validate()`, with the following di
 - Optional `additionalMetadata` property, which performs additional checks (e.g. errata URL)
 - No `profile` or `validation` properties (this method can be used to _determine_ profile)
 
-The resolved object may include up to 20 properties described below:
+The resolved object's `metadata` property points to an object with up to 20 properties, described below:
 
 - `profile`
 - `title`: The (possible) title of the document
@@ -205,7 +205,7 @@ The resolved object may include up to 20 properties described below:
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
-This is an example of the value of `Specberus.meta` after the execution of `Specberus.extractMetadata()`:
+The following is an example of the value of the `metadata` object after the execution of `Specberus.extractMetadata()`:
 
 ```json
 {

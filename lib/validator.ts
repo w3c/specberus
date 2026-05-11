@@ -139,9 +139,6 @@ export class ExceptionsError extends Error {
 export class Specberus {
     $ = load('');
     config: SpecberusConfig | undefined;
-    // TODO(kgf): This is publicly documented, but is unused within the codebase;
-    // it would be better exposed as a Promise return value from extractMetadata
-    meta: Record<string, any> | undefined;
     source: string | undefined;
     url: string | undefined;
     version = specberusVersion;
@@ -185,7 +182,7 @@ export class Specberus {
     async extractMetadata(options: ExtractMetadataOptions) {
         const sink = (this.#sink = options.events || new EventEmitter());
 
-        const metadata: Record<string, any> = (this.meta = {});
+        const metadata: Record<string, any> = {};
         const errors: HandlerMessage[] = [];
         const warnings: HandlerMessage[] = [];
         const info: HandlerMessage[] = [];
