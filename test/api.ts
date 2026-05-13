@@ -104,6 +104,23 @@ describe('API', () => {
                     assert.strictEqual(metadata.profile, 'REC');
                     assert.strictEqual(metadata.docDate, '2016-3-8');
                 }));
+
+        it('Should accept "file" via POST, and report exceptions', () =>
+            assert.rejects(
+                createPostRequest('metadata').attach(
+                    'file',
+                    join(testDocsPath, 'wd-fail-date.html')
+                ),
+                (error: any) => {
+                    const { errors } = JSON.parse(getErrorResponseText(error));
+                    assert.strictEqual(
+                        errors.length,
+                        2,
+                        'Expected multiple errors to be reported'
+                    );
+                    return true;
+                }
+            ));
     });
 
     describe('Method “validate”', () => {
@@ -150,6 +167,22 @@ describe('API', () => {
                     assert.strictEqual(success, true);
                     assert.strictEqual(metadata.profile, 'WD');
                 }));
+
+        it('Special profile “auto”: should report exception if profile cannot be determined', () =>
+            assert.rejects(
+                createPostRequest('validate')
+                    .field('profile', 'auto')
+                    .attach('file', join(testDocsPath, 'wd-fail-auto.html')),
+                (error: any) => {
+                    const { errors } = JSON.parse(getErrorResponseText(error));
+                    assert.strictEqual(errors.length, 1);
+                    assert.match(
+                        errors[0].exception,
+                        /Pubrules is having a hard time identifying the profile of the document/
+                    );
+                    return true;
+                }
+            ));
     });
 
     describe('Parameter restrictions', () => {

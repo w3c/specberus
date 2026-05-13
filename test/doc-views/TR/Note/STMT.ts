@@ -16,10 +16,30 @@ const customData = {
 
 // Used in http://localhost:8001/doc-views/TR/Note/STMT?type=good
 const good = { ...data, ...customData };
+
+// Test hasException by failing a rule, accompanied by
+// metadata that downgrades the failure from error to warning
+const goodException = {
+    ...good,
+    dl: {
+        ...good.dl,
+        editor2: {
+            show: true,
+            id: '3440',
+        },
+        history: {
+            ...data.dl.history,
+            shortName: 'privacy-principles',
+        },
+        shortName: 'privacy-principles',
+        seriesShortName: 'privacy-principles',
+    },
+};
 const common = buildCommonViewData(good);
 
 export default {
     good,
+    goodException,
     ...common,
     stability: {
         ...common.stability,

@@ -1,11 +1,16 @@
 import assert from 'assert';
+import { readFile } from 'fs/promises';
 import type { Server } from 'http';
 import { after, afterEach, before, beforeEach, describe, it } from 'node:test';
 
 import { removeRules } from '../lib/profiles/profileUtil.js';
 import type { HandlerMessage } from '../lib/types.js';
 import { allProfiles } from '../lib/util.js';
-import { Specberus, type SpecberusResult } from '../lib/validator.js';
+import {
+    ExceptionsError,
+    Specberus,
+    type SpecberusResult,
+} from '../lib/validator.js';
 // A list of good documents to be tested, using all rules configured in the profiles.
 // Shouldn't cause any error.
 import { goodDocuments } from './data/goodDocuments.js';
@@ -99,6 +104,39 @@ describe('Basics', () => {
         samples.forEach(sample => {
             compareMetadata(sample.file, sample);
         });
+
+        it('Should report multiple exceptions when failing to parse date', async () => {
+            const badHtml = (
+                await readFile('test/docs/2021-wd.html', 'utf8')
+            ).replace(/04 November/, '04 11');
+
+            const observedExceptions: string[] = [];
+            const sr = new Specberus();
+            sr.on('exception', ({ message }) => {
+                observedExceptions.push(message);
+            });
+
+            return assert.rejects(
+                sr.extractMetadata({ source: badHtml }),
+                (error: ExceptionsError) => {
+                    assert.strictEqual(error.exceptions.length, 2);
+                    assert.match(
+                        error.exceptions[0],
+                        /^Cannot find the .* element for profile and date/
+                    );
+                    assert.strictEqual(
+                        error.exceptions[1],
+                        'The document date could not be parsed.'
+                    );
+                    assert.deepStrictEqual(
+                        observedExceptions,
+                        error.exceptions,
+                        'Exceptions in rejection error should match emitted exception events'
+                    );
+                    return true;
+                }
+            );
+        });
     });
 
     describe('Method "validate"', () => {
@@ -156,7 +194,8 @@ const verifySpecberusResult = (
     promise: Promise<SpecberusResult>,
     test: ValidationTestConfig
 ) =>
-    promise.then(({ errors, warnings }) => {
+    promise.then(result => {
+        const { errors, warnings } = result;
         if (test.errors) {
             assert.strictEqual(errors.length, test.errors.length);
             errors.forEach(({ key, name }, i) => {
@@ -180,6 +219,9 @@ const verifySpecberusResult = (
                 );
             }
         }
+
+        // Pass through result to allow further verifications
+        return result;
     });
 
 const testsGoodDoc = goodDocuments;
@@ -285,7 +327,31 @@ function checkRule(tests: RuleTest[], options: CheckRuleOptions) {
                     },
                 },
             };
-            await verifySpecberusResult(sr.validate(options), test);
+
+            const counts = { errors: 0, info: 0, warnings: 0 };
+            sr.on('err', () => counts.errors++);
+            sr.on('info', () => counts.info++);
+            sr.on('warning', () => counts.warnings++);
+
+            const result = await verifySpecberusResult(
+                sr.validate(options),
+                test
+            );
+            assert.strictEqual(
+                result.errors.length,
+                counts.errors,
+                'Number of err events emitted should match number in resolved promise'
+            );
+            assert.strictEqual(
+                result.info.length,
+                counts.info,
+                'Number of info events emitted should match number in resolved promise'
+            );
+            assert.strictEqual(
+                result.warnings.length,
+                counts.warnings,
+                'Number of warning events emitted should match number in resolved promise'
+            );
         });
     });
 }
