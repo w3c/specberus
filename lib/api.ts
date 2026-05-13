@@ -150,26 +150,28 @@ const processRequest = async (
 
     if (shouldValidate && options.profile === 'auto') {
         const sr = new Specberus();
-        try {
-            const result = await sr.extractMetadata(options);
-            if (result.errors.length) return sendResult(res, result);
-            const meta = result.metadata;
-            if (options.url) meta.url = options.url;
-            else meta.file = options.file;
-            let metaOptions: ValidateOptions;
-            try {
-                metaOptions = await processParams(meta, undefined, {
-                    allowUnknownParams: true,
-                });
-            } catch (error) {
-                return sendErrors(res, [error.toString()], 'error');
-            }
+        const result = await sr
+            .extractMetadata(options)
+            .catch((error: ExceptionsError) => {
+                sendErrors(res, error.exceptions, 'exception');
+            });
+        if (!result) return;
+        if (result.errors.length) return sendResult(res, result);
 
-            const metaSr = new Specberus();
-            return handlePromise(metaSr.validate(metaOptions), res, meta);
+        const meta = result.metadata;
+        if (options.url) meta.url = options.url;
+        else meta.file = options.file;
+        let metaOptions: ValidateOptions;
+        try {
+            metaOptions = await processParams(meta, undefined, {
+                allowUnknownParams: true,
+            });
         } catch (error) {
-            sendErrors(res, [error.message], 'exception');
+            return sendErrors(res, [error.toString()], 'error');
         }
+
+        const metaSr = new Specberus();
+        return handlePromise(metaSr.validate(metaOptions), res, meta);
     } else {
         options.additionalMetadata = req.query.additionalMetadata === 'true';
 
