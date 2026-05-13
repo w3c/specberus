@@ -109,6 +109,16 @@ const abbrMonths = [
 
 export const possibleMonths = [...months, ...abbrMonths].join('|');
 
+// Regular expressions used by getDelivererIDs and getDelivererGroups
+
+const REGEX_DELIVERER_URL =
+    /^https?:\/\/www\.w3\.org\/2004\/01\/pp-impl\/(\d+)\/status(#.*)?$/i;
+const REGEX_DELIVERER_TEXT =
+    /^(charter|public\s+list\s+of\s+any\s+patent\s+disclosures(\s+\(.+\))?)$/i;
+const REGEX_TAG_DISCLOSURE = /https?:\/\/www.w3.org\/2001\/tag\/disclosures/;
+const REGEX_DELIVERER_IPR_URL =
+    /^https:\/\/www\.w3\.org\/groups\/([^/]+)\/([^/]+)\/ipr\/?(#.*)?$/i;
+
 const separator = '[ -]{1}';
 
 interface ExceptionsErrorOptions extends ErrorOptions {
@@ -165,16 +175,17 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
     #$docDateEl: Cheerio<Element> | undefined;
     #$sotdSection: Cheerio<Element> | null | undefined;
     /** Group objects returned by W3C API charters endpoint */
-    #chartersData: ApiCharter[] | undefined;
+    #chartersData: [] | Promise<ApiCharter[]> | undefined;
     /** Charter URIs */
     #charters: string[] | undefined;
-    #delivererIDs: number[] | undefined;
-    #delivererGroups: DelivererGroup[] | undefined;
+    #delivererIDs: number[] | Promise<number[]> | undefined;
+    #delivererGroups: Promise<DelivererGroup[]> | undefined;
     #docDate: Date | undefined;
     /** Stores messages from any unexpected errors encountered during process */
     #exceptions: string[] = [];
     #headers: HeaderMap | undefined;
     #isFirstPublic: any | undefined;
+    #previousVersion: Promise<string | null> | undefined;
     #shortname: string | undefined = undefined;
 
     /**
@@ -384,8 +395,7 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
     }
 
     getSotDSection() {
-        if (typeof this.#$sotdSection !== 'undefined')
-            return this.#$sotdSection;
+        if (this.#$sotdSection) return this.#$sotdSection;
 
         let startH2: Element | undefined;
         let endH2: Element | undefined;
@@ -436,12 +446,11 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
     }
 
     extractHeaders() {
+        if (this.#headers) return this.#headers;
+
         const dts: HeaderMap = {};
         const EDITORS = /^editor(s)?$/;
         const EDITORS_DRAFT = /^(latest )?editor's draft$/i;
-
-        if (typeof this.#headers !== 'undefined') return this.#headers;
-
         const $dl = this.$('body div.head dl');
 
         if ($dl && $dl.length) {
@@ -553,25 +562,14 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
      * Retrieves deliverers groupNames and types.
      */
     async getDelivererGroups() {
-        if (typeof this.#delivererGroups !== 'undefined')
-            return this.#delivererGroups;
-        const REGEX_DELIVERER_URL =
-            /^https?:\/\/www\.w3\.org\/2004\/01\/pp-impl\/(\d+)\/status(#.*)?$/i;
-        const REGEX_DELIVERER_TEXT =
-            /^(charter|public\s+list\s+of\s+any\s+patent\s+disclosures(\s+\(.+\))?)$/i;
-        const REGEX_TAG_DISCLOSURE =
-            /https?:\/\/www.w3.org\/2001\/tag\/disclosures/;
-        const REGEX_DELIVERER_IPR_URL =
-            /^https:\/\/www\.w3\.org\/groups\/([^/]+)\/([^/]+)\/ipr\/?(#.*)?$/i;
+        if (this.#delivererGroups) return this.#delivererGroups;
 
         const $sotd = this.getSotDSection();
         const $sotdLinks = $sotd && $sotd.find('a[href]');
-        const promiseArray: Promise<any>[] = [];
-        let ids = [];
         const delivererGroups: DelivererGroup[] = [];
 
         // getDataDelivererIDs first, apply if document is Note/Registry track.
-        ids = this.getDataDelivererIDs() || [];
+        const ids = this.getDataDelivererIDs();
         // For rec-track
         if (ids.length === 0 && $sotdLinks && $sotdLinks.length > 0) {
             $sotdLinks.each((_, el) => {
@@ -607,105 +605,87 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
             });
         }
 
-        // send request to W3C API if there's id extracted from the doc.
-        for (const id of ids) {
-            const groupApiUrl = `https://api.w3.org/groups/${id}`;
-            promiseArray.push(
-                get(groupApiUrl).set(
-                    'User-Agent',
-                    `W3C-Pubrules/${specberusVersion}`
-                )
-            );
-        }
+        // Send request to W3C API if there's ids extracted from the doc.
+        // Cache the promise (to avoid duplicate requests)
+        this.#delivererGroups = Promise.all([
+            ...delivererGroups, // Any immediately-resolvable groups from links
+            ...ids.map(id => {
+                const groupApiUrl = `https://api.w3.org/groups/${id}`;
+                return get(groupApiUrl)
+                    .set('User-Agent', `W3C-Pubrules/${specberusVersion}`)
+                    .then(
+                        res => {
+                            if (!res.body) return;
+                            const { shortname, type } = res.body;
+                            let groupType = 'other';
+                            if (type === 'working group') groupType = 'wg';
+                            else if (type === 'interest group')
+                                groupType = 'ig';
 
-        await Promise.all(promiseArray).then(responses => {
-            for (const data of responses) {
-                if (data && data.body) {
-                    let { type } = data.body;
-                    switch (type) {
-                        case 'working group':
-                            type = 'wg';
-                            break;
-                        case 'interest group':
-                            type = 'ig';
-                            break;
-                        default:
-                            type = 'other';
-                            break;
-                    }
-
-                    delivererGroups.push({
-                        groupShortname: data.body.shortname,
-                        groupType: type,
-                    });
-                }
-            }
-        });
-        this.#delivererGroups = delivererGroups;
-        return delivererGroups;
+                            return {
+                                groupShortname: shortname,
+                                groupType,
+                            };
+                        },
+                        () => {}
+                    );
+            }),
+        ]).then(groups => groups.filter(group => !!group));
+        return this.#delivererGroups;
     }
 
     async getDelivererIDs() {
-        if (undefined !== this.#delivererIDs) {
-            return this.#delivererIDs;
-        }
-        const REGEX_DELIVERER_URL =
-            /^https?:\/\/www\.w3\.org\/2004\/01\/pp-impl\/(\d+)\/status(#.*)?$/i;
-        const REGEX_DELIVERER_TEXT =
-            /^(charter|public\s+list\s+of\s+any\s+patent\s+disclosures(\s+\(.+\))?)$/i;
-        const REGEX_TAG_DISCLOSURE =
-            /https?:\/\/www.w3.org\/2001\/tag\/disclosures/;
-        const REGEX_DELIVERER_IPR_URL =
-            /^https:\/\/www\.w3\.org\/groups\/([^/]+)\/([^/]+)\/ipr\/?(#.*)?$/i;
+        if (this.#delivererIDs) return this.#delivererIDs;
+
         const ids: number[] = this.getDataDelivererIDs() || [];
         const $sotd = this.getSotDSection();
         const $sotdLinks = $sotd && $sotd.find('a[href]');
-        const promiseArray: Promise<any>[] = [];
 
-        if (ids.length === 0 && $sotdLinks && $sotdLinks.length > 0) {
-            $sotdLinks.each((_, el) => {
-                const $el = this.$(el);
-                const href = $el.attr('href')!;
-                const text = this.norm($el.text());
-                const found: Record<string, boolean> = {};
-                if (REGEX_DELIVERER_TEXT.test(text)) {
-                    const delivererUrlMatch = href.match(REGEX_DELIVERER_URL);
-                    if (delivererUrlMatch) {
-                        const id = delivererUrlMatch[1];
-                        if (id && id.length > 1 && !found[id]) {
-                            found[id] = true;
-                            ids.push(parseInt(id, 10));
-                        }
-                    } else if (REGEX_TAG_DISCLOSURE.test(href)) {
-                        ids.push(TAG.id);
-                    } else if (REGEX_DELIVERER_IPR_URL.test(href)) {
-                        const [, type, shortname] =
-                            REGEX_DELIVERER_IPR_URL.exec(href)!;
-                        const groupApiUrl = `https://api.w3.org/groups/${type}/${shortname}`;
-                        promiseArray.push(
-                            new Promise(resolve => {
-                                get(groupApiUrl)
-                                    .set(
-                                        'User-Agent',
-                                        `W3C-Pubrules/${specberusVersion}`
-                                    )
-                                    .end((_: any, data) => {
-                                        resolve(data);
-                                    });
-                            })
-                        );
-                    }
-                }
-            });
-
-            await Promise.all(promiseArray).then(res => {
-                for (const data of res) {
-                    if (data?.body?.id) ids.push(data.body.id);
-                }
-            });
+        if (ids.length > 0 || !$sotdLinks?.length) {
+            this.#delivererIDs = ids;
+            return ids;
         }
-        this.#delivererIDs = ids;
-        return ids;
+
+        const promiseArray: (number | Promise<number>)[] = [];
+        $sotdLinks.each((_, el) => {
+            const $el = this.$(el);
+            const href = $el.attr('href')!;
+            const text = this.norm($el.text());
+            const found: Record<string, boolean> = {};
+            if (REGEX_DELIVERER_TEXT.test(text)) {
+                const delivererUrlMatch = href.match(REGEX_DELIVERER_URL);
+                if (delivererUrlMatch) {
+                    const id = delivererUrlMatch[1];
+                    if (id && id.length > 1 && !found[id]) {
+                        found[id] = true;
+                        promiseArray.push(parseInt(id, 10));
+                    }
+                } else if (REGEX_TAG_DISCLOSURE.test(href)) {
+                    promiseArray.push(TAG.id);
+                } else if (REGEX_DELIVERER_IPR_URL.test(href)) {
+                    const [, type, shortname] =
+                        REGEX_DELIVERER_IPR_URL.exec(href)!;
+                    const groupApiUrl = `https://api.w3.org/groups/${type}/${shortname}`;
+                    promiseArray.push(
+                        get(groupApiUrl)
+                            .set(
+                                'User-Agent',
+                                `W3C-Pubrules/${specberusVersion}`
+                            )
+                            .then(
+                                res => res.body?.id,
+                                () => {}
+                            )
+                    );
+                }
+            }
+        });
+
+        // Cache the promise (to avoid duplicate requests)
+        this.#delivererIDs = Promise.all(promiseArray).then(ids =>
+            ids.filter(id => typeof id !== 'undefined')
+        );
+        return this.#delivererIDs;
     }
 
     getDataDelivererIDs() {
@@ -727,52 +707,45 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
 
     /** Finds the current charter(s) of the document. */
     async getChartersData() {
-        if (undefined !== this.#chartersData) return this.#chartersData;
+        if (this.#chartersData) return this.#chartersData;
 
         const deliverers = await this.getDelivererIDs();
-        const docDate = this.getDocumentDate()!;
-        const chartersData: ApiCharter[] = [];
-        if (deliverers.length) {
-            const delivererPromises: Promise<ApiCharter[]>[] = [];
-            const AbID = AB.id;
-            // Get charter data from W3C API
-            // deliverers.forEach is for joint publication.
-            deliverers.forEach(deliverer => {
-                // Skip finding charter for the TAG which doesn't have any charter
-                if (deliverer === TAG.id || deliverer === AbID) return;
-
-                delivererPromises.push(
-                    new Promise(resolve => {
-                        w3cApi
-                            .group(deliverer)
-                            .charters()
-                            .fetch(
-                                { embed: true },
-                                (_: any, charters: ApiCharter[]) => {
-                                    resolve(charters);
-                                }
-                            );
-                    })
-                );
-            });
-
-            // groups -> group is for joint publication.
-            for (const groupCharters of await Promise.all(delivererPromises)) {
-                if (groupCharters) {
-                    for (const groupCharter of groupCharters) {
-                        if (
-                            docDate >= new Date(groupCharter.start) &&
-                            docDate <= new Date(groupCharter.end)
-                        ) {
-                            chartersData.push(groupCharter);
-                        }
-                    }
-                }
-            }
+        if (!deliverers.length) {
+            this.#chartersData = [];
+            return this.#chartersData;
         }
 
-        this.#chartersData = chartersData;
-        return chartersData;
+        const docDate = this.getDocumentDate()!;
+        const delivererPromises: Promise<ApiCharter[]>[] = [];
+        // Get charter data from W3C API
+        // deliverers.forEach is for joint publication.
+        deliverers.forEach(deliverer => {
+            // Skip finding charter for the TAG which doesn't have any charter
+            if (deliverer === TAG.id || deliverer === AB.id) return;
+
+            delivererPromises.push(
+                w3cApi
+                    .group(deliverer)
+                    .charters()
+                    .fetch({ embed: true })
+                    .then(
+                        (groupCharters: ApiCharter[]) => {
+                            if (!groupCharters) return;
+                            return groupCharters.filter(
+                                groupCharter =>
+                                    docDate >= new Date(groupCharter.start) &&
+                                    docDate <= new Date(groupCharter.end)
+                            );
+                        },
+                        () => {}
+                    )
+            );
+        });
+
+        this.#chartersData = Promise.all(delivererPromises).then(lists =>
+            lists.flat().filter(charter => !!charter)
+        );
+        return this.#chartersData;
     }
 
     async getCharters() {
@@ -798,6 +771,9 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
      * Gets previous version link from API via shortname.
      */
     async getPreviousVersion() {
+        if (typeof this.#previousVersion !== 'undefined')
+            return this.#previousVersion;
+
         const dts = this.extractHeaders();
         const shortname = this.#shortname || (await this.getShortname());
 
@@ -813,52 +789,44 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
             return;
         }
 
-        const shortnameHistory = await new Promise<
-            ApiSpecificationVersion[] | null
-        >(resolve => {
+        const shortnameHistory: Promise<ApiSpecificationVersion[] | undefined> =
             w3cApi
                 .specification(shortname)
                 .versions()
-                .fetch(
-                    { embed: true, items: 1000 },
-                    (err: any, data: ApiSpecificationVersion[]) => {
-                        if (err && err.status === 404) {
-                            // check if it's not a shortname change
-                            const shortnameChange = dts.History
-                                ? dts.History.$dd
-                                      .find('a')
-                                      .attr('data-previous-shortname')
-                                : null;
-                            if (shortnameChange) {
-                                w3cApi
-                                    .specification(shortnameChange)
-                                    .versions()
-                                    .fetch(
-                                        { embed: true, items: 1000 },
-                                        (
-                                            _: any,
-                                            data: ApiSpecificationVersion[]
-                                        ) => {
-                                            resolve(data);
-                                        }
-                                    );
-                            } else {
-                                resolve(null);
-                            }
-                        } else {
-                            resolve(data);
+                .fetch({ embed: true, items: 1000 })
+                .catch((err: any) => {
+                    if (err.status === 404) {
+                        // check if it's not a shortname change
+                        const shortnameChange = dts.History
+                            ? dts.History.$dd
+                                  .find('a')
+                                  .attr('data-previous-shortname')
+                            : null;
+                        if (shortnameChange) {
+                            return w3cApi
+                                .specification(shortnameChange)
+                                .versions()
+                                .fetch({ embed: true, items: 1000 })
+                                .catch(() => {});
                         }
                     }
-                );
-        });
-        const versions = shortnameHistory || [];
-        const linkThis = dts.This ? dts.This.$dd.find('a').attr('href') : '';
+                });
 
-        if (versions.length && linkThis) {
-            const versionUris = versions.map(({ uri }) => uri);
-            const index = versionUris.indexOf(linkThis);
-            return index === -1 ? versionUris[0] : versionUris[index + 1];
-        }
+        // Cache the promise (to avoid duplicate requests)
+        this.#previousVersion = shortnameHistory.then(history => {
+            const versions = history || [];
+            const linkThis = dts.This
+                ? dts.This.$dd.find('a').attr('href')
+                : '';
+
+            if (versions.length && linkThis) {
+                const versionUris = versions.map(({ uri }) => uri);
+                const index = versionUris.indexOf(linkThis);
+                return index === -1 ? versionUris[0] : versionUris[index + 1];
+            }
+            return null;
+        });
+        return this.#previousVersion;
     }
 
     #load(options: ExtractMetadataOptions | ValidateOptions) {

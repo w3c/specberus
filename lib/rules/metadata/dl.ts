@@ -17,7 +17,7 @@ interface DlMetadata {
     editorsDraft?: string | undefined;
     history?: string;
     latestVersion?: string;
-    previousVersion?: string | undefined;
+    previousVersion?: string | null | undefined;
     sameWorkAs?: string;
     thisVersion?: string;
     updated?: boolean;
