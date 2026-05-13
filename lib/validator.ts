@@ -435,19 +435,14 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
         return this.#$sotdSection;
     }
 
-    /**
-     * @param $dl Optional Cheerio-wrapped dl element.
-     *   If not set, extractHeaders() uses the current document to extract headers link and cache them for future use.
-     *   If set, assume data is being extracted from another document; the new element will be used and the result will not be cached.
-     */
-    extractHeaders($dl?: Cheerio<Element>) {
+    extractHeaders() {
         const dts: HeaderMap = {};
         const EDITORS = /^editor(s)?$/;
         const EDITORS_DRAFT = /^(latest )?editor's draft$/i;
 
-        if (!$dl && typeof this.#headers !== 'undefined') return this.#headers;
+        if (typeof this.#headers !== 'undefined') return this.#headers;
 
-        $dl = $dl || this.$('body div.head dl');
+        const $dl = this.$('body div.head dl');
 
         if ($dl && $dl.length) {
             $dl.find('dt').each((idx, dt) => {
