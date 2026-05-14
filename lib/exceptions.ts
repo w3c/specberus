@@ -25,7 +25,7 @@ export function hasExceptions(
                         (exception.type === undefined ||
                             extra.type === exception.type)) ||
                     (exception.message &&
-                        new RegExp(exception.message).test(extra.message)))
+                        exception.message.test(extra.message)))
             ) {
                 return true;
             }

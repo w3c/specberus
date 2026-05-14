@@ -1,6 +1,6 @@
 export interface Exception {
     rule: string;
-    message?: string;
+    message?: RegExp;
     type?: string;
 }
 
@@ -11,12 +11,12 @@ export const exceptions = new Map<RegExp, Exception[]>([
             {
                 rule: 'validation.html',
                 type: 'noexistence-at-all',
-                message: '^CSS: .*$',
+                message: /^CSS: .*$/,
             },
             {
                 rule: 'validation.html',
                 message:
-                    'Bad value “publication” for attribute “rel” on element “link”: The string “publication” is not a registered keyword.',
+                    /Bad value “publication” for attribute “rel” on element “link”: The string “publication” is not a registered keyword./,
             },
         ],
     ],
@@ -57,7 +57,7 @@ export const exceptions = new Map<RegExp, Exception[]>([
         [
             {
                 rule: 'headers.dl',
-                message: 'Implementation report',
+                message: /Implementation report/,
             },
         ],
     ],
