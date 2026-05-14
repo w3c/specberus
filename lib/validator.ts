@@ -284,11 +284,10 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
     }
 
     error(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
-        const name = typeof rule === 'string' ? rule : rule.name;
         const shortname = this.getShortname();
         if (
             typeof shortname !== 'undefined' &&
-            hasExceptions(shortname, name, extra)
+            hasExceptions(shortname, rule.name, extra)
         )
             this.warning(rule, key, extra);
         else
