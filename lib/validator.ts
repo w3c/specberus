@@ -575,7 +575,6 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
                 const $el = this.$(el);
                 const href = $el.attr('href')!;
                 const text = this.norm($el.text());
-                const found: Record<string, boolean> = {};
 
                 if (REGEX_DELIVERER_TEXT.test(text)) {
                     if (REGEX_DELIVERER_IPR_URL.test(href)) {
@@ -592,10 +591,7 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
                             href.match(REGEX_DELIVERER_URL);
                         if (delivererUrlMatch) {
                             const id = delivererUrlMatch[1];
-                            if (id && id.length > 1 && !found[id]) {
-                                found[id] = true;
-                                ids.push(parseInt(id, 10));
-                            }
+                            if (id && id.length > 1) ids.push(parseInt(id, 10));
                         } else if (REGEX_TAG_DISCLOSURE.test(href)) {
                             ids.push(TAG.id);
                         }
@@ -650,15 +646,12 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
             const $el = this.$(el);
             const href = $el.attr('href')!;
             const text = this.norm($el.text());
-            const found: Record<string, boolean> = {};
             if (REGEX_DELIVERER_TEXT.test(text)) {
                 const delivererUrlMatch = href.match(REGEX_DELIVERER_URL);
                 if (delivererUrlMatch) {
                     const id = delivererUrlMatch[1];
-                    if (id && id.length > 1 && !found[id]) {
-                        found[id] = true;
+                    if (id && id.length > 1)
                         promiseArray.push(parseInt(id, 10));
-                    }
                 } else if (REGEX_TAG_DISCLOSURE.test(href)) {
                     promiseArray.push(TAG.id);
                 } else if (REGEX_DELIVERER_IPR_URL.test(href)) {
