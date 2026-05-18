@@ -1,6 +1,5 @@
-import rules from '../../rules.json' with { type: 'json' };
+import rules from '../../rules-track.js';
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
-import { isRuleTrack } from '../../util.js';
 
 const self: RuleMeta = {
     name: 'headers.w3c-state',
@@ -30,9 +29,9 @@ export const check: RuleCheckFunction = (sr, done) => {
         sr.error(self, 'bad-w3c-state');
     }
 
-    for (const t in rules)
-        if (isRuleTrack(t) && !profileFound)
-            for (const profile of Object.values(rules[t].profiles)) {
+    for (const { profiles } of Object.values(rules))
+        if (!profileFound)
+            for (const profile of Object.values(profiles)) {
                 const rx = new RegExp(`^w3c\\ ${profile.name}(\\ |,)`, 'i');
                 if (rx.test(txt)) {
                     profileFound = true;
