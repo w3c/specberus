@@ -13,9 +13,10 @@ import w3cApi from 'node-w3capi';
 
 import type { HandlerMessage, SpecberusConfig } from './types.js';
 import type { ValidateOptions } from './validator.js';
+import pkg from '../package.json' with { type: 'json' };
 
-import rules from './rules.json' with { type: 'json' };
-type RuleTrack = Exclude<keyof typeof rules, '*'>;
+/** Current specberus version recorded in package.json */
+export const specberusVersion = pkg.version;
 
 /**
  * Builds a JSON result (of validation, metadata extraction, etc).
@@ -184,11 +185,6 @@ export async function processParams(
         }
     }
     return result;
-}
-
-/** Checks that the passed string is an existing specific track in rules.json. */
-export function isRuleTrack(track: string): track is RuleTrack {
-    return Object.hasOwn(rules, track) && track !== '*';
 }
 
 const githubUsernameCache: Record<string, { id: number | null; time: number }> =
