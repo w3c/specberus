@@ -7,11 +7,9 @@ import EventEmitter from 'events';
 import { fileTypeFromFile } from 'file-type';
 import type { Express, Request, Response } from 'express';
 
-import { buildJSONresult, processParams } from './util.js';
+import { buildJSONresult, processParams, specberusVersion } from './util.js';
 import { Specberus, type ValidateOptions } from './validator.js';
 import type { HandlerMessage } from './types.js';
-
-import pkg from '../package.json' with { type: 'json' };
 
 /**
  * Send the JSON result to the client.
@@ -43,7 +41,7 @@ const getFullUrl = (req: Request) =>
 const processGet = () => async (req: Request, res: Response) => {
     const path = getFullUrl(req).pathname;
     if (path === '/api/version') {
-        res.status(200).send(pkg.version);
+        res.status(200).send(specberusVersion);
     } else if (path === '/api/metadata' || path === '/api/validate') {
         await processRequest(req, res, req.query);
     } else {

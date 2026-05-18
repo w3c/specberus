@@ -76,28 +76,6 @@ export interface RuleModule extends RuleBase {
     check: RuleCheckFunction<any>;
 }
 
-/** `section` from lib/rules.json */
-export interface RulesSection {
-    name: string;
-    rules: Record<string, boolean | string | string[]>;
-}
-
-/** `section` under `*` from lib/rules.json */
-export interface GenericRulesSection {
-    name: string;
-    rules: Record<string, string>;
-}
-
-/** `profile` from lib/rules.json */
-export interface RulesProfile {
-    name: string;
-    order: number;
-    sections: {
-        '*': GenericRulesSection;
-        [index: string]: RulesSection;
-    };
-}
-
 export interface ProfileModule {
     config: SpecberusConfig;
     name: string;
