@@ -8,7 +8,7 @@ import { join } from 'path';
 import * as chai from 'chai';
 import * as l10n from '../lib/l10n-en_GB.js';
 
-import rules from '../lib/rules.json' with { type: 'json' };
+import rules from '../lib/rules-track.js';
 
 const { expect } = chai;
 
@@ -149,7 +149,7 @@ describe('L10n', () => {
     });
 
     describe('UI messages module', () => {
-        it('“lib/rules-wrapper” should be a valid object', () =>
+        it('“lib/rules-track" should be a valid object', () =>
             expect(rules).to.be.an('object'));
         it('“lib/l10n-en_GB” should be a valid object', () => {
             expect(typeof l10n).to.equal('object');

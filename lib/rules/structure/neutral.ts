@@ -2,7 +2,7 @@
  * @file make sure specification use neutral words.
  */
 
-import badterms from '../../../public/badterms.json' with { type: 'json' };
+import badterms from '../../badterms.js';
 import type { RuleCheckFunction } from '../../types.js';
 
 const self = {

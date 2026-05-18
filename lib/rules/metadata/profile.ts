@@ -5,13 +5,13 @@
 import type { Cheerio } from 'cheerio';
 import type { Element } from 'domhandler';
 
-import { allProfiles, isRuleTrack } from '../../util.js';
+import { allProfiles } from '../../util.js';
 import type { Specberus } from '../../validator.js';
 import { sortedProfiles } from '../../views.js';
 import type { RecMetadata, RuleCheckFunction } from '../../types.js';
 import { check as getTitle } from './title.js';
 
-import rules from '../../rules.json' with { type: 'json' };
+import rules from '../../rules-track.js';
 
 // 'self.name' would be 'metadata.profile'
 export const name = 'metadata.profile';
@@ -34,18 +34,16 @@ export const check: RuleCheckFunction<RecMetadata> = async (sr, done) => {
     }
     const candidate = $stateEl && sr.norm($stateEl.text()).toLowerCase();
     if (candidate) {
-        for (const t in rules) {
-            if (isRuleTrack(t)) {
-                for (const [p, profile] of Object.entries(rules[t].profiles)) {
-                    const name = profile.name.toLowerCase();
-                    if (
-                        candidate.indexOf(name) !== -1 &&
-                        matchedLength < name.length
-                    ) {
-                        id = p;
-                        $profileEl = $stateEl;
-                        matchedLength = name.length;
-                    }
+        for (const { profiles } of Object.values(rules)) {
+            for (const [p, profile] of Object.entries(profiles)) {
+                const name = profile.name.toLowerCase();
+                if (
+                    candidate.indexOf(name) !== -1 &&
+                    matchedLength < name.length
+                ) {
+                    id = p;
+                    $profileEl = $stateEl;
+                    matchedLength = name.length;
                 }
             }
         }

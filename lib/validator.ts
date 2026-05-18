@@ -15,8 +15,14 @@ import { assembleData, setLanguage } from './l10n.js';
 import * as profileMetadata from './profiles/metadata.js';
 import * as profileAdditionalMetadata from './profiles/additionalMetadata.js';
 import { get } from './throttled-ua.js';
-import { AB, buildJSONresult, processParams, REC_TEXT, TAG } from './util.js';
-import pkg from '../package.json' with { type: 'json' };
+import {
+    AB,
+    buildJSONresult,
+    processParams,
+    REC_TEXT,
+    specberusVersion,
+    TAG,
+} from './util.js';
 import type {
     ApiCharter,
     HandlerMessage,
@@ -121,7 +127,7 @@ export class Specberus {
     meta: Record<string, any> | undefined;
     source!: any | null;
     url!: string | null;
-    version = pkg.version;
+    version = specberusVersion;
     private $docDateEl: Cheerio<Element> | undefined;
     private $sotdSection: Cheerio<Element> | null | undefined;
     /** Group objects returned by W3C API charters endpoint */
@@ -639,7 +645,7 @@ export class Specberus {
             promiseArray.push(
                 new Promise(resolve => {
                     get(groupApiUrl)
-                        .set('User-Agent', `W3C-Pubrules/${pkg.version}`)
+                        .set('User-Agent', `W3C-Pubrules/${specberusVersion}`)
                         .end((_, data) => {
                             resolve(data);
                         });
@@ -717,7 +723,7 @@ export class Specberus {
                                 get(groupApiUrl)
                                     .set(
                                         'User-Agent',
-                                        `W3C-Pubrules/${pkg.version}`
+                                        `W3C-Pubrules/${specberusVersion}`
                                     )
                                     .end((_: any, data) => {
                                         resolve(data);
@@ -894,7 +900,7 @@ export class Specberus {
     loadURL(url: string, cb: (err: any, $?: CheerioAPI) => void) {
         if (!cb) return this.throw('Missing callback to loadURL.');
         get(url)
-            .set('User-Agent', `W3C-Pubrules/${pkg.version}`)
+            .set('User-Agent', `W3C-Pubrules/${specberusVersion}`)
             .end((err, res) => {
                 if (err) return this.throw(err.message);
                 if (!res.text) return this.throw(`Body of ${url} is empty.`);
