@@ -1,0 +1,44 @@
+interface BadTerm {
+    term: string[];
+    variation?: string[];
+    alternatives: string[];
+}
+
+export default [
+    {
+        term: ['master'],
+        variation: ['masters'],
+        alternatives: ['main'],
+    },
+    {
+        term: ['slave'],
+        variation: ['slaves'],
+        alternatives: ['replica'],
+    },
+    {
+        term: ['whitelist'],
+        variation: ['whitelists'],
+        alternatives: ['allowlist'],
+    },
+    {
+        term: ['blacklist'],
+        variation: ['blacklists'],
+        alternatives: ['denylist'],
+    },
+    {
+        term: ['grandfather'],
+        alternatives: ['legacy'],
+    },
+    {
+        term: ['sanity'],
+        alternatives: ['coherence'],
+    },
+    {
+        term: ['he', 'she', 'him', 'her'],
+        alternatives: ['they'],
+    },
+    {
+        term: ['his', 'hers'],
+        alternatives: ['theirs'],
+    },
+] satisfies BadTerm[];

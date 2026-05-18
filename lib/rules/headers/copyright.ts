@@ -13,7 +13,7 @@ import type { Element } from 'domhandler';
 import { AB, TAG } from '../../util.js';
 import type { Specberus } from '../../validator.js';
 
-import copyrightExceptions from '../../copyright-exceptions.json' with { type: 'json' };
+import copyrightExceptions from '../../copyright-exceptions.js';
 import type { ApiCharter, RuleCheckFunction, RuleMeta } from '../../types.js';
 
 const self: RuleMeta = {

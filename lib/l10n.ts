@@ -3,15 +3,9 @@
  */
 
 import { messages } from './l10n-en_GB.js';
-import originalRules from './rules.json' with { type: 'json' };
-import type {
-    GenericRulesSection,
-    RuleBase,
-    RuleMeta,
-    RulesProfile,
-    RulesSection,
-} from './types.js';
-import { isRuleTrack } from './util.js';
+import originalRules, { type RulesProfile } from './rules-track.js';
+import genericSections from './rules-generic-sections.js';
+import type { RuleBase, RuleMeta } from './types.js';
 
 const enGB = messages;
 
@@ -20,15 +14,9 @@ type LanguageMap = Record<string, string | false>;
 let lang: LanguageMap | undefined;
 const profileRules: Record<string, RulesProfile> = {};
 
-for (const t of Object.keys(originalRules))
-    if (isRuleTrack(t))
-        for (const [p, profile] of Object.entries(originalRules[t].profiles))
-            profileRules[p] = profile;
-
-const genericSections = originalRules['*'].sections as Record<
-    string,
-    GenericRulesSection
->;
+for (const { profiles } of Object.values(originalRules))
+    for (const [p, profile] of Object.entries(profiles))
+        profileRules[p] = profile;
 
 /**
  * Set a locale to be used globally by this module.
@@ -119,10 +107,7 @@ export function message(
 
     if (typeof rule === 'object' && 'rule' in rule) {
         let selector;
-        const profileSections = profileRules[profile].sections as Record<
-            string,
-            RulesSection
-        >;
+        const profileSections = profileRules[profile].sections;
         if (profileSections[rule.section]) {
             if (profileSections[rule.section].rules[rule.rule]) {
                 const genericRules =
