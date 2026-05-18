@@ -189,6 +189,13 @@ export function setupMocks(overrides) {
                 );
         }
     }
+
+    // Mock Nu HTML Checker requests to return no messages
+    // (without mocks, the validate API tests result in an error from the service anyway)
+    nock('https://validator.w3.org')
+        .persist()
+        .post('/nu/?out=json')
+        .reply(200, { messages: [] });
 }
 
 /** Cleans up mocks and event handler from setupMocks. */
