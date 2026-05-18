@@ -12,8 +12,8 @@ import fileUpload from 'express-fileupload';
 import superagent from 'superagent';
 
 import { setUp } from '../lib/api.js';
+import { specberusVersion } from '../lib/util.js';
 import { cleanupMocks, setupMocks } from './lib/utils.js';
-import meta from '../package.json' with { type: 'json' };
 
 const { expect } = chai;
 
@@ -97,7 +97,7 @@ describe('API', () => {
     describe('Method “version”', () => {
         it('Should return the right version string', () => {
             const query = get('version');
-            return expect(query).to.eventually.become(meta.version);
+            return expect(query).to.eventually.become(specberusVersion);
         });
     });
 
