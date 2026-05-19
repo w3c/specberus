@@ -171,7 +171,7 @@ This method returns a Promise that resolves with errors, warnings, and informati
 
 ### `extractMetadata(options)`
 
-This method returns a Promise that resolves with with metadata inferred from the document.
+This method returns a Promise that resolves with metadata inferred from the document.
 
 The `options` accepted are equal to those in `validate()`, with the following differences:
 
@@ -226,7 +226,7 @@ The following is an example of the value of the `metadata` object after the exec
 Similar to the [JS API](#4-js-api), Specberus exposes a REST API via HTTP too.
 
 The base path is `<host>/api/`.
-Use either `url` or `file` to pass along the document (neither `source` nor `document` are allowed).
+Use either `url` or `file` to pass along the document (`source` is not allowed).
 
 Note: If you want to use the public W3C instance of Specberus, you can replace `<host>` with `https://www.w3.org/pubrules`.
 
