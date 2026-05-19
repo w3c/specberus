@@ -13,6 +13,6 @@
         "useUnknownInCatchVariables": false,
         "verbatimModuleSyntax": true
     },
-    "exclude": ["public/**/*", "test/**/*"],
+    "exclude": ["public/**/*"],
     "types": ["node"]
 }
