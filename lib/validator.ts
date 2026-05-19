@@ -189,7 +189,7 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
     #shortname: string | undefined = undefined;
 
     /**
-     * Handles common end-state logic for both extractMetadata and validate,
+     * Internal function for handling common end-state logic for extractMetadata and validate,
      * returning results (resolving) or throwing an error if exceptions occurred (rejecting).
      */
     #reportResult(result: Omit<SpecberusResult, 'success'>): SpecberusResult {
@@ -206,11 +206,12 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
         };
     }
 
-    async extractMetadata(options: ExtractMetadataOptions) {
-        const metadata: Record<string, any> = {};
+    /** Internal function containing setup logic common to both extractMetadata and validate. */
+    async #prepare(options: ExtractMetadataOptions | ValidateOptions) {
         const errors: HandlerMessage[] = [];
         const warnings: HandlerMessage[] = [];
         const info: HandlerMessage[] = [];
+
         this.on('err', (rule, data) => {
             errors.push({ ...rule, ...data });
         });
@@ -228,9 +229,16 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
             throw error;
         }
 
+        return { errors, info, warnings };
+    }
+
+    async extractMetadata(options: ExtractMetadataOptions) {
+        const messages = await this.#prepare(options);
+        const metadata: Record<string, any> = {};
         const profile = options.additionalMetadata
             ? profileAdditionalMetadata
             : profileMetadata;
+
         await Promise.all(
             profile.rules.map(async rule => {
                 try {
@@ -244,8 +252,7 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
                 }
             })
         );
-
-        return this.#reportResult({ errors, warnings, info, metadata });
+        return this.#reportResult({ ...messages, metadata });
     }
 
     async validate(options: ValidateOptions) {
@@ -254,20 +261,7 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
 
         const { profile } = options;
         this.config = await processParams(options, profile.config);
-        const errors: HandlerMessage[] = [];
-        const warnings: HandlerMessage[] = [];
-        const info: HandlerMessage[] = [];
-        this.on('err', (rule, data) => {
-            errors.push({ ...rule, ...data });
-        });
-        this.on('warning', (rule, data) => {
-            warnings.push({ ...rule, ...data });
-        });
-        this.on('info', (rule, data) => {
-            info.push({ ...rule, ...data });
-        });
-
-        this.$ = await this.#load(options);
+        const messages = await this.#prepare(options);
 
         await Promise.all(
             profile.rules.map(async rule => {
@@ -279,8 +273,7 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
                 }
             })
         );
-
-        return this.#reportResult({ errors, warnings, info, metadata: {} });
+        return this.#reportResult({ ...messages, metadata: {} });
     }
 
     error(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
