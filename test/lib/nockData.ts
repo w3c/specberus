@@ -1,4 +1,40 @@
-export const nockData = {
+import type { IsoDateString } from '../../lib/types.js';
+
+interface NockGroupData {
+    group: {
+        id: number;
+        name: string;
+        is_closed: boolean;
+        closed_date?: IsoDateString;
+        description: string;
+        shortname: string;
+        discr: string;
+        type: string;
+        'start-date': IsoDateString;
+        'end-date': IsoDateString;
+    };
+    charters: {
+        'doc-licenses': { name: string; uri: string }[];
+        'patent-policy'?: string;
+        end: IsoDateString;
+        extensions?: { announcement_uri: string; end: IsoDateString }[];
+        'initial-end'?: IsoDateString;
+        start: IsoDateString;
+        uri?: string;
+        'cfp-uri'?: string;
+        'required-new-commitments'?: boolean;
+    }[];
+    userIds?: number[];
+}
+
+export interface NockData {
+    delivererMap: Record<string, number>;
+    versionUris: string[];
+    githubUsers: Record<string, number | { status: number }>;
+    groupData: Record<number, NockGroupData>;
+}
+
+export const nockData: NockData = {
     delivererMap: {
         'css-color-3': 32061,
         'hr-time': 45211,
