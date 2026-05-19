@@ -71,6 +71,7 @@ function warnOnNonLocalRequest(req) {
 export function setupMocks(overrides) {
     // Report non-local URLs that were not mocked during test runs
     nock.emitter.on('no match', warnOnNonLocalRequest);
+    nock.enableNetConnect('localhost'); // Only allow localhost requests to proceed unmocked
 
     /** @type {typeof nockData} */
     const mockData = overrides ? merge({}, nockData, overrides) : nockData;
@@ -201,5 +202,6 @@ export function setupMocks(overrides) {
 /** Cleans up mocks and event handler from setupMocks. */
 export function cleanupMocks() {
     nock.emitter.off('no match', warnOnNonLocalRequest);
+    nock.enableNetConnect();
     nock.cleanAll();
 }
