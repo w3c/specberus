@@ -97,7 +97,7 @@ $ npm run live 3001
 
 ## 3. Testing
 
-#### 1. Simple test
+### 1. Simple test
 
 Run:
 
@@ -107,16 +107,7 @@ $ npm test
 
 from the root to run the test suite.
 
-#### 2. SKIP_NETWORK
-
-Some of the tests can on occasion take a long time, or fail outright because a remote service is
-unavailable. To work around this, you can set SKIP_NETWORK:
-
-```bash
-$ SKIP_NETWORK=1 mocha
-```
-
-#### 3. Run testserver
+### 2. Run testserver
 
 The testcase document server can run independently:
 
@@ -124,7 +115,7 @@ The testcase document server can run independently:
 $ npm run testserver
 ```
 
-#### 4. Run certain test
+### 3. Run certain test
 
 Add process env before `npm run test` and `describe.only()` to run single test.
 
