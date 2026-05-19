@@ -22,13 +22,14 @@ const good = { ...data, ...customData };
 
 // Used in http://localhost:8001/doc-views/TR/Recommendation/CRD?type=good2
 const good2 = {
+    ...good,
     config: {
         ...good.config,
     },
     sotd: {
         ...good.sotd,
         draftText:
-            'This document is maintained and updated at any time. Some parts of this document are a work in progress.',
+            'This document is maintained and updated at any time. Some parts of this document are work in progress.',
     },
 };
 

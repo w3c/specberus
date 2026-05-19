@@ -34,3 +34,4 @@ app.js
 *.d.ts
 !lib/types.d.ts
 lib/**/*.js
+test/**/*.js
