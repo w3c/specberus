@@ -1,80 +1,102 @@
-import { lstatSync, readdirSync } from 'fs';
+import { lstat, readdir } from 'fs/promises';
+import { join } from 'path';
+
 import merge from 'lodash.merge';
 import nock from 'nock';
 
-import { nockData } from './nockData.js';
+import { nockData, type NockData } from './nockData.js';
+import type { SpecberusConfig } from '../../lib/types.js';
 
-function listFilesOf(dir) {
-    const files = readdirSync(dir);
-
-    // ignore .DS_Store from Mac
-    const blocklist = ['.DS_Store', 'Base.js'];
-
-    return files.filter(v => !blocklist.find(b => v.includes(b)));
+export interface RuleTest {
+    config?: Partial<SpecberusConfig>;
+    data: string;
+    errors?: string[];
+    warnings?: string[];
 }
 
-const flat = objs => objs.reduce((acc, cur) => ({ ...acc, ...cur }), {});
+interface RuleTestModule {
+    rules: Record<string, Record<string, RuleTest[]>>;
+}
 
-const buildProfileTestCases = async path => {
-    const { rules } = await import(path);
+async function listDirectories(dir: string) {
+    const directories: string[] = [];
+    for (const entry of await readdir(dir))
+        if ((await lstat(join(dir, entry))).isDirectory())
+            directories.push(entry);
+    return directories;
+}
+
+async function listModules(dir: string) {
+    const list = (await readdir(dir))
+        .filter(
+            filename =>
+                filename.endsWith('.ts') &&
+                !filename.endsWith('.d.ts') &&
+                !filename.endsWith('Base.ts')
+        )
+        // Map to resolvable module identifiers
+        .map(filename => filename.replace(/\.ts$/, '.js'));
+    return list;
+}
+
+const buildProfileTestCases = async (path: string) => {
+    const { rules } = (await import(path)) as RuleTestModule;
     return rules;
 };
 
-const buildTrackTestCases = async path => {
-    if (lstatSync(path).isFile()) {
-        const profile = await buildProfileTestCases(path);
-        return profile;
+const buildTrackTestCases = async (path: string) => {
+    const profiles: Record<string, RuleTestModule['rules']> = {};
+    for (const profile of await listModules(path)) {
+        profiles[profile] = await buildProfileTestCases(`${path}/${profile}`);
     }
-
-    const profiles = await Promise.all(
-        listFilesOf(path).map(async profile => ({
-            [profile]: await buildProfileTestCases(`${path}/${profile}`),
-        }))
-    );
-
-    return flat(profiles);
+    return profiles;
 };
 
-const buildDocTypeTestCases = async path => {
-    const tracks = await Promise.all(
-        listFilesOf(path).map(async track => ({
-            [track]: await buildTrackTestCases(`${path}/${track}`),
-        }))
-    );
+const buildDocTypeTestCases = async (path: string) => {
+    const tracks: Record<
+        string,
+        RuleTestModule['rules'] | Record<string, RuleTestModule['rules']>
+    > = {};
 
-    return flat(tracks);
+    for (const module of await listModules(path)) {
+        tracks[module] = await buildProfileTestCases(`${path}/${module}`);
+    }
+    for (const track of await listDirectories(path)) {
+        tracks[track] = await buildTrackTestCases(`${path}/${track}`);
+    }
+    return tracks;
 };
 
 export const buildBadTestCases = async () => {
-    const base = `${process.cwd()}/test/data`;
-    const docTypes = await Promise.all(
-        listFilesOf(base)
-            .filter(v => lstatSync(`${base}/${v}`).isDirectory())
-            .map(async docType => ({
-                [docType]: await buildDocTypeTestCases(`${base}/${docType}`),
-            }))
-    );
-
-    return flat(docTypes);
+    const base = join(process.cwd(), 'test', 'data');
+    const docTypes: Record<
+        string,
+        Awaited<ReturnType<typeof buildDocTypeTestCases>>
+    > = {};
+    for (const docType of await listDirectories(base)) {
+        docTypes[docType] = await buildDocTypeTestCases(`${base}/${docType}`);
+    }
+    return docTypes;
 };
 
 /**
  * @param {Request} req
  */
-function warnOnNonLocalRequest(req) {
+function warnOnNonLocalRequest(req: Request) {
     if (!req.url.includes('//localhost')) {
         console.warn('Unmocked non-local request:', req.url, req.body);
     }
 }
 
 /** Mocks external calls to speed up tests and make them consistently runnable locally */
-export function setupMocks(overrides) {
+export function setupMocks(overrides?: Partial<NockData>) {
     // Report non-local URLs that were not mocked during test runs
     nock.emitter.on('no match', warnOnNonLocalRequest);
     nock.enableNetConnect('localhost'); // Only allow localhost requests to proceed unmocked
 
-    /** @type {typeof nockData} */
-    const mockData = overrides ? merge({}, nockData, overrides) : nockData;
+    const mockData: typeof nockData = overrides
+        ? merge({}, nockData, overrides)
+        : nockData;
 
     const notFoundNames = [
         'hr-foo-time',

@@ -22,10 +22,9 @@ const good = {
     },
     config: {
         ...config,
-        ...data.config,
         profile: 'Member Submission',
         status: 'SUBM',
-    },
+    } as const,
 };
 
 export default {

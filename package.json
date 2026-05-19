@@ -36,25 +36,21 @@
     "tmp": "0.2.7"
   },
   "devDependencies": {
-    "@rvagg/chai-as-promised": "8.0.2",
     "@types/express": "^5.0.6",
     "@types/express-fileupload": "^1.5.1",
-    "@types/mocha": "^10.0.10",
+    "@types/lodash.merge": "^4.6.9",
     "@types/morgan": "^1.9.10",
     "@types/node": "^24.10.9",
     "@types/superagent": "^8.1.9",
     "@types/tmp": "^0.2.6",
     "c8": "^11.0.0",
-    "chai": "6.2.2",
     "cspell": "9.0.2",
     "domhandler": "^6.0.1",
     "expect.js": "0.3",
     "husky": "9.0.11",
     "lint-staged": "16.4.0",
     "lodash.merge": "^4.6.2",
-    "mocha": "11.7.6",
     "nock": "15.0.0",
-    "nodemon": "3.0.3",
     "prettier": "3.8.4",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
@@ -62,8 +58,8 @@
   "scripts": {
     "build": "tsc",
     "check": "tsc --noEmit",
-    "coverage": "tsc && c8 npm test",
-    "coverage:text": "tsc && c8 --reporter=text npm test",
+    "coverage": "NO_THROTTLE=true c8 tsx --test --test-timeout=120000 'test/*.ts'",
+    "coverage:text": "npm run coverage && c8 report --reporter=text",
     "cspell": "cspell \"**/*\"",
     "fix": "prettier -w .",
     "lint": "npm run check && prettier -c .",
@@ -72,11 +68,11 @@
     "prepare": "husky install",
     "spelling": "cspell \"**/*\"",
     "start": "node app",
-    "testserver": "nodemon test/lib/testserver.js",
-    "test": "NO_THROTTLE=true mocha"
+    "testserver": "tsx watch test/lib/testserver.ts",
+    "test": "NO_THROTTLE=true tsx --test --test-isolation=none 'test/*.ts'"
   },
   "engines": {
-    "node": "20 || 22 || 24",
+    "node": "22 || 24",
     "npm": ">=7"
   },
   "lint-staged": {
@@ -84,10 +80,5 @@
       "cspell --no-must-find-files",
       "prettier --write --ignore-unknown"
     ]
-  },
-  "mocha": {
-    "colors": true,
-    "reporter": "spec",
-    "timeout": 40000
   }
 }

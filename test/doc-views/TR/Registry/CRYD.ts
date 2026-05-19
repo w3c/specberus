@@ -20,14 +20,15 @@ const customData = {
 const good = { ...data, ...customData };
 
 // Used in http://localhost:8001/doc-views/TR/Recommendation/CRYD?type=good2
-export const good2 = {
+const good2 = {
+    ...good,
     config: {
         ...good.config,
     },
     sotd: {
         ...good.sotd,
         draftText:
-            'This document is maintained and updated at any time. Some parts of this document are a work in progress.',
+            'This document is maintained and updated at any time. Some parts of this document are work in progress.',
     },
 };
 
@@ -35,6 +36,7 @@ const common = buildCommonViewData(good);
 
 export default {
     good,
+    good2,
     ...common,
     'draft-stability': buildDraftStability(good),
 };
