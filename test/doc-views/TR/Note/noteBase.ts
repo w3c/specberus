@@ -1,8 +1,9 @@
+import type { BaseCommonViewData } from '../../specBase.js';
 import * as TRBase from '../TRBase.js';
 
 const { buildCommonViewData: _buildCommonViewData, data, ...rest } = TRBase;
 
-const buildCommonViewData = base => {
+const buildCommonViewData = (base: BaseCommonViewData) => {
     const common = _buildCommonViewData(base);
     return {
         ...common,
@@ -91,7 +92,6 @@ export default {
     data: {
         ...data,
         config: {
-            ...data.config,
             underPP: false,
             isNoteTrack: true,
         },
