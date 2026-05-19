@@ -1,3 +1,5 @@
+import type { SpecberusConfig } from '../../lib/types.js';
+
 const currentYear = new Date().getFullYear();
 
 export const data = {
@@ -233,7 +235,7 @@ export const data = {
         },
         sixMonthLater() {
             const later = new Date(
-                new Date() - 0 + 6 * 30 * 24 * 60 * 60 * 1000
+                Date.now() - 0 + 6 * 30 * 24 * 60 * 60 * 1000
             );
             return `${later.getDate()} ${later.toLocaleDateString('en-US', {
                 month: 'long',
@@ -242,7 +244,11 @@ export const data = {
     },
 };
 
-export function buildCommonViewData(base) {
+export type BaseCommonViewData = typeof data & {
+    config: SpecberusConfig;
+};
+
+export function buildCommonViewData(base: BaseCommonViewData) {
     return {
         'div-head': {
             noHead: {
@@ -286,7 +292,7 @@ export function buildCommonViewData(base) {
                 header: {
                     ...base.header,
                     logo: {
-                        ...base.logo,
+                        ...base.header.logo,
                         src: 'http://invalid/source',
                     },
                 },
@@ -296,7 +302,7 @@ export function buildCommonViewData(base) {
                 header: {
                     ...base.header,
                     logo: {
-                        ...base.logo,
+                        ...base.header.logo,
                         href: 'http://invalid/href',
                     },
                 },
@@ -409,7 +415,7 @@ export function buildCommonViewData(base) {
                 dl: {
                     ...base.dl,
                     latestVersion: {
-                        ...base.latestVersion,
+                        ...base.dl.latestVersion,
                         text: 'wrong latest version key',
                     },
                 },

@@ -62,7 +62,7 @@ export const goodDocuments = {
     },
     'CRYD-2': {
         profile: 'CRYD',
-        url: 'doc-views/TR/Recommendation/CRYD?type=good2',
+        url: 'doc-views/TR/Registry/CRYD?type=good2',
     },
     DRY: {
         url: 'doc-views/TR/Registry/DRY?type=good',
