@@ -25,7 +25,7 @@ const testDocsPath = join('test', 'docs', 'api');
 let server: Server;
 
 /**
- * Sets up Chai, mocks, and the HTTP server for tests.
+ * Sets up mocks and the HTTP server for tests.
  */
 function setup() {
     setupMocks();
