@@ -1,8 +1,9 @@
+import type { BaseCommonViewData } from '../../specBase.js';
 import * as TRBase from '../TRBase.js';
 
 const { data, ...rest } = TRBase;
 
-const buildSecurityPrivacy = base => ({
+const buildSecurityPrivacy = (base: BaseCommonViewData) => ({
     noSecurityPrivacy: {
         ...base,
     },
@@ -22,7 +23,7 @@ const buildSecurityPrivacy = base => ({
     },
 });
 
-const buildRecStability = base => ({
+const buildRecStability = (base: BaseCommonViewData) => ({
     noRECReview: {
         ...base,
         config: {

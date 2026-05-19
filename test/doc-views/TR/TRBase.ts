@@ -1,13 +1,14 @@
 import {
     buildCommonViewData as _buildCommonViewData,
     data,
+    type BaseCommonViewData,
 } from '../specBase.js';
 
 export { data };
 
 const currentYear = new Date().getFullYear();
 
-export function buildCommonViewData(base) {
+export function buildCommonViewData(base: BaseCommonViewData) {
     const common = _buildCommonViewData(base);
     return {
         ...common,
@@ -213,7 +214,7 @@ export function buildCommonViewData(base) {
     };
 }
 
-export function buildCandidateReviewEnd(base) {
+export function buildCandidateReviewEnd(base: BaseCommonViewData) {
     return {
         noDateFound: {
             ...base,
@@ -239,7 +240,7 @@ export function buildCandidateReviewEnd(base) {
     };
 }
 
-export function buildTodaysDate(base) {
+export function buildTodaysDate(base: BaseCommonViewData) {
     return {
         noDateDetected: {
             ...base,
@@ -266,7 +267,7 @@ export function buildTodaysDate(base) {
     };
 }
 
-export function buildDelivererChange(base) {
+export function buildDelivererChange(base: BaseCommonViewData) {
     return {
         delivererChanged: {
             ...base,
@@ -282,7 +283,7 @@ export function buildDelivererChange(base) {
     };
 }
 
-export function buildDraftStability(base) {
+export function buildDraftStability(base: BaseCommonViewData) {
     return {
         noDraftEither: {
             ...base,
@@ -303,7 +304,7 @@ export function buildDraftStability(base) {
     };
 }
 
-export function buildNewFeatures(base) {
+export function buildNewFeatures(base: BaseCommonViewData) {
     return {
         noWarning: {
             ...base,
@@ -314,11 +315,7 @@ export function buildNewFeatures(base) {
                 ...base.sotd,
                 newFeatures: {
                     show: true,
-                    text: `Future updates to this ${
-                        base.config.status === 'PR'
-                            ? 'specification'
-                            : 'Recommendation'
-                    } may incorporate new features.`,
+                    text: `Future updates to this Recommendation may incorporate new features.`,
                 },
             },
         },

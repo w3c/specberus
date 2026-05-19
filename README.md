@@ -101,38 +101,25 @@ GH_TOKEN=github_pat_... npm start
 
 ## 3. Testing
 
-#### 1. Simple test
+### 1. Simple test
 
-Testing is done using mocha. Simply run:
-
-```bash
-$ mocha
-```
-
-from the root and you will be running the test suite. Mocha can be installed with:
+Run:
 
 ```bash
-$ npm install -g mocha
+$ npm test
 ```
 
-#### 2. SKIP_NETWORK
+from the root to run the test suite.
 
-Some of the tests can on occasion take a long time, or fail outright because a remote service is
-unavailable. To work around this, you can set SKIP_NETWORK:
+### 2. Run testserver
 
-```bash
-$ SKIP_NETWORK=1 mocha
-```
-
-#### 3. Run testserver
-
-The testcase document can run independently
+The testcase document server can run independently:
 
 ```bash
 $ npm run testserver
 ```
 
-#### 4. Run certain test
+### 3. Run certain test
 
 Add process env before `npm run test` and `describe.only()` to run single test.
 
