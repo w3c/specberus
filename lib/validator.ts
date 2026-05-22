@@ -30,7 +30,6 @@ import type {
 setLanguage('en_GB');
 
 interface BaseOptions {
-    events?: EventEmitter;
     file?: string;
     source?: string;
     url?: string;
