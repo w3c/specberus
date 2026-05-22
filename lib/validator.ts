@@ -844,7 +844,7 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
 
     async #loadFile(file: string) {
         try {
-            access(file, constants.F_OK);
+            await access(file, constants.F_OK);
         } catch (error) {
             throw new Error(`File '${file}' not found or inaccessible.`);
         }
