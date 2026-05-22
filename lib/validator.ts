@@ -184,7 +184,7 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
     /** Stores messages from any unexpected errors encountered during process */
     #exceptions: string[] = [];
     #headers: HeaderMap | undefined;
-    #isFirstPublic: any | undefined;
+    #isFirstPublic: boolean | undefined;
     #previousVersion: Promise<string | null> | undefined;
     #shortname: string | undefined = undefined;
 
@@ -387,7 +387,8 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
     }
 
     getSotDSection() {
-        if (this.#$sotdSection) return this.#$sotdSection;
+        if (typeof this.#$sotdSection !== 'undefined')
+            return this.#$sotdSection;
 
         let startH2: Element | undefined;
         let endH2: Element | undefined;
@@ -734,7 +735,7 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
     }
 
     async getCharters() {
-        if (typeof this.#charters !== 'undefined') return this.#charters;
+        if (this.#charters) return this.#charters;
 
         this.#charters = (await this.getChartersData()).map(({ uri }) => uri);
         return this.#charters;
@@ -756,8 +757,7 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
      * Gets previous version link from API via shortname.
      */
     async getPreviousVersion() {
-        if (typeof this.#previousVersion !== 'undefined')
-            return this.#previousVersion;
+        if (this.#previousVersion) return this.#previousVersion;
 
         const dts = this.extractHeaders();
         const shortname = this.#shortname || (await this.getShortname());
