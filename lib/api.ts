@@ -33,21 +33,14 @@ const sendResult = function (res: Response, result: SpecberusResult) {
 /**
  * Sends a list of validation errors or processing exceptions to the client.
  * @param res Express Response
- * @param messages Array of error message strings
- * @param type 'error' to indicate invalid input, or 'exception' to indicate unexpected internal errors
+ * @param error An ExceptionsError (yields HTTP 500), or any other error (yields HTTP 400)
  */
-function sendErrors(
-    res: Response,
-    messages: string[],
-    type: 'error' | 'exception'
-) {
-    const errors =
-        type === 'error'
-            ? messages.map(error => ({ error }))
-            : messages.map(exception => ({ exception }));
-
-    res.status(type === 'error' ? 400 : 500).json({
-        errors,
+function sendErrors(res: Response, error: Error | ExceptionsError) {
+    res.status(error instanceof ExceptionsError ? 400 : 500).json({
+        errors:
+            error instanceof ExceptionsError
+                ? error.exceptions.map(exception => ({ exception }))
+                : [{ error: error.toString() }],
         info: [],
         metadata: {},
         success: false,
@@ -126,7 +119,7 @@ function handlePromise(
             );
         },
         (error: ExceptionsError) => {
-            sendErrors(res, error.exceptions, 'exception');
+            sendErrors(res, error);
         }
     );
 }
@@ -144,8 +137,8 @@ const processRequest = async (
             required: shouldValidate ? ['profile'] : [],
             forbidden: ['source'],
         });
-    } catch (err) {
-        return sendErrors(res, [err.toString()], 'error');
+    } catch (error) {
+        return sendErrors(res, error);
     }
 
     if (shouldValidate && options.profile === 'auto') {
@@ -153,7 +146,7 @@ const processRequest = async (
         const result = await sr
             .extractMetadata(options)
             .catch((error: ExceptionsError) => {
-                sendErrors(res, error.exceptions, 'exception');
+                sendErrors(res, error);
             });
         if (!result) return;
         if (result.errors.length) return sendResult(res, result);
@@ -167,7 +160,7 @@ const processRequest = async (
                 allowUnknownParams: true,
             });
         } catch (error) {
-            return sendErrors(res, [error.toString()], 'error');
+            return sendErrors(res, error);
         }
 
         const metaSr = new Specberus();

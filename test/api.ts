@@ -149,6 +149,26 @@ describe('API', () => {
                 }
             ));
 
+        it('Should 400 with error on POST if "file" is provided but "profile" is not', () =>
+            assert.rejects(
+                createPostRequest('validate').attach(
+                    'file',
+                    join(testDocsPath, 'wd-good.html')
+                ),
+                (error: any) => {
+                    const { success, errors } = JSON.parse(
+                        getErrorResponseText(error)
+                    );
+                    assert.strictEqual(success, false);
+                    assert.deepStrictEqual(errors, [
+                        {
+                            error: 'Error: Parameter “profile” is required in this context',
+                        },
+                    ]);
+                    return true;
+                }
+            ));
+
         it('Should accept "file" via POST, and succeed when the document is valid', () =>
             createPostRequest('validate')
                 .field('profile', 'WD')
