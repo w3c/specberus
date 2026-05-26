@@ -1,7 +1,7 @@
 import type { Cheerio } from 'cheerio';
 import type { Element } from 'domhandler';
 
-import type { Specberus } from '../../validator.js';
+import type { RuleContext } from '../../validator.js';
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
 const self: RuleMeta = {
@@ -12,7 +12,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-function findSubmText($candidates: Cheerio<Element>, sr: Specberus) {
+function findSubmText($candidates: Cheerio<Element>, sr: RuleContext) {
     const wanted =
         'By publishing this document, W3C acknowledges that the Submitting Members ' +
         'have made a formal Submission request to W3C for discussion. Publication of ' +
