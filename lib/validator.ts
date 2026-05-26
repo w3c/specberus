@@ -5,7 +5,7 @@
 import EventEmitter from 'events';
 import { access, constants, readFile } from 'fs/promises';
 
-import { type Cheerio, load } from 'cheerio';
+import { type Cheerio, type CheerioAPI, load } from 'cheerio';
 import type { Element } from 'domhandler';
 // @ts-ignore (no typings)
 import w3cApi from 'node-w3capi';
@@ -43,6 +43,200 @@ export interface ValidateOptions extends BaseOptions {
     profile: ProfileModule;
     validation?: 'no-validation' | 'recursive';
 }
+
+interface ExceptionsErrorOptions extends ErrorOptions {
+    exceptions: string[];
+}
+
+export interface SpecberusResult {
+    errors: HandlerMessage[];
+    info: HandlerMessage[];
+    metadata: Record<string, any>;
+    success: boolean;
+    warnings: HandlerMessage[];
+}
+
+/**
+ * Error which includes list of exception messages,
+ * thrown in case of unexpected errors during extractMetadata or validate
+ */
+export class ExceptionsError extends Error {
+    exceptions: string[];
+
+    constructor(message?: string, options?: ExceptionsErrorOptions) {
+        super(message, options);
+        this.exceptions = options?.exceptions || [];
+    }
+}
+
+type SpecberusMessageEventArgs = [
+    RuleMeta | RuleBase,
+    {
+        detailMessage: string;
+        extra?: Record<string, any>;
+        key: string;
+    },
+];
+
+interface SpecberusEvents {
+    done: [string];
+    err: SpecberusMessageEventArgs;
+    exception: [{ message: string }];
+    info: SpecberusMessageEventArgs;
+    warning: SpecberusMessageEventArgs;
+}
+
+export class Specberus extends EventEmitter<SpecberusEvents> {
+    source: string | undefined;
+    url: string | undefined;
+    version = specberusVersion;
+
+    /** Stores messages from any unexpected errors encountered during process */
+    #exceptions: string[] = [];
+
+    /**
+     * Internal function for handling common end-state logic for extractMetadata and validate,
+     * returning results (resolving) or throwing an error if exceptions occurred (rejecting).
+     */
+    #reportResult(result: Omit<SpecberusResult, 'success'>): SpecberusResult {
+        if (this.#exceptions.length) {
+            throw new ExceptionsError(
+                'The following unexpected errors occurred:\n' +
+                    this.#exceptions.join('\n'),
+                { exceptions: this.#exceptions }
+            );
+        }
+        return {
+            ...result,
+            success: !result.errors.length,
+        };
+    }
+
+    /** Internal function containing setup logic common to both extractMetadata and validate. */
+    async #prepare(options: ExtractMetadataOptions | ValidateOptions) {
+        const errors: HandlerMessage[] = [];
+        const warnings: HandlerMessage[] = [];
+        const info: HandlerMessage[] = [];
+
+        this.on('err', (rule, data) => {
+            errors.push({ ...rule, ...data });
+        });
+        this.on('warning', (rule, data) => {
+            warnings.push({ ...rule, ...data });
+        });
+        this.on('info', (rule, data) => {
+            info.push({ ...rule, ...data });
+        });
+
+        try {
+            const $ = await this.#load(options);
+            return { $, errors, info, warnings };
+        } catch (error) {
+            this.#throw(error.toString());
+            throw error;
+        }
+    }
+
+    async extractMetadata(options: ExtractMetadataOptions) {
+        const { $, ...messages } = await this.#prepare(options);
+        const metadata: Record<string, any> = {};
+        const profile = options.additionalMetadata
+            ? profileAdditionalMetadata
+            : profileMetadata;
+        const ruleContext = new RuleContext(this, $);
+
+        await Promise.all(
+            profile.rules.map(async rule => {
+                try {
+                    const result = await rule.check(ruleContext);
+                    if (result)
+                        for (const [key, value] of Object.entries(result))
+                            metadata[key] = value;
+                } catch (error) {
+                    this.#throw(error.message);
+                } finally {
+                    this.emit('done', rule.name);
+                }
+            })
+        );
+        return this.#reportResult({ ...messages, metadata });
+    }
+
+    async validate(options: ValidateOptions) {
+        if (!options.profile)
+            throw new Error('Without a profile there is nothing to check.');
+
+        const { profile } = options;
+        const config = await processParams(options, profile.config);
+        const { $, ...messages } = await this.#prepare(options);
+        const ruleContext = new RuleContext(this, $, config);
+
+        await Promise.all(
+            profile.rules.map(async rule => {
+                try {
+                    await rule.check(ruleContext);
+                } catch (error) {
+                    this.#throw(error.message);
+                } finally {
+                    this.emit('done', rule.name);
+                }
+            })
+        );
+        return this.#reportResult({ ...messages, metadata: {} });
+    }
+
+    /**
+     * Emits an exception event, intended to signify that the process stopped on a critical error.
+     *
+     * NOTE: This should not be called from rules; they should throw an Error,
+     * which will result in extractMetadata or validate invoking this method.
+     */
+    #throw(message: string) {
+        console.error(`[EXCEPTION] ${message}`);
+        this.emit('exception', { message });
+        // Track in exceptions array, used to determine whether to resolve or reject process
+        this.#exceptions.push(message);
+    }
+
+    #load(options: ExtractMetadataOptions | ValidateOptions) {
+        if (options.url) return this.#loadURL(options.url);
+        if (options.source) return this.#loadSource(options.source);
+        if (options.file) return this.#loadFile(options.file);
+        throw new Error('url, source, or file must be specified.');
+    }
+
+    #loadURL(url: string) {
+        return get(url)
+            .set('User-Agent', `W3C-Pubrules/${specberusVersion}`)
+            .then(res => {
+                if (!res.text) throw new Error(`Body of ${url} is empty.`);
+                this.url = url;
+                return this.#loadSource(res.text);
+            });
+    }
+
+    #loadSource(src: string) {
+        this.source = src;
+        try {
+            return load(src);
+        } catch (e) {
+            throw new Error(
+                `Cheerio failed to parse source: ${JSON.stringify(e)}`
+            );
+        }
+    }
+
+    async #loadFile(file: string) {
+        try {
+            await access(file, constants.F_OK);
+        } catch (error) {
+            throw new Error(`File '${file}' not found or inaccessible.`);
+        }
+        return this.#loadSource(await readFile(file, 'utf8'));
+    }
+}
+
+// End of Specberus-related code; start of RuleContext-related code
 
 type HeaderMap = Record<
     string,
@@ -107,6 +301,10 @@ const abbrMonths = [
 ];
 
 export const possibleMonths = [...months, ...abbrMonths].join('|');
+const separator = '[ -]{1}';
+
+export const dateRegexStrCapturing = `(\\d?\\d)${separator}(${possibleMonths})${separator}(\\d{4})`;
+const dateRegexStrNonCapturing = `\\d?\\d${separator}(?:${possibleMonths})${separator}\\d{4}`;
 
 // Regular expressions used by getDelivererIDs and getDelivererGroups
 
@@ -118,59 +316,20 @@ const REGEX_TAG_DISCLOSURE = /https?:\/\/www.w3.org\/2001\/tag\/disclosures/;
 const REGEX_DELIVERER_IPR_URL =
     /^https:\/\/www\.w3\.org\/groups\/([^/]+)\/([^/]+)\/ipr\/?(#.*)?$/i;
 
-const separator = '[ -]{1}';
-
-interface ExceptionsErrorOptions extends ErrorOptions {
-    exceptions: string[];
-}
-
-export interface SpecberusResult {
-    errors: HandlerMessage[];
-    info: HandlerMessage[];
-    metadata: Record<string, any>;
-    success: boolean;
-    warnings: HandlerMessage[];
-}
-
 /**
- * Error which includes list of exception messages,
- * thrown in case of unexpected errors during extractMetadata or validate
+ * Encapsulates all methods of interest to rule check functions,
+ * separate from the APIs responsible for core Specberus requests.
  */
-export class ExceptionsError extends Error {
-    exceptions: string[];
-
-    constructor(message?: string, options?: ExceptionsErrorOptions) {
-        super(message, options);
-        this.exceptions = options?.exceptions || [];
-    }
-}
-
-type SpecberusMessageEventArgs = [
-    RuleMeta | RuleBase,
-    {
-        detailMessage: string;
-        extra?: Record<string, any>;
-        key: string;
-    },
-];
-
-interface SpecberusEvents {
-    done: [string];
-    err: SpecberusMessageEventArgs;
-    exception: [{ message: string }];
-    info: SpecberusMessageEventArgs;
-    warning: SpecberusMessageEventArgs;
-}
-
-export class Specberus extends EventEmitter<SpecberusEvents> {
-    $ = load('');
+class RuleContext {
+    $: CheerioAPI;
+    /**
+     * Configuration that Specberus parsed from params.
+     * Only present for validation (not metadata extraction).
+     */
     config: SpecberusConfig | undefined;
-    source: string | undefined;
-    url: string | undefined;
     version = specberusVersion;
 
-    // Private fields
-
+    #sr: Specberus;
     #$docDateEl: Cheerio<Element> | undefined;
     #$sotdSection: Cheerio<Element> | null | undefined;
     /** Group objects returned by W3C API charters endpoint */
@@ -180,149 +339,23 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
     #delivererIDs: number[] | Promise<number[]> | undefined;
     #delivererGroups: Promise<DelivererGroup[]> | undefined;
     #docDate: Date | undefined;
-    /** Stores messages from any unexpected errors encountered during process */
-    #exceptions: string[] = [];
     #headers: HeaderMap | undefined;
     #isFirstPublic: boolean | undefined;
     #previousVersion: Promise<string | null> | undefined;
     #shortname: string | undefined = undefined;
 
-    /**
-     * Internal function for handling common end-state logic for extractMetadata and validate,
-     * returning results (resolving) or throwing an error if exceptions occurred (rejecting).
-     */
-    #reportResult(result: Omit<SpecberusResult, 'success'>): SpecberusResult {
-        if (this.#exceptions.length) {
-            throw new ExceptionsError(
-                'The following unexpected errors occurred:\n' +
-                    this.#exceptions.join('\n'),
-                { exceptions: this.#exceptions }
-            );
-        }
-        return {
-            ...result,
-            success: !result.errors.length,
-        };
+    constructor(sr: Specberus, $: CheerioAPI, config?: SpecberusConfig) {
+        this.$ = $;
+        this.#sr = sr;
+        if (config) this.config = config;
     }
 
-    /** Internal function containing setup logic common to both extractMetadata and validate. */
-    async #prepare(options: ExtractMetadataOptions | ValidateOptions) {
-        const errors: HandlerMessage[] = [];
-        const warnings: HandlerMessage[] = [];
-        const info: HandlerMessage[] = [];
-
-        this.on('err', (rule, data) => {
-            errors.push({ ...rule, ...data });
-        });
-        this.on('warning', (rule, data) => {
-            warnings.push({ ...rule, ...data });
-        });
-        this.on('info', (rule, data) => {
-            info.push({ ...rule, ...data });
-        });
-
-        try {
-            this.$ = await this.#load(options);
-        } catch (error) {
-            this.#throw(error.toString());
-            throw error;
-        }
-
-        return { errors, info, warnings };
+    get source() {
+        return this.#sr.source;
     }
 
-    async extractMetadata(options: ExtractMetadataOptions) {
-        const messages = await this.#prepare(options);
-        const metadata: Record<string, any> = {};
-        const profile = options.additionalMetadata
-            ? profileAdditionalMetadata
-            : profileMetadata;
-
-        await Promise.all(
-            profile.rules.map(async rule => {
-                try {
-                    const result = await rule.check(this);
-                    if (result)
-                        for (const [key, value] of Object.entries(result))
-                            metadata[key] = value;
-                } catch (error) {
-                    this.#throw(error.message);
-                } finally {
-                    this.emit('done', rule.name);
-                }
-            })
-        );
-        return this.#reportResult({ ...messages, metadata });
-    }
-
-    async validate(options: ValidateOptions) {
-        if (!options.profile)
-            throw new Error('Without a profile there is nothing to check.');
-
-        const { profile } = options;
-        this.config = await processParams(options, profile.config);
-        const messages = await this.#prepare(options);
-
-        await Promise.all(
-            profile.rules.map(async rule => {
-                try {
-                    await rule.check(this);
-                } catch (error) {
-                    this.#throw(error.message);
-                } finally {
-                    this.emit('done', rule.name);
-                }
-            })
-        );
-        return this.#reportResult({ ...messages, metadata: {} });
-    }
-
-    error(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
-        const shortname = this.getShortname();
-        if (
-            typeof shortname !== 'undefined' &&
-            hasExceptions(shortname, rule.name, extra)
-        )
-            this.warning(rule, key, extra);
-        else
-            this.emit('err', rule, {
-                key,
-                ...(extra && { extra }),
-                detailMessage: assembleData(null, rule, key, extra).message,
-            });
-    }
-
-    warning(
-        rule: RuleBase | RuleMeta,
-        key: string,
-        extra?: Record<string, any>
-    ) {
-        this.emit('warning', rule, {
-            key,
-            ...(extra && { extra }),
-            detailMessage: assembleData(null, rule, key, extra).message,
-        });
-    }
-
-    info(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
-        this.emit('info', rule, {
-            key,
-            ...(extra && { extra }),
-            detailMessage: assembleData(null, rule, key, extra).message,
-        });
-    }
-
-    /**
-     * Emits an exception event, intended to signify that the process stopped on a critical error.
-     *
-     * NOTE: This should not be called from rules; they should throw an Error,
-     * which will result in extractMetadata or validate invoking this method.
-     */
-    #throw(message: string) {
-        console.error(`[EXCEPTION] ${message}`);
-        this.emit('exception', { message });
-        // Track in exceptions array, used to determine whether to resolve or reject process
-        this.#exceptions.push(message);
+    get url() {
+        return this.#sr.url;
     }
 
     /**
@@ -349,11 +382,8 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
             .replace(/\s+/g, ' ');
     }
 
-    static dateRegexStrCapturing = `(\\d?\\d)${separator}(${possibleMonths})${separator}(\\d{4})`;
-    static dateRegexStrNonCapturing = `\\d?\\d${separator}(?:${possibleMonths})${separator}\\d{4}`;
-
     stringToDate(str: string) {
-        const rex = new RegExp(Specberus.dateRegexStrCapturing);
+        const rex = new RegExp(dateRegexStrCapturing);
         const matches = str.match(rex);
         if (matches) {
             return new Date(
@@ -364,10 +394,45 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
         }
     }
 
+    error(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
+        const shortname = this.getShortname();
+        if (
+            typeof shortname !== 'undefined' &&
+            hasExceptions(shortname, rule.name, extra)
+        )
+            this.warning(rule, key, extra);
+        else
+            this.#sr.emit('err', rule, {
+                key,
+                ...(extra && { extra }),
+                detailMessage: assembleData(null, rule, key, extra).message,
+            });
+    }
+
+    warning(
+        rule: RuleBase | RuleMeta,
+        key: string,
+        extra?: Record<string, any>
+    ) {
+        this.#sr.emit('warning', rule, {
+            key,
+            ...(extra && { extra }),
+            detailMessage: assembleData(null, rule, key, extra).message,
+        });
+    }
+
+    info(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
+        this.#sr.emit('info', rule, {
+            key,
+            ...(extra && { extra }),
+            detailMessage: assembleData(null, rule, key, extra).message,
+        });
+    }
+
     getDocumentDate() {
         if (this.#docDate) return this.#docDate;
         const rex = new RegExp(
-            `${Specberus.dateRegexStrCapturing}(?:, edited in place ${Specberus.dateRegexStrNonCapturing})?$`
+            `${dateRegexStrCapturing}(?:, edited in place ${dateRegexStrNonCapturing})?$`
         );
         const $el = this.$('#w3c-state');
 
@@ -514,7 +579,7 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
         const dates = { list: [] as Date[], valid: [] as Date[] };
         if ($sotd) {
             const txt = this.norm($sotd.text());
-            const rex = new RegExp(Specberus.dateRegexStrCapturing, 'g');
+            const rex = new RegExp(dateRegexStrCapturing, 'g');
             const docDate = this.getDocumentDate()!;
             const lowBound = new Date(docDate).setDate(
                 new Date(docDate).getDate() + 27
@@ -815,43 +880,6 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
         return this.#previousVersion;
     }
 
-    #load(options: ExtractMetadataOptions | ValidateOptions) {
-        if (options.url) return this.#loadURL(options.url);
-        if (options.source) return this.#loadSource(options.source);
-        if (options.file) return this.#loadFile(options.file);
-        throw new Error('url, source, or file must be specified.');
-    }
-
-    #loadURL(url: string) {
-        return get(url)
-            .set('User-Agent', `W3C-Pubrules/${specberusVersion}`)
-            .then(res => {
-                if (!res.text) throw new Error(`Body of ${url} is empty.`);
-                this.url = url;
-                return this.#loadSource(res.text);
-            });
-    }
-
-    #loadSource(src: string) {
-        this.source = src;
-        try {
-            return load(src);
-        } catch (e) {
-            throw new Error(
-                `Cheerio failed to parse source: ${JSON.stringify(e)}`
-            );
-        }
-    }
-
-    async #loadFile(file: string) {
-        try {
-            await access(file, constants.F_OK);
-        } catch (error) {
-            throw new Error(`File '${file}' not found or inaccessible.`);
-        }
-        return this.#loadSource(await readFile(file, 'utf8'));
-    }
-
     transition(options: TransitionOptions) {
         const documentDate = this.getDocumentDate();
         if (documentDate && 'from' in options && documentDate < options.from)
@@ -881,3 +909,6 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
         return meta;
     }
 }
+
+// Expose typings for types.d.ts to use, separate from the unexposed implementation
+export type { RuleContext };

@@ -1,5 +1,5 @@
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
-import { Specberus } from '../../validator.js';
+import { dateRegexStrCapturing } from '../../validator.js';
 
 const self: RuleMeta = {
     name: 'sotd.rec-comment-end',
@@ -15,7 +15,7 @@ export const check: RuleCheckFunction = sr => {
         const recType = sr.getRecMetadata();
         if (recType.pSubChanges || recType.pNewFeatures) {
             const txt = sr.norm($sotd.text());
-            const rex = new RegExp(Specberus.dateRegexStrCapturing, 'g');
+            const rex = new RegExp(dateRegexStrCapturing, 'g');
             const docDate = sr.getDocumentDate()!;
 
             // 60 days later than docDate;

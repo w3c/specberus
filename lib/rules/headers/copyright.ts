@@ -11,7 +11,7 @@ import type { Cheerio } from 'cheerio';
 import type { Element } from 'domhandler';
 
 import { AB, TAG } from '../../util.js';
-import type { Specberus } from '../../validator.js';
+import type { RuleContext } from '../../validator.js';
 
 import copyrightExceptions from '../../copyright-exceptions.js';
 import type { ApiCharter, RuleCheckFunction, RuleMeta } from '../../types.js';
@@ -52,7 +52,7 @@ const latestBaseLinks = {
 
 export const { name } = self;
 
-async function isOnlyPublishedByTagOrAb(sr: Specberus) {
+async function isOnlyPublishedByTagOrAb(sr: RuleContext) {
     const delivererIDs = await sr.getDelivererIDs();
     return delivererIDs.every(id => id === TAG.id || id === AB.id);
 }
@@ -66,7 +66,7 @@ function getCommonLicenseUri(data: ApiCharter[]) {
 }
 
 // The date can be 19xx-2023, or 2023.
-function getLatestCopyrightMatchRegex(sr: Specberus, licenseTexts: string[]) {
+function getLatestCopyrightMatchRegex(sr: RuleContext, licenseTexts: string[]) {
     const licenseRex = licenseTexts.join('|');
     const year = (sr.getDocumentDate() || new Date()).getFullYear();
 
@@ -81,7 +81,7 @@ function getLatestCopyrightMatchRegex(sr: Specberus, licenseTexts: string[]) {
 
 // Some documents like epub-33 uses special copyrights listed in copyright-exception.json
 function checkSpecialCopyright(
-    sr: Specberus,
+    sr: RuleContext,
     $copyright: Cheerio<Element>,
     specialCopyright: (typeof copyrightExceptions)[number],
     shortname: string | undefined
@@ -102,7 +102,7 @@ function checkSpecialCopyright(
 }
 
 function checkLatestCopyright(
-    sr: Specberus,
+    sr: RuleContext,
     $copyright: Cheerio<Element>,
     licenseTexts: string[]
 ) {

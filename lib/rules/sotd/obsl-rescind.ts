@@ -6,11 +6,11 @@
 // Obsoleting and Rescinding W3C Specifications</a>.</p>
 
 import type { Cheerio } from 'cheerio';
-import type { Specberus } from '../../validator.js';
+import type { RuleContext } from '../../validator.js';
 import type { Element } from 'domhandler';
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-function findRscndRationale($candidates: Cheerio<Element>, sr: Specberus) {
+function findRscndRationale($candidates: Cheerio<Element>, sr: RuleContext) {
     const v = sr.config!.rescinds === true ? 'rescind' : '';
 
     for (const p of $candidates.toArray()) {
