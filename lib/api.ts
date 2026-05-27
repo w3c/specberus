@@ -35,8 +35,8 @@ const sendResult = function (res: Response, result: SpecberusResult) {
  * @param res Express Response
  * @param error An ExceptionsError (yields HTTP 500), or any other error (yields HTTP 400)
  */
-function sendErrors(res: Response, error: Error | ExceptionsError) {
-    res.status(error instanceof ExceptionsError ? 400 : 500).json({
+function sendErrors(res: Response, error: ExceptionsError | Error) {
+    res.status(error instanceof ExceptionsError ? 500 : 400).json({
         errors:
             error instanceof ExceptionsError
                 ? error.exceptions.map(exception => ({ exception }))

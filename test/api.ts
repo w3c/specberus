@@ -49,6 +49,14 @@ function setup() {
 const handleResponse = (response: Response) => response.text || response.body;
 const handleJsonResponse = (response: Response) =>
     JSON.parse(handleResponse(response));
+function assertResponseStatus(response: Response | undefined, status: number) {
+    const actualStatus = response?.status;
+    assert.strictEqual(
+        status,
+        actualStatus,
+        `Expected ${status} response status but received ${actualStatus}`
+    );
+}
 function getErrorResponseText(error: ResponseError) {
     const text = error.response?.text;
     assert(text, 'Response data not available on error');
@@ -112,6 +120,7 @@ describe('API', () => {
                     join(testDocsPath, 'wd-fail-date.html')
                 ),
                 (error: any) => {
+                    assertResponseStatus(error.response, 500);
                     const { errors } = JSON.parse(getErrorResponseText(error));
                     assert.strictEqual(
                         errors.length,
@@ -130,6 +139,7 @@ describe('API', () => {
                     .field('profile', 'REC')
                     .attach('file', join(testDocsPath, 'ttml-imsc1.html')),
                 (error: any) => {
+                    assertResponseStatus(error.response, 400);
                     const { success, errors } = JSON.parse(
                         getErrorResponseText(error)
                     );
@@ -156,6 +166,7 @@ describe('API', () => {
                     join(testDocsPath, 'wd-good.html')
                 ),
                 (error: any) => {
+                    assertResponseStatus(error.response, 400);
                     const { success, errors } = JSON.parse(
                         getErrorResponseText(error)
                     );
@@ -194,6 +205,7 @@ describe('API', () => {
                     .field('profile', 'auto')
                     .attach('file', join(testDocsPath, 'wd-fail-auto.html')),
                 (error: any) => {
+                    assertResponseStatus(error.response, 500);
                     const { errors } = JSON.parse(getErrorResponseText(error));
                     assert.strictEqual(errors.length, 1);
                     assert.match(
@@ -208,6 +220,7 @@ describe('API', () => {
     describe('Parameter restrictions', () => {
         it('Should reject the parameter "document" as unknown', () =>
             assert.rejects(get('metadata?document=foo'), (error: any) => {
+                assertResponseStatus(error.response, 400);
                 const { success, errors } = JSON.parse(
                     getErrorResponseText(error)
                 );
@@ -220,6 +233,7 @@ describe('API', () => {
 
         it('Should reject the parameter "source" as forbidden', () =>
             assert.rejects(get('metadata?source=foo'), (error: any) => {
+                assertResponseStatus(error.response, 400);
                 const { success, errors } = JSON.parse(
                     getErrorResponseText(error)
                 );
