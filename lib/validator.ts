@@ -245,9 +245,10 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
                     if (result)
                         for (const [key, value] of Object.entries(result))
                             metadata[key] = value;
-                    this.emit('done', rule.name);
                 } catch (error) {
                     this.#throw(error.message);
+                } finally {
+                    this.emit('done', rule.name);
                 }
             })
         );
@@ -266,9 +267,10 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
             profile.rules.map(async rule => {
                 try {
                     await rule.check(this);
-                    this.emit('done', rule.name);
                 } catch (error) {
                     this.#throw(error.message);
+                } finally {
+                    this.emit('done', rule.name);
                 }
             })
         );

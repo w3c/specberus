@@ -3,6 +3,7 @@ import { readFile } from 'fs/promises';
 import type { Server } from 'http';
 import { after, afterEach, before, beforeEach, describe, it } from 'node:test';
 
+import { rules as metadataRules } from '../lib/profiles/metadata.js';
 import { removeRules } from '../lib/profiles/profileUtil.js';
 import type { HandlerMessage } from '../lib/types.js';
 import { allProfiles } from '../lib/util.js';
@@ -110,8 +111,12 @@ describe('Basics', () => {
                 await readFile('test/docs/2021-wd.html', 'utf8')
             ).replace(/04 November/, '04 11');
 
+            let observedDone = 0;
             const observedExceptions: string[] = [];
             const sr = new Specberus();
+            sr.on('done', () => {
+                observedDone++;
+            });
             sr.on('exception', ({ message }) => {
                 observedExceptions.push(message);
             });
@@ -132,6 +137,11 @@ describe('Basics', () => {
                         observedExceptions,
                         error.exceptions,
                         'Exceptions in rejection error should match emitted exception events'
+                    );
+                    assert.strictEqual(
+                        observedDone,
+                        metadataRules.length,
+                        'done event should fire for all rules regardless of exceptions'
                     );
                     return true;
                 }
