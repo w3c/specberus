@@ -398,32 +398,46 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
 
 ## 7. Validation events
 
-For a given checking run, the Specberus instance will fire events as
-indicated below. Events are shown as having parameters since those are passed to the event handler.
+When using the JS API, the Specberus instance will fire various events.
+The `Specberus` class extends [`EventEmitter`](https://nodejs.org/dist/latest/docs/api/events.html#class-eventemitter),
+so listeners can be registered using the `on` API.
+
+```js
+const specberus = new Specberus();
+specberus.on('error', (rule, data) => {
+    // ...
+});
+```
+
+Events listed below are expressed with parameters to reflect what is passed to the event handler.
 
 - `done(ruleName)`: Fired when a specific rule has finished processing, including its asynchronous
-  tasks.
-- `err(rule, data)`: Fired when an error is detected. The `data` contains further details,
-  that depend on the error but _should_ feature a `message` field. There can be multiple errors for
-  each rule.
+  tasks. This fires regardless of whether the rule passes, fails, or encounters an unexpected
+  system error (exception).
+- `err(rule, data)`: Fired when an error is detected. There can be multiple errors for each rule.
+    - `rule` contains information on which rule failed validation;
+      always includes a `name` string, and may also include `rule` and `section` strings
+    - `data` contains further details; always includes `key` and `detailMessage` strings,
+      and optionally includes an `extra` object with additional fields that vary by error
 - `warning(rule, data)`: Fired for non-fatal problems with the document that may
   nevertheless require investigation. There can be multiple warnings for each rule.
+  `rule` and `data` follow the same format as for `err` events.
 - `info(rule, data)`: Fired for additional information items detected by the validator.
-- `exception({ message })`: Fired when there is a system error, such as a _File not found_ error. `message`
-  contains details about this error. All exceptions are displayed on the error console in addition to
+  `rule` and `data` follow the same format as for `err` and `warning` events.
+- `exception({ message })`: Fired when there is an unexpected system error, such as a
+  _File not found_ error. The event passes an object with a `message` property containing
+  details about this error. All exceptions are displayed on the error console in addition to
   this event being fired.
-
-The `rule` object passed to `err`, `warning` and `info` events will always contain a `name` string,
-and may also contain `rule` and `section` strings. The `data` object passed to these events will contain
-`key` and `detailMessage` strings, and may also contain an `extra` object with additional fields.
 
 ## 8. Writing rules
 
-Rules are simple modules that just expose a `check(sr, cb)` method. They receive a Specberus object
-and a callback, use the Specberus object to fire validation events and call the callback when
-they're done.
+Rules are simple modules that just expose a `check(sr)` method. They receive a Specberus object,
+which they use to examine the document and fire validation events. They return a promise which
+resolves on completion (regardless of pass or fail) or rejects on unexpected system error
+(exception). Usually, they are written as `async` functions to automatically handle the
+resolve vs. reject distinction.
 
-The Specberus object exposes the following API that's useful for validation:
+The Specberus object exposes the following APIs useful for validation:
 
 - `source`. The HTML source of the document being processed
 - `url`. The URL of the document being processed, only applicable if `options.url` was specified
@@ -433,9 +447,9 @@ The Specberus object exposes the following API that's useful for validation:
     - `key` string: specifies the precise occurrence within the particular `rule`
     - `extra` object (optional): any additional fields to include within the event
 - `version`. The Specberus version.
-- `checkSelector(selector, rule-name, cb)`. Some rules need to do nothing other than to check that a
-  selector returns some content. For this case, the rule can just call this method with the selector
-  and its callback, and Specberus will conveniently take care of all the rest.
+- `checkSelector(selector, ruleName)`. Some rules need to do nothing other than to check that a
+  selector returns some content. This handles checking the selector, reporting an error if it is
+  not found, or throwing an error if the selector is invalid.
 - `norm(text)`. Returns a whitespace-normalized version of the text.
 - `getDocumentDate()`. Returns a Date object that matches the document's date as specified in the
   headers' `stateElement` (id="w3c-state").
