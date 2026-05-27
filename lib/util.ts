@@ -65,12 +65,14 @@ interface ProcessParamsConstraints {
 /**
  * Build an “options” object based on an HTTP query string or a similar object containing options.
  *
- * An example of <code>constraints</code>:
- * <blockquote><pre>{
- *     "required": ["processDocument"],
- *     "forbidden": ["echidnaReady", "bogusParam"],
+ * An example of `constraints`:
+ * ```json
+ * {
+ *     "required": ["profile"],
+ *     "forbidden": ["source", "bogusParam"],
  *     "allowUnknownParams": true
- * }</pre>/blockquote>
+ * }
+ * ```
  *
  * @param params - an HTTP request query, or a similar object.
  * @param base - (<strong>optional</strong>) a template or “base” object to build from.
@@ -112,9 +114,6 @@ export async function processParams(
         } else if (
             p === 'validation' ||
             p === 'htmlValidator' ||
-            p === 'cssValidator' ||
-            p === 'processDocument' ||
-            p === 'events' ||
             p === 'editorial' ||
             p === 'additionalMetadata'
         ) {
