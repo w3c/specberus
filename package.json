@@ -27,7 +27,7 @@
     "puppeteer": "24.40.0",
     "socket.io": "4.8.3",
     "superagent": "10.3.0",
-    "tmp": "0.2.6"
+    "tmp": "0.2.7"
   },
   "devDependencies": {
     "@rvagg/chai-as-promised": "8.0.2",
@@ -47,7 +47,7 @@
     "husky": "9.0.11",
     "lint-staged": "16.4.0",
     "lodash.merge": "^4.6.2",
-    "mocha": "11.7.5",
+    "mocha": "11.7.6",
     "nock": "15.0.0",
     "nodemon": "3.0.3",
     "prettier": "3.8.3",
