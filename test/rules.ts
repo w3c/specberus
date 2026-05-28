@@ -309,12 +309,7 @@ function checkRule(tests: RuleTest[], options: CheckRuleOptions) {
         const url = `${ENDPOINT}/doc-views/${docType}/${suffix}?rule=${rule}&type=${test.data}`;
 
         // If the test is not mentioned in the environment variables, skip it.
-        if (
-            (testRule && rule !== testRule) ||
-            (testType && test.data !== testType) ||
-            (testProfile && profile !== testProfile)
-        )
-            return;
+        if (testType && test.data !== testType) return;
 
         it(`should ${passOrFail} for ${url}`, async () => {
             const { config } = await import(
@@ -384,11 +379,15 @@ function runTestsForProfile({
         Object.entries(rules).forEach(([category, rules]) => {
             Object.entries(rules).forEach(([rule, tests]) => {
                 // Rule: hr/logo ...
+                if (testRule && rule !== testRule) return;
+                if (testType && !tests.some(({ data }) => data === testType))
+                    return;
+
                 describe(`Rule: ${category}.${rule}`, () => {
                     checkRule(tests, {
                         docType,
                         track,
-                        profile: profile.substring(0, profile.lastIndexOf('.')),
+                        profile,
                         category,
                         rule,
                     });
@@ -412,9 +411,10 @@ describe('Making sure Specberus is not broken...', () => {
                 ([trackOrProfile, profilesOrRules]) => {
                     // Profile: SUBM
                     if (trackOrProfile === 'MEM-SUBM.js') {
+                        if (testProfile && testProfile !== 'MEM-SUBM') return;
                         return runTestsForProfile({
                             docType,
-                            profile: trackOrProfile,
+                            profile: 'MEM-SUBM',
                             rules: profilesOrRules as Record<
                                 string,
                                 Record<string, RuleTest[]>
@@ -425,13 +425,21 @@ describe('Making sure Specberus is not broken...', () => {
                     // Track: Note/Recommendation/Registry
                     describe(`Track: ${trackOrProfile}`, () => {
                         Object.entries(profilesOrRules).forEach(
-                            ([profile, rules]) =>
+                            ([filename, rules]) => {
+                                const profile = filename.slice(
+                                    0,
+                                    filename.lastIndexOf('.')
+                                );
+                                if (testProfile && testProfile !== profile)
+                                    return;
+
                                 runTestsForProfile({
                                     docType,
                                     track: trackOrProfile,
                                     profile,
                                     rules,
-                                })
+                                });
+                            }
                         );
                     });
                 }
