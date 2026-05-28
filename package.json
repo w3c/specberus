@@ -27,7 +27,7 @@
     "puppeteer": "24.40.0",
     "socket.io": "4.8.3",
     "superagent": "10.3.0",
-    "tmp": "0.2.5"
+    "tmp": "0.2.6"
   },
   "devDependencies": {
     "@rvagg/chai-as-promised": "8.0.2",
