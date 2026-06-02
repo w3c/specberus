@@ -12,14 +12,14 @@ import http from 'http';
 // @ts-ignore (no typings)
 import insafe from 'insafe';
 import morgan from 'morgan';
-import { Server } from 'socket.io';
+import { Server, type Socket } from 'socket.io';
 import tmp from 'tmp';
 
 import * as api from './lib/api.js';
 import badterms from './lib/badterms.js';
 import * as l10n from './lib/l10n.js';
 import { allProfiles, specberusVersion } from './lib/util.js';
-import { Specberus } from './lib/validator.js';
+import { ExceptionsError, Specberus } from './lib/validator.js';
 import * as views from './lib/views.js';
 import type { ProfileModule } from './lib/types.js';
 
@@ -57,6 +57,18 @@ views.setUp(app);
 l10n.setLanguage('en_GB');
 
 server.listen(process.argv[2] || process.env.PORT || DEFAULT_PORT);
+
+/** Emits misc. errors, for cases where 'exception' handler already emits individual exceptions. */
+function reportNonExceptionsError(
+    socket: Socket,
+    e: any,
+    subject: 'Metadata extraction' | 'Validation'
+) {
+    if (!(e instanceof ExceptionsError))
+        socket.emit('exception', {
+            message: `${subject} encountered an unexpected error: ${e}`,
+        });
+}
 
 io.on('connection', socket => {
     socket.emit('handshake', { version: specberusVersion });
@@ -105,8 +117,8 @@ io.on('connection', socket => {
                 ...metadata,
                 url: data.url,
             });
-        } catch {
-            // exceptions already emitted from event handler
+        } catch (e) {
+            reportNonExceptionsError(socket, e, 'Metadata extraction');
         }
     });
     socket.on('validate', async data => {
@@ -191,9 +203,7 @@ io.on('connection', socket => {
                                 validation: data.validation,
                             });
                         } catch (e) {
-                            socket.emit('exception', {
-                                message: `Validation blew up: ${e}`,
-                            });
+                            reportNonExceptionsError(socket, e, 'Validation');
                         } finally {
                             socket.emit('finished');
                         }
@@ -217,6 +227,8 @@ io.on('connection', socket => {
                     profile,
                     validation: data.validation,
                 });
+            } catch (e) {
+                reportNonExceptionsError(socket, e, 'Validation');
             } finally {
                 // Exceptions already emitted from event handler
                 socket.emit('finished');
