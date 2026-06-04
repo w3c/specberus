@@ -8,7 +8,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     let security = false;
     let privacy = false;
 
@@ -30,6 +30,4 @@ export const check: RuleCheckFunction = (sr, done) => {
 
         if (!privacy) sr.warning(self, 'no-privacy');
     }
-
-    done();
 };

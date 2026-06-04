@@ -49,6 +49,14 @@ function setup() {
 const handleResponse = (response: Response) => response.text || response.body;
 const handleJsonResponse = (response: Response) =>
     JSON.parse(handleResponse(response));
+function assertResponseStatus(response: Response | undefined, status: number) {
+    const actualStatus = response?.status;
+    assert.strictEqual(
+        status,
+        actualStatus,
+        `Expected ${status} response status but received ${actualStatus}`
+    );
+}
 function getErrorResponseText(error: ResponseError) {
     const text = error.response?.text;
     assert(text, 'Response data not available on error');
@@ -104,6 +112,24 @@ describe('API', () => {
                     assert.strictEqual(metadata.profile, 'REC');
                     assert.strictEqual(metadata.docDate, '2016-3-8');
                 }));
+
+        it('Should accept "file" via POST, and report exceptions', () =>
+            assert.rejects(
+                createPostRequest('metadata').attach(
+                    'file',
+                    join(testDocsPath, 'wd-fail-date.html')
+                ),
+                (error: any) => {
+                    assertResponseStatus(error.response, 500);
+                    const { errors } = JSON.parse(getErrorResponseText(error));
+                    assert.strictEqual(
+                        errors.length,
+                        2,
+                        'Expected multiple errors to be reported'
+                    );
+                    return true;
+                }
+            ));
     });
 
     describe('Method “validate”', () => {
@@ -113,6 +139,7 @@ describe('API', () => {
                     .field('profile', 'REC')
                     .attach('file', join(testDocsPath, 'ttml-imsc1.html')),
                 (error: any) => {
+                    assertResponseStatus(error.response, 400);
                     const { success, errors } = JSON.parse(
                         getErrorResponseText(error)
                     );
@@ -128,6 +155,27 @@ describe('API', () => {
                             'Every error should consistently define fields'
                         );
                     }
+                    return true;
+                }
+            ));
+
+        it('Should 400 with error on POST if "file" is provided but "profile" is not', () =>
+            assert.rejects(
+                createPostRequest('validate').attach(
+                    'file',
+                    join(testDocsPath, 'wd-good.html')
+                ),
+                (error: any) => {
+                    assertResponseStatus(error.response, 400);
+                    const { success, errors } = JSON.parse(
+                        getErrorResponseText(error)
+                    );
+                    assert.strictEqual(success, false);
+                    assert.deepStrictEqual(errors, [
+                        {
+                            error: 'Error: Parameter “profile” is required in this context',
+                        },
+                    ]);
                     return true;
                 }
             ));
@@ -150,32 +198,49 @@ describe('API', () => {
                     assert.strictEqual(success, true);
                     assert.strictEqual(metadata.profile, 'WD');
                 }));
+
+        it('Special profile “auto”: should report exception if profile cannot be determined', () =>
+            assert.rejects(
+                createPostRequest('validate')
+                    .field('profile', 'auto')
+                    .attach('file', join(testDocsPath, 'wd-fail-auto.html')),
+                (error: any) => {
+                    assertResponseStatus(error.response, 500);
+                    const { errors } = JSON.parse(getErrorResponseText(error));
+                    assert.strictEqual(errors.length, 1);
+                    assert.match(
+                        errors[0].exception,
+                        /Pubrules is having a hard time identifying the profile of the document/
+                    );
+                    return true;
+                }
+            ));
     });
 
     describe('Parameter restrictions', () => {
         it('Should reject the parameter "document" as unknown', () =>
             assert.rejects(get('metadata?document=foo'), (error: any) => {
+                assertResponseStatus(error.response, 400);
                 const { success, errors } = JSON.parse(
                     getErrorResponseText(error)
                 );
                 assert.strictEqual(success, false);
-                assert.strictEqual(
-                    errors[0],
-                    'Error: Illegal parameter “document”'
-                );
+                assert.deepStrictEqual(errors[0], {
+                    error: 'Error: Illegal parameter “document”',
+                });
                 return true;
             }));
 
         it('Should reject the parameter "source" as forbidden', () =>
             assert.rejects(get('metadata?source=foo'), (error: any) => {
+                assertResponseStatus(error.response, 400);
                 const { success, errors } = JSON.parse(
                     getErrorResponseText(error)
                 );
                 assert.strictEqual(success, false);
-                assert.strictEqual(
-                    errors[0],
-                    'Error: Parameter “source” is not allowed in this context'
-                );
+                assert.deepStrictEqual(errors[0], {
+                    error: 'Error: Parameter “source” is not allowed in this context',
+                });
                 return true;
             }));
     });

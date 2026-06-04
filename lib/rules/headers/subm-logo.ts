@@ -6,7 +6,7 @@ const self = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $logo = sr
         .$("body div.head a[href] > img[src][height='48'][width='211'][alt]")
         .first();
@@ -28,5 +28,4 @@ export const check: RuleCheckFunction = (sr, done) => {
             type: type.charAt(0).toUpperCase() + type.slice(1),
         });
     }
-    done();
 };

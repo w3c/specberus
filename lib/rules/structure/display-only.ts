@@ -2,7 +2,7 @@ import type { RuleCheckFunction } from '../../types.js';
 
 export const name = 'structure.display-only';
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     if (sr.config!.status !== 'DISC')
         sr.info(
             { name, section: 'document-status', rule: 'customParagraph' },
@@ -19,5 +19,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     sr.info({ name }, 'special-box-markup');
     sr.info({ name }, 'index-list-tables');
     sr.info({ name }, 'fit-in-a4');
-    done();
 };

@@ -11,7 +11,7 @@ interface EditorNamesMetadata {
     editorNames: string[];
 }
 
-export const check: RuleCheckFunction<EditorNamesMetadata> = (sr, done) => {
+export const check: RuleCheckFunction<EditorNamesMetadata> = sr => {
     const dts = sr.extractHeaders();
     const editorNames: string[] = [];
     if (dts.Editor) {
@@ -25,5 +25,5 @@ export const check: RuleCheckFunction<EditorNamesMetadata> = (sr, done) => {
             if (editor) editorNames.push(editor);
         });
     }
-    return done({ editorNames });
+    return { editorNames };
 };

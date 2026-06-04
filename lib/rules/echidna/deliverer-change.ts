@@ -31,13 +31,11 @@ async function getPreviousDelivererIDs(
  * @param sr
  * @param done
  */
-export const check: RuleCheckFunction = async (sr, done) => {
+export const check: RuleCheckFunction = async sr => {
     const previousVersion = await sr.getPreviousVersion();
     const shortname = await sr.getShortname();
 
-    if (!previousVersion || !shortname) {
-        return done();
-    }
+    if (!previousVersion || !shortname) return;
 
     const previousDelivererIDs = await getPreviousDelivererIDs(
         shortname,
@@ -55,6 +53,4 @@ export const check: RuleCheckFunction = async (sr, done) => {
             previous: previousDelivererIDs.sort().toString(),
         });
     }
-
-    done();
 };

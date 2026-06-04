@@ -19,17 +19,11 @@ function isRECWithChanges(sr: Specberus) {
     return Object.values(recMeta).length !== 0;
 }
 
-export const check: RuleCheckFunction<void> = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     // for REC with Candidate/Proposed changes, no need to check errata link
-    if (isRECWithChanges(sr)) {
-        return done();
-    }
+    if (isRECWithChanges(sr)) return;
 
     const dts = sr.extractHeaders();
     // Check 'Errata:' exist, don't check any further.
-    if (!dts.Errata) {
-        sr.error(self, 'no-errata');
-        return done();
-    }
-    return done();
+    if (!dts.Errata) sr.error(self, 'no-errata');
 };

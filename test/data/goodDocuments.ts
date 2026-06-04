@@ -16,6 +16,10 @@ export const goodDocuments = {
     STMT: {
         url: 'doc-views/TR/Note/STMT?type=good',
     },
+    'STMT-exception': {
+        profile: 'STMT',
+        url: 'doc-views/TR/Note/STMT?type=goodException',
+    },
 
     // Recommendation track
     CR: {

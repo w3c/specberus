@@ -1,3 +1,4 @@
+import type { ResponseError } from 'superagent';
 import { get } from '../../throttled-ua.js';
 import type { RuleCheckFunction } from '../../types.js';
 
@@ -8,13 +9,13 @@ const TIMEOUT = 10000;
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const { validation } = sr.config!;
     const url = sr.url!;
 
     if (validation !== 'recursive') {
         sr.warning(self, 'skipped');
-        return done();
+        return;
     }
 
     let links: string[] = [];
@@ -29,13 +30,13 @@ export const check: RuleCheckFunction = (sr, done) => {
     // sort and remove duplicates
     links = links.sort().filter((item, pos) => !pos || item !== links[pos - 1]);
 
+    if (!links.length) return;
+
     const markupService = 'https://validator.w3.org/nu/';
-    let count = 0;
-    if (links.length > 0) {
-        links.forEach(l => {
-            if (validation === 'recursive') {
+    if (validation === 'recursive') {
+        return Promise.all(
+            links.map(l => {
                 const ua = `W3C-Pubrules/${sr.version}`;
-                let isMarkupValid = false;
                 const req = get(markupService)
                     .set('User-Agent', ua)
                     .query({ doc: l, out: 'json' })
@@ -45,43 +46,50 @@ export const check: RuleCheckFunction = (sr, done) => {
                             link: l,
                             errMsg: err,
                         });
-                        count += 1;
-                    });
-                req.timeout(TIMEOUT);
-                req.end((err1, res) => {
-                    if (err1 && err1.timeout === TIMEOUT)
-                        sr.warning(self, 'html-timeout');
-                    const json = res ? res.body : null;
-                    if (!json) return sr.throw('No JSON input.');
-                    if (json.messages) {
-                        const errors = json.messages.filter(
-                            (msg: { type: string }) => msg.type === 'error'
-                        );
-                        if (errors.length === 0) isMarkupValid = true;
+                    })
+                    .timeout(TIMEOUT);
+                return req.then(
+                    res => {
+                        const json = res.body;
+                        if (!json)
+                            throw new Error(
+                                'No JSON returned from HTML validator.'
+                            );
+
+                        const errors =
+                            json.messages?.filter(
+                                (msg: { type: string }) => msg.type === 'error'
+                            ) || [];
+                        if (errors.length === 0) {
+                            sr.info(self, 'link', {
+                                file: l.split('/').pop(),
+                                link: l,
+                                markup: '\u2714',
+                            });
+                        } else {
+                            sr.error(self, 'link', {
+                                file: l.split('/').pop(),
+                                link: l,
+                                markup: '\u2718',
+                            });
+                        }
+                    },
+                    (err: ResponseError) => {
+                        if (err.timeout) sr.warning(self, 'html-timeout');
+                        else
+                            throw new Error(
+                                `HTML validator error: ${err.message}`
+                            );
                     }
-                    if (isMarkupValid) {
-                        sr.info(self, 'link', {
-                            file: l.split('/').pop(),
-                            link: l,
-                            markup: '\u2714',
-                        });
-                    } else {
-                        const details = {
-                            file: l.split('/').pop(),
-                            link: l,
-                            markup: isMarkupValid ? '\u2714' : '\u2718',
-                        };
-                        sr.error(self, 'link', details);
-                    }
-                    count += 1;
-                    if (count === links.length) return done();
-                });
-            } else {
-                sr.info(self, 'no-validation', {
-                    file: l.split('/').pop(),
-                    link: l,
-                });
-            }
-        });
-    } else return done();
+                );
+            })
+        ).then(() => {});
+    } else {
+        for (const l of links) {
+            sr.info(self, 'no-validation', {
+                file: l.split('/').pop(),
+                link: l,
+            });
+        }
+    }
 };
