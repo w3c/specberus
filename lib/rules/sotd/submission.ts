@@ -34,7 +34,7 @@ function findSubmText($candidates: Cheerio<Element>, sr: Specberus) {
     return null;
 }
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $sotd = sr.getSotDSection();
     if ($sotd) {
         const $st =
@@ -42,7 +42,7 @@ export const check: RuleCheckFunction = (sr, done) => {
             findSubmText($sotd.find('p'), sr);
         if (!$st) {
             sr.error(self, 'no-submission-text');
-            return done();
+            return;
         }
 
         // check the links
@@ -119,5 +119,4 @@ export const check: RuleCheckFunction = (sr, done) => {
         if (!foundSubmMembers) sr.error(self, 'no-sm-link');
         if (!foundComment) sr.error(self, 'no-tc-link');
     }
-    done();
 };

@@ -17,7 +17,7 @@ for (const item of badterms) {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const blocklistReg = new RegExp(`\\b${blocklist.join('\\b|\\b')}\\b`, 'ig');
     const unneutralList: string[] = [];
     // Use a cloned body instead of the original one, prevent '.remove()' side effects.
@@ -33,17 +33,13 @@ export const check: RuleCheckFunction = (sr, done) => {
         }
     });
 
-    const text = $body.text();
-    const regResult = text.match(blocklistReg);
-    if (regResult) {
+    const regResult = $body.text().match(blocklistReg);
+    if (regResult)
         regResult.forEach(word => {
             if (unneutralList.indexOf(word.toLowerCase()) < 0) {
                 unneutralList.push(word.toLowerCase());
             }
         });
-    }
-    if (unneutralList.length) {
+    if (unneutralList.length)
         sr.warning(self, 'neutral', { words: unneutralList.join('", "') });
-    }
-    done();
 };

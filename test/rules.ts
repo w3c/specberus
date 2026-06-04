@@ -1,11 +1,17 @@
 import assert from 'assert';
-import { EventEmitter } from 'events';
+import { readFile } from 'fs/promises';
 import type { Server } from 'http';
 import { after, afterEach, before, beforeEach, describe, it } from 'node:test';
 
+import { rules as metadataRules } from '../lib/profiles/metadata.js';
 import { removeRules } from '../lib/profiles/profileUtil.js';
-import { allProfiles, buildJSONresult } from '../lib/util.js';
-import { Specberus } from '../lib/validator.js';
+import type { HandlerMessage } from '../lib/types.js';
+import { allProfiles } from '../lib/util.js';
+import {
+    ExceptionsError,
+    Specberus,
+    type SpecberusResult,
+} from '../lib/validator.js';
 // A list of good documents to be tested, using all rules configured in the profiles.
 // Shouldn't cause any error.
 import { goodDocuments } from './data/goodDocuments.js';
@@ -35,22 +41,8 @@ const testType = process.env.TYPE;
 const testProfile = process.env.PROFILE;
 
 interface CompareMetadataObject {
-    errors?: Record<string, any>[];
+    errors?: Partial<HandlerMessage>[];
     [index: string]: any;
-}
-
-/**
- * Returns an EventEmitter and Promise, both reflecting progress/completion of a Specberus call.
- */
-function createSpecberusPromiseHandler() {
-    const handler = new EventEmitter();
-    const promise = new Promise<ReturnType<typeof buildJSONresult>>(
-        (resolve, reject) => {
-            handler.on('end-all', resolve);
-            handler.on('exception', reject);
-        }
-    );
-    return { handler, promise };
 }
 
 /**
@@ -64,9 +56,7 @@ function compareMetadata(file: string, expectedObject: CompareMetadataObject) {
 
     it(`Should detect metadata for ${testFile}`, async () => {
         const specberus = new Specberus();
-        const { handler, promise } = createSpecberusPromiseHandler();
-        specberus.extractMetadata({ events: handler, file: testFile });
-        const result = await promise;
+        const result = await specberus.extractMetadata({ file: testFile });
 
         assert.strictEqual(result.success, !('errors' in expectedObject));
         if ('errors' in expectedObject) {
@@ -77,7 +67,9 @@ function compareMetadata(file: string, expectedObject: CompareMetadataObject) {
             assert(
                 expectedObject.errors.every((expected, i) =>
                     Object.entries(expected).every(
-                        ([key, value]) => result.errors[i][key] === value
+                        ([key, value]) =>
+                            result.errors[i][key as keyof HandlerMessage] ===
+                            value
                     )
                 ),
                 `Errors should contain expected properties:\n${JSON.stringify(
@@ -88,14 +80,13 @@ function compareMetadata(file: string, expectedObject: CompareMetadataObject) {
             );
         }
 
-        assert(specberus.meta, 'Expected specberus.meta to be defined');
         for (const [key, value] of Object.entries(expectedObject)) {
             if (key === 'errors' || key === 'file') continue;
             assert(
-                key in specberus.meta,
-                `Expected specberus.meta.${key} to be defined`
+                key in result.metadata,
+                `Expected ${key} to be defined in metadata`
             );
-            assert.deepStrictEqual(specberus.meta[key], value);
+            assert.deepStrictEqual(result.metadata[key], value);
         }
     });
 }
@@ -113,6 +104,48 @@ describe('Basics', () => {
 
         samples.forEach(sample => {
             compareMetadata(sample.file, sample);
+        });
+
+        it('Should report multiple exceptions when failing to parse date', async () => {
+            const badHtml = (
+                await readFile('test/docs/2021-wd.html', 'utf8')
+            ).replace(/04 November/, '04 11');
+
+            let observedDone = 0;
+            const observedExceptions: string[] = [];
+            const sr = new Specberus();
+            sr.on('done', () => {
+                observedDone++;
+            });
+            sr.on('exception', ({ message }) => {
+                observedExceptions.push(message);
+            });
+
+            return assert.rejects(
+                sr.extractMetadata({ source: badHtml }),
+                (error: ExceptionsError) => {
+                    assert.strictEqual(error.exceptions.length, 2);
+                    assert.match(
+                        error.exceptions[0],
+                        /^Cannot find the .* element for profile and date/
+                    );
+                    assert.strictEqual(
+                        error.exceptions[1],
+                        'The document date could not be parsed.'
+                    );
+                    assert.deepStrictEqual(
+                        observedExceptions,
+                        error.exceptions,
+                        'Exceptions in rejection error should match emitted exception events'
+                    );
+                    assert.strictEqual(
+                        observedDone,
+                        metadataRules.length,
+                        'done event should fire for all rules regardless of exceptions'
+                    );
+                    return true;
+                }
+            );
         });
     });
 
@@ -148,59 +181,58 @@ interface ValidationTestConfig {
     warnings?: any[];
 }
 
-function buildValidationTestHandler(test: ValidationTestConfig) {
-    const { handler, promise } = createSpecberusPromiseHandler();
-
+function addValidationEventListeners(sr: Specberus) {
     if (DEBUG) {
-        handler.on('err', (type, data) => {
+        sr.on('err', (type, data) => {
             console.log('error:\n', type, data);
         });
-        handler.on('warning', (type, data) => {
+        sr.on('warning', (type, data) => {
             console.log('warning:\n', type, data);
         });
-        handler.on('done', name => {
+        sr.on('done', name => {
             console.log(`----> ${name} check done`);
         });
     }
-    handler.on('exception', data => {
+    sr.on('exception', data => {
         console.error(
             `[EXCEPTION] Validator had a massive failure: ${data.message}`
         );
     });
+}
 
-    return {
-        handler,
-        promise: promise.then(({ errors, warnings }) => {
-            if (test.errors) {
-                assert.strictEqual(errors.length, test.errors.length);
-                errors.forEach(({ key, name }, i) => {
-                    assert.strictEqual(`${name}.${key}`, test.errors![i]);
+const verifySpecberusResult = (
+    promise: Promise<SpecberusResult>,
+    test: ValidationTestConfig
+) =>
+    promise.then(result => {
+        const { errors, warnings } = result;
+        if (test.errors) {
+            assert.strictEqual(errors.length, test.errors.length);
+            errors.forEach(({ key, name }, i) => {
+                assert.strictEqual(`${name}.${key}`, test.errors![i]);
+            });
+        } else {
+            assert.strictEqual(errors.length, 0, 'Expected errors to be empty');
+        }
+
+        if (!test.ignoreWarnings) {
+            if (test.warnings) {
+                assert.strictEqual(warnings.length, test.warnings.length);
+                warnings.forEach(({ key, name }, i) => {
+                    assert.strictEqual(`${name}.${key}`, test.warnings![i]);
                 });
             } else {
                 assert.strictEqual(
-                    errors.length,
+                    warnings.length,
                     0,
-                    'Expected errors to be empty'
+                    'Expected warnings to be empty'
                 );
             }
+        }
 
-            if (!test.ignoreWarnings) {
-                if (test.warnings) {
-                    assert.strictEqual(warnings.length, test.warnings.length);
-                    warnings.forEach(({ key, name }, i) => {
-                        assert.strictEqual(`${name}.${key}`, test.warnings![i]);
-                    });
-                } else {
-                    assert.strictEqual(
-                        warnings.length,
-                        0,
-                        'Expected warnings to be empty'
-                    );
-                }
-            }
-        }),
-    };
-}
+        // Pass through result to allow further verifications
+        return result;
+    });
 
 const testsGoodDoc = goodDocuments;
 
@@ -243,20 +275,19 @@ describe('Making sure good documents pass Specberus...', () => {
                 'links.linkchecker', // too slow. will check separately.
             ]);
 
-            const { handler, promise } = buildValidationTestHandler({
-                ignoreWarnings: true,
-            });
+            const sr = new Specberus();
+            addValidationEventListeners(sr);
             const options = {
                 profile: {
                     ...extendedProfile,
                     rules, // do not change profile.rules
                 },
-                events: handler,
                 url,
             };
 
-            new Specberus().validate(options);
-            return promise;
+            await verifySpecberusResult(sr.validate(options), {
+                ignoreWarnings: true,
+            });
         });
     }
 });
@@ -292,8 +323,9 @@ function checkRule(tests: RuleTest[], options: CheckRuleOptions) {
             const ruleModule = await import(
                 `../lib/rules/${category}/${rule}.js`
             );
-            const { handler, promise } = buildValidationTestHandler(test);
 
+            const sr = new Specberus();
+            addValidationEventListeners(sr);
             const options = {
                 url,
                 profile: {
@@ -304,10 +336,32 @@ function checkRule(tests: RuleTest[], options: CheckRuleOptions) {
                         ...test.config,
                     },
                 },
-                events: handler,
             };
-            new Specberus().validate(options);
-            return promise;
+
+            const counts = { errors: 0, info: 0, warnings: 0 };
+            sr.on('err', () => counts.errors++);
+            sr.on('info', () => counts.info++);
+            sr.on('warning', () => counts.warnings++);
+
+            const result = await verifySpecberusResult(
+                sr.validate(options),
+                test
+            );
+            assert.strictEqual(
+                result.errors.length,
+                counts.errors,
+                'Number of err events emitted should match number in resolved promise'
+            );
+            assert.strictEqual(
+                result.info.length,
+                counts.info,
+                'Number of info events emitted should match number in resolved promise'
+            );
+            assert.strictEqual(
+                result.warnings.length,
+                counts.warnings,
+                'Number of warning events emitted should match number in resolved promise'
+            );
         });
     });
 }

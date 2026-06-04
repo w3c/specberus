@@ -11,31 +11,12 @@ import { Octokit } from '@octokit/core';
 // @ts-ignore (no typings)
 import w3cApi from 'node-w3capi';
 
-import type { HandlerMessage, SpecberusConfig } from './types.js';
+import type { SpecberusConfig } from './types.js';
 import type { ValidateOptions } from './validator.js';
 import pkg from '../package.json' with { type: 'json' };
 
 /** Current specberus version recorded in package.json */
 export const specberusVersion = pkg.version;
-
-/**
- * Builds a JSON result (of validation, metadata extraction, etc).
- */
-
-export const buildJSONresult = function (
-    errors: HandlerMessage[],
-    warnings: HandlerMessage[],
-    info: HandlerMessage[],
-    metadata: Record<string, any>
-) {
-    return {
-        success: !errors.length,
-        errors,
-        warnings,
-        info,
-        metadata,
-    };
-};
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -84,12 +65,14 @@ interface ProcessParamsConstraints {
 /**
  * Build an “options” object based on an HTTP query string or a similar object containing options.
  *
- * An example of <code>constraints</code>:
- * <blockquote><pre>{
- *     "required": ["processDocument"],
- *     "forbidden": ["echidnaReady", "bogusParam"],
+ * An example of `constraints`:
+ * ```json
+ * {
+ *     "required": ["profile"],
+ *     "forbidden": ["source", "bogusParam"],
  *     "allowUnknownParams": true
- * }</pre>/blockquote>
+ * }
+ * ```
  *
  * @param params - an HTTP request query, or a similar object.
  * @param base - (<strong>optional</strong>) a template or “base” object to build from.
@@ -131,9 +114,6 @@ export async function processParams(
         } else if (
             p === 'validation' ||
             p === 'htmlValidator' ||
-            p === 'cssValidator' ||
-            p === 'processDocument' ||
-            p === 'events' ||
             p === 'editorial' ||
             p === 'additionalMetadata'
         ) {

@@ -22,7 +22,6 @@
     "cheerio": "^1.1.2",
     "compression": "1.8.1",
     "cors": "2.8.6",
-    "doasync": "2.0.1",
     "express": "5.2.1",
     "express-fileupload": "1.5.2",
     "express-handlebars": "9.0.1",

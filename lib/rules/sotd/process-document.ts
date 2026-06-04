@@ -8,7 +8,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $sotd = sr.getSotDSection();
     const BOILERPLATE_PREFIX = 'This document is governed by the ';
     const BOILERPLATE_SUFFIX = ' W3C Process Document.';
@@ -70,5 +70,4 @@ export const check: RuleCheckFunction = (sr, done) => {
         });
         if (!found) sr.error(self, 'not-found', { process: newProc });
     }
-    done();
 };

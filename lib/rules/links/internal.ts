@@ -8,7 +8,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     sr.$("a[href^='#']").each((_, el) => {
         const id = el.attribs.href.replace('#', '');
         const escId = id.replace(/([.()#:[\]+*])/g, '\\$1');
@@ -17,5 +17,4 @@ export const check: RuleCheckFunction = (sr, done) => {
             sr.error(self, 'anchor', { id });
         }
     });
-    done();
 };

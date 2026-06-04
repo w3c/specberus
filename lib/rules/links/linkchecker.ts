@@ -53,11 +53,11 @@ function includedByReg(url: string, regArray = allowList) {
     );
 }
 
-export const check: RuleCheckFunction = async (sr, done) => {
+export const check: RuleCheckFunction = async sr => {
     // send out warning for /nu W3C link checker.
     sr.warning(self, 'display', { link: sr.url });
 
-    if (!sr.url) return done();
+    if (!sr.url) return;
 
     // sr.url is used as base url. Every other resource should use in same folder as base. e.g.
     // - spec doc: https://www.w3.org/TR/2021/WD-pubrules-20210401/
@@ -113,5 +113,4 @@ export const check: RuleCheckFunction = async (sr, done) => {
     await page.goto(sr.url, { waitUntil: 'load', timeout: 60000 });
 
     await browser.close();
-    done();
 };
