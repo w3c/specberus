@@ -1,3 +1,4 @@
+import type { ResponseError } from 'superagent';
 import { get, post } from '../../throttled-ua.js';
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
@@ -10,16 +11,16 @@ const TIMEOUT = 10000;
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const { htmlValidator, skipValidation } = sr.config!;
     const service = htmlValidator || 'https://validator.w3.org/nu/';
     if (skipValidation) {
         sr.warning(self, 'skipped');
-        return done();
+        return;
     }
     if (!sr.url && !sr.source) {
         sr.warning(self, 'no-source');
-        return done();
+        return;
     }
     let req;
     const ua = `W3C-Pubrules/${sr.version}`;
@@ -34,18 +35,13 @@ export const check: RuleCheckFunction = (sr, done) => {
             .query({ out: 'json' });
     }
     req.timeout(TIMEOUT);
-    req.end((err, res) => {
-        if (err) {
-            if (err.timeout === TIMEOUT) {
-                sr.warning(self, 'timeout');
-            } else {
-                sr.error(self, 'no-response');
-            }
-        } else if (!res.ok) {
-            sr.error(self, 'failure', { status: res.status });
-        } else {
+    return req.then(
+        res => {
+            if (!res.ok)
+                return sr.error(self, 'failure', { status: res.status });
+
             const json = res.body;
-            if (!json) return sr.throw('No JSON input.');
+            if (!json) throw new Error('No JSON returned from HTML validator.');
 
             if (json.messages && json.messages.length) {
                 for (let i = 0, n = json.messages.length; i < n; i += 1) {
@@ -95,7 +91,10 @@ export const check: RuleCheckFunction = (sr, done) => {
                     }
                 }
             }
+        },
+        (err: ResponseError) => {
+            if (err.timeout) sr.warning(self, 'timeout');
+            else sr.error(self, 'no-response');
         }
-        done();
-    });
+    );
 };

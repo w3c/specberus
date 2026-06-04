@@ -8,7 +8,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const translationLink = sr
         .$('body div.head a')
         .toArray()
@@ -18,7 +18,7 @@ export const check: RuleCheckFunction = (sr, done) => {
 
     if (!translationLink) {
         sr.error(self, 'not-found');
-        return done();
+        return;
     }
 
     const href = translationLink.attribs.href;
@@ -31,6 +31,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     ) {
         sr.warning(self, 'not-recommended-link');
     }
-
-    done();
 };

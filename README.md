@@ -159,26 +159,26 @@ const specberus = new Specberus();
 
 ### `validate(options)`
 
-This method takes an object with the following fields:
+This method returns a Promise that resolves with errors, warnings, and informative messages resulting from relevant checks.
 
-- `url`: URL of the content to check. One of `url`, `source`, `file`, or `document` must be
+`options` is an object accepting the following fields:
+
+- `url`: URL of the content to check. One of `url`, `source`, or `file` must be
   specified and if several are they will be used in this order.
 - `source`: A `String` with the content to check.
 - `file`: A file system path to the content to check.
-- `document`: A DOM `Document` object to be checked.
 - `profile`: A profile object which defines the validation. Required. See below.
-- `events`: An event sink which supports the same interface as the Node.js `EventEmitter`. Required. See
-  below for the events that get generated.
 
 ### `extractMetadata(options)`
 
-This method eventually extends `this` with metadata inferred from the document.
-Once the [event `end-all`](#validation-events) is emitted, the metadata should be available in a new property called `meta`.
+This method returns a Promise that resolves with metadata inferred from the document.
 
-The `options` accepted are equal to those in `validate()`, except that a `profile` is not necessary and will be ignored (finding out the profile is one of the
-goals of this method).
+The `options` accepted are equal to those in `validate()`, with the following differences:
 
-`this.meta` will be an `Object` and may include up to 20 properties described below:
+- Optional `additionalMetadata` property, which performs additional checks (e.g. errata URL)
+- No `profile` or `validation` properties (this method can be used to _determine_ profile)
+
+The resolved object's `metadata` property points to an object with up to 20 properties, described below:
 
 - `profile`
 - `title`: The (possible) title of the document
@@ -203,7 +203,7 @@ goals of this method).
 
 If some of these pieces of metadata cannot be deduced, that key will not exist, or its value will not be defined.
 
-This is an example of the value of `Specberus.meta` after the execution of `Specberus.extractMetadata()`:
+The following is an example of the value of the `metadata` object after the execution of `Specberus.extractMetadata()`:
 
 ```json
 {
@@ -225,8 +225,8 @@ This is an example of the value of `Specberus.meta` after the execution of `Spec
 
 Similar to the [JS API](#4-js-api), Specberus exposes a REST API via HTTP too.
 
-The endpoint is `<host>/api/`.
-Use either `url` or `file` to pass along the document (neither `source` nor `document` are allowed).
+The base path is `<host>/api/`.
+Use either `url` or `file` to pass along the document (`source` is not allowed).
 
 Note: If you want to use the public W3C instance of Specberus, you can replace `<host>` with `https://www.w3.org/pubrules`.
 
@@ -398,47 +398,58 @@ Profiles that are identical to its parent profile, ie that do not add any new ru
 
 ## 7. Validation events
 
-For a given checking run, the event sink you specify will be receiving a bunch of events as
-indicated below. Events are shown as having parameters since those are passed to the event handler.
+When using the JS API, the Specberus instance will fire various events.
+The `Specberus` class extends [`EventEmitter`](https://nodejs.org/dist/latest/docs/api/events.html#class-eventemitter),
+so listeners can be registered using the `on` API.
 
-- `start-all(profile-name)`: Fired first to indicate that the profile's checking has started.
-- `end-all(profile-name)`: Fired last to indicate that the profile's checking has completed. When
-  you receive this you are promised that all testing operations, including asynchronous ones, have
-  terminated.
-- `done(rule-name)`: Fired when a specific rule has finished processing, including its asynchronous
-  tasks.
-- `ok(rule-name)`: Fired to indicate that a rule has succeeded. There is only one `ok` per rule.
-  There cannot also be `err` events but there can be `warning` events.
-- `err(error-name, data)`: Fired when an error is detected. The `data` contains further details,
-  that depend on the error but _should_ feature a `message` field. There can be multiple errors for
-  a given rule. There cannot also be `ok` events but there can be `warning`s.
-- `warning(warnings-name, data)`: Fired for non-fatal problems with the document that may
-  nevertheless require investigation. There may be several for a rule.
-- `info(info-name, data)`: Fired for additional information items detected by the validator.
-- `metadata(key, value)`: Fired for every piece of document metadata found by the validator.
-- `exception(message)`: Fired when there is a system error, such as a _File not found_ error. `message`
-  contains details about this error. All exceptions are displayed on the error console in addition to
+```js
+const specberus = new Specberus();
+specberus.on('error', (rule, data) => {
+    // ...
+});
+```
+
+Events listed below are expressed with parameters to reflect what is passed to the event handler.
+
+- `done(ruleName)`: Fired when a specific rule has finished processing, including its asynchronous
+  tasks. This fires regardless of whether the rule passes, fails, or encounters an unexpected
+  system error (exception).
+- `err(rule, data)`: Fired when an error is detected. There can be multiple errors for each rule.
+    - `rule` contains information on which rule failed validation;
+      always includes a `name` string, and may also include `rule` and `section` strings
+    - `data` contains further details; always includes `key` and `detailMessage` strings,
+      and optionally includes an `extra` object with additional fields that vary by error
+- `warning(rule, data)`: Fired for non-fatal problems with the document that may
+  nevertheless require investigation. There can be multiple warnings for each rule.
+  `rule` and `data` follow the same format as for `err` events.
+- `info(rule, data)`: Fired for additional information items detected by the validator.
+  `rule` and `data` follow the same format as for `err` and `warning` events.
+- `exception({ message })`: Fired when there is an unexpected system error, such as a
+  _File not found_ error. The event passes an object with a `message` property containing
+  details about this error. All exceptions are displayed on the error console in addition to
   this event being fired.
 
 ## 8. Writing rules
 
-Rules are simple modules that just expose a `check(sr, cb)` method. They receive a Specberus object
-and a callback, use the Specberus object to fire validation events and call the callback when
-they're done.
+Rules are simple modules that just expose a `check(sr)` method. They receive a Specberus object,
+which they use to examine the document and fire validation events. They return a promise which
+resolves on completion (regardless of pass or fail) or rejects on unexpected system error
+(exception). Usually, they are written as `async` functions to automatically handle the
+resolve vs. reject distinction.
 
-The Specberus object exposes the following API that's useful for validation:
+The Specberus object exposes the following APIs useful for validation:
 
 - `source`. The HTML source of the document being processed
 - `url`. The URL of the document being processed, only applicable if `options.url` was specified
-- `error`, `warn`, `info`. Methods for firing respective levels of events to the instance's sink.
+- `error`, `warn`, `info`. Methods for firing respective levels of events on the instance.
   All three methods accept the same arguments:
     - `rule` object: at minimum, an object with a `name` string. May also contain `rule` and `section` strings.
     - `key` string: specifies the precise occurrence within the particular `rule`
     - `extra` object (optional): any additional fields to include within the event
 - `version`. The Specberus version.
-- `checkSelector(selector, rule-name, cb)`. Some rules need to do nothing other than to check that a
-  selector returns some content. For this case, the rule can just call this method with the selector
-  and its callback, and Specberus will conveniently take care of all the rest.
+- `checkSelector(selector, ruleName)`. Some rules need to do nothing other than to check that a
+  selector returns some content. This handles checking the selector, reporting an error if it is
+  not found, or throwing an error if the selector is invalid.
 - `norm(text)`. Returns a whitespace-normalized version of the text.
 - `getDocumentDate()`. Returns a Date object that matches the document's date as specified in the
   headers' `stateElement` (id="w3c-state").

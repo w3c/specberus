@@ -55,7 +55,7 @@ function checkSection(sr: Specberus, options: CheckSectionOptions) {
         });
 }
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $sotd = sr.getSotDSection();
     if ($sotd) {
         const recType = sr.getRecMetadata();
@@ -100,5 +100,4 @@ export const check: RuleCheckFunction = (sr, done) => {
             sectionClass: 'addition',
         });
     }
-    return done();
 };

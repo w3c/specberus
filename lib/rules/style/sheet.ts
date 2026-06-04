@@ -13,9 +13,9 @@ const notLast = {
     rule: 'lastStylesheet',
 };
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const { styleSheet } = sr.config!;
-    if (!styleSheet) return done();
+    if (!styleSheet) return;
     const url = `https://www.w3.org/StyleSheets/TR/2021/${styleSheet}`;
     const dark = 'https://www.w3.org/StyleSheets/TR/2021/dark';
     const stylesheetLinks = [
@@ -35,5 +35,4 @@ export const check: RuleCheckFunction = (sr, done) => {
             sr.error(notLast, 'last');
         }
     }
-    done();
 };

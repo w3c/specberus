@@ -20,7 +20,7 @@ const unreliableServices = [
     // { domain: 'w3.org', path: /track(er)?\/(actions|issues|resolutions)/}
 ];
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     sr.$('a').each((_, el) => {
         const $el = sr.$(el);
         const href = $el.attr('href');
@@ -54,5 +54,4 @@ export const check: RuleCheckFunction = (sr, done) => {
             return false;
         });
     });
-    done();
 };

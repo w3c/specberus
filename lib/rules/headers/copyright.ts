@@ -148,31 +148,31 @@ function checkLatestCopyright(
     });
 }
 
-export const check: RuleCheckFunction = async (sr, done) => {
+export const check: RuleCheckFunction = async sr => {
     const $copyright = sr.$('body div.head p.copyright').first();
 
     if (!$copyright.length) {
         sr.error(self, 'not-found');
-        return done();
+        return;
     }
     if (await isOnlyPublishedByTagOrAb(sr)) {
-        return done();
+        return;
     }
 
     const chartersData = await sr.getChartersData();
     if (!chartersData || !chartersData.length) {
         sr.error(self, 'no-data-from-API');
-        return done();
+        return;
     }
 
     const allowedLicenses = getCommonLicenseUri(chartersData);
     if (!allowedLicenses.length && chartersData.length > 1) {
         sr.error(self, 'no-license-found-joint');
-        return done();
+        return;
     }
     if (!allowedLicenses.length) {
         sr.error(self, 'no-license-found');
-        return done();
+        return;
     }
 
     // licenseTexts: ['permissive document license'] or ['document use'] or ['document use', 'permissive document license']
@@ -191,6 +191,4 @@ export const check: RuleCheckFunction = async (sr, done) => {
     } else {
         checkLatestCopyright(sr, $copyright, licenseTexts);
     }
-
-    return done();
 };

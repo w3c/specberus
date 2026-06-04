@@ -69,7 +69,7 @@ function checkLink({
     return true;
 }
 
-export const check: RuleCheckFunction = async (sr, done) => {
+export const check: RuleCheckFunction = async sr => {
     const { rescinds, status, submissionType } = sr.config!;
     let topLevel = 'TR';
 
@@ -271,6 +271,4 @@ export const check: RuleCheckFunction = async (sr, done) => {
         // should at least have 1 editor
         sr.error(editorError, 'editor-not-found');
     }
-
-    done();
 };
