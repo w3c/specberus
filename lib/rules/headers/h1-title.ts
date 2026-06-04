@@ -10,7 +10,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $title = sr.$('head > title').first();
     const $h1 = sr.$('body div.head h1').first();
     if (!$title.length || !$h1.length) {
@@ -22,5 +22,4 @@ export const check: RuleCheckFunction = (sr, done) => {
         if (titleText !== h1Text)
             sr.error(self, 'not-match', { titleText, h1Text });
     }
-    done();
 };

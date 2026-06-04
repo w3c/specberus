@@ -76,7 +76,7 @@ function findPP($candidates: Cheerio<Element>, sr: Specberus) {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = async (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $sotd = sr.getSotDSection();
     const track = sr.config!.track;
     const isRecTrack = track === 'Recommendation';
@@ -88,7 +88,7 @@ export const check: RuleCheckFunction = async (sr, done) => {
         );
         if (!$pp) {
             sr.error(self, 'no-pp', { expected });
-            return done();
+            return;
         }
 
         let foundLink = false;
@@ -154,6 +154,5 @@ export const check: RuleCheckFunction = async (sr, done) => {
             sr.error(self, 'no-section6', {
                 link: `${ppLink}#sec-Disclosure`,
             });
-        return done();
     }
 };

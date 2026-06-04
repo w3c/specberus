@@ -10,7 +10,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = async sr => {
     // Pseudo-constants:
     const EXPECTED_NAME = /\/Overview\.html$/;
     const OVERVIEW = 'Overview.html';
@@ -20,7 +20,7 @@ export const check: RuleCheckFunction = (sr, done) => {
     let fileName;
 
     if (!sr || !sr.url || EXPECTED_NAME.test(sr.url)) {
-        return done();
+        return;
     }
 
     if (!ALTERNATIVE_ENDING.test(sr.url)) {
@@ -33,21 +33,15 @@ export const check: RuleCheckFunction = (sr, done) => {
         } else {
             sr.warning(self, 'wrong', { note: '' });
         }
-        return done();
+        return;
     }
 
-    superagent.get(sr.url).end((_, result1) => {
-        superagent.get(sr.url + OVERVIEW).end((_, result2) => {
-            if (
-                !result1 ||
-                !result2 ||
-                !result1.ok ||
-                !result2.ok ||
-                result1.text !== result2.text
-            ) {
-                sr.warning(self, 'wrong', { note: '' });
-            }
-            return done();
-        });
-    });
+    try {
+        const result1 = await superagent.get(sr.url);
+        const result2 = await superagent.get(sr.url + OVERVIEW);
+        if (!result1.ok || !result2.ok || result1.text !== result2.text)
+            sr.warning(self, 'wrong', { note: '' });
+    } catch (error) {
+        sr.warning(self, 'wrong', { note: '' });
+    }
 };

@@ -8,15 +8,12 @@ import type { RuleCheckFunction } from '../../types.js';
 
 export const name = 'metadata.title';
 
-export const check: RuleCheckFunction<{ title: string } | void> = (
-    sr,
-    done
-) => {
+export const check: RuleCheckFunction<{ title: string } | void> = sr => {
     const $title = sr.$('body div.head h1').first();
-    if (!$title.length) return done();
+    if (!$title.length) return;
 
     $title.html($title.html()!.replace(/:<br>/g, ': ').replace(/<br>/g, ' - '));
-    return done({
+    return {
         title: sr.norm($title.text()),
-    });
+    };
 };

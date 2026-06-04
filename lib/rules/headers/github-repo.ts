@@ -12,11 +12,11 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const dts = sr.extractHeaders();
     if (!dts.Feedback) {
         sr.error(self, 'no-feedback');
-        return done();
+        return;
     }
 
     // Check 'github repo' exist in 'Feedback:'
@@ -38,6 +38,4 @@ export const check: RuleCheckFunction = (sr, done) => {
         // );
     });
     if (!foundRepo) sr.error(self, 'no-repo');
-
-    done();
 };

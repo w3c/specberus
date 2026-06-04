@@ -2,10 +2,10 @@
  * @file Main file of the Specberus npm package.
  */
 
-import fs from 'fs';
-import type EventEmitter from 'events';
+import EventEmitter from 'events';
+import { access, constants, readFile } from 'fs/promises';
 
-import { type Cheerio, type CheerioAPI, load } from 'cheerio';
+import { type Cheerio, load } from 'cheerio';
 import type { Element } from 'domhandler';
 // @ts-ignore (no typings)
 import w3cApi from 'node-w3capi';
@@ -15,30 +15,21 @@ import { assembleData, setLanguage } from './l10n.js';
 import * as profileMetadata from './profiles/metadata.js';
 import * as profileAdditionalMetadata from './profiles/additionalMetadata.js';
 import { get } from './throttled-ua.js';
-import {
-    AB,
-    buildJSONresult,
-    processParams,
-    REC_TEXT,
-    specberusVersion,
-    TAG,
-} from './util.js';
+import { AB, processParams, REC_TEXT, specberusVersion, TAG } from './util.js';
 import type {
     ApiCharter,
-    HandlerMessage,
-    RuleModule,
-    RuleBase,
     ApiSpecificationVersion,
+    HandlerMessage,
+    ProfileModule,
     RecMetadata,
+    RuleBase,
     RuleMeta,
     SpecberusConfig,
-    ProfileModule,
 } from './types.js';
 
 setLanguage('en_GB');
 
 interface BaseOptions {
-    events: EventEmitter;
     file?: string;
     source?: string;
     url?: string;
@@ -117,214 +108,186 @@ const abbrMonths = [
 
 export const possibleMonths = [...months, ...abbrMonths].join('|');
 
+// Regular expressions used by getDelivererIDs and getDelivererGroups
+
+const REGEX_DELIVERER_URL =
+    /^https?:\/\/www\.w3\.org\/2004\/01\/pp-impl\/(\d+)\/status(#.*)?$/i;
+const REGEX_DELIVERER_TEXT =
+    /^(charter|public\s+list\s+of\s+any\s+patent\s+disclosures(\s+\(.+\))?)$/i;
+const REGEX_TAG_DISCLOSURE = /https?:\/\/www.w3.org\/2001\/tag\/disclosures/;
+const REGEX_DELIVERER_IPR_URL =
+    /^https:\/\/www\.w3\.org\/groups\/([^/]+)\/([^/]+)\/ipr\/?(#.*)?$/i;
+
 const separator = '[ -]{1}';
 
-export class Specberus {
+interface ExceptionsErrorOptions extends ErrorOptions {
+    exceptions: string[];
+}
+
+export interface SpecberusResult {
+    errors: HandlerMessage[];
+    info: HandlerMessage[];
+    metadata: Record<string, any>;
+    success: boolean;
+    warnings: HandlerMessage[];
+}
+
+/**
+ * Error which includes list of exception messages,
+ * thrown in case of unexpected errors during extractMetadata or validate
+ */
+export class ExceptionsError extends Error {
+    exceptions: string[];
+
+    constructor(message?: string, options?: ExceptionsErrorOptions) {
+        super(message, options);
+        this.exceptions = options?.exceptions || [];
+    }
+}
+
+type SpecberusMessageEventArgs = [
+    RuleMeta | RuleBase,
+    {
+        detailMessage: string;
+        extra?: Record<string, any>;
+        key: string;
+    },
+];
+
+interface SpecberusEvents {
+    done: [string];
+    err: SpecberusMessageEventArgs;
+    exception: [{ message: string }];
+    info: SpecberusMessageEventArgs;
+    warning: SpecberusMessageEventArgs;
+}
+
+export class Specberus extends EventEmitter<SpecberusEvents> {
     $ = load('');
     config: SpecberusConfig | undefined;
-    // TODO(kgf): This is publicly documented, but is unused within the codebase;
-    // it would be better exposed as a Promise return value from extractMetadata
-    meta: Record<string, any> | undefined;
-    source!: any | null;
-    url!: string | null;
+    source: string | undefined;
+    url: string | undefined;
     version = specberusVersion;
-    private $docDateEl: Cheerio<Element> | undefined;
-    private $sotdSection: Cheerio<Element> | null | undefined;
+
+    // Private fields
+
+    #$docDateEl: Cheerio<Element> | undefined;
+    #$sotdSection: Cheerio<Element> | null | undefined;
     /** Group objects returned by W3C API charters endpoint */
-    private chartersData: ApiCharter[] | undefined;
+    #chartersData: [] | Promise<ApiCharter[]> | undefined;
     /** Charter URIs */
-    private charters: string[] | undefined;
-    private delivererIDs: number[] | undefined;
-    private delivererGroups: DelivererGroup[] | undefined;
-    private docDate: Date | null | undefined;
-    private headers: HeaderMap | undefined;
-    private isFirstPublic: any | undefined;
-    private shortname: string | undefined;
-    private sink: EventEmitter | undefined;
+    #charters: string[] | undefined;
+    #delivererIDs: number[] | Promise<number[]> | undefined;
+    #delivererGroups: Promise<DelivererGroup[]> | undefined;
+    #docDate: Date | undefined;
+    /** Stores messages from any unexpected errors encountered during process */
+    #exceptions: string[] = [];
+    #headers: HeaderMap | undefined;
+    #isFirstPublic: boolean | undefined;
+    #previousVersion: Promise<string | null> | undefined;
+    #shortname: string | undefined = undefined;
 
-    constructor() {
-        this.clearCache();
+    /**
+     * Internal function for handling common end-state logic for extractMetadata and validate,
+     * returning results (resolving) or throwing an error if exceptions occurred (rejecting).
+     */
+    #reportResult(result: Omit<SpecberusResult, 'success'>): SpecberusResult {
+        if (this.#exceptions.length) {
+            throw new ExceptionsError(
+                'The following unexpected errors occurred:\n' +
+                    this.#exceptions.join('\n'),
+                { exceptions: this.#exceptions }
+            );
+        }
+        return {
+            ...result,
+            success: !result.errors.length,
+        };
     }
 
-    clearCache() {
-        this.$ = load('');
-        this.config = undefined;
-        this.docDate = null;
-        this.$docDateEl = undefined;
-        this.$sotdSection = undefined;
-        this.url = null;
-        this.source = null;
-        this.shortname = undefined;
-        this.delivererIDs = undefined;
-        this.delivererGroups = undefined;
-        this.chartersData = undefined;
-        this.charters = undefined;
-        this.headers = undefined;
-        this.isFirstPublic = undefined;
-    }
-
-    extractMetadata(options: ExtractMetadataOptions) {
-        this.clearCache();
-
-        if (!options.events)
-            throw new Error(
-                '[EXCEPTION] The events option is required for reporting.'
-            );
-        const sink = (this.sink = options.events);
-        if (!this.sink.listeners('exception').length)
-            throw new Error(
-                '[WARNING] No handler for event `exception` which to report system errors.'
-            );
-
-        const meta: Record<string, any> = (this.meta = {});
+    /** Internal function containing setup logic common to both extractMetadata and validate. */
+    async #prepare(options: ExtractMetadataOptions | ValidateOptions) {
         const errors: HandlerMessage[] = [];
         const warnings: HandlerMessage[] = [];
-        const infos: HandlerMessage[] = [];
-        sink.on('err', data => {
-            errors.push(data);
+        const info: HandlerMessage[] = [];
+
+        this.on('err', (rule, data) => {
+            errors.push({ ...rule, ...data });
         });
-        sink.on('warning', data => {
-            warnings.push(data);
+        this.on('warning', (rule, data) => {
+            warnings.push({ ...rule, ...data });
         });
-        sink.on('info', data => {
-            infos.push(data);
+        this.on('info', (rule, data) => {
+            info.push({ ...rule, ...data });
         });
-        /**
-         * @param err
-         * @param {CheerioAPI} $
-         */
-        const doMetadataExtraction = (err: any, $?: CheerioAPI) => {
-            if (err) return this.throw(err);
-            if ($) this.$ = $;
-            const profile = options.additionalMetadata
-                ? profileAdditionalMetadata
-                : profileMetadata;
-            sink.emit('start-all', profile);
-            const total = (profile.rules || []).length;
-            let done = 0;
-            profile.rules.forEach(rule => {
-                try {
-                    rule.check(this, result => {
-                        if (result) {
-                            for (const i in result) {
-                                meta[i] = result[i];
-                            }
-                        }
-                        done += 1;
-                        sink.emit('done', rule.name);
-                        if (done === total)
-                            sink.emit(
-                                'end-all',
-                                buildJSONresult(errors, warnings, infos, meta)
-                            );
-                    });
-                } catch (e) {
-                    this.throw(e.message);
-                }
-            });
-        };
-        if (options.url) this.loadURL(options.url, doMetadataExtraction);
-        else if (options.source)
-            this.loadSource(options.source, doMetadataExtraction);
-        else if (options.file)
-            this.loadFile(options.file, doMetadataExtraction);
-        else
-            return this.throw(
-                'At least one of url, source, file, or document must be specified.'
-            );
+
+        try {
+            this.$ = await this.#load(options);
+        } catch (error) {
+            this.#throw(error.toString());
+            throw error;
+        }
+
+        return { errors, info, warnings };
     }
 
-    validate(options: ValidateOptions) {
-        this.clearCache();
+    async extractMetadata(options: ExtractMetadataOptions) {
+        const messages = await this.#prepare(options);
+        const metadata: Record<string, any> = {};
+        const profile = options.additionalMetadata
+            ? profileAdditionalMetadata
+            : profileMetadata;
 
-        if (!options.events)
-            throw new Error(
-                '[EXCEPTION] The events option is required for reporting.'
-            );
-        const sink = (this.sink = options.events);
-        if (sink.listeners('exception').length === 0)
-            throw new Error(
-                '[WARNING] No handler for event `exception` which to report system errors.'
-            );
-
-        if (!options.profile)
-            return this.throw('Without a profile there is nothing to check.');
-        const { profile } = options;
-        processParams(options, profile.config)
-            .then(config => {
-                this.config = config;
-                // TODO(kgf): Is this unused? We seem to hard-code it at the top of this file...
-                config.lang = 'en_GB';
-                const errors: HandlerMessage[] = [];
-                const warnings: HandlerMessage[] = [];
-                const infos: HandlerMessage[] = [];
-                sink.on('err', (...data) => {
-                    errors.push(Object.assign({}, ...data));
-                });
-                sink.on('warning', (...data) => {
-                    warnings.push(Object.assign({}, ...data));
-                });
-                sink.on('info', (...data) => {
-                    infos.push(Object.assign({}, ...data));
-                });
-                /**
-                 * @param err
-                 * @param {CheerioAPI} $
-                 */
-                const doValidation = (err: any, $?: CheerioAPI) => {
-                    if (err) return this.throw(err);
-                    if ($) this.$ = $;
-                    sink.emit('start-all', profile.name);
-                    const total = (profile.rules || []).length;
-                    let done = 0;
-                    profile.rules.forEach((rule: RuleModule) => {
-                        // XXX(darobin)
-                        //  I would like to catch all exceptions here, but this derails the testing
-                        //  infrastructure which also uses exceptions that it expects aren't caught
-                        rule.check(
-                            this,
-                            function () {
-                                done += 1;
-                                sink.emit('done', rule.name);
-                                if (done === total)
-                                    sink.emit(
-                                        'end-all',
-                                        buildJSONresult(
-                                            errors,
-                                            warnings,
-                                            infos,
-                                            {}
-                                        )
-                                    );
-                            }.bind(rule)
-                        );
-                    });
-                };
-                if (options.url) this.loadURL(options.url, doValidation);
-                else if (options.source)
-                    this.loadSource(options.source, doValidation);
-                else if (options.file)
-                    this.loadFile(options.file, doValidation);
-                else
-                    return this.throw(
-                        'At least one of url, source, file, or document must be specified.'
-                    );
+        await Promise.all(
+            profile.rules.map(async rule => {
+                try {
+                    const result = await rule.check(this);
+                    if (result)
+                        for (const [key, value] of Object.entries(result))
+                            metadata[key] = value;
+                } catch (error) {
+                    this.#throw(error.message);
+                } finally {
+                    this.emit('done', rule.name);
+                }
             })
-            .catch(err => this.throw(err.toString()));
+        );
+        return this.#reportResult({ ...messages, metadata });
+    }
+
+    async validate(options: ValidateOptions) {
+        if (!options.profile)
+            throw new Error('Without a profile there is nothing to check.');
+
+        const { profile } = options;
+        this.config = await processParams(options, profile.config);
+        const messages = await this.#prepare(options);
+
+        await Promise.all(
+            profile.rules.map(async rule => {
+                try {
+                    await rule.check(this);
+                } catch (error) {
+                    this.#throw(error.message);
+                } finally {
+                    this.emit('done', rule.name);
+                }
+            })
+        );
+        return this.#reportResult({ ...messages, metadata: {} });
     }
 
     error(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
-        const name = typeof rule === 'string' ? rule : rule.name;
         const shortname = this.getShortname();
         if (
             typeof shortname !== 'undefined' &&
-            hasExceptions(shortname, name, extra)
+            hasExceptions(shortname, rule.name, extra)
         )
             this.warning(rule, key, extra);
         else
-            this.sink!.emit('err', rule, {
+            this.emit('err', rule, {
                 key,
-                extra,
+                ...(extra && { extra }),
                 detailMessage: assembleData(null, rule, key, extra).message,
             });
     }
@@ -334,35 +297,50 @@ export class Specberus {
         key: string,
         extra?: Record<string, any>
     ) {
-        this.sink!.emit('warning', rule, {
+        this.emit('warning', rule, {
             key,
-            extra,
+            ...(extra && { extra }),
             detailMessage: assembleData(null, rule, key, extra).message,
         });
     }
 
     info(rule: RuleBase | RuleMeta, key: string, extra?: Record<string, any>) {
-        this.sink!.emit('info', rule, {
+        this.emit('info', rule, {
             key,
-            extra,
+            ...(extra && { extra }),
             detailMessage: assembleData(null, rule, key, extra).message,
         });
     }
 
-    throw(message: string) {
+    /**
+     * Emits an exception event, intended to signify that the process stopped on a critical error.
+     *
+     * NOTE: This should not be called from rules; they should throw an Error,
+     * which will result in extractMetadata or validate invoking this method.
+     */
+    #throw(message: string) {
         console.error(`[EXCEPTION] ${message}`);
-        this.sink!.emit('exception', { message });
+        this.emit('exception', { message });
+        // Track in exceptions array, used to determine whether to resolve or reject process
+        this.#exceptions.push(message);
     }
 
-    checkSelector(sel: string, rule: RuleMeta, done: () => void) {
+    /**
+     * Checks for presence of a selector.
+     * Reports a not-found error for the specified rule if no match is found.
+     */
+    checkSelector(sel: string, rule: RuleMeta) {
         try {
             if (!this.$(sel).length) this.error(rule, 'not-found');
         } catch (e) {
-            this.throw(`Selector '${sel}' caused the validator to blow up.`);
+            throw new Error(`Invalid selector '${sel}': ${e}`);
         }
-        done();
     }
 
+    /**
+     * Normalizes a string by removing leading/trailing whitespace
+     * and condensing multiple consecutive whitespace characters to one.
+     */
     norm(str: string) {
         if (!str) return '';
         return `${str}`
@@ -387,7 +365,7 @@ export class Specberus {
     }
 
     getDocumentDate() {
-        if (this.docDate) return this.docDate;
+        if (this.#docDate) return this.#docDate;
         const rex = new RegExp(
             `${Specberus.dateRegexStrCapturing}(?:, edited in place ${Specberus.dateRegexStrNonCapturing})?$`
         );
@@ -395,22 +373,23 @@ export class Specberus {
 
         const matches = $el.length && this.norm($el.text()).match(rex);
         if (matches) {
-            this.docDate = this.stringToDate(
+            this.#docDate = this.stringToDate(
                 `${matches[1]} ${matches[2]} ${matches[3]}`
             );
-            this.$docDateEl = $el;
+            this.#$docDateEl = $el;
         }
-        return this.docDate;
+        return this.#docDate;
     }
 
     getDocumentStateElement() {
-        if (this.$docDateEl) return this.$docDateEl;
+        if (this.#$docDateEl) return this.#$docDateEl;
         this.getDocumentDate();
-        return this.$docDateEl;
+        return this.#$docDateEl;
     }
 
     getSotDSection() {
-        if (typeof this.$sotdSection !== 'undefined') return this.$sotdSection;
+        if (typeof this.#$sotdSection !== 'undefined')
+            return this.#$sotdSection;
 
         let startH2: Element | undefined;
         let endH2: Element | undefined;
@@ -431,7 +410,7 @@ export class Specberus {
                 startH2 = h2;
             }
         });
-        if (!startH2) this.$sotdSection = null;
+        if (!startH2) this.#$sotdSection = null;
         else {
             let started = false;
             this.$(startH2)
@@ -446,9 +425,9 @@ export class Specberus {
                     if (endH2 === el || $nav[0] === el) return false;
                     $div.append(el.cloneNode(true));
                 });
-            this.$sotdSection = $div.children().length ? $div : null;
+            this.#$sotdSection = $div.children().length ? $div : null;
         }
-        if (!this.$sotdSection)
+        if (!this.#$sotdSection)
             this.error(
                 {
                     name: 'generic.sotd',
@@ -457,22 +436,16 @@ export class Specberus {
                 },
                 'not-found'
             );
-        return this.$sotdSection;
+        return this.#$sotdSection;
     }
 
-    /**
-     * @param $dl Optional Cheerio-wrapped dl element.
-     *   If not set, extractHeaders() uses the current document to extract headers link and cache them for future use.
-     *   If set, assume data is being extracted from another document; the new element will be used and the result will not be cached.
-     */
-    extractHeaders($dl?: Cheerio<Element>) {
+    extractHeaders() {
+        if (this.#headers) return this.#headers;
+
         const dts: HeaderMap = {};
         const EDITORS = /^editor(s)?$/;
         const EDITORS_DRAFT = /^(latest )?editor's draft$/i;
-
-        if (!$dl && typeof this.headers !== 'undefined') return this.headers;
-
-        $dl = $dl || this.$('body div.head dl');
+        const $dl = this.$('body div.head dl');
 
         if ($dl && $dl.length) {
             $dl.find('dt').each((idx, dt) => {
@@ -484,9 +457,7 @@ export class Specberus {
                 let $dd = $dt.next('dd');
                 let key = null;
                 if (!$dd.length)
-                    return this.throw(
-                        `No &lt;dd&gt; element found for ${txt}.`
-                    );
+                    throw new Error(`No &lt;dd&gt; element found for ${txt}.`);
                 if (txt === 'this version') key = 'This';
                 else if (
                     !dts.Latest &&
@@ -512,12 +483,12 @@ export class Specberus {
                 if (key) dts[key] = { pos: idx, $el: $dt, $dd };
             });
         }
-        this.headers = dts;
+        this.#headers = dts;
         return dts;
     }
 
     getShortname() {
-        if (typeof this.shortname !== 'undefined') return this.shortname;
+        if (typeof this.#shortname !== 'undefined') return this.#shortname;
 
         let shortname;
         const dts = this.extractHeaders();
@@ -528,7 +499,7 @@ export class Specberus {
         if (thisVersionMatches && thisVersionMatches.length > 0)
             [, shortname] = thisVersionMatches;
 
-        this.shortname = shortname;
+        this.#shortname = shortname;
         return shortname;
     }
 
@@ -585,32 +556,20 @@ export class Specberus {
      * Retrieves deliverers groupNames and types.
      */
     async getDelivererGroups() {
-        if (typeof this.delivererGroups !== 'undefined')
-            return this.delivererGroups;
-        const REGEX_DELIVERER_URL =
-            /^https?:\/\/www\.w3\.org\/2004\/01\/pp-impl\/(\d+)\/status(#.*)?$/i;
-        const REGEX_DELIVERER_TEXT =
-            /^(charter|public\s+list\s+of\s+any\s+patent\s+disclosures(\s+\(.+\))?)$/i;
-        const REGEX_TAG_DISCLOSURE =
-            /https?:\/\/www.w3.org\/2001\/tag\/disclosures/;
-        const REGEX_DELIVERER_IPR_URL =
-            /^https:\/\/www\.w3\.org\/groups\/([^/]+)\/([^/]+)\/ipr\/?(#.*)?$/i;
+        if (this.#delivererGroups) return this.#delivererGroups;
 
         const $sotd = this.getSotDSection();
         const $sotdLinks = $sotd && $sotd.find('a[href]');
-        const promiseArray: Promise<any>[] = [];
-        let ids = [];
         const delivererGroups: DelivererGroup[] = [];
 
         // getDataDelivererIDs first, apply if document is Note/Registry track.
-        ids = this.getDataDelivererIDs() || [];
+        const ids = this.getDataDelivererIDs();
         // For rec-track
         if (ids.length === 0 && $sotdLinks && $sotdLinks.length > 0) {
             $sotdLinks.each((_, el) => {
                 const $el = this.$(el);
                 const href = $el.attr('href')!;
                 const text = this.norm($el.text());
-                const found: Record<string, boolean> = {};
 
                 if (REGEX_DELIVERER_TEXT.test(text)) {
                     if (REGEX_DELIVERER_IPR_URL.test(href)) {
@@ -627,10 +586,7 @@ export class Specberus {
                             href.match(REGEX_DELIVERER_URL);
                         if (delivererUrlMatch) {
                             const id = delivererUrlMatch[1];
-                            if (id && id.length > 1 && !found[id]) {
-                                found[id] = true;
-                                ids.push(parseInt(id, 10));
-                            }
+                            if (id && id.length > 1) ids.push(parseInt(id, 10));
                         } else if (REGEX_TAG_DISCLOSURE.test(href)) {
                             ids.push(TAG.id);
                         }
@@ -639,109 +595,84 @@ export class Specberus {
             });
         }
 
-        // send request to W3C API if there's id extracted from the doc.
-        for (let i = 0; i < ids.length; i += 1) {
-            const groupApiUrl = `https://api.w3.org/groups/${ids[i]}`;
-            promiseArray.push(
-                new Promise(resolve => {
-                    get(groupApiUrl)
-                        .set('User-Agent', `W3C-Pubrules/${specberusVersion}`)
-                        .end((_, data) => {
-                            resolve(data);
-                        });
-                })
-            );
-        }
+        // Send request to W3C API if there's ids extracted from the doc.
+        // Cache the promise (to avoid duplicate requests)
+        this.#delivererGroups = Promise.all([
+            ...delivererGroups, // Any immediately-resolvable groups from links
+            ...ids.map(id => {
+                const groupApiUrl = `https://api.w3.org/groups/${id}`;
+                return get(groupApiUrl)
+                    .set('User-Agent', `W3C-Pubrules/${specberusVersion}`)
+                    .then(
+                        res => {
+                            if (!res.body) return;
+                            const { shortname, type } = res.body;
+                            let groupType = 'other';
+                            if (type === 'working group') groupType = 'wg';
+                            else if (type === 'interest group')
+                                groupType = 'ig';
 
-        await Promise.all(promiseArray).then(res => {
-            for (let i = 0; i < res.length; i += 1) {
-                const data = res[i];
-                if (data && data.body) {
-                    let { type } = data.body;
-                    switch (type) {
-                        case 'working group':
-                            type = 'wg';
-                            break;
-                        case 'interest group':
-                            type = 'ig';
-                            break;
-                        default:
-                            type = 'other';
-                            break;
-                    }
-
-                    delivererGroups.push({
-                        groupShortname: data.body.shortname,
-                        groupType: type,
-                    });
-                }
-            }
-        });
-        this.delivererGroups = delivererGroups;
-        return delivererGroups;
+                            return {
+                                groupShortname: shortname,
+                                groupType,
+                            };
+                        },
+                        () => {}
+                    );
+            }),
+        ]).then(groups => groups.filter(group => !!group));
+        return this.#delivererGroups;
     }
 
     async getDelivererIDs() {
-        if (undefined !== this.delivererIDs) {
-            return this.delivererIDs;
-        }
-        const REGEX_DELIVERER_URL =
-            /^https?:\/\/www\.w3\.org\/2004\/01\/pp-impl\/(\d+)\/status(#.*)?$/i;
-        const REGEX_DELIVERER_TEXT =
-            /^(charter|public\s+list\s+of\s+any\s+patent\s+disclosures(\s+\(.+\))?)$/i;
-        const REGEX_TAG_DISCLOSURE =
-            /https?:\/\/www.w3.org\/2001\/tag\/disclosures/;
-        const REGEX_DELIVERER_IPR_URL =
-            /^https:\/\/www\.w3\.org\/groups\/([^/]+)\/([^/]+)\/ipr\/?(#.*)?$/i;
+        if (this.#delivererIDs) return this.#delivererIDs;
+
         const ids: number[] = this.getDataDelivererIDs() || [];
         const $sotd = this.getSotDSection();
         const $sotdLinks = $sotd && $sotd.find('a[href]');
-        const promiseArray: Promise<any>[] = [];
 
-        if (ids.length === 0 && $sotdLinks && $sotdLinks.length > 0) {
-            $sotdLinks.each((_, el) => {
-                const $el = this.$(el);
-                const href = $el.attr('href')!;
-                const text = this.norm($el.text());
-                const found: Record<string, boolean> = {};
-                if (REGEX_DELIVERER_TEXT.test(text)) {
-                    const delivererUrlMatch = href.match(REGEX_DELIVERER_URL);
-                    if (delivererUrlMatch) {
-                        const id = delivererUrlMatch[1];
-                        if (id && id.length > 1 && !found[id]) {
-                            found[id] = true;
-                            ids.push(parseInt(id, 10));
-                        }
-                    } else if (REGEX_TAG_DISCLOSURE.test(href)) {
-                        ids.push(TAG.id);
-                    } else if (REGEX_DELIVERER_IPR_URL.test(href)) {
-                        const [, type, shortname] =
-                            REGEX_DELIVERER_IPR_URL.exec(href)!;
-                        const groupApiUrl = `https://api.w3.org/groups/${type}/${shortname}`;
-                        promiseArray.push(
-                            new Promise(resolve => {
-                                get(groupApiUrl)
-                                    .set(
-                                        'User-Agent',
-                                        `W3C-Pubrules/${specberusVersion}`
-                                    )
-                                    .end((_: any, data) => {
-                                        resolve(data);
-                                    });
-                            })
-                        );
-                    }
-                }
-            });
-
-            await Promise.all(promiseArray).then(res => {
-                for (const data of res) {
-                    if (data?.body?.id) ids.push(data.body.id);
-                }
-            });
+        if (ids.length > 0 || !$sotdLinks?.length) {
+            this.#delivererIDs = ids;
+            return ids;
         }
-        this.delivererIDs = ids;
-        return ids;
+
+        const promiseArray: (number | Promise<number>)[] = [];
+        $sotdLinks.each((_, el) => {
+            const $el = this.$(el);
+            const href = $el.attr('href')!;
+            const text = this.norm($el.text());
+            if (REGEX_DELIVERER_TEXT.test(text)) {
+                const delivererUrlMatch = href.match(REGEX_DELIVERER_URL);
+                if (delivererUrlMatch) {
+                    const id = delivererUrlMatch[1];
+                    if (id && id.length > 1)
+                        promiseArray.push(parseInt(id, 10));
+                } else if (REGEX_TAG_DISCLOSURE.test(href)) {
+                    promiseArray.push(TAG.id);
+                } else if (REGEX_DELIVERER_IPR_URL.test(href)) {
+                    const [, type, shortname] =
+                        REGEX_DELIVERER_IPR_URL.exec(href)!;
+                    const groupApiUrl = `https://api.w3.org/groups/${type}/${shortname}`;
+                    promiseArray.push(
+                        get(groupApiUrl)
+                            .set(
+                                'User-Agent',
+                                `W3C-Pubrules/${specberusVersion}`
+                            )
+                            .then(
+                                res => res.body?.id,
+                                () => {}
+                            )
+                    );
+                }
+            }
+        });
+
+        // Cache the promise (to avoid duplicate requests)
+        this.#delivererIDs = Promise.all(promiseArray).then(ids =>
+            ids.filter(id => typeof id !== 'undefined')
+        );
+        return this.#delivererIDs;
     }
 
     getDataDelivererIDs() {
@@ -763,59 +694,52 @@ export class Specberus {
 
     /** Finds the current charter(s) of the document. */
     async getChartersData() {
-        if (undefined !== this.chartersData) return this.chartersData;
+        if (this.#chartersData) return this.#chartersData;
 
         const deliverers = await this.getDelivererIDs();
-        const docDate = this.getDocumentDate()!;
-        const chartersData: ApiCharter[] = [];
-        if (deliverers.length) {
-            const delivererPromises: Promise<ApiCharter[]>[] = [];
-            const AbID = AB.id;
-            // Get charter data from W3C API
-            // deliverers.forEach is for joint publication.
-            deliverers.forEach(deliverer => {
-                // Skip finding charter for the TAG which doesn't have any charter
-                if (deliverer === TAG.id || deliverer === AbID) return;
-
-                delivererPromises.push(
-                    new Promise(resolve => {
-                        w3cApi
-                            .group(deliverer)
-                            .charters()
-                            .fetch(
-                                { embed: true },
-                                (_: any, charters: ApiCharter[]) => {
-                                    resolve(charters);
-                                }
-                            );
-                    })
-                );
-            });
-
-            // groups -> group is for joint publication.
-            for (const groupCharters of await Promise.all(delivererPromises)) {
-                if (groupCharters) {
-                    for (const groupCharter of groupCharters) {
-                        if (
-                            docDate >= new Date(groupCharter.start) &&
-                            docDate <= new Date(groupCharter.end)
-                        ) {
-                            chartersData.push(groupCharter);
-                        }
-                    }
-                }
-            }
+        if (!deliverers.length) {
+            this.#chartersData = [];
+            return this.#chartersData;
         }
 
-        this.chartersData = chartersData;
-        return chartersData;
+        const docDate = this.getDocumentDate()!;
+        const delivererPromises: Promise<ApiCharter[]>[] = [];
+        // Get charter data from W3C API
+        // deliverers.forEach is for joint publication.
+        deliverers.forEach(deliverer => {
+            // Skip finding charter for the TAG which doesn't have any charter
+            if (deliverer === TAG.id || deliverer === AB.id) return;
+
+            delivererPromises.push(
+                w3cApi
+                    .group(deliverer)
+                    .charters()
+                    .fetch({ embed: true })
+                    .then(
+                        (groupCharters: ApiCharter[]) => {
+                            if (!groupCharters) return;
+                            return groupCharters.filter(
+                                groupCharter =>
+                                    docDate >= new Date(groupCharter.start) &&
+                                    docDate <= new Date(groupCharter.end)
+                            );
+                        },
+                        () => {}
+                    )
+            );
+        });
+
+        this.#chartersData = Promise.all(delivererPromises).then(lists =>
+            lists.flat().filter(charter => !!charter)
+        );
+        return this.#chartersData;
     }
 
     async getCharters() {
-        if (typeof this.charters !== 'undefined') return this.charters;
+        if (this.#charters) return this.#charters;
 
-        this.charters = (await this.getChartersData()).map(({ uri }) => uri);
-        return this.charters;
+        this.#charters = (await this.getChartersData()).map(({ uri }) => uri);
+        return this.#charters;
     }
 
     /**
@@ -823,19 +747,21 @@ export class Specberus {
      * For shortname change document, data-previous-shortname attribute is needed.
      */
     async isFP() {
-        if (typeof this.isFirstPublic !== 'undefined')
-            return this.isFirstPublic;
+        if (typeof this.#isFirstPublic !== 'undefined')
+            return this.#isFirstPublic;
 
-        this.isFirstPublic = !(await this.getPreviousVersion());
-        return this.isFirstPublic;
+        this.#isFirstPublic = !(await this.getPreviousVersion());
+        return this.#isFirstPublic;
     }
 
     /**
      * Gets previous version link from API via shortname.
      */
     async getPreviousVersion() {
+        if (this.#previousVersion) return this.#previousVersion;
+
         const dts = this.extractHeaders();
-        const shortname = this.shortname || (await this.getShortname());
+        const shortname = this.#shortname || (await this.getShortname());
 
         if (!shortname) {
             this.error(
@@ -849,89 +775,81 @@ export class Specberus {
             return;
         }
 
-        const shortnameHistory = await new Promise<
-            ApiSpecificationVersion[] | null
-        >(resolve => {
+        const shortnameHistory: Promise<ApiSpecificationVersion[] | undefined> =
             w3cApi
                 .specification(shortname)
                 .versions()
-                .fetch(
-                    { embed: true, items: 1000 },
-                    (err: any, data: ApiSpecificationVersion[]) => {
-                        if (err && err.status === 404) {
-                            // check if it's not a shortname change
-                            const shortnameChange = dts.History
-                                ? dts.History.$dd
-                                      .find('a')
-                                      .attr('data-previous-shortname')
-                                : null;
-                            if (shortnameChange) {
-                                w3cApi
-                                    .specification(shortnameChange)
-                                    .versions()
-                                    .fetch(
-                                        { embed: true, items: 1000 },
-                                        (
-                                            _: any,
-                                            data: ApiSpecificationVersion[]
-                                        ) => {
-                                            resolve(data);
-                                        }
-                                    );
-                            } else {
-                                resolve(null);
-                            }
-                        } else {
-                            resolve(data);
+                .fetch({ embed: true, items: 1000 })
+                .catch((err: any) => {
+                    if (err.status === 404) {
+                        // check if it's not a shortname change
+                        const shortnameChange = dts.History
+                            ? dts.History.$dd
+                                  .find('a')
+                                  .attr('data-previous-shortname')
+                            : null;
+                        if (shortnameChange) {
+                            return w3cApi
+                                .specification(shortnameChange)
+                                .versions()
+                                .fetch({ embed: true, items: 1000 })
+                                .catch(() => {});
                         }
                     }
-                );
-        });
-        const versions = shortnameHistory || [];
-        const linkThis = dts.This ? dts.This.$dd.find('a').attr('href') : '';
+                });
 
-        if (versions.length && linkThis) {
-            const versionUris = versions.map(({ uri }) => uri);
-            const index = versionUris.indexOf(linkThis);
-            return index === -1 ? versionUris[0] : versionUris[index + 1];
-        }
+        // Cache the promise (to avoid duplicate requests)
+        this.#previousVersion = shortnameHistory.then(history => {
+            const versions = history || [];
+            const linkThis = dts.This
+                ? dts.This.$dd.find('a').attr('href')
+                : '';
+
+            if (versions.length && linkThis) {
+                const versionUris = versions.map(({ uri }) => uri);
+                const index = versionUris.indexOf(linkThis);
+                return index === -1 ? versionUris[0] : versionUris[index + 1];
+            }
+            return null;
+        });
+        return this.#previousVersion;
     }
 
-    loadURL(url: string, cb: (err: any, $?: CheerioAPI) => void) {
-        if (!cb) return this.throw('Missing callback to loadURL.');
-        get(url)
+    #load(options: ExtractMetadataOptions | ValidateOptions) {
+        if (options.url) return this.#loadURL(options.url);
+        if (options.source) return this.#loadSource(options.source);
+        if (options.file) return this.#loadFile(options.file);
+        throw new Error('url, source, or file must be specified.');
+    }
+
+    #loadURL(url: string) {
+        return get(url)
             .set('User-Agent', `W3C-Pubrules/${specberusVersion}`)
-            .end((err, res) => {
-                if (err) return this.throw(err.message);
-                if (!res.text) return this.throw(`Body of ${url} is empty.`);
+            .then(res => {
+                if (!res.text) throw new Error(`Body of ${url} is empty.`);
                 this.url = url;
-                this.loadSource(res.text, cb);
+                return this.#loadSource(res.text);
             });
     }
 
-    loadSource(src: string, cb: (err: Error | null, $?: CheerioAPI) => void) {
-        if (!cb) return this.throw('Missing callback to loadSource.');
+    #loadSource(src: string) {
         this.source = src;
-        let $: CheerioAPI;
         try {
-            $ = load(src);
+            return load(src);
         } catch (e) {
-            return this.throw(
+            throw new Error(
                 `Cheerio failed to parse source: ${JSON.stringify(e)}`
             );
         }
-        cb(null, $);
     }
 
-    loadFile(file: string, cb: (err: any, $?: CheerioAPI) => void) {
-        if (!cb) return this.throw('Missing callback to loadFile.');
-        fs.access(file, fs.constants.F_OK, errors => {
-            if (errors) return cb(`File '${file}' not found.`);
-            fs.readFile(file, { encoding: 'utf8' }, (err, src) => {
-                if (err) return cb(err);
-                this.loadSource(src, cb);
-            });
-        });
+    async #loadFile(file: string) {
+        try {
+            await access(file, constants.F_OK);
+        } catch (error) {
+            throw new Error(`File '${file}' not found or inaccessible.`);
+        }
+        return this.#loadSource(await readFile(file, 'utf8'));
     }
 
     transition(options: TransitionOptions) {

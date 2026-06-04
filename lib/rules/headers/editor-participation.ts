@@ -10,7 +10,7 @@ const self: RuleMeta = {
 };
 export const name = self.name;
 
-export const check: RuleCheckFunction = async (sr, done) => {
+export const check: RuleCheckFunction = async sr => {
     const groups = await sr.getDelivererIDs();
     const editors = sr.extractHeaders()?.Editor;
     const editorsToCheck = [];
@@ -52,6 +52,4 @@ export const check: RuleCheckFunction = async (sr, done) => {
             sr.error(self, 'not-participating', { id });
         }
     });
-
-    done();
 };

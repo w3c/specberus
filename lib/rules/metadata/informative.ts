@@ -11,19 +11,16 @@ interface InformativeMetadata {
     informative: boolean;
 }
 
-export const check: RuleCheckFunction<InformativeMetadata | void> = (
-    sr,
-    done
-) => {
+export const check: RuleCheckFunction<InformativeMetadata | void> = sr => {
     const $sotd = sr.getSotDSection();
     const expected = /This\s+document\s+is\s+informative\s+only\./;
-    if (!$sotd) return done();
+    if (!$sotd) return;
 
     const $stateEl = sr.getDocumentStateElement();
     const candidate = $stateEl && sr.norm($stateEl.text()).toLowerCase();
     const isInformative = !!candidate && candidate.indexOf('group note') !== -1;
 
-    return done({
+    return {
         informative: expected.test($sotd && $sotd.text()) || isInformative,
-    });
+    };
 };

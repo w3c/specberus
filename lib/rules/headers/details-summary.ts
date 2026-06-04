@@ -10,11 +10,11 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $details = sr.$('.head details').first();
     if (!$details.length) {
         sr.error(self, 'no-details');
-        return done();
+        return;
     }
 
     if (!$details.attr('open')) {
@@ -23,19 +23,17 @@ export const check: RuleCheckFunction = (sr, done) => {
 
     if (!sr.$('.head details dl').length) {
         sr.error(self, 'no-details-dl');
-        return done();
+        return;
     }
 
     const $summary = sr.$('.head details summary').first();
     if (!$summary.length) {
         sr.error(self, 'no-details-summary');
-        return done();
+        return;
     }
 
     const summaryText = sr.norm($summary.text());
     if (summaryText !== 'More details about this document') {
         sr.error(self, 'wrong-summary-text');
     }
-
-    return done();
 };

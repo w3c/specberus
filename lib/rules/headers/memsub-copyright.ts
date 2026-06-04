@@ -6,7 +6,7 @@ const self = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $copyright = sr.$('body div.head p.copyright').first();
     if ($copyright.length) {
         // ,   "https://www.w3.org/copyright/document-license/":           "document use"
@@ -21,5 +21,4 @@ export const check: RuleCheckFunction = (sr, done) => {
             );
         if (!seen) sr.error(self, 'not-found');
     } else sr.error(self, 'not-found');
-    done();
 };

@@ -9,7 +9,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $sotd = sr.getSotDSection();
     if ($sotd) {
         const recType = sr.getRecMetadata();
@@ -54,5 +54,4 @@ export const check: RuleCheckFunction = (sr, done) => {
             }
         }
     }
-    done();
 };

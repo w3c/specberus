@@ -10,7 +10,7 @@ const self = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const PATTERN_SCRIPT =
         /^(https?:)?\/\/(www\.)?w3\.org\/scripts\/tr\/2021\/fixup\.js$/i;
 
@@ -22,6 +22,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     });
 
     if (found !== 1) sr.error(self, 'not-found');
-
-    done();
 };

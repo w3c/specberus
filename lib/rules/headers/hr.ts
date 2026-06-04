@@ -8,7 +8,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const hasHrLastChild = sr.$('body div.head > hr:last-child').length === 1;
     const hasHrNextSibling = sr.$('body div.head + hr').length === 1;
     if (hasHrLastChild && hasHrNextSibling) {
@@ -16,5 +16,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     } else if (!hasHrLastChild && !hasHrNextSibling) {
         sr.error(self, 'not-found');
     }
-    done();
 };

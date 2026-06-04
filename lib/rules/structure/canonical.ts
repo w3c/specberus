@@ -8,7 +8,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const checkCanonical = function () {
         const $lnk = sr.$('head > link[rel=canonical]').first();
         if (!$lnk.length || !$lnk.attr('href')) sr.error(self, 'not-found');
@@ -21,6 +21,4 @@ export const check: RuleCheckFunction = (sr, done) => {
         doMeanwhile: () => {},
         doAfter: checkCanonical,
     });
-
-    done();
 };

@@ -18,7 +18,7 @@ const toc = {
     rule: 'toc',
 };
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const h2s: string[] = [];
     sr.$('h2').each((_, h2) => {
         const $h2 = sr.$(h2);
@@ -31,5 +31,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     // cspell:disable-next-line
     if (!/^Table [Oo]f [Cc]ontents$/.test(h2s[2]))
         sr.error(toc, 'toc', { was: h2s[2] });
-    done();
 };
