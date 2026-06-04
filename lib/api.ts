@@ -2,35 +2,51 @@
  * @file REST API.
  */
 
-import EventEmitter from 'events';
-
 import { fileTypeFromFile } from 'file-type';
 import type { Express, Request, Response } from 'express';
 
-import { buildJSONresult, processParams, specberusVersion } from './util.js';
-import { Specberus, type ValidateOptions } from './validator.js';
 import type { HandlerMessage } from './types.js';
+import { processParams, specberusVersion } from './util.js';
+import {
+    ExceptionsError,
+    Specberus,
+    type SpecberusResult,
+    type ValidateOptions,
+} from './validator.js';
+
+/** Data types emitted by error events */
+type ErrorHandlerMessage =
+    | { error: string }
+    | { exception: string }
+    | HandlerMessage;
+
+interface ApiResult extends Omit<SpecberusResult, 'errors'> {
+    errors: ErrorHandlerMessage[];
+}
+
+/** Sends the result to the client. */
+const sendResult = function (res: Response, result: SpecberusResult) {
+    delete result.metadata.file;
+    res.status(result.success ? 200 : 400).json(result);
+};
 
 /**
- * Send the JSON result to the client.
- *
- * @param errors - errors
- * @param warnings - warnings
- * @param info - informative messages
- * @param res - Express HTTP response
- * @param metadata - dictionary with some found metadata
+ * Sends a list of validation errors or processing exceptions to the client.
+ * @param res Express Response
+ * @param error An ExceptionsError (yields HTTP 500), or any other error (yields HTTP 400)
  */
-const sendJSONresult = function (
-    res: Response,
-    errors: HandlerMessage[] = [],
-    warnings: HandlerMessage[] = [],
-    info: HandlerMessage[] = [],
-    metadata: Record<string, string> = {}
-) {
-    delete metadata.file;
-    const wrapper = buildJSONresult(errors, warnings, info, metadata);
-    res.status(wrapper.success ? 200 : 400).json(wrapper);
-};
+function sendErrors(res: Response, error: ExceptionsError | Error) {
+    res.status(error instanceof ExceptionsError ? 500 : 400).json({
+        errors:
+            error instanceof ExceptionsError
+                ? error.exceptions.map(exception => ({ exception }))
+                : [{ error: error.toString() }],
+        info: [],
+        metadata: {},
+        success: false,
+        warnings: [],
+    } satisfies ApiResult);
+}
 
 const getFullUrl = (req: Request) =>
     new URL(`${req.protocol}://${req.host}${req.url}`);
@@ -88,21 +104,24 @@ const processPost = () => async (req: Request, res: Response) => {
     }
 };
 
-function createHandler(res: Response, metadataOverride?: Record<string, any>) {
-    const handler = new EventEmitter();
-    handler.on('exception', data => {
-        sendJSONresult(res, [data.message ? data.message : data]);
-    });
-    handler.on('end-all', data => {
-        sendJSONresult(
-            res,
-            data.errors,
-            data.warnings,
-            data.info,
-            metadataOverride || data.metadata
-        );
-    });
-    return handler;
+function handlePromise(
+    promise: Promise<SpecberusResult>,
+    res: Response,
+    metadataOverride?: Record<string, any>
+) {
+    return promise.then(
+        result => {
+            sendResult(
+                res,
+                metadataOverride
+                    ? { ...result, metadata: metadataOverride }
+                    : result
+            );
+        },
+        (error: ExceptionsError) => {
+            sendErrors(res, error);
+        }
+    );
 }
 
 const processRequest = async (
@@ -118,45 +137,42 @@ const processRequest = async (
             required: shouldValidate ? ['profile'] : [],
             forbidden: ['source'],
         });
-    } catch (err) {
-        return sendJSONresult(res, [err.toString()]);
+    } catch (error) {
+        return sendErrors(res, error);
     }
 
     if (shouldValidate && options.profile === 'auto') {
         const sr = new Specberus();
-        const handler = new EventEmitter();
-        handler.on('exception', data => {
-            sendJSONresult(res, [data.message ? data.message : data]);
-        });
-        handler.on('end-all', async data => {
-            if (data.errors.length) sendJSONresult(res, data.errors);
-            else {
-                const meta = data.metadata;
-                if (options.url) meta.url = options.url;
-                else meta.file = options.file;
-                let metaOptions: ValidateOptions;
-                try {
-                    metaOptions = await processParams(meta, undefined, {
-                        allowUnknownParams: true,
-                    });
-                } catch (err) {
-                    return sendJSONresult(res, [err.toString()]);
-                }
-                metaOptions.events = createHandler(res, meta);
+        const result = await sr
+            .extractMetadata(options)
+            .catch((error: ExceptionsError) => {
+                sendErrors(res, error);
+            });
+        if (!result) return;
+        if (result.errors.length) return sendResult(res, result);
 
-                const metaSr = new Specberus();
-                metaSr.validate(metaOptions);
-            }
-        });
-        options.events = handler;
-        sr.extractMetadata(options);
+        const meta = result.metadata;
+        if (options.url) meta.url = options.url;
+        else meta.file = options.file;
+        let metaOptions: ValidateOptions;
+        try {
+            metaOptions = await processParams(meta, undefined, {
+                allowUnknownParams: true,
+            });
+        } catch (error) {
+            return sendErrors(res, error);
+        }
+
+        const metaSr = new Specberus();
+        return handlePromise(metaSr.validate(metaOptions), res, meta);
     } else {
-        options.events = createHandler(res);
         options.additionalMetadata = req.query.additionalMetadata === 'true';
 
         const sr = new Specberus();
-        if (shouldValidate) sr.validate(options);
-        else sr.extractMetadata(options);
+        return handlePromise(
+            shouldValidate ? sr.validate(options) : sr.extractMetadata(options),
+            res
+        );
     }
 };
 

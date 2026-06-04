@@ -13,4 +13,4 @@ export const name = 'metadata.deliverers';
  */
 export const check: RuleCheckFunction<{
     delivererIDs: number[];
-}> = async (sr, done) => done({ delivererIDs: await sr.getDelivererIDs() });
+}> = async sr => ({ delivererIDs: await sr.getDelivererIDs() });

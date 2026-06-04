@@ -10,7 +10,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $sotd = sr.getSotDSection();
     const { crType, cryType } = sr.config!;
     const STABILITY_REX =
@@ -32,12 +32,10 @@ export const check: RuleCheckFunction = (sr, done) => {
                     expected2: STABILITY_2,
                 });
         }
-
         // while other profiles allows only 'STABILITY' sentence
         else if (!txt.match(STABILITY_REX))
             sr.error(self, 'not-found', {
                 expected: STABILITY_REX,
             });
     }
-    done();
 };

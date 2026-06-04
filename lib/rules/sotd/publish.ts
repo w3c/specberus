@@ -8,7 +8,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = async (sr, done) => {
+export const check: RuleCheckFunction = async sr => {
     const $sotd = sr.getSotDSection();
     const { crType, cryType, longStatus, status, track } = sr.config!;
     let docType = longStatus;
@@ -29,7 +29,7 @@ export const check: RuleCheckFunction = async (sr, done) => {
             .find(p => sr.norm(sr.$(p).text()).match(publishReg));
         if (!paragraph) {
             sr.error(self, 'not-found', { publishReg });
-            return done();
+            return;
         }
 
         const $sotdLinks = $sotd.find('a[href]');
@@ -144,5 +144,4 @@ export const check: RuleCheckFunction = async (sr, done) => {
                 });
         }
     }
-    done();
 };

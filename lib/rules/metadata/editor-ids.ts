@@ -18,7 +18,7 @@ interface EditorIDsMetadata {
     editorIDs: number[];
 }
 
-export const check: RuleCheckFunction<EditorIDsMetadata> = async (sr, done) => {
+export const check: RuleCheckFunction<EditorIDsMetadata> = async sr => {
     const dts = sr.extractHeaders();
     const editorIds: number[] = [];
     const unresolvedUsernames = [];
@@ -50,12 +50,12 @@ export const check: RuleCheckFunction<EditorIDsMetadata> = async (sr, done) => {
         }
 
         // remove duplicates
-        done({
+        return {
             editorIDs: editorIds.filter(
                 (item, pos) => editorIds.indexOf(item) === pos
             ),
-        });
+        };
     } else {
-        done({ editorIDs: [] });
+        return { editorIDs: [] };
     }
 };

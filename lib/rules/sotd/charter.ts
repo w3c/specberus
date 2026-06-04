@@ -13,14 +13,14 @@ export const { name } = self;
 const charterText =
     /The disclosure obligations of the Participants of this group are described in the charter\./;
 
-export const check: RuleCheckFunction = async (sr, done) => {
+export const check: RuleCheckFunction = async sr => {
     const $sotd = sr.getSotDSection();
     if ($sotd) {
         const deliverIds = await sr.getDelivererIDs();
 
         if (!deliverIds.length) {
             sr.error(self, 'no-group');
-            return done();
+            return;
         }
 
         // Skip check if the document is only published by TAG and/or AB
@@ -30,12 +30,12 @@ export const check: RuleCheckFunction = async (sr, done) => {
         const groupIds = deliverIds.filter(
             deliverer => !([TagID, AbID] as number[]).includes(deliverer)
         );
-        if (!groupIds.length) return done();
+        if (!groupIds.length) return;
 
         const charters = await sr.getCharters();
         if (!charters.length) {
             sr.error(self, 'no-charter');
-            return done();
+            return;
         }
 
         if (sr.config!.longStatus === 'Interest Group Note') {
@@ -44,7 +44,7 @@ export const check: RuleCheckFunction = async (sr, done) => {
             const txt = sr.norm($sotd && $sotd.text());
             if (!charterText.test(txt)) {
                 sr.error(self, 'text-not-found');
-                return done();
+                return;
             }
 
             // check "charter" link is found and correct
@@ -69,7 +69,5 @@ export const check: RuleCheckFunction = async (sr, done) => {
                 });
             }
         }
-
-        return done();
     }
 };

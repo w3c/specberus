@@ -8,9 +8,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const deliverers = sr.getDataDelivererIDs();
-
     if (deliverers.length === 0) sr.error(self, 'not-found');
-    done();
 };

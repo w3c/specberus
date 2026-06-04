@@ -8,7 +8,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const isEditorial =
         (sr.config!.editorial && /^true$/i.test(sr.config!.editorial)) || false;
     if (isEditorial) {
@@ -33,5 +33,4 @@ export const check: RuleCheckFunction = (sr, done) => {
             }
         }
     }
-    done();
 };

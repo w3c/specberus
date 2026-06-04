@@ -74,7 +74,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = async (sr, done) => {
+export const check: RuleCheckFunction = async sr => {
     const { crType, cryType, status } = sr.config!;
     const $sotd = sr.getSotDSection();
     if ($sotd) {
@@ -124,5 +124,4 @@ export const check: RuleCheckFunction = async (sr, done) => {
                 });
         }
     }
-    return done();
 };
