@@ -163,7 +163,7 @@ This method returns a Promise that resolves with errors, warnings, and informati
 
 `options` is an object accepting the following fields:
 
-- `url`: URL of the content to check. One of `url`, `source`, `file`, or `document` must be
+- `url`: URL of the content to check. One of `url`, `source`, or `file` must be
   specified and if several are they will be used in this order.
 - `source`: A `String` with the content to check.
 - `file`: A file system path to the content to check.
