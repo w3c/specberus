@@ -31,7 +31,7 @@
     "morgan": "1.11.0",
     "node-w3capi": "2.2.2",
     "promise": "8.3.0",
-    "puppeteer": "24.40.0",
+    "puppeteer": "25.1.0",
     "socket.io": "4.8.3",
     "superagent": "10.3.0",
     "tmp": "0.2.7"
@@ -45,16 +45,16 @@
     "@types/superagent": "^8.1.9",
     "@types/tmp": "^0.2.6",
     "c8": "^11.0.0",
-    "cspell": "9.0.2",
+    "cspell": "10.0.1",
     "domhandler": "^6.0.1",
     "expect.js": "0.3",
     "husky": "9.0.11",
-    "lint-staged": "16.4.0",
+    "lint-staged": "17.0.7",
     "lodash.merge": "^4.6.2",
     "nock": "15.0.0",
     "prettier": "3.8.3",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   },
   "scripts": {
     "build": "tsc",
