@@ -17,7 +17,7 @@ export const { name } = self;
 const width = /^device-width$/i;
 const shrinkToFit = /^no$/i;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $meta = sr.$("head > meta[name='viewport'][content]");
     if ($meta.length !== 1) {
         sr.error(self, 'not-found');
@@ -40,5 +40,4 @@ export const check: RuleCheckFunction = (sr, done) => {
             sr.error(self, 'not-found');
         }
     }
-    done();
 };

@@ -15,7 +15,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $sotd = sr.getSotDSection();
     if ($sotd) {
         let $em = $sotd.filter('p').children('em').first();
@@ -43,5 +43,4 @@ export const check: RuleCheckFunction = (sr, done) => {
         const $a = $em.find("a[href='https://www.w3.org/TR/']");
         if (!$a.length) sr.error(self, 'no-sotd-tr');
     }
-    done();
 };

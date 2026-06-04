@@ -8,7 +8,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $logo = sr.$("body div.head a[href] > img[src][alt='W3C']").first();
     if (
         !$logo.length ||
@@ -21,5 +21,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     ) {
         sr.error(self, 'not-found');
     }
-    done();
 };

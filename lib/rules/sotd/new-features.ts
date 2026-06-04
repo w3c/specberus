@@ -8,7 +8,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $sotd = sr.getSotDSection();
     const docType = `${sr.config!.status !== 'REC' ? 'upcoming ' : ''}Recommendation`;
     const warning = new RegExp(
@@ -33,5 +33,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     } else {
         sr.warning(self, 'no-warning');
     }
-    done();
 };

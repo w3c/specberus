@@ -16,11 +16,10 @@ interface ProcessMetadata {
     process: string;
 }
 
-export const check: RuleCheckFunction<ProcessMetadata | void> = (sr, done) => {
+export const check: RuleCheckFunction<ProcessMetadata | void> = sr => {
     const $processDocument = sr.$('a#w3c_process_revision').first();
     const processDocumentHref =
         $processDocument.length && $processDocument.attr('href');
 
-    if (!processDocumentHref) return done();
-    return done({ process: processDocumentHref });
+    if (processDocumentHref) return { process: processDocumentHref };
 };

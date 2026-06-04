@@ -10,7 +10,7 @@ const self = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     // TODO: once supported, use: ":is(h2, h3, h4, h5, h6) :is(bdi.secno,span.secno)"
     const $secnos = sr.$(
         'h1 span.secno, h2 span.secno, h3 span.secno, h4 span.secno, h5 span.secno, h6 span.secno, #toc span.secno,' +
@@ -18,6 +18,4 @@ export const check: RuleCheckFunction = (sr, done) => {
     );
 
     if (!$secnos.length) sr.warning(self, 'not-found');
-
-    done();
 };

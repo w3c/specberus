@@ -10,7 +10,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const $sotd = sr.getSotDSection();
 
     if ($sotd) {
@@ -20,10 +20,6 @@ export const check: RuleCheckFunction = (sr, done) => {
             .find('p')
             .toArray()
             .find(p => sr.norm(sr.$(p).text()) === usageText);
-        if (!paragraph) {
-            sr.error(self, 'not-found');
-            return done();
-        }
+        if (!paragraph) sr.error(self, 'not-found');
     }
-    return done();
 };

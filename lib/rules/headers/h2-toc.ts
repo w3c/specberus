@@ -14,7 +14,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = (sr, done) => {
+export const check: RuleCheckFunction = sr => {
     const EXPECTED_HEADING = /^table\s+of\s+contents$/i;
     const $tocNav = sr.$('nav#toc > h2');
     const $tocDiv = sr.$('div#toc > h2');
@@ -36,6 +36,4 @@ export const check: RuleCheckFunction = (sr, done) => {
         if (matches > 1) sr.error(self, 'too-many');
         else if (matches === 0) sr.error(self, 'not-found');
     }
-
-    done();
 };
