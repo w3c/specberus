@@ -9,6 +9,10 @@ on:
 permissions:
   contents: read
 
+env:
+  PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+  PUPPETEER_SKIP_DOWNLOAD: 1
+
 jobs:
   test:
     runs-on: ubuntu-latest
