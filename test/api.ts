@@ -3,16 +3,19 @@
  */
 
 import assert from 'assert';
+import { readFile } from 'fs/promises';
 import http, { type Server } from 'http';
 import { join } from 'path';
 import { after, before, describe, it } from 'node:test';
 
 import express from 'express';
 import fileUpload from 'express-fileupload';
+import nock from 'nock';
 import superagent, { type Response, type ResponseError } from 'superagent';
 
 import { setUp } from '../lib/api.js';
 import { specberusVersion } from '../lib/util.js';
+import type { SpecberusResult } from '../lib/validator.js';
 import { cleanupMocks, setupMocks } from './lib/utils.js';
 
 // Settings:
@@ -133,11 +136,20 @@ describe('API', () => {
     });
 
     describe('Method “validate”', () => {
+        const imscPath = join(testDocsPath, 'ttml-imsc1.html');
+        before(async () => {
+            // Additional mock for recursive validation test (which requires url)
+            nock('https://www.w3.org')
+                .persist()
+                .get(/^\/TR\/ttml-imsc1.3\/(Overview\.html)?$/)
+                .reply(200, await readFile(imscPath, 'utf8'));
+        });
+
         it('Should 400 and return an array of errors when validation fails', () =>
             assert.rejects(
                 createPostRequest('validate')
                     .field('profile', 'REC')
-                    .attach('file', join(testDocsPath, 'ttml-imsc1.html')),
+                    .attach('file', imscPath),
                 (error: any) => {
                     assertResponseStatus(error.response, 400);
                     const { success, errors } = JSON.parse(
@@ -155,6 +167,38 @@ describe('API', () => {
                             'Every error should consistently define fields'
                         );
                     }
+                    return true;
+                }
+            ));
+
+        it('Should run compound and linkchecker rules when validation=recursive and url are specified', () =>
+            // Note: This uses the same document as the previous test, so it still expects errors
+            assert.rejects(
+                get(
+                    `validate?profile=REC&validation=recursive&url=${encodeURIComponent(
+                        'https://www.w3.org/TR/ttml-imsc1.3/'
+                    )}`
+                ),
+                (error: any) => {
+                    assertResponseStatus(error.response, 400);
+                    const { success, errors, info, warnings } = JSON.parse(
+                        getErrorResponseText(error)
+                    ) as SpecberusResult;
+                    assert.strictEqual(success, false);
+                    assert(errors.length > 0, 'Response should report errors');
+                    assert(
+                        info.some(
+                            ({ name, key }) =>
+                                name === 'links.compound' && key === 'link'
+                        )
+                    );
+                    assert(
+                        warnings.some(
+                            ({ name, key }) =>
+                                name === 'links.linkchecker' &&
+                                key === 'display'
+                        )
+                    );
                     return true;
                 }
             ));
