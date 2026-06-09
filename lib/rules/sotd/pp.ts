@@ -1,7 +1,7 @@
 import type { Cheerio } from 'cheerio';
 import type { Element } from 'domhandler';
 
-import type { Specberus } from '../../validator.js';
+import type { RuleContext } from '../../validator.js';
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
 const self: RuleMeta = {
@@ -14,7 +14,7 @@ const ppLink = 'https://www.w3.org/policies/patent-policy/';
 const ppLink2020 = 'https://www.w3.org/policies/patent-policy/20200915/';
 const ppLink2025 = 'https://www.w3.org/policies/patent-policy/20250515/';
 
-function buildWanted(groups: string[], sr: Specberus) {
+function buildWanted(groups: string[], sr: RuleContext) {
     const config = sr.config!;
     let wanted;
     const isRecTrack = config.track === 'Recommendation';
@@ -60,7 +60,7 @@ function buildWanted(groups: string[], sr: Specberus) {
     };
 }
 
-function findPP($candidates: Cheerio<Element>, sr: Specberus) {
+function findPP($candidates: Cheerio<Element>, sr: RuleContext) {
     const delivererGroups = sr.getDelivererNames();
     if (delivererGroups.length > 1) sr.warning(self, 'joint-publication');
 

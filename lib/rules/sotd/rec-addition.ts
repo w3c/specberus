@@ -1,6 +1,6 @@
 import type { Cheerio } from 'cheerio';
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
-import type { Specberus } from '../../validator.js';
+import type { RuleContext } from '../../validator.js';
 import type { Element } from 'domhandler';
 
 // This rule only apply to REC, check changes with colored background.
@@ -28,7 +28,7 @@ interface CheckSectionOptions {
 /**
  * Check if the recommendation change type mentioned by text is consistent with the html element.
  */
-function checkSection(sr: Specberus, options: CheckSectionOptions) {
+function checkSection(sr: RuleContext, options: CheckSectionOptions) {
     if (options.typeOfRec) {
         if (options.$htmlSection.length) {
             const expectedReg = new RegExp(options.expectedText);

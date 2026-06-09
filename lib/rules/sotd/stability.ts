@@ -5,10 +5,10 @@
 import type { Cheerio } from 'cheerio';
 import type { Element } from 'domhandler';
 
-import type { Specberus } from '../../validator.js';
+import type { RuleContext } from '../../validator.js';
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-async function findSW($candidates: Cheerio<Element>, sr: Specberus) {
+async function findSW($candidates: Cheerio<Element>, sr: RuleContext) {
     let wanted = '';
     let $sw: Cheerio<Element> | undefined;
     const { crType, cryType, longStatus, status } = sr.config!;
