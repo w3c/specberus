@@ -155,8 +155,6 @@ export const messages = {
     // links/compound
     'links.compound.skipped':
         'HTML and CSS validations for compound documents were skipped. ',
-    'links.compound.no-validation':
-        'Validation of <a href="${link}">${file}</a> <a href="https://validator.w3.org/nu/doc=${link}">HTML</a>.',
     'links.compound.link':
         'Validation of <a href="${link}">${file}</a> <a href="https://validator.w3.org/nu/doc=${link}">HTML ${markup}</a>.',
     'links.compound.error':

@@ -33,63 +33,52 @@ export const check: RuleCheckFunction = sr => {
     if (!links.length) return;
 
     const markupService = 'https://validator.w3.org/nu/';
-    if (validation === 'recursive') {
-        return Promise.all(
-            links.map(l => {
-                const ua = `W3C-Pubrules/${sr.version}`;
-                const req = get(markupService)
-                    .set('User-Agent', ua)
-                    .query({ doc: l, out: 'json' })
-                    .on('error', err => {
-                        sr.error(self, 'error', {
+    return Promise.all(
+        links.map(l => {
+            const ua = `W3C-Pubrules/${sr.version}`;
+            const req = get(markupService)
+                .set('User-Agent', ua)
+                .query({ doc: l, out: 'json' })
+                .on('error', err => {
+                    sr.error(self, 'error', {
+                        file: l.split('/').pop(),
+                        link: l,
+                        errMsg: err,
+                    });
+                })
+                .timeout(TIMEOUT);
+            return req.then(
+                res => {
+                    const json = res.body;
+                    if (!json)
+                        throw new Error(
+                            'No JSON returned from HTML validator.'
+                        );
+
+                    const errors =
+                        json.messages?.filter(
+                            (msg: { type: string }) => msg.type === 'error'
+                        ) || [];
+                    if (errors.length === 0) {
+                        sr.info(self, 'link', {
                             file: l.split('/').pop(),
                             link: l,
-                            errMsg: err,
+                            markup: '\u2714',
                         });
-                    })
-                    .timeout(TIMEOUT);
-                return req.then(
-                    res => {
-                        const json = res.body;
-                        if (!json)
-                            throw new Error(
-                                'No JSON returned from HTML validator.'
-                            );
-
-                        const errors =
-                            json.messages?.filter(
-                                (msg: { type: string }) => msg.type === 'error'
-                            ) || [];
-                        if (errors.length === 0) {
-                            sr.info(self, 'link', {
-                                file: l.split('/').pop(),
-                                link: l,
-                                markup: '\u2714',
-                            });
-                        } else {
-                            sr.error(self, 'link', {
-                                file: l.split('/').pop(),
-                                link: l,
-                                markup: '\u2718',
-                            });
-                        }
-                    },
-                    (err: ResponseError) => {
-                        if (err.timeout) sr.warning(self, 'html-timeout');
-                        else
-                            throw new Error(
-                                `HTML validator error: ${err.message}`
-                            );
+                    } else {
+                        sr.error(self, 'link', {
+                            file: l.split('/').pop(),
+                            link: l,
+                            markup: '\u2718',
+                        });
                     }
-                );
-            })
-        ).then(() => {});
-    } else {
-        for (const l of links) {
-            sr.info(self, 'no-validation', {
-                file: l.split('/').pop(),
-                link: l,
-            });
-        }
-    }
+                },
+                (err: ResponseError) => {
+                    if (err.timeout) sr.warning(self, 'html-timeout');
+                    else
+                        throw new Error(`HTML validator error: ${err.message}`);
+                }
+            );
+        })
+    ).then(() => {});
 };
