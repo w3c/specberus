@@ -83,7 +83,7 @@ export const buildBadTestCases = async () => {
  * @param {Request} req
  */
 function warnOnNonLocalRequest(req: Request) {
-    if (!req.url.includes('//localhost')) {
+    if (!/\/\/(localhost|127\.0\.0\.1)/.test(req.url)) {
         console.warn('Unmocked non-local request:', req.url, req.body);
     }
 }
@@ -92,7 +92,9 @@ function warnOnNonLocalRequest(req: Request) {
 export function setupMocks(overrides?: Partial<NockData>) {
     // Report non-local URLs that were not mocked during test runs
     nock.emitter.on('no match', warnOnNonLocalRequest);
-    nock.enableNetConnect('localhost'); // Only allow localhost requests to proceed unmocked
+    // Only allow localhost requests to proceed unmocked
+    // (localhost matches documents; 127.0.0.1 matches puppeteer debug request)
+    nock.enableNetConnect(/localhost|127\.0\.0\.1/);
 
     const mockData: typeof nockData = overrides
         ? merge({}, nockData, overrides)
@@ -215,10 +217,12 @@ export function setupMocks(overrides?: Partial<NockData>) {
 
     // Mock Nu HTML Checker requests to return no messages
     // (without mocks, the validate API tests result in an error from the service anyway)
-    nock('https://validator.w3.org')
-        .persist()
-        .post('/nu/?out=json')
-        .reply(200, { messages: [] });
+    for (const method of ['GET', 'POST']) {
+        nock('https://validator.w3.org')
+            .persist()
+            .intercept(/^\/nu\/.*out=json/, method)
+            .reply(200, { messages: [] });
+    }
 }
 
 /** Cleans up mocks and event handler from setupMocks. */
