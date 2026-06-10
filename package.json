@@ -50,7 +50,7 @@
     "mocha": "11.7.6",
     "nock": "15.0.0",
     "nodemon": "3.0.3",
-    "prettier": "3.8.3",
+    "prettier": "3.8.4",
     "typescript": "^5.9.3"
   },
   "scripts": {
