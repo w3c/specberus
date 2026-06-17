@@ -10,16 +10,16 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $title = sr.$('head > title').first();
-    const $h1 = sr.$('body div.head h1').first();
+export const check: RuleCheckFunction = context => {
+    const $title = context.$('head > title').first();
+    const $h1 = context.$('body div.head h1').first();
     if (!$title.length || !$h1.length) {
-        sr.error(self, 'not-found');
+        context.error(self, 'not-found');
     } else {
-        const titleText = sr.norm($title.text());
+        const titleText = context.norm($title.text());
         $h1.html($h1.html()!.replace(/:<br>/g, ': ').replace(/<br>/g, ' - '));
-        const h1Text = sr.norm($h1.text());
+        const h1Text = context.norm($h1.text());
         if (titleText !== h1Text)
-            sr.error(self, 'not-match', { titleText, h1Text });
+            context.error(self, 'not-match', { titleText, h1Text });
     }
 };

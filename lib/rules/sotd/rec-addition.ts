@@ -28,44 +28,44 @@ interface CheckSectionOptions {
 /**
  * Check if the recommendation change type mentioned by text is consistent with the html element.
  */
-function checkSection(sr: RuleContext, options: CheckSectionOptions) {
+function checkSection(context: RuleContext, options: CheckSectionOptions) {
     if (options.typeOfRec) {
         if (options.$htmlSection.length) {
             const expectedReg = new RegExp(options.expectedText);
-            const text = sr.norm(options.$htmlSection.text());
+            const text = context.norm(options.$htmlSection.text());
             if (!expectedReg.test(text)) {
-                sr.error(self, 'wrong-text', {
+                context.error(self, 'wrong-text', {
                     typeOfChange: options.typeOfChange,
                     sectionClass: options.sectionClass,
                     expectText: options.expectedText,
                 });
             }
         } else {
-            sr.error(self, 'no-section', {
+            context.error(self, 'no-section', {
                 typeOfChange: options.typeOfChange,
                 sectionClass: options.sectionClass,
                 expectText: options.expectedText,
             });
         }
     } else if (options.$htmlSection.length)
-        sr.error(self, 'unnecessary-section', {
+        context.error(self, 'unnecessary-section', {
             typeOfChange: options.typeOfChange,
             sectionClass: options.sectionClass,
             expectText: options.expectedText,
         });
 }
 
-export const check: RuleCheckFunction = sr => {
-    const $sotd = sr.getSotDSection();
+export const check: RuleCheckFunction = context => {
+    const $sotd = context.getSotDSection();
     if ($sotd) {
-        const recType = sr.getRecMetadata();
+        const recType = context.getRecMetadata();
         const $pCorSection = $sotd.find('p.correction.proposed').first();
         const $pAddSection = $sotd.find('p.addition.proposed').first();
         const $cCorSection = $sotd.find('p.correction:not(.proposed)').first();
         const $cAddSection = $sotd.find('p.addition:not(.proposed)').first();
 
         // check for 'proposed corrections'
-        checkSection(sr, {
+        checkSection(context, {
             typeOfRec: recType.pSubChanges,
             $htmlSection: $pCorSection,
             expectedText: P_CORRECTION,
@@ -74,7 +74,7 @@ export const check: RuleCheckFunction = sr => {
         });
 
         // check for 'proposed additions'
-        checkSection(sr, {
+        checkSection(context, {
             typeOfRec: recType.pNewFeatures,
             $htmlSection: $pAddSection,
             expectedText: P_ADDITION,
@@ -83,7 +83,7 @@ export const check: RuleCheckFunction = sr => {
         });
 
         // check for 'candidate corrections'
-        checkSection(sr, {
+        checkSection(context, {
             typeOfRec: recType.cSubChanges,
             $htmlSection: $cCorSection,
             expectedText: C_CORRECTION,
@@ -92,7 +92,7 @@ export const check: RuleCheckFunction = sr => {
         });
 
         // check for 'candidate additions'
-        checkSection(sr, {
+        checkSection(context, {
             typeOfRec: recType.cNewFeatures,
             $htmlSection: $cAddSection,
             expectedText: C_ADDITION,

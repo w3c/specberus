@@ -9,14 +9,14 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $sotd = sr.getSotDSection();
+export const check: RuleCheckFunction = context => {
+    const $sotd = context.getSotDSection();
     if ($sotd) {
-        const recType = sr.getRecMetadata();
+        const recType = context.getRecMetadata();
         if (recType.pSubChanges || recType.pNewFeatures) {
-            const txt = sr.norm($sotd.text());
+            const txt = context.norm($sotd.text());
             const rex = new RegExp(dateRegexStrCapturing, 'g');
-            const docDate = sr.getDocumentDate()!;
+            const docDate = context.getDocumentDate()!;
 
             // 60 days later than docDate;
             const minimumEndDate = new Date(
@@ -29,25 +29,27 @@ export const check: RuleCheckFunction = sr => {
                 .slice(1)
                 .join(' ');
             if (!rex.test(txt))
-                sr.error(self, 'not-found', { minimumEndDate: readableDate });
+                context.error(self, 'not-found', {
+                    minimumEndDate: readableDate,
+                });
             else {
                 const matches = txt.match(rex);
                 const dateFound = [];
                 if (matches) {
                     for (const match of matches) {
-                        const date = sr.stringToDate(match);
+                        const date = context.stringToDate(match);
                         if (date && date > minimumEndDate) {
-                            dateFound.push(sr.stringToDate(match));
+                            dateFound.push(context.stringToDate(match));
                         }
                     }
                 }
                 if (dateFound.length > 1) {
-                    sr.warning(self, 'multi-found', {
+                    context.warning(self, 'multi-found', {
                         date: dateFound.join(', '),
                         minimumEndDate: readableDate,
                     });
                 } else if (!dateFound.length) {
-                    sr.error(self, 'not-found', {
+                    context.error(self, 'not-found', {
                         minimumEndDate: readableDate,
                     });
                 }

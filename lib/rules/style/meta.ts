@@ -17,10 +17,10 @@ export const { name } = self;
 const width = /^device-width$/i;
 const shrinkToFit = /^no$/i;
 
-export const check: RuleCheckFunction = sr => {
-    const $meta = sr.$("head > meta[name='viewport'][content]");
+export const check: RuleCheckFunction = context => {
+    const $meta = context.$("head > meta[name='viewport'][content]");
     if ($meta.length !== 1) {
-        sr.error(self, 'not-found');
+        context.error(self, 'not-found');
     } else {
         const props = mvp.parseMetaViewPortContent(
             $meta.first().attr('content')
@@ -37,7 +37,7 @@ export const check: RuleCheckFunction = sr => {
             !shrinkToFit.test(props.validProperties['shrink-to-fit']) ||
             Object.keys(props.unknownProperties).length !== 0
         ) {
-            sr.error(self, 'not-found');
+            context.error(self, 'not-found');
         }
     }
 };

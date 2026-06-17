@@ -16,8 +16,8 @@ interface ProcessMetadata {
     process: string;
 }
 
-export const check: RuleCheckFunction<ProcessMetadata | void> = sr => {
-    const $processDocument = sr.$('a#w3c_process_revision').first();
+export const check: RuleCheckFunction<ProcessMetadata | void> = context => {
+    const $processDocument = context.$('a#w3c_process_revision').first();
     const processDocumentHref =
         $processDocument.length && $processDocument.attr('href');
 

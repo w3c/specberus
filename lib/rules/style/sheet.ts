@@ -13,8 +13,8 @@ const notLast = {
     rule: 'lastStylesheet',
 };
 
-export const check: RuleCheckFunction = sr => {
-    const { styleSheet } = sr.config!;
+export const check: RuleCheckFunction = context => {
+    const { styleSheet } = context.config!;
     if (!styleSheet) return;
     const url = `https://www.w3.org/StyleSheets/TR/2021/${styleSheet}`;
     const dark = 'https://www.w3.org/StyleSheets/TR/2021/dark';
@@ -22,8 +22,8 @@ export const check: RuleCheckFunction = sr => {
         `head > link[rel=stylesheet][href='${url}']`,
         `head > link[rel=stylesheet][href='${url}.css']`,
     ];
-    const $lnk = sr.$(stylesheetLinks.join(', ')).first();
-    if (!$lnk.length) sr.error(missing, 'not-found', { url });
+    const $lnk = context.$(stylesheetLinks.join(', ')).first();
+    if (!$lnk.length) context.error(missing, 'not-found', { url });
     else {
         const $siblings = $lnk.nextAll('link[rel=stylesheet], style');
         if (
@@ -32,7 +32,7 @@ export const check: RuleCheckFunction = sr => {
                 $siblings.eq(0).attr('href') !== dark &&
                 $siblings.eq(0).attr('href') !== `${dark}.css`)
         ) {
-            sr.error(notLast, 'last');
+            context.error(notLast, 'last');
         }
     }
 };

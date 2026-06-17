@@ -18,17 +18,19 @@ const toc = {
     rule: 'toc',
 };
 
-export const check: RuleCheckFunction = sr => {
+export const check: RuleCheckFunction = context => {
     const h2s: string[] = [];
-    sr.$('h2').each((_, h2) => {
-        const $h2 = sr.$(h2);
-        if ($h2.parents('.head').length === 0) h2s.push(sr.norm($h2.text()));
+    context.$('h2').each((_, h2) => {
+        const $h2 = context.$(h2);
+        if ($h2.parents('.head').length === 0)
+            h2s.push(context.norm($h2.text()));
     });
-    if (h2s[0] !== 'Abstract') sr.error(abstract, 'abstract', { was: h2s[0] });
+    if (h2s[0] !== 'Abstract')
+        context.error(abstract, 'abstract', { was: h2s[0] });
     // cspell:disable-next-line
     if (!/^Status [Oo]f [Tt]his [Dd]ocument$/.test(h2s[1]))
-        sr.error(sotd, 'sotd', { was: h2s[1] });
+        context.error(sotd, 'sotd', { was: h2s[1] });
     // cspell:disable-next-line
     if (!/^Table [Oo]f [Cc]ontents$/.test(h2s[2]))
-        sr.error(toc, 'toc', { was: h2s[2] });
+        context.error(toc, 'toc', { was: h2s[2] });
 };

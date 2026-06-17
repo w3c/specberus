@@ -12,7 +12,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-function findSubmText($candidates: Cheerio<Element>, sr: RuleContext) {
+function findSubmText($candidates: Cheerio<Element>, context: RuleContext) {
     const wanted =
         'By publishing this document, W3C acknowledges that the Submitting Members ' +
         'have made a formal Submission request to W3C for discussion. Publication of ' +
@@ -27,21 +27,21 @@ function findSubmText($candidates: Cheerio<Element>, sr: RuleContext) {
         'complete list of acknowledged W3C Member Submissions.';
 
     for (const p of $candidates.toArray()) {
-        const $p = sr.$(p);
-        const text = sr.norm($p.text());
+        const $p = context.$(p);
+        const text = context.norm($p.text());
         if (text === wanted) return $p;
     }
     return null;
 }
 
-export const check: RuleCheckFunction = sr => {
-    const $sotd = sr.getSotDSection();
+export const check: RuleCheckFunction = context => {
+    const $sotd = context.getSotDSection();
     if ($sotd) {
         const $st =
-            findSubmText($sotd.filter('p'), sr) ||
-            findSubmText($sotd.find('p'), sr);
+            findSubmText($sotd.filter('p'), context) ||
+            findSubmText($sotd.find('p'), context);
         if (!$st) {
-            sr.error(self, 'no-submission-text');
+            context.error(self, 'no-submission-text');
             return;
         }
 
@@ -60,9 +60,9 @@ export const check: RuleCheckFunction = sr => {
         let foundSubmMembers = false;
         let foundComment = false;
         $st.find('a[href]').each((_, a) => {
-            const $a = sr.$(a);
+            const $a = context.$(a);
             const href = $a.attr('href')!;
-            const text = sr.norm($a.text());
+            const text = context.norm($a.text());
             if (
                 [w3cProcessNew, w3cProcessOld].includes(href) &&
                 text === 'W3C Process'
@@ -97,26 +97,26 @@ export const check: RuleCheckFunction = sr => {
             }
         });
         if (!foundW3CProcess)
-            sr.error(self, 'link-text', {
+            context.error(self, 'link-text', {
                 href: w3cProcessNew,
                 text: 'W3C Process',
             });
         if (!foundW3CMembership)
-            sr.error(self, 'link-text', {
+            context.error(self, 'link-text', {
                 href: w3cMembership,
                 text: 'W3C Membership',
             });
         if (!foundPP)
-            sr.error(self, 'link-text', {
+            context.error(self, 'link-text', {
                 href: w3cPP,
                 text: 'section 3.3 of the W3C Patent Policy',
             });
         if (!foundSubm)
-            sr.error(self, 'link-text', {
+            context.error(self, 'link-text', {
                 href: w3cSubm,
                 text: 'list of acknowledged W3C Member Submissions',
             });
-        if (!foundSubmMembers) sr.error(self, 'no-sm-link');
-        if (!foundComment) sr.error(self, 'no-tc-link');
+        if (!foundSubmMembers) context.error(self, 'no-sm-link');
+        if (!foundComment) context.error(self, 'no-tc-link');
     }
 };

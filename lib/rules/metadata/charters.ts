@@ -10,4 +10,4 @@ export const name = 'metadata.charters';
 
 export const check: RuleCheckFunction<{
     charters: string[];
-}> = async sr => ({ charters: await sr.getCharters() });
+}> = async context => ({ charters: await context.getCharters() });

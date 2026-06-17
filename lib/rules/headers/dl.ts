@@ -44,7 +44,7 @@ interface CheckLinkOptions {
     linkName: string;
     mustHave?: boolean;
     rule?: RuleMeta;
-    sr: RuleContext;
+    context: RuleContext;
 }
 
 /**
@@ -52,7 +52,7 @@ interface CheckLinkOptions {
  * @returns boolean whether element exists and can continue
  */
 function checkLink({
-    sr,
+    context,
     rule = self,
     $element,
     linkName,
@@ -60,40 +60,41 @@ function checkLink({
 }: CheckLinkOptions) {
     if (!$element?.length || !$element.attr('href')) {
         if (mustHave)
-            sr.error(rule, 'not-found', { linkName, message: linkName });
+            context.error(rule, 'not-found', { linkName, message: linkName });
         return false;
     }
-    const text = sr.norm($element.text()).trim();
+    const text = context.norm($element.text()).trim();
     const href = ($element.attr('href') || '').trim();
-    if (href !== text) sr.error(rule, 'link-diff', { text, href, linkName });
+    if (href !== text)
+        context.error(rule, 'link-diff', { text, href, linkName });
     return true;
 }
 
-export const check: RuleCheckFunction = async sr => {
-    const { rescinds, status, submissionType } = sr.config!;
+export const check: RuleCheckFunction = async context => {
+    const { rescinds, status, submissionType } = context.config!;
     let topLevel = 'TR';
 
     if (submissionType === 'member') topLevel = 'submissions';
 
-    const dts = sr.extractHeaders();
-    if (!dts.This) sr.error(self, 'this-version');
-    if (!dts.Latest) sr.error(self, 'latest-version');
-    if (!dts.History) sr.error(self, 'no-history');
-    if (rescinds && !dts.Rescinds) sr.error(self, 'rescinds');
-    if (!rescinds && dts.Rescinds) sr.warning(self, 'rescinds-not-needed');
+    const dts = context.extractHeaders();
+    if (!dts.This) context.error(self, 'this-version');
+    if (!dts.Latest) context.error(self, 'latest-version');
+    if (!dts.History) context.error(self, 'no-history');
+    if (rescinds && !dts.Rescinds) context.error(self, 'rescinds');
+    if (!rescinds && dts.Rescinds) context.warning(self, 'rescinds-not-needed');
 
     if (dts.This && dts.Latest && dts.This.pos > dts.Latest.pos)
-        sr.error(self, 'this-latest-order');
+        context.error(self, 'this-latest-order');
     // TODO: What's the order for History?
     if (dts.Latest && dts.Rescinds && dts.Latest.pos > dts.Rescinds.pos)
-        sr.error(self, 'latest-rescinds-order');
+        context.error(self, 'latest-rescinds-order');
 
     let matches;
 
     if (dts.This) {
         const $linkThis = dts.This.$dd.find('a').first();
         const exist = checkLink({
-            sr,
+            context,
             rule: self,
             $element: $linkThis,
             linkName: 'This version',
@@ -106,7 +107,7 @@ export const check: RuleCheckFunction = async sr => {
             matches = ($linkThis.attr('href') || '')
                 .trim()
                 .match(new RegExp(vThisRex));
-            const docDate = sr.getDocumentDate();
+            const docDate = context.getDocumentDate();
             if (matches) {
                 const year = +matches[1];
                 const year2 = +matches[3];
@@ -119,16 +120,16 @@ export const check: RuleCheckFunction = async sr => {
                         month - 1 !== docDate.getMonth() ||
                         day !== docDate.getDate()
                     )
-                        sr.error(self, 'this-date');
-                } else sr.warning(self, 'no-date');
-            } else sr.error(thisError, 'this-syntax');
+                        context.error(self, 'this-date');
+                } else context.warning(self, 'no-date');
+            } else context.error(thisError, 'this-syntax');
         }
     }
 
     if (dts.Latest) {
         const $linkLate = dts.Latest.$dd.find('a').first();
         const exist = checkLink({
-            sr,
+            context,
             rule: self,
             $element: $linkLate,
             linkName: 'Latest published version',
@@ -141,7 +142,7 @@ export const check: RuleCheckFunction = async sr => {
                 .match(new RegExp(lateRex));
 
             if (!matches) {
-                sr.error(latestError, 'latest-syntax');
+                context.error(latestError, 'latest-syntax');
             }
         }
     }
@@ -149,7 +150,7 @@ export const check: RuleCheckFunction = async sr => {
     if (dts.History) {
         const $linkHistory = dts.History.$dd.find('a').first();
         checkLink({
-            sr,
+            context,
             rule: historyError,
             $element: $linkHistory,
             linkName: 'History',
@@ -159,7 +160,7 @@ export const check: RuleCheckFunction = async sr => {
     if (dts.Rescinds) {
         const $linkRescinds = dts.Rescinds.$dd.find('a').first();
         const exist = checkLink({
-            sr,
+            context,
             rule: self,
             $element: $linkRescinds,
             linkName: 'Rescinds this Recommendation',
@@ -173,7 +174,7 @@ export const check: RuleCheckFunction = async sr => {
                 );
 
             if (!matches) {
-                sr.error(self, 'rescinds-syntax');
+                context.error(self, 'rescinds-syntax');
             }
         }
     }
@@ -181,15 +182,15 @@ export const check: RuleCheckFunction = async sr => {
     // check "Implementation report" link. Unless in Sotd saying there's none.
     const needImplementation =
         ['CR', 'CRD', 'PR', 'REC'].indexOf(status) !== -1;
-    const $sotd = sr.getSotDSection();
+    const $sotd = context.getSotDSection();
     const noImplementation =
-        sr
+        context
             .norm(($sotd && $sotd.text()) || '')
             .indexOf('There is no preliminary implementation report.') > -1;
     const $linkImplementation =
         dts.Implementation && dts.Implementation.$dd.find('a').first();
     const implementationExist = checkLink({
-        sr,
+        context,
         rule: self,
         $element: $linkImplementation,
         linkName: 'Implementation report',
@@ -202,19 +203,19 @@ export const check: RuleCheckFunction = async sr => {
             .toLowerCase()
             .startsWith('https://')
     ) {
-        sr.error(self, 'implelink-should-be-https', {
+        context.error(self, 'implelink-should-be-https', {
             link: $linkImplementation.attr('href') || '',
         });
     }
     if (noImplementation && needImplementation) {
-        sr.warning(self, 'implelink-confirm-no');
+        context.warning(self, 'implelink-confirm-no');
     }
 
     // check "Editor's draft" link
     if (dts.EditorDraft) {
         const $editorsDraftElement = dts.EditorDraft.$dd.find('a').first();
         const exist = checkLink({
-            sr,
+            context,
             rule: self,
             $element: $editorsDraftElement,
             linkName: 'Implementation report',
@@ -222,7 +223,7 @@ export const check: RuleCheckFunction = async sr => {
         if (exist) {
             const editorsDraft = $editorsDraftElement.attr('href') || '';
             if (!editorsDraft.trim().toLowerCase().startsWith('https://'))
-                sr.error(self, 'editors-draft-should-be-https', {
+                context.error(self, 'editors-draft-should-be-https', {
                     link: editorsDraft,
                 });
         }
@@ -233,15 +234,15 @@ export const check: RuleCheckFunction = async sr => {
             editor =>
                 !editor.attribs['data-editor-id'] &&
                 !editor.attribs['data-editor-github'] &&
-                !sr
+                !context
                     .$(editor)
                     .text()
                     .match(/(working|interest) group/i)
         );
         if (missingElements.length) {
-            sr.error(editorError, 'editor-missing-id', {
+            context.error(editorError, 'editor-missing-id', {
                 names: missingElements
-                    .map(editor => sr.$(editor).text())
+                    .map(editor => context.$(editor).text())
                     .join(', '),
             });
         }
@@ -257,18 +258,18 @@ export const check: RuleCheckFunction = async sr => {
                 if (!(await resolveGithubUsernameToId(username)))
                     unresolvedUsernames.push(username);
             } catch (error) {
-                sr.error(editorError, 'editor-github-failed', {
+                context.error(editorError, 'editor-github-failed', {
                     name: error.cause,
                 });
             }
         }
         if (unresolvedUsernames.length) {
-            sr.error(editorError, 'editor-github-unresolvable', {
+            context.error(editorError, 'editor-github-unresolvable', {
                 names: unresolvedUsernames.join(', '),
             });
         }
     } else {
         // should at least have 1 editor
-        sr.error(editorError, 'editor-not-found');
+        context.error(editorError, 'editor-not-found');
     }
 };

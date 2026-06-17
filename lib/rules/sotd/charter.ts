@@ -13,13 +13,13 @@ export const { name } = self;
 const charterText =
     /The disclosure obligations of the Participants of this group are described in the charter\./;
 
-export const check: RuleCheckFunction = async sr => {
-    const $sotd = sr.getSotDSection();
+export const check: RuleCheckFunction = async context => {
+    const $sotd = context.getSotDSection();
     if ($sotd) {
-        const deliverIds = await sr.getDelivererIDs();
+        const deliverIds = await context.getDelivererIDs();
 
         if (!deliverIds.length) {
-            sr.error(self, 'no-group');
+            context.error(self, 'no-group');
             return;
         }
 
@@ -32,18 +32,18 @@ export const check: RuleCheckFunction = async sr => {
         );
         if (!groupIds.length) return;
 
-        const charters = await sr.getCharters();
+        const charters = await context.getCharters();
         if (!charters.length) {
-            sr.error(self, 'no-charter');
+            context.error(self, 'no-charter');
             return;
         }
 
-        if (sr.config!.longStatus === 'Interest Group Note') {
+        if (context.config!.longStatus === 'Interest Group Note') {
             const expectedHref = charters && `${charters[0]}#patentpolicy`;
             // check text exists
-            const txt = sr.norm($sotd && $sotd.text());
+            const txt = context.norm($sotd && $sotd.text());
             if (!charterText.test(txt)) {
-                sr.error(self, 'text-not-found');
+                context.error(self, 'text-not-found');
                 return;
             }
 
@@ -51,10 +51,10 @@ export const check: RuleCheckFunction = async sr => {
             let charterLinkFound = false;
             let charterHrefInDocument;
             $sotd.find('a[href]').each((_, a) => {
-                const $a = sr.$(a);
+                const $a = context.$(a);
                 const charterHref = $a.attr('href');
-                const text = sr.norm($a.text());
-                const pText = sr.norm($a.parent().text());
+                const text = context.norm($a.text());
+                const pText = context.norm($a.parent().text());
                 // Find the right paragraph and right link.
                 if (charterText.test(pText) && text === 'charter') {
                     charterLinkFound = true;
@@ -62,9 +62,9 @@ export const check: RuleCheckFunction = async sr => {
                 }
             });
             if (!charterLinkFound) {
-                sr.error(self, 'link-not-found');
+                context.error(self, 'link-not-found');
             } else if (expectedHref !== charterHrefInDocument) {
-                sr.error(self, 'wrong-link', {
+                context.error(self, 'wrong-link', {
                     expectedHref,
                 });
             }

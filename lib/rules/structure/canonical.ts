@@ -8,15 +8,16 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
+export const check: RuleCheckFunction = context => {
     const checkCanonical = function () {
-        const $lnk = sr.$('head > link[rel=canonical]').first();
-        if (!$lnk.length || !$lnk.attr('href')) sr.error(self, 'not-found');
+        const $lnk = context.$('head > link[rel=canonical]').first();
+        if (!$lnk.length || !$lnk.attr('href'))
+            context.error(self, 'not-found');
     };
 
     // That canonical link is mandatory starting from Oct 1, 2017.
     // See https://lists.w3.org/Archives/Public/spec-prod/2017JulSep/0005.html
-    sr.transition({
+    context.transition({
         to: new Date('2017-09-30'),
         doMeanwhile: () => {},
         doAfter: checkCanonical,

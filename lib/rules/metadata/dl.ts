@@ -23,8 +23,8 @@ interface DlMetadata {
     updated?: boolean;
 }
 
-export const check: RuleCheckFunction<DlMetadata> = async sr => {
-    const dts = sr.extractHeaders();
+export const check: RuleCheckFunction<DlMetadata> = async context => {
+    const dts = context.extractHeaders();
     const result: DlMetadata = {};
     let shortname;
     let previousShortname;
@@ -34,7 +34,7 @@ export const check: RuleCheckFunction<DlMetadata> = async sr => {
     const thisHref = $linkThis?.attr('href')?.trim();
     if (thisHref) {
         result.thisVersion = thisHref;
-        shortname = await sr.getShortname();
+        shortname = await context.getShortname();
     }
 
     const $linkLate = dts.Latest ? dts.Latest.$dd.find('a').first() : null;
@@ -48,7 +48,7 @@ export const check: RuleCheckFunction<DlMetadata> = async sr => {
             if (latestShortname !== shortname) {
                 result.latestVersion = `https://www.w3.org/TR/${shortname}/`;
             }
-        } else sr.error(latestRule, 'latest-not-found');
+        } else context.error(latestRule, 'latest-not-found');
     }
 
     const $linkHistory = dts.History ? dts.History.$dd.find('a').first() : null;
@@ -56,7 +56,7 @@ export const check: RuleCheckFunction<DlMetadata> = async sr => {
 
     if ($linkHistory && historyHref) {
         result.history = historyHref;
-        result.previousVersion = await sr.getPreviousVersion();
+        result.previousVersion = await context.getPreviousVersion();
         previousShortname = $linkHistory.attr('data-previous-shortname');
     }
 
@@ -70,8 +70,8 @@ export const check: RuleCheckFunction<DlMetadata> = async sr => {
     }
 
     // check same day publications
-    const ua = `W3C-Pubrules/${sr.version}`;
-    const docDate = sr.getDocumentDate();
+    const ua = `W3C-Pubrules/${context.version}`;
+    const docDate = context.getDocumentDate();
     if (docDate) {
         const year = docDate.getFullYear();
         const month = (docDate.getMonth() + 1).toString();

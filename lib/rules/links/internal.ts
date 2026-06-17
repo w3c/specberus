@@ -8,13 +8,13 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    sr.$("a[href^='#']").each((_, el) => {
+export const check: RuleCheckFunction = context => {
+    context.$("a[href^='#']").each((_, el) => {
         const id = el.attribs.href.replace('#', '');
         const escId = id.replace(/([.()#:[\]+*])/g, '\\$1');
         if (id === '') return;
-        if (!sr.$(`#${escId}, a[name='${id}']`).length) {
-            sr.error(self, 'anchor', { id });
+        if (!context.$(`#${escId}, a[name='${id}']`).length) {
+            context.error(self, 'anchor', { id });
         }
     });
 };

@@ -13,8 +13,8 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $toc = sr.$('nav#toc ol.toc, div#toc ol.toc');
+export const check: RuleCheckFunction = context => {
+    const $toc = context.$('nav#toc ol.toc, div#toc ol.toc');
 
-    if (!$toc.length) sr.warning(self, 'not-found');
+    if (!$toc.length) context.warning(self, 'not-found');
 };
