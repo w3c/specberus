@@ -1,4 +1,5 @@
-import type { RuleContext, ValidateOptions } from './validator.js';
+import type { ValidateOptions } from './specberus.js';
+import type { RuleContext } from './rule-context.js';
 
 type Status =
     | 'FPWD'

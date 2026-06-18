@@ -1,6 +1,6 @@
 import type { Cheerio } from 'cheerio';
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
-import type { RuleContext } from '../../validator.js';
+import type { RuleContext } from '../../rule-context.js';
 import type { Element } from 'domhandler';
 
 // This rule only apply to REC, check changes with colored background.

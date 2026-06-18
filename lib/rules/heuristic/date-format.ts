@@ -1,5 +1,5 @@
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
-import { possibleMonths } from '../../validator.js';
+import { possibleMonths } from '../../rule-context.js';
 
 const self: RuleMeta = {
     name: 'heuristic.date-format',

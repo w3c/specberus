@@ -6,7 +6,7 @@
 // Obsoleting and Rescinding W3C Specifications</a>.</p>
 
 import type { Cheerio } from 'cheerio';
-import type { RuleContext } from '../../validator.js';
+import type { RuleContext } from '../../rule-context.js';
 import type { Element } from 'domhandler';
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 

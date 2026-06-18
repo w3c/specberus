@@ -12,7 +12,7 @@ import { Octokit } from '@octokit/core';
 import w3cApi from 'node-w3capi';
 
 import type { SpecberusConfig } from './types.js';
-import type { ValidateOptions } from './validator.js';
+import type { ValidateOptions } from './specberus.js';
 import pkg from '../package.json' with { type: 'json' };
 
 /** Current specberus version recorded in package.json */

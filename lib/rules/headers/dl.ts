@@ -10,7 +10,7 @@ import type { Element } from 'domhandler';
 
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 import { resolveGithubUsernameToId } from '../../util.js';
-import type { RuleContext } from '../../validator.js';
+import type { RuleContext } from '../../rule-context.js';
 
 const self: RuleMeta = {
     name: 'headers.dl',

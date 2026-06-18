@@ -1,7 +1,7 @@
 // errata, right after dl
 
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
-import type { RuleContext } from '../../validator.js';
+import type { RuleContext } from '../../rule-context.js';
 
 const self: RuleMeta = {
     name: 'headers.errata',

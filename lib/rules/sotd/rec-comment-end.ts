@@ -1,5 +1,5 @@
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
-import { dateRegexStrCapturing } from '../../validator.js';
+import { dateRegexStrCapturing } from '../../rule-context.js';
 
 const self: RuleMeta = {
     name: 'sotd.rec-comment-end',

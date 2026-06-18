@@ -11,7 +11,7 @@ import type { Cheerio } from 'cheerio';
 import type { Element } from 'domhandler';
 
 import { AB, TAG } from '../../util.js';
-import type { RuleContext } from '../../validator.js';
+import type { RuleContext } from '../../rule-context.js';
 
 import copyrightExceptions from '../../copyright-exceptions.js';
 import type { ApiCharter, RuleCheckFunction, RuleMeta } from '../../types.js';
