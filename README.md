@@ -22,7 +22,7 @@ Specberus is a [Node.js](https://nodejs.org/en/) application, [distributed throu
 Alternatively, you can clone [the repository](https://github.com/w3c/specberus) and run:
 
 ```bash
-$ npm install -d
+$ npm install
 ```
 
 In order to get all the dependencies installed. Naturally, this requires that you have a reasonably
@@ -30,8 +30,7 @@ recent version of Node.js installed.
 
 ## 2. Running
 
-Currently there is no shell to run Specberus. Later we will add both Web and CLI interfaces based
-on the same core library.
+Specberus runs as a web server, providing both HTML form UI and API endpoints.
 
 ### Syntax and command-line parameters
 
@@ -147,12 +146,12 @@ $ RULE=copyright TYPE=noCopyright npm run test
 
 ## 4. JS API
 
-The interface you get when you `import { Specberus } from "specberus"` is that from `lib/validator`.
+The interface you get when you `import { Specberus } from "specberus"` is that from `lib/specberus`.
 `Specberus` is a class configured for operation in the Node.js environment.
 
 (See also [the REST API](#5-rest-api).)
 
-## Creating a Validator instance
+## Creating a Specberus instance
 
 ```js
 import { Specberus } from 'specberus';
