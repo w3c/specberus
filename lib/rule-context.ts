@@ -9,6 +9,7 @@ import w3cApi from 'node-w3capi';
 
 import { hasExceptions } from './exceptions.js';
 import { assembleData } from './l10n.js';
+// Reminder: specberus.js imports this module; only types may be imported in the other direction
 import type { Specberus } from './specberus.js';
 import { get } from './throttled-ua.js';
 import { AB, REC_TEXT, specberusVersion, TAG } from './util.js';
