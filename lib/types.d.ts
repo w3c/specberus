@@ -65,7 +65,9 @@ export interface RecMetadata {
     rectrack?: string | null;
 }
 
-export type RuleCheckFunction<R = void> = (sr: RuleContext) => R | Promise<R>;
+export type RuleCheckFunction<R = void> = (
+    context: RuleContext
+) => R | Promise<R>;
 
 export interface RuleBase {
     name: string;
