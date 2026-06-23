@@ -8,8 +8,8 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $sotd = sr.getSotDSection();
+export const check: RuleCheckFunction = context => {
+    const $sotd = context.getSotDSection();
     const BOILERPLATE_PREFIX = 'This document is governed by the ';
     const BOILERPLATE_SUFFIX = ' W3C Process Document.';
     const newProc = '18 August 2025';
@@ -23,7 +23,7 @@ export const check: RuleCheckFunction = sr => {
         BOILERPLATE_PREFIX + previousProc + BOILERPLATE_SUFFIX;
 
     // 1 month transition period
-    sr.transition({
+    context.transition({
         from: new Date('2023-11-02'),
         to: new Date('2023-12-03'),
         doBefore() {},
@@ -38,36 +38,36 @@ export const check: RuleCheckFunction = sr => {
     if ($sotd) {
         let found = false;
         $sotd.find('p').each((_, p) => {
-            const $p = sr.$(p);
+            const $p = context.$(p);
             const pText = $p.text();
             const $a = $p.find('a').first();
             if (
-                sr.norm(pText) === boilerplate &&
+                context.norm(pText) === boilerplate &&
                 $a.length &&
                 $a.attr('href') === newProcUri
             ) {
                 if (found)
-                    sr.error(self, 'multiple-times', { process: newProc });
+                    context.error(self, 'multiple-times', { process: newProc });
                 else {
                     found = true;
                 }
             } else if (
-                sr.norm(pText) === previousBoilerplate &&
+                context.norm(pText) === previousBoilerplate &&
                 $a.length &&
                 $a.attr('href') === previousProcUri
             ) {
                 if (previousAllowed) {
-                    sr.warning(self, 'previous-allowed', {
+                    context.warning(self, 'previous-allowed', {
                         process: previousProc,
                     });
                     found = true;
                 } else {
-                    sr.error(self, 'previous-not-allowed', {
+                    context.error(self, 'previous-not-allowed', {
                         process: previousProc,
                     });
                 }
             }
         });
-        if (!found) sr.error(self, 'not-found', { process: newProc });
+        if (!found) context.error(self, 'not-found', { process: newProc });
     }
 };

@@ -6,10 +6,11 @@ const self = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
+export const check: RuleCheckFunction = context => {
     try {
-        if (sr.$('body').hasClass('toc-sidebar')) sr.error(self, 'class-found');
+        if (context.$('body').hasClass('toc-sidebar'))
+            context.error(self, 'class-found');
     } catch (e) {
-        sr.error(self, 'selector-fail');
+        context.error(self, 'selector-fail');
     }
 };

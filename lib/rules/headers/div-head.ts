@@ -10,6 +10,6 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    sr.checkSelector('body div.head', self);
+export const check: RuleCheckFunction = context => {
+    context.checkSelector('body div.head', self);
 };

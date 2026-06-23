@@ -53,13 +53,13 @@ function includedByReg(url: string, regArray = allowList) {
     );
 }
 
-export const check: RuleCheckFunction = async sr => {
+export const check: RuleCheckFunction = async context => {
     // send out warning for /nu W3C link checker.
-    sr.warning(self, 'display', { link: sr.url });
+    context.warning(self, 'display', { link: context.url });
 
-    if (!sr.url) return;
+    if (!context.url) return;
 
-    // sr.url is used as base url. Every other resource should use in same folder as base. e.g.
+    // context.url is used as base url. Every other resource should use in same folder as base. e.g.
     // - spec doc: https://www.w3.org/TR/2021/WD-pubrules-20210401/
     // - image (pass): https://www.w3.org/TR/2021/WD-pubrules-20210401/images/sample.png
     // - image (pass): https://www.w3.org/TR/2021/WD-pubrules-20210401/sample.png
@@ -69,8 +69,10 @@ export const check: RuleCheckFunction = async sr => {
         args: ['--disable-gpu'],
     });
     const page = await browser.newPage();
-    const docPath = sr.url.replace(/\/[^/]+$/, '/').replace(/^https?:/, '');
-    const origin = new URL(sr.url).origin;
+    const docPath = context.url
+        .replace(/\/[^/]+$/, '/')
+        .replace(/^https?:/, '');
+    const origin = new URL(context.url).origin;
 
     page.on('response', response => {
         const url = simplifyURL(response.url());
@@ -81,9 +83,12 @@ export const check: RuleCheckFunction = async sr => {
             if (
                 !url.replace(/^https?:/, '').startsWith(docPath) &&
                 !(includedByReg(url) || includedByReg(referer)) &&
-                url !== sr.url
+                url !== context.url
             ) {
-                sr.error(compound, 'not-same-folder', { base: docPath, url });
+                context.error(compound, 'not-same-folder', {
+                    base: docPath,
+                    url,
+                });
             }
 
             // check if every resource's status code is ok, ignore 3xx
@@ -91,7 +96,7 @@ export const check: RuleCheckFunction = async sr => {
                 const chain = response.request().redirectChain();
                 // If an url is redirected from another, chain shall exist
                 if (chain.length) {
-                    sr.error(compound, 'response-error-with-redirect', {
+                    context.error(compound, 'response-error-with-redirect', {
                         url,
                         originUrl: chain[0].url(),
                         status: response.status(),
@@ -99,7 +104,7 @@ export const check: RuleCheckFunction = async sr => {
                         referer,
                     });
                 } else {
-                    sr.error(compound, 'response-error', {
+                    context.error(compound, 'response-error', {
                         url,
                         status: response.status(),
                         text: response.statusText(),
@@ -110,7 +115,7 @@ export const check: RuleCheckFunction = async sr => {
         }
     });
 
-    await page.goto(sr.url, { waitUntil: 'load', timeout: 60000 });
+    await page.goto(context.url, { waitUntil: 'load', timeout: 60000 });
 
     await browser.close();
 };

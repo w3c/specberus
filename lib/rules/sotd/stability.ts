@@ -5,17 +5,17 @@
 import type { Cheerio } from 'cheerio';
 import type { Element } from 'domhandler';
 
-import type { Specberus } from '../../validator.js';
+import type { RuleContext } from '../../rule-context.js';
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
-async function findSW($candidates: Cheerio<Element>, sr: Specberus) {
+async function findSW($candidates: Cheerio<Element>, context: RuleContext) {
     let wanted = '';
     let $sw: Cheerio<Element> | undefined;
-    const { crType, cryType, longStatus, status } = sr.config!;
+    const { crType, cryType, longStatus, status } = context.config!;
 
     if (longStatus === 'Group Note' || longStatus === 'Group Note Draft') {
         // Find the sentence of 'Group Notes are not endorsed by W3C nor its Members.' or 'This Group Note is endorsed by the @@ Group, but is not endorsed by W3C itself nor its Members.'
-        const groups = sr.getDelivererNames().join(' and the ');
+        const groups = context.getDelivererNames().join(' and the ');
         wanted = `(${longStatus}s are not endorsed by W3C nor its Members|This ${longStatus} is endorsed by the ${groups}, but is not endorsed by W3C itself nor its Members).`;
     } else if (longStatus === 'Statement') {
         wanted =
@@ -27,7 +27,7 @@ async function findSW($candidates: Cheerio<Element>, sr: Specberus) {
         wanted =
             'A W3C Registry is a specification that, after extensive consensus-building, is endorsed by W3C and its Members.';
     } else {
-        const groupIds = await sr.getDelivererIDs();
+        const groupIds = await context.getDelivererIDs();
         const INTRO_S = ` A Candidate Recommendation Snapshot has received wide review, is intended to gather implementation experience, and has commitments from Working Group members to royalty-free licensing for implementations.`;
         const INTRO_D = ` A Candidate Recommendation Draft integrates changes from the previous Candidate Recommendation that the Working Group${
             groupIds.length > 1 ? 's intend' : ' intends'
@@ -56,8 +56,8 @@ async function findSW($candidates: Cheerio<Element>, sr: Specberus) {
 
     // TODO: better loop
     $candidates.each((_, p) => {
-        const $p = sr.$(p);
-        const text = sr.norm($p.text());
+        const $p = context.$(p);
+        const text = context.norm($p.text());
         if (text.match(wantedRE)) {
             $sw = $p;
             return false;
@@ -74,33 +74,36 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = async sr => {
-    const { crType, cryType, status } = sr.config!;
-    const $sotd = sr.getSotDSection();
+export const check: RuleCheckFunction = async context => {
+    const { crType, cryType, status } = context.config!;
+    const $sotd = context.getSotDSection();
     if ($sotd) {
         if (status === 'REC') {
-            const txt = sr.norm($sotd.text());
+            const txt = context.norm($sotd.text());
             const wanted = `A W3C Recommendation is a specification that, after extensive consensus-building, is endorsed by W3C and its Members, and has commitments from Working Group members to royalty-free licensing for implementations.`;
             const rex = new RegExp(wanted);
-            if (!rex.test(txt)) sr.error(self, 'no-rec-review');
+            if (!rex.test(txt)) context.error(self, 'no-rec-review');
         } else {
             const $paragraphs = $sotd.filter('p');
             const { $sw, expected } = await findSW(
                 $paragraphs.length ? $paragraphs : $sotd.find('p'),
-                sr
+                context
             );
-            if (!$sw) sr.error(self, 'no-stability', { expected });
+            if (!$sw) context.error(self, 'no-stability', { expected });
             else if (crType === 'Snapshot' || cryType === 'Snapshot') {
                 const review = $sw
                     .find('a')
                     .toArray()
-                    .find(el => sr.norm(sr.$(el).text()) === 'wide review');
-                if (!review) sr.error(self, 'no-cr-review');
+                    .find(
+                        el =>
+                            context.norm(context.$(el).text()) === 'wide review'
+                    );
+                if (!review) context.error(self, 'no-cr-review');
                 else if (
                     review.attribs.href !==
                     'https://www.w3.org/policies/process/20250818/#dfn-wide-review'
                 )
-                    sr.error(self, 'wrong-cr-review-link');
+                    context.error(self, 'wrong-cr-review-link');
             }
         }
 
@@ -114,11 +117,11 @@ export const check: RuleCheckFunction = async sr => {
                 .toArray()
                 .some(
                     link =>
-                        sr.norm(sr.$(link).text()) === licensingText &&
-                        link.attribs.href === licensingLink
+                        context.norm(context.$(link).text()) ===
+                            licensingText && link.attribs.href === licensingLink
                 );
             if (!licensingFound)
-                sr.error(self, 'no-licensing-link', {
+                context.error(self, 'no-licensing-link', {
                     licensingText,
                     licensingLink,
                 });

@@ -8,12 +8,12 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
+export const check: RuleCheckFunction = context => {
     let security = false;
     let privacy = false;
 
-    sr.$('h2, h3, h4, h5, h6').each((_, el) => {
-        const text = sr.norm(sr.$(el).text()).toLowerCase();
+    context.$('h2, h3, h4, h5, h6').each((_, el) => {
+        const text = context.norm(context.$(el).text()).toLowerCase();
 
         if (text.includes('security')) {
             security = true;
@@ -24,10 +24,10 @@ export const check: RuleCheckFunction = sr => {
     });
 
     if (!security && !privacy) {
-        sr.warning(self, 'no-security-privacy');
+        context.warning(self, 'no-security-privacy');
     } else {
-        if (!security) sr.warning(self, 'no-security');
+        if (!security) context.warning(self, 'no-security');
 
-        if (!privacy) sr.warning(self, 'no-privacy');
+        if (!privacy) context.warning(self, 'no-privacy');
     }
 };

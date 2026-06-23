@@ -1,7 +1,7 @@
 // errata, right after dl
 
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
-import type { Specberus } from '../../validator.js';
+import type { RuleContext } from '../../rule-context.js';
 
 const self: RuleMeta = {
     name: 'headers.errata',
@@ -12,18 +12,18 @@ const self: RuleMeta = {
 export const { name } = self;
 
 // Check if document is Recommendation, and uses inline changes(REC with Candidate/Proposed changes)
-function isRECWithChanges(sr: Specberus) {
-    if (sr.config!.status !== 'REC') return false;
+function isRECWithChanges(context: RuleContext) {
+    if (context.config!.status !== 'REC') return false;
 
-    const recMeta = sr.getRecMetadata();
+    const recMeta = context.getRecMetadata();
     return Object.values(recMeta).length !== 0;
 }
 
-export const check: RuleCheckFunction = sr => {
+export const check: RuleCheckFunction = context => {
     // for REC with Candidate/Proposed changes, no need to check errata link
-    if (isRECWithChanges(sr)) return;
+    if (isRECWithChanges(context)) return;
 
-    const dts = sr.extractHeaders();
+    const dts = context.extractHeaders();
     // Check 'Errata:' exist, don't check any further.
-    if (!dts.Errata) sr.error(self, 'no-errata');
+    if (!dts.Errata) context.error(self, 'no-errata');
 };

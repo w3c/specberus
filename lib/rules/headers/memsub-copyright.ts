@@ -6,8 +6,8 @@ const self = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $copyright = sr.$('body div.head p.copyright').first();
+export const check: RuleCheckFunction = context => {
+    const $copyright = context.$('body div.head p.copyright').first();
     if ($copyright.length) {
         // ,   "https://www.w3.org/copyright/document-license/":           "document use"
         const seen = $copyright
@@ -19,6 +19,6 @@ export const check: RuleCheckFunction = sr => {
                         'https://www.w3.org/copyright/document-license/'
                     ) === 0
             );
-        if (!seen) sr.error(self, 'not-found');
-    } else sr.error(self, 'not-found');
+        if (!seen) context.error(self, 'not-found');
+    } else context.error(self, 'not-found');
 };

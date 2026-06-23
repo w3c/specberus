@@ -10,30 +10,30 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $details = sr.$('.head details').first();
+export const check: RuleCheckFunction = context => {
+    const $details = context.$('.head details').first();
     if (!$details.length) {
-        sr.error(self, 'no-details');
+        context.error(self, 'no-details');
         return;
     }
 
     if (!$details.attr('open')) {
-        sr.error(self, 'no-details-open');
+        context.error(self, 'no-details-open');
     }
 
-    if (!sr.$('.head details dl').length) {
-        sr.error(self, 'no-details-dl');
+    if (!context.$('.head details dl').length) {
+        context.error(self, 'no-details-dl');
         return;
     }
 
-    const $summary = sr.$('.head details summary').first();
+    const $summary = context.$('.head details summary').first();
     if (!$summary.length) {
-        sr.error(self, 'no-details-summary');
+        context.error(self, 'no-details-summary');
         return;
     }
 
-    const summaryText = sr.norm($summary.text());
+    const summaryText = context.norm($summary.text());
     if (summaryText !== 'More details about this document') {
-        sr.error(self, 'wrong-summary-text');
+        context.error(self, 'wrong-summary-text');
     }
 };

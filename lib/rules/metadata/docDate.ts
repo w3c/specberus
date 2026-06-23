@@ -11,8 +11,8 @@ interface DocDateMetadata {
     docDate: `${number}-${number}-${number}`;
 }
 
-export const check: RuleCheckFunction<DocDateMetadata | void> = sr => {
-    const docDate = sr.getDocumentDate();
+export const check: RuleCheckFunction<DocDateMetadata | void> = context => {
+    const docDate = context.getDocumentDate();
     if (docDate)
         return {
             docDate: `${docDate.getFullYear()}-${docDate.getMonth() + 1}-${docDate.getDate()}`,

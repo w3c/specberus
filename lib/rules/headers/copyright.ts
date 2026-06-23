@@ -11,7 +11,7 @@ import type { Cheerio } from 'cheerio';
 import type { Element } from 'domhandler';
 
 import { AB, TAG } from '../../util.js';
-import type { Specberus } from '../../validator.js';
+import type { RuleContext } from '../../rule-context.js';
 
 import copyrightExceptions from '../../copyright-exceptions.js';
 import type { ApiCharter, RuleCheckFunction, RuleMeta } from '../../types.js';
@@ -52,8 +52,8 @@ const latestBaseLinks = {
 
 export const { name } = self;
 
-async function isOnlyPublishedByTagOrAb(sr: Specberus) {
-    const delivererIDs = await sr.getDelivererIDs();
+async function isOnlyPublishedByTagOrAb(context: RuleContext) {
+    const delivererIDs = await context.getDelivererIDs();
     return delivererIDs.every(id => id === TAG.id || id === AB.id);
 }
 
@@ -66,9 +66,12 @@ function getCommonLicenseUri(data: ApiCharter[]) {
 }
 
 // The date can be 19xx-2023, or 2023.
-function getLatestCopyrightMatchRegex(sr: Specberus, licenseTexts: string[]) {
+function getLatestCopyrightMatchRegex(
+    context: RuleContext,
+    licenseTexts: string[]
+) {
     const licenseRex = licenseTexts.join('|');
-    const year = (sr.getDocumentDate() || new Date()).getFullYear();
+    const year = (context.getDocumentDate() || new Date()).getFullYear();
 
     const startRex =
         '^Copyright [©|&copy;] (?:(?:199\\d|20\\d\\d)-)?@YEAR *World Wide Web Consortium'.replace(
@@ -81,19 +84,19 @@ function getLatestCopyrightMatchRegex(sr: Specberus, licenseTexts: string[]) {
 
 // Some documents like epub-33 uses special copyrights listed in copyright-exception.json
 function checkSpecialCopyright(
-    sr: Specberus,
+    context: RuleContext,
     $copyright: Cheerio<Element>,
     specialCopyright: (typeof copyrightExceptions)[number],
     shortname: string | undefined
 ) {
-    const year = (sr.getDocumentDate() || new Date()).getFullYear();
+    const year = (context.getDocumentDate() || new Date()).getFullYear();
 
-    const domHtml = sr.norm($copyright.html()!);
-    const specHtml = sr.norm(
+    const domHtml = context.norm($copyright.html()!);
+    const specHtml = context.norm(
         specialCopyright.copyright.replace(/@YEAR/g, '' + year)
     );
     if (domHtml !== specHtml) {
-        sr.error(self, 'exception-no-html', {
+        context.error(self, 'exception-no-html', {
             copyright: domHtml,
             expected: specHtml,
             shortname,
@@ -102,14 +105,14 @@ function checkSpecialCopyright(
 }
 
 function checkLatestCopyright(
-    sr: Specberus,
+    context: RuleContext,
     $copyright: Cheerio<Element>,
     licenseTexts: string[]
 ) {
-    const matchRegex = getLatestCopyrightMatchRegex(sr, licenseTexts);
-    const regResult = sr.norm($copyright.text()).match(matchRegex);
+    const matchRegex = getLatestCopyrightMatchRegex(context, licenseTexts);
+    const regResult = context.norm($copyright.text()).match(matchRegex);
     if (!regResult) {
-        sr.error(self, 'no-match', { rex: matchRegex });
+        context.error(self, 'no-match', { rex: matchRegex });
         return;
     }
 
@@ -124,11 +127,11 @@ function checkLatestCopyright(
     const links = $copyright.find('a').toArray();
     Object.keys(linksToCheck).forEach(linkText => {
         const link = links.find(link =>
-            sr.norm(sr.$(link).text()).includes(linkText)
+            context.norm(context.$(link).text()).includes(linkText)
         );
 
         if (!link) {
-            return sr.error(self, 'no-link', { text: linkText });
+            return context.error(self, 'no-link', { text: linkText });
         }
 
         const linkHref = link.attribs.href;
@@ -139,7 +142,7 @@ function checkLatestCopyright(
             : expected === linkHref;
 
         if (!linkFound) {
-            sr.error(self, 'href-not-match', {
+            context.error(self, 'href-not-match', {
                 expected: isExpectedArray ? expected.join("' or '") : expected,
                 hrefInDoc: linkHref,
                 text: linkText,
@@ -148,30 +151,30 @@ function checkLatestCopyright(
     });
 }
 
-export const check: RuleCheckFunction = async sr => {
-    const $copyright = sr.$('body div.head p.copyright').first();
+export const check: RuleCheckFunction = async context => {
+    const $copyright = context.$('body div.head p.copyright').first();
 
     if (!$copyright.length) {
-        sr.error(self, 'not-found');
+        context.error(self, 'not-found');
         return;
     }
-    if (await isOnlyPublishedByTagOrAb(sr)) {
+    if (await isOnlyPublishedByTagOrAb(context)) {
         return;
     }
 
-    const chartersData = await sr.getChartersData();
+    const chartersData = await context.getChartersData();
     if (!chartersData || !chartersData.length) {
-        sr.error(self, 'no-data-from-API');
+        context.error(self, 'no-data-from-API');
         return;
     }
 
     const allowedLicenses = getCommonLicenseUri(chartersData);
     if (!allowedLicenses.length && chartersData.length > 1) {
-        sr.error(self, 'no-license-found-joint');
+        context.error(self, 'no-license-found-joint');
         return;
     }
     if (!allowedLicenses.length) {
-        sr.error(self, 'no-license-found');
+        context.error(self, 'no-license-found');
         return;
     }
 
@@ -181,14 +184,14 @@ export const check: RuleCheckFunction = async sr => {
         .map(v => LICENSE_URL_TEXT_MAP[v]);
 
     // get exception rule for certain shortnames
-    const shortname = await sr.getShortname();
+    const shortname = await context.getShortname();
     const specialCopyright = copyrightExceptions.find(
         ({ specShortnames }) => shortname && specShortnames.includes(shortname)
     );
 
     if (specialCopyright) {
-        checkSpecialCopyright(sr, $copyright, specialCopyright, shortname);
+        checkSpecialCopyright(context, $copyright, specialCopyright, shortname);
     } else {
-        checkLatestCopyright(sr, $copyright, licenseTexts);
+        checkLatestCopyright(context, $copyright, licenseTexts);
     }
 };

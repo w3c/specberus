@@ -7,16 +7,20 @@ import type { RuleCheckFunction } from '../../types.js';
 
 export const name = 'metadata.abstract';
 
-export const check: RuleCheckFunction<{ abstract: string }> = sr => {
-    const abstractHeadingEl = sr
+export const check: RuleCheckFunction<{ abstract: string }> = context => {
+    const abstractHeadingEl = context
         .$('h2')
         .toArray()
-        .find(el => sr.norm(sr.$(el).text()).toLowerCase() === 'abstract');
+        .find(
+            el =>
+                context.norm(context.$(el).text()).toLowerCase() === 'abstract'
+        );
 
     if (!abstractHeadingEl) return { abstract: 'Not found' };
 
     const $div = load('<div></div>', null, false)('div');
-    sr.$(abstractHeadingEl)
+    context
+        .$(abstractHeadingEl)
         .parent()
         .children()
         .each((_, child) => {
@@ -25,5 +29,5 @@ export const check: RuleCheckFunction<{ abstract: string }> = sr => {
                     $div.append(child.cloneNode(true));
             }
         });
-    return { abstract: sr.norm($div.html()!) };
+    return { abstract: context.norm($div.html()!) };
 };

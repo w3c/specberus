@@ -20,15 +20,15 @@ const unreliableServices = [
     // { domain: 'w3.org', path: /track(er)?\/(actions|issues|resolutions)/}
 ];
 
-export const check: RuleCheckFunction = sr => {
-    sr.$('a').each((_, el) => {
-        const $el = sr.$(el);
+export const check: RuleCheckFunction = context => {
+    context.$('a').each((_, el) => {
+        const $el = context.$(el);
         const href = $el.attr('href');
         if (!href) return;
 
         let url;
         try {
-            url = new URL(href, sr.url || 'https://www.w3.org');
+            url = new URL(href, context.url || 'https://www.w3.org');
         } catch (e) {
             // when failed to parse URL, move on to next one.
             return;
@@ -44,9 +44,9 @@ export const check: RuleCheckFunction = sr => {
                     (unreliableService.path &&
                         unreliableService.path.test(path)))
             ) {
-                sr.warning(self, 'unreliable-link', {
+                context.warning(self, 'unreliable-link', {
                     link: href,
-                    text: sr.norm($el.text()),
+                    text: context.norm($el.text()),
                 });
                 // when finding this URL unreliable, quit 'unreliableServices.some'
                 return true;

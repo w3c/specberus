@@ -8,27 +8,31 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const translationLink = sr
+export const check: RuleCheckFunction = context => {
+    const translationLink = context
         .$('body div.head a')
         .toArray()
         .find(link => {
-            return sr.$(link).text().toLowerCase().includes('translations');
+            return context
+                .$(link)
+                .text()
+                .toLowerCase()
+                .includes('translations');
         });
 
     if (!translationLink) {
-        sr.error(self, 'not-found');
+        context.error(self, 'not-found');
         return;
     }
 
     const href = translationLink.attribs.href;
-    sr.info(self, 'found', { link: href });
+    context.info(self, 'found', { link: href });
     if (
-        !sr
+        !context
             .norm(href)
             .toLowerCase()
             .startsWith('https://www.w3.org/translations/')
     ) {
-        sr.warning(self, 'not-recommended-link');
+        context.warning(self, 'not-recommended-link');
     }
 };

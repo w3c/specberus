@@ -8,6 +8,6 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    sr.info(self, 'note');
+export const check: RuleCheckFunction = context => {
+    context.info(self, 'note');
 };

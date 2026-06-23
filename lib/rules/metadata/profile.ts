@@ -15,7 +15,7 @@ import rules from '../../rules-track.js';
 // 'self.name' would be 'metadata.profile'
 export const name = 'metadata.profile';
 
-export const check: RuleCheckFunction<RecMetadata> = async sr => {
+export const check: RuleCheckFunction<RecMetadata> = async context => {
     let matchedLength = 0;
     let id;
     let $profileEl: Cheerio<Element> | undefined;
@@ -25,13 +25,13 @@ export const check: RuleCheckFunction<RecMetadata> = async sr => {
         CRY: 'cryFeedbackDue',
     } as const;
 
-    const $stateEl = sr.getDocumentStateElement();
+    const $stateEl = context.getDocumentStateElement();
     if (!$stateEl) {
         throw new Error(
             'Cannot find the <code>&lt;p id="w3c-state"&gt;</code> element for profile and date.<br><br>Please make sure the <code>&lt;p id="w3c-state"&gt;<a href="https://www.w3.org/standards/types#@@Profile">W3C @@Profile</a>, DD Month Year&lt;/p&gt;</code> element can be selected by <code>document.getElementById(\'w3c-state\')</code>; <br>If you are using bikeshed, please update to the latest version.'
         );
     }
-    const candidate = $stateEl && sr.norm($stateEl.text()).toLowerCase();
+    const candidate = $stateEl && context.norm($stateEl.text()).toLowerCase();
     if (candidate) {
         for (const { profiles } of Object.values(rules)) {
             for (const [p, profile] of Object.entries(profiles)) {
@@ -51,7 +51,7 @@ export const check: RuleCheckFunction<RecMetadata> = async sr => {
     function assembleMeta(id: string) {
         let meta: RecMetadata = { profile: id };
         if (id in reviewStatus) {
-            const dueDate = sr.getFeedbackDueDate();
+            const dueDate = context.getFeedbackDueDate();
             const dates = dueDate && dueDate.valid;
             let res = dates[0];
             if (dates.length === 0 || !res) return { profile: id };
@@ -63,7 +63,7 @@ export const check: RuleCheckFunction<RecMetadata> = async sr => {
         }
         // implementation report
         if (['CR', 'CRD', 'PR', 'REC'].includes(id)) {
-            const dts = sr.extractHeaders();
+            const dts = context.extractHeaders();
             if (dts.Implementation?.$dd?.find('a').length) {
                 meta.implementationReport = dts.Implementation.$dd
                     .find('a')
@@ -72,7 +72,7 @@ export const check: RuleCheckFunction<RecMetadata> = async sr => {
             }
         }
         if (id === 'REC') {
-            meta = sr.getRecMetadata(meta);
+            meta = context.getRecMetadata(meta);
         }
 
         // Get 'track/rectrack' of the document based on id
@@ -95,9 +95,11 @@ export const check: RuleCheckFunction<RecMetadata> = async sr => {
     function checkRecType() {
         if (
             $profileEl &&
-            sr.norm($profileEl.text()).indexOf('Candidate Recommendation') > 0
+            context
+                .norm($profileEl.text())
+                .indexOf('Candidate Recommendation') > 0
         ) {
-            return sr.norm($profileEl.text()).indexOf('Draft') > 0
+            return context.norm($profileEl.text()).indexOf('Draft') > 0
                 ? 'CRD'
                 : 'CR';
         }
@@ -114,19 +116,19 @@ export const check: RuleCheckFunction<RecMetadata> = async sr => {
         if (id === 'CRY') {
             // distinguish CRY CRYD
             id =
-                sr.norm($profileEl?.text() || '').indexOf('Draft') > 0
+                context.norm($profileEl?.text() || '').indexOf('Draft') > 0
                     ? 'CRYD'
                     : 'CRY';
         }
         return assembleMeta(id);
     } else {
-        const docTitle = (await getTitle(sr))?.title;
+        const docTitle = (await getTitle(context))?.title;
         if (candidate && candidate.indexOf("editor's draft") > -1) {
             throw new Error(
                 `The document "${docTitle}" seems to be an Editor's Draft, which is not supported.`
             );
         } else if (
-            sr.$('link[href^="https://www.w3.org/StyleSheets/TR/"]').length
+            context.$('link[href^="https://www.w3.org/StyleSheets/TR/"]').length
         ) {
             let profileList = '';
             sortedProfiles.forEach(category => {

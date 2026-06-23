@@ -8,17 +8,17 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $ignoreH3 = sr.$('.head > h3').first();
+export const check: RuleCheckFunction = context => {
+    const $ignoreH3 = context.$('.head > h3').first();
 
-    sr.$('h2, h3, h4, h5, h6').each((_, el) => {
-        const $el = sr.$(el);
+    context.$('h2, h3, h4, h5, h6').each((_, el) => {
+        const $el = context.$(el);
         // has an id
         if ($el.attr('id') || el === $ignoreH3[0]) return;
 
         // has no element previous sibling, has parent div or section, and that has an id
         //  without prevAll that sucks... get children of parent and find self
-        const $parent = sr.$(el).parent();
+        const $parent = context.$(el).parent();
         const $sibs = $parent.children();
         if (
             $sibs[0] === el &&
@@ -38,9 +38,9 @@ export const check: RuleCheckFunction = sr => {
         }
 
         // this is the status h2
-        const $stateEl = sr.getDocumentStateElement();
+        const $stateEl = context.getDocumentStateElement();
         if ($stateEl && el === $stateEl[0]) return;
 
-        sr.error(self, 'no-id', { text: el.name });
+        context.error(self, 'no-id', { text: el.name });
     });
 };

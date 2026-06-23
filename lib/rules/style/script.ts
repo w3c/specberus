@@ -10,16 +10,16 @@ const self = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
+export const check: RuleCheckFunction = context => {
     const PATTERN_SCRIPT =
         /^(https?:)?\/\/(www\.)?w3\.org\/scripts\/tr\/2021\/fixup\.js$/i;
 
-    const $candidates = sr.$('script[src]');
+    const $candidates = context.$('script[src]');
     let found = 0;
 
     $candidates.each((_, el) => {
         if (PATTERN_SCRIPT.test(el.attribs.src)) found++;
     });
 
-    if (found !== 1) sr.error(self, 'not-found');
+    if (found !== 1) context.error(self, 'not-found');
 };

@@ -1,5 +1,5 @@
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
-import { possibleMonths } from '../../validator.js';
+import { possibleMonths } from '../../rule-context.js';
 
 const self: RuleMeta = {
     name: 'heuristic.date-format',
@@ -9,7 +9,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
+export const check: RuleCheckFunction = context => {
     // Pseudo-constants:
     const POSSIBLE_DATE = new RegExp(
         `\\b([0123]?\\d|${possibleMonths})[\\ \\-\\/–—]([0123]?\\d|${possibleMonths})[\\ \\-\\/–—]([\\'‘’]?\\d{2})(\\d\\d)?\\b`,
@@ -20,7 +20,10 @@ export const check: RuleCheckFunction = sr => {
         'i'
     );
 
-    const boilerplateSections = [sr.$('div.head').first(), sr.getSotDSection()];
+    const boilerplateSections = [
+        context.$('div.head').first(),
+        context.getSotDSection(),
+    ];
     const candidateDates: string[] = [];
 
     for (const $section of boilerplateSections) {
@@ -35,7 +38,7 @@ export const check: RuleCheckFunction = sr => {
 
     for (const date of candidateDates) {
         if (!date.match(EXPECTED_DATE_FORMAT)) {
-            sr.error(self, 'wrong', { text: date });
+            context.error(self, 'wrong', { text: date });
         }
     }
 };

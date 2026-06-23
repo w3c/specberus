@@ -10,7 +10,7 @@ interface SotdMetadata {
     sotd: string;
 }
 
-export const check: RuleCheckFunction<SotdMetadata> = sr => {
-    const $sotd = sr.getSotDSection();
-    return { sotd: $sotd ? sr.norm($sotd.html()!) : 'Not found' };
+export const check: RuleCheckFunction<SotdMetadata> = context => {
+    const $sotd = context.getSotDSection();
+    return { sotd: $sotd ? context.norm($sotd.html()!) : 'Not found' };
 };

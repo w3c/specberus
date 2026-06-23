@@ -8,9 +8,9 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = async sr => {
-    const $sotd = sr.getSotDSection();
-    const { crType, cryType, longStatus, status, track } = sr.config!;
+export const check: RuleCheckFunction = async context => {
+    const $sotd = context.getSotDSection();
+    const { crType, cryType, longStatus, status, track } = context.config!;
     let docType = longStatus;
     if (status === 'CR' || status === 'CRD') {
         docType = `Candidate Recommendation ${crType}`;
@@ -18,7 +18,7 @@ export const check: RuleCheckFunction = async sr => {
         docType = `Candidate Registry ${cryType}`;
     }
 
-    const text = `^This document was (?:produced|published) by the (.+? Working Group|Technical Architecture Group|Advisory Board|.+? Interest Group)( and the (.+? Working Group|Technical Architecture Group|Advisory Board|.+? Interest Group))? as a ${docType} using the ${sr.config!.track} track.`;
+    const text = `^This document was (?:produced|published) by the (.+? Working Group|Technical Architecture Group|Advisory Board|.+? Interest Group)( and the (.+? Working Group|Technical Architecture Group|Advisory Board|.+? Interest Group))? as a ${docType} using the ${context.config!.track} track.`;
 
     if ($sotd) {
         // Find the paragraph of 'This document was published by ... , it includes ...'
@@ -26,9 +26,9 @@ export const check: RuleCheckFunction = async sr => {
         const paragraph = $sotd
             .find('p')
             .toArray()
-            .find(p => sr.norm(sr.$(p).text()).match(publishReg));
+            .find(p => context.norm(context.$(p).text()).match(publishReg));
         if (!paragraph) {
-            sr.error(self, 'not-found', { publishReg });
+            context.error(self, 'not-found', { publishReg });
             return;
         }
 
@@ -36,7 +36,7 @@ export const check: RuleCheckFunction = async sr => {
 
         let baseURL = /^https:\/\/www.w3.org\/2023\/Process-20230612\//;
         // 1 month transition period
-        sr.transition({
+        context.transition({
             from: new Date('2023-11-02'),
             to: new Date('2023-12-03'),
             doBefore() {
@@ -56,16 +56,18 @@ export const check: RuleCheckFunction = async sr => {
         const urlExpected = new RegExp(`${baseURL.source}#recs-and-notes$`);
         const trackEl = $sotdLinks
             .toArray()
-            .find(el => sr.norm(sr.$(el).text()).match(`${track} track`));
+            .find(el =>
+                context.norm(context.$(el).text()).match(`${track} track`)
+            );
         if (trackEl && !urlExpected.test(trackEl.attribs.href)) {
-            sr.error(self, 'url-not-match', {
+            context.error(self, 'url-not-match', {
                 url: urlExpected,
                 text: `${track} track`,
             });
         }
 
         // Check the Deliverer Group link.
-        const delivererGroups = await sr.getDelivererGroups();
+        const delivererGroups = await context.getDelivererGroups();
         const groupsURLRegExpExpected = delivererGroups.map(
             delivererGroup =>
                 new RegExp(
@@ -75,14 +77,14 @@ export const check: RuleCheckFunction = async sr => {
         const sotdLinksHrefs = $sotdLinks.toArray().map(l => l.attribs.href);
         groupsURLRegExpExpected.forEach(groupURLRegExpExpected => {
             if (!sotdLinksHrefs.some(l => groupURLRegExpExpected.test(l))) {
-                sr.error(self, 'no-homepage-link', {
+                context.error(self, 'no-homepage-link', {
                     homepage: groupURLRegExpExpected,
                 });
             }
         });
 
         // recType: doc has sentence 'It includes proposed ...' in sotd.
-        const recType = status === 'REC' ? sr.getRecMetadata() : null;
+        const recType = status === 'REC' ? context.getRecMetadata() : null;
         // check if 'candidate amendments' or 'proposed amendments' link in same paragraph is valid.
         if (recType && JSON.stringify(recType) !== '{}') {
             let urlExpected: RegExp;
@@ -120,15 +122,15 @@ export const check: RuleCheckFunction = async sr => {
                 );
                 textExpected = /candidate addition(s)?/;
             }
-            const linkFound = sr
+            const linkFound = context
                 .$(paragraph)
                 .find('a')
                 .toArray()
                 .some(el => {
-                    const $el = sr.$(el);
-                    if (sr.norm($el.text()).match(textExpected)) {
+                    const $el = context.$(el);
+                    if (context.norm($el.text()).match(textExpected)) {
                         if (!urlExpected.test($el.attr('href') || '')) {
-                            sr.error(self, 'url-not-match', {
+                            context.error(self, 'url-not-match', {
                                 url: urlExpected,
                                 text: textExpected,
                             });
@@ -138,7 +140,7 @@ export const check: RuleCheckFunction = async sr => {
                     return false;
                 });
             if (!linkFound)
-                sr.error(self, 'url-text-not-found', {
+                context.error(self, 'url-text-not-found', {
                     url: urlExpected!,
                     text: textExpected!,
                 });

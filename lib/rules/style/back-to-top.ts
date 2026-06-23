@@ -10,10 +10,10 @@ const self = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $candidates = sr.$(
+export const check: RuleCheckFunction = context => {
+    const $candidates = context.$(
         "body p#back-to-top[role='navigation'] a[href='#title']"
     );
 
-    if ($candidates.length !== 1) sr.warning(self, 'not-found');
+    if ($candidates.length !== 1) context.warning(self, 'not-found');
 };
