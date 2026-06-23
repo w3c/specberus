@@ -108,20 +108,16 @@
         "**/*.ttf",
         "**/*.woff",
         "**/*.svg",
-        ".nyc_output/**",
         ".github/**",
         "coverage/**",
         "test/**/*.html",
         "package-lock.json",
         "tsconfig.json",
-        "lib/**/*.js",
+        "{lib,test}/**/*.{d.ts,js}",
         "node_modules/**",
         "design/**"
     ],
-    "ignoreRegExpList": [
-        "/require\\(.*\\);/",
-        "(FIXME|TODO|XXX)\\(.[^\\)]+\\)"
-    ],
+    "ignoreRegExpList": ["(FIXME|TODO|XXX)\\(.[^\\)]+\\)"],
     "overrides": [
         {
             "filename": ["package.json"],
