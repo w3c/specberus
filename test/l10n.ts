@@ -103,8 +103,8 @@ const scanStrings = function () {
 /**
  * Scans “baseDir” and finds heuristically all sections, rules, and message IDs.
  *
- * The search relies on a regex that tries to find instances of “sr.error()” etc, so it's not exact.
- * Return a promise that will be fulfilled if/when all directories and files are read successfully.
+ * The search relies on a regex that tries to find instances of “context.error()” etc, so it's not exact.
+ * Returns a promise that will be fulfilled if/when all directories and files are read successfully.
  */
 async function scanFileSystem() {
     const result: Record<string, Record<string, Record<string, true>>> = {};

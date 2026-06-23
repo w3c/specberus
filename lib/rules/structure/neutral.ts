@@ -17,14 +17,14 @@ for (const item of badterms) {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
+export const check: RuleCheckFunction = context => {
     const blocklistReg = new RegExp(`\\b${blocklist.join('\\b|\\b')}\\b`, 'ig');
     const unneutralList: string[] = [];
     // Use a cloned body instead of the original one, prevent '.remove()' side effects.
-    const $body = sr.$('body').first().clone();
+    const $body = context.$('body').first().clone();
     const $links = $body.find('a');
     $links.each((_, link) => {
-        const $link = sr.$(link);
+        const $link = context.$(link);
         const href = $link.attr('href');
         const linkText = $link.text();
         // let words in link like: <a href="https://github.com/master/usage">https://github.com/master/usage</a> --> pass the check
@@ -41,5 +41,5 @@ export const check: RuleCheckFunction = sr => {
             }
         });
     if (unneutralList.length)
-        sr.warning(self, 'neutral', { words: unneutralList.join('", "') });
+        context.warning(self, 'neutral', { words: unneutralList.join('", "') });
 };

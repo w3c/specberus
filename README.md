@@ -22,7 +22,7 @@ Specberus is a [Node.js](https://nodejs.org/en/) application, [distributed throu
 Alternatively, you can clone [the repository](https://github.com/w3c/specberus) and run:
 
 ```bash
-$ npm install -d
+$ npm install
 ```
 
 In order to get all the dependencies installed. Naturally, this requires that you have a reasonably
@@ -30,8 +30,7 @@ recent version of Node.js installed.
 
 ## 2. Running
 
-Currently there is no shell to run Specberus. Later we will add both Web and CLI interfaces based
-on the same core library.
+Specberus runs as a web server, providing both HTML form UI and API endpoints.
 
 ### Syntax and command-line parameters
 
@@ -147,12 +146,12 @@ $ RULE=copyright TYPE=noCopyright npm run test
 
 ## 4. JS API
 
-The interface you get when you `import { Specberus } from "specberus"` is that from `lib/validator`.
+The interface you get when you `import { Specberus } from "specberus"` is that from `lib/specberus`.
 `Specberus` is a class configured for operation in the Node.js environment.
 
 (See also [the REST API](#5-rest-api).)
 
-## Creating a Validator instance
+## Creating a Specberus instance
 
 ```js
 import { Specberus } from 'specberus';
@@ -435,22 +434,27 @@ Events listed below are expressed with parameters to reflect what is passed to t
 
 ## 8. Writing rules
 
-Rules are simple modules that just expose a `check(sr)` method. They receive a Specberus object,
+Rules are simple modules that expose a `check(context)` method. They receive a context object,
 which they use to examine the document and fire validation events. They return a promise which
 resolves on completion (regardless of pass or fail) or rejects on unexpected system error
 (exception). Usually, they are written as `async` functions to automatically handle the
 resolve vs. reject distinction.
 
-The Specberus object exposes the following APIs useful for validation:
+The context object includes the following APIs useful for validation:
+
+### Properties
 
 - `source`. The HTML source of the document being processed
 - `url`. The URL of the document being processed, only applicable if `options.url` was specified
+- `version`. The Specberus version.
+
+### Methods
+
 - `error`, `warn`, `info`. Methods for firing respective levels of events on the instance.
   All three methods accept the same arguments:
     - `rule` object: at minimum, an object with a `name` string. May also contain `rule` and `section` strings.
     - `key` string: specifies the precise occurrence within the particular `rule`
     - `extra` object (optional): any additional fields to include within the event
-- `version`. The Specberus version.
 - `checkSelector(selector, ruleName)`. Some rules need to do nothing other than to check that a
   selector returns some content. This handles checking the selector, reporting an error if it is
   not found, or throwing an error if the selector is invalid.

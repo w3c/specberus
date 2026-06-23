@@ -22,12 +22,12 @@ const historyError: RuleMeta = {
 };
 export const name = self.name;
 
-export const check: RuleCheckFunction = async sr => {
+export const check: RuleCheckFunction = async context => {
     let topLevel = 'TR';
 
-    if (sr.config!.submissionType === 'member') topLevel = 'submissions';
+    if (context.config!.submissionType === 'member') topLevel = 'submissions';
 
-    const dts = sr.extractHeaders();
+    const dts = context.extractHeaders();
 
     let shortname = '';
     let seriesShortname = '';
@@ -37,7 +37,7 @@ export const check: RuleCheckFunction = async sr => {
 
         if ($linkThis.attr('href')) {
             const vThisRex = `^https:\\/\\/www\\.w3\\.org\\/${topLevel}\\/(\\d{4})\\/${
-                sr.config!.status || '[A-Z]+'
+                context.config!.status || '[A-Z]+'
             }-(.+)-(\\d{4})(\\d\\d)(\\d\\d)\\/?$`;
             const matches = ($linkThis.attr('href') || '')
                 .trim()
@@ -57,9 +57,11 @@ export const check: RuleCheckFunction = async sr => {
                         .find('a')
                         .first()
                         .attr('data-previous-shortname');
-                const needLowercase = shortnameChange || (await sr.isFP());
+                const needLowercase = shortnameChange || (await context.isFP());
                 if (needLowercase && shortname.toLowerCase() !== shortname)
-                    sr.error(thisError, 'shortname-lowercase', { shortname });
+                    context.error(thisError, 'shortname-lowercase', {
+                        shortname,
+                    });
             }
         }
     }
@@ -77,7 +79,7 @@ export const check: RuleCheckFunction = async sr => {
                 sn = matches[1];
                 // latest version link mention either shortlink or the series shortlink
                 if (sn !== shortname && sn !== seriesShortname)
-                    sr.error(self, 'this-latest-shortname', {
+                    context.error(self, 'this-latest-shortname', {
                         thisShortname: shortname,
                         latestShortname: sn,
                     });
@@ -97,7 +99,9 @@ export const check: RuleCheckFunction = async sr => {
             if (matches) {
                 const [, historyShortname] = matches;
                 if (historyShortname !== shortname) {
-                    sr.error(historyError, 'history-syntax', { shortname });
+                    context.error(historyError, 'history-syntax', {
+                        shortname,
+                    });
                 } else {
                     // Check if the history link exist
                     let historyStatusCode;
@@ -107,7 +111,7 @@ export const check: RuleCheckFunction = async sr => {
                     } catch (err) {
                         historyStatusCode = err.status;
                     }
-                    var hasPreviousVersion = !(await sr.isFP());
+                    var hasPreviousVersion = !(await context.isFP());
                     if (hasPreviousVersion && historyStatusCode === 404) {
                         // it's a none FP spec, but the history page doesn't exist. There should be a 'valid' previous-shortname.
                         const previousShortname = $linkHistory.attr(
@@ -115,7 +119,7 @@ export const check: RuleCheckFunction = async sr => {
                         );
                         if (previousShortname) {
                             // prettier-ignore
-                            sr.warning(historyError, 'this-previous-shortname',
+                            context.warning(historyError, 'this-previous-shortname',
                                 {
                                     previousShortname,
                                     thisShortname: shortname,
@@ -134,10 +138,14 @@ export const check: RuleCheckFunction = async sr => {
                             }
 
                             if (previousHistoryStatusCode === 404) {
-                                sr.error(historyError, 'history-bad-previous', {
-                                    previousShortname,
-                                    url: previousHistoryHref,
-                                });
+                                context.error(
+                                    historyError,
+                                    'history-bad-previous',
+                                    {
+                                        previousShortname,
+                                        url: previousHistoryHref,
+                                    }
+                                );
                             }
                         }
                     }
@@ -159,7 +167,7 @@ export const check: RuleCheckFunction = async sr => {
             if (matches) {
                 sn = matches[1];
                 if (sn !== shortname)
-                    sr.error(self, 'this-rescinds-shortname', {
+                    context.error(self, 'this-rescinds-shortname', {
                         rescindsShortname: sn,
                         thisShortname: shortname,
                     });
@@ -168,26 +176,26 @@ export const check: RuleCheckFunction = async sr => {
     }
 
     // check shortname is valid.
-    const isFP = await sr.isFP();
+    const isFP = await context.isFP();
     // FP documents cannot use existing shortname
     if (
-        sr.config!.longStatus === 'First Public Working Draft' &&
+        context.config!.longStatus === 'First Public Working Draft' &&
         !isFP &&
         shortname
     ) {
-        sr.error(self, 'shortname-existed');
+        context.error(self, 'shortname-existed');
     }
 
     // non-initial state documents should use existing shortname
     // TODO: Registry and Note track?
     if (
-        sr.config!.track === 'Recommendation' &&
-        sr.config!.longStatus !== 'First Public Working Draft' &&
+        context.config!.track === 'Recommendation' &&
+        context.config!.longStatus !== 'First Public Working Draft' &&
         isFP &&
         shortname
     ) {
-        sr.error(self, 'shortname-not-existed', {
-            status: sr.config!.longStatus,
+        context.error(self, 'shortname-not-existed', {
+            status: context.config!.longStatus,
         });
     }
 };

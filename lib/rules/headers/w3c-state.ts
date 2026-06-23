@@ -9,24 +9,24 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const config = sr.config!;
+export const check: RuleCheckFunction = context => {
+    const config = context.config!;
     let profileFound = false;
 
     if (config.longStatus) return;
-    const $stateEl = sr.getDocumentStateElement();
+    const $stateEl = context.getDocumentStateElement();
     if (!$stateEl) {
-        sr.error(self, 'no-w3c-state');
+        context.error(self, 'no-w3c-state');
         return;
     }
-    const txt = sr.norm($stateEl.text());
+    const txt = context.norm($stateEl.text());
     // crType/cryType: Add 'Draft', 'Snapshot' suffix to title.
     const docTitle =
         config.longStatus +
         (config.crType ? ` ${config.crType}` : '') +
         (config.cryType ? ` ${config.cryType}` : '');
     if (!txt.startsWith(`W3C ${docTitle}`)) {
-        sr.error(self, 'bad-w3c-state');
+        context.error(self, 'bad-w3c-state');
     }
 
     for (const { profiles } of Object.values(rules))
@@ -39,7 +39,7 @@ export const check: RuleCheckFunction = sr => {
                 }
             }
 
-    if (!profileFound) sr.error(self, 'bad-w3c-state');
+    if (!profileFound) context.error(self, 'bad-w3c-state');
     else {
         // check the profile link
         const $standardLink = $stateEl.find('a').first();
@@ -52,12 +52,12 @@ export const check: RuleCheckFunction = sr => {
             `https://www.w3.org/standards/types/?#${hash}`
         );
         if (!$standardLink.length) {
-            sr.error(self, 'no-w3c-state-link');
+            context.error(self, 'no-w3c-state-link');
         } else if (!expectedLink.test($standardLink.attr('href') || '')) {
-            sr.error(self, 'wrong-w3c-state-link', {
+            context.error(self, 'wrong-w3c-state-link', {
                 hash,
                 linkFound: $standardLink.attr('href'),
-                text: sr.norm($standardLink.text()),
+                text: context.norm($standardLink.text()),
             });
         }
     }

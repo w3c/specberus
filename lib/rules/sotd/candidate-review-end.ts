@@ -8,28 +8,32 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
+export const check: RuleCheckFunction = context => {
     const isEditorial =
-        (sr.config!.editorial && /^true$/i.test(sr.config!.editorial)) || false;
+        (context.config!.editorial &&
+            /^true$/i.test(context.config!.editorial)) ||
+        false;
     if (isEditorial) {
-        sr.warning(self, 'editorial');
+        context.warning(self, 'editorial');
     } else {
-        const dates = sr.getFeedbackDueDate();
-        if (dates.list.length === 0) sr.error(self, 'not-found');
+        const dates = context.getFeedbackDueDate();
+        if (dates.list.length === 0) context.error(self, 'not-found');
         else {
             let res;
 
             if (dates.valid.length === 1) {
                 [res] = dates.valid;
-                sr.info(self, 'date-found', { date: res.toDateString() });
+                context.info(self, 'date-found', { date: res.toDateString() });
             } else if (dates.valid.length > 1) {
-                sr.warning(self, 'multiple-found');
+                context.warning(self, 'multiple-found');
                 res = dates.valid.map(item => new Date(item).toDateString());
-                sr.info(self, 'date-found', { date: res.join(', ') });
+                context.info(self, 'date-found', { date: res.join(', ') });
             } else {
                 // dates found but not valid
                 res = dates.list.map(item => new Date(item).toDateString());
-                sr.error(self, 'found-not-valid', { date: res.join(', ') });
+                context.error(self, 'found-not-valid', {
+                    date: res.join(', '),
+                });
             }
         }
     }

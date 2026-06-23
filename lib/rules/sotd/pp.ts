@@ -1,7 +1,7 @@
 import type { Cheerio } from 'cheerio';
 import type { Element } from 'domhandler';
 
-import type { Specberus } from '../../validator.js';
+import type { RuleContext } from '../../rule-context.js';
 import type { RuleCheckFunction, RuleMeta } from '../../types.js';
 
 const self: RuleMeta = {
@@ -14,8 +14,8 @@ const ppLink = 'https://www.w3.org/policies/patent-policy/';
 const ppLink2020 = 'https://www.w3.org/policies/patent-policy/20200915/';
 const ppLink2025 = 'https://www.w3.org/policies/patent-policy/20250515/';
 
-function buildWanted(groups: string[], sr: Specberus) {
-    const config = sr.config!;
+function buildWanted(groups: string[], context: RuleContext) {
+    const config = context.config!;
     let wanted;
     const isRecTrack = config.track === 'Recommendation';
     const ppText = '( 15 September 2020| 15 May 2025)?';
@@ -60,15 +60,15 @@ function buildWanted(groups: string[], sr: Specberus) {
     };
 }
 
-function findPP($candidates: Cheerio<Element>, sr: Specberus) {
-    const delivererGroups = sr.getDelivererNames();
-    if (delivererGroups.length > 1) sr.warning(self, 'joint-publication');
+function findPP($candidates: Cheerio<Element>, context: RuleContext) {
+    const delivererGroups = context.getDelivererNames();
+    if (delivererGroups.length > 1) context.warning(self, 'joint-publication');
 
-    const wanted = buildWanted(delivererGroups, sr);
+    const wanted = buildWanted(delivererGroups, context);
     const expected = wanted.text;
     for (const p of $candidates.toArray()) {
-        const $p = sr.$(p);
-        const text = sr.norm($p.text());
+        const $p = context.$(p);
+        const text = context.norm($p.text());
         if (wanted.regex.test(text)) return { $pp: $p, expected };
     }
     return { $pp: null, expected };
@@ -76,18 +76,18 @@ function findPP($candidates: Cheerio<Element>, sr: Specberus) {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $sotd = sr.getSotDSection();
-    const track = sr.config!.track;
+export const check: RuleCheckFunction = context => {
+    const $sotd = context.getSotDSection();
+    const track = context.config!.track;
     const isRecTrack = track === 'Recommendation';
 
     if ($sotd) {
         const { $pp, expected } = findPP(
             $sotd.filter('p').add($sotd.find('p')),
-            sr
+            context
         );
         if (!$pp) {
-            sr.error(self, 'no-pp', { expected });
+            context.error(self, 'no-pp', { expected });
             return;
         }
 
@@ -96,9 +96,9 @@ export const check: RuleCheckFunction = sr => {
         let foundEssentials = false;
         let foundSection6 = false;
         $pp.find('a[href]').each((_, a) => {
-            const $a = sr.$(a);
+            const $a = context.$(a);
             const href = $a.attr('href')!;
-            const text = sr.norm($a.text());
+            const text = context.norm($a.text());
             const possiblePPLinks = [ppLink, ppLink2020, ppLink2025];
             if (
                 possiblePPLinks.includes(href) &&
@@ -136,14 +136,15 @@ export const check: RuleCheckFunction = sr => {
             }
         });
 
-        if (!foundLink) sr.error(self, 'no-link');
-        if (!foundPublicList && isRecTrack) sr.error(self, 'no-disclosures');
+        if (!foundLink) context.error(self, 'no-link');
+        if (!foundPublicList && isRecTrack)
+            context.error(self, 'no-disclosures');
         if (
             (track === 'Recommendation' || track === 'Note') &&
             isRecTrack &&
             !foundEssentials
         )
-            sr.error(self, 'no-claims', {
+            context.error(self, 'no-claims', {
                 link: `${ppLink}#def-essential`,
             });
         if (
@@ -151,7 +152,7 @@ export const check: RuleCheckFunction = sr => {
             isRecTrack &&
             !foundSection6
         )
-            sr.error(self, 'no-section6', {
+            context.error(self, 'no-section6', {
                 link: `${ppLink}#sec-Disclosure`,
             });
     }

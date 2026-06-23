@@ -1,4 +1,5 @@
-import type { Specberus, ValidateOptions } from './validator.js';
+import type { ValidateOptions } from './specberus.js';
+import type { RuleContext } from './rule-context.js';
 
 type Status =
     | 'FPWD'
@@ -64,7 +65,9 @@ export interface RecMetadata {
     rectrack?: string | null;
 }
 
-export type RuleCheckFunction<R = void> = (sr: Specberus) => R | Promise<R>;
+export type RuleCheckFunction<R = void> = (
+    context: RuleContext
+) => R | Promise<R>;
 
 export interface RuleBase {
     name: string;

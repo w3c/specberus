@@ -9,7 +9,7 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
+export const check: RuleCheckFunction = context => {
     /**
      * Get the timestamp of a day, regardless the time of the day.
      * This function creates a new `Date` to avoid modifying the original one.
@@ -21,10 +21,10 @@ export const check: RuleCheckFunction = sr => {
         return new Date(date.getTime()).setHours(0, 0, 0, 0);
     }
 
-    const documentDate = sr.getDocumentDate();
+    const documentDate = context.getDocumentDate();
     if (!(documentDate instanceof Date)) {
-        sr.error(self, 'date-not-detected');
+        context.error(self, 'date-not-detected');
     } else if (getDateTime(documentDate) !== getDateTime(new Date())) {
-        sr.error(self, 'wrong-date');
+        context.error(self, 'wrong-date');
     }
 };

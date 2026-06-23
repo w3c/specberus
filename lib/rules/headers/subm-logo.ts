@@ -6,11 +6,11 @@ const self = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $logo = sr
+export const check: RuleCheckFunction = context => {
+    const $logo = context
         .$("body div.head a[href] > img[src][height='48'][width='211'][alt]")
         .first();
-    const type = sr.config!.submissionType || 'member';
+    const type = context.config!.submissionType || 'member';
     const checks = {
         member: {
             alt: 'W3C Member Submission',
@@ -24,7 +24,7 @@ export const check: RuleCheckFunction = sr => {
         !checks[type].src.test($logo.attr('src') || '') ||
         !checks[type].href.test($logo.parent().attr('href') || '')
     ) {
-        sr.error(self, 'not-found', {
+        context.error(self, 'not-found', {
             type: type.charAt(0).toUpperCase() + type.slice(1),
         });
     }

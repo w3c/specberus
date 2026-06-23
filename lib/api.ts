@@ -12,7 +12,7 @@ import {
     Specberus,
     type SpecberusResult,
     type ValidateOptions,
-} from './validator.js';
+} from './specberus.js';
 
 /** Data types emitted by error events */
 type ErrorHandlerMessage =

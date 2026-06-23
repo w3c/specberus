@@ -10,15 +10,15 @@ const self: RuleMeta = {
 };
 export const name = self.name;
 
-export const check: RuleCheckFunction = async sr => {
-    const groups = await sr.getDelivererIDs();
-    const editors = sr.extractHeaders()?.Editor;
+export const check: RuleCheckFunction = async context => {
+    const groups = await context.getDelivererIDs();
+    const editors = context.extractHeaders()?.Editor;
     const editorsToCheck = [];
     if (editors) {
         // only check editors elements that don't have a span with class "former"
         for (const dd of editors.$dd.toArray()) {
-            const $former = sr.$(dd).find('span.former').first();
-            if (!$former.length || !sr.norm($former.text())) {
+            const $former = context.$(dd).find('span.former').first();
+            if (!$former.length || !context.norm($former.text())) {
                 if (dd.attribs['data-editor-id'])
                     editorsToCheck.push(
                         parseInt(dd.attribs['data-editor-id'], 10)
@@ -49,7 +49,7 @@ export const check: RuleCheckFunction = async sr => {
 
     editorsToCheck.forEach(id => {
         if (!userIds.includes(id)) {
-            sr.error(self, 'not-participating', { id });
+            context.error(self, 'not-participating', { id });
         }
     });
 };

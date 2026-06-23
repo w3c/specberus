@@ -12,16 +12,16 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const dts = sr.extractHeaders();
+export const check: RuleCheckFunction = context => {
+    const dts = context.extractHeaders();
     if (!dts.Feedback) {
-        sr.error(self, 'no-feedback');
+        context.error(self, 'no-feedback');
         return;
     }
 
     // Check 'github repo' exist in 'Feedback:'
     const foundRepo = dts.Feedback.$dd.toArray().some(feedbackEl => {
-        const links = sr
+        const links = context
             .$(feedbackEl)
             .find('a[href]')
             .toArray()
@@ -37,5 +37,5 @@ export const check: RuleCheckFunction = sr => {
         //     href
         // );
     });
-    if (!foundRepo) sr.error(self, 'no-repo');
+    if (!foundRepo) context.error(self, 'no-repo');
 };

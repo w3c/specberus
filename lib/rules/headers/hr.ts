@@ -8,12 +8,13 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const hasHrLastChild = sr.$('body div.head > hr:last-child').length === 1;
-    const hasHrNextSibling = sr.$('body div.head + hr').length === 1;
+export const check: RuleCheckFunction = context => {
+    const hasHrLastChild =
+        context.$('body div.head > hr:last-child').length === 1;
+    const hasHrNextSibling = context.$('body div.head + hr').length === 1;
     if (hasHrLastChild && hasHrNextSibling) {
-        sr.error(self, 'duplicate');
+        context.error(self, 'duplicate');
     } else if (!hasHrLastChild && !hasHrNextSibling) {
-        sr.error(self, 'not-found');
+        context.error(self, 'not-found');
     }
 };
