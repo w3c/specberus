@@ -19,7 +19,7 @@ import * as api from './lib/api.js';
 import badterms from './lib/badterms.js';
 import * as l10n from './lib/l10n.js';
 import { allProfiles, specberusVersion } from './lib/util.js';
-import { ExceptionsError, Specberus } from './lib/validator.js';
+import { ExceptionsError, Specberus } from './lib/specberus.js';
 import * as views from './lib/views.js';
 import type { ProfileModule } from './lib/types.js';
 

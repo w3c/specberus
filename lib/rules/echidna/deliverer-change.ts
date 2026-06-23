@@ -27,13 +27,9 @@ async function getPreviousDelivererIDs(
     return data.map(({ id }) => id);
 }
 
-/**
- * @param sr
- * @param done
- */
-export const check: RuleCheckFunction = async sr => {
-    const previousVersion = await sr.getPreviousVersion();
-    const shortname = await sr.getShortname();
+export const check: RuleCheckFunction = async context => {
+    const previousVersion = await context.getPreviousVersion();
+    const shortname = await context.getShortname();
 
     if (!previousVersion || !shortname) return;
 
@@ -41,14 +37,14 @@ export const check: RuleCheckFunction = async sr => {
         shortname,
         previousVersion
     );
-    const delivererIDs = await sr.getDelivererIDs();
+    const delivererIDs = await context.getDelivererIDs();
 
     const delivererChanged =
         delivererIDs.sort().toString() !==
         previousDelivererIDs.sort().toString();
 
     if (delivererChanged) {
-        sr.error(self, 'deliverer-changed', {
+        context.error(self, 'deliverer-changed', {
             this: delivererIDs.sort().toString(),
             previous: previousDelivererIDs.sort().toString(),
         });

@@ -8,8 +8,10 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $logo = sr.$("body div.head a[href] > img[src][alt='W3C']").first();
+export const check: RuleCheckFunction = context => {
+    const $logo = context
+        .$("body div.head a[href] > img[src][alt='W3C']")
+        .first();
     if (
         !$logo.length ||
         !/^(https:)?\/\/www\.w3\.org\/StyleSheets\/TR\/2021\/logos\/W3C?$/.test(
@@ -19,6 +21,6 @@ export const check: RuleCheckFunction = sr => {
             $logo.parent().attr('href') || ''
         )
     ) {
-        sr.error(self, 'not-found');
+        context.error(self, 'not-found');
     }
 };

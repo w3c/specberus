@@ -11,12 +11,12 @@ interface EditorNamesMetadata {
     editorNames: string[];
 }
 
-export const check: RuleCheckFunction<EditorNamesMetadata> = sr => {
-    const dts = sr.extractHeaders();
+export const check: RuleCheckFunction<EditorNamesMetadata> = context => {
+    const dts = context.extractHeaders();
     const editorNames: string[] = [];
     if (dts.Editor) {
         dts.Editor.$dd.each((_, el) => {
-            const editor = sr
+            const editor = context
                 .$(el)
                 .text()
                 .trim()

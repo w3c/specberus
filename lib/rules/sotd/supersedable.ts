@@ -15,14 +15,14 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $sotd = sr.getSotDSection();
+export const check: RuleCheckFunction = context => {
+    const $sotd = context.getSotDSection();
     if ($sotd) {
         let $em = $sotd.filter('p').children('em').first();
         if (!$em.length) $em = $sotd.find('p em').first();
-        const txt = sr.norm($em.text());
+        const txt = context.norm($em.text());
         const wanted = `${'This section describes the status of this document at the time of its publication. A list of current W3C publications '}${
-            sr.config!.status === 'SUBM'
+            context.config!.status === 'SUBM'
                 ? ''
                 : 'and the latest revision of this technical report '
         }can be found in the W3C standards and drafts index.`;
@@ -34,13 +34,13 @@ export const check: RuleCheckFunction = sr => {
 
         if (txt !== wanted) {
             if (txt === deprecatedWanted) {
-                sr.warning(self, 'deprecated');
+                context.warning(self, 'deprecated');
             } else {
-                sr.error(self, 'no-sotd-intro');
+                context.error(self, 'no-sotd-intro');
             }
         }
 
         const $a = $em.find("a[href='https://www.w3.org/TR/']");
-        if (!$a.length) sr.error(self, 'no-sotd-tr');
+        if (!$a.length) context.error(self, 'no-sotd-tr');
     }
 };

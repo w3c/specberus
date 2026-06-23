@@ -15,7 +15,7 @@ import superagent, { type Response, type ResponseError } from 'superagent';
 
 import { setUp } from '../lib/api.js';
 import { specberusVersion } from '../lib/util.js';
-import type { SpecberusResult } from '../lib/validator.js';
+import type { SpecberusResult } from '../lib/specberus.js';
 import { cleanupMocks, setupMocks } from './lib/utils.js';
 
 // Settings:

@@ -11,7 +11,7 @@ import {
     ExceptionsError,
     Specberus,
     type SpecberusResult,
-} from '../lib/validator.js';
+} from '../lib/specberus.js';
 // A list of good documents to be tested, using all rules configured in the profiles.
 // Shouldn't cause any error.
 import { goodDocuments } from './data/goodDocuments.js';

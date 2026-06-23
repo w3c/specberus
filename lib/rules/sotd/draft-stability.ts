@@ -10,9 +10,9 @@ const self: RuleMeta = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
-    const $sotd = sr.getSotDSection();
-    const { crType, cryType } = sr.config!;
+export const check: RuleCheckFunction = context => {
+    const $sotd = context.getSotDSection();
+    const { crType, cryType } = context.config!;
     const STABILITY_REX =
         /This is a draft document and may be updated, replaced,? or obsoleted by other documents at any time\. It is inappropriate to cite this document as other than a work in progress\./;
 
@@ -20,21 +20,21 @@ export const check: RuleCheckFunction = sr => {
         'This document is maintained and updated at any time. Some parts of this document are work in progress.';
 
     if ($sotd) {
-        const txt = sr.norm($sotd.text());
+        const txt = context.norm($sotd.text());
         // CRD and CRYD allows both sentence.
         if (
             (crType && crType === 'Draft') ||
             (cryType && cryType === 'Draft')
         ) {
             if (!txt.match(STABILITY_REX) && !txt.includes(STABILITY_2))
-                sr.error(self, 'not-found-either', {
+                context.error(self, 'not-found-either', {
                     expected1: STABILITY_REX,
                     expected2: STABILITY_2,
                 });
         }
         // while other profiles allows only 'STABILITY' sentence
         else if (!txt.match(STABILITY_REX))
-            sr.error(self, 'not-found', {
+            context.error(self, 'not-found', {
                 expected: STABILITY_REX,
             });
     }

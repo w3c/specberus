@@ -7,10 +7,6 @@ import type { RuleCheckFunction } from '../../types.js';
 // 'self.name' would be 'metadata.deliverers'
 export const name = 'metadata.deliverers';
 
-/**
- * @param sr
- * @param done
- */
 export const check: RuleCheckFunction<{
     delivererIDs: number[];
-}> = async sr => ({ delivererIDs: await sr.getDelivererIDs() });
+}> = async context => ({ delivererIDs: await context.getDelivererIDs() });

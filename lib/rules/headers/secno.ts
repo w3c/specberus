@@ -10,12 +10,12 @@ const self = {
 
 export const { name } = self;
 
-export const check: RuleCheckFunction = sr => {
+export const check: RuleCheckFunction = context => {
     // TODO: once supported, use: ":is(h2, h3, h4, h5, h6) :is(bdi.secno,span.secno)"
-    const $secnos = sr.$(
+    const $secnos = context.$(
         'h1 span.secno, h2 span.secno, h3 span.secno, h4 span.secno, h5 span.secno, h6 span.secno, #toc span.secno,' +
             'h1 bdi.secno, h2 bdi.secno, h3 bdi.secno, h4 bdi.secno, h5 bdi.secno, h6 bdi.secno, #toc bdi.secno'
     );
 
-    if (!$secnos.length) sr.warning(self, 'not-found');
+    if (!$secnos.length) context.warning(self, 'not-found');
 };

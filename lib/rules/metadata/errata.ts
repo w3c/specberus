@@ -12,12 +12,12 @@ interface ErrataMetadata {
     errata: string;
 }
 
-export const check: RuleCheckFunction<ErrataMetadata | void> = sr => {
+export const check: RuleCheckFunction<ErrataMetadata | void> = context => {
     const errataRegex = /errata/i;
-    const $links = sr.$('body div.head details + p > a');
+    const $links = context.$('body div.head details + p > a');
     const errata = $links
         .toArray()
-        .filter(el => errataRegex.test(sr.$(el).text()));
+        .filter(el => errataRegex.test(context.$(el).text()));
     if (errata.length && errata[0].attribs.href)
         return { errata: errata[0].attribs.href };
 };

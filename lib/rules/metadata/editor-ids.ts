@@ -18,8 +18,8 @@ interface EditorIDsMetadata {
     editorIDs: number[];
 }
 
-export const check: RuleCheckFunction<EditorIDsMetadata> = async sr => {
-    const dts = sr.extractHeaders();
+export const check: RuleCheckFunction<EditorIDsMetadata> = async context => {
+    const dts = context.extractHeaders();
     const editorIds: number[] = [];
     const unresolvedUsernames = [];
     if (dts.Editor) {
@@ -36,7 +36,7 @@ export const check: RuleCheckFunction<EditorIDsMetadata> = async sr => {
                         if (id) editorIds.push(id);
                         else unresolvedUsernames.push(editorGithub);
                     } catch (error) {
-                        sr.error(self, 'editor-github-failed', {
+                        context.error(self, 'editor-github-failed', {
                             name: error.cause,
                         });
                     }
@@ -44,7 +44,7 @@ export const check: RuleCheckFunction<EditorIDsMetadata> = async sr => {
             }
         }
         if (unresolvedUsernames.length) {
-            sr.error(self, 'editor-github-unresolvable', {
+            context.error(self, 'editor-github-unresolvable', {
                 names: unresolvedUsernames,
             });
         }
