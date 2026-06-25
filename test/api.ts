@@ -107,6 +107,12 @@ describe('API', () => {
     });
 
     describe('Method “metadata”', () => {
+        it('Should respond with 400 status if "file" is not specified via POST', () =>
+            assert.rejects(createPostRequest('metadata'), (error: any) => {
+                assertResponseStatus(error.response, 400);
+                return true;
+            }));
+
         it('Should accept "file" via POST, and return the right profile and date', () =>
             createPostRequest('metadata')
                 .attach('file', join(testDocsPath, 'ttml-imsc1.html'))
@@ -144,6 +150,12 @@ describe('API', () => {
                 .get(/^\/TR\/ttml-imsc1.3\/(Overview\.html)?$/)
                 .reply(200, await readFile(imscPath, 'utf8'));
         });
+
+        it('Should respond with 400 status if "file" is not specified via POST', () =>
+            assert.rejects(createPostRequest('validate'), (error: any) => {
+                assertResponseStatus(error.response, 400);
+                return true;
+            }));
 
         it('Should 400 and return an array of errors when validation fails', () =>
             assert.rejects(
