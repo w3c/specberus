@@ -100,3 +100,8 @@ export interface ApiCharter {
 export interface ApiSpecificationVersion {
     uri: string;
 }
+
+/** Borrowed from @types/qs to avoid a transitive dependency for typings */
+export interface ParsedQs {
+    [key: string]: undefined | string | ParsedQs | (string | ParsedQs)[];
+}

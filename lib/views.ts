@@ -7,6 +7,7 @@ import genericSections, {
     type GenericRulesSection,
 } from './rules-generic-sections.js';
 import { specberusVersion } from './util.js';
+import type { ParsedQs } from './types.js';
 
 // Settings:
 const DEBUG = process && process.env && process.env.DEBUG;
@@ -141,7 +142,7 @@ interface RetrieveProfileResult {
 }
 
 // TODO(tripu): Document.
-function retrieveProfile(query: qs.ParsedQs) {
+function retrieveProfile(query: ParsedQs) {
     let result: RetrieveProfileResult | { error: string } | undefined;
 
     if (query && query.profile && typeof query.profile === 'string') {
