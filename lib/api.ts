@@ -5,7 +5,7 @@
 import { fileTypeFromFile } from 'file-type';
 import type { Express, Request, Response } from 'express';
 
-import type { HandlerMessage } from './types.js';
+import type { HandlerMessage, ParsedQs } from './types.js';
 import { processParams, specberusVersion } from './util.js';
 import {
     ExceptionsError,
@@ -124,7 +124,7 @@ function handlePromise(
 const processRequest = async (
     req: Request,
     res: Response,
-    params: qs.ParsedQs
+    params: ParsedQs
 ) => {
     const shouldValidate = getFullUrl(req).pathname === '/api/validate';
 

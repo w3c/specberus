@@ -407,7 +407,7 @@ so listeners can be registered using the `on` API.
 
 ```js
 const specberus = new Specberus();
-specberus.on('error', (rule, data) => {
+specberus.on('err', (rule, data) => {
     // ...
 });
 ```

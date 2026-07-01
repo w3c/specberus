@@ -11,7 +11,7 @@ import { Octokit } from '@octokit/core';
 // @ts-ignore (no typings)
 import w3cApi from 'node-w3capi';
 
-import type { SpecberusConfig } from './types.js';
+import type { ParsedQs, SpecberusConfig } from './types.js';
 import type { ValidateOptions } from './specberus.js';
 import pkg from '../package.json' with { type: 'json' };
 
@@ -97,7 +97,7 @@ interface ProcessParamsConstraints {
  * @throws {Error} if there is an error in the parameters.
  */
 export async function processParams(
-    params: qs.ParsedQs | ValidateOptions,
+    params: ParsedQs | ValidateOptions,
     base: Partial<SpecberusConfig> = {},
     constraints: ProcessParamsConstraints = {}
 ) {
@@ -136,7 +136,7 @@ export async function processParams(
             // Other params:
             if (Object.hasOwn(result, p))
                 throw new Error(`Parameter “${p}” is used more than once`);
-            result[p] = (params as qs.ParsedQs)[p];
+            result[p] = (params as ParsedQs)[p];
         } else if (!constraints?.allowUnknownParams)
             // Illegal params:
             throw new Error(`Illegal parameter “${p}”`);
