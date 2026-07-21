@@ -16,9 +16,7 @@ import {
 
 /** Data types emitted by error events */
 type ErrorHandlerMessage =
-    | { error: string }
-    | { exception: string }
-    | HandlerMessage;
+    { error: string } | { exception: string } | HandlerMessage;
 
 interface ApiResult extends Omit<SpecberusResult, 'errors'> {
     errors: ErrorHandlerMessage[];
