@@ -52,7 +52,7 @@
     "nock": "15.0.0",
     "prettier": "3.9.5",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   },
   "scripts": {
     "build": "tsc",
