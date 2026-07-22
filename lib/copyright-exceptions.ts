@@ -51,4 +51,9 @@ export default [
         copyright:
             '<a href="https://www.w3.org/policies/#copyright">Copyright</a> © @YEAR <a href="https://www.w3.org/">World Wide Web Consortium</a> and WHATWG (Apple, Google, Mozilla, Microsoft). <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, and <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> rules apply. This work is made available under a dual license: the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a> (CC BY 4.0), and the <a href="https://www.w3.org/copyright/software-license-2023/">W3C Software and Document license</a>. Portions of this work are derived from material originally published by the WHATWG under the CC BY 4.0 license; those portions remain available under that license.',
     },
+    {
+        specShortnames: ['vocab-ssn-2023'],
+        copyright:
+            '<a href="https://www.w3.org/policies/#copyright">Copyright</a> © @YEAR <a href="http://www.opengeospatial.org/">OGC</a> &amp; <a href="https://www.w3.org/"> World Wide Web Consortium</a>, <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a>, <a href="https://www.w3.org/copyright/software-license/">W3C</a> and <a href="https://www.ogc.org/ogc/document">OGC</a> document use rules apply.',
+    },
 ] satisfies CopyrightException[];
