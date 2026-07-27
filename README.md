@@ -1,7 +1,6 @@
-[![Build Status](https://github.com/w3c/specberus/workflows/Specberus%20tests/badge.svg)](https://github.com/w3c/specberus/actions)
-[![Coverage Status](https://coveralls.io/repos/w3c/specberus/badge.svg)](https://coveralls.io/r/w3c/specberus)
-[![Dependency Status](https://david-dm.org/w3c/specberus.svg)](https://david-dm.org/w3c/specberus)
-[![devDependency Status](https://david-dm.org/w3c/specberus/dev-status.svg)](https://david-dm.org/w3c/specberus#info=devDependencies)
+[![Tests status](https://github.com/w3c/specberus/actions/workflows/node.js.yml/badge.svg)](https://github.com/w3c/specberus/actions/workflows/node.js.yml)
+[![Lint Status](https://github.com/w3c/specberus/actions/workflows/js-lint.yml/badge.svg)](https://github.com/w3c/specberus/actions/workflows/js-lint.yml)
+![Dependency Status](https://img.shields.io/librariesio/github/w3c/specberus)
 
 # Specberus
 
