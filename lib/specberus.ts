@@ -27,7 +27,7 @@ setLanguage('en_GB');
 interface BaseOptions {
     file?: string;
     source?: string;
-    url?: string;
+    url?: string | URL;
 }
 
 interface ExtractMetadataOptions extends BaseOptions {
@@ -200,12 +200,12 @@ export class Specberus extends EventEmitter<SpecberusEvents> {
         throw new Error('url, source, or file must be specified.');
     }
 
-    #loadURL(url: string) {
+    #loadURL(url: string | URL) {
         return get(url)
             .set('User-Agent', `W3C-Pubrules/${specberusVersion}`)
             .then(res => {
                 if (!res.text) throw new Error(`Body of ${url} is empty.`);
-                this.url = url;
+                this.url = '' + url;
                 return this.#loadSource(res.text);
             });
     }
