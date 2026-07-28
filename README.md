@@ -1,6 +1,5 @@
 [![Tests status](https://github.com/w3c/specberus/actions/workflows/node.js.yml/badge.svg)](https://github.com/w3c/specberus/actions/workflows/node.js.yml)
 [![Lint Status](https://github.com/w3c/specberus/actions/workflows/js-lint.yml/badge.svg)](https://github.com/w3c/specberus/actions/workflows/js-lint.yml)
-![Dependency Status](https://img.shields.io/librariesio/github/w3c/specberus)
 
 # Specberus
 
