@@ -218,7 +218,7 @@ export const check: RuleCheckFunction = async context => {
             context,
             rule: self,
             $element: $editorsDraftElement,
-            linkName: 'Implementation report',
+            linkName: "Editor's draft",
         });
         if (exist) {
             const editorsDraft = $editorsDraftElement.attr('href') || '';
