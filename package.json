@@ -23,7 +23,7 @@
     "express": "5.2.1",
     "express-fileupload": "1.5.2",
     "express-handlebars": "9.0.1",
-    "file-type": "22.0.1",
+    "file-type": "22.0.2",
     "insafe": "0.5.1",
     "metaviewport-parser": "0.3.0",
     "morgan": "1.11.0",
