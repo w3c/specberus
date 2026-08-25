@@ -5,7 +5,7 @@ import { after, afterEach, before, beforeEach, describe, it } from 'node:test';
 
 import { rules as metadataRules } from '../lib/profiles/metadata.js';
 import { removeRules } from '../lib/profiles/profileUtil.js';
-import type { HandlerMessage } from '../lib/types.js';
+import type { HandlerMessage, ProfileModule } from '../lib/types.js';
 import { allProfiles } from '../lib/util.js';
 import {
     ExceptionsError,
@@ -300,25 +300,28 @@ interface CheckRuleOptions {
     track?: string | undefined;
 }
 
-function checkRule(tests: RuleTest[], options: CheckRuleOptions) {
+async function checkRule(tests: RuleTest[], options: CheckRuleOptions) {
     const { docType, track, profile, category, rule } = options;
+
+    const suffix = track ? `${track}/${profile}` : profile;
+    const { config, rules } = (await import(
+        `../lib/profiles/${docType}/${suffix}.js`
+    )) as ProfileModule;
+    if (!rules.some(({ name }) => name === `${category}.${rule}`)) {
+        console.log(`Skipping ${category}.${rule} for profile ${profile}`);
+        return;
+    }
+
+    const ruleModule = await import(`../lib/rules/${category}/${rule}.js`);
 
     tests.forEach(test => {
         const passOrFail = !test.errors ? 'pass' : 'fail';
-        const suffix = track ? `${track}/${profile}` : profile;
         const url = `${ENDPOINT}/doc-views/${docType}/${suffix}?rule=${rule}&type=${test.data}`;
 
         // If the test is not mentioned in the environment variables, skip it.
         if (testType && test.data !== testType) return;
 
         it(`should ${passOrFail} for ${url}`, async () => {
-            const { config } = await import(
-                `../lib/profiles/${docType}/${suffix}.js`
-            );
-            const ruleModule = await import(
-                `../lib/rules/${category}/${rule}.js`
-            );
-
             const sr = new Specberus();
             addValidationEventListeners(sr);
             const options = {
@@ -383,15 +386,14 @@ function runTestsForProfile({
                 if (testType && !tests.some(({ data }) => data === testType))
                     return;
 
-                describe(`Rule: ${category}.${rule}`, () => {
+                describe(`Rule: ${category}.${rule}`, () =>
                     checkRule(tests, {
                         docType,
                         track,
                         profile,
                         category,
                         rule,
-                    });
-                });
+                    }));
             });
         });
     });
