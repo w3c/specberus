@@ -321,7 +321,11 @@ function checkRule(tests: RuleTest[], options: CheckRuleOptions) {
         if (testType && test.data !== testType) return;
 
         it(`should ${passOrFail} for ${url}`, async () => {
-            const { config } = resolvedProfiles[profile];
+            const config = resolvedProfiles[profile]?.config;
+            if (!config)
+                throw new Error(
+                    `Config not found for profile ${suffix}; check that the module exists and is valid?`
+                );
             const ruleModule = await import(
                 `../lib/rules/${category}/${rule}.js`
             );
