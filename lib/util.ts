@@ -11,7 +11,7 @@ import { Octokit } from '@octokit/core';
 // @ts-ignore (no typings)
 import w3cApi from 'node-w3capi';
 
-import type { ParsedQs, SpecberusConfig } from './types.js';
+import type { ParsedQs, ProfileModule, SpecberusConfig } from './types.js';
 import type { ValidateOptions } from './specberus.js';
 import pkg from '../package.json' with { type: 'json' };
 
@@ -50,7 +50,10 @@ export const allProfiles = [
     ...SUBMProfiles.map(x => `SUBM/${x}`),
 ];
 
-export const profiles = Object.fromEntries(
+export const profiles: Record<
+    string,
+    Promise<ProfileModule>
+> = Object.fromEntries(
     allProfiles
         .map(file => {
             const match =
