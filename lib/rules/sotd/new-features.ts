@@ -10,7 +10,7 @@ export const { name } = self;
 
 export const check: RuleCheckFunction = context => {
     const $sotd = context.getSotDSection();
-    const docType = `${context.config!.status !== 'REC' ? 'upcoming ' : ''}Recommendation`;
+    const docType = `${context.config!.status !== 'REC' ? 'upcoming ' : ''}recommendation`;
     const warning = new RegExp(
         `Future updates to this ${docType} may incorporate new features.`
     );
