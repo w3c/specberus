@@ -315,7 +315,7 @@ export function buildNewFeatures(base: BaseCommonViewData) {
                 ...base.sotd,
                 newFeatures: {
                     show: true,
-                    text: `Future updates to this Recommendation may incorporate new features.`,
+                    text: `Future updates to this recommendation may incorporate new features.`,
                 },
             },
         },

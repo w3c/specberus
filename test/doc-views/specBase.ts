@@ -194,7 +194,7 @@ export const data = {
             '18 August 2025 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document',
         newFeatures: {
             show: false,
-            text: 'Future updates to this Recommendation may incorporate new features.',
+            text: 'Future updates to this recommendation may incorporate new features.',
         },
         defaultCRDate: `04 October ${currentYear}`,
         defaultCRYDate: `6 September ${currentYear}`,

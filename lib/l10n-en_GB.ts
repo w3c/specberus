@@ -276,7 +276,7 @@ export const messages = {
     'sotd.new-features.no-link':
         'The paragraph on future updates to the recommendation should include a link to the new features: https://www.w3.org/policies/process/20250818/#allow-new-features',
     'sotd.new-features.no-warning':
-        "<strong style='font-size: 20px;'>If it is the intention to incorporate new features in future updates of the Recommendation, please make sure to identify the document as intending to allow new features.</strong>",
+        "<strong style='font-size: 20px;'>If it is the intention to incorporate new features in future updates of the recommendation, please make sure to identify the document as intending to allow new features.</strong>",
     // structure/canonical
     'structure.canonical.not-found': 'No canonical link found.',
     // structure/name
