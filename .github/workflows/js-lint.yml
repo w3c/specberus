@@ -2,6 +2,8 @@ name: Lint JS
 
 on:
   push:
+    branches:
+      - main
     paths:
       - '**/*.js'
       - 'package.json'

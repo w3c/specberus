@@ -2,8 +2,8 @@ name: Specberus tests
 
 on:
   push:
-    branches-ignore:
-      - 'dependabot/**'
+    branches:
+      - main
   pull_request_target:
 
 permissions:
