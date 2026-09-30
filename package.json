@@ -31,7 +31,7 @@
     "promise": "8.3.0",
     "puppeteer": "25.11.0",
     "socket.io": "4.8.4",
-    "superagent": "10.3.0",
+    "superagent": "10.4.1",
     "tmp": "0.2.7"
   },
   "devDependencies": {
