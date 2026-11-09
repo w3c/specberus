@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  pull_request_target:
+  pull_request:
 
 permissions:
   contents: read
@@ -21,15 +21,7 @@ jobs:
         node-version: [22, 24]
     steps:
       - name: Checkout
-        if: ${{ github.event_name != 'pull_request_target' }}
         uses: actions/checkout@v7
-
-      - name: Checkout PR
-        if: ${{ github.event_name == 'pull_request_target' }}
-        uses: actions/checkout@v7
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          persist-credentials: false
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v7
