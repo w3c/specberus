@@ -31,7 +31,7 @@
     "promise": "8.3.0",
     "puppeteer": "25.16.0",
     "socket.io": "4.8.4",
-    "superagent": "10.4.1",
+    "superagent": "10.4.2",
     "tmp": "0.2.7"
   },
   "devDependencies": {
@@ -49,7 +49,7 @@
     "husky": "9.0.11",
     "lint-staged": "17.6.0",
     "lodash.merge": "^4.6.2",
-    "nock": "15.0.5",
+    "nock": "15.0.6",
     "prettier": "3.9.10",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3"
